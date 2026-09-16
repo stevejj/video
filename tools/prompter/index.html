@@ -1,0 +1,218 @@
+<title>팽팽부부 프롬프트 복사기</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ground:#F3ECE0; --surface:#FBF7F0; --line:#DCD2C2; --ink:#2A2724; --muted:#6F675C;
+  --slate:#4F5866; --silver:#A7ACB3; --blush:#E9A5A0; --beak:#D08A57; --beak-ink:#FFF8F0;
+  --ok:#5E8C61; --promptbg:#EFE8DB;
+  --font-display:"Nunito","Noto Sans KR",system-ui,sans-serif;
+  --font-body:"Noto Sans KR",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#1F1C19; --surface:#2A2622; --line:#3F3931; --ink:#EDE5D8; --muted:#A79D8E;
+    --slate:#8F9BAD; --silver:#C4C8CE; --blush:#E9A5A0; --beak:#D8935F; --beak-ink:#1F1C19;
+    --ok:#8FBF92; --promptbg:#1A1714;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#1F1C19; --surface:#2A2622; --line:#3F3931; --ink:#EDE5D8; --muted:#A79D8E;
+  --slate:#8F9BAD; --silver:#C4C8CE; --blush:#E9A5A0; --beak:#D8935F; --beak-ink:#1F1C19;
+  --ok:#8FBF92; --promptbg:#1A1714;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+h1{font-family:var(--font-display);font-weight:800;font-size:20px;margin:0 0 10px;letter-spacing:-.01em}
+h1 small{font-family:var(--font-body);font-weight:400;font-size:12px;color:var(--muted);margin-left:8px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg button{appearance:none;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:10px 12px;font:inherit;font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.seg button .dot{width:22px;height:22px;border-radius:50%;flex:none;border:2px solid rgba(0,0,0,.08);position:relative}
+.seg button[data-c="changsu"] .dot{background:var(--slate)}
+.seg button[data-c="changsu"] .dot::after{content:"";position:absolute;left:8px;top:-7px;width:4px;height:9px;border-radius:2px;background:var(--slate);transform:rotate(-12deg)}
+.seg button[data-c="misun"] .dot{background:var(--silver)}
+.seg button[data-c="misun"] .dot::after{content:"";position:absolute;left:3px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--blush);box-shadow:8px 0 0 var(--blush)}
+.seg button[aria-pressed="true"]{border-color:var(--beak);box-shadow:inset 0 0 0 1px var(--beak)}
+.seg button span.sub{font-weight:400;font-size:12px;color:var(--muted);display:block;line-height:1.2}
+h2{font-family:var(--font-display);font-weight:800;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:24px 0 10px}
+.list{display:flex;flex-direction:column;gap:8px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+details[open]{border-color:var(--beak)}
+summary{list-style:none;cursor:pointer;padding:12px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary .n{font-family:var(--font-display);font-weight:800;font-size:13px;color:var(--beak);min-width:2.2em}
+summary .t{font-weight:700}
+summary .t em{font-style:normal;font-weight:400;color:var(--muted);font-size:12px;margin-left:6px}
+summary .tag{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:999px;background:var(--promptbg);color:var(--muted)}
+summary .tag.must{background:var(--beak);color:var(--beak-ink)}
+.body{padding:0 14px 14px;display:flex;flex-direction:column;gap:10px}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13px}
+.meta dt{color:var(--muted)}
+.meta dd{margin:0;font-weight:500;word-break:break-all}
+.meta code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:var(--promptbg);padding:1px 6px;border-radius:6px}
+.note{font-size:13px;color:var(--muted);margin:0}
+.copybtn{appearance:none;border:0;border-radius:12px;background:var(--beak);color:var(--beak-ink);font:inherit;font-weight:700;font-size:16px;padding:14px;width:100%;cursor:pointer}
+.copybtn:active{transform:translateY(1px)}
+.copybtn.done{background:var(--ok);color:#fff}
+.copybtn:focus-visible,.seg button:focus-visible,summary:focus-visible,.small:focus-visible{outline:3px solid var(--beak);outline-offset:2px}
+pre.prompt{margin:0;background:var(--promptbg);border-radius:10px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.5;white-space:pre-wrap;word-break:break-word;max-height:220px;overflow:auto;color:var(--ink)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.small{appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:13px;padding:7px 12px;border-radius:999px;cursor:pointer}
+.sheets{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sheets figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.sheets img{display:block;width:100%;height:auto}
+.sheets figcaption{padding:8px 10px;font-size:12px;color:var(--muted)}
+.check{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.check ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.check b{font-weight:700}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+@media (max-width:420px){.seg button{font-size:14px;padding:9px 10px}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <h1>팽팽부부 프롬프트 복사기 <small>Gemini 참조 이미지용</small></h1>
+  <div class="seg" role="group" aria-label="캐릭터 선택">
+    <button type="button" id="btn-changsu" data-c="changsu" aria-pressed="true"><span class="dot"></span><span>팽창수<span class="sub">털뭉치 · 진회색</span></span></button>
+    <button type="button" id="btn-misun" data-c="misun" aria-pressed="false"><span class="dot"></span><span>팽미순<span class="sub">볼터치 · 은회색</span></span></button>
+  </div>
+</header>
+
+<h2>사용 순서</h2>
+<div class="check">
+  <ul>
+    <li>위에서 캐릭터를 고른다. (투샷은 캐릭터 선택과 무관)</li>
+    <li>아래 항목을 열고 <b>복사</b>를 누른다. 공통 규칙과 캐릭터 설명이 합쳐진 완성 프롬프트가 복사된다.</li>
+    <li>Gemini에 그 캐릭터의 <b>시트 이미지를 첨부</b>하고 붙여넣는다. 시트는 맨 아래에서 길게 눌러 저장.</li>
+    <li>한 번에 한 장만. 결과는 표시된 파일명으로 저장.</li>
+  </ul>
+</div>
+
+<h2>필수</h2>
+<div class="list" id="list-must"></div>
+<h2>권장</h2>
+<div class="list" id="list-rec"></div>
+<h2>선택</h2>
+<div class="list" id="list-opt"></div>
+
+<h2>생성 후 확인 (하나라도 틀리면 재생성)</h2>
+<div class="check">
+  <ul>
+    <li><b>팽창수</b>: 털뭉치 있음 · 볼터치 없음 · 머리 진한 슬레이트 그레이</li>
+    <li><b>팽미순</b>: 털뭉치 없음 · 분홍 볼터치 있음 · 머리 밝은 은회색</li>
+    <li><b>공통</b>: 눈 흰자 없음 · 부리 닫힘·주황 · 손가락·팔·목·눈썹 없음 · 2등신 · 플러시 털</li>
+    <li>배경은 무지 베이지, 우하단 여백 있음 (워터마크는 제가 지웁니다)</li>
+  </ul>
+</div>
+
+<h2>참조 시트 (길게 눌러 저장)</h2>
+<div class="sheets">
+  <figure><img src="sheets/pang-changsu_sheet_clean.png" alt="팽창수 캐릭터 시트" loading="lazy"><figcaption>팽창수 시트 · pang-changsu_sheet_clean.png</figcaption></figure>
+  <figure><img src="sheets/pang-misun_sheet_clean.png" alt="팽미순 캐릭터 시트" loading="lazy"><figcaption>팽미순 시트 · pang-misun_sheet_clean.png</figcaption></figure>
+</div>
+
+<h2>문제가 생기면 끝에 한 줄 추가</h2>
+<div class="list" id="list-fix"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite">복사됨</div>
+
+<script>
+const COMMON = `Use the attached character sheet as the EXACT reference. Reproduce this character with zero design changes: same plush 3D rendered look with short velvet fur, same chibi proportions (head as large as the body, no neck), same huge round dark-brown eyes with a large white highlight and no sclera, same small glossy coral-orange beak closed in a gentle smile, same cream face panel that runs from around the eyes down to the chest, same light silver-grey belly, same short rounded flipper wings with no fingers, same small grey feet. Do NOT add eyebrows, eyelashes, teeth, tongue, fingers, hands, arms, a neck, clothing, accessories, text, or logos. Keep the same plain warm beige studio background and soft diffused lighting as the sheet. Leave empty space in the bottom-right corner of the frame.`;
+const CHAR = {
+  changsu:{name:'팽창수',file:'pang-changsu',text:`This character is Pang Chang-su: dark slate-grey head, back and wings; a single upright tuft of fur on the very top of the head that curls slightly to one side; NO blush on the cheeks. The tuft must be visible from every angle.`,exprTail:` The tuft is visible in every panel.`},
+  misun:{name:'팽미순',file:'pang-misun',text:`This character is Pang Mi-sun: light silver-grey head, back and wings; a smooth rounded head with NO tuft on top; soft pink circular blush on both cheeks that is clearly visible.`,exprTail:` The pink blush is visible in every panel.`}
+};
+const TWOSHOT = `Use the two attached character sheets as the EXACT references. The first sheet is Pang Chang-su, the second is Pang Mi-sun. Reproduce both with zero design changes (plush 3D look, chibi proportions, no neck, huge dark-brown eyes without sclera, closed coral-orange beak, cream face panel to the chest, silver-grey belly, fingerless flipper wings, small grey feet). Do NOT add eyebrows, eyelashes, teeth, fingers, arms, clothing, accessories, text, or logos. Plain warm beige studio background, soft diffused lighting. Leave empty space in the bottom-right corner.
+
+Pang Chang-su: dark slate-grey head and back, single upright tuft on top of the head, no blush.
+Pang Mi-sun: light silver-grey head and back, smooth head with no tuft, clear pink blush on both cheeks.
+
+Full body front view of both characters standing side by side at the same distance from the camera, Pang Chang-su on the viewer's left and Pang Mi-sun on the viewer's right, shoulders almost touching, both looking at the camera with a gentle smile. They are exactly the same height and body size. Both fully visible from head to feet, centered together.`;
+
+const SHOTS = [
+ {g:'must',id:'hires_front',title:'고해상도 전신 정면',ratio:'3:4',note:'가장 먼저. 잘 나오면 이후 요청에 시트와 함께 추가 첨부.',text:`Full body, front view, standing straight, facing the camera directly, neutral gentle smile, wings resting at the sides, feet slightly apart. The whole character is centered and fills about 70% of the frame height. Highest possible resolution and detail in the fur.`},
+ {g:'must',id:'twoshot',title:'투샷 (두 시트 다 첨부)',ratio:'4:3',two:true,note:'캐릭터 선택과 무관. 팽창수 시트를 첫 번째, 팽미순 시트를 두 번째로 첨부.',file:'couple_twoshot_front'},
+ {g:'must',id:'3q_left',title:'3/4 정면 좌향',ratio:'3:4',text:`Full body, three-quarter front view: the body and head are turned about 45 degrees to the viewer's left, both eyes still visible, the far eye slightly smaller due to perspective. Standing, neutral gentle smile, wings resting at the sides. Centered, filling about 70% of the frame height.`},
+ {g:'must',id:'3q_right',title:'3/4 정면 우향',ratio:'3:4',text:`Full body, three-quarter front view: the body and head are turned about 45 degrees to the viewer's right, both eyes still visible, the far eye slightly smaller due to perspective. Standing, neutral gentle smile, wings resting at the sides. Centered, filling about 70% of the frame height.`},
+ {g:'must',id:'expressions',title:'표정 시트 6종',ratio:'1:1',expr:true,note:'부리는 전부 닫힘 기준.',text:`An expression sheet: a 3x2 grid of six identical-size head-and-shoulders front views of the SAME character on the same beige background, no labels or text. Top row left to right: (1) neutral gentle smile exactly as the sheet, (2) big happy smile with eyes squeezed into happy arcs, (3) surprised with eyes wide open and slightly raised head. Bottom row left to right: (4) sulky / annoyed with eyes narrowed and looking to the side, (5) sleepy with eyelids half closed, (6) sad with glossy eyes and a single small tear. In every panel the beak stays closed and the same size, the eyes keep the same color and highlight style, and the head shape, fur, and colors are identical.`},
+ {g:'rec',id:'pose_sit',title:'앉은 자세',ratio:'3:4',text:`Full body, three-quarter front view, sitting on the floor with the legs stretched forward and the feet showing, body slightly leaning back, wings resting on the floor beside the body, relaxed gentle smile. No chair or props. Centered.`},
+ {g:'rec',id:'pose_walk_side',title:'걷는 자세 측면',ratio:'3:4',text:`Full body, exact side view facing the viewer's left, mid-step walking pose: one foot forward and one foot back, body upright with a slight forward lean, wings swinging slightly. Gentle smile. Centered.`},
+ {g:'rec',id:'pose_lying',title:'누운 자세',ratio:'4:3',text:`Full body, viewed from a slightly elevated angle, lying on the back on the floor with the belly up, head resting on the floor and turned slightly toward the camera, wings spread out relaxed at the sides, feet pointing up, eyes open with a content smile. No bed or props. Centered.`},
+ {g:'rec',id:'pose_hold_cup',title:'날개로 컵 들기',ratio:'3:4',text:`Full body, three-quarter front view, standing and holding a small plain white ceramic mug with both flipper wings pressed against its sides in front of the belly. The wings stay short, rounded and fingerless; the mug is simply clamped between them. Gentle smile, looking at the camera. Centered.`},
+ {g:'opt',id:'face_eyes_closed',title:'눈 감은 얼굴',ratio:'1:1',text:`Head-and-shoulders front view with both eyes fully closed as two soft downward curved lines, peaceful sleeping expression, beak closed. Same framing as the sheet's large face view.`}
+];
+const FIXES = [
+ {title:'털뭉치·볼터치가 사라짐',text:'캐릭터 설명을 프롬프트 맨 끝에 한 번 더 붙여서 재요청 (아래 복사는 현재 선택 캐릭터 설명).',dyn:true},
+ {title:'손가락·팔이 생김',text:`The wings are short rounded flippers with no fingers, pressed close to the body.`},
+ {title:'눈에 흰자가 생김',text:`The eyes are entirely dark brown with no white sclera, only the small white highlights.`},
+ {title:'배경이 바뀜',text:`Plain flat warm beige background identical to the sheet, nothing else in the scene.`},
+ {title:'부리가 벌어짐',text:`The beak stays fully closed in a gentle smile, exactly as in the sheet.`}
+];
+
+let cur = 'changsu';
+try{ const s = localStorage.getItem('pp-char'); if(s==='misun'||s==='changsu') cur = s; }catch(e){}
+
+function build(shot){
+  if(shot.two) return TWOSHOT;
+  const c = CHAR[cur];
+  let t = COMMON + '\n\n' + c.text + '\n\n' + shot.text;
+  if(shot.expr) t += c.exprTail;
+  return t;
+}
+function fileName(shot){
+  if(shot.two) return shot.file + '.png';
+  return CHAR[cur].file + '_' + shot.id + '.png';
+}
+const tagName = {must:'필수',rec:'권장',opt:'선택'};
+function render(){
+  for(const g of ['must','rec','opt']){
+    const host = document.getElementById('list-'+g);
+    const openIds = new Set([...host.querySelectorAll('details[open]')].map(d=>d.dataset.id));
+    host.innerHTML='';
+    SHOTS.filter(s=>s.g===g).forEach((s,i)=>{
+      const d=document.createElement('details'); d.dataset.id=s.id; if(openIds.has(s.id)) d.open=true;
+      const who = s.two ? '팽창수 + 팽미순' : CHAR[cur].name;
+      d.innerHTML = `<summary><span class="n">${String(SHOTS.indexOf(s)+1).padStart(2,'0')}</span><span class="t">${s.title}<em>${s.ratio}</em></span><span class="tag ${g}">${tagName[g]}</span></summary>
+      <div class="body">
+        <dl class="meta"><dt>대상</dt><dd>${who}</dd><dt>비율</dt><dd>${s.ratio}</dd><dt>파일명</dt><dd><code>${fileName(s)}</code></dd></dl>
+        ${s.note?`<p class="note">${s.note}</p>`:''}
+        <button type="button" class="copybtn" id="copy-${s.id}">프롬프트 복사</button>
+        <pre class="prompt" id="pre-${s.id}">${esc(build(s))}</pre>
+        <div class="row"><button type="button" class="small" id="copyname-${s.id}">파일명만 복사</button></div>
+      </div>`;
+      host.appendChild(d);
+      d.querySelector('#copy-'+s.id).addEventListener('click',ev=>copy(build(s),ev.currentTarget));
+      d.querySelector('#copyname-'+s.id).addEventListener('click',ev=>copy(fileName(s),ev.currentTarget));
+    });
+  }
+  const fh=document.getElementById('list-fix'); fh.innerHTML='';
+  FIXES.forEach((f,i)=>{
+    const d=document.createElement('details');
+    const text = f.dyn ? CHAR[cur].text : f.text;
+    d.innerHTML=`<summary><span class="n">${String(i+1).padStart(2,'0')}</span><span class="t">${f.title}</span><span class="tag">추가</span></summary>
+    <div class="body">${f.dyn?`<p class="note">${f.text}</p>`:''}<button type="button" class="copybtn" id="fix-${i}">한 줄 복사</button><pre class="prompt">${esc(text)}</pre></div>`;
+    fh.appendChild(d);
+    d.querySelector('#fix-'+i).addEventListener('click',ev=>copy(text,ev.currentTarget));
+  });
+  document.getElementById('btn-changsu').setAttribute('aria-pressed', cur==='changsu');
+  document.getElementById('btn-misun').setAttribute('aria-pressed', cur==='misun');
+}
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+async function copy(text, btn){
+  let ok=false;
+  try{ await navigator.clipboard.writeText(text); ok=true; }catch(e){
+    try{ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); ok=document.execCommand('copy'); ta.remove(); }catch(e2){}
+  }
+  const toast=document.getElementById('toast');
+  toast.textContent = ok ? '복사됨. Gemini에 붙여넣으세요' : '복사 실패. 아래 글을 길게 눌러 선택하세요';
+  toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),1800);
+  if(btn && ok){ const old=btn.textContent; btn.textContent='복사됨 ✓'; btn.classList.add('done'); setTimeout(()=>{btn.textContent=old;btn.classList.remove('done');},1500); }
+}
+document.getElementById('btn-changsu').addEventListener('click',()=>{cur='changsu';save();render();});
+document.getElementById('btn-misun').addEventListener('click',()=>{cur='misun';save();render();});
+function save(){ try{localStorage.setItem('pp-char',cur);}catch(e){} }
+render();
+</script>
