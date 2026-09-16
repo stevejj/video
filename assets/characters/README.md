@@ -14,7 +14,13 @@
 | 팽창수 | `pang-changsu/pang-changsu_body_front.png` | 전신 정면 |
 | 팽창수 | `pang-changsu/pang-changsu_body_side.png` | 전신 측면 (좌향) |
 | 팽창수 | `pang-changsu/pang-changsu_body_back.png` | 전신 뒷모습 |
-| 원본 | `original/*_sheet_original.png` | 업로드 원본 (워터마크 포함, 수정 금지) |
+| 팽창수 | `pang-changsu/pang-changsu_hires_front.png` | 고해상도 전신 정면 (768x1376) |
+| 팽창수 | `pang-changsu/pang-changsu_3q_left.png` | 3/4 정면 좌향 |
+| 팽창수 | `pang-changsu/pang-changsu_3q_right.png` | 3/4 정면 우향 (하단 텍스트 잘라냄) |
+| 팽창수 | `pang-changsu/pang-changsu_pose_sit.png` | 앉은 자세 (발 변형, 자세 참고용) |
+| 팽창수 | `pang-changsu/pang-changsu_expressions.png` | 표정 6종 그리드 |
+| 팽창수 | `pang-changsu/expressions/pang-changsu_expr_0N_*.png` | 표정 개별 6장 (01 기본, 02 활짝, 03 놀람, 04 째려봄, 05 졸림, 06 슬픔) |
+| 원본 | `original/*_original.png` | 업로드 원본 (워터마크 포함, 수정 금지) |
 
 원본 해상도 768x1376. 크롭 이미지는 시트에서 잘라낸 것이라 해상도가 낮다(정면 전신 약 280x335).
 G1 단계에서 고해상도 턴어라운드를 새로 만들어 이 크롭들을 대체할 예정이다.
