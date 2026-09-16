@@ -31,7 +31,7 @@
 
 ### 3.1 기본 템플릿 (v3_0, 시작+끝 프레임)
 ```
-{캐릭터 영문명} {동작 한 문장, 이미지 안에서 가능한 것}. {끝 상태 한 문장}. {속도어: slowly / at a steady pace}. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur. Beak stays closed the whole time. No other characters appear.
+{캐릭터 영문명} {동작 한 문장, 이미지 안에서 가능한 것}. {끝 상태 한 문장}. {속도어: slowly / at a steady pace}. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur. {말 안 하는 컷: Beak stays closed the whole time. / 말·웃음 컷: The beak opens and closes only very slightly, keeping its exact shape and size.} No other characters appear. No new objects appear.
 ```
 예시(걷기):
 ```
