@@ -92,7 +92,7 @@ Pang Chang-su places one wing on the lever handle and pushes the front door open
 | prefer_multi_shots | **false 명시** | 공식은 "기본 꺼짐"이지만 MCP v3_0 기본값은 true로 표시됨. 우리는 샷을 직접 나누므로 끈다. [공식 3.0 guide][MCP] |
 | enable_audio | **false** | 입 동작 유발 가능성, 비용. 효과음·BGM은 후반. v2_6은 끝 프레임과 병용 불가. [MCP][커뮤니티] |
 | duration | **5** 기본, 미세 동작 3, 낮→밤 등 큰 변화만 8~10 | [공식][커뮤니티] |
-| resolution | 테스트 720p, 본편 1080p | 비용 |
+| resolution | **720p 고정**(최종본 10개까지) | 사용자 결정 |
 | imageCount | 테스트 1, 본편은 어려운 샷만 2 | 비용 |
 
 멀티샷을 켤 일이 생기면 공식 형식은 `[Shot 1: Wide shot] ... [Shot 2: Medium shot] ...`이고 최대 6샷, 총 3~15초. [공식 multi-shot-guide]
