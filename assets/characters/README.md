@@ -30,6 +30,11 @@
 | 팽미순 | `pang-misun/pang-misun_pose_sit.png` | 앉은 자세 |
 | 팽미순 | `pang-misun/pang-misun_pose_walk_side.png` | 걷는 자세 측면 (우향) |
 | 팽미순 | `pang-misun/pang-misun_pose_lying.png` | 누운 자세 |
+| 팽미순 | `pang-misun/pang-misun_hires_front.png` | 고해상도 전신 정면 |
+| 팽미순 | `pang-misun/pang-misun_pose_hold_cup.png` | 날개로 컵 들기 |
+| 팽미순 | `pang-misun/pang-misun_face_eyes_closed.png` | 눈 감은 얼굴 |
+| 팽미순 | `pang-misun/pang-misun_expressions.png` | 표정 6종 그리드 (라벨 제거 재구성) |
+| 팽미순 | `pang-misun/expressions/pang-misun_expr_0N_*.png` | 표정 개별 6장 |
 | 원본 | `original/*_original.png` | 업로드 원본 (워터마크 포함, 수정 금지) |
 
 원본 해상도 768x1376. 크롭 이미지는 시트에서 잘라낸 것이라 해상도가 낮다(정면 전신 약 280x335).
