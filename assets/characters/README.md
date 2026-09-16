@@ -20,6 +20,16 @@
 | 팽창수 | `pang-changsu/pang-changsu_pose_sit.png` | 앉은 자세 (발 변형, 자세 참고용) |
 | 팽창수 | `pang-changsu/pang-changsu_expressions.png` | 표정 6종 그리드 |
 | 팽창수 | `pang-changsu/expressions/pang-changsu_expr_0N_*.png` | 표정 개별 6장 (01 기본, 02 활짝, 03 놀람, 04 째려봄, 05 졸림, 06 슬픔) |
+| 팽창수 | `pang-changsu/pang-changsu_pose_walk_side.png` | 걷는 자세 측면 (우향) |
+| 팽창수 | `pang-changsu/pang-changsu_pose_lying.png` | 누운 자세 |
+| 팽창수 | `pang-changsu/pang-changsu_face_eyes_closed.png` | 눈 감은 얼굴 |
+| 팽창수 | `pang-changsu/pang-changsu_pose_hold_cup.png` | 날개로 컵 들기 |
+| 투샷 | `couple_twoshot_front.png` | 두 캐릭터 정면 투샷 (창수 좌, 미순 우) |
+| 팽미순 | `pang-misun/pang-misun_3q_left.png` | 3/4 정면 좌향 |
+| 팽미순 | `pang-misun/pang-misun_3q_right.png` | 3/4 정면 우향 |
+| 팽미순 | `pang-misun/pang-misun_pose_sit.png` | 앉은 자세 |
+| 팽미순 | `pang-misun/pang-misun_pose_walk_side.png` | 걷는 자세 측면 (우향) |
+| 팽미순 | `pang-misun/pang-misun_pose_lying.png` | 누운 자세 |
 | 원본 | `original/*_original.png` | 업로드 원본 (워터마크 포함, 수정 금지) |
 
 원본 해상도 768x1376. 크롭 이미지는 시트에서 잘라낸 것이라 해상도가 낮다(정면 전신 약 280x335).
