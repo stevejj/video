@@ -17,7 +17,7 @@
 | 팽창수 | `pang-changsu/pang-changsu_hires_front.png` | 고해상도 전신 정면 (768x1376) |
 | 팽창수 | `pang-changsu/pang-changsu_3q_left.png` | 3/4 정면 좌향 |
 | 팽창수 | `pang-changsu/pang-changsu_3q_right.png` | 3/4 정면 우향 (하단 텍스트 잘라냄) |
-| 팽창수 | `pang-changsu/pang-changsu_pose_sit.png` | 앉은 자세 (발 변형, 자세 참고용) |
+| 팽창수 | `pang-changsu/pang-changsu_pose_sit.png` | 앉은 자세 (2차, 정상 발) |
 | 팽창수 | `pang-changsu/pang-changsu_expressions.png` | 표정 6종 그리드 |
 | 팽창수 | `pang-changsu/expressions/pang-changsu_expr_0N_*.png` | 표정 개별 6장 (01 기본, 02 활짝, 03 놀람, 04 째려봄, 05 졸림, 06 슬픔) |
 | 팽창수 | `pang-changsu/pang-changsu_pose_walk_side.png` | 걷는 자세 측면 (우향) |
