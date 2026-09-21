@@ -31,7 +31,7 @@
 
 ### 3.1 기본 템플릿 (v3_0, 시작+끝 프레임)
 ```
-{캐릭터 영문명} {동작 한 문장, 이미지 안에서 가능한 것}. {끝 상태 한 문장}. {속도어: slowly / at a steady pace}. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur. {말 안 하는 컷: Beak stays closed the whole time. / 자막(대사) 컷: As he speaks a short line, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips.} No other characters appear. No new objects appear.
+{캐릭터 영문명} {동작 한 문장, 이미지 안에서 가능한 것}. {끝 상태 한 문장}. {속도어: slowly / at a steady pace}. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur. {말 안 하는 컷: Beak stays closed the whole time. / 대화 컷(속마음은 닫힘): As he speaks a short line, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips.} No other characters appear. No new objects appear.
 ```
 예시(걷기):
 ```
@@ -136,6 +136,6 @@ Pang Chang-su places one wing on the lever handle and pushes the front door open
 
 
 ## 11. 부리 움직임 표준 문장 (2026-09-21 사용자 지시)
-- 자막 컷은 음성 후시 녹음을 위해 부리를 움직이되 **아주 작게**. 시청자가 "말하고 있구나"를 인식하는 최소치. 크게 벌리면 봉제 캐릭터의 부리가 입술·오리 부리로 변형된다(R12).
+- **대화 컷**(상대에게 말함)만 부리를 움직이되 **아주 작게**. 속마음·혼잣말·감탄 자막은 부리 닫힘 + 보이스오버. 시청자가 "말하고 있구나"를 인식하는 최소치. 크게 벌리면 봉제 캐릭터의 부리가 입술·오리 부리로 변형된다(R12).
 - 문장: `As he speaks a short line, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips.`
 - 미순은 he/his → she/her.
