@@ -1,0 +1,67 @@
+{
+ "cut": "9-03",
+ "type": "start_only",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "3",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su looks to the right with wide sparkling eyes and a big delighted smile, his head tipping slightly forward with excitement as he answers. His eyes stay wide the whole time. Nothing else moves. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. As he speaks a short line, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/9-03/start_v1.png",
+   "encoding": "JPEG",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qUwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBo5YWdlbnRfdXBsb2FkLzE3ODk5ODA3NDcvQXdTV3dnMUZHaC9lcDAxXzktMDNfc3RhcnRfdjEuanBn.origin?x-kcdn-pid=112372"
+  }
+ },
+ "credits_before": 373.0,
+ "approved_by_user": "진행 (2026-09-21)",
+ "version": 1,
+ "ts": "2026-09-21T08:52:49",
+ "generation_id": "AW9uDdvkWnZntNZ9A5uMUA8ptkjcJ_Tl9jUj1Tdc-fZH3N-9KK_lVRuP2KXXtz9kzLQLWoKv",
+ "credits_consumed_reported": 18.0,
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.81,
+   "start_vs_ref_bg_meandiff": 2.75,
+   "interframe_mean": 3.97,
+   "interframe_max": 10.29,
+   "interframe_max_at_s": 1.96,
+   "first_vs_last_meandiff": 21.24,
+   "bg_drift_first_last": 10.09,
+   "cam_motion_px_median": 0.2,
+   "cam_motion_px_max": 2.39,
+   "beak_region_change_max": 76.17,
+   "beak_region_change_mean": 55.23
+  }
+ },
+ "status": "COMPLETED",
+ "generation_seconds": 48,
+ "result": {
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/a690174a-e558-4ad1-acbe-d35fe3c38f89-PQ6VljIp6rIw2-xfieNNFA-output.mp4?x-kcdn-pid=112372",
+  "local": "outputs/ep01/9-03/clip_v1.mp4",
+  "expires": "24h from 2026-09-21T08:54Z"
+ },
+ "credits_after": 355.0,
+ "credits_cost": 18.0,
+ "review": {
+  "verdict": "불합격(부리)",
+  "technical": "첫프레임=시작(2.81), 카메라 0.2px, 눈 유지, 정체성 유지",
+  "deviation": "부리가 0.75/1.0/2.25/2.5s에 활짝 열려 입안 노출(\"tiny amount\" 무시). 2.25s쯤 거의 정면으로 돌아섬",
+  "options": [
+   "시작 프레임 정지 1.5s(권장)",
+   "채택(외침으로 수용)"
+  ],
+  "lesson": "v3_0은 speaks 단어에 크게 반응. 대화 컷은 말하라는 문장 없이 시작(닫힘)+끝(살짝) 프레임 보간으로만 움직임을 준다"
+ }
+}
