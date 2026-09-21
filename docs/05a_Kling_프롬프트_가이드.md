@@ -31,7 +31,7 @@
 
 ### 3.1 기본 템플릿 (v3_0, 시작+끝 프레임)
 ```
-{캐릭터 영문명} {동작 한 문장, 이미지 안에서 가능한 것}. {끝 상태 한 문장}. {속도어: slowly / at a steady pace}. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur. {말 안 하는 컷: Beak stays closed the whole time. / 말·웃음 컷: The beak opens and closes only very slightly, keeping its exact shape and size.} No other characters appear. No new objects appear.
+{캐릭터 영문명} {동작 한 문장, 이미지 안에서 가능한 것}. {끝 상태 한 문장}. {속도어: slowly / at a steady pace}. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur. {말 안 하는 컷: Beak stays closed the whole time. / 자막(대사) 컷: As he speaks a short line, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips.} No other characters appear. No new objects appear.
 ```
 예시(걷기):
 ```
@@ -133,3 +133,9 @@ Pang Chang-su places one wing on the lever handle and pushes the front door open
 - 공식: kling.ai/quickstart/text-to-video-prompt-guide, /image-to-video-guide, /ai-video-start-end-frames, /klingai-element-library-3-user-guide, /klingai-video-3-model-user-guide, /klingai-video-3-omni-model-user-guide, /klingai-video-o1-user-guide, /motion-control-user-guide, /klingai-video-26-audio-user-guide; kling.ai/blog/kling-ai-prompt-guide, /kling-ai-camera-control-video-guide, /fix-ai-video-drift-consistency-guide, /kling-3-subject-binding-character-consistency, /kling-video-3-multi-shot-guide, /ai-motion-transfer-video-tutorial
 - API 미러: fal.ai kling-video v3/o1/v2.6 페이지, docs.kie.ai kling-3-0, github.com/aself101/kling-api
 - 커뮤니티: blog.fal.ai kling-3-0-prompting-guide, veed.io kling 가이드, insmind, cliprise, atlascloud, magichour, glbgpt, videoai.me, neolemon, oakgen, phygital.plus, apidot
+
+
+## 11. 부리 움직임 표준 문장 (2026-09-21 사용자 지시)
+- 자막 컷은 음성 후시 녹음을 위해 부리를 움직이되 **아주 작게**. 시청자가 "말하고 있구나"를 인식하는 최소치. 크게 벌리면 봉제 캐릭터의 부리가 입술·오리 부리로 변형된다(R12).
+- 문장: `As he speaks a short line, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips.`
+- 미순은 he/his → she/her.
