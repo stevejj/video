@@ -11,6 +11,16 @@
 - 부리, **대화 컷 2개**(9-02 미순→창수 "라면머글래?", 9-03 창수→미순 "끄래!!!"): `As he speaks a short line, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips.` — **2026-09-21 사용자 결정**: 대화만 부리를 아주 작게 움직이고 음성을 붙인다. 속마음·혼잣말은 부리 닫힘 + 보이스오버 음성 + 자막.
 - 금지의 긍정문: `No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.`
 
+## 0b. 프롬프트 사전 점검표 (2026-09-21, 4-01·9-03 실측에서 도출 — 호출 전 매번 확인)
+| # | 점검 | 근거 |
+|---|---|---|
+| 1 | **동작 동사가 "크게" 해석돼도 괜찮은가?** speaks/answers/chews/bounces/sways/excitement/delighted 같은 단어는 지우거나 정적 서술로 바꾼다. 부정문(never, only a tiny amount)은 **안 통한다** | 9-03: tiny+never를 다 넣고도 입을 활짝 엶 |
+| 2 | 변화가 필요한 부위는 **말이 아니라 끝 프레임**으로 준다 | 프레임 보간은 지켜지고 문장은 무시됨 |
+| 3 | 시선·머리 방향을 **긍정문으로, 클립 내내** 고정했는가 (`keeps facing X the whole time` + `does not turn toward the camera`) | 4-01·9-03 둘 다 카메라를 돌아봄 |
+| 4 | 정지 컷이면 **정지 이미지로 충분하지 않은가**(0크레딧). 클립은 "시키지 않은 동작"이 들어올 위험만 있다 | 4-01: 정지 컷인데 고개 회전 |
+| 5 | 길이는 편집 길이 +1초 이내인가 (3초 최소) | 길수록 드리프트 |
+| 6 | 프레임 안에 없는 것을 언급하지 않았는가 (열차·사람·소리) | R4 |
+
 ## 1. 생성 전 결정 사항 — 2026-09-21 내가 확정 (사용자: 컷마다 "진행"만)
 | # | 항목 | 제안 | 이유 |
 |---|---|---|---|
@@ -32,6 +42,18 @@
 - **"speaks"가 들어가면 부리가 크게 열린다.** tiny/barely/never opens wide 전부 무시(0.75·1.0·2.25·2.5s 입안 노출). → 대화 컷 9-02는 말하라는 문장 삭제, `Her beak stays closed for almost the whole clip and only parts by a hair at the very end, matching the end image` — 시작(닫힘)→끝(살짝) 프레임 보간으로만 움직임.
 - **카메라 돌아보기 2회째**(4-01, 9-03). 이 모델의 기본 경향으로 보고 `does not turn his head toward the camera` 문장을 카메라를 봐야 하는 컷(2-01·2-02·1-02·10-01·10-02·9-04·3-02·8-01) 외 **전부에** 삽입.
 - 기술 항목(카메라 0.2px, 첫 프레임 일치 2.81, 눈·정체성 유지)은 통과. 48초 생성, 18크레딧(373→355).
+
+## 1e. 크레딧 보호 전략 (2026-09-21, 사용자 지시 "크레딧 계속 소모된다")
+현황: 2컷 생성(36크레딧), 1컷 채택·1컷 정지 이미지 대체 예정. 잔여 **355**.
+
+| 안 | 내용 | 필요 크레딧 | 잔여 |
+|---|---|---|---|
+| A. 전부 클립 | 남은 22컷 전부 v3_0 생성 (75초) | ~450 | **부족 ~95** |
+| **B. 동작 컷만 클립 (권장)** | 시작+끝 프레임이 있는 **9컷만** 생성(1-02·2-01·2-02·3-02·5-02·6-01·9-01·9-02·10-02, 34초 ≈ 204). **정지 컷 13개는 시작 프레임 정지 이미지**(1~2% 느린 줌으로 정지감 완화, 0크레딧) | ~204 | **~150 남음** — 걷기 2컷 재시도 여유 |
+| C. B + 선택 클립 | B에 더해 정지 컷 중 움직임이 가치 있는 2~3개만 클립(1-01 숨, 6-02 숨·잎그림자, 1-03 발) | ~260 | ~95 |
+
+B의 근거: 4-01과 9-03이 보여줬듯 정지 컷의 클립은 **얻는 것(숨·깜빡임)보다 잃을 위험(시키지 않은 동작)이 크다**. 애니매틱에서 정지 프레임 리듬이 이미 확인됐고, 편집 길이가 2초라 정지+미세 줌으로 충분하다. 실제 크레딧은 **움직임이 이야기인 컷**(눈 뜨기·수건·털뭉치·고개·졸음·걷기·돌아보기·눈 감기)에 쓴다.
+B를 택하면 turbo 단가 시험(3-01)은 불필요해진다.
 
 ## 2. 위험 등급 요약
 | 등급 | 컷 | 핵심 위험 |
@@ -78,7 +100,7 @@ Lying on his side on the pillow, Pang Chang-su slowly opens his eyes halfway, wa
 **인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su sits on the edge of the bed, sleepy, looking down at the floor. He does not turn his head toward the camera and never looks at the viewer. His dangling feet sway very slightly back and forth. His body, head and wings stay still. Mi-sun stays asleep behind him and does not move. The turned-back blanket stays as it is. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su sits on the edge of the bed, sleepy, looking down at the floor. He does not turn his head toward the camera and never looks at the viewer. His dangling feet sway back and forth by a tiny amount. His body, head and wings stay still. Mi-sun stays asleep behind him and does not move. The turned-back blanket stays as it is. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **예상 시나리오**: 발끝만 아주 작게 흔들림. 나머지 정지.
 **위험·감시 항목**: 중간 | 일어서거나 발이 바닥에 닿음, 미순이 움직임, 이불이 다시 덮임. **5초는 드리프트가 늘어나므로 3초 권장**(편집 2초면 충분)
@@ -168,7 +190,7 @@ Pang Chang-su glares at the monitor with narrowed, annoyed eyes. His head pushes
 **인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su sits at the table gazing at the stew with wide, sparkling eyes and a happy face. He does not turn his head toward the camera and never looks at the viewer. Thin steam rises gently from the stone pot. He, the dishes, the spoon and chopsticks on the napkin, and the customer behind him all stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su sits at the table gazing at the stew with wide, sparkling eyes and a happy face. He does not turn his head toward the camera and never looks at the viewer. A faint wisp of steam rises from the stone pot. He, the dishes, the spoon and chopsticks on the napkin, and the customer behind him all stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **자막(속마음·혼잣말 → 보이스오버, 부리 닫힘)**: 밥 마시따
 **예상 시나리오**: 김만 오르고 정지.
@@ -191,7 +213,7 @@ Pang Chang-su chews slowly with small movements of his cheeks, holding the spoon
 **인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su sits before the empty dishes, heavy-eyed and drowsy. He does not turn his head toward the camera and never looks at the viewer. His head slowly dips forward once in a small doze and comes back up. Both wings stay on the table. The empty pot, the spoon inside it and the dishes stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su sits before the empty dishes, heavy-eyed and drowsy. He does not turn his head toward the camera and never looks at the viewer. His head dips forward once, very slightly, in a small doze and comes back up; the movement is tiny. Both wings stay on the table. The empty pot, the spoon inside it and the dishes stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **자막(속마음·혼잣말 → 보이스오버, 부리 닫힘)**: 졸려...
 **예상 시나리오**: 고개 한 번 꾸벅.
@@ -238,7 +260,7 @@ Pang Chang-su sits slumped at his desk with half-closed eyes, staring at the mon
 **인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su stands beside his desk, beaming, and bounces gently on the spot with excitement, a small up-and-down bob with his feet staying on the carpet. His wings stay short at his sides. The dark monitor, the chair and the mug stay still. He does not turn his head toward the camera and never looks at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su stands beside his desk, beaming, completely still except for a slow, contented rise and fall of his body as he breathes. His feet stay planted on the carpet and his wings stay short at his sides. The dark monitor, the chair and the mug stay still. He does not turn his head toward the camera and never looks at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **자막(속마음·혼잣말 → 보이스오버, 부리 닫힘)**: 퇴근!!
 **예상 시나리오**: 제자리에서 작게 콩콩. 스토리보드 기본안(서 있는 정지 컷 + 들썩).
@@ -250,7 +272,7 @@ Pang Chang-su stands beside his desk, beaming, and bounces gently on the spot wi
 **인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su stands facing the camera at three-quarters, beaming with his beak slightly open, swaying very slightly from side to side with excitement. His feet stay planted. The adult behind him stays still. The screen doors stay closed and no train arrives. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. His beak stays exactly as in the image, slightly open in a smile, and does not move. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su stands facing the camera at three-quarters, beaming, still except for a slow happy breath. His feet stay planted. The adult behind him stays still. The screen doors stay closed and no train arrives. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. His beak stays exactly as in the image, slightly open in a smile, and does not move. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **자막(속마음·혼잣말 → 보이스오버, 부리 닫힘)**: 빨리집가!!!
 **예상 시나리오**: 몸이 좌우로 아주 살짝. 부리는 살짝 열린 채 미세.
@@ -297,7 +319,7 @@ Pang Chang-su looks to the right with wide sparkling eyes and a big delighted sm
 **인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su and Pang Mi-sun sit close together on the sofa watching the TV, which is where the camera is, completely still except slow blinks and breathing. Soft TV light flickers very gently on their faces. The empty pot and chopsticks on the table stay still. Both beaks stay closed. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su and Pang Mi-sun sit close together on the sofa watching the TV, which is where the camera is, completely still except slow blinks and breathing. The empty pot and chopsticks on the table stay still. Both beaks stay closed. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **예상 시나리오**: 정지 + TV 불빛 미세 깜빡임.
 **위험·감시 항목**: 낮음 | 서로 마주 보거나 말함, 불빛 깜빡임이 과함, 냄비에 라면이 다시 생김(R25)

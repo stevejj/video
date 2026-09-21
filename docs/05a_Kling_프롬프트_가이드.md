@@ -139,3 +139,11 @@ Pang Chang-su places one wing on the lever handle and pushes the front door open
 - **대화 컷**(상대에게 말함)만 부리를 움직이되 **아주 작게**. 속마음·혼잣말·감탄 자막은 부리 닫힘 + 보이스오버. 시청자가 "말하고 있구나"를 인식하는 최소치. 크게 벌리면 봉제 캐릭터의 부리가 입술·오리 부리로 변형된다(R12).
 - 문장: `As he speaks a short line, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips.`
 - 미순은 he/his → she/her.
+
+## 12. v3_0 실측 성질과 대응 (2026-09-21, ep01 4-01·9-03)
+| 성질 | 증거 | 대응 |
+|---|---|---|
+| 카메라를 돌아본다 | 4-01(모니터 응시 지시) 1.25s부터 정면, 9-03(오른쪽 응시) 2.25s 정면 | 카메라를 봐야 하는 컷 외 전부에 `keeps facing X the whole time. He does not turn his head toward the camera and never looks at the viewer.` |
+| 동작 동사를 크게 해석, 부정문 무시 | 9-03 `speaks... only a tiny amount... never opens wide` → 입안이 보이게 활짝 | **금지 단어**: speaks, answers, talks, chews, bounces, jumps, sways, excitement, delighted, excited. 변화는 끝 프레임으로 |
+| 정지 컷에도 임의 동작 | 4-01 고개 회전 | 정지 컷은 정지 이미지 우선(0크레딧). 클립은 동작이 이야기인 컷에만 |
+| 깜빡임·윙크는 스스로 넣음 | 4-01 깜빡, 9-03 윙크 | 프롬프트에 blink를 굳이 쓰지 않아도 됨 |
