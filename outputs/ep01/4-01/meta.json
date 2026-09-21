@@ -22,5 +22,53 @@
  "version": 1,
  "ts": "2026-09-21T08:24:50",
  "generation_id": "ARRoMuJ0FlvW_HoZO21VZT_naxmVrKtns4VAG9tmjpB8GrW7sfAxY4JQc5JyghGERj5yUJUu",
- "credits_consumed_reported": 18.0
+ "credits_consumed_reported": 18.0,
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 1.95,
+   "start_vs_ref_bg_meandiff": 1.95,
+   "interframe_mean": 0.42,
+   "interframe_max": 1.48,
+   "interframe_max_at_s": 0.29,
+   "first_vs_last_meandiff": 2.97,
+   "bg_drift_first_last": 3.04,
+   "cam_motion_px_median": 0.08,
+   "cam_motion_px_max": 0.49,
+   "beak_region_change_max": 39.4,
+   "beak_region_change_mean": 24.84
+  }
+ },
+ "status": "COMPLETED",
+ "generation_seconds": 75,
+ "result": {
+  "url_with_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/9bf4cd54-9f9e-4f14-bff5-b8684bf91f37-AtgWAUczprTsqGpJ1LEE0w-output.mp4?x-kcdn-pid=112372",
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/02a8ce09-9329-46b0-89ba-42fe804a3209-AtgWAUczprTsqGpJ1LEE0w-output.mp4?x-kcdn-pid=112372",
+  "expires": "24h from 2026-09-21T08:29Z",
+  "local": "outputs/ep01/4-01/clip_v1.mp4",
+  "fps": 24,
+  "frames": 73,
+  "size": "716x1284"
+ },
+ "credits_after": 373.0,
+ "credits_cost": 18.0,
+ "review": {
+  "verdict": "조건부 통과",
+  "technical": "첫프레임=시작이미지(1.95), 카메라 고정(0.08px), 배경 드리프트 3.0, 부리 닫힘·형태 유지, 손가락 없음, 화면 글자 없음, 새 물건 없음",
+  "deviation": "1.1s 끄덕+깜빡 후 1.25s~끝까지 고개를 카메라 쪽으로 돌려 정면 응시(지시: 모니터 응시 유지). 부리 영역 지표 39는 이 회전 때문",
+  "options": [
+   "채택(시청자를 흘끗 보는 비트로 수용)",
+   "시작 프레임 정지 이미지 2초로 대체(0크레딧)"
+  ],
+  "usable_windows": {
+   "monitor_only": "0.0-1.0s(1초뿐)",
+   "frontal_static": "1.5-3.0s"
+  }
+ }
 }

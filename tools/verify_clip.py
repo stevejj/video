@@ -8,15 +8,19 @@ from PIL import Image, ImageDraw
 import imageio_ffmpeg
 
 def frames_of(path, step=0.25):
-    cap=cv2.VideoCapture(path); fps=cap.get(cv2.CAP_PROP_FPS) or 30; n=int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    """메모리 절약: 회색 프레임(원본 해상도, int16)은 전부, 컬러는 0.25s 샘플·첫·끝만 보관."""
+    cap=cv2.VideoCapture(path); fps=cap.get(cv2.CAP_PROP_FPS) or 30
     W=int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)); H=int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    allf=[]
+    st=max(1,int(round(fps*step))); grays=[]; color={}; i=0; last=None
     while True:
         ok,f=cap.read()
         if not ok: break
-        allf.append(f)
+        grays.append(cv2.cvtColor(f,cv2.COLOR_BGR2GRAY).astype(np.int16))
+        if i%st==0: color[i]=f
+        last=(i,f); i+=1
     cap.release()
-    return allf, fps, (W,H)
+    if last and last[0] not in color: color[last[0]]=last[1]
+    return grays, color, fps, (W,H)
 
 def gray(im): return cv2.cvtColor(im,cv2.COLOR_BGR2GRAY).astype(np.int16)
 
@@ -37,19 +41,17 @@ def main():
     ap.add_argument('--start'); ap.add_argument('--end'); ap.add_argument('--beak',help='x0,y0,x1,y1 (클립 해상도 기준)'); ap.add_argument('--tag',default='v1')
     a=ap.parse_args()
     out=pathlib.Path(f'outputs/ep01/{a.cut}/verify_{a.tag}'); out.mkdir(parents=True,exist_ok=True)
-    fr,fps,size=frames_of(a.clip); n=len(fr); dur=n/fps
+    g,color,fps,size=frames_of(a.clip); n=len(g); dur=n/fps
     res={'fps':round(fps,2),'frames':n,'duration_s':round(dur,2),'size':size}
-    step=max(1,int(round(fps*0.25))); idx=list(range(0,n,step));
-    if idx[-1]!=n-1: idx.append(n-1)
-    for i in idx: cv2.imwrite(str(out/f'f{i:04d}_{i/fps:.2f}s.png'),fr[i])
+    step=max(1,int(round(fps*0.25))); idx=sorted(color.keys())
+    for i in idx: cv2.imwrite(str(out/f'f{i:04d}_{i/fps:.2f}s.png'),color[i])
     # 1) 첫 프레임 vs 시작 이미지 / 끝 프레임 vs 끝 이미지
     for key,ref,fi in (('start',a.start,0),('end',a.end,n-1)):
         if ref and os.path.exists(ref):
-            r=load_ref(ref,size); d=np.abs(gray(r)-gray(fr[fi]))
+            r=load_ref(ref,size); d=np.abs(gray(r)-g[fi])
             res[f'{key}_vs_ref_meandiff']=round(float(d.mean()),2)
             res[f'{key}_vs_ref_bg_meandiff']=round(float(np.concatenate([d[:int(size[1]*0.12)].ravel(),d[int(size[1]*0.85):].ravel()]).mean()),2)
     # 2) 프레임 간 변화·배경 드리프트·카메라
-    g=[gray(f) for f in fr]
     interframe=[float(np.abs(g[i]-g[i-1]).mean()) for i in range(1,n)]
     res['interframe_mean']=round(float(np.mean(interframe)),2); res['interframe_max']=round(float(np.max(interframe)),2)
     res['interframe_max_at_s']=round(float((int(np.argmax(interframe))+1)/fps),2)
@@ -64,7 +66,7 @@ def main():
         series=[float(np.abs(g[i][y0:y1,x0:x1]-g[0][y0:y1,x0:x1]).mean()) for i in range(n)]
         res['beak_region_change_max']=round(max(series),2); res['beak_region_change_mean']=round(float(np.mean(series)),2)
     # 4) 대조 시트
-    tiles=[cv2.resize(fr[i],(size[0]//4,size[1]//4)) for i in idx]
+    tiles=[cv2.resize(color[i],(size[0]//4,size[1]//4)) for i in idx]
     cols=min(8,len(tiles)); rows=(len(tiles)+cols-1)//cols; tw,th=size[0]//4,size[1]//4
     sheet=np.full((rows*(th+4),cols*(tw+4),3),255,np.uint8)
     for k,t in enumerate(tiles):
