@@ -1,0 +1,26 @@
+{
+ "cut": "4-01",
+ "type": "start_only",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "3",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su sits at his desk looking at the monitor. Only a slight slow nod of his head and one blink. His wings stay down, out of view behind the desk. The monitor screen stays a blank pale glow with no text. The mug and keyboard stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/4-01/start_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3ODk5NzkwNjUvNXM4UWNNQlo4Ti9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372",
+   "uploaded_at": "2026-09-21"
+  }
+ },
+ "credits_before": 391.0,
+ "approved_by_user": "진행 (2026-09-21)",
+ "version": 1,
+ "ts": "2026-09-21T08:24:50",
+ "generation_id": "ARRoMuJ0FlvW_HoZO21VZT_naxmVrKtns4VAG9tmjpB8GrW7sfAxY4JQc5JyghGERj5yUJUu",
+ "credits_consumed_reported": 18.0
+}
