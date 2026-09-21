@@ -10,13 +10,13 @@
 - 부리(기본): `Beak stays closed the whole time.` / 말하는 컷(8-01·9-02·9-03): `The beak opens and closes only very slightly, keeping its exact shape and size.`
 - 금지의 긍정문: `No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.`
 
-## 1. 생성 전 결정 사항 (사용자)
+## 1. 생성 전 결정 사항 — 2026-09-21 내가 확정 (사용자: 컷마다 "진행"만)
 | # | 항목 | 제안 | 이유 |
 |---|---|---|---|
 | D1 | 4-02 인서트 | **정지 컷**으로 확정(두드리지 않음) | 두드리면 손가락 생성 위험이 에피소드 최고. 타자 소리는 편집(W12) |
 | D2 | 길이 단축 | 1-03: 5→**3**초, 7-01: 5→**4**초 | 편집 길이(2초·3초)에 충분하고, 정지·반복 동작은 길수록 드리프트. 크레딧도 절약 |
-| D3 | 해상도 | 첫 컷(720p)에서 단가 확인 후 **1080p 전환 여부** 결정 | 띠 레이아웃은 720p를 1.5배 확대함(02a §11). 05b 규칙 변경이 필요한 사항 |
-| D4 | Kling 웹 설정 | 생성 전에 **"AI Generated" 워터마크 끄기** | query_tasks 설명: 좌상단 워터마크는 웹 설정을 따름. 띠 크롭이 좌상단·우하단을 잘라내긴 하지만 끄는 게 안전 |
+| D3 | 해상도 | **720p 확정**(사용자) | 띠 레이아웃의 1.5배 확대는 감수. 최종본 10개 후 재검토(05b 원칙) |
+| D4 | Kling 웹 설정 | **불필요** | 띠 크롭이 원본 위 ≥22%·아래 ≥20%를 항상 잘라내므로 좌상단 "AI Generated"·우하단 로고 모두 화면 밖 |
 | D5 | 실행 순서 | ① 4-01(정지, 최저가: 단가·부리·카메라 검증) → ② 1-02(시작+끝 첫 검증) → ③ 6-01·9-01(고위험, 대안 필요 여부 조기 확인) → ④ 나머지 | 앞 결과가 뒤 프롬프트를 고칠 정보를 준다. 재생성은 없어도 **다음 컷 프롬프트 수정**은 0크레딧 |
 
 ## 2. 위험 등급 요약
@@ -38,7 +38,7 @@
 ## 4. 컷별 실행표
 ### 1-01 — 시작만, 3초
 **입력**: `outputs/ep01/1-01/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su and Pang Mi-sun lie asleep side by side under one blanket in the morning light. Nothing moves except the slow rise and fall of their breathing under the blanket. Both keep their eyes closed. The phone on the nightstand stays still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -49,7 +49,7 @@ Pang Chang-su and Pang Mi-sun lie asleep side by side under one blanket in the m
 
 ### 1-02 — 시작+끝, 3초
 **입력**: `outputs/ep01/1-02/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Lying on his side on the pillow, Pang Chang-su slowly opens his eyes halfway, waking to the alarm. Only his eyelids move; his head stays on the pillow and the blanket stays still. By the end his eyes are half open and unfocused, staring ahead. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -58,9 +58,9 @@ Lying on his side on the pillow, Pang Chang-su slowly opens his eyes halfway, wa
 **위험·감시 항목**: 낮음 | 머리를 들거나 돌림, 눈이 완전히 뜨임, 눈동자 방향이 튐
 **실패 시 편집 대안(재생성 없음)**: 앞 1.5초(감은 상태)만 쓰거나 끝 프레임 정지 이미지로 대체
 
-### 1-03 — 시작만, 3 (스토리보드 5→3 제안)초
+### 1-03 — 시작만, 3초 (스토리보드 5→3 확정)
 **입력**: `outputs/ep01/1-03/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su sits on the edge of the bed, sleepy, looking down at the floor. His dangling feet sway very slightly back and forth. His body, head and wings stay still. Mi-sun stays asleep behind him and does not move. The turned-back blanket stays as it is. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -71,7 +71,7 @@ Pang Chang-su sits on the edge of the bed, sleepy, looking down at the floor. Hi
 
 ### 2-01 — 시작+끝, 4초
 **입력**: `outputs/ep01/2-01/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=4, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su slowly lowers the light grey towel from his face down to his chest with both wings, revealing his sleepy face. By the end the towel rests against his chest, held in both wings, and he looks straight at the camera. He stays standing in the same spot. The towel bar on the right stays empty. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -82,7 +82,7 @@ Pang Chang-su slowly lowers the light grey towel from his face down to his chest
 
 ### 2-02 — 시작+끝, 3초
 **입력**: `outputs/ep01/2-02/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su stands still, holding the towel at his chest, looking straight at the camera with a tired, resigned glare. The wet tuft on top of his head slowly dries and rises until it stands straight up. Nothing else moves at all: his head, eyes, wings and the towel stay completely still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -93,7 +93,7 @@ Pang Chang-su stands still, holding the towel at his chest, looking straight at 
 
 ### 3-01 — 시작만, 3초
 **입력**: `outputs/ep01/3-01/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su stands still on the platform in profile, waiting sleepily with heavy eyelids. Only a slow blink and faint breathing. The adult next to him and the people in the distance stand still. The platform screen doors stay closed and no train arrives. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -104,7 +104,7 @@ Pang Chang-su stands still on the platform in profile, waiting sleepily with hea
 
 ### 3-02 — 시작+끝, 3초
 **입력**: `outputs/ep01/3-02/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su slowly turns his head a little toward the camera, from full profile to a three-quarter view, staring blankly along the platform. His eyes stay tired and half-lidded and do not widen. His body and shoulders do not move. Screen doors stay closed, no train. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -115,7 +115,7 @@ Pang Chang-su slowly turns his head a little toward the camera, from full profil
 
 ### 4-01 — 시작만, 3초
 **입력**: `outputs/ep01/4-01/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su sits at his desk looking at the monitor. Only a slight slow nod of his head and one blink. His wings stay down, out of view behind the desk. The monitor screen stays a blank pale glow with no text. The mug and keyboard stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -126,7 +126,7 @@ Pang Chang-su sits at his desk looking at the monitor. Only a slight slow nod of
 
 ### 4-02 — 시작만, 3초
 **입력**: `outputs/ep01/4-02/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Two short rounded flipper wing tips rest on the keyboard, completely still. The monitor screen stays a blank pale glow with no text. Nothing moves except a faint, barely visible settling of the wings. The wings stay short and rounded with no fingers, no hands, no thumbs. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -137,7 +137,7 @@ Two short rounded flipper wing tips rest on the keyboard, completely still. The 
 
 ### 4-03 — 시작만, 3초
 **입력**: `outputs/ep01/4-03/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su glares at the monitor with narrowed, annoyed eyes. His head pushes very slightly forward toward the screen and holds there. His expression stays the same flat glare. Nothing else moves. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -148,7 +148,7 @@ Pang Chang-su glares at the monitor with narrowed, annoyed eyes. His head pushes
 
 ### 5-01 — 시작만, 3초
 **입력**: `outputs/ep01/5-01/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su sits at the table gazing at the stew with wide, sparkling eyes and a happy face. Thin steam rises gently from the stone pot. He, the dishes, the spoon and chopsticks on the napkin, and the customer behind him all stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -159,7 +159,7 @@ Pang Chang-su sits at the table gazing at the stew with wide, sparkling eyes and
 
 ### 5-02 — 시작+끝, 4초
 **입력**: `outputs/ep01/5-02/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=4, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su chews slowly with small movements of his cheeks, holding the spoon still in his right wing above the pot. His happy curved eyes slowly grow heavier and sleepier over the clip as drowsiness sets in. The spoon, the dishes, the open rice bowl and its lid stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -170,7 +170,7 @@ Pang Chang-su chews slowly with small movements of his cheeks, holding the spoon
 
 ### 5-03 — 시작만, 3초
 **입력**: `outputs/ep01/5-03/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su sits before the empty dishes, heavy-eyed and drowsy. His head slowly dips forward once in a small doze and comes back up. Both wings stay on the table. The empty pot, the spoon inside it and the dishes stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -181,7 +181,7 @@ Pang Chang-su sits before the empty dishes, heavy-eyed and drowsy. His head slow
 
 ### 6-01 — 시작+끝, 5초
 **입력**: `outputs/ep01/6-01/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=5, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=5, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su walks at a steady waddling pace to his right along the pavement, from beside the left tree to the front of the bench. Each step lands on the paving and rolls forward; his feet do not slide. By the end he stands still in front of the bench, body turned to his right. The trees, bench and leaf shadows stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -192,7 +192,7 @@ Pang Chang-su walks at a steady waddling pace to his right along the pavement, f
 
 ### 6-02 — 시작만, 3초
 **입력**: `outputs/ep01/6-02/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su stands with his eyes closed, face lifted slightly toward the sun, breathing slowly and calmly. Dappled leaf shadows drift very slowly across his face. His eyes stay closed the whole time and his head stays still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -203,7 +203,7 @@ Pang Chang-su stands with his eyes closed, face lifted slightly toward the sun, 
 
 ### 6-03 — 시작만, 3초
 **입력**: `outputs/ep01/6-03/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su sits slumped at his desk with half-closed eyes, staring at the monitor. One tiny slow nod of his head and one slow blink. His posture stays slumped. The monitor screen stays a blank pale glow with no text. Nothing else moves. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -212,9 +212,9 @@ Pang Chang-su sits slumped at his desk with half-closed eyes, staring at the mon
 **위험·감시 항목**: 낮음 | 4-01과 동일 위험 + 자세가 펴짐(굽은 등 유지돼야 함)
 **실패 시 편집 대안(재생성 없음)**: 시작 프레임 정지 이미지 대체
 
-### 7-01 — 시작만, 4 (스토리보드 5→4 제안)초
+### 7-01 — 시작만, 4초 (스토리보드 5→4 확정)
 **입력**: `outputs/ep01/7-01/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=4, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su stands beside his desk, beaming, and bounces gently on the spot with excitement, a small up-and-down bob with his feet staying on the carpet. His wings stay short at his sides. The dark monitor, the chair and the mug stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -225,7 +225,7 @@ Pang Chang-su stands beside his desk, beaming, and bounces gently on the spot wi
 
 ### 8-01 — 시작만, 3초
 **입력**: `outputs/ep01/8-01/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su stands facing the camera at three-quarters, beaming with his beak slightly open, swaying very slightly from side to side with excitement. His feet stay planted. The adult behind him stays still. The screen doors stay closed and no train arrives. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. The beak opens and closes only very slightly, keeping its exact shape and size. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -236,7 +236,7 @@ Pang Chang-su stands facing the camera at three-quarters, beaming with his beak 
 
 ### 9-01 — 시작+끝, 5초
 **입력**: `outputs/ep01/9-01/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=5, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=5, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su on the left and Pang Mi-sun on the right walk side by side at the same steady waddling pace to their right along the path, seen from behind at an angle. Each step lands and rolls forward with no sliding. By the end they stand still a short way further along the path, still side by side with the same gap, Chang-su still on the left. Both beaks stay closed. The lamps and buildings stay still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -247,7 +247,7 @@ Pang Chang-su on the left and Pang Mi-sun on the right walk side by side at the 
 
 ### 9-02 — 시작+끝, 3초
 **입력**: `outputs/ep01/9-02/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Mi-sun slowly turns her upper body and head to her right, toward the left side of the frame, looking at her husband off-frame with a bright cheerful smile as she speaks. By the end she faces three-quarters to the left. Her lower body stays in place. Her husband does not appear in the frame. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. The beak opens and closes only very slightly, keeping its exact shape and size. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -258,7 +258,7 @@ Pang Mi-sun slowly turns her upper body and head to her right, toward the left s
 
 ### 9-03 — 시작만, 3초
 **입력**: `outputs/ep01/9-03/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su looks to the right with wide sparkling eyes and a big delighted smile, his head tipping slightly forward with excitement as he answers. His eyes stay wide the whole time. Nothing else moves. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. The beak opens and closes only very slightly, keeping its exact shape and size. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -269,7 +269,7 @@ Pang Chang-su looks to the right with wide sparkling eyes and a big delighted sm
 
 ### 9-04 — 시작만, 4초
 **입력**: `outputs/ep01/9-04/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=4, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su and Pang Mi-sun sit close together on the sofa watching the TV, which is where the camera is, completely still except slow blinks and breathing. Soft TV light flickers very gently on their faces. The empty pot and chopsticks on the table stay still. Both beaks stay closed. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -280,7 +280,7 @@ Pang Chang-su and Pang Mi-sun sit close together on the sofa watching the TV, wh
 
 ### 10-01 — 시작만, 3초
 **입력**: `outputs/ep01/10-01/start_v1.png`
-**인자**: model=kling-video-v3_0, duration=3, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Pang Chang-su lies on his side in bed at night with half-open sleepy eyes, staring blankly ahead; Mi-sun sleeps beside him with her eyes closed. Only slow breathing. The bedside lamp stays lit and steady. Nothing else moves. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
@@ -291,7 +291,7 @@ Pang Chang-su lies on his side in bed at night with half-open sleepy eyes, stari
 
 ### 10-02 — 시작+끝, 4초
 **입력**: `outputs/ep01/10-02/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=4, resolution=**(첫 컷 후 확정: 720p 규칙 / 1080p 레이아웃 권장)**, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
 Lying on his side on the pillow at night, Pang Chang-su slowly closes his half-open eyes and drifts off to sleep. Only his eyelids move; his head stays on the pillow. By the end his eyes are fully closed. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the room and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
