@@ -1,3 +1,4 @@
 *.key
 .env
 __pycache__/
+outputs/ep01/animatic/frames/
