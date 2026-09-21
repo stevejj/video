@@ -202,9 +202,9 @@ Pang Chang-su sits at the table gazing at the stew with wide, sparkling eyes and
 **인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su chews slowly with small movements of his cheeks, holding the spoon still in his right wing above the pot. He does not turn his head toward the camera and never looks at the viewer. His happy curved eyes slowly grow heavier and sleepier over the clip as drowsiness sets in. The spoon, the dishes, the open rice bowl and its lid stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su sits still, holding the spoon motionless in his right wing above the pot, his cheeks slightly full. He does not turn his head toward the camera and never looks at the viewer. His happy curved eyes slowly grow heavier and sleepier over the clip as drowsiness sets in; that is the only thing that changes. The spoon, the dishes, the open rice bowl and its lid stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
-**예상 시나리오**: 볼 오물오물 + 눈이 천천히 무거워짐(05b 점진). 숟가락 고정.
+**예상 시나리오**: 눈만 천천히 무거워짐(시작+끝 보간). 씹기 동작은 9-03 교훈으로 삭제(입이 열림), 식기 소리로 대신. 숟가락 고정.
 **위험·감시 항목**: 중간 | **부리가 열려 씹는 입이 됨**(스토리보드 대비책: 실패 시 부리 닫힘 고정), 숟가락이 입으로 감·음식이 줄어듦, 볼이 과하게 부풂
 **실패 시 편집 대안(재생성 없음)**: 부리가 열린 구간을 잘라내고 앞부분만 쓰거나 시작 프레임 정지 이미지 3초
 
