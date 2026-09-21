@@ -69,6 +69,8 @@
   "usable_windows": {
    "monitor_only": "0.0-1.0s(1초뿐)",
    "frontal_static": "1.5-3.0s"
-  }
- }
+  },
+  "decision": "채택 (사용자, 2026-09-21). 편집 창 1.0~3.0s 권장"
+ },
+ "final": "clip_v1.mp4"
 }
