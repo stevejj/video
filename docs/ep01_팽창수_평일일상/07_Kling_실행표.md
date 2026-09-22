@@ -326,12 +326,12 @@ Pang Chang-su stands facing the camera at three-quarters, beaming, still except 
 **위험·감시 항목**: 낮음 | 부리가 크게 벌어져 말함, 열차 진입, 걷기 시작
 **실패 시 편집 대안(재생성 없음)**: 시작 프레임 정지 이미지 대체
 
-### 9-01 — 시작+끝, 5초
+### 9-01 — 시작+끝, 4초 (5→4 확정 2026-09-22: 6-01과 같은 0.8m 이동)
 **입력**: `outputs/ep01/9-01/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=5, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su on the left and Pang Mi-sun on the right walk side by side at the same steady waddling pace to their right along the path, seen from behind at an angle. Each step lands and rolls forward with no sliding. By the end they stand still a short way further along the path, still side by side with the same gap, Chang-su still on the left. Both beaks stay closed. The lamps and buildings stay still. He does not turn his head toward the camera and never looks at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su on the left and Pang Mi-sun on the right are already walking from the very first frame, side by side at the same steady waddling pace to their right along the path, seen from behind at an angle, both keeping their bodies and heads facing to their right the whole time. Each step lands on the path and rolls forward; their feet do not slide. They stay side by side with the same gap between them, Chang-su always on the left and Mi-sun always on the right. By the end they stand still a short way further along the path, exactly matching the end image. The lamps, shrubs and buildings stay still. Neither of them turns toward the camera or looks at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **예상 시나리오**: 둘이 같은 속도로 3걸음. 에피소드 최고 난도.
 **위험·감시 항목**: **높음** | 제자리 걸음, **둘의 속도가 달라 간격 변화**, 좌우 바뀜·얼굴 섞임, 카메라 쪽으로 돌아섬. 스토리보드 대비책: 싱글 컷 2개 분할(그러나 재생성 없음 원칙이면 아래 대안)
