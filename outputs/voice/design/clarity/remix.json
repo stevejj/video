@@ -1,0 +1,30 @@
+{
+ "changsu": [
+  {
+   "generated_voice_id": "hbT6BP5ia3XmLKFPAKSt",
+   "file": "outputs/voice/design/clarity/remix_changsu_0.mp3"
+  },
+  {
+   "generated_voice_id": "f4nzT0XHcs3FZpsr9cyk",
+   "file": "outputs/voice/design/clarity/remix_changsu_1.mp3"
+  },
+  {
+   "generated_voice_id": "vLHoSwWxv5sFm0uAhnxt",
+   "file": "outputs/voice/design/clarity/remix_changsu_2.mp3"
+  }
+ ],
+ "misun": [
+  {
+   "generated_voice_id": "AUf8Bclnc25MY088NLRz",
+   "file": "outputs/voice/design/clarity/remix_misun_0.mp3"
+  },
+  {
+   "generated_voice_id": "NxKgcHJHlCmvsEfwLQS4",
+   "file": "outputs/voice/design/clarity/remix_misun_1.mp3"
+  },
+  {
+   "generated_voice_id": "Pyui8jeGiF4E0mEW4rSn",
+   "file": "outputs/voice/design/clarity/remix_misun_2.mp3"
+  }
+ ]
+}
