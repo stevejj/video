@@ -25,5 +25,43 @@
  "version": 1,
  "ts": "2026-09-22T04:53:55",
  "generation_id": "AeDy73SsYL33aZ7eQqNra_DhkC3DpssiesJkc9H8WXq8vmJ8LkwVQlEXiMrIzIr48mJUpWHJ",
- "credits_consumed_reported": 24.0
+ "credits_consumed_reported": 24.0,
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.09,
+   "start_vs_ref_bg_meandiff": 1.97,
+   "end_vs_ref_meandiff": 1.25,
+   "end_vs_ref_bg_meandiff": 1.16,
+   "interframe_mean": 0.27,
+   "interframe_max": 0.86,
+   "interframe_max_at_s": 1.92,
+   "first_vs_last_meandiff": 4.32,
+   "bg_drift_first_last": 2.98,
+   "cam_motion_px_median": 0.23,
+   "cam_motion_px_max": 0.57
+  }
+ },
+ "status": "COMPLETED",
+ "generation_seconds": 67,
+ "result": {
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/a66e569d-e49b-48d4-9cc1-edea94caafc2-PQ6VljIp6rJdmVzuaUrucQ-output.mp4?x-kcdn-pid=112372",
+  "local": "outputs/ep01/2-01/clip_v1.mp4",
+  "expires": "24h from 2026-09-22T04:59Z"
+ },
+ "credits_after": 265.0,
+ "credits_cost": 24.0,
+ "review": {
+  "verdict": "통과",
+  "technical": "시작 2.09 / 끝 1.25 일치, 카메라 0.23px, 수건 1장·걸이 비움 유지, 날개 지느러미, 1.25→3.0s 수건 하강, 졸린 눈·카메라 응시",
+  "edit_window": "1.5-3.5s",
+  "decision": "채택"
+ },
+ "final": "clip_v1.mp4"
 }
