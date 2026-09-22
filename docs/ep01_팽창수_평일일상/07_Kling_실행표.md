@@ -124,6 +124,12 @@ B를 택하면 turbo 단가 시험(3-01)은 불필요해진다.
 - **교훈: 시작과 끝의 눈 "모양"이 다르면(휘어진 웃는 눈 ↔ 처진 눈꺼풀) 모델은 그 사이를 완전히 뜬 눈으로 보간한다.** 같은 모양 계열(감음↔반쯤)은 문제 없음(1-02). 앞으로 감정 곡선 컷의 시작·끝 프레임은 **같은 눈 모양 계열**로 만든다.
 - 4초=24, 61초 생성. 사용자 결정 대기(채택 1.0~4.0s vs 정지 이미지).
 
+## 1n. 9-02 실측 (2026-09-22) — 기술 통과 / 부리 타이밍 이탈, 대화 컷 교훈
+- 회전: 0~1.1s에 좌측 3/4까지 돌고 종료 프레임에서 정지(diff 2.81, 초과 회전 없음). 카메라 0.02px, 배경 고정, 창수 미등장. `and no further` + 끝 프레임 3회째 검증.
+- 이탈: 부리를 "끝에서 아주 살짝"이라 했으나 **1.0s에 종료 프레임 수준(중간 개방)으로 벌어져 끝까지 유지**. 9-03처럼 크게 벌어지진 않았다(끝 프레임이 상한 역할). 0.75s 무요청 깜빡임 1회(허용).
+- **교훈: 끝 프레임에 부리가 벌어져 있으면 모델은 그 상태를 "언제" 만들지 정하지 못하고 회전이 끝나는 시점에 함께 만든다.** 타이밍 지시("only at the very end")는 무시된다. 대화 컷에서 부리 개방 타이밍을 통제하려면 ① 끝 프레임도 부리를 닫고 클립은 "닫힘"으로 만든 뒤 편집에서 음성만 얹거나, ② 벌어짐이 짧아야 하는 구간을 편집창으로 잘라 쓴다. 이번엔 ②(편집창 0.0~2.0s: 회전 + 마지막 1초 부리 벌어짐 = "라면머글래?" 발화 구간).
+- 3초=18, 216초 생성(대기열). 크레딧 187. 남은 클립 1개(10-02, 24) → 완료 시 163.
+
 ## 2. 위험 등급 요약
 | 등급 | 컷 | 핵심 위험 |
 |---|---|---|
@@ -410,9 +416,10 @@ Pang Chang-su lies on his side in bed at night with half-open sleepy eyes, stari
 **인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Lying on his side on the pillow at night, Pang Chang-su slowly closes his half-open eyes and drifts off to sleep. Only his eyelids move; his head stays on the pillow. By the end his eyes are fully closed. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+From the very first frame, lying on his side on the pillow at night, Pang Chang-su's heavy, half-open eyelids slowly and steadily lower, smoothly over the whole clip, until his eyes are fully closed exactly as in the end image, and they stay closed. Only his eyelids move. Nothing else moves at all: his head stays on the pillow in exactly the same place, his beak stays closed, and the pillow, the blanket, the warm lamp light and everything at the edges of the frame stay exactly as they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **자막(속마음·혼잣말 → 보이스오버, 부리 닫힘)**: 내일도 화이띵...!
-**예상 시나리오**: 눈만 천천히 감김. 1-02의 역방향.
-**위험·감시 항목**: 낮음 | 눈이 다시 뜨임, 머리 움직임
+**예상 시나리오**: 눈만 천천히 감김. 1-02의 역방향. 0~0.5s 거의 정지 → 0.5~3.0s 눈꺼풀 내려감 → 3.0~4.0s 감은 채 유지. 편집창 0.5~3.5s.
+**위험·감시 항목**: 낮음 | 눈이 다시 뜨임(중간 깜빡임은 허용), 머리가 베개에 가라앉음, 부리 하품, 램프 밝기 흔들림, 오른쪽 가장자리 흰 덩어리(미순 머리) 변형
+**프롬프트 수정 이력(2026-09-22, 9-02 이후)**: `From the very first frame`·`exactly as in the end image`·`Nothing else moves at all: …` 열거(2-02 검증) 적용. `drifts off to sleep` 삭제(동작 해석 여지 제거, 눈꺼풀만 지시). 시작(무거운 반쯤 감은 눈)과 끝(감은 눈)이 **같은 눈 모양 계열**이라 5-02형 보간 위험 없음(1-02 역방향과 동일 조건).
 **실패 시 편집 대안(재생성 없음)**: 끝 프레임 정지 이미지 대체(암전으로 이어지므로 자연스러움)

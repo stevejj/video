@@ -25,5 +25,53 @@
  "version": 1,
  "ts": "2026-09-22T06:20:51",
  "generation_id": "AUy1V63BS062VjffFeILbdh-Rj6kze-VV5f0tBbff6u5j7veuKmtrH1sk5WztoCL4vaYAsq6",
- "credits_consumed_reported": 18.0
+ "credits_consumed_reported": 18.0,
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.43,
+   "start_vs_ref_bg_meandiff": 2.46,
+   "end_vs_ref_meandiff": 2.81,
+   "end_vs_ref_bg_meandiff": 2.77,
+   "interframe_mean": 0.57,
+   "interframe_max": 6.05,
+   "interframe_max_at_s": 0.92,
+   "first_vs_last_meandiff": 5.96,
+   "bg_drift_first_last": 6.12,
+   "cam_motion_px_median": 0.02,
+   "cam_motion_px_max": 0.41,
+   "beak_region_change_max": 30.5,
+   "beak_region_change_mean": 14.25
+  }
+ },
+ "result": {
+  "status": "COMPLETED",
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/955f9f4b-ca14-4ee6-821e-9f8ecc381457-PQ6VljIp6rLp4dobu4XmOw-output.mp4?x-kcdn-pid=112372",
+  "file": "outputs/ep01/9-02/clip_v1.mp4",
+  "size": [
+   716,
+   1284
+  ],
+  "fps": 24,
+  "frames": 73
+ },
+ "credits_after": 187.0,
+ "credits_cost": 18.0,
+ "review": {
+  "verdict": "기술 통과 / 연출 부분 이탈",
+  "notes": [
+   "회전: 0~1.1s에 3/4 좌향 도달 후 유지, 종료 프레임과 일치(diff 2.81), 초과 회전 없음",
+   "부리: 요청은 \"끝에서 아주 살짝\" 이었으나 1.0s에 종료 프레임 수준(중간 개방)까지 벌어져 3.0s까지 유지. 9-03처럼 크게 벌어지진 않음",
+   "0.75s 무요청 눈 깜빡임(자연스러움, 결점 아님)",
+   "카메라 0.02px 고정, 배경 변화 없음, 창수 미등장, 날개 정상"
+  ],
+  "edit_window": "0.0-2.0s (권장) 또는 0.0-1.2s(회전만, 부리 닫힘 위주)",
+  "decision": "사용자 확인 대기"
+ }
 }
