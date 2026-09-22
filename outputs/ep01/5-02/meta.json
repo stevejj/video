@@ -26,5 +26,48 @@
  "version": 1,
  "ts": "2026-09-22T05:27:20",
  "generation_id": "AXpqBW2MDz7lsw1o6QjIR2i1lj3u1ysRVlp5H_M45Nbth_CgxCXuRrIpwFGSsjNm2iCLL21V",
- "credits_consumed_reported": 24.0
+ "credits_consumed_reported": 24.0,
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.53,
+   "start_vs_ref_bg_meandiff": 2.25,
+   "end_vs_ref_meandiff": 2.39,
+   "end_vs_ref_bg_meandiff": 1.82,
+   "interframe_mean": 0.2,
+   "interframe_max": 0.84,
+   "interframe_max_at_s": 0.08,
+   "first_vs_last_meandiff": 3.04,
+   "bg_drift_first_last": 2.39,
+   "cam_motion_px_median": 0.01,
+   "cam_motion_px_max": 0.03,
+   "beak_region_change_max": 8.33,
+   "beak_region_change_mean": 4.69
+  }
+ },
+ "status": "COMPLETED",
+ "generation_seconds": 61,
+ "result": {
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/6593520b-5b56-4398-9561-0c91be69bc82-PQ6VljIp6rLaBaTAVhsEdw-output.mp4?x-kcdn-pid=112372",
+  "local": "outputs/ep01/5-02/clip_v1.mp4",
+  "expires": "24h from 2026-09-22T05:31Z"
+ },
+ "credits_after": 205.0,
+ "credits_cost": 24.0,
+ "review": {
+  "verdict": "조건부 통과",
+  "technical": "시작 2.53 / 끝 2.39 일치, 카메라 0.01px, 부리 닫힘, 숟가락·그릇 고정",
+  "deviation": "1.25~2.5s 눈이 동그랗게 완전히 뜨이고 카메라 응시(휘어진 눈→처진 눈 보간 경로)",
+  "options": [
+   "채택 편집창 1.0-4.0s (권장)",
+   "시작 프레임 정지 3s"
+  ],
+  "lesson": "시작·끝의 눈 모양이 다르면 보간이 완전히 뜬 눈을 거친다"
+ }
 }
