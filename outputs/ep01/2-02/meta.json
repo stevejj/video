@@ -26,5 +26,45 @@
  "version": 1,
  "ts": "2026-09-22T05:01:47",
  "generation_id": "AeELkZk52Ce9paWZd0dHkbAnbf_6LuWrSk3CM8zqa9QGVenSb4HrraPUnv6xo_yoit9UX69I",
- "credits_consumed_reported": 18.0
+ "credits_consumed_reported": 18.0,
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.12,
+   "start_vs_ref_bg_meandiff": 2.09,
+   "end_vs_ref_meandiff": 1.48,
+   "end_vs_ref_bg_meandiff": 1.25,
+   "interframe_mean": 0.15,
+   "interframe_max": 0.34,
+   "interframe_max_at_s": 1.33,
+   "first_vs_last_meandiff": 1.93,
+   "bg_drift_first_last": 1.09,
+   "cam_motion_px_median": 0.01,
+   "cam_motion_px_max": 0.05,
+   "beak_region_change_max": 37.95,
+   "beak_region_change_mean": 16.53
+  }
+ },
+ "status": "COMPLETED",
+ "generation_seconds": 108,
+ "result": {
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/d360b005-9986-445b-8677-cfe86df5b55c-PQ6VljIp6rIyT3_QsFYHUA-output.mp4?x-kcdn-pid=112372",
+  "local": "outputs/ep01/2-02/clip_v1.mp4",
+  "expires": "24h from 2026-09-22T05:07Z"
+ },
+ "credits_after": 247.0,
+ "credits_cost": 18.0,
+ "review": {
+  "verdict": "통과",
+  "technical": "시작 2.12 / 끝 1.48 일치, 카메라 0.01px, 털뭉치만 변화(영역 38, 전체 1.9), 머리·눈·수건 고정. 1.25~2.0s 털뭉치 색이 잠깐 짙어짐(젖음→마름으로 읽힘)",
+  "edit_window": "0.0-3.0s 전체",
+  "decision": "채택"
+ },
+ "final": "clip_v1.mp4"
 }
