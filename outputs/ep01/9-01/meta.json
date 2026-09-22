@@ -1,0 +1,29 @@
+{
+ "cut": "9-01",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su on the left and Pang Mi-sun on the right are already walking from the very first frame, side by side at the same steady waddling pace to their right along the path, seen from behind at an angle, both keeping their bodies and heads facing to their right the whole time. Each step lands on the path and rolls forward; their feet do not slide. They stay side by side with the same gap between them, Chang-su always on the left and Mi-sun always on the right. By the end they stand still a short way further along the path, exactly matching the end image. The lamps, shrubs and buildings stay still. Neither of them turns toward the camera or looks at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/9-01/start_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTAwNTIyNTgvUEZ1Z2tjNTRKVC9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372"
+  },
+  "end": {
+   "file": "outputs/ep01/9-01/end_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTAwNTIyNjEvRHlyMW9kN0JJRi9lbmRfdjEucG5n.origin?x-kcdn-pid=112372"
+  }
+ },
+ "credits_before": 313.0,
+ "approved_by_user": "9-01 진행 (2026-09-22, 5단계 실행표 후)",
+ "version": 1,
+ "ts": "2026-09-22T04:44:45",
+ "generation_id": "ASw-zfjY6RxZNVSdpQ2tK0nD2cW1rG7TtZZUhFa1YiP38Y2-GPtuUC4IQxhFG1_HlDV5e1gx",
+ "credits_consumed_reported": 24.0
+}
