@@ -1,0 +1,29 @@
+{
+ "cut": "9-02",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "3",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "From the very first frame Pang Mi-sun slowly turns her upper body and head to her right, toward the left side of the frame, smoothly over the whole clip, until she faces three-quarters to the left exactly as in the end image, and no further, looking toward her husband who is out of frame on the left. Her bright, cheerful, open eyes stay the same the whole time. Her beak stays closed for almost the whole clip and only parts by a hair at the very end, matching the end image; it never opens wide. Her lower body and feet stay in place, her head stays at the same height, and her wings stay at her sides. She keeps looking to the left and does not turn to face the camera. Her husband does not appear in the frame. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/9-02/start_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTAwNTgwMjEvN01tWVRHeTFxai9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372"
+  },
+  "end": {
+   "file": "outputs/ep01/9-02/end_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTAwNTgwMjUvb1AyYlQybXVpbC9lbmRfdjEucG5n.origin?x-kcdn-pid=112372"
+  }
+ },
+ "credits_before": 205.0,
+ "approved_by_user": "9-02 진행 (2026-09-22, 5단계 실행표 후)",
+ "version": 1,
+ "ts": "2026-09-22T06:20:51",
+ "generation_id": "AUy1V63BS062VjffFeILbdh-Rj6kze-VV5f0tBbff6u5j7veuKmtrH1sk5WztoCL4vaYAsq6",
+ "credits_consumed_reported": 18.0
+}
