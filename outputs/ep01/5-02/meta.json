@@ -1,0 +1,30 @@
+{
+ "cut": "5-02",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su sits still at the table, holding the spoon motionless in his right wing above the pot, his cheeks slightly full. From the very first frame his happy, softly curved eyes slowly grow heavier and sleepier, smoothly over the whole clip, as after-lunch drowsiness sets in, until they exactly match the end image; that is the only thing that changes. Nothing else moves at all: his head stays at the same height and angle, his cheeks stay as they are, the spoon stays in his wing above the pot, and the stone pot, the side dishes, the open rice bowl and its lid stay exactly where they are. He does not turn his head toward the camera and never looks at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/5-02/start_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTAwNTQ4MTMvUjI2SjRJYlhtUi9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372"
+  },
+  "end": {
+   "file": "outputs/ep01/5-02/end_v1.png",
+   "encoding": "JPEG",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qUQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBo3YWdlbnRfdXBsb2FkLzE3OTAwNTQ4MTYvYmlKY2F6dFd4Ry9lcDAxXzUtMDJfZW5kX3YxLmpwZw.origin?x-kcdn-pid=112372"
+  }
+ },
+ "credits_before": 229.0,
+ "approved_by_user": "진행해 (2026-09-22, 5단계 실행표 후)",
+ "version": 1,
+ "ts": "2026-09-22T05:27:20",
+ "generation_id": "AXpqBW2MDz7lsw1o6QjIR2i1lj3u1ysRVlp5H_M45Nbth_CgxCXuRrIpwFGSsjNm2iCLL21V",
+ "credits_consumed_reported": 24.0
+}
