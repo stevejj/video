@@ -37,6 +37,42 @@ def card_png(text, path):
     im.save(path)
 
 
+def still_zoom_segment(src, off, W, H, win, top_px, zoom, nfr, fps, card_path, fade, seg):
+    import cv2, numpy as np
+    im = cv2.imread(src)
+    sc = W / im.shape[1]
+    im = cv2.resize(im, (W, int(round(im.shape[0] * sc))), interpolation=cv2.INTER_AREA)
+    y0 = int(im.shape[0] * off)
+    y0 = max(0, min(y0, im.shape[0] - win))
+    card = None
+    if card_path:
+        c = cv2.imread(card_path, cv2.IMREAD_UNCHANGED)
+        card = (c[:, :, :3].astype(np.float32), c[:, :, 3:4].astype(np.float32) / 255.0)
+    cx, cy = W / 2.0, y0 + win / 2.0
+    p = subprocess.Popen([FF, '-y', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}', '-r', str(fps), '-i', '-',
+                          '-an', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', '-pix_fmt', 'yuv420p', seg],
+                         stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    canvas = np.zeros((H, W, 3), np.uint8)
+    for k in range(nfr):
+        z = 1.0 + zoom * k / max(1, nfr - 1)
+        # 창 중심을 고정한 채 z배 확대 → 창 좌표계로 이동
+        M = np.array([[z, 0, (1 - z) * cx], [0, z, (1 - z) * cy - y0]], np.float32)
+        win_img = cv2.warpAffine(im, M, (W, win), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+        if card is not None and k < int(1.2 * fps):
+            rgb, a = card; h, w = rgb.shape[:2]; x, y = 40, 36
+            roi = win_img[y:y + h, x:x + w].astype(np.float32)
+            win_img[y:y + h, x:x + w] = (roi * (1 - a) + rgb * a).astype(np.uint8)
+        if fade and k >= nfr - int(fade * fps):
+            g = (nfr - 1 - k) / max(1, int(fade * fps))
+            win_img = (win_img.astype(np.float32) * g).astype(np.uint8)
+        canvas[:] = 0
+        canvas[top_px:top_px + win] = win_img
+        p.stdin.write(canvas.tobytes())
+    p.stdin.close(); err = p.stderr.read().decode(); p.wait()
+    if p.returncode:
+        sys.stderr.write(err[-2000:]); raise SystemExit('still 렌더 실패: ' + src)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=os.path.join(ROOT, 'outputs/ep01/roughcut/ep01_roughcut_v1.mp4'))
@@ -78,12 +114,9 @@ def main():
             else:
                 src = os.path.join(ROOT, f'outputs/ep01/{src_cut}/start_v1.png')
                 nfr = int(round(L * fps))
-                # 정지: 창을 먼저 자른 뒤 zoompan 으로 1→1+zoom 느린 줌(중앙 기준)
-                vf = (f"[0:v]scale={W}:-2,crop={W}:{win}:0:'floor(ih*{off:.4f})',"
-                      f"zoompan=z='1+{zoom}*on/{nfr}':d={nfr}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{win}:fps={fps},"
-                      f"{pad}{card}{fadef},format=yuv420p[out]")
-                run([FF, '-y', '-i', src, *card_in, '-filter_complex', vf, '-map', '[out]', '-an',
-                     '-frames:v', str(nfr), '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', seg])
+                # 정지: zoompan은 정수 반올림으로 덜컥거려서(프레임간 0.2↔4.7 교차) OpenCV 서브픽셀 워프로 직접 렌더링
+                still_zoom_segment(src, off, W, H, win, top_px, zoom, nfr, fps,
+                                   card_in[1] if card_in else None, fade if next_black else 0, seg)
         segs.append(seg)
         print(f'{c["cut"]:6s} {c["kind"]:5s} {L:4.1f}s  ok', flush=True)
 
