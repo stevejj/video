@@ -178,7 +178,7 @@ Pang Chang-su begins lowering the light grey towel from the very first frame, sl
 **인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su stands still, holding the towel at his chest, looking straight at the camera with a tired, resigned glare. The wet tuft on top of his head slowly dries and rises until it stands straight up. Nothing else moves at all: his head, eyes, wings and the towel stay completely still. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su stands still, holding the towel at his chest, looking straight at the camera with a tired, resigned glare. From the very first frame the wet, drooping tuft on top of his head slowly dries and rises, smoothly over the whole clip, until it stands straight up, exactly matching the end image. Nothing else moves at all: his head stays at the same height and angle, his eyes keep the same tired half-lidded look, his wings and the towel stay completely still, and there is exactly one towel. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **자막(속마음·혼잣말 → 보이스오버, 부리 닫힘)**: 가기 싫다..
 **예상 시나리오**: 털뭉치만 3초에 걸쳐 스르륵 일어섬. 얼굴·수건 고정.
