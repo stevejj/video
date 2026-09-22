@@ -77,6 +77,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=os.path.join(ROOT, 'outputs/ep01/roughcut/ep01_roughcut_v1.mp4'))
     ap.add_argument('--no-cards', action='store_true')
+    ap.add_argument('--voice', action='store_true', help='outputs/voice_profile.json 의 대사를 시작 시각에 배치해 오디오 트랙 추가')
+    ap.add_argument('--ep', default='ep01')
     a = ap.parse_args()
 
     E = json.load(open(EDIT)); B = json.load(open(BAND))
@@ -125,8 +127,28 @@ def main():
         for s in segs:
             f.write(f"file '{s}'\n")
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
+    video = a.out if not a.voice else os.path.join(tmp, 'video_only.mp4')
     run([FF, '-y', '-f', 'concat', '-safe', '0', '-i', lst, '-c:v', 'libx264', '-preset', 'medium', '-crf', '18',
-         '-pix_fmt', 'yuv420p', '-movflags', '+faststart', a.out])
+         '-pix_fmt', 'yuv420p', '-movflags', '+faststart', video])
+    if a.voice:
+        P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json')))
+        items = []
+        seen = set()
+        for l in P['episodes'][a.ep]['lines']:
+            f = l.get('file')
+            if not f or f in seen or 'at' not in l:
+                continue
+            seen.add(f); items.append((l['at'], os.path.join(ROOT, f)))
+        total = sum(c['len'] for c in cuts)
+        inputs = ['-i', video]
+        fc = []
+        for i, (at, f) in enumerate(items):
+            inputs += ['-i', f]
+            fc.append(f"[{i + 1}:a]aresample=44100,adelay={int(at * 1000)}|{int(at * 1000)}[a{i}]")
+        fc.append(''.join(f'[a{i}]' for i in range(len(items))) + f"amix=inputs={len(items)}:normalize=0,apad=whole_dur={total}[mix]")
+        run([FF, '-y', *inputs, '-filter_complex', ';'.join(fc), '-map', '0:v', '-map', '[mix]', '-c:v', 'copy',
+             '-c:a', 'aac', '-b:a', '160k', '-t', str(total), '-movflags', '+faststart', a.out])
+        print(f'음성 {len(items)}개 배치')
     shutil.rmtree(tmp, ignore_errors=True)
     print('완료:', a.out)
 

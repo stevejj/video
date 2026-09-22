@@ -1,0 +1,259 @@
+{
+ "model_id": "eleven_v3",
+ "voices": {
+  "changsu": "q1dzImr8s09En2iY9uGZ",
+  "misun": "JZhjPOVB6rdotoOCacMU"
+ },
+ "voice_settings": {
+  "stability": 0.5,
+  "similarity_boost": 0.8,
+  "use_speaker_boost": true
+ },
+ "speed": {
+  "short": 1.0,
+  "long_or_sleepy": 0.9
+ },
+ "tags": {
+  "01": "",
+  "02": "[cheerful]",
+  "03": "[surprised]",
+  "04": "[annoyed]",
+  "05": "[sleepy]",
+  "06": "[sad]",
+  "07": "[nervous]",
+  "08": "[excited]",
+  "09": "[angry]",
+  "10": "[relieved]",
+  "11": "[worried]",
+  "12": "[thoughtful]"
+ },
+ "loudnorm": {
+  "I": -16,
+  "TP": -1.5,
+  "LRA": 11
+ },
+ "pitch_semitones": 0,
+ "candidate_seeds": [
+  42,
+  7,
+  1234
+ ],
+ "episodes": {
+  "ep01": {
+   "lines": [
+    {
+     "cut": "1-02",
+     "speaker": "changsu",
+     "subtitle": "또 아침..",
+     "tts": "또 아침...",
+     "expr": "05",
+     "at": 3.4,
+     "max_len": 1.8,
+     "seed": 1234,
+     "len": 1.7,
+     "file": "outputs/ep01/voice/lines/1-02.mp3",
+     "over": false,
+     "len_raw": 1.7,
+     "tempo": 1.0,
+     "offset": 0.4
+    },
+    {
+     "cut": "2-02",
+     "speaker": "changsu",
+     "subtitle": "가기 싫다..",
+     "tts": "가기 싫다...",
+     "expr": "04",
+     "at": 9.5,
+     "max_len": 2.3,
+     "seed": 42,
+     "len": 1.8,
+     "file": "outputs/ep01/voice/lines/2-02.mp3",
+     "offset": 0.5
+    },
+    {
+     "cut": "4-03",
+     "speaker": "changsu",
+     "subtitle": "모니터 뚫어!!!!",
+     "tts": "모니터 뚫어!",
+     "expr": "04",
+     "at": 20.2,
+     "max_len": 1.8,
+     "seed": 42,
+     "len_raw": 2.14,
+     "tempo": 1.15,
+     "len": 1.88,
+     "file": "outputs/ep01/voice/lines/4-03.mp3",
+     "over": true,
+     "offset": 0.2
+    },
+    {
+     "cut": "5-01",
+     "speaker": "changsu",
+     "subtitle": "밥 마시따",
+     "tts": "밥 마시따!",
+     "expr": "08",
+     "at": 23.5,
+     "max_len": 1.6,
+     "seed": 1234,
+     "len": 1.18,
+     "file": "outputs/ep01/voice/lines/5-01.mp3",
+     "offset": 1.2
+    },
+    {
+     "cut": "5-03",
+     "speaker": "changsu",
+     "subtitle": "졸려...",
+     "tts": "졸려...",
+     "expr": "05",
+     "at": 27.6,
+     "max_len": 1.7,
+     "seed": 42,
+     "len": 1.33,
+     "file": "outputs/ep01/voice/lines/5-03.mp3",
+     "offset": 0.3
+    },
+    {
+     "cut": "6-02",
+     "speaker": "changsu",
+     "subtitle": "후...",
+     "tts": "[sighs] 후...",
+     "expr": "10",
+     "at": 32.5,
+     "max_len": 1.8,
+     "tag_override": true,
+     "seed": 42,
+     "len": 1.75,
+     "file": "outputs/ep01/voice/lines/6-02.mp3",
+     "offset": 0.2
+    },
+    {
+     "cut": "6-03",
+     "speaker": "changsu",
+     "subtitle": "아직도 3시..",
+     "tts": "아직도 세 시...",
+     "expr": "05",
+     "at": 34.5,
+     "max_len": 1.7,
+     "seed": 1234,
+     "len": 2.14,
+     "file": "outputs/ep01/voice/lines/6-03.mp3",
+     "over": true,
+     "len_raw": 2.46,
+     "tempo": 1.15,
+     "offset": 0.2
+    },
+    {
+     "cut": "6-04",
+     "speaker": "changsu",
+     "subtitle": "아직도 4시..",
+     "tts": "아직도 네 시...",
+     "expr": "05",
+     "at": 37.0,
+     "max_len": 1.7,
+     "seed": 1234,
+     "len": 1.78,
+     "file": "outputs/ep01/voice/lines/6-04.mp3",
+     "over": true,
+     "len_raw": 2.04,
+     "tempo": 1.15,
+     "offset": 0.2
+    },
+    {
+     "cut": "6-05",
+     "speaker": "changsu",
+     "subtitle": "아직도 5시..",
+     "tts": "아직도 다섯 시...",
+     "expr": "05",
+     "at": 39.5,
+     "max_len": 1.7,
+     "seed": 1234,
+     "len": 2.3,
+     "file": "outputs/ep01/voice/lines/6-05.mp3",
+     "over": true,
+     "len_raw": 2.64,
+     "tempo": 1.15,
+     "offset": 0.2
+    },
+    {
+     "cut": "7-01",
+     "speaker": "changsu",
+     "subtitle": "퇴근!!",
+     "tts": "퇴근!",
+     "expr": "02",
+     "at": 42.6,
+     "max_len": 1.5,
+     "seed": 42,
+     "len": 1.02,
+     "file": "outputs/ep01/voice/lines/7-01.mp3",
+     "offset": 0.3
+    },
+    {
+     "cut": "8-01",
+     "speaker": "changsu",
+     "subtitle": "빨리집가!!!",
+     "tts": "빨리 집 가!",
+     "expr": "02",
+     "at": 45.6,
+     "max_len": 1.7,
+     "seed": 42,
+     "len": 1.49,
+     "file": "outputs/ep01/voice/lines/8-01.mp3",
+     "offset": 0.3
+    },
+    {
+     "cut": "9-02",
+     "speaker": "misun",
+     "subtitle": "라면머글래?",
+     "tts": "라면 머글래?",
+     "expr": "02",
+     "at": 51.2,
+     "max_len": 1.6,
+     "dialogue_group": "g1",
+     "seed": 1234,
+     "len": 2.9,
+     "file": "outputs/ep01/voice/lines/9-02+9-03.mp3",
+     "offset": 0.9
+    },
+    {
+     "cut": "9-03",
+     "speaker": "changsu",
+     "subtitle": "끄래!!!",
+     "tts": "끄래!",
+     "expr": "08",
+     "at": 50.1,
+     "max_len": 1.4,
+     "dialogue_group": "g1",
+     "seed": 1234,
+     "len": 2.9,
+     "file": "outputs/ep01/voice/lines/9-02+9-03.mp3"
+    },
+    {
+     "cut": "10-02",
+     "speaker": "changsu",
+     "subtitle": "내일도 화이띵...!",
+     "tts": "내일도 화이띵...!",
+     "expr": "05",
+     "at": 59.1,
+     "max_len": 2.6,
+     "seed": 42,
+     "len": 2.27,
+     "file": "outputs/ep01/voice/lines/10-02.mp3",
+     "offset": 0.3
+    },
+    {
+     "cut": "10-03",
+     "speaker": "changsu",
+     "subtitle": "아!!!!!!!!!!!!!!!!",
+     "tts": "아악!",
+     "expr": "03",
+     "at": 62.8,
+     "max_len": 1.9,
+     "seed": 42,
+     "len": 0.63,
+     "file": "outputs/ep01/voice/lines/10-03.mp3",
+     "offset": 0.5
+    }
+   ]
+  }
+ }
+}
