@@ -1,12 +1,12 @@
 {
  "model_id": "eleven_v3",
  "voices": {
-  "changsu": "q1dzImr8s09En2iY9uGZ",
-  "misun": "JZhjPOVB6rdotoOCacMU"
+  "changsu": "s8VgZytDeoc1NWDptR0r",
+  "misun": "AUf8Bclnc25MY088NLRz"
  },
  "voice_settings": {
   "stability": 0.5,
-  "similarity_boost": 0.8,
+  "similarity_boost": 0.9,
   "use_speaker_boost": true
  },
  "speed": {
@@ -49,13 +49,13 @@
      "expr": "05",
      "at": 3.4,
      "max_len": 1.8,
-     "seed": 1234,
-     "len": 1.7,
-     "file": "outputs/ep01/voice/lines/1-02.mp3",
-     "over": false,
-     "len_raw": 1.7,
+     "offset": 0.4,
+     "seed": 42,
+     "len_raw": 0.99,
      "tempo": 1.0,
-     "offset": 0.4
+     "len": 0.99,
+     "file": "outputs/ep01/voice/lines/1-02.mp3",
+     "over": false
     },
     {
      "cut": "2-02",
@@ -65,10 +65,13 @@
      "expr": "04",
      "at": 9.5,
      "max_len": 2.3,
+     "offset": 0.5,
      "seed": 42,
-     "len": 1.8,
+     "len_raw": 1.18,
+     "tempo": 1.0,
+     "len": 1.18,
      "file": "outputs/ep01/voice/lines/2-02.mp3",
-     "offset": 0.5
+     "over": false
     },
     {
      "cut": "4-03",
@@ -78,13 +81,13 @@
      "expr": "04",
      "at": 20.2,
      "max_len": 1.8,
+     "offset": 0.2,
      "seed": 42,
-     "len_raw": 2.14,
-     "tempo": 1.15,
-     "len": 1.88,
+     "len_raw": 0.99,
+     "tempo": 1.0,
+     "len": 0.99,
      "file": "outputs/ep01/voice/lines/4-03.mp3",
-     "over": true,
-     "offset": 0.2
+     "over": false
     },
     {
      "cut": "5-01",
@@ -92,12 +95,15 @@
      "subtitle": "밥 마시따",
      "tts": "밥 마시따!",
      "expr": "08",
-     "at": 23.5,
+     "at": 22.8,
      "max_len": 1.6,
-     "seed": 1234,
-     "len": 1.18,
+     "offset": 0.8,
+     "seed": 42,
+     "len_raw": 1.04,
+     "tempo": 1.0,
+     "len": 1.04,
      "file": "outputs/ep01/voice/lines/5-01.mp3",
-     "offset": 1.2
+     "over": false
     },
     {
      "cut": "5-03",
@@ -105,12 +111,15 @@
      "subtitle": "졸려...",
      "tts": "졸려...",
      "expr": "05",
-     "at": 27.6,
+     "at": 27.3,
      "max_len": 1.7,
+     "offset": 0.3,
      "seed": 42,
-     "len": 1.33,
+     "len_raw": 1.18,
+     "tempo": 1.0,
+     "len": 1.18,
      "file": "outputs/ep01/voice/lines/5-03.mp3",
-     "offset": 0.3
+     "over": false
     },
     {
      "cut": "6-02",
@@ -118,13 +127,16 @@
      "subtitle": "후...",
      "tts": "[sighs] 후...",
      "expr": "10",
-     "at": 32.5,
+     "at": 32.2,
      "max_len": 1.8,
      "tag_override": true,
+     "offset": 0.2,
      "seed": 42,
-     "len": 1.75,
+     "len_raw": 1.31,
+     "tempo": 1.0,
+     "len": 1.31,
      "file": "outputs/ep01/voice/lines/6-02.mp3",
-     "offset": 0.2
+     "over": false
     },
     {
      "cut": "6-03",
@@ -132,15 +144,15 @@
      "subtitle": "아직도 3시..",
      "tts": "아직도 세 시...",
      "expr": "05",
-     "at": 34.5,
+     "at": 34.2,
      "max_len": 1.7,
-     "seed": 1234,
-     "len": 2.14,
+     "offset": 0.2,
+     "seed": 42,
+     "len_raw": 1.52,
+     "tempo": 1.0,
+     "len": 1.52,
      "file": "outputs/ep01/voice/lines/6-03.mp3",
-     "over": true,
-     "len_raw": 2.46,
-     "tempo": 1.15,
-     "offset": 0.2
+     "over": false
     },
     {
      "cut": "6-04",
@@ -148,15 +160,15 @@
      "subtitle": "아직도 4시..",
      "tts": "아직도 네 시...",
      "expr": "05",
-     "at": 37.0,
+     "at": 36.2,
      "max_len": 1.7,
-     "seed": 1234,
-     "len": 1.78,
+     "offset": 0.2,
+     "seed": 42,
+     "len_raw": 1.54,
+     "tempo": 1.0,
+     "len": 1.54,
      "file": "outputs/ep01/voice/lines/6-04.mp3",
-     "over": true,
-     "len_raw": 2.04,
-     "tempo": 1.15,
-     "offset": 0.2
+     "over": false
     },
     {
      "cut": "6-05",
@@ -164,15 +176,15 @@
      "subtitle": "아직도 5시..",
      "tts": "아직도 다섯 시...",
      "expr": "05",
-     "at": 39.5,
+     "at": 38.2,
      "max_len": 1.7,
-     "seed": 1234,
-     "len": 2.3,
+     "offset": 0.2,
+     "seed": 42,
+     "len_raw": 1.44,
+     "tempo": 1.0,
+     "len": 1.44,
      "file": "outputs/ep01/voice/lines/6-05.mp3",
-     "over": true,
-     "len_raw": 2.64,
-     "tempo": 1.15,
-     "offset": 0.2
+     "over": false
     },
     {
      "cut": "7-01",
@@ -180,12 +192,15 @@
      "subtitle": "퇴근!!",
      "tts": "퇴근!",
      "expr": "02",
-     "at": 42.6,
+     "at": 40.3,
      "max_len": 1.5,
+     "offset": 0.3,
      "seed": 42,
-     "len": 1.02,
+     "len_raw": 0.44,
+     "tempo": 1.0,
+     "len": 0.44,
      "file": "outputs/ep01/voice/lines/7-01.mp3",
-     "offset": 0.3
+     "over": false
     },
     {
      "cut": "8-01",
@@ -193,12 +208,15 @@
      "subtitle": "빨리집가!!!",
      "tts": "빨리 집 가!",
      "expr": "02",
-     "at": 45.6,
+     "at": 43.3,
      "max_len": 1.7,
+     "offset": 0.3,
      "seed": 42,
-     "len": 1.49,
+     "len_raw": 0.99,
+     "tempo": 1.0,
+     "len": 0.99,
      "file": "outputs/ep01/voice/lines/8-01.mp3",
-     "offset": 0.3
+     "over": false
     },
     {
      "cut": "9-02",
@@ -206,13 +224,13 @@
      "subtitle": "라면머글래?",
      "tts": "라면 머글래?",
      "expr": "02",
-     "at": 51.2,
+     "at": 49.22,
      "max_len": 1.6,
      "dialogue_group": "g1",
-     "seed": 1234,
-     "len": 2.9,
-     "file": "outputs/ep01/voice/lines/9-02+9-03.mp3",
-     "offset": 0.9
+     "offset": 1.22,
+     "seed": 42,
+     "len": 1.28,
+     "file": "outputs/ep01/voice/lines/9-02+9-03.mp3"
     },
     {
      "cut": "9-03",
@@ -223,9 +241,10 @@
      "at": 50.1,
      "max_len": 1.4,
      "dialogue_group": "g1",
-     "seed": 1234,
-     "len": 2.9,
-     "file": "outputs/ep01/voice/lines/9-02+9-03.mp3"
+     "seed": 42,
+     "len": 0.4,
+     "file": "outputs/ep01/voice/lines/9-02+9-03.mp3",
+     "offset": 0.1
     },
     {
      "cut": "10-02",
@@ -233,12 +252,15 @@
      "subtitle": "내일도 화이띵...!",
      "tts": "내일도 화이띵...!",
      "expr": "05",
-     "at": 59.1,
+     "at": 56.8,
      "max_len": 2.6,
+     "offset": 0.3,
      "seed": 42,
-     "len": 2.27,
+     "len_raw": 1.28,
+     "tempo": 1.0,
+     "len": 1.28,
      "file": "outputs/ep01/voice/lines/10-02.mp3",
-     "offset": 0.3
+     "over": false
     },
     {
      "cut": "10-03",
@@ -246,14 +268,27 @@
      "subtitle": "아!!!!!!!!!!!!!!!!",
      "tts": "아악!",
      "expr": "03",
-     "at": 62.8,
+     "at": 60.5,
      "max_len": 1.9,
+     "offset": 0.5,
      "seed": 42,
-     "len": 0.63,
+     "len_raw": 0.5,
+     "tempo": 1.0,
+     "len": 0.5,
      "file": "outputs/ep01/voice/lines/10-03.mp3",
-     "offset": 0.5
+     "over": false
     }
    ]
   }
- }
+ },
+ "voices_legacy": {
+  "changsu_v1": "q1dzImr8s09En2iY9uGZ",
+  "misun_v1": "JZhjPOVB6rdotoOCacMU",
+  "misun_v2_before_remix": "rHIsOg5S9vPP1zKHczQG"
+ },
+ "post": {
+  "speedup": 1.2,
+  "note": "asetrate 배속(높이·속도 동시 상승) → loudnorm. EQ 없음(창수 ① 선택). 모든 에피소드 공통"
+ },
+ "decided": "2026-09-22: 창수=Voice Design B-3 그대로, 미순=A-1 리믹스(또렷한 발음) 1번, 연기=v3 표현력(태그), 후처리=배속 1.2"
 }

@@ -8,5 +8,13 @@
   "voice_id": "rHIsOg5S9vPP1zKHczQG",
   "from": "misun_A_0",
   "description": "A tiny, very high-pitched female cartoon plush mascot voice with a clean, slightly synthetic text-to-speech quality. Light, even delivery with a small cheerful lift at sentence ends, fast pace. Korean."
+ },
+ "misun_final": {
+  "voice_id": "AUf8Bclnc25MY088NLRz",
+  "from": "remix_misun_0 (of misun_A_0)"
+ },
+ "changsu_final": {
+  "voice_id": "s8VgZytDeoc1NWDptR0r",
+  "from": "changsu_B_2, clarity option ① (as-is + speedup)"
  }
 }

@@ -43,10 +43,15 @@ def duration(p):
     return int(m[1]) * 3600 + int(m[2]) * 60 + float(m[3]) if m else 0.0
 
 
+SPEEDUP = 1.0  # main()에서 프로필 post.speedup 으로 덮어씀
+
+
 def trim(src, dst):
-    """앞뒤 무음 제거(-45dB 기준, 앞 0.05s·뒤 0.15s 여유). v3 출력은 앞뒤에 0.2~0.5s 무음이 붙는다."""
+    """앞뒤 무음 제거(-45dB 기준, 앞 0.05s·뒤 0.15s 여유) + 공통 배속(높이·속도 동시 상승). v3 출력은 앞뒤에 0.2~0.5s 무음이 붙는다."""
     af = ("silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,"
           "areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.15,areverse")
+    if SPEEDUP != 1.0:
+        af += f",asetrate=44100*{SPEEDUP},aresample=44100"
     subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-af', af, '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
 
 
@@ -82,6 +87,8 @@ def main():
     ap.add_argument('--candidates', type=int, default=3)
     a = ap.parse_args()
     P = json.load(open(PROF))
+    global SPEEDUP
+    SPEEDUP = P.get('post', {}).get('speedup', 1.0)
     lines = P['episodes'][a.ep]['lines']
     regen = set(x for x in a.regen.split(',') if x)
     outdir = os.path.join(ROOT, f'outputs/{a.ep}/voice/lines'); os.makedirs(outdir, exist_ok=True)
