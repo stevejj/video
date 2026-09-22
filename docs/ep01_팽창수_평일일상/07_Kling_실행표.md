@@ -61,6 +61,42 @@ B를 택하면 turbo 단가 시험(3-01)은 불필요해진다.
 - 변화 시작이 예상(0.8s)보다 늦은 1.75s → 편집 창을 클립 뒤쪽(1.0~3.0s)으로. 이후 시작+끝 컷도 **변화는 후반에 몰린다**고 예상한다.
 - tail_image 포함 18크레딧(추가 요금 없음). 생성 166초(시작만 컷의 2~3배).
 
+## 1g. 3컷 회고 — 문구별 적용 여부 (2026-09-22, 4-01·9-03·1-02)
+
+### 잘 적용된 문구 (증거 있음 → 유지)
+| 문구 | 증거 | 판정 |
+|---|---|---|
+| `Static camera, locked-off tripod shot, no camera movement, same composition throughout` | 카메라 이동 0.08 / 0.20 / 0.01px (3/3) | **확실** |
+| `the surroundings and objects stay photoreal and completely unchanged` + `No new objects appear` | 배경 드리프트 3.0 / — / 2.3, 새 물건 0건 (3/3) | **확실** |
+| `Beak stays closed the whole time` | 4-01·1-02 닫힘 유지 (2/2) | **확실** (말하라는 문장이 없을 때) |
+| `Wings stay short and rounded with no fingers` | 손가락 0건 (3/3) | **확실** |
+| `3D animated plush character, short velvet fur` | 털 결·정체성 유지 (3/3) | **확실** |
+| `The monitor screen stays a blank pale glow with no text` | 글자 0건 (4-01) | 확실 |
+| `His eyes stay wide the whole time` | 9-03 눈 크기 유지 | 확실 |
+| **끝 프레임 + `exactly matching the end image`** | 1-02 끝 프레임 차 1.80, 시키지 않은 동작 0건 | **가장 강력** |
+
+### 무시된 문구 (→ 쓰지 않거나 프레임으로 대체)
+| 문구 | 결과 |
+|---|---|
+| `looking at the monitor` / `looks to the right` (시선만 지정) | 4-01·9-03 모두 카메라로 돌아섬 |
+| `opens and closes only a tiny amount, barely parting, never opens wide` | 9-03 입안이 보이게 활짝 |
+| `Only a slight slow nod` | 4-01 끄덕임 + 시키지 않은 회전 |
+
+### 일반화
+**장면·카메라·소품·정체성 제약은 지켜지고, 캐릭터의 머리·입 "정도" 제약은 무시된다.** 캐릭터 동작은 끝 프레임으로만 확실히 통제된다. `does not turn his head toward the camera` 부정문은 1-02에서 지켜졌지만 끝 프레임이 함께 있었으므로 **단독 효과는 미검증**.
+
+### 순서 변경의 효과 (실측)
+| 순서 | 결과 |
+|---|---|
+| 스토리보드 순서였다면 | 1-01·1-02·1-03… 정지 컷에 크레딧을 쓰며 진행. 대화 컷 문제는 20번째(9-02)에서, 정지 컷의 임의 동작 문제는 여러 컷을 쓴 뒤에 발견 |
+| 실제(유형 표본 먼저) | 4-01 → 시선 문장 16컷 반영 / 9-03 → 9-02 수정 + **전략 B(정지 13컷 정지 이미지, ~234크레딧 절약)** / 1-02 → 끝 프레임 방식 확증 + 편집 창 후반 |
+| 성적 | 3컷 54크레딧, 채택 2·대체 1. 클립마다 새 교훈 → 다음 클립 통과(1→실패, 2→실패, 3→통과) |
+
+### 내 예측의 오차 (다음 예상에 반영)
+- 변화 시작 시점을 0.8s로 예상했으나 실제 1.75s. **3초 클립의 변화는 후반 절반에 몰린다** → 편집 창은 뒤쪽, 걷기 컷은 "첫 프레임부터" 명시.
+- 정지 컷의 "임의 동작" 위험을 첫 컷 전엔 낮게 봤음 → 전략 B로 정정.
+- 검수 지표의 부리/눈 박스는 고정 좌표라 머리 이동과 섞임 → 수치는 참고, 판정은 확대 띠로.
+
 ## 2. 위험 등급 요약
 | 등급 | 컷 | 핵심 위험 |
 |---|---|---|
