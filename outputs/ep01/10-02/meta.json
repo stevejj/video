@@ -25,5 +25,53 @@
  "version": 1,
  "ts": "2026-09-22T06:33:24",
  "generation_id": "AZeuETB6BLM0hlbPsvnn5Xjox6WaYm7eAqWMxYpgv_KUU2TPjsMsIGu28AsuvwKfcMc3-fyU",
- "credits_consumed_reported": 24.0
+ "credits_consumed_reported": 24.0,
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.15,
+   "start_vs_ref_bg_meandiff": 2.13,
+   "end_vs_ref_meandiff": 3.0,
+   "end_vs_ref_bg_meandiff": 3.13,
+   "interframe_mean": 0.15,
+   "interframe_max": 0.88,
+   "interframe_max_at_s": 2.25,
+   "first_vs_last_meandiff": 4.03,
+   "bg_drift_first_last": 4.35,
+   "cam_motion_px_median": 0.05,
+   "cam_motion_px_max": 0.11,
+   "beak_region_change_max": 7.1,
+   "beak_region_change_mean": 4.95
+  }
+ },
+ "result": {
+  "status": "COMPLETED",
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/43923e60-7776-4b6b-b91f-810187153b69-PQ6VljIp6rIp5QakwBn-Qg-output.mp4?x-kcdn-pid=112372",
+  "file": "outputs/ep01/10-02/clip_v1.mp4",
+  "size": [
+   716,
+   1284
+  ],
+  "fps": 24,
+  "frames": 97
+ },
+ "credits_after": 163.0,
+ "credits_cost": 24.0,
+ "review": {
+  "verdict": "통과",
+  "notes": [
+   "눈꺼풀 1.0~2.0s에 고르게 내려가 2.0s 완전 감김, 4.0s까지 유지(끝 프레임 diff 3.0)",
+   "머리 위치 고정, 부리 닫힘, 램프 밝기 일정, 오른쪽 가장자리 흰 덩어리 변형 없음",
+   "카메라 0.05px 고정, 프레임간 변화 최대 0.88(전 클립 중 가장 조용함)",
+   "무요청 동작 없음"
+  ],
+  "edit_window": "0.5-3.5s",
+  "decision": "통과(기술) — 사용자 채택 대기"
+ }
 }
