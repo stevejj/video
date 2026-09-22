@@ -205,7 +205,7 @@ Pang Chang-su stands still on the platform in profile, waiting sleepily with hea
 **인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su slowly turns his head a little toward the camera, from full profile to a three-quarter view, staring blankly along the platform. His eyes stay tired and half-lidded and do not widen. His body and shoulders do not move. Screen doors stay closed, no train. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+From the very first frame Pang Chang-su slowly turns his head a little toward the camera, smoothly over the whole clip, from full profile to the three-quarter view of the end image, and no further; by the end he exactly matches the end image, staring blankly into the distance. His eyes keep the same tired, half-lidded look the whole time and do not widen. His body and shoulders stay completely still and his head stays at the same height. The platform screen doors behind him stay closed. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **예상 시나리오**: 고개만 살짝 카메라 쪽으로. 눈은 졸린 채.
 **위험·감시 항목**: 낮음 | 눈이 커짐(끝 프레임 v1과 같은 실패), 몸까지 돌아섬, 부리 변형
