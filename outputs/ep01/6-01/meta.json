@@ -26,5 +26,43 @@
  "ts": "2026-09-22T04:32:40",
  "generation_id": "AX4EOPAj3cfb6_nnmeFN5pyt24xdfjao7CQD5BrEe5gYXJ_MknHcKzX0F1Iji8j_sNxwO-UR",
  "credits_consumed_reported": 24.0,
- "note": "4초=24 → 초당 6 선형 확정"
+ "note": "4초=24 → 초당 6 선형 확정",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.9,
+   "start_vs_ref_bg_meandiff": 3.19,
+   "end_vs_ref_meandiff": 2.75,
+   "end_vs_ref_bg_meandiff": 3.14,
+   "interframe_mean": 0.53,
+   "interframe_max": 1.23,
+   "interframe_max_at_s": 0.08,
+   "first_vs_last_meandiff": 10.65,
+   "bg_drift_first_last": 8.89,
+   "cam_motion_px_median": 0.01,
+   "cam_motion_px_max": 0.03
+  }
+ },
+ "status": "COMPLETED",
+ "generation_seconds": 93,
+ "result": {
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/7006d8ac-1784-49d3-acc6-6f5381796e28-PQ6VljIp6rJR1SokILfTUA-output.mp4?x-kcdn-pid=112372",
+  "local": "outputs/ep01/6-01/clip_v1.mp4",
+  "expires": "24h from 2026-09-22T04:34Z"
+ },
+ "credits_after": 313.0,
+ "credits_cost": 24.0,
+ "review": {
+  "verdict": "통과",
+  "technical": "시작 2.9 / 끝 2.75 일치, 카메라 0.01px, 발 번갈아 딛음(미끄러짐 없음), 0~3.0s 이동·3~4s 정착, 크기·배경 고정",
+  "edit_window": "0.75-3.75s",
+  "decision": "채택"
+ },
+ "final": "clip_v1.mp4"
 }
