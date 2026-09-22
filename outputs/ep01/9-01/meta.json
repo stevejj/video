@@ -25,5 +25,43 @@
  "version": 1,
  "ts": "2026-09-22T04:44:45",
  "generation_id": "ASw-zfjY6RxZNVSdpQ2tK0nD2cW1rG7TtZZUhFa1YiP38Y2-GPtuUC4IQxhFG1_HlDV5e1gx",
- "credits_consumed_reported": 24.0
+ "credits_consumed_reported": 24.0,
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.78,
+   "start_vs_ref_bg_meandiff": 2.72,
+   "end_vs_ref_meandiff": 2.64,
+   "end_vs_ref_bg_meandiff": 2.55,
+   "interframe_mean": 0.51,
+   "interframe_max": 1.73,
+   "interframe_max_at_s": 3.92,
+   "first_vs_last_meandiff": 7.52,
+   "bg_drift_first_last": 4.7,
+   "cam_motion_px_median": 0.01,
+   "cam_motion_px_max": 0.03
+  }
+ },
+ "status": "COMPLETED",
+ "generation_seconds": 49,
+ "result": {
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/34783db9-c77d-42cf-a82e-b3663686245e-PQ6VljIp6rJkdcvZtWXH8w-output.mp4?x-kcdn-pid=112372",
+  "local": "outputs/ep01/9-01/clip_v1.mp4",
+  "expires": "24h from 2026-09-22T04:50Z"
+ },
+ "credits_after": 289.0,
+ "credits_cost": 24.0,
+ "review": {
+  "verdict": "통과",
+  "technical": "시작 2.78 / 끝 2.64 일치, 카메라 0.01px, 좌우 순서·간격 유지, 발 번갈아 딛음, 1.25~2.75s 뒷모습 후 3/4 복귀",
+  "edit_window": "0.5-3.5s",
+  "decision": "채택"
+ },
+ "final": "clip_v1.mp4"
 }
