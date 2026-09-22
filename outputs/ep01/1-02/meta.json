@@ -27,5 +27,45 @@
  "ts": "2026-09-22T04:05:45",
  "generation_id": "AWCB4GU0TzxNXgV0hejfHjag2F8ORY2XS59-mhhEwc8yimSYeCYx8lKm33bifVz9XHaLSF8O",
  "credits_consumed_reported": 18.0,
- "note": "tail_image 포함해도 18 — 끝 프레임 추가 요금 없음"
+ "note": "tail_image 포함해도 18 — 끝 프레임 추가 요금 없음",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 1.94,
+   "start_vs_ref_bg_meandiff": 1.91,
+   "end_vs_ref_meandiff": 1.8,
+   "end_vs_ref_bg_meandiff": 1.81,
+   "interframe_mean": 0.16,
+   "interframe_max": 0.99,
+   "interframe_max_at_s": 0.25,
+   "first_vs_last_meandiff": 2.73,
+   "bg_drift_first_last": 2.32,
+   "cam_motion_px_median": 0.01,
+   "cam_motion_px_max": 0.06,
+   "beak_region_change_max": 7.48,
+   "beak_region_change_mean": 4.25
+  }
+ },
+ "status": "COMPLETED",
+ "generation_seconds": 166,
+ "result": {
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/30f0392e-3988-40df-957e-8d5904f0ef05-PQ6VljIp6rL6QY2APRni2A-output.mp4?x-kcdn-pid=112372",
+  "local": "outputs/ep01/1-02/clip_v1.mp4",
+  "expires": "24h from 2026-09-22T04:10Z"
+ },
+ "credits_after": 337.0,
+ "credits_cost": 18.0,
+ "review": {
+  "verdict": "통과",
+  "technical": "시작 1.94 / 끝 1.80 일치, 카메라 0.01px, 눈만 변화(1.75s→3.0s), 머리·이불 고정, 부리 닫힘",
+  "edit_window": "1.0-3.0s",
+  "decision": "채택"
+ },
+ "final": "clip_v1.mp4"
 }
