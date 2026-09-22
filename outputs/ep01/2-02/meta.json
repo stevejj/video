@@ -1,0 +1,30 @@
+{
+ "cut": "2-02",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "3",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su stands still, holding the towel at his chest, looking straight at the camera with a tired, resigned glare. From the very first frame the wet, drooping tuft on top of his head slowly dries and rises, smoothly over the whole clip, until it stands straight up, exactly matching the end image. Nothing else moves at all: his head stays at the same height and angle, his eyes keep the same tired half-lidded look, his wings and the towel stay completely still, and there is exactly one towel. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/2-02/start_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTAwNTMyODIvcURzZmtDdUVlcS9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372"
+  },
+  "end": {
+   "file": "outputs/ep01/2-02/end_v1.png",
+   "encoding": "JPEG",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qUQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBo3YWdlbnRfdXBsb2FkLzE3OTAwNTMyODUvUlUzbE1VcExuVy9lcDAxXzItMDJfZW5kX3YxLmpwZw.origin?x-kcdn-pid=112372"
+  }
+ },
+ "credits_before": 265.0,
+ "approved_by_user": "진행 (2026-09-22, 5단계 실행표 후)",
+ "version": 1,
+ "ts": "2026-09-22T05:01:47",
+ "generation_id": "AeELkZk52Ce9paWZd0dHkbAnbf_6LuWrSk3CM8zqa9QGVenSb4HrraPUnv6xo_yoit9UX69I",
+ "credits_consumed_reported": 18.0
+}
