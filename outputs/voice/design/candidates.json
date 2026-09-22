@@ -1,0 +1,128 @@
+{
+ "misun_B": {
+  "description": "A small, high-pitched young female voice, sweet and clear, like a cartoon plush character. Calm, mostly flat reading with a hint of brightness, brisk pace, no breathiness. Korean.",
+  "text": "라면 머글래? 오늘 뭐 했어? 빨리 와, 배고파. 이거 봐봐. 진짜? 대박. 나도 졸려... 내일 또 회사 가야 돼. 잘 자. 화이띵! 창수야 일어나. 늦었어. 저녁은 뭐 먹지? 산책 갈까? 오늘은 김치찌개 어때? 나 먼저 잔다.",
+  "previews": [
+   {
+    "generated_voice_id": "7Hd0i5ALS2E8wI0v3cqH",
+    "file": "outputs/voice/design/misun_B_0.mp3",
+    "duration_secs": 19.306333333333335
+   },
+   {
+    "generated_voice_id": "8f14GC64WIuSsCYfqNWd",
+    "file": "outputs/voice/design/misun_B_1.mp3",
+    "duration_secs": 21.500625
+   },
+   {
+    "generated_voice_id": "8bMi6btJUU9tLEs0mn8q",
+    "file": "outputs/voice/design/misun_B_2.mp3",
+    "duration_secs": 21.500625
+   }
+  ]
+ },
+ "changsu_A": {
+  "description": "A tiny, very high-pitched male cartoon plush mascot voice with a clean, slightly synthetic text-to-speech quality. Flat, even, deadpan delivery with almost no emotion, fast pace, sentence endings drop flatly. Korean.",
+  "text": "또 아침이야... 가기 싫다. 모니터 뚫어! 밥 마시따. 졸려... 아직도 세 시... 아직도 네 시... 퇴근! 빨리 집 가. 끄래! 라면 좋지. 내일도 화이띵... 아악! 알람 좀 꺼줘. 오늘도 똑같은 하루야. 그래도 집에 가면 미순이가 있으니까 괜찮아.",
+  "previews": [
+   {
+    "generated_voice_id": "2vj4DyhBbTRxi91Kj2kW",
+    "file": "outputs/voice/design/changsu_A_0.mp3",
+    "duration_secs": 19.541458333333335
+   },
+   {
+    "generated_voice_id": "wPGPvgKCZenyZta3DMGV",
+    "file": "outputs/voice/design/changsu_A_1.mp3",
+    "duration_secs": 23.721041666666668
+   },
+   {
+    "generated_voice_id": "w5CLwKULDUoXHecHy1bC",
+    "file": "outputs/voice/design/changsu_A_2.mp3",
+    "duration_secs": 23.721041666666668
+   }
+  ]
+ },
+ "changsu_B": {
+  "description": "A small, high-pitched male cartoon plush character voice, clear and cute, slightly nasal. Calm, monotone, matter-of-fact reading, brisk pace, no breathiness. Korean.",
+  "text": "또 아침이야... 가기 싫다. 모니터 뚫어! 밥 마시따. 졸려... 아직도 세 시... 아직도 네 시... 퇴근! 빨리 집 가. 끄래! 라면 좋지. 내일도 화이띵... 아악! 알람 좀 꺼줘. 오늘도 똑같은 하루야. 그래도 집에 가면 미순이가 있으니까 괜찮아.",
+  "previews": [
+   {
+    "generated_voice_id": "sC09qr4g6C6GbGQ3sauf",
+    "file": "outputs/voice/design/changsu_B_0.mp3",
+    "duration_secs": 20.299
+   },
+   {
+    "generated_voice_id": "teMush9M1K44NbvIxPrr",
+    "file": "outputs/voice/design/changsu_B_1.mp3",
+    "duration_secs": 23.721041666666668
+   },
+   {
+    "generated_voice_id": "s8VgZytDeoc1NWDptR0r",
+    "file": "outputs/voice/design/changsu_B_2.mp3",
+    "duration_secs": 23.721041666666668
+   }
+  ]
+ },
+ "changsu_C": {
+  "description": "A squeaky, bright male mascot voice pitched very high like a chipmunk, crisp and clean with a faintly robotic evenness. Dry deadpan tone, quick tempo, minimal intonation. Korean.",
+  "text": "또 아침이야... 가기 싫다. 모니터 뚫어! 밥 마시따. 졸려... 아직도 세 시... 아직도 네 시... 퇴근! 빨리 집 가. 끄래! 라면 좋지. 내일도 화이띵... 아악! 알람 좀 꺼줘. 오늘도 똑같은 하루야. 그래도 집에 가면 미순이가 있으니까 괜찮아.",
+  "previews": [
+   {
+    "generated_voice_id": "tjjhSLvm163N7OqcThZp",
+    "file": "outputs/voice/design/changsu_C_0.mp3",
+    "duration_secs": 18.992875
+   },
+   {
+    "generated_voice_id": "QMkfNHpuGMhNc5afsPk0",
+    "file": "outputs/voice/design/changsu_C_1.mp3",
+    "duration_secs": 23.172458333333335
+   },
+   {
+    "generated_voice_id": "3t2bpydK0DnVPEligiIi",
+    "file": "outputs/voice/design/changsu_C_2.mp3",
+    "duration_secs": 21.918583333333334
+   }
+  ]
+ },
+ "misun_A": {
+  "description": "A tiny, very high-pitched female cartoon plush mascot voice with a clean, slightly synthetic text-to-speech quality. Light, even delivery with a small cheerful lift at sentence ends, fast pace. Korean.",
+  "text": "라면 머글래? 오늘 뭐 했어? 빨리 와, 배고파. 이거 봐봐. 진짜? 대박. 나도 졸려... 내일 또 회사 가야 돼. 잘 자. 화이띵! 창수야 일어나. 늦었어. 저녁은 뭐 먹지? 산책 갈까? 오늘은 김치찌개 어때? 나 먼저 잔다.",
+  "previews": [
+   {
+    "generated_voice_id": "rHIsOg5S9vPP1zKHczQG",
+    "file": "outputs/voice/design/misun_A_0.mp3",
+    "duration_secs": 17.869625
+   },
+   {
+    "generated_voice_id": "ECMd3JtygV7NyjA20jRe",
+    "file": "outputs/voice/design/misun_A_1.mp3",
+    "duration_secs": 20.847583333333333
+   },
+   {
+    "generated_voice_id": "BfNWLj2hEZDv5OVpyoLM",
+    "file": "outputs/voice/design/misun_A_2.mp3",
+    "duration_secs": 20.847583333333333
+   }
+  ]
+ },
+ "misun_C": {
+  "description": "A squeaky, bright female mascot voice pitched very high like a chipmunk, crisp and clean with a faintly robotic evenness. Slightly playful but not acted, quick tempo. Korean.",
+  "text": "라면 머글래? 오늘 뭐 했어? 빨리 와, 배고파. 이거 봐봐. 진짜? 대박. 나도 졸려... 내일 또 회사 가야 돼. 잘 자. 화이띵! 창수야 일어나. 늦었어. 저녁은 뭐 먹지? 산책 갈까? 오늘은 김치찌개 어때? 나 먼저 잔다.",
+  "previews": [
+   {
+    "generated_voice_id": "iPvax2FoJDFCMj18935d",
+    "file": "outputs/voice/design/misun_C_0.mp3",
+    "duration_secs": 18.156958333333332
+   },
+   {
+    "generated_voice_id": "P50aRBq3y956RBPzLHeJ",
+    "file": "outputs/voice/design/misun_C_1.mp3",
+    "duration_secs": 20.299
+   },
+   {
+    "generated_voice_id": "oZrgny8aXZQ0kNpzyisP",
+    "file": "outputs/voice/design/misun_C_2.mp3",
+    "duration_secs": 20.560208333333332
+   }
+  ]
+ }
+}
