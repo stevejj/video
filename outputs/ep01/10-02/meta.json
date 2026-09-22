@@ -1,0 +1,29 @@
+{
+ "cut": "10-02",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "From the very first frame, lying on his side on the pillow at night, Pang Chang-su's heavy, half-open eyelids slowly and steadily lower, smoothly over the whole clip, until his eyes are fully closed exactly as in the end image, and they stay closed. Only his eyelids move. Nothing else moves at all: his head stays on the pillow in exactly the same place, his beak stays closed, and the pillow, the blanket, the warm lamp light and everything at the edges of the frame stay exactly as they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/10-02/start_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTAwNTg3NjQvY3g4YTJ4eVd3NS9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372"
+  },
+  "end": {
+   "file": "outputs/ep01/10-02/end_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTAwNTg3NjcvMjBINkYybzhCMy9lbmRfdjEucG5n.origin?x-kcdn-pid=112372"
+  }
+ },
+ "credits_before": 187.0,
+ "approved_by_user": "9-02 채택, 10-02 진행 (2026-09-22, 5단계 실행표 후)",
+ "version": 1,
+ "ts": "2026-09-22T06:33:24",
+ "generation_id": "AZeuETB6BLM0hlbPsvnn5Xjox6WaYm7eAqWMxYpgv_KUU2TPjsMsIGu28AsuvwKfcMc3-fyU",
+ "credits_consumed_reported": 24.0
+}
