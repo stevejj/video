@@ -1,0 +1,29 @@
+{
+ "cut": "2-01",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su begins lowering the light grey towel from the very first frame, slowly and smoothly over the whole clip, bringing it down from his face to his chest with both short rounded flipper wings, revealing his sleepy half-lidded face. By the end the towel rests against his chest, held in both wings, and he looks straight at the camera, exactly matching the end image. He stays standing in the same spot and his head stays at the same height. There is exactly one towel; the chrome towel bar on the right wall stays empty. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/2-01/start_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTAwNTI4MDgvdWgzTDUyaW1lVS9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372"
+  },
+  "end": {
+   "file": "outputs/ep01/2-01/end_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTAwNTI4MTEvajZxcmFubUZvei9lbmRfdjEucG5n.origin?x-kcdn-pid=112372"
+  }
+ },
+ "credits_before": 289.0,
+ "approved_by_user": "진행 (2026-09-22, 5단계 실행표 후)",
+ "version": 1,
+ "ts": "2026-09-22T04:53:55",
+ "generation_id": "AeDy73SsYL33aZ7eQqNra_DhkC3DpssiesJkc9H8WXq8vmJ8LkwVQlEXiMrIzIr48mJUpWHJ",
+ "credits_consumed_reported": 24.0
+}
