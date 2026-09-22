@@ -88,7 +88,7 @@ Pang Chang-su and Pang Mi-sun lie asleep side by side under one blanket in the m
 **인자**: model=kling-video-v3_0, duration=3, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Lying on his side on the pillow, Pang Chang-su slowly opens his eyes halfway, waking to the alarm. Only his eyelids move; his head stays on the pillow and the blanket stays still. By the end his eyes are half open and unfocused, staring ahead. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Lying on his side on the pillow, Pang Chang-su slowly opens his eyes halfway. Only his eyelids move; his head stays on the pillow facing the same direction the whole time and does not lift or turn toward the camera; the blanket and pillow stay still. By the end his eyes are half open and unfocused, staring ahead, exactly matching the end image. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **자막(속마음·혼잣말 → 보이스오버, 부리 닫힘)**: 또 아침..
 **예상 시나리오**: 3초에 걸쳐 눈꺼풀만 반쯤 열림. 머리·이불 고정.
