@@ -226,12 +226,12 @@ Pang Chang-su sits before the empty dishes, heavy-eyed and drowsy. He does not t
 **위험·감시 항목**: 낮음 | 눈이 완전히 감김·잠듦, 머리가 테이블까지 떨어짐, 빈 그릇에 음식이 다시 생김(R25)
 **실패 시 편집 대안(재생성 없음)**: 시작 프레임 정지 이미지 대체
 
-### 6-01 — 시작+끝, 5초
+### 6-01 — 시작+끝, 4초 (5→4 확정 2026-09-22: 이동 0.8m·편집 3초에 충분, 드리프트·크레딧 절감)
 **입력**: `outputs/ep01/6-01/start_v1.png` + `end_v1.png`
-**인자**: model=kling-video-v3_0, duration=5, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
+**인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
 **프롬프트**
 ```
-Pang Chang-su walks at a steady waddling pace to his right along the pavement, from beside the left tree to the front of the bench. Each step lands on the paving and rolls forward; his feet do not slide. By the end he stands still in front of the bench, body turned to his right. The trees, bench and leaf shadows stay still. He does not turn his head toward the camera and never looks at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+Pang Chang-su is already walking from the very first frame, at a steady waddling pace to his right along the pavement, from beside the left tree to the front of the bench, keeping his body and head facing to his right the whole time. Each step lands on the paving and rolls forward; his feet do not slide. By the end he stands still in front of the bench, exactly matching the end image. The trees, bench and leaf shadows stay still. He does not turn his head toward the camera and never looks at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
 ```
 **예상 시나리오**: 3~4걸음 뒤뚱 이동 후 벤치 앞에서 정지. 에피소드 첫 걷기.
 **위험·감시 항목**: **높음** | **제자리 걸음·발 미끄러짐**(B6 1순위), 크기 변화, 잎 그림자 깜빡임, 카메라가 따라 팬. 걷기는 05a §8 3순위 검증 항목
