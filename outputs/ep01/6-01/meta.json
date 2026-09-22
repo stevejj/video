@@ -1,0 +1,30 @@
+{
+ "cut": "6-01",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su is already walking from the very first frame, at a steady waddling pace to his right along the pavement, from beside the left tree to the front of the bench, keeping his body and head facing to his right the whole time. Each step lands on the paving and rolls forward; his feet do not slide. By the end he stands still in front of the bench, exactly matching the end image. The trees, bench and leaf shadows stay still. He does not turn his head toward the camera and never looks at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/6-01/start_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTAwNTE1MzEvRWhYRGdmT2dNWi9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372"
+  },
+  "end": {
+   "file": "outputs/ep01/6-01/end_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTAwNTE1MzMvbXNRWDF1ZnQzZC9lbmRfdjEucG5n.origin?x-kcdn-pid=112372"
+  }
+ },
+ "credits_before": 337.0,
+ "approved_by_user": "진행 (2026-09-22, 5단계 실행표 후)",
+ "version": 1,
+ "ts": "2026-09-22T04:32:40",
+ "generation_id": "AX4EOPAj3cfb6_nnmeFN5pyt24xdfjao7CQD5BrEe5gYXJ_MknHcKzX0F1Iji8j_sNxwO-UR",
+ "credits_consumed_reported": 24.0,
+ "note": "4초=24 → 초당 6 선형 확정"
+}
