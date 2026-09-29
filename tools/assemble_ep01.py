@@ -159,7 +159,7 @@ def main():
                 chain += f",volume={it['gain']}dB,adelay={int(it['at'] * 1000)}"
                 fc.append(f"[{n}:a]{chain}[a{n}]")
             print(f"효과음 {len(X['items'])}개")
-        fc.append(''.join(f'[a{i}]' for i in range(1, n + 1)) + f"amix=inputs={n}:normalize=0,apad=whole_dur={total},alimiter=limit=0.85[mix]")
+        fc.append(''.join(f'[a{i}]' for i in range(1, n + 1)) + f"amix=inputs={n}:normalize=0,apad=whole_dur={total},alimiter=limit=0.85:level=false[mix]")
         run([FF, '-y', *inputs, '-filter_complex', ';'.join(fc), '-map', '0:v', '-map', '[mix]', '-c:v', 'copy',
              '-c:a', 'aac', '-b:a', '160k', '-t', str(total), '-movflags', '+faststart', a.out])
     shutil.rmtree(tmp, ignore_errors=True)
