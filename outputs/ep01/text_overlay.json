@@ -1,0 +1,161 @@
+{
+ "title": {
+  "lines": [
+   {
+    "text": "오늘도",
+    "color": "#FFFFFF"
+   },
+   {
+    "text": "시간은 간다",
+    "color": "#FFD84A"
+   }
+  ],
+  "size": 104,
+  "weight": 800,
+  "center_y": 262,
+  "line_gap": 18
+ },
+ "channel": {
+  "text": "지독한 미순",
+  "color": "#FFFFFF",
+  "size": 52,
+  "weight": 700,
+  "center_y": 1268,
+  "opacity": 0.9
+ },
+ "subtitle_style": {
+  "size": 74,
+  "weight": 800,
+  "stroke": 9,
+  "stroke_color": "#111111",
+  "bottom_margin": 46,
+  "max_width": 1000,
+  "colors": {
+   "changsu": "#8FB0E8",
+   "misun": "#FF9CC2"
+  }
+ },
+ "subtitles": [
+  {
+   "cut": "1-02",
+   "text": "또 아침..",
+   "speaker": "changsu",
+   "start": 3.25,
+   "end": 4.99,
+   "x": 0.5
+  },
+  {
+   "cut": "2-02",
+   "text": "가기 싫다..",
+   "speaker": "changsu",
+   "start": 9.35,
+   "end": 11.28,
+   "x": 0.5
+  },
+  {
+   "cut": "4-03",
+   "text": "모니터 뚫어!!!!",
+   "speaker": "changsu",
+   "start": 20.05,
+   "end": 21.79,
+   "x": 0.5
+  },
+  {
+   "cut": "5-01",
+   "text": "밥 마시따",
+   "speaker": "changsu",
+   "start": 22.65,
+   "end": 24.0,
+   "x": 0.5
+  },
+  {
+   "cut": "5-03",
+   "text": "졸려...",
+   "speaker": "changsu",
+   "start": 27.15,
+   "end": 29.0,
+   "x": 0.5
+  },
+  {
+   "cut": "6-02",
+   "text": "후...",
+   "speaker": "changsu",
+   "start": 32.05,
+   "end": 34.0,
+   "x": 0.5
+  },
+  {
+   "cut": "6-03",
+   "text": "아직도 3시..",
+   "speaker": "changsu",
+   "start": 34.05,
+   "end": 36.0,
+   "x": 0.5
+  },
+  {
+   "cut": "6-04",
+   "text": "아직도 4시..",
+   "speaker": "changsu",
+   "start": 36.05,
+   "end": 38.0,
+   "x": 0.5
+  },
+  {
+   "cut": "6-05",
+   "text": "아직도 5시..",
+   "speaker": "changsu",
+   "start": 38.05,
+   "end": 40.0,
+   "x": 0.5
+  },
+  {
+   "cut": "7-01",
+   "text": "퇴근!!",
+   "speaker": "changsu",
+   "start": 40.15,
+   "end": 41.34,
+   "x": 0.22
+  },
+  {
+   "cut": "8-01",
+   "text": "빨리집가!!!",
+   "speaker": "changsu",
+   "start": 43.15,
+   "end": 44.89,
+   "x": 0.3
+  },
+  {
+   "cut": "9-02",
+   "text": "라면머글래?",
+   "speaker": "misun",
+   "start": 49.07,
+   "end": 50.0,
+   "x": 0.5
+  },
+  {
+   "cut": "9-03",
+   "text": "끄래!!!",
+   "speaker": "changsu",
+   "start": 50.0,
+   "end": 51.5,
+   "x": 0.5
+  },
+  {
+   "cut": "10-02",
+   "text": "내일도 화이띵...!",
+   "speaker": "changsu",
+   "start": 56.65,
+   "end": 58.68,
+   "x": 0.5
+  },
+  {
+   "cut": "10-03",
+   "text": "아!!!!!!!!!!!!!!!!",
+   "speaker": "changsu",
+   "start": 60.35,
+   "end": 62.5,
+   "x": 0.5
+  }
+ ],
+ "note": "2026-09-29 사용자 확정: 제목 \"오늘도 시간은 간다\", 채널명 \"지독한 미순\". 자막은 스토리보드 표기 그대로, 화자 색(창수 슬레이트 블루 계열, 미순 핑크), 영상 창 안 하단, 캐릭터가 창 한쪽에 있는 컷은 그쪽으로."
+}

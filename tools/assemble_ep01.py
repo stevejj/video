@@ -27,14 +27,65 @@ def run(cmd):
 
 def card_png(text, path):
     """시간 카드 PNG(반투명 검은 상자 + 흰 글자). ffmpeg 빌드에 drawtext가 없어 overlay로 얹는다."""
-    from PIL import Image, ImageDraw, ImageFont
-    font = ImageFont.truetype(FONT, 54)
+    from PIL import Image, ImageDraw
+    font = _font(54, 700)
     d0 = ImageDraw.Draw(Image.new('RGBA', (10, 10)))
     x0, y0, x1, y1 = d0.textbbox((0, 0), text, font=font)
     pad = 14
     im = Image.new('RGBA', (x1 - x0 + 2 * pad, y1 - y0 + 2 * pad), (0, 0, 0, 140))
     ImageDraw.Draw(im).text((pad - x0, pad - y0), text, font=font, fill=(255, 255, 255, 255))
     im.save(path)
+
+
+def _font(size, weight):
+    from PIL import ImageFont
+    f = ImageFont.truetype(FONT, size)
+    try:
+        f.set_variation_by_axes([weight])
+    except Exception:
+        pass
+    return f
+
+
+def _hex(c, a=255):
+    c = c.lstrip('#'); return (int(c[0:2], 16), int(c[2:4], 16), int(c[4:6], 16), a)
+
+
+def render_text_layers(T, W, H, top_px, win, tmp):
+    """제목·채널명(항상) PNG 1장 + 자막별 PNG. 전부 캔버스 크기 RGBA."""
+    from PIL import Image, ImageDraw
+    base = Image.new('RGBA', (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(base)
+    t = T['title']; f = _font(t['size'], t['weight'])
+    boxes = [d.textbbox((0, 0), ln['text'], font=f) for ln in t['lines']]
+    hs = [b[3] - b[1] for b in boxes]; total = sum(hs) + t['line_gap'] * (len(hs) - 1)
+    y = t['center_y'] - total / 2
+    for ln, b, h in zip(t['lines'], boxes, hs):
+        x = (W - (b[2] - b[0])) / 2 - b[0]
+        d.text((x, y - b[1]), ln['text'], font=f, fill=_hex(ln['color']))
+        y += h + t['line_gap']
+    ch = T['channel']; f = _font(ch['size'], ch['weight'])
+    b = d.textbbox((0, 0), ch['text'], font=f)
+    d.text(((W - (b[2] - b[0])) / 2 - b[0], ch['center_y'] - (b[3] - b[1]) / 2 - b[1]), ch['text'], font=f,
+           fill=_hex(ch['color'], int(255 * ch.get('opacity', 1))))
+    static = os.path.join(tmp, 'text_static.png'); base.save(static)
+    st = T['subtitle_style']; subs = []
+    for i, sb in enumerate(T['subtitles']):
+        size = st['size']
+        while True:
+            f = _font(size, st['weight'])
+            im = Image.new('RGBA', (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+            b = d.textbbox((0, 0), sb['text'], font=f, stroke_width=st['stroke'])
+            if b[2] - b[0] <= st['max_width'] or size <= 40:
+                break
+            size -= 4
+        tw, th = b[2] - b[0], b[3] - b[1]
+        cx = W * sb['x']; x = min(max(cx - tw / 2, (W - st['max_width']) / 2), W - (W - st['max_width']) / 2 - tw)
+        y = top_px + win - st['bottom_margin'] - th
+        d.text((x - b[0], y - b[1]), sb['text'], font=f, fill=_hex(st['colors'][sb['speaker']]),
+               stroke_width=st['stroke'], stroke_fill=_hex(st['stroke_color']))
+        path = os.path.join(tmp, f'sub_{i:02d}.png'); im.save(path)
+        subs.append((path, sb['start'], sb['end']))
+    return static, subs
 
 
 def still_zoom_segment(src, off, W, H, win, top_px, zoom, nfr, fps, card_path, fade, seg):
@@ -79,6 +130,7 @@ def main():
     ap.add_argument('--no-cards', action='store_true')
     ap.add_argument('--voice', action='store_true', help='outputs/voice_profile.json 의 대사를 시작 시각에 배치해 오디오 트랙 추가')
     ap.add_argument('--ep', default='ep01')
+    ap.add_argument('--text', action='store_true', help='outputs/<ep>/text_overlay.json 의 제목·채널명·자막을 얹음')
     ap.add_argument('--sfx', action='store_true', help='outputs/<ep>/sfx/sfx_list.json 의 효과음을 배치')
     a = ap.parse_args()
 
@@ -128,9 +180,25 @@ def main():
         for s in segs:
             f.write(f"file '{s}'\n")
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
-    video = a.out if not (a.voice or a.sfx) else os.path.join(tmp, 'video_only.mp4')
+    video = a.out if not (a.voice or a.sfx or a.text) else os.path.join(tmp, 'video_only.mp4')
     run([FF, '-y', '-f', 'concat', '-safe', '0', '-i', lst, '-c:v', 'libx264', '-preset', 'medium', '-crf', '18',
          '-pix_fmt', 'yuv420p', '-movflags', '+faststart', video])
+    if a.text:
+        T = json.load(open(os.path.join(ROOT, f'outputs/{a.ep}/text_overlay.json')))
+        static, subs = render_text_layers(T, W, H, top_px, win, tmp)
+        ins = ['-i', video, '-i', static]; fc = ['[0:v][1:v]overlay=0:0[v1]']
+        for k, (pth, st_, en) in enumerate(subs):
+            ins += ['-i', pth]
+            fc.append(f"[v{k + 1}][{k + 2}:v]overlay=0:0:enable='between(t,{st_},{en})'[v{k + 2}]")
+        texted = os.path.join(tmp, 'video_text.mp4')
+        last = f'[v{len(subs) + 1}]'
+        fc[-1] = fc[-1].rsplit('[', 1)[0] + '[vout]'
+        run([FF, '-y', *ins, '-filter_complex', ';'.join(fc), '-map', '[vout]', '-c:v', 'libx264', '-preset', 'medium',
+             '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', texted])
+        print(f'글자: 제목·채널명 + 자막 {len(subs)}개')
+        if not (a.voice or a.sfx):
+            shutil.copy(texted, a.out)
+        video = texted
     if a.voice or a.sfx:
         total = sum(c['len'] for c in cuts)
         inputs = ['-i', video]; fc = []; n = 0
