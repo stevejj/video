@@ -1,0 +1,132 @@
+[
+ {
+  "name": "alarm_phone",
+  "cut": "1-01",
+  "kind": "oneshot",
+  "prompt": "Smartphone alarm clock ringing, modern digital chime, repeating beeps, close-up, clean, no music",
+  "duration": 3.0,
+  "loop": false,
+  "file": "outputs/ep01/sfx/el/alarm_phone.mp3",
+  "result": "ok 48945B"
+ },
+ {
+  "name": "water_off",
+  "cut": "2-01",
+  "kind": "oneshot",
+  "prompt": "Bathroom faucet being turned off, water stream stopping with a final drip, small tiled bathroom",
+  "duration": 1.5,
+  "loop": false,
+  "file": "outputs/ep01/sfx/el/water_off.mp3",
+  "result": "ok 24703B"
+ },
+ {
+  "name": "station_amb",
+  "cut": "3-01",
+  "kind": "amb",
+  "prompt": "Subway station platform ambience, distant train rumble approaching, quiet crowd, air conditioning hum, Korean subway",
+  "duration": 6.0,
+  "loop": true,
+  "file": "outputs/ep01/sfx/el/station_amb.mp3",
+  "result": "ok 97010B"
+ },
+ {
+  "name": "train_announce",
+  "cut": "3-02",
+  "kind": "oneshot",
+  "prompt": "Subway platform arrival announcement chime, short melodic ding-dong jingle followed by faint muffled PA voice, no clear words",
+  "duration": 2.5,
+  "loop": false,
+  "file": "outputs/ep01/sfx/el/train_announce.mp3",
+  "result": "ok 40586B"
+ },
+ {
+  "name": "office_amb",
+  "cut": "4-01",
+  "kind": "amb",
+  "prompt": "Quiet office ambience, air conditioning hum, distant keyboard clicks, occasional paper shuffle, no voices",
+  "duration": 6.0,
+  "loop": true,
+  "file": "outputs/ep01/sfx/el/office_amb.mp3",
+  "result": "ok 97010B"
+ },
+ {
+  "name": "typing",
+  "cut": "4-02",
+  "kind": "oneshot",
+  "prompt": "Fast keyboard typing on a mechanical keyboard, close-up, steady rhythm",
+  "duration": 2.0,
+  "loop": false,
+  "file": "outputs/ep01/sfx/el/typing.mp3",
+  "result": "ok 33062B"
+ },
+ {
+  "name": "dishes",
+  "cut": "5-02",
+  "kind": "oneshot",
+  "prompt": "Metal spoon clinking against a stone pot and rice bowl, small Korean restaurant, eating sounds without voice",
+  "duration": 2.5,
+  "loop": false,
+  "file": "outputs/ep01/sfx/el/dishes.mp3",
+  "result": "ok 40586B"
+ },
+ {
+  "name": "footsteps",
+  "cut": "6-01",
+  "kind": "oneshot",
+  "prompt": "Soft padded footsteps of a small plush toy waddling on a paved sidewalk, three slow steps, cute",
+  "duration": 2.5,
+  "loop": false,
+  "file": "outputs/ep01/sfx/el/footsteps.mp3",
+  "result": "ok 40586B"
+ },
+ {
+  "name": "street_amb",
+  "cut": "6-01",
+  "kind": "amb",
+  "prompt": "Quiet daytime city sidewalk ambience, light breeze in trees, distant traffic, birds, soft",
+  "duration": 6.0,
+  "loop": true,
+  "file": "outputs/ep01/sfx/el/street_amb.mp3",
+  "result": "ok 97010B"
+ },
+ {
+  "name": "crickets",
+  "cut": "9-01",
+  "kind": "amb",
+  "prompt": "Evening apartment complex walkway ambience, crickets chirping, distant city hum, calm night",
+  "duration": 6.0,
+  "loop": true,
+  "file": "outputs/ep01/sfx/el/crickets.mp3",
+  "result": "ok 97010B"
+ },
+ {
+  "name": "sparkle",
+  "cut": "9-03",
+  "kind": "oneshot",
+  "prompt": "Cute magical sparkle twinkle sound effect, bright glitter chime, short, cartoon",
+  "duration": 1.0,
+  "loop": false,
+  "file": "outputs/ep01/sfx/el/sparkle.mp3",
+  "result": "ok 17180B"
+ },
+ {
+  "name": "tv_amb",
+  "cut": "9-04",
+  "kind": "amb",
+  "prompt": "Television playing quietly in a living room, muffled indistinct show audio with light laughter, low volume",
+  "duration": 6.0,
+  "loop": true,
+  "file": "outputs/ep01/sfx/el/tv_amb.mp3",
+  "result": "ok 97010B"
+ },
+ {
+  "name": "lamp_off",
+  "cut": "10-02",
+  "kind": "oneshot",
+  "prompt": "Bedside lamp switch click turning off, single soft plastic click, quiet bedroom",
+  "duration": 0.8,
+  "loop": false,
+  "file": "outputs/ep01/sfx/el/lamp_off.mp3",
+  "result": "ok 13836B"
+ }
+]

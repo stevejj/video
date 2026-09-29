@@ -1,0 +1,146 @@
+{
+ "note": "효과음 배치. gain은 dB(대사 -16 LUFS 기준, 환경음 -22~-24, 원샷 -8~-16). loop=True는 파일을 이어 붙여 len까지 채움",
+ "items": [
+  {
+   "name": "alarm_phone",
+   "file": "outputs/ep01/sfx/el/alarm_phone.mp3",
+   "at": 0.3,
+   "len": 2.6,
+   "gain": -8,
+   "fade_in": 0,
+   "fade_out": 0.3
+  },
+  {
+   "name": "alarm_phone_end",
+   "file": "outputs/ep01/sfx/el/alarm_phone.mp3",
+   "at": 60.2,
+   "len": 2.3,
+   "gain": -8,
+   "fade_in": 0,
+   "fade_out": 0
+  },
+  {
+   "name": "water_off",
+   "file": "outputs/ep01/sfx/el/water_off.mp3",
+   "at": 7.0,
+   "len": 1.5,
+   "gain": -10,
+   "fade_in": 0,
+   "fade_out": 0.2
+  },
+  {
+   "name": "station_amb",
+   "file": "outputs/ep01/sfx/el/station_amb.mp3",
+   "at": 12.0,
+   "len": 4.0,
+   "gain": -22,
+   "fade_in": 0.3,
+   "fade_out": 0.3,
+   "loop": true
+  },
+  {
+   "name": "train_announce",
+   "file": "outputs/ep01/sfx/el/train_announce.mp3",
+   "at": 14.2,
+   "len": 1.8,
+   "gain": -16,
+   "fade_in": 0,
+   "fade_out": 0.3
+  },
+  {
+   "name": "office_amb_am",
+   "file": "outputs/ep01/sfx/el/office_amb.mp3",
+   "at": 16.0,
+   "len": 6.0,
+   "gain": -24,
+   "fade_in": 0.3,
+   "fade_out": 0.3,
+   "loop": true
+  },
+  {
+   "name": "typing",
+   "file": "outputs/ep01/sfx/el/typing.mp3",
+   "at": 18.0,
+   "len": 2.0,
+   "gain": -14,
+   "fade_in": 0.05,
+   "fade_out": 0.2
+  },
+  {
+   "name": "dishes",
+   "file": "outputs/ep01/sfx/el/dishes.mp3",
+   "at": 24.2,
+   "len": 2.5,
+   "gain": -16,
+   "fade_in": 0.05,
+   "fade_out": 0.3
+  },
+  {
+   "name": "street_amb",
+   "file": "outputs/ep01/sfx/el/street_amb.mp3",
+   "at": 29.0,
+   "len": 5.0,
+   "gain": -24,
+   "fade_in": 0.3,
+   "fade_out": 0.3,
+   "loop": true
+  },
+  {
+   "name": "footsteps",
+   "file": "outputs/ep01/sfx/el/footsteps.mp3",
+   "at": 29.1,
+   "len": 2.5,
+   "gain": -14,
+   "fade_in": 0,
+   "fade_out": 0.2
+  },
+  {
+   "name": "office_amb_pm",
+   "file": "outputs/ep01/sfx/el/office_amb.mp3",
+   "at": 34.0,
+   "len": 9.0,
+   "gain": -24,
+   "fade_in": 0.3,
+   "fade_out": 0.3,
+   "loop": true
+  },
+  {
+   "name": "crickets",
+   "file": "outputs/ep01/sfx/el/crickets.mp3",
+   "at": 45.0,
+   "len": 6.5,
+   "gain": -22,
+   "fade_in": 0.3,
+   "fade_out": 0.3,
+   "loop": true
+  },
+  {
+   "name": "sparkle",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 50.05,
+   "len": 1.0,
+   "gain": -12,
+   "fade_in": 0,
+   "fade_out": 0.1
+  },
+  {
+   "name": "tv_amb",
+   "file": "outputs/ep01/sfx/el/tv_amb.mp3",
+   "at": 51.5,
+   "len": 3.0,
+   "gain": -24,
+   "fade_in": 0.3,
+   "fade_out": 0.3,
+   "loop": true
+  },
+  {
+   "name": "lamp_off",
+   "file": "outputs/ep01/sfx/el/lamp_off.mp3",
+   "at": 59.1,
+   "len": 0.8,
+   "gain": -12,
+   "fade_in": 0,
+   "fade_out": 0
+  }
+ ]
+}

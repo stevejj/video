@@ -79,6 +79,7 @@ def main():
     ap.add_argument('--no-cards', action='store_true')
     ap.add_argument('--voice', action='store_true', help='outputs/voice_profile.json 의 대사를 시작 시각에 배치해 오디오 트랙 추가')
     ap.add_argument('--ep', default='ep01')
+    ap.add_argument('--sfx', action='store_true', help='outputs/<ep>/sfx/sfx_list.json 의 효과음을 배치')
     a = ap.parse_args()
 
     E = json.load(open(EDIT)); B = json.load(open(BAND))
@@ -127,28 +128,40 @@ def main():
         for s in segs:
             f.write(f"file '{s}'\n")
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
-    video = a.out if not a.voice else os.path.join(tmp, 'video_only.mp4')
+    video = a.out if not (a.voice or a.sfx) else os.path.join(tmp, 'video_only.mp4')
     run([FF, '-y', '-f', 'concat', '-safe', '0', '-i', lst, '-c:v', 'libx264', '-preset', 'medium', '-crf', '18',
          '-pix_fmt', 'yuv420p', '-movflags', '+faststart', video])
-    if a.voice:
-        P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json')))
-        items = []
-        seen = set()
-        for l in P['episodes'][a.ep]['lines']:
-            f = l.get('file')
-            if not f or f in seen or 'at' not in l:
-                continue
-            seen.add(f); items.append((l['at'], os.path.join(ROOT, f)))
+    if a.voice or a.sfx:
         total = sum(c['len'] for c in cuts)
-        inputs = ['-i', video]
-        fc = []
-        for i, (at, f) in enumerate(items):
-            inputs += ['-i', f]
-            fc.append(f"[{i + 1}:a]aresample=44100,adelay={int(at * 1000)}|{int(at * 1000)}[a{i}]")
-        fc.append(''.join(f'[a{i}]' for i in range(len(items))) + f"amix=inputs={len(items)}:normalize=0,apad=whole_dur={total}[mix]")
+        inputs = ['-i', video]; fc = []; n = 0
+        if a.voice:
+            P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json')))
+            seen = set()
+            for l in P['episodes'][a.ep]['lines']:
+                f = l.get('file')
+                if not f or f in seen or 'at' not in l:
+                    continue
+                seen.add(f); n += 1; inputs += ['-i', os.path.join(ROOT, f)]
+                fc.append(f"[{n}:a]aresample=44100,aformat=channel_layouts=mono,adelay={int(l['at'] * 1000)}[a{n}]")
+            print(f'음성 {len(seen)}개')
+        if a.sfx:
+            X = json.load(open(os.path.join(ROOT, f'outputs/{a.ep}/sfx/sfx_list.json')))
+            for it in X['items']:
+                n += 1; inputs += ['-i', os.path.join(ROOT, it['file'])]
+                chain = "aresample=44100,aformat=channel_layouts=mono"
+                if it.get('loop'):
+                    chain += ",aloop=loop=-1:size=44100*60"
+                chain += f",atrim=0:{it['len']},asetpts=PTS-STARTPTS"
+                if it.get('fade_in'):
+                    chain += f",afade=t=in:st=0:d={it['fade_in']}"
+                if it.get('fade_out'):
+                    chain += f",afade=t=out:st={it['len'] - it['fade_out']}:d={it['fade_out']}"
+                chain += f",volume={it['gain']}dB,adelay={int(it['at'] * 1000)}"
+                fc.append(f"[{n}:a]{chain}[a{n}]")
+            print(f"효과음 {len(X['items'])}개")
+        fc.append(''.join(f'[a{i}]' for i in range(1, n + 1)) + f"amix=inputs={n}:normalize=0,apad=whole_dur={total},alimiter=limit=0.95[mix]")
         run([FF, '-y', *inputs, '-filter_complex', ';'.join(fc), '-map', '0:v', '-map', '[mix]', '-c:v', 'copy',
              '-c:a', 'aac', '-b:a', '160k', '-t', str(total), '-movflags', '+faststart', a.out])
-        print(f'음성 {len(items)}개 배치')
     shutil.rmtree(tmp, ignore_errors=True)
     print('완료:', a.out)
 
