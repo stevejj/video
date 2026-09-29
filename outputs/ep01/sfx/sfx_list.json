@@ -1,146 +1,176 @@
 {
- "note": "효과음 배치. gain은 dB(대사 -16 LUFS 기준, 환경음 -22~-24, 원샷 -8~-16). loop=True는 파일을 이어 붙여 len까지 채움",
+ "note": "효과음 배치. gain = target_lufs − measured_lufs (파일별 측정, 대사 -16 LUFS 기준: 원샷 -18~-24, 환경음 -30~-32). loop=True는 파일을 이어 붙여 len까지 채움",
  "items": [
   {
    "name": "alarm_phone",
    "file": "outputs/ep01/sfx/el/alarm_phone.mp3",
    "at": 0.3,
    "len": 2.6,
-   "gain": -8,
+   "gain": -4.0,
    "fade_in": 0,
-   "fade_out": 0.3
+   "fade_out": 0.3,
+   "measured_lufs": -14.03,
+   "target_lufs": -18
   },
   {
    "name": "alarm_phone_end",
    "file": "outputs/ep01/sfx/el/alarm_phone.mp3",
    "at": 60.2,
    "len": 2.3,
-   "gain": -8,
+   "gain": -4.0,
    "fade_in": 0,
-   "fade_out": 0
+   "fade_out": 0,
+   "measured_lufs": -14.03,
+   "target_lufs": -18
   },
   {
    "name": "water_off",
    "file": "outputs/ep01/sfx/el/water_off.mp3",
    "at": 7.0,
    "len": 1.5,
-   "gain": -10,
+   "gain": -11.7,
    "fade_in": 0,
-   "fade_out": 0.2
+   "fade_out": 0.2,
+   "measured_lufs": -10.27,
+   "target_lufs": -22
   },
   {
    "name": "station_amb",
    "file": "outputs/ep01/sfx/el/station_amb.mp3",
    "at": 12.0,
    "len": 4.0,
-   "gain": -22,
+   "gain": 0.6,
    "fade_in": 0.3,
    "fade_out": 0.3,
-   "loop": true
+   "loop": true,
+   "measured_lufs": -30.65,
+   "target_lufs": -30
   },
   {
    "name": "train_announce",
    "file": "outputs/ep01/sfx/el/train_announce.mp3",
    "at": 14.2,
    "len": 1.8,
-   "gain": -16,
+   "gain": -11.7,
    "fade_in": 0,
-   "fade_out": 0.3
+   "fade_out": 0.3,
+   "measured_lufs": -12.34,
+   "target_lufs": -24
   },
   {
    "name": "office_amb_am",
    "file": "outputs/ep01/sfx/el/office_amb.mp3",
    "at": 16.0,
    "len": 6.0,
-   "gain": -24,
+   "gain": 5.3,
    "fade_in": 0.3,
    "fade_out": 0.3,
-   "loop": true
+   "loop": true,
+   "measured_lufs": -37.26,
+   "target_lufs": -32
   },
   {
    "name": "typing",
    "file": "outputs/ep01/sfx/el/typing.mp3",
    "at": 18.0,
    "len": 2.0,
-   "gain": -14,
+   "gain": 2.2,
    "fade_in": 0.05,
-   "fade_out": 0.2
+   "fade_out": 0.2,
+   "measured_lufs": -26.21,
+   "target_lufs": -24
   },
   {
    "name": "dishes",
    "file": "outputs/ep01/sfx/el/dishes.mp3",
    "at": 24.2,
    "len": 2.5,
-   "gain": -16,
+   "gain": -2.8,
    "fade_in": 0.05,
-   "fade_out": 0.3
+   "fade_out": 0.3,
+   "measured_lufs": -21.24,
+   "target_lufs": -24
   },
   {
    "name": "street_amb",
    "file": "outputs/ep01/sfx/el/street_amb.mp3",
    "at": 29.0,
    "len": 5.0,
-   "gain": -24,
+   "gain": 7.8,
    "fade_in": 0.3,
    "fade_out": 0.3,
-   "loop": true
+   "loop": true,
+   "measured_lufs": -39.79,
+   "target_lufs": -32
   },
   {
    "name": "footsteps",
    "file": "outputs/ep01/sfx/el/footsteps.mp3",
    "at": 29.1,
    "len": 2.5,
-   "gain": -14,
+   "gain": 15.0,
    "fade_in": 0,
-   "fade_out": 0.2
+   "fade_out": 0.2,
+   "measured_lufs": -39.03,
+   "target_lufs": -24
   },
   {
    "name": "office_amb_pm",
    "file": "outputs/ep01/sfx/el/office_amb.mp3",
    "at": 34.0,
    "len": 9.0,
-   "gain": -24,
+   "gain": 5.3,
    "fade_in": 0.3,
    "fade_out": 0.3,
-   "loop": true
+   "loop": true,
+   "measured_lufs": -37.26,
+   "target_lufs": -32
   },
   {
    "name": "crickets",
    "file": "outputs/ep01/sfx/el/crickets.mp3",
    "at": 45.0,
    "len": 6.5,
-   "gain": -22,
+   "gain": 3.1,
    "fade_in": 0.3,
    "fade_out": 0.3,
-   "loop": true
+   "loop": true,
+   "measured_lufs": -33.08,
+   "target_lufs": -30
   },
   {
    "name": "sparkle",
    "file": "outputs/ep01/sfx/el/sparkle.mp3",
    "at": 50.05,
    "len": 1.0,
-   "gain": -12,
+   "gain": -2.2,
    "fade_in": 0,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -17.81,
+   "target_lufs": -20
   },
   {
    "name": "tv_amb",
    "file": "outputs/ep01/sfx/el/tv_amb.mp3",
    "at": 51.5,
    "len": 3.0,
-   "gain": -24,
+   "gain": 20.3,
    "fade_in": 0.3,
    "fade_out": 0.3,
-   "loop": true
+   "loop": true,
+   "measured_lufs": -52.26,
+   "target_lufs": -32
   },
   {
    "name": "lamp_off",
    "file": "outputs/ep01/sfx/el/lamp_off.mp3",
    "at": 59.1,
    "len": 0.8,
-   "gain": -12,
+   "gain": 24.0,
    "fade_in": 0,
-   "fade_out": 0
+   "fade_out": 0,
+   "measured_lufs": -46.05,
+   "target_lufs": -22
   }
  ]
 }
