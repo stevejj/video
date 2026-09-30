@@ -18,11 +18,20 @@ Q="""이 유튜브 쇼츠의 **소리**를 전문 사운드 디자이너처럼 �
 확실하지 않은 항목은 "불확실"이라고 표시하세요."""
 body={"contents":[{"parts":[{"file_data":{"file_uri":url}},{"text":Q}]}],
       "generationConfig":{"temperature":0.2,"maxOutputTokens":8192}}
-for model in ["gemini-3.7-flash","gemini-3.8-flash","gemini-2.5-pro","gemini-2.5-flash"]:
+for model in ["gemini-3.7-flash","gemini-3.8-flash","gemini-3.6-flash","gemini-3.5-flash","gemini-3.1-pro-preview","gemini-3.1-flash-lite","gemini-flash-latest"]:
     r=urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
         data=json.dumps(body).encode(),headers={"x-goog-api-key":k,"Content-Type":"application/json"})
+    j=None
+    for attempt in range(3):
+        try:
+            t=time.time(); j=json.load(urllib.request.urlopen(r,timeout=600)); break
+        except urllib.error.HTTPError as e:
+            code=e.code; msg=e.read()[:200].decode()
+            if code==503 and attempt<2:
+                print(model,'503 혼잡, 20초 후 재시도'); time.sleep(20); continue
+            print(model,'HTTP',code,msg); break
+    if j is None: continue
     try:
-        t=time.time(); j=json.load(urllib.request.urlopen(r,timeout=600))
         txt=''.join(p.get('text','') for p in j['candidates'][0]['content']['parts'])
         open(out,'w').write(f"# model: {model}\n# url: {url}\n\n"+txt)
         print(f"ok {model} {len(txt)} chars {time.time()-t:.0f}s"); break
