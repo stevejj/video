@@ -1,0 +1,20 @@
+[
+ {
+  "name": "A_lofi_piano",
+  "prompt": "Quiet, minimal lo-fi piano loop for a mundane, repetitive weekday routine. Soft felt piano playing a small two-chord figure that keeps circling without resolving, gentle vinyl hiss, very sparse, no drums or only a faint muted tick. Slow tempo around 72 BPM, melancholic but cozy, understated, background music that never draws attention. Instrumental, no vocals, no melody solo.",
+  "result": "HTTP 401 {\"detail\":{\"type\":\"authentication_error\",\"code\":\"unauthorized\",\"message\":\"The API key you used is missing the permission music_generation to execute this operation.\",\"status\":\"missing_permissions\",\"request_id\":\"49ca0ef7ee80440dc0227c4ce3694231\"}}",
+  "length_ms": 63000
+ },
+ {
+  "name": "B_marimba_loop",
+  "prompt": "Soft, slightly monotonous marimba and muted acoustic guitar loop with a lightly ticking clock feel, evoking a dull daily routine repeating itself. Gentle, small, deadpan, subtly humorous, steady and even, around 84 BPM, minimal percussion (soft shaker or clock tick), warm and quiet. Instrumental, no vocals, background level.",
+  "result": "HTTP 401 {\"detail\":{\"type\":\"authentication_error\",\"code\":\"unauthorized\",\"message\":\"The API key you used is missing the permission music_generation to execute this operation.\",\"status\":\"missing_permissions\",\"request_id\":\"ab9afd69d1e7366ea34d4c6fa0e1a5be\"}}",
+  "length_ms": 63000
+ },
+ {
+  "name": "C_ambient_clock",
+  "prompt": "Sparse ambient background for a sleepy, uneventful office day: warm synth pad, occasional soft electric piano notes, a faint clock tick, a slow sigh-like swell that never builds. Very calm, low energy, drifting, around 68 BPM, tender and a bit resigned. Instrumental, no vocals, no drums.",
+  "result": "HTTP 401 {\"detail\":{\"type\":\"authentication_error\",\"code\":\"unauthorized\",\"message\":\"The API key you used is missing the permission music_generation to execute this operation.\",\"status\":\"missing_permissions\",\"request_id\":\"3575dc25db955437683706055abbe2a5\"}}",
+  "length_ms": 63000
+ }
+]
