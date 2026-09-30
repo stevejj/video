@@ -130,6 +130,7 @@ def main():
     ap.add_argument('--no-cards', action='store_true')
     ap.add_argument('--voice', action='store_true', help='outputs/voice_profile.json 의 대사를 시작 시각에 배치해 오디오 트랙 추가')
     ap.add_argument('--ep', default='ep01')
+    ap.add_argument('--voice-v7', action='store_true', help='lines[*].file_v7(화자별 배속·속마음 톤 후처리본) 사용')
     ap.add_argument('--text', action='store_true', help='outputs/<ep>/text_overlay.json 의 제목·채널명·자막을 얹음')
     ap.add_argument('--sfx', action='store_true', help='outputs/<ep>/sfx/sfx_list.json 의 효과음을 배치')
     a = ap.parse_args()
@@ -206,7 +207,7 @@ def main():
             P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json')))
             seen = set()
             for l in P['episodes'][a.ep]['lines']:
-                f = l.get('file')
+                f = l.get('file_v7') if a.voice_v7 else l.get('file')
                 if not f or f in seen or 'at' not in l:
                     continue
                 seen.add(f); n += 1; inputs += ['-i', os.path.join(ROOT, f)]

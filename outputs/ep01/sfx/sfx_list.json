@@ -1,5 +1,5 @@
 {
- "note": "효과음 배치. gain = target_lufs − measured_lufs (파일별 측정, 대사 -16 LUFS 기준: 원샷 -18~-24, 환경음 -30~-32). loop=True는 파일을 이어 붙여 len까지 채움",
+ "note": "효과음 배치. gain = target_lufs − measured_lufs (파일별 측정, 대사 -16 LUFS 기준: 원샷 -18~-24, 환경음 -30~-32). loop=True는 파일을 이어 붙여 len까지 채움 | v7: 환경음 -36~-38 (참조 채널 환경음 1~2/10 기준)",
  "items": [
   {
    "name": "alarm_phone",
@@ -39,12 +39,12 @@
    "file": "outputs/ep01/sfx/el/station_amb.mp3",
    "at": 12.0,
    "len": 4.0,
-   "gain": 0.6,
+   "gain": -5.4,
    "fade_in": 0.3,
    "fade_out": 0.3,
    "loop": true,
    "measured_lufs": -30.65,
-   "target_lufs": -30
+   "target_lufs": -36
   },
   {
    "name": "train_announce",
@@ -62,12 +62,12 @@
    "file": "outputs/ep01/sfx/el/office_amb.mp3",
    "at": 16.0,
    "len": 6.0,
-   "gain": 5.3,
+   "gain": -0.7,
    "fade_in": 0.3,
    "fade_out": 0.3,
    "loop": true,
    "measured_lufs": -37.26,
-   "target_lufs": -32
+   "target_lufs": -38
   },
   {
    "name": "typing",
@@ -96,12 +96,12 @@
    "file": "outputs/ep01/sfx/el/street_amb.mp3",
    "at": 29.0,
    "len": 5.0,
-   "gain": 7.8,
+   "gain": 3.8,
    "fade_in": 0.3,
    "fade_out": 0.3,
    "loop": true,
    "measured_lufs": -39.79,
-   "target_lufs": -32
+   "target_lufs": -36
   },
   {
    "name": "footsteps",
@@ -119,24 +119,24 @@
    "file": "outputs/ep01/sfx/el/office_amb.mp3",
    "at": 34.0,
    "len": 9.0,
-   "gain": 5.3,
+   "gain": -0.7,
    "fade_in": 0.3,
    "fade_out": 0.3,
    "loop": true,
    "measured_lufs": -37.26,
-   "target_lufs": -32
+   "target_lufs": -38
   },
   {
    "name": "crickets",
    "file": "outputs/ep01/sfx/el/crickets.mp3",
    "at": 45.0,
    "len": 6.5,
-   "gain": 3.1,
+   "gain": -2.9,
    "fade_in": 0.3,
    "fade_out": 0.3,
    "loop": true,
    "measured_lufs": -33.08,
-   "target_lufs": -30
+   "target_lufs": -36
   },
   {
    "name": "sparkle",
@@ -154,12 +154,12 @@
    "file": "outputs/ep01/sfx/el/tv_amb.mp3",
    "at": 51.5,
    "len": 3.0,
-   "gain": 20.3,
+   "gain": 14.3,
    "fade_in": 0.3,
    "fade_out": 0.3,
    "loop": true,
    "measured_lufs": -52.26,
-   "target_lufs": -32
+   "target_lufs": -38
   },
   {
    "name": "lamp_off",
