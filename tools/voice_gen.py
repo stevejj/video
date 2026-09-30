@@ -73,10 +73,28 @@ def finalize(src, dst, ln, speaker, inner, tempo=1.0):
         subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-af', ','.join(af), '-ar', '44100', '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
         return sp
     ir = os.path.join(ROOT, inner_cfg['ir']); wet = inner_cfg.get('wet', 1.0)
-    fc = (f"[0:a]{','.join(af)},apad=pad_dur=3.5,asplit[d][w];[w][1:a]afir=dry=10:wet=10[r];"
-          f"[d][r]amix=inputs=2:weights=1 {wet}:normalize=0,loudnorm=I={ln['I'] - 6}:TP={ln['TP']}:LRA={ln['LRA']}[a]")
+    # dry는 loudnorm으로 고정, 리버브는 고정 비율로만 더함(재정규화 없음 → 줄마다 음량이 흔들리지 않음)
+    fc = (f"[0:a]{','.join(af)},volume={inner_cfg.get('dry_db', -3)}dB,apad=pad_dur=3.5,asplit[d][w];[w][1:a]afir=dry=10:wet=10[r];"
+          f"[d][r]amix=inputs=2:weights=1 {wet}:normalize=0,alimiter=limit=0.85:level=false[a]")
     subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-i', ir, '-filter_complex', fc, '-map', '[a]', '-ar', '44100', '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
     return sp
+
+
+def match_level(path, seconds, target_db=-18.0, max_gain=8.0):
+    """파일 앞 seconds 구간의 RMS를 target_db(dBFS)에 맞추는 이득을 적용(±max_gain 한도). 줄 간 체감 음량 통일용."""
+    import numpy as np
+    d = subprocess.run([FF, '-loglevel', 'error', '-i', path, '-t', str(max(0.2, seconds)), '-f', 's16le', '-ac', '1', '-ar', '16000', '-'], capture_output=True).stdout
+    x = np.frombuffer(d, np.int16).astype(float) / 32768
+    if len(x) == 0:
+        return 0.0
+    rms = 20 * np.log10(np.sqrt((x ** 2).mean()) + 1e-9)
+    g = max(-max_gain, min(max_gain, target_db - rms))
+    if abs(g) < 0.3:
+        return 0.0
+    tmp = path + '.lv.mp3'
+    subprocess.run([FF, '-y', '-loglevel', 'error', '-i', path, '-af', f'volume={g:.2f}dB,alimiter=limit=0.89:level=false', '-c:a', 'libmp3lame', '-q:a', '2', tmp], check=True)
+    os.replace(tmp, path)
+    return round(g, 2)
 
 
 def tts_text(P, line):
