@@ -55,17 +55,28 @@ def trim(src, dst):
     subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-af', af, '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
 
 
-MAX_TEMPO = 1.15
+MAX_TEMPO = 1.10
+POST = {}  # main()에서 프로필 post 로 채움
 
 
-def loudnorm(src, dst, ln, pitch, tempo=1.0):
-    af = f"loudnorm=I={ln['I']}:TP={ln['TP']}:LRA={ln['LRA']}"
+def finalize(src, dst, ln, speaker, inner, tempo=1.0):
+    """트림된 원본 → 배속(겉대사 speedup_outer / 속마음 speedup_inner, 높이+속도) → 길이 보정 → 음량 → (속마음) 동굴 리버브."""
+    sp = POST.get('speedup_inner', 1.0) if inner else POST.get('speedup_outer', 1.0)
+    af = []
+    if abs(sp - 1.0) > 1e-3:
+        af.append(f"asetrate=44100*{sp:.4f},aresample=44100")
     if tempo != 1.0:
-        af = f"atempo={tempo:.4f}," + af
-    if pitch:
-        f = 2 ** (pitch / 12)
-        af = f"asetrate=44100*{f:.5f},aresample=44100,atempo={1 / f:.5f}," + af
-    subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-af', af, '-ar', '44100', '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
+        af.append(f"atempo={tempo:.4f}")
+    af.append(f"loudnorm=I={ln['I']}:TP={ln['TP']}:LRA={ln['LRA']}")
+    inner_cfg = POST.get('inner') if inner else None
+    if not inner_cfg:
+        subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-af', ','.join(af), '-ar', '44100', '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
+        return sp
+    ir = os.path.join(ROOT, inner_cfg['ir']); wet = inner_cfg.get('wet', 1.0)
+    fc = (f"[0:a]{','.join(af)},apad=pad_dur=3.5,asplit[d][w];[w][1:a]afir=dry=10:wet=10[r];"
+          f"[d][r]amix=inputs=2:weights=1 {wet}:normalize=0,loudnorm=I={ln['I'] - 6}:TP={ln['TP']}:LRA={ln['LRA']}[a]")
+    subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-i', ir, '-filter_complex', fc, '-map', '[a]', '-ar', '44100', '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
+    return sp
 
 
 def tts_text(P, line):
@@ -87,8 +98,9 @@ def main():
     ap.add_argument('--candidates', type=int, default=3)
     a = ap.parse_args()
     P = json.load(open(PROF))
-    global SPEEDUP
-    SPEEDUP = P.get('post', {}).get('speedup', 1.0)
+    global SPEEDUP, POST
+    POST = P.get('post', {})
+    SPEEDUP = POST.get('speedup', 1.0)
     lines = P['episodes'][a.ep]['lines']
     regen = set(x for x in a.regen.split(',') if x)
     outdir = os.path.join(ROOT, f'outputs/{a.ep}/voice/lines'); os.makedirs(outdir, exist_ok=True)
@@ -116,7 +128,7 @@ def main():
             print(f'[{g}] seed {seed}: {d:.2f}s (한도 {limit:.1f}s)')
             if d <= limit or seed == seeds[-1]:
                 dst = os.path.join(outdir, f'{"+".join(l["cut"] for l in ls)}.mp3')
-                loudnorm(raw, dst, P['loudnorm'], P['pitch_semitones'])
+                finalize(raw, dst, P['loudnorm'], ls[0]['speaker'], False)
                 for l in ls:
                     l['seed'] = seed; l['len'] = round(d, 2); l['file'] = os.path.relpath(dst, ROOT)
                 break
@@ -140,20 +152,23 @@ def main():
             trim(raw, raw + '.t.mp3'); raw = raw + '.t.mp3'
             d = duration(raw)
             print(f'[{l["cut"]}] {tts_text(P, l)!r} seed {seed}: {d:.2f}s (한도 {l["max_len"]}s)')
+            sp_est = POST.get('speedup_inner', 1.0) if l.get('inner') else POST.get('speedup_outer', 1.0)
             if best is None or d < best[1]:
                 best = (seed, d, raw)
-            if d <= l['max_len']:
+            if d / sp_est <= l['max_len']:
                 break
         if best is None:
             print(f'[{l["cut"]}] 실패: 유효한 응답 없음'); continue
         seed, d, raw = best
+        sp_est = POST.get('speedup_inner', 1.0) if l.get('inner') else POST.get('speedup_outer', 1.0)
         tempo = 1.0
-        if d > l['max_len']:
-            tempo = min(d / l['max_len'], MAX_TEMPO)
+        if d / sp_est > l['max_len']:
+            tempo = min(d / sp_est / l['max_len'], MAX_TEMPO)
         dst = os.path.join(outdir, f'{l["cut"]}.mp3')
-        loudnorm(raw, dst, P['loudnorm'], P['pitch_semitones'], tempo)
-        l['seed'] = seed; l['len_raw'] = round(d, 2); l['tempo'] = round(tempo, 3)
-        l['len'] = round(duration(dst), 2); l['file'] = os.path.relpath(dst, ROOT)
+        sp = finalize(raw, dst, P['loudnorm'], l['speaker'], l.get('inner', False), tempo)
+        l['seed'] = seed; l['len_raw'] = round(d, 2); l['tempo'] = round(tempo, 3); l['speedup'] = sp
+        l['len'] = round(d / tempo / sp, 2); l['file'] = os.path.relpath(dst, ROOT)
+        l['len_file'] = round(duration(dst), 2)
         l['over'] = l['len'] > l['max_len'] + 0.05
         if tempo > 1.0:
             print(f'    → atempo {tempo:.3f} 적용, 최종 {l["len"]:.2f}s' + (' (여전히 초과: 컷 길이 조정 필요)' if l['over'] else ''))
