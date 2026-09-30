@@ -16,5 +16,26 @@
   "prompt": "Sparse ambient background for a sleepy, uneventful office day: warm synth pad, occasional soft electric piano notes, a faint clock tick, a slow sigh-like swell that never builds. Very calm, low energy, drifting, around 68 BPM, tender and a bit resigned. Instrumental, no vocals, no drums.",
   "result": "ok 1008998B 8s",
   "length_ms": 63000
+ },
+ {
+  "name": "D_toy_music_box",
+  "prompt": "Cute, gentle, quiet background music for a kawaii cartoon about a small plush penguin's boring weekday. Soft music box and toy glockenspiel playing a tiny, simple, repetitive nursery-like melody that loops like a daily routine, light pizzicato, very sparse soft percussion (tiny woodblock tick). Slow-medium tempo around 88 BPM, sweet, innocent, a little sleepy and deadpan, never dramatic, never elegant or cinematic, stays quiet and even in volume as background. Instrumental, no vocals.",
+  "result": "ok 1008162B",
+  "length_ms": 63000,
+  "round": 2
+ },
+ {
+  "name": "E_ukulele_kazoo",
+  "prompt": "Cute, calm lo-fi cartoon background loop: soft ukulele plucks, muted toy piano, light whistling-like synth lead, tiny wobbly waddle rhythm like a penguin walking, very laid-back around 92 BPM. Playful but subdued and repetitive, like a lazy daily routine, warm and small, low energy, consistent volume, no build-ups, no big drums. Instrumental, no vocals.",
+  "result": "ok 1008998B",
+  "length_ms": 63000,
+  "round": 2
+ },
+ {
+  "name": "F_soft_chiptune",
+  "prompt": "Quiet, cute 8-bit-inspired lullaby background: soft square-wave and triangle chiptune tones with a gentle bouncy but slow pattern (around 84 BPM), simple looping childlike melody, tiny hi-hat ticks, warm and cozy, slightly sleepy and monotonous like a repeating weekday, always low key and even, never intense. Instrumental, no vocals.",
+  "result": "ok 1008162B",
+  "length_ms": 63000,
+  "round": 2
  }
 ]
