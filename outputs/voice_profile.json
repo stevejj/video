@@ -315,20 +315,21 @@
      "cut": "10-03",
      "speaker": "changsu",
      "subtitle": "아!!!!!!!!!!!!!!!!",
-     "tts": "아악!",
+     "tts": "[screaming] 아아아아아아아아아악!!",
      "expr": "03",
-     "at": 60.5,
-     "max_len": 1.9,
-     "offset": 0.5,
+     "at": 60.3,
+     "max_len": 2.0,
+     "offset": 0.3,
      "inner": false,
+     "tag_override": true,
      "seed": 42,
-     "len_raw": 0.52,
+     "len_raw": 1.83,
      "tempo": 1.0,
-     "len": 0.42,
+     "speedup": 1.25,
+     "len": 1.46,
      "file": "outputs/ep01/voice/lines/10-03.mp3",
-     "len_file": 0.42,
-     "over": false,
-     "speedup": 1.25
+     "len_file": 1.46,
+     "over": false
     }
    ]
   }
