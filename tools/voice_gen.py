@@ -59,9 +59,9 @@ MAX_TEMPO = 1.10
 POST = {}  # main()에서 프로필 post 로 채움
 
 
-def finalize(src, dst, ln, speaker, inner, tempo=1.0):
+def finalize(src, dst, ln, speaker, inner, tempo=1.0, speedup_override=None):
     """트림된 원본 → 배속(겉대사 speedup_outer / 속마음 speedup_inner, 높이+속도) → 길이 보정 → 음량 → (속마음) 동굴 리버브."""
-    sp = POST.get('speedup_inner', 1.0) if inner else POST.get('speedup_outer', 1.0)
+    sp = speedup_override or (POST.get('speedup_inner', 1.0) if inner else POST.get('speedup_outer', 1.0))
     af = []
     if abs(sp - 1.0) > 1e-3:
         af.append(f"asetrate=44100*{sp:.4f},aresample=44100")
@@ -183,7 +183,7 @@ def main():
         if d / sp_est > l['max_len']:
             tempo = min(d / sp_est / l['max_len'], MAX_TEMPO)
         dst = os.path.join(outdir, f'{l["cut"]}.mp3')
-        sp = finalize(raw, dst, P['loudnorm'], l['speaker'], l.get('inner', False), tempo)
+        sp = finalize(raw, dst, P['loudnorm'], l['speaker'], l.get('inner', False), tempo, l.get('speedup_override'))
         l['seed'] = seed; l['len_raw'] = round(d, 2); l['tempo'] = round(tempo, 3); l['speedup'] = sp
         l['len'] = round(d / tempo / sp, 2); l['file'] = os.path.relpath(dst, ROOT)
         l['len_file'] = round(duration(dst), 2)

@@ -132,6 +132,7 @@ def main():
     ap.add_argument('--ep', default='ep01')
     ap.add_argument('--voice-v7', action='store_true', help='lines[*].file_v7(화자별 배속·속마음 톤 후처리본) 사용')
     ap.add_argument('--text', action='store_true', help='outputs/<ep>/text_overlay.json 의 제목·채널명·자막을 얹음')
+    ap.add_argument('--bgm', action='store_true', help='voice_profile episodes[ep].bgm 배경음 삽입(대사 더킹)')
     ap.add_argument('--sfx', action='store_true', help='outputs/<ep>/sfx/sfx_list.json 의 효과음을 배치')
     a = ap.parse_args()
 
@@ -200,9 +201,9 @@ def main():
         if not (a.voice or a.sfx):
             shutil.copy(texted, a.out)
         video = texted
-    if a.voice or a.sfx:
+    if a.voice or a.sfx or a.bgm:
         total = sum(c['len'] for c in cuts)
-        inputs = ['-i', video]; fc = []; n = 0
+        inputs = ['-i', video]; fc = []; n = 0; voice_labels = []
         if a.voice:
             P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json')))
             seen = set()
@@ -211,7 +212,7 @@ def main():
                 if not f or f in seen or 'at' not in l:
                     continue
                 seen.add(f); n += 1; inputs += ['-i', os.path.join(ROOT, f)]
-                fc.append(f"[{n}:a]aresample=44100,aformat=channel_layouts=mono,adelay={int(l['at'] * 1000)}[a{n}]")
+                fc.append(f"[{n}:a]aresample=44100,aformat=channel_layouts=mono,adelay={int(l['at'] * 1000)}[a{n}]"); voice_labels.append(f'a{n}')
             print(f'음성 {len(seen)}개')
         if a.sfx:
             X = json.load(open(os.path.join(ROOT, f'outputs/{a.ep}/sfx/sfx_list.json')))
@@ -228,7 +229,29 @@ def main():
                 chain += f",volume={it['gain']}dB,adelay={int(it['at'] * 1000)}"
                 fc.append(f"[{n}:a]{chain}[a{n}]")
             print(f"효과음 {len(X['items'])}개")
-        fc.append(''.join(f'[a{i}]' for i in range(1, n + 1)) + f"amix=inputs={n}:normalize=0,apad=whole_dur={total},alimiter=limit=0.85:level=false[mix]")
+        labels = [f'a{i}' for i in range(1, n + 1)]
+        if a.bgm:
+            P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json')))
+            B = P['episodes'][a.ep].get('bgm')
+            if B:
+                import re as _re
+                bf = os.path.join(ROOT, B['file'])
+                meas = subprocess.run([FF, '-i', bf, '-af', 'loudnorm=print_format=json', '-f', 'null', '-'], capture_output=True, text=True).stderr
+                cur = float(json.loads(_re.search(r'\{.*\}', meas, _re.S).group(0))['input_i'])
+                gain = B['target_lufs'] - cur
+                end = B['end_at']; n += 1; inputs += ['-i', bf]
+                fc.append(f"[{n}:a]aresample=44100,aformat=channel_layouts=mono,aloop=loop=-1:size=44100*120,atrim=0:{end},asetpts=PTS-STARTPTS,"
+                          f"volume={gain:.2f}dB,afade=t=in:st=0:d={B['fade_in']},afade=t=out:st={end - B['fade_out']}:d={B['fade_out']}[bgm_raw]")
+                if voice_labels:
+                    # 대사 합을 사이드체인으로 배경음 더킹
+                    fc.append(''.join(f'[{v}]' for v in voice_labels) + f"amix=inputs={len(voice_labels)}:normalize=0,apad=whole_dur={total},asplit[vsum][vsc]")
+                    ratio = 1 + B['duck_db'] / 3.0
+                    fc.append(f"[bgm_raw][vsc]sidechaincompress=threshold=0.02:ratio={ratio:.2f}:attack=30:release=400:makeup=1[bgm]")
+                    labels = [x for x in labels if x not in voice_labels] + ['vsum', 'bgm']
+                else:
+                    labels.append('bgm_raw')
+                print(f"배경음 {os.path.basename(bf)} gain {gain:+.1f}dB, {end}s까지")
+        fc.append(''.join(f'[{x}]' for x in labels) + f"amix=inputs={len(labels)}:normalize=0,apad=whole_dur={total},alimiter=limit=0.85:level=false[mix]")
         run([FF, '-y', *inputs, '-filter_complex', ';'.join(fc), '-map', '0:v', '-map', '[mix]', '-c:v', 'copy',
              '-c:a', 'aac', '-b:a', '160k', '-t', str(total), '-movflags', '+faststart', a.out])
     shutil.rmtree(tmp, ignore_errors=True)
