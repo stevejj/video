@@ -81,11 +81,39 @@ def render_text_layers(T, W, H, top_px, win, tmp):
         tw, th = b[2] - b[0], b[3] - b[1]
         cx = W * sb['x']; x = min(max(cx - tw / 2, (W - st['max_width']) / 2), W - (W - st['max_width']) / 2 - tw)
         y = top_px + win - st['bottom_margin'] - th
-        d.text((x - b[0], y - b[1]), sb['text'], font=f, fill=_hex(st['colors'][sb['speaker']]),
+        pad = 6
+        im = Image.new('RGBA', (tw + 2 * pad, th + 2 * pad), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        d.text((pad - b[0], pad - b[1]), sb['text'], font=f, fill=_hex(st['colors'][sb['speaker']]),
                stroke_width=st['stroke'], stroke_fill=_hex(st['stroke_color']))
         path = os.path.join(tmp, f'sub_{i:02d}.png'); im.save(path)
-        subs.append((path, sb['start'], sb['end']))
+        subs.append((path, sb['start'], sb['end'], int(x - pad + im.width / 2), int(y - pad + im.height / 2), sb.get('pop', T.get('subtitle_style', {}).get('pop', True))))
     return static, subs
+
+
+def apply_fx(seg_in, seg_out, fx_list, L, fps, W, H, top_px, win):
+    """02c M4·M7 편집 효과(크레딧 0). 창 영역만 잘라 효과 적용 후 다시 캔버스에 배치.
+    fx 항목: {"type":"zoom_punch","at":1.0,"amount":0.10,"dur":0.12}  순간 확대 후 유지
+             {"type":"pushin","amount":0.05}                          컷 전체에 걸쳐 느린 확대
+             {"type":"shake","at":1.0,"dur":0.35,"px":10}             흔들림
+    """
+    chain = [f"[0:v]crop={W}:{win}:0:{top_px},scale={W * 2}:{win * 2}:flags=lanczos"]
+    zexpr = '1'
+    for fx in fx_list:
+        t = fx['type']
+        if t == 'zoom_punch':
+            a, t0, d = fx.get('amount', 0.10), fx['at'], fx.get('dur', 0.12)
+            zexpr += f"+{a}*min(1,max(0,(on/{fps}-{t0})/{d}))"
+        elif t == 'pushin':
+            zexpr += f"+{fx.get('amount', 0.05)}*on/{max(1, int(L * fps))}"
+    if zexpr != '1':
+        chain.append(f"zoompan=z='{zexpr}':x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={W * 2}x{win * 2}:fps={fps}")
+    for fx in fx_list:
+        if fx['type'] == 'shake':
+            a, t0, d = fx.get('px', 10) * 2, fx['at'], fx.get('dur', 0.35)
+            chain.append(f"crop=w=iw-{2 * a}:h=ih-{2 * a}:x='{a}+{a}*sin(t*97)*between(t,{t0},{t0 + d})':y='{a}+{a}*cos(t*83)*between(t,{t0},{t0 + d})'")
+    chain.append(f"scale={W}:{win}:flags=lanczos,pad={W}:{H}:0:{top_px}:black,format=yuv420p[out]")
+    run([FF, '-y', '-i', seg_in, '-filter_complex', ','.join(chain), '-map', '[out]', '-r', str(fps), '-t', str(L),
+         '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', seg_out])
 
 
 def still_zoom_segment(src, off, W, H, win, top_px, zoom, nfr, fps, card_path, fade, seg):
@@ -128,6 +156,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=os.path.join(ROOT, 'outputs/ep01/roughcut/ep01_roughcut_v1.mp4'))
     ap.add_argument('--no-cards', action='store_true')
+    ap.add_argument('--no-fx', action='store_true', help='edit_list cuts[*].fx 편집 효과 끄기')
+    ap.add_argument('--edit', default=None, help='edit_list.json 경로(기본 outputs/<ep>/edit_list.json)')
     ap.add_argument('--voice', action='store_true', help='outputs/voice_profile.json 의 대사를 시작 시각에 배치해 오디오 트랙 추가')
     ap.add_argument('--ep', default='ep01')
     ap.add_argument('--voice-v7', action='store_true', help='lines[*].file_v7(화자별 배속·속마음 톤 후처리본) 사용')
@@ -136,7 +166,7 @@ def main():
     ap.add_argument('--sfx', action='store_true', help='outputs/<ep>/sfx/sfx_list.json 의 효과음을 배치')
     a = ap.parse_args()
 
-    E = json.load(open(EDIT)); B = json.load(open(BAND))
+    E = json.load(open(a.edit or EDIT)); B = json.load(open(BAND))
     W, H = E['canvas']; fps = E['fps']
     top_px, win = E['band']['top_px'], E['band']['window_px']
     zoom = E['still_zoom']; fade = E['fade_out_before_black']
@@ -174,8 +204,10 @@ def main():
                 # 정지: zoompan은 정수 반올림으로 덜컥거려서(프레임간 0.2↔4.7 교차) OpenCV 서브픽셀 워프로 직접 렌더링
                 still_zoom_segment(src, off, W, H, win, top_px, zoom, nfr, fps,
                                    card_in[1] if card_in else None, fade if next_black else 0, seg)
+        if c.get('fx') and not a.no_fx:
+            seg_fx = seg.replace('.mp4', '_fx.mp4'); apply_fx(seg, seg_fx, c['fx'], L, fps, W, H, top_px, win); seg = seg_fx
         segs.append(seg)
-        print(f'{c["cut"]:6s} {c["kind"]:5s} {L:4.1f}s  ok', flush=True)
+        print(f'{c["cut"]:6s} {c["kind"]:5s} {L:4.1f}s  ok' + (f"  fx={[f['type'] for f in c['fx']]}" if c.get('fx') and not a.no_fx else ''), flush=True)
 
     lst = os.path.join(tmp, 'list.txt')
     with open(lst, 'w') as f:
@@ -189,9 +221,15 @@ def main():
         T = json.load(open(os.path.join(ROOT, f'outputs/{a.ep}/text_overlay.json')))
         static, subs = render_text_layers(T, W, H, top_px, win, tmp)
         ins = ['-i', video, '-i', static]; fc = ['[0:v][1:v]overlay=0:0[v1]']
-        for k, (pth, st_, en) in enumerate(subs):
+        for k, (pth, st_, en, cx, cy, pop) in enumerate(subs):
             ins += ['-i', pth]
-            fc.append(f"[v{k + 1}][{k + 2}:v]overlay=0:0:enable='between(t,{st_},{en})'[v{k + 2}]")
+            if pop:
+                # 팝업: 0.12초 동안 0.6→1.0 확대(살짝 1.06 오버슈트) 후 고정. 중심 고정 오버레이
+                sc = f"min(1.0\\,0.6+(t-{st_})/0.12*0.46)"
+                fc.append(f"[{k + 2}:v]scale=w='iw*{sc}':h='ih*{sc}':eval=frame[s{k}]")
+                fc.append(f"[v{k + 1}][s{k}]overlay=x='{cx}-w/2':y='{cy}-h/2':enable='between(t,{st_},{en})'[v{k + 2}]")
+            else:
+                fc.append(f"[v{k + 1}][{k + 2}:v]overlay=x='{cx}-w/2':y='{cy}-h/2':enable='between(t,{st_},{en})'[v{k + 2}]")
         texted = os.path.join(tmp, 'video_text.mp4')
         last = f'[v{len(subs) + 1}]'
         fc[-1] = fc[-1].rsplit('[', 1)[0] + '[vout]'
