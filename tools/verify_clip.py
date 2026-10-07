@@ -38,9 +38,9 @@ def cam_motion(g0,g1):
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--cut',required=True); ap.add_argument('--clip',required=True)
-    ap.add_argument('--start'); ap.add_argument('--end'); ap.add_argument('--beak',help='x0,y0,x1,y1 (클립 해상도 기준)'); ap.add_argument('--tag',default='v1')
+    ap.add_argument('--start'); ap.add_argument('--end'); ap.add_argument('--beak',help='x0,y0,x1,y1 (클립 해상도 기준)'); ap.add_argument('--tag',default='v1'); ap.add_argument('--ep',default='ep01')
     a=ap.parse_args()
-    out=pathlib.Path(f'outputs/ep01/{a.cut}/verify_{a.tag}'); out.mkdir(parents=True,exist_ok=True)
+    out=pathlib.Path(f'outputs/{a.ep}/{a.cut}/verify_{a.tag}'); out.mkdir(parents=True,exist_ok=True)
     g,color,fps,size=frames_of(a.clip); n=len(g); dur=n/fps
     res={'fps':round(fps,2),'frames':n,'duration_s':round(dur,2),'size':size}
     step=max(1,int(round(fps*0.25))); idx=sorted(color.keys())
@@ -74,7 +74,7 @@ def main():
         cv2.putText(sheet,f'{idx[k]/fps:.2f}s',(c*(tw+4)+4,r*(th+4)+18),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,255,255),1)
     cv2.imwrite(str(out/'sheet.png'),sheet)
     # meta 기록
-    mp=pathlib.Path(f'outputs/ep01/{a.cut}/meta.json')
+    mp=pathlib.Path(f'outputs/{a.ep}/{a.cut}/meta.json')
     m=json.load(open(mp)) if mp.exists() else {}
     m.setdefault('verify',{})[a.tag]=res; json.dump(m,open(mp,'w'),ensure_ascii=False,indent=1)
     print(json.dumps(res,ensure_ascii=False,indent=1)); print('sheet:',out/'sheet.png')
