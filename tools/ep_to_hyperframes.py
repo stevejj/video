@@ -172,7 +172,7 @@ def main():
   #channel {{ position: absolute; left: 0; width: 100%; top: {ch['center_y'] - ch['size'] * 0.7:.0f}px; text-align: center; font-size: {ch['size']}px; font-weight: {ch['weight']}; color: {ch['color']}; opacity: {ch.get('opacity', 1)}; line-height: 1.4; }}
   .sub {{ position: absolute; bottom: {H - top - win + st['bottom_margin']}px; font-size: {st['size']}px; font-weight: {st['weight']}; white-space: nowrap; line-height: 1.25;
           -webkit-text-stroke: {st['stroke']}px {st['stroke_color']}; paint-order: stroke fill; transform-origin: 50% 100%; }}
-  .card {{ position: absolute; left: 40px; top: {top + 36}px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }}
+  .card {{ position: absolute; left: 120px; top: {top + 36}px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }}
   .spark {{ position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }}
   .blackfade {{ position: absolute; inset: 0; background: #000; }}
 </style>

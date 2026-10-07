@@ -180,7 +180,7 @@ def main():
         if c.get('time_card') and not a.no_cards:
             cp = os.path.join(tmp, f'card_{i:02d}.png'); card_png(c['time_card'], cp)
             card_in = ['-i', cp]
-            card = f"[v0];[v0][1:v]overlay=40:{top_px + 36}:enable='lt(t,1.2)'"
+            card = f"[v0];[v0][1:v]overlay=120:{top_px + 36}:enable='lt(t,1.2)'"
         pad = f"pad={W}:{H}:0:{top_px}:black"
         next_black = i + 1 < len(cuts) and cuts[i + 1]['kind'] == 'black'
         fadef = f",fade=t=out:st={L - fade}:d={fade}" if next_black else ''
