@@ -86,3 +86,18 @@ Pang Chang-su stands still facing slightly to the right of the frame with a calm
 **위험·감시 항목**: 낮음~중간 | 고개를 카메라로 돌림(ep01 4-01 전례), 부리 크게 벌림, 몸을 흔듦.
 **실패 시 편집 대안**: 정지 프레임 + 푸시인(0크레딧), "응."은 보이스오버.
 **크레딧**: 18. 85 → 67.
+
+**3컷 ✅ 통과 (2026-10-07)**: 18크레딧, 잔액 85 → **67**. 생성 140초(대기열). 실측: 시작 2.24, 첫↔끝 3.33, **카메라 3.3px·배경 드리프트 3.4** = 아주 느린 푸시인이 섞임(머리가 끝에서 조금 커짐). 기준(≤8) 안이고 10컷 재사용 시 HyperFrames 푸시인과 방향이 같아 허용. 1.5s 깜빡 1회, 2.0s 부리 한 번 작게 열림("응."), 고개 카메라로 안 돌림, 날개 고정. 편집 구간 0.8~2.3s(깜빡+"응."). 파일 `outputs/ep02/03/clip_v1.mp4`. **10컷은 이 클립 0.3~2.3s 재사용.**
+
+### 5 — 시작만, 3초 (편집 2.0s)
+**입력**: `outputs/ep02/05/start_v1.png`(창수 소파 왼쪽 끝 앞에 정면으로 섬, 컵 탁자 위)
+**인자**: v3_0, duration=3, 720p, multi_shots false, audio false
+**프롬프트**
+```
+Pang Chang-su stands facing the camera beside the left end of the sofa. He begins to sit down: his knees bend and his body lowers about halfway toward the empty left seat cushion, his bottom stopping well above the cushion without touching it; he pauses there for a moment as if hearing something, then straightens his knees and stands fully upright again in exactly the same spot where he started, with both feet flat on the floor and his wings hanging at his sides. He never sits on the sofa. His head keeps facing the camera at the same angle with a calm neutral face. Pang Mi-sun lies completely still on the right half of the sofa under the beige duvet; the duvet, the black remote on the seat, the cushions, the glass on the table and the table stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+```
+**자막·음성**: 미순 요청 2(보이스오버, 자막 팝 1.1배), 벨 #2.
+**예상 시나리오**: 0~1.2s 무릎 굽혀 반쯤 내려감, 1.2~1.8s 멈춤, 1.8~3s 다시 섬.
+**위험·감시 항목**: 중간 | 완전히 앉아 버림(11컷과 겹침), 몸이 옆으로 이동, 미순이 움직임.
+**실패 시 편집 대안**: 앞 1.5s(굽히기)만 쓰고 컷 → 6컷 걷기(시작 프레임이 다르므로 점프 컷 허용).
+**크레딧**: 18. 67 → 49.
