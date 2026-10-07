@@ -51,11 +51,14 @@ def main():
             for ly in pp['layers']:
                 shutil.copy(os.path.join(ROOT, ly['img']), os.path.join(out, f'media/{src_cut}_{ly["id"]}.png'))
                 x, y, w, h = [v * S for v in ly['box']]
+                origin = ly.get('origin') or f'{(ly["pivot"][0] - ly["box"][0]) * S:.1f}px {(ly["pivot"][1] - ly["box"][1]) * S:.1f}px'
                 el += (f'<img id="{cid}-{ly["id"]}" class="layer" src="media/{src_cut}_{ly["id"]}.png" data-start="{t:.3f}" data-duration="{L:.3f}" '
-                       f'style="left:{x:.1f}px; top:{y:.1f}px; width:{w:.1f}px; height:{h:.1f}px; transform-origin:{ly["origin"]};" />')
+                       f'style="left:{x:.1f}px; top:{y:.1f}px; width:{w:.1f}px; height:{h:.1f}px; transform-origin:{origin};" />')
+                for k in ly.get('keys', []):
+                    tl.append(f'tl.to("#{cid}-{ly["id"]}", {{rotation: {k.get("rotation", 0)}, x: {k.get("x", 0)}, y: {k.get("y", 0)}, duration: {k["dur"]}, ease: "{k.get("ease", "none")}"}}, {t + k["t"]:.3f});')
             import random
-            tp = pp['taps']; rnd = random.Random(tp['seed']); tt = tp['from']; i = 0
-            while tt < tp['to']:
+            tp = pp.get('taps'); rnd = random.Random(tp['seed']) if tp else None; tt = tp['from'] if tp else 1e9; i = 0
+            while tp and tt < tp['to']:
                 ly = pp['layers'][i % len(pp['layers'])]; d = rnd.choice(tp['dur'])
                 tl.append(f'tl.to("#{cid}-{ly["id"]}", {{rotation: {ly["rot"]}, y: {ly["lift"]}, duration: {d}, ease: "power2.out"}}, {t + tt:.3f});')
                 tl.append(f'tl.to("#{cid}-{ly["id"]}", {{rotation: 0, y: 0, duration: {d + 0.03:.2f}, ease: "power2.in"}}, {t + tt + d:.3f});')

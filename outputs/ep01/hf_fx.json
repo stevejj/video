@@ -1,5 +1,5 @@
 {
- "note": "ep01 v11 HyperFrames 0크레딧 역동성 계획(02c §3). cam: 창 중심 기준 카메라 이동. punch: 줌 펀치(시각, 배율). shake: 흔들림(시각, 초, 진폭px). 값은 컷 상대 시각(초). | v11b: 정지 컷 푸시인 9%+드리프트, 4-02 컷아웃 퍼펫(날개 타이핑), 자막 폭 축소",
+ "note": "ep01 v11 HyperFrames 0크레딧 역동성 계획(02c §3). cam: 창 중심 기준 카메라 이동. punch: 줌 펀치(시각, 배율). shake: 흔들림(시각, 초, 진폭px). 값은 컷 상대 시각(초). | v11b: 정지 컷 푸시인 9%+드리프트, 4-02 컷아웃 퍼펫(날개 타이핑), 자막 폭 축소 | v11d: 5-02 숟가락 퍼펫(날개+숟가락 레이어, 어깨 피벗 회전 -46°, 2회)",
  "default_still": {
   "cam": {
    "from": 1.0,
@@ -154,6 +154,74 @@
    "cam": {
     "from": 1.0,
     "to": 1.1
+   },
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep01/5-02/puppet/bg.png",
+    "layers": [
+     {
+      "id": "arm",
+      "img": "outputs/ep01/5-02/puppet/arm.png",
+      "box": [
+       158,
+       630,
+       257,
+       140
+      ],
+      "pivot": [
+       222,
+       700
+      ],
+      "keys": [
+       {
+        "t": 0.25,
+        "rotation": -46,
+        "x": 6,
+        "y": -34,
+        "dur": 0.42,
+        "ease": "power2.inOut"
+       },
+       {
+        "t": 0.67,
+        "rotation": -46,
+        "x": 6,
+        "y": -34,
+        "dur": 0.28
+       },
+       {
+        "t": 0.95,
+        "rotation": 0,
+        "x": 0,
+        "y": 0,
+        "dur": 0.4,
+        "ease": "power2.inOut"
+       },
+       {
+        "t": 1.75,
+        "rotation": -46,
+        "x": 6,
+        "y": -34,
+        "dur": 0.42,
+        "ease": "power2.inOut"
+       },
+       {
+        "t": 2.17,
+        "rotation": -46,
+        "x": 6,
+        "y": -34,
+        "dur": 0.28
+       },
+       {
+        "t": 2.45,
+        "rotation": 0,
+        "x": 0,
+        "y": 0,
+        "dur": 0.4,
+        "ease": "power2.inOut"
+       }
+      ]
+     }
+    ]
    }
   },
   "5-03": {
