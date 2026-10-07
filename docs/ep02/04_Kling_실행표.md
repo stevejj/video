@@ -41,3 +41,18 @@ Pang Chang-su is already walking from the very first frame, at a steady unhurrie
 **위험·감시 항목**: 중간 | 컵이 2개로 늘거나 사라짐, 컵이 기울어 물 쏟음, 날개가 팔처럼 늘어남(R9-5), 미순 머리가 크게 들림, 리모컨 이동.
 **실패 시 편집 대안**: 앞 1.5s(걷기)만 쓰고 끝 프레임 정지 + 푸시인.
 **크레딧**: 18. 145 → 127.
+
+**4컷 ✅ 통과 (2026-10-07)**: 18크레딧, 잔액 145 → **127**. 생성 106초. 실측: 카메라 0.07px, 배경 드리프트 1.65, 시작 2.05 / 끝 3.08. 0~1.5s 컵 든 채 두 걸음(컵 수평 유지, 1개), 1.5~3s 소파 앞에서 컵을 내밀고 미순이 날개 들며 웃음. 리모컨·이불·탁자 고정. 편집 구간 0.5~2.5s. 파일 `outputs/ep02/04/clip_v1.mp4`.
+
+### 6 — 시작+끝, 4초 (편집 2.5s)
+**입력**: `outputs/ep02/06/start_v1.png`(창수 왼쪽 가장자리, 베개 양 날개, 컵 탁자 위) + `outputs/ep02/06/end_v1.png`(창수 오른쪽 끝 팔걸이 옆, 베개 미순 머리 밑, 날개 비움)
+**인자**: v3_0, duration=4, 720p, multi_shots false, audio false
+**프롬프트**
+```
+Pang Chang-su is already walking from the very first frame, at a steady unhurried waddling pace to his right, entering from the left edge of the frame and walking along the floor between the sofa and the table, past the whole sofa to its right end, carrying a white pillow in front of his belly with both wings, keeping his body and head facing to his right the whole time. Each step lands on the wood floor and rolls forward; his feet do not slide; the pillow stays in his wings. When he reaches the right end of the sofa beside Mi-sun's head, he bends forward and slides the pillow under her head while she lifts her head slightly and lets it settle on the pillow; then he straightens up with both wings empty, exactly matching the end image. Pang Mi-sun otherwise stays lying still under the beige duvet; the duvet, the black remote on the seat, the cushions, the glass on the table and the table stay exactly where they are. Chang-su does not look at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Exactly one pillow and one glass exist. Wings stay short and rounded with no fingers.
+```
+**자막·음성**: 창수 "응."(걸어오며, 보이스오버). 효과음: 발소리 3보, 베개 "푹".
+**예상 시나리오**: 0~2.5s 소파 앞을 가로질러 오른쪽 끝까지 3~4보, 2.5~4s 허리 숙여 베개 끼움 → 직립.
+**위험·감시 항목**: **높음** (이동 거리 길고 물건 조작 + 미순 머리 들기 동시) | 창수가 탁자 앞으로 걷거나 미순 위를 지남, 베개가 2개/사라짐, 미순 머리가 크게 들리거나 몸이 일어남, 창수 크기 변화, 날개 늘어남.
+**실패 시 편집 대안**: 걷기 구간만 쓰고(앞 2s) 끝 프레임 정지 + 푸시인으로 "끼움" 생략.
+**크레딧**: 24. 127 → 103.

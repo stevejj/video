@@ -1,0 +1,51 @@
+{
+ "cut": "04",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "3",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su is already walking from the very first frame, at a steady unhurried waddling pace to his right, entering from the left edge of the frame along the floor between the sofa and the table, holding a clear glass of water in the wing nearer the camera, keeping his body and head facing to his right the whole time. Each step lands on the wood floor and rolls forward; his feet do not slide; the glass stays level in his wing. After two steps he stops in front of the sofa beside Mi-sun and holds the glass out toward her at chest height, leaning slightly toward her, while Mi-sun lifts her wing a little to take it, exactly matching the end image. Pang Mi-sun otherwise stays lying still on the right half of the sofa under the beige duvet with her head on the cushion; the duvet, the black remote on the seat, the cushions and the empty table stay exactly where they are. Chang-su does not look at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Exactly one glass exists. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep02/04/start_v1.png"
+  },
+  "end": {
+   "file": "outputs/ep02/04/end_v1.png"
+  }
+ },
+ "credits_before": 145.0,
+ "credits_after": 127.0,
+ "credits_consumed_reported": 18.0,
+ "approved_by_user": "진행 (2026-10-07)",
+ "version": 1,
+ "ts": "2026-10-07T08:39:06",
+ "generation_id": "AS8riJm9l6pL_josi78dV3seOwiWeWly5yYJL4slajbjbUHuzJbBFyGfkFlg4DiL2Udz0WMQ",
+ "status": "COMPLETED",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.05,
+   "start_vs_ref_bg_meandiff": 1.94,
+   "end_vs_ref_meandiff": 3.08,
+   "end_vs_ref_bg_meandiff": 2.67,
+   "interframe_mean": 0.59,
+   "interframe_max": 1.09,
+   "interframe_max_at_s": 0.12,
+   "first_vs_last_meandiff": 4.99,
+   "bg_drift_first_last": 1.65,
+   "cam_motion_px_median": 0.03,
+   "cam_motion_px_max": 0.07
+  }
+ }
+}
