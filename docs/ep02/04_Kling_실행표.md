@@ -56,3 +56,18 @@ Pang Chang-su is already walking from the very first frame, at a steady unhurrie
 **위험·감시 항목**: **높음** (이동 거리 길고 물건 조작 + 미순 머리 들기 동시) | 창수가 탁자 앞으로 걷거나 미순 위를 지남, 베개가 2개/사라짐, 미순 머리가 크게 들리거나 몸이 일어남, 창수 크기 변화, 날개 늘어남.
 **실패 시 편집 대안**: 걷기 구간만 쓰고(앞 2s) 끝 프레임 정지 + 푸시인으로 "끼움" 생략.
 **크레딧**: 24. 127 → 103.
+
+**6컷 ✅ 통과 (2026-10-07)**: 24크레딧, 잔액 127 → **103**. 생성 84초. 실측: 카메라 0.11px, 배경 드리프트 2.03, 시작 2.09 / 끝 3.29. 0~2.0s 베개 들고 소파 앞을 가로질러 오른쪽 끝까지(탁자 뒤), 2.0~3.0s 허리 숙여 베개를 미순 머리 밑에 넣음(미순은 눈 감고 웃으며 머리 살짝), 3.0~4.0s 직립해 정면. 베개 1개, 컵·리모컨·이불 고정. 고위험 컷이 1회 통과. 편집 구간 0.5~3.0s. 파일 `outputs/ep02/06/clip_v1.mp4`.
+
+### 2 — 시작+끝, 3초 (편집 2.0s) — 대화 컷
+**입력**: `outputs/ep02/02/start_v1.png`(미순 얼굴, 카메라 응시, 02 활짝) + `outputs/ep02/02/end_v1.png`(고개 왼쪽, 부리 살짝)
+**인자**: v3_0, duration=3, 720p, multi_shots false, audio false
+**프롬프트**
+```
+Pang Mi-sun lies on the sofa cushion under the beige duvet, looking at the camera with a happy smile. Slowly she turns her head a little to her left side of the frame, toward the left end of the sofa, and settles there looking that way, exactly matching the end image. As she speaks a short line, her beak opens and closes only a tiny amount, barely parting, just enough to show she is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips. Her head stays on the cushion the whole time and does not lift; her wings rest still on top of the duvet; the duvet, the cushion and the sofa stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+```
+**자막·음성**: 미순 요청 1(대사는 사용자 확정 후 교체, 자막 핑크 팝). 벨 #1.
+**예상 시나리오**: 0~1.2s 고개 천천히 왼쪽, 1.2~3s 부리 미세하게 몇 번.
+**위험·감시 항목**: 중간 | 부리를 크게 벌림(ep01 9-03·9-02 전례: 끝 프레임에 열린 부리가 있으면 동작 끝에서 엶), 머리를 들어 올림, 눈이 감김, 날개가 올라옴.
+**실패 시 편집 대안**: 앞 1.5s(고개 돌림)만 쓰고 끝 프레임 정지.
+**크레딧**: 18. 103 → 85.

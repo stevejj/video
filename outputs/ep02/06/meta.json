@@ -1,0 +1,51 @@
+{
+ "cut": "06",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su is already walking from the very first frame, at a steady unhurried waddling pace to his right, entering from the left edge of the frame and walking along the floor between the sofa and the table, past the whole sofa to its right end, carrying a white pillow in front of his belly with both wings, keeping his body and head facing to his right the whole time. Each step lands on the wood floor and rolls forward; his feet do not slide; the pillow stays in his wings. When he reaches the right end of the sofa beside Mi-sun's head, he bends forward and slides the pillow under her head while she lifts her head slightly and lets it settle on the pillow; then he straightens up with both wings empty, exactly matching the end image. Pang Mi-sun otherwise stays lying still under the beige duvet; the duvet, the black remote on the seat, the cushions, the glass on the table and the table stay exactly where they are. Chang-su does not look at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Exactly one pillow and one glass exist. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep02/06/start_v1.png"
+  },
+  "end": {
+   "file": "outputs/ep02/06/end_v1.png"
+  }
+ },
+ "credits_before": 127.0,
+ "credits_after": 103.0,
+ "credits_consumed_reported": 24.0,
+ "approved_by_user": "진행 (2026-10-07)",
+ "version": 1,
+ "ts": "2026-10-07T08:53:53",
+ "generation_id": "AXcP6sv8qhaDSW2VsYo6SPNUtB01bfGX_pTO5FWj_RRHNXdORSFlOgwZU9mUSBRzm6fMfdRh",
+ "status": "COMPLETED",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.09,
+   "start_vs_ref_bg_meandiff": 1.91,
+   "end_vs_ref_meandiff": 3.29,
+   "end_vs_ref_bg_meandiff": 3.03,
+   "interframe_mean": 1.06,
+   "interframe_max": 2.45,
+   "interframe_max_at_s": 2.88,
+   "first_vs_last_meandiff": 5.89,
+   "bg_drift_first_last": 2.03,
+   "cam_motion_px_median": 0.02,
+   "cam_motion_px_max": 0.11
+  }
+ }
+}
