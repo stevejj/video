@@ -16,7 +16,7 @@ MAN = {
  '4e': dict(out=O+'04/end_v1.png', model=FLASH, refs=[O+'01/end_v1.png',C+'pang-changsu_hires_front.png',M+'pang-misun_hires_front.png',M+'pang-misun_pose_hold_cup.png']),
  '5s': dict(out=O+'05/start_v1.png', model=FLASH, refs=[O+'01/end_v1.png',C+'pang-changsu_hires_front.png']),
  '6s': dict(out=O+'06/start_v1.png', model=FLASH, refs=[O+'04/start_v1.png',C+'pang-changsu_hires_front.png',C+'pang-changsu_pose_hold_cup.png']),
- '6e': dict(out=O+'06/end_v1.png', model=FLASH, refs=[O+'05/start_v1.png',C+'pang-changsu_hires_front.png',M+'pang-misun_hires_front.png',M+'pang-misun_pose_lying.png']),
+ '6e': dict(out=O+'06/end_v1.png', model=PRO, refs=[O+'05/start_v1.png',C+'pang-changsu_hires_front.png',M+'pang-misun_hires_front.png',M+'pang-misun_pose_lying.png']),
  '7s': dict(out=O+'07/start_v1.png', model=FLASH, refs=[O+'06/end_v1.png',C+'pang-changsu_hires_front.png',C+'pang-changsu_pose_walk_side.png']),
  '7e': dict(out=O+'07/end_v1.png', model=FLASH, refs=[O+'07/start_v1.png',C+'pang-changsu_hires_front.png',C+'pang-changsu_pose_walk_side.png']),
  '9s': dict(out=O+'09/start_v1.png', model=FLASH, refs=[O+'06/end_v1.png',C+'pang-changsu_hires_front.png',C+'pang-changsu_pose_hold_cup.png']),
@@ -36,7 +36,7 @@ def prompt_for(pid):
     doc = open(os.path.join(ROOT, 'docs/ep02/03_이미지_프롬프트_v2.md'), encoding='utf-8').read()
     for sec in doc.split('\n### ')[1:]:
         head = sec.split('\n', 1)[0]
-        if head.startswith(pid + ' '):
+        if re.search(r'(^|[ .])' + re.escape(pid) + r' ', head):
             m = re.search(r'```\n(.*?)\n```', sec, re.S)
             return m.group(1)
     raise SystemExit('no prompt for ' + pid)
