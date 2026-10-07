@@ -1,5 +1,5 @@
 {
- "note": "ep01 v11 HyperFrames 0크레딧 역동성 계획(02c §3). cam: 창 중심 기준 카메라 이동. punch: 줌 펀치(시각, 배율). shake: 흔들림(시각, 초, 진폭px). 값은 컷 상대 시각(초). | v11b: 정지 컷 푸시인 9%+드리프트, 4-02 컷아웃 퍼펫(날개 타이핑), 자막 폭 축소 | v11d: 5-02 숟가락 퍼펫(날개+숟가락 레이어, 어깨 피벗 회전 -46°, 2회)",
+ "note": "ep01 v11 HyperFrames 0크레딧 역동성 계획(02c §3). cam: 창 중심 기준 카메라 이동. punch: 줌 펀치(시각, 배율). shake: 흔들림(시각, 초, 진폭px). 값은 컷 상대 시각(초). | v11b: 정지 컷 푸시인 9%+드리프트, 4-02 컷아웃 퍼펫(날개 타이핑), 자막 폭 축소 | v11d: 5-02 숟가락 퍼펫(날개+숟가락 레이어, 어깨 피벗 회전 -46°, 2회) | v11e: 5-02 숟가락 퍼펫 제거(사용자), 2-02 정지+눈 깜빡임 3회(털뭉치 고정), 9-04 두 머리 끄덕임",
  "default_still": {
   "cam": {
    "from": 1.0,
@@ -41,7 +41,150 @@
    "cam": null
   },
   "2-02": {
-   "cam": null
+   "cam": {
+    "from": 1.0,
+    "to": 1.05
+   },
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep01/2-02/puppet/bg.png",
+    "layers": [
+     {
+      "id": "lidL",
+      "img": "outputs/ep01/2-02/puppet/lidL.png",
+      "box": [
+       232,
+       768,
+       116,
+       64
+      ],
+      "origin": "50% 0%",
+      "init": {
+       "scaleY": 0
+      },
+      "keys": [
+       {
+        "t": 0.5,
+        "scaleY": 1,
+        "dur": 0.07,
+        "ease": "power2.in"
+       },
+       {
+        "t": 0.5700000000000001,
+        "scaleY": 1,
+        "dur": 0.1
+       },
+       {
+        "t": 0.67,
+        "scaleY": 0,
+        "dur": 0.09,
+        "ease": "power2.out"
+       },
+       {
+        "t": 1.3,
+        "scaleY": 1,
+        "dur": 0.07,
+        "ease": "power2.in"
+       },
+       {
+        "t": 1.37,
+        "scaleY": 1,
+        "dur": 0.1
+       },
+       {
+        "t": 1.47,
+        "scaleY": 0,
+        "dur": 0.09,
+        "ease": "power2.out"
+       },
+       {
+        "t": 2.3,
+        "scaleY": 1,
+        "dur": 0.07,
+        "ease": "power2.in"
+       },
+       {
+        "t": 2.3699999999999997,
+        "scaleY": 1,
+        "dur": 0.1
+       },
+       {
+        "t": 2.4699999999999998,
+        "scaleY": 0,
+        "dur": 0.09,
+        "ease": "power2.out"
+       }
+      ]
+     },
+     {
+      "id": "lidR",
+      "img": "outputs/ep01/2-02/puppet/lidR.png",
+      "box": [
+       412,
+       763,
+       116,
+       64
+      ],
+      "origin": "50% 0%",
+      "init": {
+       "scaleY": 0
+      },
+      "keys": [
+       {
+        "t": 0.5,
+        "scaleY": 1,
+        "dur": 0.07,
+        "ease": "power2.in"
+       },
+       {
+        "t": 0.5700000000000001,
+        "scaleY": 1,
+        "dur": 0.1
+       },
+       {
+        "t": 0.67,
+        "scaleY": 0,
+        "dur": 0.09,
+        "ease": "power2.out"
+       },
+       {
+        "t": 1.3,
+        "scaleY": 1,
+        "dur": 0.07,
+        "ease": "power2.in"
+       },
+       {
+        "t": 1.37,
+        "scaleY": 1,
+        "dur": 0.1
+       },
+       {
+        "t": 1.47,
+        "scaleY": 0,
+        "dur": 0.09,
+        "ease": "power2.out"
+       },
+       {
+        "t": 2.3,
+        "scaleY": 1,
+        "dur": 0.07,
+        "ease": "power2.in"
+       },
+       {
+        "t": 2.3699999999999997,
+        "scaleY": 1,
+        "dur": 0.1
+       },
+       {
+        "t": 2.4699999999999998,
+        "scaleY": 0,
+        "dur": 0.09,
+        "ease": "power2.out"
+       }
+      ]
+     }
+    ]
+   }
   },
   "3-01": {
    "cam": {
@@ -154,74 +297,6 @@
    "cam": {
     "from": 1.0,
     "to": 1.1
-   },
-   "puppet": {
-    "src_width": 768,
-    "bg": "outputs/ep01/5-02/puppet/bg.png",
-    "layers": [
-     {
-      "id": "arm",
-      "img": "outputs/ep01/5-02/puppet/arm.png",
-      "box": [
-       158,
-       630,
-       257,
-       140
-      ],
-      "pivot": [
-       222,
-       700
-      ],
-      "keys": [
-       {
-        "t": 0.25,
-        "rotation": -46,
-        "x": 6,
-        "y": -34,
-        "dur": 0.42,
-        "ease": "power2.inOut"
-       },
-       {
-        "t": 0.67,
-        "rotation": -46,
-        "x": 6,
-        "y": -34,
-        "dur": 0.28
-       },
-       {
-        "t": 0.95,
-        "rotation": 0,
-        "x": 0,
-        "y": 0,
-        "dur": 0.4,
-        "ease": "power2.inOut"
-       },
-       {
-        "t": 1.75,
-        "rotation": -46,
-        "x": 6,
-        "y": -34,
-        "dur": 0.42,
-        "ease": "power2.inOut"
-       },
-       {
-        "t": 2.17,
-        "rotation": -46,
-        "x": 6,
-        "y": -34,
-        "dur": 0.28
-       },
-       {
-        "t": 2.45,
-        "rotation": 0,
-        "x": 0,
-        "y": 0,
-        "dur": 0.4,
-        "ease": "power2.inOut"
-       }
-      ]
-     }
-    ]
    }
   },
   "5-03": {
@@ -328,6 +403,128 @@
    "cam": {
     "from": 1.1,
     "to": 1.0
+   },
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep01/9-04/puppet/bg.png",
+    "layers": [
+     {
+      "id": "headC",
+      "img": "outputs/ep01/9-04/puppet/headC.png",
+      "box": [
+       240,
+       547,
+       156,
+       160
+      ],
+      "pivot": [
+       318,
+       691
+      ],
+      "keys": [
+       {
+        "t": 0.4,
+        "y": 5,
+        "rotation": 2,
+        "dur": 0.28,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 0.68,
+        "y": 0,
+        "rotation": 0,
+        "dur": 0.32,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 1.1,
+        "y": 5,
+        "rotation": 2,
+        "dur": 0.28,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 1.3800000000000001,
+        "y": 0,
+        "rotation": 0,
+        "dur": 0.32,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 2.2,
+        "y": 4,
+        "rotation": 1.5,
+        "dur": 0.28,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 2.4800000000000004,
+        "y": 0,
+        "rotation": 0,
+        "dur": 0.32,
+        "ease": "sine.inOut"
+       }
+      ]
+     },
+     {
+      "id": "headM",
+      "img": "outputs/ep01/9-04/puppet/headM.png",
+      "box": [
+       379,
+       562,
+       152,
+       140
+      ],
+      "pivot": [
+       455,
+       686
+      ],
+      "keys": [
+       {
+        "t": 0.7,
+        "y": 5,
+        "rotation": -2,
+        "dur": 0.28,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 0.98,
+        "y": 0,
+        "rotation": 0,
+        "dur": 0.32,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 1.5,
+        "y": 5,
+        "rotation": -2,
+        "dur": 0.28,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 1.78,
+        "y": 0,
+        "rotation": 0,
+        "dur": 0.32,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 2.4,
+        "y": 4,
+        "rotation": -1.5,
+        "dur": 0.28,
+        "ease": "sine.inOut"
+       },
+       {
+        "t": 2.6799999999999997,
+        "y": 0,
+        "rotation": 0,
+        "dur": 0.32,
+        "ease": "sine.inOut"
+       }
+      ]
+     }
+    ]
    }
   },
   "10-01": {

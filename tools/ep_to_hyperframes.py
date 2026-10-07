@@ -54,8 +54,11 @@ def main():
                 origin = ly.get('origin') or f'{(ly["pivot"][0] - ly["box"][0]) * S:.1f}px {(ly["pivot"][1] - ly["box"][1]) * S:.1f}px'
                 el += (f'<img id="{cid}-{ly["id"]}" class="layer" src="media/{src_cut}_{ly["id"]}.png" data-start="{t:.3f}" data-duration="{L:.3f}" '
                        f'style="left:{x:.1f}px; top:{y:.1f}px; width:{w:.1f}px; height:{h:.1f}px; transform-origin:{origin};" />')
+                if ly.get('init'):
+                    tl.append(f'tl.set("#{cid}-{ly["id"]}", {json.dumps(ly["init"])}, 0);')
                 for k in ly.get('keys', []):
-                    tl.append(f'tl.to("#{cid}-{ly["id"]}", {{rotation: {k.get("rotation", 0)}, x: {k.get("x", 0)}, y: {k.get("y", 0)}, duration: {k["dur"]}, ease: "{k.get("ease", "none")}"}}, {t + k["t"]:.3f});')
+                    props = {kk: v for kk, v in k.items() if kk not in ('t', 'dur', 'ease')}
+                    tl.append(f'tl.to("#{cid}-{ly["id"]}", {{...{json.dumps(props)}, duration: {k["dur"]}, ease: "{k.get("ease", "none")}"}}, {t + k["t"]:.3f});')
             import random
             tp = pp.get('taps'); rnd = random.Random(tp['seed']) if tp else None; tt = tp['from'] if tp else 1e9; i = 0
             while tp and tt < tp['to']:
