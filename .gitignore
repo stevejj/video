@@ -7,3 +7,6 @@ outputs/*/hf/media/
 outputs/*/hf/*.mp4
 outputs/*/hf/*.log
 outputs/*/hf/renders/
+outputs/*/hf/.render_*
+outputs/*/hf/work-*/
+outputs/*/hf/gsap.min.js
