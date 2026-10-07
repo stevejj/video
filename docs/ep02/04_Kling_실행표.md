@@ -105,3 +105,17 @@ Pang Chang-su stands facing the camera beside the left end of the sofa. He begin
 **5컷 ❌ 불합격 (2026-10-07)**: 18크레딧, 잔액 67 → **49**. 생성 118초. 카메라 0.93px, 배경 1.62(기술 통과). 그러나 동작이 틀림: "앉기 시작 → 반쯤 → 다시 섬"을 **소파 위로 뛰어올라 좌면에 올라섰다가 뛰어내리는** 동작으로 해석(0.5~2.5s 좌면 위, 날개 벌림, 3.0s 착지). "begins to sit down"이 "소파에 오르기"로 읽힘(ep01 0b-1: 동작 동사는 크게 해석됨). 사용 가능 구간 0~0.8s(정지)뿐. 파일 `outputs/ep02/05/clip_v1.mp4` 보관.
 **재시도 안(승인 대기, 18)**: 동사를 바꾼다 — `He stays standing on the floor the whole time. Only his knees bend a little, lowering his body about ten centimeters as if he is about to sit, then straighten again; he never climbs onto the sofa, never jumps, and never sits.` "sit down"이라는 표현 자체를 지움.
 **대안(0크레딧)**: 5s 정지 프레임 + HyperFrames 푸시인 2.0s. "앉으려다" 개그는 자막·음성 타이밍으로만 표현.
+→ **사용자 결정 "대안" (2026-10-07)**: 5컷은 정지 프레임(`05/start_v1.png`) + HyperFrames 푸시인 2.0s. 클립 재생성 없음. 02c M11 예외(정지 컷)로 기록, 정지 초 검증에서 1컷 허용.
+
+### 7 — 시작+끝, 3초 (편집 2.0s)
+**입력**: `outputs/ep02/07/start_v1.png`(창수 소파 앞 중앙, 좌향 측면 걷기) + `outputs/ep02/07/end_v1.png`(같은 자리에서 돌아서 소파 쪽을 향함, 등이 카메라 쪽)
+**인자**: v3_0, duration=3, 720p, multi_shots false, audio false
+**프롬프트**
+```
+Pang Chang-su is already walking from the very first frame, at a steady unhurried waddling pace to his left along the floor in front of the sofa, seen from the side, keeping his body and head facing left. Each step lands on the wood floor and rolls forward; his feet do not slide. After two steps he stops and turns around on the spot, pivoting his whole body in place without moving sideways, until he faces the sofa with his back toward the camera, and stands still there with his wings hanging at his sides, exactly matching the end image. He holds nothing. Pang Mi-sun lies completely still on the right half of the sofa under the beige duvet with her head on the white pillow; the duvet, the pillow, the black remote on the seat, the cushions, the glass on the table and the table stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+```
+**자막·음성**: 미순 요청 3(보이스오버, 자막 팝 1.2배), 벨 #3, 창수 "응."(턴 끝).
+**예상 시나리오**: 0~1.2s 왼쪽으로 두 걸음, 1.2~2.5s 제자리 턴, 2.5~3s 정지.
+**위험·감시 항목**: 중간 | 턴하면서 옆으로 밀림(R3 제자리), 카메라를 보고 멈춤, 걸음이 미끄러짐.
+**실패 시 편집 대안**: 앞 1.2s(걷기)만 쓰고 7e 정지 프레임으로 컷.
+**크레딧**: 18. 49 → 31.
