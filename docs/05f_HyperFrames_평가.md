@@ -37,4 +37,4 @@ HTML+CSS+GSAP로 영상을 "코딩"하고 헤드리스 Chrome으로 프레임을
 
 HyperFrames의 "생성 영상" 기능 확인: `media-use` 스킬의 image-to-video는 **HeyGen 사진 아바타(사람 얼굴 립싱크, HeyGen 크레딧)**이고, 애니메이션 런타임은 GSAP·CSS·Lottie·Three.js·anime.js 등 **이미 그려진 요소를 움직이는 것**이다. 캐릭터 그림 자체를 새로 그려 팔을 움직이는 기능은 없다.
 
-결과: `outputs/ep01/roughcut/ep01_roughcut_v11_hf.mp4`(v11: 카메라·펀치·자막), `…_v11b_hf.mp4`(퍼펫·드리프트 추가). 정지 초 지표(verify_motion)는 픽셀 변화량 기준이라 느린 푸시인을 "정지"로 세는 한계가 있음 → 지표보다 눈으로 판단.
+결과: `outputs/ep01/roughcut/ep01_roughcut_v11_hf.mp4`(최종 v11c: 카메라·펀치·자막 + 퍼펫·드리프트, 4-02 창 44%·자막 상단). 정지 초 지표(verify_motion)는 픽셀 변화량 기준이라 느린 푸시인을 "정지"로 세는 한계가 있음 → 지표보다 눈으로 판단.

@@ -131,7 +131,8 @@ def main():
         sid = f'sub{i:02d}'; dur = sb['end'] - sb['start']
         shout = '!!' in sb['text']
         cx = W * sb.get('x', 0.5)
-        sub_html.append(f'<div class="sub" id="{sid}" data-start="{sb["start"]:.3f}" data-duration="{dur:.3f}" data-cx="{cx:.0f}" style="color:{st["colors"][sb["speaker"]]};">{html.escape(sb["text"])}</div>')
+        posstyle = f' top:{top + 40}px; bottom:auto;' if sb.get('pos') == 'top' else ''
+        sub_html.append(f'<div class="sub" id="{sid}" data-start="{sb["start"]:.3f}" data-duration="{dur:.3f}" data-cx="{cx:.0f}" style="color:{st["colors"][sb["speaker"]]};{posstyle}">{html.escape(sb["text"])}</div>')
         if shout:
             s = SP['shout']
             tl.append(f'tl.fromTo("#{sid}", {{scale: {s["from"]}, rotation: {s["rot"]}, opacity: 0}}, {{scale: {s["over"]}, rotation: 0, opacity: 1, duration: {s["dur"] * 0.6:.3f}, ease: "power3.out"}}, {sb["start"]:.3f});')
