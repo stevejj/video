@@ -101,3 +101,7 @@ Pang Chang-su stands facing the camera beside the left end of the sofa. He begin
 **위험·감시 항목**: 중간 | 완전히 앉아 버림(11컷과 겹침), 몸이 옆으로 이동, 미순이 움직임.
 **실패 시 편집 대안**: 앞 1.5s(굽히기)만 쓰고 컷 → 6컷 걷기(시작 프레임이 다르므로 점프 컷 허용).
 **크레딧**: 18. 67 → 49.
+
+**5컷 ❌ 불합격 (2026-10-07)**: 18크레딧, 잔액 67 → **49**. 생성 118초. 카메라 0.93px, 배경 1.62(기술 통과). 그러나 동작이 틀림: "앉기 시작 → 반쯤 → 다시 섬"을 **소파 위로 뛰어올라 좌면에 올라섰다가 뛰어내리는** 동작으로 해석(0.5~2.5s 좌면 위, 날개 벌림, 3.0s 착지). "begins to sit down"이 "소파에 오르기"로 읽힘(ep01 0b-1: 동작 동사는 크게 해석됨). 사용 가능 구간 0~0.8s(정지)뿐. 파일 `outputs/ep02/05/clip_v1.mp4` 보관.
+**재시도 안(승인 대기, 18)**: 동사를 바꾼다 — `He stays standing on the floor the whole time. Only his knees bend a little, lowering his body about ten centimeters as if he is about to sit, then straighten again; he never climbs onto the sofa, never jumps, and never sits.` "sit down"이라는 표현 자체를 지움.
+**대안(0크레딧)**: 5s 정지 프레임 + HyperFrames 푸시인 2.0s. "앉으려다" 개그는 자막·음성 타이밍으로만 표현.
