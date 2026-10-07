@@ -3,3 +3,7 @@
 __pycache__/
 outputs/ep01/animatic/frames/
 external/
+outputs/*/hf/media/
+outputs/*/hf/*.mp4
+outputs/*/hf/*.log
+outputs/*/hf/renders/
