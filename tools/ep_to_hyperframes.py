@@ -43,6 +43,25 @@ def main():
         cid = 'c' + c['cut'].replace('-', '_')
         fx = dict(FX['default_still'] if c['kind'] == 'still' else FX['default_clip'])
         fx.update(FX['cuts'].get(c['cut'], {}))
+        ui = fx.get('ui')
+        if ui and c['kind'] == 'ui':
+            if ui['kind'] == 'counter':
+                el = (f'<div id="{cid}-v" class="uibox" data-start="{t:.3f}" data-duration="{L:.3f}">'
+                      f'<div class="uilabel">{ui["label"]}</div><div class="uinum" id="{cid}-num">{ui["from"]}회차</div>'
+                      f'<div class="uiclock">{ui["clock"]}</div></div>')
+                tl.append(f'tl.fromTo("#{cid}-v", {{scale: 0.7, opacity: 0}}, {{scale: 1, opacity: 1, duration: 0.2, ease: "back.out(2)"}}, {t:.3f});')
+                tl.append(f'tl.to("#{cid}-num", {{scale: 1.35, duration: 0.08, yoyo: true, repeat: 1, onStart: () => {{ document.getElementById("{cid}-num").textContent = "{ui["to"]}회차"; }}}}, {t + 0.6:.3f});')
+            else:
+                S = W / ui['src_width']
+                shutil.copy(os.path.join(ROOT, ui['base']), os.path.join(out, f'media/{src_cut}_base.png'))
+                cx, cy, r = ui['center'][0] * S, ui['center'][1] * S, ui['radius'] * S
+                el = (f'<img id="{cid}-v" src="media/{src_cut}_base.png" data-start="{t:.3f}" data-duration="{L:.3f}" />'
+                      f'<div id="{cid}-ring" class="ring" data-start="{t:.3f}" data-duration="{L:.3f}" style="left:{cx - r:.0f}px; top:{cy - r:.0f}px; width:{2 * r:.0f}px; height:{2 * r:.0f}px;"></div>'
+                      f'<div id="{cid}-arrow" class="arrow" data-start="{t:.3f}" data-duration="{L:.3f}" style="left:{cx + r + 20:.0f}px; top:{cy - 50:.0f}px;">◀</div>')
+                tl.append(f'tl.fromTo("#{cid}-ring", {{scale: 2, opacity: 0}}, {{scale: 1, opacity: 1, duration: 0.25, ease: "power3.out"}}, {t + 0.1:.3f});')
+                tl.append(f'tl.fromTo("#{cid}-arrow", {{x: 30, opacity: 0}}, {{x: 0, opacity: 1, duration: 0.2, ease: "back.out(3)"}}, {t + 0.3:.3f});')
+                tl.append(f'tl.to("#{cid}-arrow", {{x: 12, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut"}}, {t + 0.5:.3f});')
+                fx = dict(fx); fx['cam'] = {'from': 1.0, 'to': 1.25}
         pp = fx.get('puppet')
         if pp:
             S = W / pp['src_width']
@@ -66,6 +85,8 @@ def main():
                 tl.append(f'tl.to("#{cid}-{ly["id"]}", {{rotation: {ly["rot"]}, y: {ly["lift"]}, duration: {d}, ease: "power2.out"}}, {t + tt:.3f});')
                 tl.append(f'tl.to("#{cid}-{ly["id"]}", {{rotation: 0, y: 0, duration: {d + 0.03:.2f}, ease: "power2.in"}}, {t + tt + d:.3f});')
                 tt += rnd.choice(tp['gap']); i += 1
+        elif ui and c['kind'] == 'ui':
+            pass
         elif c['kind'] == 'clip':
             src = os.path.join(ROOT, f'outputs/{ep}/{src_cut}/clip_v1.mp4'); dst = f'media/{src_cut}.mp4'
             shutil.copy(src, os.path.join(out, dst))
@@ -175,6 +196,12 @@ def main():
   .card {{ position: absolute; left: 120px; top: {top + 36}px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }}
   .spark {{ position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }}
   .blackfade {{ position: absolute; inset: 0; background: #000; }}
+  .uibox {{ position: absolute; left: 0; top: {top + 200}px; width: {W}px; text-align: center; color: #fff; transform-origin: 50% 50%; }}
+  .uilabel {{ font-size: 60px; font-weight: 700; opacity: 0.85; }}
+  .uinum {{ font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }}
+  .uiclock {{ font-size: 54px; font-weight: 700; margin-top: 10px; }}
+  .ring {{ position: absolute; border: 10px dashed #FFD84A; border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }}
+  .arrow {{ position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }}
 </style>
 </head>
 <body>

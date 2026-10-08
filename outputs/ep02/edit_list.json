@@ -1,0 +1,146 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.02,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01",
+   "kind": "clip",
+   "source_cut": "01",
+   "in": 0.5,
+   "len": 1.5,
+   "time_card": "21:00"
+  },
+  {
+   "cut": "02",
+   "kind": "clip",
+   "source_cut": "02",
+   "in": 0.3,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "03",
+   "kind": "clip",
+   "source_cut": "03",
+   "in": 0.8,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "04",
+   "kind": "clip",
+   "source_cut": "04",
+   "in": 0.5,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "05",
+   "kind": "still",
+   "source_cut": "05",
+   "in": 0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "06",
+   "kind": "clip",
+   "source_cut": "06",
+   "in": 0.5,
+   "len": 2.5,
+   "time_card": null
+  },
+  {
+   "cut": "07",
+   "kind": "clip",
+   "source_cut": "07",
+   "in": 0.3,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "08",
+   "kind": "ui",
+   "source_cut": "08",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "09",
+   "kind": "clip",
+   "source_cut": "09",
+   "in": 0.5,
+   "len": 2.5,
+   "time_card": null
+  },
+  {
+   "cut": "10",
+   "kind": "clip",
+   "source_cut": "03",
+   "in": 0.3,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "11",
+   "kind": "clip",
+   "source_cut": "11",
+   "in": 0.5,
+   "len": 2.5,
+   "time_card": null
+  },
+  {
+   "cut": "12",
+   "kind": "clip",
+   "source_cut": "12",
+   "in": 0.3,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "13",
+   "kind": "ui",
+   "source_cut": "13",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "14",
+   "kind": "clip",
+   "source_cut": "14",
+   "in": 0.5,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "15",
+   "kind": "clip",
+   "source_cut": "15",
+   "in": 0.5,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "16",
+   "kind": "clip",
+   "source_cut": "16",
+   "in": 0.5,
+   "len": 2.0,
+   "time_card": "21:30"
+  }
+ ],
+ "history": [
+  "2026-10-08 v0: Kling 12클립 + 5컷 정지 + UI 2 + 10컷 재사용, 무음 가편집"
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "title": {
+  "lines": [
+   {
+    "text": "좀줘 좀줘",
+    "color": "#FFFFFF"
+   },
+   {
+    "text": "좀줘!!!",
+    "color": "#FFD84A"
+   }
+  ],
+  "size": 104,
+  "weight": 800,
+  "center_y": 400,
+  "line_gap": 18
+ },
+ "channel": {
+  "text": "지독한 미순",
+  "color": "#FFFFFF",
+  "size": 52,
+  "weight": 700,
+  "center_y": 1420,
+  "opacity": 0.9
+ },
+ "subtitle_style": {
+  "size": 74,
+  "weight": 800,
+  "stroke": 9,
+  "stroke_color": "#111111",
+  "bottom_margin": 46,
+  "max_width": 1000,
+  "colors": {
+   "changsu": "#8FB0E8",
+   "misun": "#FF9CC2",
+   "sfx": "#FFFFFF"
+  }
+ },
+ "note": "v0: 제목은 임시(사용자 확정 전). 자막은 대사 확정 후 채움.",
+ "subtitles": []
+}
