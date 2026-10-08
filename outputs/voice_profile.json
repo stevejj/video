@@ -372,7 +372,15 @@
      "max_len": 1.8,
      "offset": 0.1,
      "inner": false,
-     "speedup_override": 1.25
+     "speedup_override": 1.25,
+     "seed": 7,
+     "len_raw": 2.35,
+     "tempo": 1.044,
+     "speedup": 1.25,
+     "len": 1.8,
+     "file": "outputs/ep02/voice/lines/02.mp3",
+     "len_file": 1.8,
+     "over": false
     },
     {
      "cut": "03",
@@ -391,7 +399,15 @@
       "09b",
       "14"
      ],
-     "note": "한 파일 5회 재사용(기획 §3)"
+     "note": "한 파일 5회 재사용(기획 §3)",
+     "seed": 42,
+     "len_raw": 0.52,
+     "tempo": 1.0,
+     "speedup": 1.25,
+     "len": 0.42,
+     "file": "outputs/ep02/voice/lines/03.mp3",
+     "len_file": 0.42,
+     "over": false
     },
     {
      "cut": "05",
@@ -403,7 +419,15 @@
      "max_len": 1.8,
      "offset": 0.1,
      "inner": false,
-     "speedup_override": 1.25
+     "speedup_override": 1.25,
+     "seed": 1234,
+     "len_raw": 2.35,
+     "tempo": 1.044,
+     "speedup": 1.25,
+     "len": 1.8,
+     "file": "outputs/ep02/voice/lines/05.mp3",
+     "len_file": 1.8,
+     "over": false
     },
     {
      "cut": "07",
@@ -415,7 +439,15 @@
      "max_len": 1.4,
      "offset": 0.1,
      "inner": false,
-     "speedup_override": 1.3
+     "speedup_override": 1.3,
+     "seed": 42,
+     "len_raw": 2.17,
+     "tempo": 1.1,
+     "speedup": 1.3,
+     "len": 1.52,
+     "file": "outputs/ep02/voice/lines/07.mp3",
+     "len_file": 1.52,
+     "over": true
     },
     {
      "cut": "09",
@@ -423,11 +455,19 @@
      "subtitle": "자기야 숨쉬는 김에 충전기좀줘",
      "tts": "자기야, 숨 쉬는 김에 충전기 좀 줘.",
      "expr": "02",
-     "at": 13.6,
+     "at": 13.9,
      "max_len": 1.7,
      "offset": 0.1,
      "inner": false,
-     "speedup_override": 1.4
+     "speedup_override": 1.4,
+     "seed": 7,
+     "len_raw": 2.51,
+     "tempo": 1.1,
+     "speedup": 1.4,
+     "len": 1.63,
+     "file": "outputs/ep02/voice/lines/09.mp3",
+     "len_file": 1.65,
+     "over": false
     },
     {
      "cut": "10",
@@ -435,11 +475,19 @@
      "subtitle": "흐음..",
      "tts": "[sighs] 흐음...",
      "expr": "12",
-     "at": 16.3,
+     "at": 16.6,
      "max_len": 1.5,
      "offset": 0.3,
      "inner": true,
-     "tag_override": true
+     "tag_override": true,
+     "seed": 42,
+     "len_raw": 0.6,
+     "tempo": 1.0,
+     "speedup": 1.1,
+     "len": 0.55,
+     "file": "outputs/ep02/voice/lines/10.mp3",
+     "len_file": 4.05,
+     "over": false
     },
     {
      "cut": "12",
@@ -447,12 +495,20 @@
      "subtitle": "자기야 앉은 김에 리모컨좀줘",
      "tts": "자기야, 앉은 김에... 리모컨 좀 줘.",
      "expr": "02",
-     "at": 20.6,
+     "at": 20.9,
      "max_len": 1.8,
      "offset": 0.1,
      "inner": false,
      "speedup_override": 1.15,
-     "note": "기획 0.9는 음높이가 내려가 캐릭터가 바뀜 → 1.15(살짝 느리게)로 대체, 길이 초과 시 12컷 2.0→2.4s"
+     "note": "기획 0.9는 음높이가 내려가 캐릭터가 바뀜 → 1.15(살짝 느리게)로 대체, 길이 초과 시 12컷 2.0→2.4s",
+     "seed": 1234,
+     "len_raw": 2.69,
+     "tempo": 1.1,
+     "speedup": 1.15,
+     "len": 2.13,
+     "file": "outputs/ep02/voice/lines/12.mp3",
+     "len_file": 2.12,
+     "over": true
     },
     {
      "cut": "15",
@@ -460,12 +516,20 @@
      "subtitle": "자기야아아아아아아아",
      "tts": "[cheerful] 자기야아아아아아아!",
      "expr": "02",
-     "at": 25.6,
+     "at": 26.5,
      "max_len": 1.5,
      "offset": 0.1,
      "inner": false,
      "speedup_override": 1.25,
-     "tag_override": true
+     "tag_override": true,
+     "seed": 42,
+     "len_raw": 1.44,
+     "tempo": 1.0,
+     "speedup": 1.25,
+     "len": 1.15,
+     "file": "outputs/ep02/voice/lines/15.mp3",
+     "len_file": 1.15,
+     "over": false
     },
     {
      "cut": "04r",
@@ -473,13 +537,21 @@
      "subtitle": "(헤헤)",
      "tts": "[giggles] 헤헤.",
      "expr": "02",
-     "at": 6.3,
+     "at": 6.1,
      "max_len": 0.6,
      "offset": 0.0,
      "inner": false,
      "speedup_override": 1.25,
      "tag_override": true,
-     "reaction": true
+     "reaction": true,
+     "seed": 42,
+     "len_raw": 1.2,
+     "tempo": 1.1,
+     "speedup": 1.25,
+     "len": 0.87,
+     "file": "outputs/ep02/voice/lines/04r.mp3",
+     "len_file": 0.89,
+     "over": true
     },
     {
      "cut": "11r",
@@ -487,13 +559,21 @@
      "subtitle": "(숨)",
      "tts": "[exhales] 후.",
      "expr": "01",
-     "at": 19.8,
+     "at": 20.1,
      "max_len": 0.6,
      "offset": 0.0,
      "inner": false,
      "speedup_override": 1.1,
      "tag_override": true,
-     "reaction": true
+     "reaction": true,
+     "seed": 7,
+     "len_raw": 0.97,
+     "tempo": 1.1,
+     "speedup": 1.1,
+     "len": 0.8,
+     "file": "outputs/ep02/voice/lines/11r.mp3",
+     "len_file": 0.81,
+     "over": true
     }
    ],
    "bgm": {
@@ -501,15 +581,102 @@
     "target_lufs": -28,
     "duck_db": 4,
     "fade_in": 1.0,
-    "end_at": 27.9,
+    "end_at": 28.8,
     "fade_out": 1.0,
     "tempo_from": 15.0,
     "tempo": 1.08,
-    "dip_at": 24.0,
+    "dip_at": 23.5,
     "dip_db": -6,
-    "note": "F 재사용(기획 §5). 15s부터 템포 1.08, 24.0s(13컷 띠용) 한 박자 -6dB"
+    "note": "F 재사용(기획 §5). 15s부터 템포 1.08, 24.0s(13컷 띠용) 한 박자 -6dB",
+    "dip_len": 1.0
    },
-   "status": "대사 확정 2026-10-08, 생성 대기(사용자 진행 승인 필요)"
+   "status": "음성 10줄 생성 완료 2026-10-08 (07·12 컷 연장)",
+   "placements": [
+    {
+     "key": "02",
+     "file": "outputs/ep02/voice/lines/02.mp3",
+     "at": 1.6,
+     "len": 1.8
+    },
+    {
+     "key": "03",
+     "file": "outputs/ep02/voice/lines/03.mp3",
+     "at": 3.6,
+     "len": 0.42
+    },
+    {
+     "key": "05",
+     "file": "outputs/ep02/voice/lines/05.mp3",
+     "at": 7.1,
+     "len": 1.8
+    },
+    {
+     "key": "06",
+     "file": "outputs/ep02/voice/lines/03.mp3",
+     "at": 9.1,
+     "len": 0.42
+    },
+    {
+     "key": "07",
+     "file": "outputs/ep02/voice/lines/07.mp3",
+     "at": 11.6,
+     "len": 1.52
+    },
+    {
+     "key": "07b",
+     "file": "outputs/ep02/voice/lines/03.mp3",
+     "at": 13.25,
+     "len": 0.42
+    },
+    {
+     "key": "09",
+     "file": "outputs/ep02/voice/lines/09.mp3",
+     "at": 13.9,
+     "len": 1.63
+    },
+    {
+     "key": "09b",
+     "file": "outputs/ep02/voice/lines/03.mp3",
+     "at": 15.75,
+     "len": 0.42
+    },
+    {
+     "key": "10",
+     "file": "outputs/ep02/voice/lines/10.mp3",
+     "at": 16.6,
+     "len": 0.55
+    },
+    {
+     "key": "12",
+     "file": "outputs/ep02/voice/lines/12.mp3",
+     "at": 20.9,
+     "len": 2.13
+    },
+    {
+     "key": "14",
+     "file": "outputs/ep02/voice/lines/03.mp3",
+     "at": 25.2,
+     "len": 0.42
+    },
+    {
+     "key": "15",
+     "file": "outputs/ep02/voice/lines/15.mp3",
+     "at": 26.5,
+     "len": 1.15
+    },
+    {
+     "key": "04r",
+     "file": "outputs/ep02/voice/lines/04r.mp3",
+     "at": 6.1,
+     "len": 0.87
+    },
+    {
+     "key": "11r",
+     "file": "outputs/ep02/voice/lines/11r.mp3",
+     "at": 20.1,
+     "len": 0.8
+    }
+   ]
   }
  },
  "voices_legacy": {

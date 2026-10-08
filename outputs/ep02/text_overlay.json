@@ -36,7 +36,7 @@
    "sfx": "#FFFFFF"
   }
  },
- "note": "v0f: 제목 확정 B안 '오늘도 / 좀줘 좀줘 좀줘' (2026-10-08 사용자). 대사 확정.",
+ "note": "v1: 제목 B안 확정, 자막 시각 = 음성 배치(voice_profile placements)",
  "subtitles": [
   {
    "cut": "02",
@@ -51,7 +51,7 @@
    "text": "응.",
    "speaker": "changsu",
    "start": 3.6,
-   "end": 4.95,
+   "end": 4.6,
    "x": 0.5
   },
   {
@@ -67,7 +67,7 @@
    "text": "응.",
    "speaker": "changsu",
    "start": 9.1,
-   "end": 10.4,
+   "end": 10.1,
    "x": 0.5
   },
   {
@@ -75,71 +75,71 @@
    "text": "자기야 가는 김에 커피좀줘",
    "speaker": "misun",
    "start": 11.6,
-   "end": 13.0,
+   "end": 13.2,
    "x": 0.5
   },
   {
    "cut": "07",
    "text": "응.",
    "speaker": "changsu",
-   "start": 13.05,
-   "end": 13.45,
+   "start": 13.25,
+   "end": 13.75,
    "x": 0.5
   },
   {
    "cut": "09",
    "text": "자기야 숨쉬는 김에 충전기좀줘",
    "speaker": "misun",
-   "start": 13.6,
-   "end": 15.4,
+   "start": 13.9,
+   "end": 15.7,
    "x": 0.5
   },
   {
    "cut": "09",
    "text": "응.",
    "speaker": "changsu",
-   "start": 15.45,
-   "end": 15.95,
+   "start": 15.75,
+   "end": 16.25,
    "x": 0.5
   },
   {
    "cut": "10",
    "text": "흐음..",
    "speaker": "changsu",
-   "start": 16.3,
-   "end": 17.95,
+   "start": 16.6,
+   "end": 18.25,
    "x": 0.5
   },
   {
    "cut": "12",
    "text": "자기야 앉은 김에 리모컨좀줘",
    "speaker": "misun",
-   "start": 20.6,
-   "end": 22.45,
+   "start": 20.9,
+   "end": 23.35,
    "x": 0.5
   },
   {
    "cut": "14",
    "text": "응.",
    "speaker": "changsu",
-   "start": 24.3,
-   "end": 25.45,
+   "start": 25.2,
+   "end": 26.2,
    "x": 0.5
   },
   {
    "cut": "15",
    "text": "자기야아아아아아아아",
    "speaker": "misun",
-   "start": 25.6,
-   "end": 27.1,
+   "start": 26.5,
+   "end": 28.05,
    "x": 0.5
   },
   {
    "cut": "15",
    "text": "………….",
    "speaker": "changsu",
-   "start": 27.15,
-   "end": 27.85,
+   "start": 28.1,
+   "end": 28.75,
    "x": 0.5
   }
  ]

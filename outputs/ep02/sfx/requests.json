@@ -1,0 +1,40 @@
+{
+ "note": "ep02 효과음 생성 요청 (05e §8 방식). 발소리·TV 환경음은 ep01 파일 재사용.",
+ "items": [
+  {
+   "name": "bell_ding",
+   "prompt": "Single bright service bell ding, small desk bell, short clean ting with quick decay, cartoon comedy, no music",
+   "duration": 1.0
+  },
+  {
+   "name": "cup_set",
+   "prompt": "Glass of water set down gently on a wooden coffee table, single soft clink and thud, close-up, quiet living room",
+   "duration": 1.0
+  },
+  {
+   "name": "pillow_plop",
+   "prompt": "Soft cushion pillow placed onto a sofa, muffled fluffy plop, fabric rustle, close-up",
+   "duration": 1.0
+  },
+  {
+   "name": "mug_set",
+   "prompt": "Ceramic mug set down on wooden table, single soft ceramic clunk, close-up, quiet room",
+   "duration": 1.0
+  },
+  {
+   "name": "charger_drop",
+   "prompt": "Small plastic phone charger with cable dropped onto a wooden floor, light plastic clatter, close-up",
+   "duration": 1.0
+  },
+  {
+   "name": "boing",
+   "prompt": "Cartoon spring boing sound effect, bouncy comedic twang, single hit, short",
+   "duration": 1.0
+  },
+  {
+   "name": "sofa_sit",
+   "prompt": "Person sitting down onto a fabric sofa, soft cushion compress whoosh, short, close-up",
+   "duration": 1.0
+  }
+ ]
+}

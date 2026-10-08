@@ -1,0 +1,51 @@
+[
+ {
+  "name": "bell_ding",
+  "prompt": "Single bright service bell ding, small desk bell, short clean ting with quick decay, cartoon comedy, no music",
+  "duration": 1.0,
+  "file": "outputs/ep02/sfx/el/bell_ding.mp3",
+  "result": "ok 17180B"
+ },
+ {
+  "name": "cup_set",
+  "prompt": "Glass of water set down gently on a wooden coffee table, single soft clink and thud, close-up, quiet living room",
+  "duration": 1.0,
+  "file": "outputs/ep02/sfx/el/cup_set.mp3",
+  "result": "ok 17180B"
+ },
+ {
+  "name": "pillow_plop",
+  "prompt": "Soft cushion pillow placed onto a sofa, muffled fluffy plop, fabric rustle, close-up",
+  "duration": 1.0,
+  "file": "outputs/ep02/sfx/el/pillow_plop.mp3",
+  "result": "ok 17180B"
+ },
+ {
+  "name": "mug_set",
+  "prompt": "Ceramic mug set down on wooden table, single soft ceramic clunk, close-up, quiet room",
+  "duration": 1.0,
+  "file": "outputs/ep02/sfx/el/mug_set.mp3",
+  "result": "ok 17180B"
+ },
+ {
+  "name": "charger_drop",
+  "prompt": "Small plastic phone charger with cable dropped onto a wooden floor, light plastic clatter, close-up",
+  "duration": 1.0,
+  "file": "outputs/ep02/sfx/el/charger_drop.mp3",
+  "result": "ok 17180B"
+ },
+ {
+  "name": "boing",
+  "prompt": "Cartoon spring boing sound effect, bouncy comedic twang, single hit, short",
+  "duration": 1.0,
+  "file": "outputs/ep02/sfx/el/boing.mp3",
+  "result": "ok 17180B"
+ },
+ {
+  "name": "sofa_sit",
+  "prompt": "Person sitting down onto a fabric sofa, soft cushion compress whoosh, short, close-up",
+  "duration": 1.0,
+  "file": "outputs/ep02/sfx/el/sofa_sit.mp3",
+  "result": "ok 17180B"
+ }
+]

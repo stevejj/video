@@ -1,0 +1,182 @@
+{
+ "note": "ep02 v1 효과음 배치 (v1 타임라인 28.8s). gain = target − measured. 벨 4회 가속(1.5·7.0·11.5·13.85), 리모컨 요청엔 벨 없음, 13컷 띠용.",
+ "items": [
+  {
+   "name": "tv_amb",
+   "file": "outputs/ep01/sfx/el/tv_amb.mp3",
+   "at": 0.0,
+   "len": 28.8,
+   "gain": 14.3,
+   "fade_in": 0.5,
+   "fade_out": 0.8,
+   "measured_lufs": -52.26,
+   "target_lufs": -38,
+   "loop": true
+  },
+  {
+   "name": "steps_01",
+   "file": "outputs/ep01/sfx/el/footsteps.mp3",
+   "at": 0.0,
+   "len": 1.5,
+   "gain": 13.0,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -39.03,
+   "target_lufs": -26
+  },
+  {
+   "name": "steps_04",
+   "file": "outputs/ep01/sfx/el/footsteps.mp3",
+   "at": 5.0,
+   "len": 1.4,
+   "gain": 13.0,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -39.03,
+   "target_lufs": -26
+  },
+  {
+   "name": "steps_06",
+   "file": "outputs/ep01/sfx/el/footsteps.mp3",
+   "at": 9.0,
+   "len": 1.2,
+   "gain": 13.0,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -39.03,
+   "target_lufs": -26
+  },
+  {
+   "name": "steps_07",
+   "file": "outputs/ep01/sfx/el/footsteps.mp3",
+   "at": 11.5,
+   "len": 1.0,
+   "gain": 13.0,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -39.03,
+   "target_lufs": -26
+  },
+  {
+   "name": "steps_09",
+   "file": "outputs/ep01/sfx/el/footsteps.mp3",
+   "at": 13.8,
+   "len": 1.6,
+   "gain": 13.0,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -39.03,
+   "target_lufs": -26
+  },
+  {
+   "name": "bell_1",
+   "file": "outputs/ep02/sfx/el/bell_ding.mp3",
+   "at": 1.45,
+   "len": 1.0,
+   "gain": 20.1,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -40.11,
+   "target_lufs": -20
+  },
+  {
+   "name": "bell_2",
+   "file": "outputs/ep02/sfx/el/bell_ding.mp3",
+   "at": 6.95,
+   "len": 1.0,
+   "gain": 20.1,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -40.11,
+   "target_lufs": -20
+  },
+  {
+   "name": "bell_3",
+   "file": "outputs/ep02/sfx/el/bell_ding.mp3",
+   "at": 11.45,
+   "len": 1.0,
+   "gain": 21.1,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -40.11,
+   "target_lufs": -19
+  },
+  {
+   "name": "bell_4",
+   "file": "outputs/ep02/sfx/el/bell_ding.mp3",
+   "at": 13.8,
+   "len": 1.0,
+   "gain": 22.1,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -40.11,
+   "target_lufs": -18
+  },
+  {
+   "name": "cup_set",
+   "file": "outputs/ep02/sfx/el/cup_set.mp3",
+   "at": 6.0,
+   "len": 1.0,
+   "gain": 6.1,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -30.05,
+   "target_lufs": -24
+  },
+  {
+   "name": "pillow_plop",
+   "file": "outputs/ep02/sfx/el/pillow_plop.mp3",
+   "at": 10.5,
+   "len": 1.0,
+   "gain": -7.7,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -22.26,
+   "target_lufs": -30
+  },
+  {
+   "name": "mug_set",
+   "file": "outputs/ep02/sfx/el/mug_set.mp3",
+   "at": 15.3,
+   "len": 1.0,
+   "gain": 8.8,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -32.75,
+   "target_lufs": -24
+  },
+  {
+   "name": "charger_drop",
+   "file": "outputs/ep02/sfx/el/charger_drop.mp3",
+   "at": 19.2,
+   "len": 1.0,
+   "gain": 8.0,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -32.01,
+   "target_lufs": -24
+  },
+  {
+   "name": "sofa_sit",
+   "file": "outputs/ep02/sfx/el/sofa_sit.mp3",
+   "at": 20.3,
+   "len": 1.0,
+   "gain": -7.5,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -22.51,
+   "target_lufs": -30
+  },
+  {
+   "name": "boing",
+   "file": "outputs/ep02/sfx/el/boing.mp3",
+   "at": 23.5,
+   "len": 1.0,
+   "gain": 1.8,
+   "fade_in": 0,
+   "fade_out": 0.1,
+   "measured_lufs": -21.84,
+   "target_lufs": -20
+  }
+ ]
+}
