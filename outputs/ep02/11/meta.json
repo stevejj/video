@@ -1,0 +1,51 @@
+{
+ "cut": "11",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su stands facing the camera beside the left end of the sofa, holding a small white charger with its coiled cable in one wing. He bends forward a little and sets the charger down on the wood floor beside the left armrest, then straightens up with both wings empty. Then he turns and sits down slowly onto the empty left seat cushion of the sofa, his back settling against the backrest, his short legs stretched out on the cushion in front of him with his small grey feet resting on the seat, facing the camera, and stays sitting there still, exactly matching the end image. He sits only on the left seat cushion and does not touch Mi-sun. Pang Mi-sun lies completely still on the right half of the sofa under the beige duvet with her head on the white pillow; the duvet, the pillow, the black remote on the seat, the cushions, the glass and the mug on the table and the table stay exactly where they are. Chang-su does not look at the viewer while moving. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Exactly one charger, one glass and one mug exist. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep02/11/start_v1.png"
+  },
+  "end": {
+   "file": "outputs/ep02/11/end_v1.png"
+  }
+ },
+ "credits_before": 337.0,
+ "credits_after": 313.0,
+ "credits_consumed_reported": 24.0,
+ "approved_by_user": "충전했어 진행해 (2026-10-08)",
+ "version": 1,
+ "ts": "2026-10-08T01:42:07",
+ "generation_id": "AS8SFc13GFDTslXtPZ674_lkxTdoRBDJfcH1Xsmx7DMQ5ewS0IlA95iCfkWx467UX8XmivEX",
+ "status": "COMPLETED",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.22,
+   "start_vs_ref_bg_meandiff": 2.02,
+   "end_vs_ref_meandiff": 3.28,
+   "end_vs_ref_bg_meandiff": 2.98,
+   "interframe_mean": 0.45,
+   "interframe_max": 1.43,
+   "interframe_max_at_s": 1.92,
+   "first_vs_last_meandiff": 3.78,
+   "bg_drift_first_last": 2.11,
+   "cam_motion_px_median": 0.01,
+   "cam_motion_px_max": 0.06
+  }
+ }
+}

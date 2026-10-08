@@ -164,3 +164,18 @@ Pang Chang-su stands facing the camera beside the left end of the sofa, holding 
 **위험·감시 항목**: **높음** (내려놓기 + 앉기 두 동작, 5컷 전례: "sit"이 소파 위로 오르기로 번짐) | 소파 위로 뛰어오름, 충전기가 2개/사라짐, 미순 쪽으로 앉음, 미순 몸 들림. 5컷과 달리 **끝 프레임(앉은 자세)이 있어** 보간이 앉기를 붙잡아 줄 것으로 예상.
 **실패 시 편집 대안**: 앞 1.5s(내려놓기)만 쓰고 11e 정지 프레임 + 푸시인으로 "앉음" 처리.
 **크레딧**: 24. 충전 후 잔액에서 차감. (현재 7 → 생성 불가, 충전 필요)
+
+**11컷 ✅ 통과 (2026-10-08, 충전 후 잔액 337)**: 24크레딧, 잔액 337 → **313**. 생성 168초. 실측: 카메라 0.06px, 배경 2.11, 시작 2.22 / 끝 3.28. 0~1.5s 허리 숙여 충전기를 바닥(왼쪽 팔걸이 옆)에 놓음, 1.5~2.5s 일어나 돌아섬, 2.5~4.0s 왼쪽 좌석에 앉아 등 기댐(정면, 발 좌면 위). 충전기 1개 바닥, 컵·머그 탁자, 미순 고정. 5컷과 달리 끝 프레임이 앉기를 잡아 줌(0b 규칙 보강: **앉기는 끝 프레임 필수**). 편집 구간 0.5~3.5s. 파일 `outputs/ep02/11/clip_v1.mp4`. **15컷 시작 = 이 클립 끝 프레임(11e) 재사용.**
+
+### 12 — 시작+끝, 3초 (편집 2.0s) — 대화 컷, 느리게
+**입력**: `outputs/ep02/12/start_v1.png`(미순 얼굴, 베개, 리모컨 날개 옆, 01 기본) + `outputs/ep02/12/end_v1.png`(고개 왼쪽, 부리 살짝)
+**인자**: v3_0, duration=3, 720p, multi_shots false, audio false
+**프롬프트**
+```
+Pang Mi-sun lies on the white pillow under the beige duvet with a calm, gentle face, looking at the camera. Very slowly she turns her head a little to her left side of the frame, toward the left end of the sofa where Chang-su sits, and settles there looking that way, exactly matching the end image. As she speaks a short, soft line, her beak opens and closes only a tiny amount, barely parting, just enough to show she is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips. Her head stays on the pillow the whole time and does not lift; her wings rest still on top of the duvet; the black remote on the seat cushion beside her wing, the duvet, the pillow and the sofa stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+```
+**자막·음성**: 미순 요청 5(느리게 0.9, 다정하게), **벨 없음**. 13컷 인서트는 이 컷 시작 프레임 크롭.
+**예상 시나리오**: 0~1.5s 고개 천천히 왼쪽, 1.5~3s 부리 미세.
+**위험·감시 항목**: 낮음~중간 (2컷과 같은 유형, 통과 전례) | 리모컨이 움직이거나 날개가 리모컨을 집음(R25: 15컷에서 창수가 집어야 함), 부리 크게 벌림.
+**실패 시 편집 대안**: 앞 1.5s만 쓰고 끝 프레임 정지.
+**크레딧**: 18. 313 → 295.
