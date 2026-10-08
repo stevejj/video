@@ -1,0 +1,51 @@
+{
+ "cut": "09",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su is already walking from the very first frame, at a steady unhurried waddling pace to his right, entering from the left edge of the frame along the floor between the sofa and the table, holding a white mug with a little steam in the wing nearer the camera, keeping his body and head facing to his right the whole time. Each step lands on the wood floor and rolls forward; his feet do not slide; the mug stays level in his wing. After three steps he stops in front of the sofa beside Mi-sun and holds the mug out to her, leaning slightly toward her; Mi-sun takes the mug in her wing and lifts it up with a happy smile, while Chang-su's wing becomes empty, exactly matching the end image. Pang Mi-sun otherwise stays lying under the beige duvet with her head on the white pillow; the duvet, the pillow, the black remote on the seat, the cushions, the glass on the table and the table stay exactly where they are. Chang-su does not look at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Exactly one mug and one glass exist. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep02/09/start_v1.png"
+  },
+  "end": {
+   "file": "outputs/ep02/09/end_v1.png"
+  }
+ },
+ "credits_before": 31.0,
+ "credits_after": 7.0,
+ "credits_consumed_reported": 24.0,
+ "approved_by_user": "진행 (2026-10-08)",
+ "version": 1,
+ "ts": "2026-10-08T01:01:27",
+ "generation_id": "Aav0QeQZPpdGvdb-55iFZaXN-nq2fqZtGxOQJ_D6zL_1j57M6C3Pvumjvf-Yriiz1Hvrbp8P",
+ "status": "COMPLETED",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.16,
+   "start_vs_ref_bg_meandiff": 2.01,
+   "end_vs_ref_meandiff": 3.24,
+   "end_vs_ref_bg_meandiff": 2.92,
+   "interframe_mean": 0.76,
+   "interframe_max": 1.44,
+   "interframe_max_at_s": 2.17,
+   "first_vs_last_meandiff": 6.39,
+   "bg_drift_first_last": 3.05,
+   "cam_motion_px_median": 0.02,
+   "cam_motion_px_max": 0.07
+  }
+ }
+}
