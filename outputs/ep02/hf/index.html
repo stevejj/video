@@ -49,7 +49,19 @@
   <div id="title"><div style="color:#FFFFFF">좀줘 좀줘</div><div style="color:#FFD84A">좀줘!!!</div></div>
   <div id="channel">지독한 미순</div>
   
-  
+    <div class="sub" id="sub00" data-start="1.600" data-duration="1.850" data-cx="540" style="color:#FF9CC2;">자기야 설거지한 김에 물좀줘</div>
+  <div class="sub" id="sub01" data-start="3.600" data-duration="1.350" data-cx="540" style="color:#8FB0E8;">응.</div>
+  <div class="sub" id="sub02" data-start="7.100" data-duration="1.850" data-cx="540" style="color:#FF9CC2;">자기야 일어난 김에 베개좀줘</div>
+  <div class="sub" id="sub03" data-start="9.100" data-duration="1.300" data-cx="540" style="color:#8FB0E8;">응.</div>
+  <div class="sub" id="sub04" data-start="11.600" data-duration="1.400" data-cx="540" style="color:#FF9CC2;">자기야 가는 김에 커피좀줘</div>
+  <div class="sub" id="sub05" data-start="13.050" data-duration="0.400" data-cx="540" style="color:#8FB0E8;">응.</div>
+  <div class="sub" id="sub06" data-start="13.600" data-duration="1.800" data-cx="540" style="color:#FF9CC2;">자기야 숨쉬는 김에 충전기좀줘</div>
+  <div class="sub" id="sub07" data-start="15.450" data-duration="0.500" data-cx="540" style="color:#8FB0E8;">응.</div>
+  <div class="sub" id="sub08" data-start="16.300" data-duration="1.650" data-cx="540" style="color:#8FB0E8;">흐음..</div>
+  <div class="sub" id="sub09" data-start="20.600" data-duration="1.850" data-cx="540" style="color:#FF9CC2;">자기야 앉은 김에 리모컨좀줘</div>
+  <div class="sub" id="sub10" data-start="24.300" data-duration="1.150" data-cx="540" style="color:#8FB0E8;">응.</div>
+  <div class="sub" id="sub11" data-start="25.600" data-duration="1.500" data-cx="540" style="color:#FF9CC2;">자기야아아아아아아아</div>
+  <div class="sub" id="sub12" data-start="27.150" data-duration="0.700" data-cx="540" style="color:#8FB0E8;">………….</div>
 </div>
 <script>
   // 자막 가로 위치: 중심 cx, 폭 1000 안으로 클램프 (조립기와 동일 규칙)
@@ -81,6 +93,19 @@
     tl.to("#c13-arrow", {x: -12, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut"}, 23.000);
     tl.fromTo("#c13", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.1, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 22.500);
     tl.fromTo("#c15", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.05, "x": 0, "y": 0, "duration": 2.4, "ease": "none"}, 25.500);
+    tl.fromTo("#sub00", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 1.600);
+    tl.fromTo("#sub01", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 3.600);
+    tl.fromTo("#sub02", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 7.100);
+    tl.fromTo("#sub03", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 9.100);
+    tl.fromTo("#sub04", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 11.600);
+    tl.fromTo("#sub05", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 13.050);
+    tl.fromTo("#sub06", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 13.600);
+    tl.fromTo("#sub07", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 15.450);
+    tl.fromTo("#sub08", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 16.300);
+    tl.fromTo("#sub09", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 20.600);
+    tl.fromTo("#sub10", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 24.300);
+    tl.fromTo("#sub11", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 25.600);
+    tl.fromTo("#sub12", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 27.150);
     window.__timelines["main"] = tl;
   }
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }

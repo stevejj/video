@@ -36,6 +36,111 @@
    "sfx": "#FFFFFF"
   }
  },
- "note": "v0: 제목은 임시(사용자 확정 전). 자막은 대사 확정 후 채움.",
- "subtitles": []
+ "note": "v0e: 대사 확정(2026-10-08, 15컷 '자기야아아아아아아아'). 제목은 임시(사용자 확정 전).",
+ "subtitles": [
+  {
+   "cut": "02",
+   "text": "자기야 설거지한 김에 물좀줘",
+   "speaker": "misun",
+   "start": 1.6,
+   "end": 3.45,
+   "x": 0.5
+  },
+  {
+   "cut": "03",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 3.6,
+   "end": 4.95,
+   "x": 0.5
+  },
+  {
+   "cut": "05",
+   "text": "자기야 일어난 김에 베개좀줘",
+   "speaker": "misun",
+   "start": 7.1,
+   "end": 8.95,
+   "x": 0.5
+  },
+  {
+   "cut": "06",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 9.1,
+   "end": 10.4,
+   "x": 0.5
+  },
+  {
+   "cut": "07",
+   "text": "자기야 가는 김에 커피좀줘",
+   "speaker": "misun",
+   "start": 11.6,
+   "end": 13.0,
+   "x": 0.5
+  },
+  {
+   "cut": "07",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 13.05,
+   "end": 13.45,
+   "x": 0.5
+  },
+  {
+   "cut": "09",
+   "text": "자기야 숨쉬는 김에 충전기좀줘",
+   "speaker": "misun",
+   "start": 13.6,
+   "end": 15.4,
+   "x": 0.5
+  },
+  {
+   "cut": "09",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 15.45,
+   "end": 15.95,
+   "x": 0.5
+  },
+  {
+   "cut": "10",
+   "text": "흐음..",
+   "speaker": "changsu",
+   "start": 16.3,
+   "end": 17.95,
+   "x": 0.5
+  },
+  {
+   "cut": "12",
+   "text": "자기야 앉은 김에 리모컨좀줘",
+   "speaker": "misun",
+   "start": 20.6,
+   "end": 22.45,
+   "x": 0.5
+  },
+  {
+   "cut": "14",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 24.3,
+   "end": 25.45,
+   "x": 0.5
+  },
+  {
+   "cut": "15",
+   "text": "자기야아아아아아아아",
+   "speaker": "misun",
+   "start": 25.6,
+   "end": 27.1,
+   "x": 0.5
+  },
+  {
+   "cut": "15",
+   "text": "………….",
+   "speaker": "changsu",
+   "start": 27.15,
+   "end": 27.85,
+   "x": 0.5
+  }
+ ]
 }

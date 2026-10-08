@@ -359,6 +359,157 @@
     "fade_out": 1.2,
     "note": "F 채택(2026-09-30). 10-02 암전(59.5s)에서 끝, 10-03은 알람만"
    }
+  },
+  "ep02": {
+   "lines": [
+    {
+     "cut": "02",
+     "speaker": "misun",
+     "subtitle": "자기야 설거지한 김에 물좀줘",
+     "tts": "자기야, 설거지한 김에 물 좀 줘.",
+     "expr": "02",
+     "at": 1.6,
+     "max_len": 1.8,
+     "offset": 0.1,
+     "inner": false,
+     "speedup_override": 1.25
+    },
+    {
+     "cut": "03",
+     "speaker": "changsu",
+     "subtitle": "응.",
+     "tts": "응.",
+     "expr": "01",
+     "at": 3.6,
+     "max_len": 1.0,
+     "offset": 0.1,
+     "inner": false,
+     "speedup_override": 1.25,
+     "reuse_for": [
+      "06",
+      "07b",
+      "09b",
+      "14"
+     ],
+     "note": "한 파일 5회 재사용(기획 §3)"
+    },
+    {
+     "cut": "05",
+     "speaker": "misun",
+     "subtitle": "자기야 일어난 김에 베개좀줘",
+     "tts": "자기야, 일어난 김에 베개 좀 줘.",
+     "expr": "02",
+     "at": 7.1,
+     "max_len": 1.8,
+     "offset": 0.1,
+     "inner": false,
+     "speedup_override": 1.25
+    },
+    {
+     "cut": "07",
+     "speaker": "misun",
+     "subtitle": "자기야 가는 김에 커피좀줘",
+     "tts": "자기야, 가는 김에 커피 좀 줘.",
+     "expr": "02",
+     "at": 11.6,
+     "max_len": 1.4,
+     "offset": 0.1,
+     "inner": false,
+     "speedup_override": 1.3
+    },
+    {
+     "cut": "09",
+     "speaker": "misun",
+     "subtitle": "자기야 숨쉬는 김에 충전기좀줘",
+     "tts": "자기야, 숨 쉬는 김에 충전기 좀 줘.",
+     "expr": "02",
+     "at": 13.6,
+     "max_len": 1.7,
+     "offset": 0.1,
+     "inner": false,
+     "speedup_override": 1.4
+    },
+    {
+     "cut": "10",
+     "speaker": "changsu",
+     "subtitle": "흐음..",
+     "tts": "[sighs] 흐음...",
+     "expr": "12",
+     "at": 16.3,
+     "max_len": 1.5,
+     "offset": 0.3,
+     "inner": true,
+     "tag_override": true
+    },
+    {
+     "cut": "12",
+     "speaker": "misun",
+     "subtitle": "자기야 앉은 김에 리모컨좀줘",
+     "tts": "자기야, 앉은 김에... 리모컨 좀 줘.",
+     "expr": "02",
+     "at": 20.6,
+     "max_len": 1.8,
+     "offset": 0.1,
+     "inner": false,
+     "speedup_override": 1.15,
+     "note": "기획 0.9는 음높이가 내려가 캐릭터가 바뀜 → 1.15(살짝 느리게)로 대체, 길이 초과 시 12컷 2.0→2.4s"
+    },
+    {
+     "cut": "15",
+     "speaker": "misun",
+     "subtitle": "자기야아아아아아아아",
+     "tts": "[cheerful] 자기야아아아아아아!",
+     "expr": "02",
+     "at": 25.6,
+     "max_len": 1.5,
+     "offset": 0.1,
+     "inner": false,
+     "speedup_override": 1.25,
+     "tag_override": true
+    },
+    {
+     "cut": "04r",
+     "speaker": "misun",
+     "subtitle": "(헤헤)",
+     "tts": "[giggles] 헤헤.",
+     "expr": "02",
+     "at": 6.3,
+     "max_len": 0.6,
+     "offset": 0.0,
+     "inner": false,
+     "speedup_override": 1.25,
+     "tag_override": true,
+     "reaction": true
+    },
+    {
+     "cut": "11r",
+     "speaker": "changsu",
+     "subtitle": "(숨)",
+     "tts": "[exhales] 후.",
+     "expr": "01",
+     "at": 19.8,
+     "max_len": 0.6,
+     "offset": 0.0,
+     "inner": false,
+     "speedup_override": 1.1,
+     "tag_override": true,
+     "reaction": true
+    }
+   ],
+   "bgm": {
+    "file": "outputs/ep01/bgm/F_soft_chiptune.mp3",
+    "target_lufs": -28,
+    "duck_db": 4,
+    "fade_in": 1.0,
+    "end_at": 27.9,
+    "fade_out": 1.0,
+    "tempo_from": 15.0,
+    "tempo": 1.08,
+    "dip_at": 24.0,
+    "dip_db": -6,
+    "note": "F 재사용(기획 §5). 15s부터 템포 1.08, 24.0s(13컷 띠용) 한 박자 -6dB"
+   },
+   "status": "대사 확정 2026-10-08, 생성 대기(사용자 진행 승인 필요)"
   }
  },
  "voices_legacy": {
