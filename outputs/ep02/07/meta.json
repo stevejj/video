@@ -1,0 +1,51 @@
+{
+ "cut": "07",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "3",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su is already walking from the very first frame, at a steady unhurried waddling pace to his left along the floor in front of the sofa, seen from the side, keeping his body and head facing left. Each step lands on the wood floor and rolls forward; his feet do not slide. After two steps he stops and turns around on the spot, pivoting his whole body in place without moving sideways, until he faces the sofa with his back toward the camera, and stands still there with his wings hanging at his sides, exactly matching the end image. He holds nothing. Pang Mi-sun lies completely still on the right half of the sofa under the beige duvet with her head on the white pillow; the duvet, the pillow, the black remote on the seat, the cushions, the glass on the table and the table stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep02/07/start_v1.png"
+  },
+  "end": {
+   "file": "outputs/ep02/07/end_v1.png"
+  }
+ },
+ "credits_before": 49.0,
+ "credits_after": 31.0,
+ "credits_consumed_reported": 18.0,
+ "approved_by_user": "진행 (2026-10-08)",
+ "version": 1,
+ "ts": "2026-10-08T00:37:22",
+ "generation_id": "AXBnwQoMjrTUUfT_5bFNEvy2JthojfDc3TIgsCptQsS6VFDyATQvN1Z6fH7y-mnaaR5cBhto",
+ "status": "COMPLETED",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.19,
+   "start_vs_ref_bg_meandiff": 2.05,
+   "end_vs_ref_meandiff": 3.07,
+   "end_vs_ref_bg_meandiff": 2.75,
+   "interframe_mean": 0.34,
+   "interframe_max": 0.75,
+   "interframe_max_at_s": 0.12,
+   "first_vs_last_meandiff": 3.46,
+   "bg_drift_first_last": 2.65,
+   "cam_motion_px_median": 0.02,
+   "cam_motion_px_max": 0.06
+  }
+ }
+}

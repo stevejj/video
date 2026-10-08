@@ -119,3 +119,18 @@ Pang Chang-su is already walking from the very first frame, at a steady unhurrie
 **위험·감시 항목**: 중간 | 턴하면서 옆으로 밀림(R3 제자리), 카메라를 보고 멈춤, 걸음이 미끄러짐.
 **실패 시 편집 대안**: 앞 1.2s(걷기)만 쓰고 7e 정지 프레임으로 컷.
 **크레딧**: 18. 49 → 31.
+
+**7컷 ✅ 통과 (2026-10-08)**: 18크레딧, 잔액 49 → **31**. 생성 92초. 실측: 카메라 0.06px, 배경 2.65, 시작 2.19 / 끝 3.07. 0~1.0s 왼쪽으로 두 걸음, 1.0~2.5s 제자리 턴(등 보임), 2.5~3.0s 오른쪽을 향한 옆모습까지 돌아섬 — 끝 프레임(뒷모습)을 지나 스토리보드 원안(우향 턴)까지 간 셈이라 오히려 좋음. 옆으로 밀림 없음, 미순·소품 고정. 편집 구간 0.3~2.3s. 파일 `outputs/ep02/07/clip_v1.mp4`.
+
+### 9 — 시작+끝, 4초 (편집 2.5s)
+**입력**: `outputs/ep02/09/start_v1.png`(창수 왼쪽 가장자리, 김 나는 머그) + `outputs/ep02/09/end_v1.png`(소파 앞, 머그가 미순 날개에 들려 올라감, 창수 기울임)
+**인자**: v3_0, duration=4, 720p, multi_shots false, audio false
+**프롬프트**
+```
+Pang Chang-su is already walking from the very first frame, at a steady unhurried waddling pace to his right, entering from the left edge of the frame along the floor between the sofa and the table, holding a white mug with a little steam in the wing nearer the camera, keeping his body and head facing to his right the whole time. Each step lands on the wood floor and rolls forward; his feet do not slide; the mug stays level in his wing. After three steps he stops in front of the sofa beside Mi-sun and holds the mug out to her, leaning slightly toward her; Mi-sun takes the mug in her wing and lifts it up with a happy smile, while Chang-su's wing becomes empty, exactly matching the end image. Pang Mi-sun otherwise stays lying under the beige duvet with her head on the white pillow; the duvet, the pillow, the black remote on the seat, the cushions, the glass on the table and the table stay exactly where they are. Chang-su does not look at the viewer. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Exactly one mug and one glass exist. Wings stay short and rounded with no fingers.
+```
+**자막·음성**: 창수 "응."(걸어오며), 미순 요청 4(받자마자, 자막 최대), 벨 #4. 효과음: 발소리, 머그 "톡".
+**예상 시나리오**: 0~2.0s 머그 들고 세 걸음, 2.0~4.0s 건네기 → 미순이 받아 듦.
+**위험·감시 항목**: 중간 | 머그 2개/사라짐, 김이 과장됨, 날개 늘어남, 미순 머리 들림.
+**실패 시 편집 대안**: 앞 2.0s(걷기)만 쓰고 끝 프레임 정지 + 푸시인.
+**크레딧**: 24. 31 → 7. **이 컷 이후 충전 필요**(11·12·14·15·16 = 102).
