@@ -43,22 +43,24 @@
     "to": 1.05
    }
   },
-  "16": {
-   "cam": {
-    "from": 1.0,
-    "to": 1.04
-   }
-  },
   "13": {
    "ui": {
     "kind": "remote_insert",
-    "base": "outputs/ep02/12/start_v1.png",
+    "base": "outputs/ep02/11/end_v1.png",
     "src_width": 768,
     "center": [
-     150,
-     1230
+     600,
+     776
     ],
-    "radius": 150
+    "radius": 62,
+    "arrow_side": "left",
+    "zoom": 1.1
+   }
+  },
+  "15": {
+   "cam": {
+    "from": 1.0,
+    "to": 1.05
    }
   }
  },

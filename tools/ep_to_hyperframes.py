@@ -55,13 +55,16 @@ def main():
                 S = W / ui['src_width']
                 shutil.copy(os.path.join(ROOT, ui['base']), os.path.join(out, f'media/{src_cut}_base.png'))
                 cx, cy, r = ui['center'][0] * S, ui['center'][1] * S, ui['radius'] * S
+                left = ui.get('arrow_side', 'right') == 'left'   # 화살표를 동그라미 왼쪽에 두고 ▶ 로 가리킴
+                ax = cx - r - 20 - 70 if left else cx + r + 20
+                glyph = '▶' if left else '◀'; sgn = -1 if left else 1
                 el = (f'<img id="{cid}-v" src="media/{src_cut}_base.png" data-start="{t:.3f}" data-duration="{L:.3f}" />'
                       f'<div id="{cid}-ring" class="ring" data-start="{t:.3f}" data-duration="{L:.3f}" style="left:{cx - r:.0f}px; top:{cy - r:.0f}px; width:{2 * r:.0f}px; height:{2 * r:.0f}px;"></div>'
-                      f'<div id="{cid}-arrow" class="arrow" data-start="{t:.3f}" data-duration="{L:.3f}" style="left:{cx + r + 20:.0f}px; top:{cy - 50:.0f}px;">◀</div>')
+                      f'<div id="{cid}-arrow" class="arrow" data-start="{t:.3f}" data-duration="{L:.3f}" style="left:{ax:.0f}px; top:{cy - 50:.0f}px;">{glyph}</div>')
                 tl.append(f'tl.fromTo("#{cid}-ring", {{scale: 2, opacity: 0}}, {{scale: 1, opacity: 1, duration: 0.25, ease: "power3.out"}}, {t + 0.1:.3f});')
-                tl.append(f'tl.fromTo("#{cid}-arrow", {{x: 30, opacity: 0}}, {{x: 0, opacity: 1, duration: 0.2, ease: "back.out(3)"}}, {t + 0.3:.3f});')
-                tl.append(f'tl.to("#{cid}-arrow", {{x: 12, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut"}}, {t + 0.5:.3f});')
-                fx = dict(fx); fx['cam'] = {'from': 1.0, 'to': 1.25}
+                tl.append(f'tl.fromTo("#{cid}-arrow", {{x: {30 * sgn}, opacity: 0}}, {{x: 0, opacity: 1, duration: 0.2, ease: "back.out(3)"}}, {t + 0.3:.3f});')
+                tl.append(f'tl.to("#{cid}-arrow", {{x: {12 * sgn}, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut"}}, {t + 0.5:.3f});')
+                fx = dict(fx); fx['cam'] = {'from': 1.0, 'to': ui.get('zoom', 1.25)}
         pp = fx.get('puppet')
         if pp:
             S = W / pp['src_width']
