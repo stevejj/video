@@ -179,3 +179,14 @@ Pang Mi-sun lies on the white pillow under the beige duvet with a calm, gentle f
 **위험·감시 항목**: 낮음~중간 (2컷과 같은 유형, 통과 전례) | 리모컨이 움직이거나 날개가 리모컨을 집음(R25: 15컷에서 창수가 집어야 함), 부리 크게 벌림.
 **실패 시 편집 대안**: 앞 1.5s만 쓰고 끝 프레임 정지.
 **크레딧**: 18. 313 → 295.
+
+**12컷 ✅ 통과 (2026-10-08)**: 18크레딧, 잔액 313 → **295**. 생성 111초. 실측: 카메라 0.04px, 배경 3.01, 시작 2.23 / 끝 3.15. 0.5s 깜빡, 0.5~1.5s 고개 천천히 왼쪽, 1.5~3s 부리 작게 몇 번(삼각형 유지). 머리 베개 고정, 날개가 리모컨을 집지 않음. 편집 구간 0.3~2.3s. 파일 `outputs/ep02/12/clip_v1.mp4`. 13컷 인서트 = `12/start_v1.png` 크롭.
+
+### 14 — 시작만, 3초 (편집 1.5s) — 대화 컷 "응." (눈 2번)
+**입력**: `outputs/ep02/14/start_v1.png`(앉은 창수 상반신, 뒤 등받이) — 업로드 완료
+**인자**: v3_0, duration=3, 720p, multi_shots false, audio false
+**프롬프트**
+```
+Pang Chang-su sits still on the sofa facing slightly to the right of the frame with a calm neutral face, the sofa backrest behind him. He blinks twice, slowly, one blink after the other, and otherwise holds still. As he speaks one short word, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips. His head stays at the same height and angle and does not turn toward the camera; his wings rest still at his sides; the sofa and the curtain behind him stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.
+```
+**자막·음성**: 창수 "응."(A, 5번째). **예상**: 깜빡 2회 + 부리 미세. **위험**: 낮음(3컷 전례) | 카메라 응시, 부리 크게 벌림. **실패 시**: 정지 프레임 + 푸시인. **크레딧**: 18. 295 → 277.
