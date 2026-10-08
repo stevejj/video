@@ -49,15 +49,6 @@
     "to": 1.04
    }
   },
-  "08": {
-   "ui": {
-    "kind": "counter",
-    "from": 3,
-    "to": 4,
-    "label": "심부름",
-    "clock": "21:15"
-   }
-  },
   "13": {
    "ui": {
     "kind": "remote_insert",

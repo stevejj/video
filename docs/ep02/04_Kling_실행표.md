@@ -219,3 +219,9 @@ Pang Chang-su sits on the left seat cushion of the sofa and Pang Mi-sun lies on 
 ## 3. Kling 단계 완료 (2026-10-08)
 클립 12개 통과(1·2·3·4·6·7·9·11·12·14·15·16), 5컷 정지+푸시인, 10컷 3컷 재사용, 8·13 그래픽. 사용 크레딧 **258**(실패 1회 18 포함), 잔액 235. 1회 통과율 11/13.
 다음: 사용자 제목·대사 확정 → 음성(05e) → 효과음·BGM → HyperFrames 조립(`hf_fx.json`·`edit_list.json`) → 검수.
+
+## 4. v0c 가편집 (2026-10-08)
+
+- 8컷 **심부름 카운터 UI 삭제** (사용자: "삭제"). 7컷 턴 → 9컷 머그 직결. 총 15컷 **29.5s**(31.0에서 -1.5). 13컷 리모컨 인서트는 유지.
+- `outputs/ep02/edit_list.json`·`hf_fx.json`에서 "08" 제거, `outputs/ep02/roughcut/ep02_roughcut_v0_silent.mp4` 재렌더.
+- 교훈: 스토리보드 단계에서 만든 UI 삽입물(카운터·시계 등)은 가편집 전에 사용자에게 먼저 보여 주고 넣을지 묻는다 → 02c §4에 반영.
