@@ -1,0 +1,51 @@
+{
+ "cut": "16",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su sits on the left seat cushion of the sofa and Pang Mi-sun lies on the right half holding the black remote, lifting the edge of the beige duvet toward him. Mi-sun sits up and slides toward the middle of the sofa while Chang-su shifts toward her, until they sit side by side in the middle, Chang-su on the left and Mi-sun on the right, their shoulders touching, and Mi-sun pulls the one duvet over both of them up to their shoulders and leans her head gently against Chang-su's shoulder; both face the camera, still, exactly matching the end image. Mi-sun keeps the remote in her wing. Chang-su keeps his calm neutral face with a very small softening of the eyes. The white pillow stays against the right armrest; the charger on the floor, the glass and the mug on the table and the table stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Exactly one duvet and one remote exist. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep02/15/end_v1.png"
+  },
+  "end": {
+   "file": "outputs/ep02/16/end_v1.png"
+  }
+ },
+ "credits_before": 259.0,
+ "credits_after": 235.0,
+ "credits_consumed_reported": 24.0,
+ "approved_by_user": "a 채택 진행 (2026-10-08)",
+ "version": 1,
+ "ts": "2026-10-08T04:13:51",
+ "generation_id": "AYudp_woxh8SU1Qkw2YkbyXrivm7d-BI5cAz4XJ3Og2bsL-DUr5ECj4g5kiKmT0FbIOKHeue",
+ "status": "COMPLETED",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.16,
+   "start_vs_ref_bg_meandiff": 1.94,
+   "end_vs_ref_meandiff": 3.32,
+   "end_vs_ref_bg_meandiff": 3.06,
+   "interframe_mean": 0.63,
+   "interframe_max": 1.62,
+   "interframe_max_at_s": 2.96,
+   "first_vs_last_meandiff": 5.21,
+   "bg_drift_first_last": 2.68,
+   "cam_motion_px_median": 0.04,
+   "cam_motion_px_max": 0.13
+  }
+ }
+}
