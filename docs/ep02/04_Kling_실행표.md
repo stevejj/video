@@ -151,3 +151,16 @@ Pang Chang-su is already walking from the very first frame, at a steady unhurrie
 | 8·13 | 그래픽 | 0 |
 | 11·12·14·15·16 | **대기 (충전 필요: 24+18+18+18+24 = 102)** | — |
 합계 사용 156, 잔액 7. 7/8 통과(87%). 다음: 충전 후 11컷부터.
+
+### 11 — 시작+끝, 4초 (편집 2.5s)
+**입력**: `outputs/ep02/11/start_v1.png`(창수 소파 왼쪽 끝 앞에 직립, 충전기 든 채, 탁자에 컵·머그) + `outputs/ep02/11/end_v1.png`(창수 왼쪽 좌석에 앉아 등 기댐, 충전기 바닥)
+**인자**: v3_0, duration=4, 720p, multi_shots false, audio false
+**프롬프트**
+```
+Pang Chang-su stands facing the camera beside the left end of the sofa, holding a small white charger with its coiled cable in one wing. He bends forward a little and sets the charger down on the wood floor beside the left armrest, then straightens up with both wings empty. Then he turns and sits down slowly onto the empty left seat cushion of the sofa, his back settling against the backrest, his short legs stretched out on the cushion in front of him with his small grey feet resting on the seat, facing the camera, and stays sitting there still, exactly matching the end image. He sits only on the left seat cushion and does not touch Mi-sun. Pang Mi-sun lies completely still on the right half of the sofa under the beige duvet with her head on the white pillow; the duvet, the pillow, the black remote on the seat, the cushions, the glass and the mug on the table and the table stay exactly where they are. Chang-su does not look at the viewer while moving. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Exactly one charger, one glass and one mug exist. Wings stay short and rounded with no fingers.
+```
+**자막·음성**: 창수 작은 숨 1회(앉을 때). 효과음: 충전기 "툭", 소파 "푹". 시계 카드 없음(16컷에 21:30).
+**예상 시나리오**: 0~1.5s 허리 숙여 충전기 내려놓기, 1.5~3.5s 돌아서 앉기, 3.5~4s 정지.
+**위험·감시 항목**: **높음** (내려놓기 + 앉기 두 동작, 5컷 전례: "sit"이 소파 위로 오르기로 번짐) | 소파 위로 뛰어오름, 충전기가 2개/사라짐, 미순 쪽으로 앉음, 미순 몸 들림. 5컷과 달리 **끝 프레임(앉은 자세)이 있어** 보간이 앉기를 붙잡아 줄 것으로 예상.
+**실패 시 편집 대안**: 앞 1.5s(내려놓기)만 쓰고 11e 정지 프레임 + 푸시인으로 "앉음" 처리.
+**크레딧**: 24. 충전 후 잔액에서 차감. (현재 7 → 생성 불가, 충전 필요)
