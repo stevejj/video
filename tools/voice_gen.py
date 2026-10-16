@@ -16,10 +16,9 @@ API = 'https://api.elevenlabs.io'
 
 
 def key():
-    for l in open(os.path.join(ROOT, '.env')):
-        if l.startswith('ELEVENLABS_API_KEY='):
-            return l.split('=', 1)[1].strip()
-    raise SystemExit('.env 에 ELEVENLABS_API_KEY 없음')
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import keys
+    return keys.get('ELEVENLABS_API_KEY')
 
 
 def post(path, body, out):

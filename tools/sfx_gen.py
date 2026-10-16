@@ -3,17 +3,16 @@
 사용: python3 tools/sfx_gen.py --ep ep02 [--only name1,name2]
 requests.json: {"items":[{"name","prompt","duration","loop":false}]} ; 이미 파일이 있으면 건너뜀. 결과는 generated.json 에 기록.
 """
-import argparse, json, os, urllib.request
+import argparse, json, os, sys, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = 'https://api.elevenlabs.io/v1/sound-generation'
 
 
 def key():
-    for l in open(os.path.join(ROOT, '.env')):
-        if l.startswith('ELEVENLABS_API_KEY='):
-            return l.split('=', 1)[1].strip()
-    raise SystemExit('.env 에 ELEVENLABS_API_KEY 없음')
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import keys
+    return keys.get('ELEVENLABS_API_KEY')
 
 
 def main():
