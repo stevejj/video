@@ -26,6 +26,9 @@ Pang Chang-su sits on the left seat cushion facing the camera, holding a small s
 **위험**: 키프레임이 너무 이르거나 늦게 배치돼 먹기·뻗기가 겹침 / 날개 늘어남이 끊기거나 날개가 두 개로 보임 / 과자가 여전히 미리 생김. 실패 시 대안: 클립 1 v1의 0~2s(먹기) + v2 중 쓸 만한 구간 이어 붙이기.
 **크레딧**: 제출 응답 **50**(4.0 = 10/초, 720p). 잔액 871 → 821. 2026-10-17 사용자 "진행".
 
+**클립 1 v2 ✅ 통과 (2026-10-17)**: 50크레딧(4.0 = 10/초), 잔액 871 → **821**. 생성 153초. 실측: 카메라 0.01px, 배경 1.45, 첫↔끝 1.92. 동작: 0.5~1.5s 창수 과자 먹기, **2.0~2.5s 미순 빈 날개가 쭉 늘어남, 2.8~3.5s 날개 끝이 봉지 안, 3.7s 과자 한 개 들고 나옴**, 4.0~4.3s 날개가 과자 들고 돌아옴, 4.0s 창수 한쪽 눈 깜빡 후 4.2s부터 고개 미순 쪽. 과자가 미리 생기지 않음, 날개 끊김 없음, 미순 고개 고정(2.7s 깜빡 1회). 파일 `outputs/ep03/01/clip_v2.mp4`, 시트 `verify_v2/sofa_sheet.jpg`, `verify_v2/reach_2.0-4.5.jpg`. 편집 0~5.0s 전체.
+- 교훈 확정(05a 반영): **먼 거리 집기 동작은 Kling 4.0 중간 키프레임으로 "닿는 순간"을 고정**하면 순간이동 없이 된다. 비용 = 이미지 95원 + 4.0 10/초.
+
 ## 클립 2 — E1 → E2, 4초 (편집 4.0~8.0)
 **입력**: `outputs/ep03/01/end_v1.png`(E1) + `outputs/ep03/02/end_v1.png`(E2)
 **인자**: 동일, duration=4
@@ -36,6 +39,18 @@ Pang Chang-su sits on the left seat cushion holding a small silver snack bag low
 **예상**: 0~1s 창수 정면 복귀, 1~2.5s 봉지 끌려감, 2.5~4s 빈 날개 내리고 깜빡 2회.
 **위험**: 봉지가 복제됨(창수 손에도 남음) / 미순이 일어남 / 창수가 봉지를 쫓아 몸을 기울임 / 이불 들림. 실패 시 대안: 1단 클립 끝 + E2 정지 프레임 2s.
 **크레딧**: 24 → 예상 잔액 847.
+
+## 클립 2 v2 — E1 → K1(재사용) → E2, Kling 4.0 키프레임, 5초 (2026-10-17 제안)
+**입력**: first_image `outputs/ep03/01/end_v1.png`(E1), keyframe_1 `outputs/ep03/01/key_v1.png`(K1 재사용: 늘어난 날개가 봉지에 닿은 순간, 창수 정면), tail_image `outputs/ep03/02/end_v1.png`(E2)
+**인자**: model=kling-video-v4_0, duration=5, resolution=720p, imageCount=1
+**K1 재사용 이유**: "날개가 봉지에 닿은 순간 + 창수 정면 + 봉지 창수 손"이 클립 2 중간에 필요한 그림과 같음 → 새 이미지 0원.
+```
+Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged.
+Pang Mi-sun lies under the beige duvet with her head on the pillow, eyes wide open, looking at the camera the whole time; her head never turns. First her upper wing brings the single chip to her beak and she eats it with a tiny beak movement, then her beak stays closed. At the same time Pang Chang-su, sitting on the left cushion with a small silver snack bag held low in both wings, turns his head back to face the camera. Then her upper wing, now empty, stretches out comically long again along the top of the duvet all the way to his bag, exactly matching the middle keyframe; this time the wing tip grips the top edge of the whole bag and pulls the entire bag out of his wings in one smooth motion, dragging it back across the top of the duvet until it rests beside her belly, and the wing, back to its normal short length, settles on the bag, exactly matching the end image. Chang-su's wings stay raised in the air for a moment, suddenly empty, then lower slowly to rest at his sides; he keeps facing the camera with a calm face and blinks slowly twice. The duvet stays flat, never lifted. Exactly one snack bag the whole time; the bag is never in two places. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
+```
+**예상**: 0~1s 미순 과자 먹기·창수 고개 정면, 1~2.5s 빈 날개 다시 늘어나 봉지에 닿음(K1), 2.5~4s 봉지째 끌어옴, 4~5s 창수 빈 날개 내리고 깜빡 2회.
+**위험**: 봉지 복제(창수 손에도 남음) / 날개가 짧아지는 과정에서 끊김 / 창수가 봉지를 따라 몸을 기울임 / 미순 고개 돌아감. 실패 시 대안: 2.5s까지 쓰고 E2 정지 프레임 2.0s.
+**크레딧**: 50(4.0 = 10/초). 잔액 821 → 771.
 
 ## 현황
 - 2026-10-17 이미지 S·E1·E2 통과. 클립 1 사용자 "진행".
