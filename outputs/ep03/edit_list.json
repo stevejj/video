@@ -1,0 +1,34 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01",
+   "kind": "clip",
+   "source_cut": "01",
+   "in": 0.0,
+   "len": 4.0,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "clip",
+   "source_cut": "02",
+   "in": 0.0,
+   "len": 4.0,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-17 v0: 클립 2개 체인(S→E1, E1→E2), 각 4.0s 전체 사용, 총 8.0s"
+ ]
+}
