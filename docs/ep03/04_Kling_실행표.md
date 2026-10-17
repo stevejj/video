@@ -85,6 +85,28 @@ Pang Mi-sun lies beside Pang Chang-su with her head on the seat cushion and her 
 - 원인: S2에서 미순 **머리가 옆으로 크게 기울어진 채 누운 자세** + 움직이는 날개가 머리 반대편(위쪽) → 날개가 얼굴을 넘어가야 해서 Kling이 머리를 굴려 버림. S2 메모 ①을 허용한 것이 실수.
 - 교훈(05a·02c 반영): **팔을 뻗는 캐릭터는 머리가 똑바로 선 자세(앉기)로**. 누운 캐릭터가 손을 쓰면 머리가 구른다. 움직일 날개는 시작 프레임에서 목표물 쪽에 있어야 한다.
 
+## 앉은 자세 클립 5 — S3 → E1c, Kling 3.0 시작+끝, 4초 (2026-10-17)
+**입력**: first_image `outputs/ep03/05/start_v1.png`(S3), tail_image `outputs/ep03/05/end_v1.png`(E1c)
+**인자**: model=kling-video-v3_0, duration=4, resolution=720p, prefer_multi_shots=false, enable_audio=false, imageCount=1
+```
+Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged.
+Pang Chang-su and Pang Mi-sun sit side by side on the sofa, both facing the camera, watching television. Chang-su, on the left, holds a small silver snack bag low in both wings in front of his belly. In the first two seconds he takes one potato chip from the bag and eats it, his beak opening only a tiny amount; the bag stays low the whole time. Mi-sun, on the right, is wrapped in a beige duvet up to her shoulders; her head stays perfectly upright and still the whole time, eyes wide open, looking at the camera; her body does not move. From about two seconds, only her left wing, which already rests right beside his bag, moves: it dips into the top of his bag, takes ONE chip and lifts it up to the front of her beak, exactly matching the end image. Her wing keeps its normal short rounded length and never stretches. The chip appears only after her wing has touched the bag. As her wing lifts the chip out, Chang-su pauses and turns only his head toward her, about 30 degrees, his body still facing the camera, and holds that pose, exactly matching the end image. Mi-sun's beak stays closed. Her head never tilts, rolls or turns. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
+```
+**예상**: 0~2s 창수 과자 먹기, 2~3s 미순 왼쪽 날개만 봉지 → 과자 → 부리 앞, 3~4s 창수 고개 미순 쪽.
+**위험**: 미순 몸이 창수 쪽으로 기움 / 과자 미리 생김 / 창수 먹는 동작 생략(클립 3처럼). 실패 시 대안: 쓸 수 있는 구간만 + 정지 프레임.
+**크레딧**: 24. 잔액 723 → 699.
+
+## 앉은 자세 클립 6 — E1c → E2c, Kling 3.0 시작+끝, 4초 (2026-10-17)
+**입력**: first_image `outputs/ep03/05/end_v1.png`(E1c), tail_image `outputs/ep03/06/end_v1.png`(E2c)
+**인자**: 클립 5와 동일
+```
+Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged.
+Pang Chang-su and Pang Mi-sun sit side by side on the sofa, both facing the camera. Mi-sun, on the right, wrapped in a beige duvet, keeps her head perfectly upright and still the whole time, eyes wide open, looking at the camera. First she eats the chip in front of her beak, her beak opening only a tiny amount and keeping its small triangular shape, then her beak stays closed. At the same time Chang-su, on the left, holding a small silver snack bag low in both wings, turns his head back to face the camera. Then her left wing reaches the short distance to his bag, takes hold of the whole bag and pulls it out of his wings in one smooth motion over to her own chest, and her other wing comes out from the duvet to hold the bag with her, exactly matching the end image. Her wings keep their normal short rounded length and never stretch. Chang-su's wings, suddenly empty, stay raised in the air for a moment, then lower slowly to rest at his sides; he keeps facing the camera with a calm face and blinks slowly twice, exactly matching the end image. Exactly one snack bag the whole time; it is never in two places. Her head never tilts, rolls or turns. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
+```
+**예상**: 0~1s 미순 과자 먹기·창수 정면, 1~2.5s 봉지째 미순 가슴 앞으로, 2.5~4s 창수 빈 날개 내리고 깜빡 2회.
+**위험**: 봉지 복제 / 미순 부리 크게 벌림 / 창수가 봉지 따라 기울임.
+**크레딧**: 24. 잔액 699 → 675.
+
 ## 현황
 - 2026-10-17 이미지 S·E1·E2 통과. 클립 1 사용자 "진행".
 - **클립 1 ⚠ 조건부 (2026-10-17)**: 24크레딧, 잔액 895 → **871**. 생성 84초. 실측: 카메라 0.01px(고정), 배경 드리프트 2.7, 첫↔끝 3.0. 동작: 0.5~1.75s 창수가 과자 1개 꺼내 먹음(눈 감고 음미, 봉지 낮게 유지) ✅, 3.25~4.0s 창수 고개 미순 쪽 ✅. **실패**: 미순 날개가 봉지까지 가지 않음 — 2.25s에 과자가 **미순 가슴 앞 날개 위에서 갑자기 생김**(순간이동), 그 뒤 날개가 과자를 든 채 E1 위치로 뻗음. "창수 봉지에서 훔친다"가 안 읽힘. 부가: 1.75s부터 미순 눈이 웃는 눈(^^)으로 감김. 원인 추정: 미순 날개 끝↔봉지 거리가 소파 절반(플러시 날개로 닿을 수 없는 거리) → 모델이 늘리지 않고 과자를 만들어 냄. 파일 `outputs/ep03/01/clip_v1.mp4`, 시트 `verify_v1/sofa_sheet.jpg`, `verify_v1/reach_1.75-2.75.jpg`.
