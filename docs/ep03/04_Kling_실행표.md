@@ -14,6 +14,18 @@ Pang Chang-su sits on the left seat cushion facing the camera, holding a small s
 **위험**: 창수가 봉지를 높이 들어 올림 / 미순 고개가 따라 돎 / 이불이 들림 / 과자가 여러 개로 늘어남 / 창수 부리 크게 벌어짐. 실패 시 대안: 앞 2초만 쓰고 E1 정지 프레임 0.5s(푸시인 없음) 뒤 클립 2.
 **크레딧**: 24 → 예상 잔액 871.
 
+## 클립 1 v2 — S → K1 → E1, Kling 4.0 키프레임, 5초 (C안, 2026-10-17)
+**입력**: first_image `outputs/ep03/01/start_v1.png`(S), keyframe_1 `outputs/ep03/01/key_v1.png`(K1, 날개가 봉지에 닿음), tail_image `outputs/ep03/01/end_v1.png`(E1)
+**인자**: model=kling-video-v4_0, duration=5, resolution=720p, imageCount=1 (aspect_ratio 생략 = 첫 프레임 따름). 4.0은 오디오·멀티샷 인자 없음.
+**길이 5초로 늘린 이유**: 키프레임은 시간 순서만 지정되고 위치는 모델이 정함(가운데 근처 예상). 4초면 "먹기 → 뻗기 → 닿기"가 2초 안에 몰려 급해짐.
+```
+Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged.
+Pang Chang-su sits on the left seat cushion facing the camera, holding a small silver snack bag low in both wings in front of his belly. First he takes one potato chip from the bag with a small movement and eats it, his beak opening only a tiny amount; the bag stays low the whole time. Pang Mi-sun lies under the beige duvet with her head on the pillow, eyes wide open, looking at the camera the whole time; her head never turns. Then her upper wing, still empty, stretches out slowly and comically long along the top of the duvet, all the way to his bag, exactly matching the middle keyframe, and its tip dips into the top of the bag and comes out holding ONE chip. The wing then slides back halfway toward her, holding that single chip, exactly matching the end image. The duvet stays flat, never lifted. As the chip leaves his bag, Chang-su pauses and turns only his head a little toward her, about 30 degrees, his body still facing the camera, and holds that pose. Mi-sun's beak stays closed. No other characters appear. No new objects appear. The chip appears only after the wing tip has touched the bag. Wings stay soft, rounded and fingerless.
+```
+**예상**: 0~2s 창수 과자 먹기, 2~2.5s 미순 빈 날개가 늘어나 봉지에 닿음(K1), 2.5~4s 과자 한 개 들고 돌아옴, 4~5s 창수 고개 30도.
+**위험**: 키프레임이 너무 이르거나 늦게 배치돼 먹기·뻗기가 겹침 / 날개 늘어남이 끊기거나 날개가 두 개로 보임 / 과자가 여전히 미리 생김. 실패 시 대안: 클립 1 v1의 0~2s(먹기) + v2 중 쓸 만한 구간 이어 붙이기.
+**크레딧**: 4.0 단가는 제출 응답으로 확인(3.0은 6/초 = 30 예상). 잔액 871.
+
 ## 클립 2 — E1 → E2, 4초 (편집 4.0~8.0)
 **입력**: `outputs/ep03/01/end_v1.png`(E1) + `outputs/ep03/02/end_v1.png`(E2)
 **인자**: 동일, duration=4
