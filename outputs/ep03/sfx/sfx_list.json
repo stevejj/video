@@ -19,7 +19,9 @@
    "at": 1.15,
    "len": 0.8,
    "target_lufs": -24,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -15.13,
+   "gain": -8.9
   },
   {
    "name": "rustle_grab",
@@ -27,7 +29,9 @@
    "at": 2.2,
    "len": 0.8,
    "target_lufs": -26,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -46.75,
+   "gain": 20.8
   },
   {
    "name": "crunch_misun",
@@ -35,7 +39,9 @@
    "at": 4.45,
    "len": 0.8,
    "target_lufs": -24,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -15.13,
+   "gain": -8.9
   },
   {
    "name": "bag_yank",
@@ -43,7 +49,9 @@
    "at": 6.6,
    "len": 1.0,
    "target_lufs": -18,
-   "fade_out": 0.15
+   "fade_out": 0.15,
+   "measured_lufs": -12.16,
+   "gain": -5.8
   }
  ]
 }
