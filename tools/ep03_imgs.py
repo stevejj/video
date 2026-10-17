@@ -5,11 +5,14 @@
 import re, sys, os, subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C = 'assets/characters/pang-changsu/'; M = 'assets/characters/pang-misun/'; O = 'outputs/ep03/'
-FLASH = 'gemini-3.1-flash-image'
+FLASH = 'gemini-3.1-flash-image'; PRO = 'gemini-3-pro-image'
 MAN = {
  'S':  dict(out=O + '01/start_v1.png', model=FLASH, refs=['outputs/ep02/11/end_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
  'E1': dict(out=O + '01/end_v1.png', model=FLASH, refs=[O + '01/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
  'K1': dict(out=O + '01/key_v1.png', model=FLASH, refs=[O + '01/start_v1.png', O + '01/end_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'S2': dict(out=O + '03/start_v1.png', model=PRO, refs=[O + '01/start_v1.png', M + 'pang-misun_pose_lying.png', M + 'pang-misun_hires_front.png', C + 'pang-changsu_hires_front.png']),
+ 'E1b': dict(out=O + '03/end_v1.png', model=FLASH, refs=[O + '03/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'E2b': dict(out=O + '04/end_v1.png', model=FLASH, refs=[O + '03/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
  'E2': dict(out=O + '02/end_v1.png', model=FLASH, refs=[O + '01/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
 }
 
