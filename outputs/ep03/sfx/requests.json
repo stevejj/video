@@ -1,0 +1,25 @@
+{
+ "note": "ep03 효과음(05e §8). TV 환경음은 ep01 tv_amb 재사용. 생성은 사용자 승인 후.",
+ "items": [
+  {
+   "name": "chip_crunch",
+   "prompt": "Single crisp potato chip crunch, one small bite, close-up, quiet room, no music",
+   "duration": 1.0
+  },
+  {
+   "name": "bag_rustle",
+   "prompt": "Soft crinkle of a foil snack bag being touched, short light rustle, close-up, quiet room",
+   "duration": 1.0
+  },
+  {
+   "name": "stretch_boing",
+   "prompt": "Cartoon rubbery stretch sound, elastic wobble stretching out, short and playful, comedic",
+   "duration": 1.0
+  },
+  {
+   "name": "bag_yank",
+   "prompt": "Foil snack bag yanked away quickly, loud crinkly swoosh, cartoon comedic, single hit",
+   "duration": 1.0
+  }
+ ]
+}

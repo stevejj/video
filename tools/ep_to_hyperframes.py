@@ -91,7 +91,7 @@ def main():
         elif ui and c['kind'] == 'ui':
             pass
         elif c['kind'] == 'clip':
-            src = os.path.join(ROOT, f'outputs/{ep}/{src_cut}/clip_v1.mp4'); dst = f'media/{src_cut}.mp4'
+            src = os.path.join(ROOT, f'outputs/{ep}/{src_cut}/clip_{c.get("clip_tag", "v1")}.mp4'); dst = f'media/{src_cut}.mp4'
             shutil.copy(src, os.path.join(out, dst))
             el = (f'<video id="{cid}-v" src="{dst}" data-start="{t:.3f}" data-duration="{L:.3f}" '
                   f'data-media-start="{float(c.get("in", 0)):.3f}" muted></video>')
