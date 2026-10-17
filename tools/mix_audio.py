@@ -37,9 +37,14 @@ def main():
         fc.append(f"[{n}:a]aresample=44100,aformat=channel_layouts=mono,adelay={int(v['at'] * 1000)}[a{n}]"); voice.append(f'a{n}')
     print(f'대사 {len(places)}개')
     if not a.no_sfx:
-        X = json.load(open(os.path.join(ROOT, f'outputs/{a.ep}/sfx/sfx_list.json')))
+        xp = os.path.join(ROOT, f'outputs/{a.ep}/sfx/sfx_list.json'); X = json.load(open(xp))
         for it in X['items']:
-            n += 1; inputs += ['-i', os.path.join(ROOT, it['file'])]
+            fp = os.path.join(ROOT, it['file'])
+            if not os.path.exists(fp):
+                print(f"  (없음, 건너뜀) {it['name']}: {it['file']}"); continue
+            if it.get('gain') is None:
+                it['measured_lufs'] = round(lufs(fp), 2); it['gain'] = round(it['target_lufs'] - it['measured_lufs'], 1)
+            n += 1; inputs += ['-i', fp]
             ch = "aresample=44100,aformat=channel_layouts=mono"
             if it.get('loop'):
                 ch += ",aloop=loop=-1:size=44100*60"
@@ -50,7 +55,8 @@ def main():
                 ch += f",afade=t=out:st={it['len'] - it['fade_out']}:d={it['fade_out']}"
             ch += f",volume={it['gain']}dB,adelay={int(it['at'] * 1000)}"
             fc.append(f"[{n}:a]{ch}[a{n}]"); others.append(f'a{n}')
-        print(f"효과음 {len(X['items'])}개")
+        json.dump(X, open(xp, 'w'), ensure_ascii=False, indent=1)
+        print(f"효과음 {len(others)}개 배치")
     labels = voice + others
     B = P.get('bgm')
     if B and not a.no_bgm:

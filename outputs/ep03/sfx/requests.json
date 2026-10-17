@@ -1,5 +1,5 @@
 {
- "note": "ep03 효과음(05e §8). TV 환경음은 ep01 tv_amb 재사용. 생성은 사용자 승인 후.",
+ "note": "ep03 효과음 3개(2026-10-17 사용자 '진행', 클립 5 A안 채택). TV 환경음은 ep01 tv_amb 재사용, BGM 없음.",
  "items": [
   {
    "name": "chip_crunch",
@@ -9,11 +9,6 @@
   {
    "name": "bag_rustle",
    "prompt": "Soft crinkle of a foil snack bag being touched, short light rustle, close-up, quiet room",
-   "duration": 1.0
-  },
-  {
-   "name": "stretch_boing",
-   "prompt": "Cartoon rubbery stretch sound, elastic wobble stretching out, short and playful, comedic",
    "duration": 1.0
   },
   {
