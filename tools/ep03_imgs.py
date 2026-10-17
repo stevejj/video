@@ -13,6 +13,9 @@ MAN = {
  'S2': dict(out=O + '03/start_v1.png', model=PRO, refs=[O + '01/start_v1.png', M + 'pang-misun_pose_lying.png', M + 'pang-misun_hires_front.png', C + 'pang-changsu_hires_front.png']),
  'E1b': dict(out=O + '03/end_v1.png', model=FLASH, refs=[O + '03/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
  'E2b': dict(out=O + '04/end_v1.png', model=FLASH, refs=[O + '03/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'S3': dict(out=O + '05/start_v1.png', model=PRO, refs=[O + '01/start_v1.png', 'outputs/ep01/9-04/start_v1.png', M + 'pang-misun_pose_sit.png', M + 'pang-misun_hires_front.png']),
+ 'E1c': dict(out=O + '05/end_v1.png', model=FLASH, refs=[O + '05/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'E2c': dict(out=O + '06/end_v1.png', model=FLASH, refs=[O + '05/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
  'E2': dict(out=O + '02/end_v1.png', model=FLASH, refs=[O + '01/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
 }
 
