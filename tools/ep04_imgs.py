@@ -7,6 +7,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C = 'assets/characters/pang-changsu/'; M = 'assets/characters/pang-misun/'; O = 'outputs/ep04/'
 FLASH = 'gemini-3.1-flash-image'; PRO = 'gemini-3-pro-image'
 MAN = {
+ 'W1f': dict(out=O + '01/start_v2.png', model=FLASH, refs=[O + '01/start_v1.png', M + 'pang-misun_hires_front.png', M + 'pang-misun_face_front.png']),
  'W1': dict(out=O + '01/start_v1.png', model=PRO, refs=['assets/spaces/living_L1_night_empty.png', 'outputs/ep01/9-04/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
 }
 
