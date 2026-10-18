@@ -7,6 +7,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C = 'assets/characters/pang-changsu/'; M = 'assets/characters/pang-misun/'; O = 'outputs/ep04/'
 FLASH = 'gemini-3.1-flash-image'; PRO = 'gemini-3-pro-image'
 MAN = {
+ 'C2': dict(out=O + '02/start_v1.png', model=FLASH, refs=[O + '01/start_v2.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'C3': dict(out=O + '03/start_v1.png', model=FLASH, refs=[O + '01/start_v2.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'C3e': dict(out=O + '03/end_v1.png', model=FLASH, refs=[O + '03/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'M4s': dict(out=O + '04/start_v1.png', model=FLASH, refs=[O + '01/start_v2.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'M4e': dict(out=O + '04/end_v1.png', model=FLASH, refs=[O + '04/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'W5e': dict(out=O + '05/end_v1.png', model=FLASH, refs=[O + '01/start_v2.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'I6': dict(out=O + '06/start_v1.png', model=FLASH, refs=[O + '05/end_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
+ 'W7e': dict(out=O + '07/end_v1.png', model=FLASH, refs=[O + '05/end_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
  'W1f': dict(out=O + '01/start_v2.png', model=FLASH, refs=[O + '01/start_v1.png', M + 'pang-misun_hires_front.png', M + 'pang-misun_face_front.png']),
  'W1': dict(out=O + '01/start_v1.png', model=PRO, refs=['assets/spaces/living_L1_night_empty.png', 'outputs/ep01/9-04/start_v1.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_hires_front.png']),
 }
