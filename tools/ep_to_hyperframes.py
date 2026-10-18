@@ -96,7 +96,7 @@ def main():
             el = (f'<video id="{cid}-v" src="{dst}" data-start="{t:.3f}" data-duration="{L:.3f}" '
                   f'data-media-start="{float(c.get("in", 0)):.3f}" muted></video>')
         else:
-            src = os.path.join(ROOT, f'outputs/{ep}/{src_cut}/start_v1.png'); dst = f'media/{src_cut}.png'
+            src = os.path.join(ROOT, c['image']) if c.get('image') else os.path.join(ROOT, f'outputs/{ep}/{src_cut}/start_v1.png'); dst = f'media/{c["cut"]}.png'
             shutil.copy(src, os.path.join(out, dst))
             el = f'<img id="{cid}-v" src="{dst}" data-start="{t:.3f}" data-duration="{L:.3f}" />'
         # 래퍼는 타이밍 없음(video_nested_in_timed_element 회피). transform-origin = 창 중심

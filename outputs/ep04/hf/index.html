@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>ep04 v11 hyperframes</title>
+<script src="gsap.min.js"></script>
+<style>
+  @font-face { font-family: "NotoKR"; src: url("media/NotoSansKR.ttf") format("truetype"); font-weight: 100 900; }
+  body { margin: 0; background: #000; font-family: "NotoKR", sans-serif; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #win { position: absolute; left: 0; top: 576px; width: 1080px; height: 768px; overflow: hidden; background: #000; }
+  .frame { position: absolute; left: 0; width: 1080px; height: 1920px; will-change: transform; }
+  .frame img.layer { position: absolute; width: auto; height: auto; object-fit: fill; }
+  .frame img:not(.layer), .frame video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; display: block; }
+  #title { position: absolute; left: 0; width: 100%; top: 287px; text-align: center; font-size: 104px; font-weight: 800; line-height: 122px; }
+  #channel { position: absolute; left: 0; width: 100%; top: 1384px; text-align: center; font-size: 52px; font-weight: 700; color: #FFFFFF; opacity: 0.9; line-height: 1.4; }
+  .sub { position: absolute; bottom: 622px; font-size: 74px; font-weight: 800; white-space: nowrap; line-height: 1.25;
+          -webkit-text-stroke: 9px #111111; paint-order: stroke fill; transform-origin: 50% 100%; }
+  .card { position: absolute; left: 120px; top: 612px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }
+  .spark { position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }
+  .blackfade { position: absolute; inset: 0; background: #000; }
+  .uibox { position: absolute; left: 0; top: 776px; width: 1080px; text-align: center; color: #fff; transform-origin: 50% 50%; }
+  .uilabel { font-size: 60px; font-weight: 700; opacity: 0.85; }
+  .uinum { font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }
+  .uiclock { font-size: 54px; font-weight: 700; margin-top: 10px; }
+  .ring { position: absolute; border: 10px dashed #FFD84A; border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }
+  .arrow { position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="15.500" data-fps="24">
+  <div id="win">
+        <div class="frame" id="c01a" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c01a-v" src="media/01a.png" data-start="0.000" data-duration="3.000" /></div>
+    <div class="frame" id="c02" style="top:-384.0px; transform-origin: 540px 768.0px;"><img id="c02-v" src="media/02.png" data-start="3.000" data-duration="1.500" /></div>
+    <div class="frame" id="c03a" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c03a-v" src="media/03a.png" data-start="4.500" data-duration="0.800" /></div>
+    <div class="frame" id="c03b" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c03b-v" src="media/03b.png" data-start="5.300" data-duration="0.700" /></div>
+    <div class="frame" id="c04a" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c04a-v" src="media/04a.png" data-start="6.000" data-duration="1.000" /></div>
+    <div class="frame" id="c04b" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c04b-v" src="media/04b.png" data-start="7.000" data-duration="1.500" /></div>
+    <div class="frame" id="c05a" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c05a-v" src="media/05a.png" data-start="8.500" data-duration="1.000" /></div>
+    <div class="frame" id="c05b" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c05b-v" src="media/05b.png" data-start="9.500" data-duration="1.500" /></div>
+    <div class="frame" id="c06" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c06-v" src="media/06.png" data-start="11.000" data-duration="1.500" /></div>
+    <div class="frame" id="c07a" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c07a-v" src="media/07a.png" data-start="12.500" data-duration="1.000" /></div>
+    <div class="frame" id="c07b" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c07b-v" src="media/07b.png" data-start="13.500" data-duration="2.000" /></div>
+  </div>
+  <div id="title"><div style="color:#FFFFFF">한 입도 안 먹겠다던</div><div style="color:#FFD84A">우리 미순이</div></div>
+  <div id="channel">지독한 미순</div>
+  
+  
+</div>
+<script>
+  // 자막 가로 위치: 중심 cx, 폭 1000 안으로 클램프 (조립기와 동일 규칙)
+  function placeSubs() {
+    document.querySelectorAll('.sub').forEach(el => {
+      const cx = parseFloat(el.dataset.cx); const W = 1080, MW = 1000;
+      let fs = 74; el.style.fontSize = fs + 'px';
+      while (el.offsetWidth > MW && fs > 40) { fs -= 4; el.style.fontSize = fs + 'px'; }
+      const tw = el.offsetWidth;
+      let x = Math.min(Math.max(cx - tw / 2, (W - MW) / 2), W - (W - MW) / 2 - tw);
+      el.style.left = x + 'px';
+    });
+  }
+  const tl = gsap.timeline({ paused: true });
+  function build() {
+    placeSubs();
+        tl.fromTo("#c01a", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 3.0, "ease": "none"}, 0.000);
+    tl.fromTo("#c02", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 3.000);
+    tl.fromTo("#c03a", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 0.8, "ease": "none"}, 4.500);
+    tl.fromTo("#c03b", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 0.7, "ease": "none"}, 5.300);
+    tl.fromTo("#c04a", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 1.0, "ease": "none"}, 6.000);
+    tl.fromTo("#c04b", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 7.000);
+    tl.fromTo("#c05a", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 1.0, "ease": "none"}, 8.500);
+    tl.fromTo("#c05b", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 9.500);
+    tl.fromTo("#c06", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 11.000);
+    tl.fromTo("#c07a", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 1.0, "ease": "none"}, 12.500);
+    tl.fromTo("#c07b", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 2.0, "ease": "none"}, 13.500);
+    window.__timelines["main"] = tl;
+  }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }
+</script>
+</body>
+</html>
