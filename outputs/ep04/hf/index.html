@@ -29,19 +29,17 @@
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="15.500" data-fps="24">
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="16.200" data-fps="24">
   <div id="win">
         <div class="frame" id="c01a" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c01a-v" src="media/01a.png" data-start="0.000" data-duration="3.000" /></div>
     <div class="frame" id="c02" style="top:-384.0px; transform-origin: 540px 768.0px;"><img id="c02-v" src="media/02.png" data-start="3.000" data-duration="1.500" /></div>
     <div class="frame" id="c03a" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c03a-v" src="media/03a.png" data-start="4.500" data-duration="0.800" /></div>
     <div class="frame" id="c03b" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c03b-v" src="media/03b.png" data-start="5.300" data-duration="0.700" /></div>
-    <div class="frame" id="c04a" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c04a-v" src="media/04a.png" data-start="6.000" data-duration="1.000" /></div>
-    <div class="frame" id="c04b" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c04b-v" src="media/04b.png" data-start="7.000" data-duration="1.500" /></div>
-    <div class="frame" id="c05a" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c05a-v" src="media/05a.png" data-start="8.500" data-duration="1.000" /></div>
-    <div class="frame" id="c05b" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c05b-v" src="media/05b.png" data-start="9.500" data-duration="1.500" /></div>
-    <div class="frame" id="c06" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c06-v" src="media/06.png" data-start="11.000" data-duration="1.500" /></div>
-    <div class="frame" id="c07a" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c07a-v" src="media/07a.png" data-start="12.500" data-duration="1.000" /></div>
-    <div class="frame" id="c07b" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c07b-v" src="media/07b.png" data-start="13.500" data-duration="2.000" /></div>
+    <div class="frame" id="c04" style="top:-537.6px; transform-origin: 540px 921.6px;"><video id="c04-v" src="media/04.mp4" data-start="6.000" data-duration="2.600" data-media-start="0.600" muted></video></div>
+    <div class="frame" id="c05a" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c05a-v" src="media/05a.png" data-start="8.600" data-duration="1.000" /></div>
+    <div class="frame" id="c05b" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c05b-v" src="media/05b.png" data-start="9.600" data-duration="1.400" /></div>
+    <div class="frame" id="c06" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c06-v" src="media/06.mp4" data-start="11.000" data-duration="1.600" data-media-start="0.300" muted></video></div>
+    <div class="frame" id="c07" style="top:-633.6px; transform-origin: 540px 1017.6px;"><video id="c07-v" src="media/07.mp4" data-start="12.600" data-duration="3.600" data-media-start="0.000" muted></video></div>
   </div>
   <div id="title"><div style="color:#FFFFFF">한 입도 안 먹겠다던</div><div style="color:#FFD84A">우리 미순이</div></div>
   <div id="channel">지독한 미순</div>
@@ -67,13 +65,9 @@
     tl.fromTo("#c02", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 3.000);
     tl.fromTo("#c03a", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 0.8, "ease": "none"}, 4.500);
     tl.fromTo("#c03b", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 0.7, "ease": "none"}, 5.300);
-    tl.fromTo("#c04a", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 1.0, "ease": "none"}, 6.000);
-    tl.fromTo("#c04b", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 7.000);
-    tl.fromTo("#c05a", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 1.0, "ease": "none"}, 8.500);
-    tl.fromTo("#c05b", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 9.500);
-    tl.fromTo("#c06", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.03, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 11.000);
-    tl.fromTo("#c07a", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 1.0, "ease": "none"}, 12.500);
-    tl.fromTo("#c07b", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 2.0, "ease": "none"}, 13.500);
+    tl.fromTo("#c05a", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 1.0, "ease": "none"}, 8.600);
+    tl.fromTo("#c05b", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.4, "x": 0, "y": 0, "duration": 1.4, "ease": "none"}, 9.600);
+    tl.fromTo("#c07", {"scale": 1.35, "x": 0, "y": 0}, {"scale": 1.38, "x": 0, "y": 0, "duration": 3.6, "ease": "none"}, 12.600);
     window.__timelines["main"] = tl;
   }
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }

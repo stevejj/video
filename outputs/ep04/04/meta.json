@@ -1,0 +1,24 @@
+{
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 3.99,
+   "start_vs_ref_bg_meandiff": 4.42,
+   "end_vs_ref_meandiff": 4.64,
+   "end_vs_ref_bg_meandiff": 5.01,
+   "interframe_mean": 0.38,
+   "interframe_max": 0.88,
+   "interframe_max_at_s": 2.17,
+   "first_vs_last_meandiff": 4.21,
+   "bg_drift_first_last": 3.13,
+   "cam_motion_px_median": 0.01,
+   "cam_motion_px_max": 0.02
+  }
+ }
+}

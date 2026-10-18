@@ -682,6 +682,19 @@
    "lines": [],
    "placements": [],
    "note": "ep03: 대사 없음, BGM 없음(사용자 2026-10-16). 소리 = TV 환경음 + 효과음."
+  },
+  "ep04": {
+   "lines": [],
+   "placements": [],
+   "bgm": {
+    "file": "outputs/ep01/bgm/F_soft_chiptune.mp3",
+    "target_lufs": -24,
+    "duck_db": 0,
+    "fade_in": 0.5,
+    "end_at": 16.2,
+    "fade_out": 1.0
+   },
+   "note": "ep04: 대사 없음, 음악 위주(참고 릴스와 같음) + 기존 효과음"
   }
  },
  "voices_legacy": {
