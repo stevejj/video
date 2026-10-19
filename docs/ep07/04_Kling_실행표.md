@@ -112,3 +112,4 @@ Both empty mugs stay on the counter in front of them, exactly two mugs, they nev
   - Kling 348크레딧: S5 시험 50 + S1 v1 실패 100 + S2 30 + S4 18 + S1 v2 100 + S5 v2 50. 잔액 **111**.
   - 실패·재작업으로 150크레딧 손실: S1 v1 100 + S5 v1 50.
   - 이미지 약 755원(W1·C1·C2·W2), 대사 녹음(ElevenLabs).
+- 2026-10-19 v3: 제목·채널명 살짝 아래로(제목 300→360, 채널명 470→530, 사용자 요청). `outputs/ep07/roughcut/ep07_v3.mp4`, G4 통과.

@@ -1,40 +1,40 @@
 {
   "version": 1,
-  "historyId": "eb044ba5-b92c-4d41-a657-e5dbdac3d8b2",
+  "historyId": "694565e5-cff1-4abf-8675-5304b93ddcaf",
   "currentRevision": null,
   "pendingChanges": false,
   "files": {
     "cuts.json": {
       "hash": "a97a93b6ea7359a610ce8c0914d54b4a7fd8d944bc5b7e4a0f80c14ff7c7f5d9",
-      "content": "/root/.cache/hyperframes/history/eb044ba5-b92c-4d41-a657-e5dbdac3d8b2/blobs/a9/a97a93b6ea7359a610ce8c0914d54b4a7fd8d944bc5b7e4a0f80c14ff7c7f5d9"
+      "content": "/root/.cache/hyperframes/history/694565e5-cff1-4abf-8675-5304b93ddcaf/blobs/a9/a97a93b6ea7359a610ce8c0914d54b4a7fd8d944bc5b7e4a0f80c14ff7c7f5d9"
     },
     "gsap.min.js": {
       "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
-      "content": "/root/.cache/hyperframes/history/eb044ba5-b92c-4d41-a657-e5dbdac3d8b2/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+      "content": "/root/.cache/hyperframes/history/694565e5-cff1-4abf-8675-5304b93ddcaf/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
     },
     "index.html": {
-      "hash": "c25b0d119f279e1e49f6246d501498663d251dfe2d31432dad55afd67bcfb0cb",
-      "content": "/root/.cache/hyperframes/history/eb044ba5-b92c-4d41-a657-e5dbdac3d8b2/blobs/c2/c25b0d119f279e1e49f6246d501498663d251dfe2d31432dad55afd67bcfb0cb"
+      "hash": "8727d89c0a92e4adaac4f4cf193c68e236efb220e2cba689bb7f9968563b9a65",
+      "content": "/root/.cache/hyperframes/history/694565e5-cff1-4abf-8675-5304b93ddcaf/blobs/87/8727d89c0a92e4adaac4f4cf193c68e236efb220e2cba689bb7f9968563b9a65"
     },
     "media/NotoSansKR.ttf": {
       "hash": "194018e6b2b293a7964f037b25c0249ce1418bc9ab3c971060a03aa57861e252",
-      "content": "/root/.cache/hyperframes/history/eb044ba5-b92c-4d41-a657-e5dbdac3d8b2/blobs/19/194018e6b2b293a7964f037b25c0249ce1418bc9ab3c971060a03aa57861e252"
+      "content": "/root/.cache/hyperframes/history/694565e5-cff1-4abf-8675-5304b93ddcaf/blobs/19/194018e6b2b293a7964f037b25c0249ce1418bc9ab3c971060a03aa57861e252"
     },
     "media/s1.mp4": {
       "hash": "a946da9446ba618d38d1dbbc957cfa1ec4d2725cc0d4b7739998dc6af319b586",
-      "content": "/root/.cache/hyperframes/history/eb044ba5-b92c-4d41-a657-e5dbdac3d8b2/blobs/a9/a946da9446ba618d38d1dbbc957cfa1ec4d2725cc0d4b7739998dc6af319b586"
+      "content": "/root/.cache/hyperframes/history/694565e5-cff1-4abf-8675-5304b93ddcaf/blobs/a9/a946da9446ba618d38d1dbbc957cfa1ec4d2725cc0d4b7739998dc6af319b586"
     },
     "media/s2.mp4": {
       "hash": "1ea89d4482e57e7e04c902bc0d43a737a64338afed0d0a4dc412c82f0c563255",
-      "content": "/root/.cache/hyperframes/history/eb044ba5-b92c-4d41-a657-e5dbdac3d8b2/blobs/1e/1ea89d4482e57e7e04c902bc0d43a737a64338afed0d0a4dc412c82f0c563255"
+      "content": "/root/.cache/hyperframes/history/694565e5-cff1-4abf-8675-5304b93ddcaf/blobs/1e/1ea89d4482e57e7e04c902bc0d43a737a64338afed0d0a4dc412c82f0c563255"
     },
     "media/s4.mp4": {
       "hash": "f9c2bb9638fa07d60d2eadf1fdf5a5f7c90c9ec16b0681db0a74a0c159b23a94",
-      "content": "/root/.cache/hyperframes/history/eb044ba5-b92c-4d41-a657-e5dbdac3d8b2/blobs/f9/f9c2bb9638fa07d60d2eadf1fdf5a5f7c90c9ec16b0681db0a74a0c159b23a94"
+      "content": "/root/.cache/hyperframes/history/694565e5-cff1-4abf-8675-5304b93ddcaf/blobs/f9/f9c2bb9638fa07d60d2eadf1fdf5a5f7c90c9ec16b0681db0a74a0c159b23a94"
     },
     "media/s5.mp4": {
       "hash": "be4547f4e27d998010eca1c0e6b33e9f9616383fb4f38ef8b06ceb4c1ff7ca6f",
-      "content": "/root/.cache/hyperframes/history/eb044ba5-b92c-4d41-a657-e5dbdac3d8b2/blobs/be/be4547f4e27d998010eca1c0e6b33e9f9616383fb4f38ef8b06ceb4c1ff7ca6f"
+      "content": "/root/.cache/hyperframes/history/694565e5-cff1-4abf-8675-5304b93ddcaf/blobs/be/be4547f4e27d998010eca1c0e6b33e9f9616383fb4f38ef8b06ceb4c1ff7ca6f"
     }
   },
   "revisions": {},
@@ -50,9 +50,9 @@
   },
   "renders": {
     "latest": {
-      "id": "91120d90-9652-4b30-b870-579061dc1ae8",
-      "completedAt": 1792412465948,
-      "output": "/home/user/video/outputs/ep07/roughcut/ep07_v2_silent.mp4",
+      "id": "5bdb552a-a57e-450b-941b-7de9ea9128f4",
+      "completedAt": 1792413204396,
+      "output": "/home/user/video/outputs/ep07/roughcut/ep07_v3_silent.mp4",
       "status": "completed",
       "revision": null
     },
