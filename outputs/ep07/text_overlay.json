@@ -12,23 +12,25 @@
   ],
   "size": 104,
   "weight": 800,
-  "center_y": 400,
-  "line_gap": 18
+  "center_y": 300,
+  "line_gap": 18,
+  "stroke": 10
  },
  "channel": {
   "text": "지독한 미순",
   "color": "#FFFFFF",
   "size": 52,
   "weight": 700,
-  "center_y": 1420,
-  "opacity": 0.9
+  "center_y": 470,
+  "opacity": 1.0,
+  "stroke": 6
  },
  "subtitle_style": {
   "size": 74,
   "weight": 800,
   "stroke": 9,
   "stroke_color": "#111111",
-  "bottom_margin": 46,
+  "bottom_margin": 430,
   "max_width": 1000,
   "colors": {
    "changsu": "#8FB0E8",
@@ -102,5 +104,6 @@
    "end": 18.0,
    "x": 0.5
   }
- ]
+ ],
+ "layout": "fullscreen: 영상 1080×1920 꽉 채움, 제목·채널명은 영상 위에 겹침(사용자 2026-10-19), 자막은 아래에서 430px(인스타 UI 피함)"
 }

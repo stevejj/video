@@ -197,8 +197,8 @@ def main():
   .frame {{ position: absolute; left: 0; width: {W}px; height: {H}px; will-change: transform; }}
   .frame img.layer {{ position: absolute; width: auto; height: auto; object-fit: fill; }}
   .frame img:not(.layer), .frame video {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; object-fit: cover; display: block; }}
-  #title {{ position: absolute; left: 0; width: 100%; top: {ti['center_y'] - ti['size'] - ti['line_gap'] / 2:.0f}px; text-align: center; font-size: {ti['size']}px; font-weight: {ti['weight']}; line-height: {ti['size'] + ti['line_gap']}px; }}
-  #channel {{ position: absolute; left: 0; width: 100%; top: {ch['center_y'] - ch['size'] * 0.7:.0f}px; text-align: center; font-size: {ch['size']}px; font-weight: {ch['weight']}; color: {ch['color']}; opacity: {ch.get('opacity', 1)}; line-height: 1.4; }}
+  #title {{ position: absolute; left: 0; width: 100%; top: {ti['center_y'] - ti['size'] - ti['line_gap'] / 2:.0f}px; text-align: center; font-size: {ti['size']}px; font-weight: {ti['weight']}; line-height: {ti['size'] + ti['line_gap']}px;{' -webkit-text-stroke: %dpx #111; paint-order: stroke fill; text-shadow: 0 4px 14px rgba(0,0,0,0.55);' % ti['stroke'] if ti.get('stroke') else ''} }}
+  #channel {{ position: absolute; left: 0; width: 100%; top: {ch['center_y'] - ch['size'] * 0.7:.0f}px; text-align: center; font-size: {ch['size']}px; font-weight: {ch['weight']}; color: {ch['color']}; opacity: {ch.get('opacity', 1)}; line-height: 1.4;{' -webkit-text-stroke: %dpx #111; paint-order: stroke fill; text-shadow: 0 3px 10px rgba(0,0,0,0.55);' % ch['stroke'] if ch.get('stroke') else ''} }}
   .sub {{ position: absolute; bottom: {H - top - win + st['bottom_margin']}px; font-size: {st['size']}px; font-weight: {st['weight']}; white-space: nowrap; line-height: 1.25;
           -webkit-text-stroke: {st['stroke']}px {st['stroke_color']}; paint-order: stroke fill; transform-origin: 50% 100%; }}
   .card {{ position: absolute; left: 120px; top: {top + 36}px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }}

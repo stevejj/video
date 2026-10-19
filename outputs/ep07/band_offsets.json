@@ -1,8 +1,6 @@
 {
- "band_ratio": 0.4,
- "default_top": 36,
- "per_cut_top": {
-  "03": 30
- },
- "note": "ep07: W1은 36(앞 떡볶이 철판 일부가 보이게), C2는 30"
+ "band_ratio": 1.0,
+ "default_top": 0,
+ "per_cut_top": {},
+ "note": "ep07: 전체 화면(사용자 2026-10-19) → 위치 보정 없음"
 }
