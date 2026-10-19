@@ -12,6 +12,17 @@ import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+MODEL_URL = 'https://github.com/danielgatis/rembg/releases/download/v0.0.0/isnet-general-use.onnx'
+
+
+def ensure_model(path):
+    """ISNet 모델이 없으면(컨테이너 초기화 등) 받아 둔다."""
+    import os, urllib.request
+    if not os.path.exists(path):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        print('ISNet 모델 내려받는 중:', path); urllib.request.urlretrieve(MODEL_URL, path)
+    return path
+
 
 _SESS = None
 
@@ -21,7 +32,7 @@ def penguins_mask(f):
     global _SESS
     import onnxruntime as ort
     if _SESS is None:
-        _SESS = ort.InferenceSession('/tmp/claude-0/-home-user-video/f018d661-8ddb-51f7-8e2d-f2480d28ac5d/scratchpad/models/isnet.onnx', providers=['CPUExecutionProvider'])
+        _SESS = ort.InferenceSession(ensure_model('/tmp/claude-0/-home-user-video/f018d661-8ddb-51f7-8e2d-f2480d28ac5d/scratchpad/models/isnet.onnx'), providers=['CPUExecutionProvider'])
     x = cv2.resize(cv2.cvtColor(f, cv2.COLOR_BGR2RGB), (1024, 1024)).astype(np.float32) / 255.0 - 0.5
     o = _SESS.run(None, {_SESS.get_inputs()[0].name: x.transpose(2, 0, 1)[None]})[0][0, 0]
     o = (o - o.min()) / (o.max() - o.min() + 1e-8)

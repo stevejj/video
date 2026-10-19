@@ -8,9 +8,20 @@ import numpy as np
 import onnxruntime as ort
 from PIL import Image
 
+MODEL_URL = 'https://github.com/danielgatis/rembg/releases/download/v0.0.0/isnet-general-use.onnx'
+
+
+def ensure_model(path):
+    """ISNet 모델이 없으면(컨테이너 초기화 등) 받아 둔다."""
+    import os, urllib.request
+    if not os.path.exists(path):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        print('ISNet 모델 내려받는 중:', path); urllib.request.urlretrieve(MODEL_URL, path)
+    return path
+
 
 def alpha(img, model):
-    s = ort.InferenceSession(model, providers=['CPUExecutionProvider'])
+    s = ort.InferenceSession(ensure_model(model), providers=['CPUExecutionProvider'])
     x = np.asarray(img.convert('RGB').resize((1024, 1024), Image.LANCZOS)).astype(np.float32) / 255.0
     x = (x - 0.5) / 1.0
     o = s.run(None, {s.get_inputs()[0].name: x.transpose(2, 0, 1)[None]})[0][0, 0]
