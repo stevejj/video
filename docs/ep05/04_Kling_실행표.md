@@ -84,3 +84,6 @@ Pang Chang-su stands in the foreground on the left, seen from behind, holding a 
   - 효과음 6개(셔터 합성 2, 덤벨 내려놓기, 발소리, 잡기 톡, 반짝), BGM F.
   - 렌더 시 "sparse keyframes" 경고가 났지만, 프레임 차이를 검사한 결과 멈춘 프레임은 없음.
   - **ep05 비용: Kling 60크레딧(실패 0), 이미지 약 505원.**
+- 2026-10-19 사용자: v1에서 덤벨이 사라졌다가 다시 나타남(짧아서 넘어가지만 다음엔 실수 금지, 원인 분석).
+  - 원인: 갸웃 퍼펫 컷의 배경판(plateB)에 바닥 덤벨이 없음. 자세한 분석은 08 "ep05 소품 사라짐".
+  - **v1.1** `outputs/ep05/roughcut/ep05_v1_1.mp4`: 덤벨 레이어를 추가했고 `tools/check_props.py` 통과. 연속성표 `outputs/ep05/props.json`.

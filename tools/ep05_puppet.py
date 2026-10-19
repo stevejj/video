@@ -22,7 +22,8 @@ CUTS = {  # id: (원본, 박스)
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    meta = {'src_width': 768}
+    meta = {'src_width': 768, 'note': '배경판에서 지운 소품은 그 판을 쓰는 모든 컷에서 레이어로 다시 얹을 것(08 F8)',
+            'removed_props': {'plateA': ['misun'], 'plateB': ['misun', 'dumbbells(바닥)']}}
     masks = {}
     for k, (img, box) in CUTS.items():
         full = os.path.join(OUT, f'{k}_full.png'); mk = os.path.join(OUT, f'{k}_mask.png')
