@@ -1,0 +1,9 @@
+{
+ "note": "ep06 힙합 BGM 후보 2곡(사용자: 배경음 힙한 느낌). 참고 릴스 약 94 BPM. 차례 바뀜 비트 끊김은 편집(dip)으로 만듦.",
+ "items": [
+  {"name": "G_boombap_battle", "length_ms": 20000,
+   "prompt": "Playful old-school boom bap hip hop instrumental for a cute street dance battle. 94 BPM, punchy kick and crisp snare, swinging hi-hats, warm deep bassline, funky horn stab hook and short vinyl scratch accents, confident and cheeky, catchy and loopable, steady energy from the first beat. Instrumental only, no vocals, no rap, no spoken words."},
+  {"name": "H_trap_bounce", "length_ms": 20000,
+   "prompt": "Bouncy modern trap-pop hip hop beat for a funny dance-off between two cute characters. 94 BPM half-time feel, booming 808 bass, snappy claps, rolling hi-hats, a playful plucky synth lead and whistle hook, cocky and fun, high energy from the first beat, loopable. Instrumental only, no vocals, no rap, no spoken words."}
+ ]
+}
