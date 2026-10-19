@@ -1,0 +1,63 @@
+{
+ "note": "ep05 애니매틱 v2 효과음(셔터는 합성, 나머지 기존 파일 재사용, 0원). 10.0s 타임라인.",
+ "items": [
+  {
+   "name": "shutter1",
+   "file": "outputs/ep05/sfx/shutter.wav",
+   "at": 1.13,
+   "len": 0.25,
+   "target_lufs": -22,
+   "gain": -6.0,
+   "note": "0.25s라 LUFS 측정 불가 → 고정 gain"
+  },
+  {
+   "name": "dumbbell_drop",
+   "file": "outputs/ep02/sfx/el/charger_drop.mp3",
+   "at": 1.57,
+   "len": 0.6,
+   "target_lufs": -18,
+   "fade_out": 0.1,
+   "gain": 14.0,
+   "measured_lufs": -32.01
+  },
+  {
+   "name": "steps_in",
+   "file": "outputs/ep01/sfx/el/footsteps.mp3",
+   "at": 1.82,
+   "len": 0.6,
+   "target_lufs": -24,
+   "fade_out": 0.1,
+   "gain": 15.0,
+   "measured_lufs": -39.03
+  },
+  {
+   "name": "steps_back",
+   "file": "outputs/ep01/sfx/el/footsteps.mp3",
+   "at": 6.82,
+   "len": 0.45,
+   "target_lufs": -24,
+   "fade_out": 0.1,
+   "gain": 15.0,
+   "measured_lufs": -39.03
+  },
+  {
+   "name": "pose_pop",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 7.6,
+   "len": 0.7,
+   "target_lufs": -24,
+   "fade_out": 0.1,
+   "gain": -6.2,
+   "measured_lufs": -17.81
+  },
+  {
+   "name": "shutter2",
+   "file": "outputs/ep05/sfx/shutter.wav",
+   "at": 9.73,
+   "len": 0.25,
+   "target_lufs": -22,
+   "gain": -6.0,
+   "note": "0.25s라 LUFS 측정 불가 → 고정 gain"
+  }
+ ]
+}

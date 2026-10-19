@@ -695,6 +695,19 @@
     "fade_out": 1.0
    },
    "note": "ep04: 대사 없음, 음악 위주(참고 릴스와 같음) + 기존 효과음"
+  },
+  "ep05": {
+   "lines": [],
+   "placements": [],
+   "bgm": {
+    "file": "outputs/ep01/bgm/F_soft_chiptune.mp3",
+    "target_lufs": -20,
+    "duck_db": 0,
+    "fade_in": 0.3,
+    "end_at": 10.0,
+    "fade_out": 0.6
+   },
+   "note": "ep05: 대사 없음, 음악 + 효과음(참고 릴스와 같음)"
   }
  },
  "voices_legacy": {

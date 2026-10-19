@@ -44,3 +44,20 @@ Pang Chang-su stands in the foreground on the left, seen from behind, holding a 
 
 ## 현황
 - 2026-10-19 실행표 작성. 승인("진행") 대기.
+- 2026-10-19 사용자: "정지화면이 나은지 일단 내가 판단해볼게. 너무 정지화면이면 재미없더라, 애니매틱으로 할 수 있는 최선을 해야 영상처럼 보일 것 같다" → **Kling 보류**, 무료 애니매틱 v2(퍼펫) 먼저 만듦.
+- **애니매틱 v2 (0원)**: 10.0s, 6컷. `outputs/ep05/roughcut/ep05_animatic_v2.mp4` (-19.9 LUFS)
+  - 퍼펫 재료: `tools/ep05_puppet.py`.
+    - ISNet 누끼(`tools/cutout.py`)로 미순 K1·K3와 바닥 덤벨을 오려냄.
+    - 미순 없는 배경판 plateA(폰 듦)·plateB(폰 내림)를 만듦.
+    - 두 장 모두 가려진 구멍은 랙 무늬를 80px 반복해 채우고, 바닥은 아래 바닥 결을 복사함.
+  - 01 포즈 들썩 2번 → 셔터 플래시+찰칵(합성음)
+  - 02 덤벨 떨어져 튕김+화면 흔들림+툭 → 총총 2번 뛰고 폰 쪽으로 기울기
+  - 03 폰 화면 인서트 1.0→1.1 줌+손떨림
+  - 04 갸웃(8°)
+  - 05 총총 → 허리 숙여 덤벨 집음 → 포즈로 팝
+  - 06 포즈 들썩 → 셔터 → 루프
+  - 전 컷 손떨림(drift 4px).
+  - 소리: 셔터 `tools/sfx_shutter.py` 합성, 덤벨 ep02 charger_drop, 발소리 ep01 footsteps, 팝 ep01 sparkle, BGM F(-20).
+  - 설정: `edit_list_animatic_v2.json`, `hf_fx_v2.json`, `sfx/sfx_list.json`.
+  - 메모: 셔터처럼 0.4s보다 짧은 소리는 LUFS 측정이 안 됨(-inf) → gain을 고정값으로 둠.
+  - 사용자 판단 대기: v2로 완성할지, Kling 2컷(60크레딧)을 넣을지.

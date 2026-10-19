@@ -14,6 +14,7 @@ def main():
     ap.add_argument('--ep', default='ep01')
     ap.add_argument('--out', default=None)
     ap.add_argument('--edit', default=None)
+    ap.add_argument('--fx', default=None)
     a = ap.parse_args()
     ep = a.ep
     out = a.out or os.path.join(ROOT, f'outputs/{ep}/hf')
@@ -21,7 +22,7 @@ def main():
     E = json.load(open(a.edit or os.path.join(ROOT, f'outputs/{ep}/edit_list.json')))
     B = json.load(open(os.path.join(ROOT, f'outputs/{ep}/band_offsets.json')))
     T = json.load(open(os.path.join(ROOT, f'outputs/{ep}/text_overlay.json')))
-    FX = json.load(open(os.path.join(ROOT, f'outputs/{ep}/hf_fx.json')))
+    FX = json.load(open(a.fx or os.path.join(ROOT, f'outputs/{ep}/hf_fx.json')))
     W, H = E['canvas']; fps = E['fps']
     top, win = E['band']['top_px'], E['band']['window_px']
     fade = E['fade_out_before_black']
@@ -141,6 +142,10 @@ def main():
                 d = at + 0.08 * k
                 tl.append(f'tl.fromTo("#{cid}-sp{k}", {{scale: 0, opacity: 0, rotation: -30}}, {{scale: 1, opacity: 1, rotation: 20, duration: 0.25, ease: "back.out(3)"}}, {d:.3f});')
                 tl.append(f'tl.to("#{cid}-sp{k}", {{scale: 0.2, opacity: 0, duration: 0.3}}, {d + sp["dur"] - 0.5:.3f});')
+        for k, fl in enumerate(fx.get('flash', [])):  # 셔터 플래시: 흰 화면이 번쩍 후 사라짐
+            fid = f'{cid}-fl{k}'
+            media_html.append(f'<div class="flash" id="{fid}" data-start="{t + fl["at"]:.3f}" data-duration="{fl["dur"]:.3f}"></div>')
+            tl.append(f'tl.fromTo("#{fid}", {{opacity: {fl.get("peak", 0.9)}}}, {{opacity: 0, duration: {fl["dur"]:.3f}, ease: "power2.in"}}, {t + fl["at"]:.3f});')
         # 시간 카드
         if c.get('time_card'):
             tc = FX['time_card']
@@ -199,6 +204,7 @@ def main():
   .card {{ position: absolute; left: 120px; top: {top + 36}px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }}
   .spark {{ position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }}
   .blackfade {{ position: absolute; inset: 0; background: #000; }}
+  .flash {{ position: absolute; inset: 0; background: #fff; }}
   .uibox {{ position: absolute; left: 0; top: {top + 200}px; width: {W}px; text-align: center; color: #fff; transform-origin: 50% 50%; }}
   .uilabel {{ font-size: 60px; font-weight: 700; opacity: 0.85; }}
   .uinum {{ font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }}
@@ -210,7 +216,7 @@ def main():
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-width="{W}" data-height="{H}" data-duration="{total:.3f}" data-fps="{fps}">
   <div id="win">
-    {chr(10).join('    ' + m for m in media_html if 'class="frame"' in m or 'blackfade' in m)}
+    {chr(10).join('    ' + m for m in media_html if 'class="frame"' in m or 'blackfade' in m or 'class="flash"' in m)}
   </div>
   <div id="title">{title_html}</div>
   <div id="channel">{html.escape(ch['text'])}</div>
