@@ -55,7 +55,7 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 **위험·대책**: 옷걸이가 떠다님 / 행거 옷이 바뀜 / 입모양이 녹음과 다름(qa --voice-ref).
 
 ## S4 가방 진열장 — 목소리만 · Kling 3.0, 5초 · 30크레딧
-**입력**: first_image `outputs/ep08/04/start_v1.png`(K4)
+**입력**: first_image `outputs/ep08/04/start_v2.png`(K4, 눈썹·속눈썹 사진 편집 제거)
 **인자**: S2와 같음
 ```
 Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the room, the furniture and the objects stay photoreal and completely unchanged.
