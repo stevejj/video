@@ -5,7 +5,8 @@
   "credits": 100,
   "generation_id": "AZFSgSFhkjQqTGH6tp3lywQWY04Cn-_cdXFs6EbSb93-I6cxOyqGRpbRwKU-eLYQlA8B2PTO",
   "input": "W1 + s1_track.mp3",
-  "prompt": "docs/ep07/04_Kling_실행표.md S1 v2"
+  "prompt": "docs/ep07/04_Kling_실행표.md S1 v2",
+  "result": "pass: 상관 0.99, 한국어 6줄, 화자 교대 부리, 9.6s 자발적 짠"
  },
  "v1": {
   "model": "kling-video-v4_0 omni",

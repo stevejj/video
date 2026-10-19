@@ -5,7 +5,7 @@
    "name": "street_amb",
    "file": "outputs/ep01/sfx/el/street_amb.mp3",
    "at": 0.0,
-   "len": 22.1,
+   "len": 21.45,
    "target_lufs": -34,
    "loop": true,
    "fade_in": 0.3,
@@ -16,20 +16,22 @@
   {
    "name": "clink",
    "file": "outputs/ep02/sfx/el/cup_set.mp3",
-   "at": 10.35,
+   "at": 9.6,
    "len": 0.5,
    "target_lufs": -20,
    "fade_out": 0.1,
-   "gain": null
+   "gain": 10.1,
+   "measured_lufs": -30.05
   },
   {
    "name": "mugs_down",
    "file": "outputs/ep02/sfx/el/cup_set.mp3",
-   "at": 14.0,
+   "at": 13.35,
    "len": 0.4,
    "target_lufs": -26,
    "fade_out": 0.1,
-   "gain": null
+   "gain": 4.1,
+   "measured_lufs": -30.05
   }
  ]
 }

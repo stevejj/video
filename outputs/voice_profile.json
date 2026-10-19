@@ -939,15 +939,15 @@
     },
     {
      "file": "outputs/ep07/voice/lines/L7m.mp3",
-     "at": 15.0
+     "at": 14.4
     },
     {
      "file": "outputs/ep07/voice/lines/L7c.mp3",
-     "at": 15.05
+     "at": 14.45
     },
     {
      "file": "outputs/ep07/voice/s5_track.mp3",
-     "at": 17.1
+     "at": 16.45
     }
    ],
    "note": "ep07 포장마차: 원본 대사 유지(잔으로) + 마지막 \"이모! 맥주 한잔 더요!\"(사용자). 배경음악 없음(참고와 같음), 환경음만.",

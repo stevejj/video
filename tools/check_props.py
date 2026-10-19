@@ -3,6 +3,7 @@
 사용: python3 tools/check_props.py --ep ep05 --video outputs/ep05/roughcut/ep05_v1.mp4
 설정: outputs/<ep>/props.json
   props.<이름>.hsv = {"h": [[lo,hi],...], "s_min", "v_min"}  (OpenCV HSV, H 0~179)
+  states.<컷>.<이름> = {"start": "가득", "end": "빈", "from": "시작 이미지"} → 앞 컷 끝 상태와 다음 컷 시작 상태가 같아야 함
   cuts.<컷>.<이름> = {"min_px": N}  → 그 컷의 모든 프레임(플래시 제외)에서 픽셀 수 ≥ N 이어야 함
                      {"max_px": N}  → 그 컷에서는 안 보여야 함(≤ N)
 컷 구간은 outputs/<ep>/hf/cuts.json(변환기가 씀)에서 읽는다. 흰 플래시 프레임(평균 밝기가 영상 중앙값 + 25 초과, 사라지는 꼬리 포함)은 건너뛴다.
@@ -67,6 +68,18 @@ def main():
                 print(f'✗ {line} → 순간 사라짐 {len(dips)}프레임 ({dips[0] / fps:.2f}~{dips[-1] / fps:.2f}s)')
             else:
                 print(f'✓ {line}')
+    # 소품 상태 이어짐(가득/빈, 손에/바닥 등): 컷 i의 시작 상태 = 컷 i-1의 끝 상태 (ep07 빈 잔이 다시 가득 찬 사고)
+    ST = P.get('states', {})
+    order = [c[0] for c in C]
+    for k in P['props']:
+        prev = None
+        for cut in order:
+            st = ST.get(cut, {}).get(k)
+            if not st:
+                continue
+            if prev and st['start'] != prev[1]:
+                fails += 1; print(f'✗ 소품 상태 끊김: {k} 컷 {prev[0]} 끝 "{prev[1]}" → 컷 {cut} 시작 "{st["start"]}" (시작 이미지: {st.get("from", "?")})')
+            prev = (cut, st['end'])
     print('결과:', '통과' if not fails else f'실패 {fails}건')
     sys.exit(1 if fails else 0)
 

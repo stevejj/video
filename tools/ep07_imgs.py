@@ -9,6 +9,7 @@ FLASH = 'gemini-3.1-flash-image'; PRO = 'gemini-3-pro-image'
 MAN = {
  'W1': dict(out=O + 'w1/start_v1.png', model=PRO, refs=[M + 'pang-misun_hires_front.png', M + 'pang-misun_pose_hold_cup.png', C + 'pang-changsu_hires_front.png', C + 'pang-changsu_pose_hold_cup.png']),
  'C1': dict(out=O + 'c1/start_v1.png', model=FLASH, refs=[O + 'w1/start_v1.png']),
+ 'W2': dict(out=O + 'w2/start_v1.png', model=FLASH, refs=[O + 'w1/start_v1.png']),
  'C2': dict(out=O + 'c2/start_v1.png', model=FLASH, refs=[O + 'w1/start_v1.png', M + 'pang-misun_face_eyes_closed.png', C + 'pang-changsu_face_eyes_closed.png']),
 }
 

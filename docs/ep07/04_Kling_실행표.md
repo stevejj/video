@@ -83,3 +83,20 @@ Exactly two beer mugs; they stay in the penguins' wings or on the counter and ne
 - **S2 ✅**: 30크레딧. 1.0~1.5s 날개로 잔 들고 짠 → 2.0~4.2s 쭉 원샷 → 4.8s 빈 잔 내려놓음. 잔 2개, 떠다님 없음, 볼터치 검사 통과.
 - **S4 ✅**: 18크레딧. 1.0~2.0s 둘이 눈 감고 부리 크게 벌려 "캬~", 이후 미소. 창수 볼터치 0px.
 - 잔액 **261**. S1 v2(100) 승인 대기. F5: S1 실패 1회째.
+
+## S5 v2 — 빈 잔으로 "이모! 맥주 한잔 더요!" · Kling 4.0, 5초 · 50크레딧 (승인 대기)
+**입력**: image_1 `outputs/ep07/w2/start_v1.png`(W2: W1 + 빈 잔), audio_1 `outputs/ep07/voice/s5_track.mp3`(같은 녹음)
+**인자**: S5와 같음
+```
+One single continuous shot with a static, locked-off camera, no cuts, no camera movement: exactly the scene of 图片1 (same camera angle, same pojangmacha tent, same food pan, same two plush penguins in the same places, same two EMPTY glass beer mugs). 3D animated plush characters, short velvet fur; the tent, the food and the mugs stay photoreal and unchanged.
+They have just finished their beer: both mugs are EMPTY the whole time, only a thin trace of foam inside, no beer is added.
+The light silver-grey penguin on the left with pink blush (Pang Mi-sun) raises one short wing high toward the right side as if calling the owner, and shouts in Korean exactly the line in 音频1, "이모! 맥주 한잔 더요!", her beak opening and closing exactly in sync with the speech in 音频1. Then both penguins laugh together, beaks open in laughter, matching the laughter in 音频1, bodies shaking a little. No other words, no English.
+The darker blue-grey penguin on the right (Pang Chang-su) only laughs. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+Both empty mugs stay on the counter in front of them, exactly two mugs, they never float or move on their own. Wings keep their normal short rounded length and never stretch. Both heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
+```
+**합격 기준**: 잔이 끝까지 빈 상태, `qa_clip.py --voice-ref outputs/ep07/voice/s5_track.mp3` 상관 0.8 이상, 한 컷, `check_props.py` 상태 이어짐 통과.
+
+- **완성본 v1 ❌ 보내기 전 발견 (2026-10-19)**: 원샷으로 비운 잔이 S5(이모!)에서 다시 가득 참.
+  - 원인: S5를 가득 찬 잔 W1에서 만듦. 소품 검사가 상태(가득/빈)를 보지 않았고, 전체 화면에선 주황 천막 때문에 색 검사도 무력했음.
+  - 대책: `check_props.py`에 **상태 이어짐 검사(states)** 추가. v1을 실제로 실패로 잡는 것을 확인함.
+  - 고치기: W2(빈 잔, Flash 125원) → S5 v2(50크레딧). 승인 대기.
