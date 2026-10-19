@@ -32,15 +32,15 @@ Wings keep their normal short rounded length and never stretch. Both heads keep 
 **위험**: 회전할 때 얼굴·몸이 뭉개짐 / 창수가 자리를 벗어남 / 미순이 같이 춤춤.
 
 ## C3 미순 반격 + 창수 박수 — C2 마지막 프레임 → KE, 5초 · 30크레딧
-**입력**: first_image = C2 마지막 프레임, tail_image `outputs/ep06/03/end_v1.png`(KE)
+**입력**: first_image = C2 마지막 프레임(`outputs/ep06/c2/chain_v1.png`), tail_image `outputs/ep06/03/end_v1.png`(KE)
 ```
 Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the alley, the brick wall, the pavement and the yellow boombox stay photoreal and completely unchanged, and the boombox never moves.
 Pang Mi-sun answers with a big finishing dance move on the spot: she spins around once quickly, does a little hop, and lands in a proud final pose with one short wing raised high and the other wing on her hip, eyes closed in happy upward curves, beak closed.
-Pang Chang-su, in the foreground on the left, freezes, then slowly turns around on the same spot to face the camera, his eyes wide open in shock, and claps his short wings together in front of his chest, exactly matching the end image.
-Wings keep their normal short rounded length and never stretch. Both heads keep their normal shape. Beaks stay closed. No eyelashes on Mi-sun. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
+Pang Chang-su, in the foreground on the left, freezes, then slowly turns around on the same spot to face the camera, his eyes wide open in shock, and claps his short wings together in front of his chest, exactly matching the end image. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush.
+Wings keep their normal short rounded length and never stretch. Both heads keep their normal shape. Beaks stay closed. No eyelashes on either penguin. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 0~2s 미순 회전·점프·포즈, 2~3.5s 창수 멈칫 → 돌아섬, 3.5~5s 정면 놀란 눈 + 박수.
-**위험**: 창수 돌아설 때 얼굴이 미리 생김 / 날개 박수가 손가락처럼 변함 / 미순 포즈가 KE와 어긋남.
+**위험**: 창수 정면에 볼터치가 생김(C2에서 실제로 생김 → 프롬프트에 금지 문장 추가) / 창수 돌아설 때 얼굴이 미리 생김 / 날개 박수가 손가락처럼 변함 / 미순 포즈가 KE와 어긋남.
 
 ## 현황
 - 2026-10-19 작성. 애니매틱 v1 확인 + "진행" 대기.

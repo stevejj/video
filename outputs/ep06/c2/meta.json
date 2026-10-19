@@ -5,6 +5,26 @@
   "credits": 30,
   "generation_id": "AfPOiEgeTFsD-B4UIkwJFJuJ0Lhr_PPgq3egs8LqNCfBEAf3_cXGRFgMask5g-aAlXEBj2Mw",
   "first_image": "c1 frame 104 (4.33s)",
-  "prompt": "docs/ep06/04_Kling_\uc2e4\ud589\ud45c.md C2"
+  "prompt": "docs/ep06/04_Kling_실행표.md C2"
+ },
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 121,
+   "duration_s": 5.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.32,
+   "start_vs_ref_bg_meandiff": 2.02,
+   "interframe_mean": 2.46,
+   "interframe_max": 4.78,
+   "interframe_max_at_s": 1.79,
+   "first_vs_last_meandiff": 5.32,
+   "bg_drift_first_last": 1.47,
+   "cam_motion_px_median": 0.06,
+   "cam_motion_px_max": 0.47
+  }
  }
 }
