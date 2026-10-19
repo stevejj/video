@@ -23,10 +23,17 @@ def main():
     ap.add_argument('--img'); ap.add_argument('--box', type=int, nargs=4); ap.add_argument('--out')
     ap.add_argument('--model', default='/tmp/claude-0/-home-user-video/f018d661-8ddb-51f7-8e2d-f2480d28ac5d/scratchpad/models/isnet.onnx')
     ap.add_argument('--mask-out')
+    ap.add_argument('--gamma', type=float, default=1.0, help='추론용 이미지만 밝게(<1) — 어두운 털이 배경에 묻힐 때')
+    ap.add_argument('--boost', type=float, default=1.0, help='알파 지수(<1이면 반투명 가장자리·날개를 진하게)')
     a = ap.parse_args()
     im = Image.open(a.img).convert('RGBA')
     x0, y0, x1, y1 = a.box
-    m = alpha(im.crop((x0, y0, x1, y1)), a.model)
+    crop = im.crop((x0, y0, x1, y1)).convert('RGB')
+    if a.gamma != 1.0:
+        crop = crop.point(lambda v: int(255 * (v / 255) ** a.gamma))
+    m = alpha(crop, a.model)
+    if a.boost != 1.0:
+        m = m.point(lambda v: int(255 * (v / 255) ** a.boost))
     full = Image.new('L', im.size, 0); full.paste(m, (x0, y0))
     out = im.copy(); out.putalpha(full); out.save(a.out)
     if a.mask_out: full.save(a.mask_out)

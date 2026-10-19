@@ -708,6 +708,31 @@
     "fade_out": 0.6
    },
    "note": "ep05: 대사 없음, 음악 + 효과음(참고 릴스와 같음)"
+  },
+  "ep06": {
+   "lines": [],
+   "placements": [],
+   "bgm": {
+    "file": "outputs/ep06/bgm/H_trap_bounce.mp3",
+    "target_lufs": -19,
+    "duck_db": 0,
+    "fade_in": 0.05,
+    "end_at": 15.0,
+    "fade_out": 0.5,
+    "dips": [
+     {
+      "at": 4.69,
+      "len": 0.31,
+      "db": -18
+     },
+     {
+      "at": 9.38,
+      "len": 0.62,
+      "db": -18
+     }
+    ]
+   },
+   "note": "ep06: 대사 없음, 힙합 BGM H(96 BPM) + 차례 바뀜 비트 끊김 + 박수"
   }
  },
  "voices_legacy": {

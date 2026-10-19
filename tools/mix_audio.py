@@ -3,7 +3,7 @@
 사용: python3 tools/mix_audio.py --ep ep02 --video outputs/ep02/roughcut/ep02_roughcut_v0_silent.mp4 --out outputs/ep02/roughcut/ep02_v1.mp4
 - 대사: voice_profile episodes[ep].placements (없으면 lines 의 at/file). 재사용 파일은 여러 번 배치 가능.
 - 효과음: outputs/<ep>/sfx/sfx_list.json (assemble_ep01 과 같은 형식)
-- 배경음: episodes[ep].bgm — target_lufs, duck_db(대사 사이드체인), fade, 선택 tempo_from/tempo(구간 템포 업), dip_at/dip_len/dip_db(한 박자 쉼)
+- 배경음: episodes[ep].bgm — target_lufs, duck_db(대사 사이드체인), fade, 선택 tempo_from/tempo(구간 템포 업), dip_at/dip_len/dip_db 또는 dips=[{at,len,db}](한 박자 쉼)
 """
 import argparse, json, os, re, subprocess
 import imageio_ffmpeg
@@ -73,8 +73,11 @@ def main():
         else:
             fc.append(base + "[bC]"); src = "[bC]"
         vol = f"volume={gain:.2f}dB"
+        dips = list(B.get('dips', []))
         if B.get('dip_at') is not None:
-            d0 = B['dip_at']; d1 = d0 + B.get('dip_len', 1.0); dd = 10 ** (B.get('dip_db', -6) / 20)
+            dips.append({'at': B['dip_at'], 'len': B.get('dip_len', 1.0), 'db': B.get('dip_db', -6)})
+        for dp in dips:  # 한 박자 쉼(댄스배틀 차례 바뀜 등)
+            d0 = dp['at']; d1 = d0 + dp.get('len', 1.0); dd = 10 ** (dp.get('db', -6) / 20)
             vol += f",volume='if(between(t,{d0},{d1}),{dd:.3f},1)':eval=frame"
         fc.append(f"{src}atrim=0:{end},asetpts=PTS-STARTPTS,{vol},afade=t=in:st=0:d={B['fade_in']},afade=t=out:st={end - B['fade_out']}:d={B['fade_out']}[bgm_raw]")
         if voice:
