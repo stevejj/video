@@ -8,6 +8,15 @@
   "image_1": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTI0MDQ5MDUvMmQxSjAwVU9udi9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372",
   "audio_1": "outputs/ep07/voice/s5_track.mp3",
   "enable_audio": true,
-  "prompt": "docs/ep07/04_Kling_\uc2e4\ud589\ud45c.md S5"
+  "prompt": "docs/ep07/04_Kling_실행표.md S5",
+  "result": "입모양 합격, 그러나 잔이 가득 참(앞 컷 원샷 후 빈 잔과 끊김)"
+ },
+ "v2": {
+  "model": "kling-video-v4_0 omni",
+  "duration": 5,
+  "credits": 50,
+  "generation_id": "AXiuB-WySmngxxAESxEeYlEqm8D3VF8iiG3p7G6tg3UX2gl0ai2qsJ21guWGfTh9yW226PBX",
+  "input": "W2(빈 잔) + s5_track.mp3",
+  "prompt": "docs/ep07/04_Kling_실행표.md S5 v2"
  }
 }
