@@ -17,6 +17,7 @@
   "credits": 50,
   "generation_id": "AXiuB-WySmngxxAESxEeYlEqm8D3VF8iiG3p7G6tg3UX2gl0ai2qsJ21guWGfTh9yW226PBX",
   "input": "W2(빈 잔) + s5_track.mp3",
-  "prompt": "docs/ep07/04_Kling_실행표.md S5 v2"
+  "prompt": "docs/ep07/04_Kling_실행표.md S5 v2",
+  "result": "pass: 빈 잔 유지, 상관 0.99, 볼터치 없음"
  }
 }
