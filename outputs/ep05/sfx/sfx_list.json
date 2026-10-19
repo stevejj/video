@@ -1,49 +1,48 @@
 {
- "note": "ep05 애니매틱 v2 효과음(셔터는 합성, 나머지 기존 파일 재사용, 0원). 10.0s 타임라인.",
+ "note": "ep05 v1 효과음(셔터 합성, 나머지 기존 파일 재사용, 0원). 11.6s 타임라인. abs = 컷 시작 + (클립 시각 - in).",
  "items": [
   {
    "name": "shutter1",
    "file": "outputs/ep05/sfx/shutter.wav",
-   "at": 1.13,
+   "at": 1.08,
    "len": 0.25,
-   "target_lufs": -22,
    "gain": -6.0,
    "note": "0.25s라 LUFS 측정 불가 → 고정 gain"
   },
   {
-   "name": "dumbbell_drop",
+   "name": "dumbbell_set",
    "file": "outputs/ep02/sfx/el/charger_drop.mp3",
-   "at": 1.57,
+   "at": 2.5,
    "len": 0.6,
-   "target_lufs": -18,
+   "target_lufs": -20,
    "fade_out": 0.1,
-   "gain": 14.0,
+   "gain": 12.0,
    "measured_lufs": -32.01
   },
   {
-   "name": "steps_in",
+   "name": "shuffle",
    "file": "outputs/ep01/sfx/el/footsteps.mp3",
-   "at": 1.82,
-   "len": 0.6,
-   "target_lufs": -24,
+   "at": 2.95,
+   "len": 0.45,
+   "target_lufs": -26,
    "fade_out": 0.1,
-   "gain": 15.0,
+   "gain": 13.0,
    "measured_lufs": -39.03
   },
   {
-   "name": "steps_back",
-   "file": "outputs/ep01/sfx/el/footsteps.mp3",
-   "at": 6.82,
-   "len": 0.45,
-   "target_lufs": -24,
+   "name": "grip_tick",
+   "file": "outputs/ep02/sfx/el/cup_set.mp3",
+   "at": 8.55,
+   "len": 0.4,
+   "target_lufs": -26,
    "fade_out": 0.1,
-   "gain": 15.0,
-   "measured_lufs": -39.03
+   "gain": 4.1,
+   "measured_lufs": -30.05
   },
   {
    "name": "pose_pop",
    "file": "outputs/ep01/sfx/el/sparkle.mp3",
-   "at": 7.6,
+   "at": 10.6,
    "len": 0.7,
    "target_lufs": -24,
    "fade_out": 0.1,
@@ -53,11 +52,10 @@
   {
    "name": "shutter2",
    "file": "outputs/ep05/sfx/shutter.wav",
-   "at": 9.73,
+   "at": 11.18,
    "len": 0.25,
-   "target_lufs": -22,
    "gain": -6.0,
-   "note": "0.25s라 LUFS 측정 불가 → 고정 gain"
+   "note": "고정 gain"
   }
  ]
 }

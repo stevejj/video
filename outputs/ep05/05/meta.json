@@ -8,6 +8,28 @@
   "first_image": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTIzNzQwODIvMmRRU2dwSm9tSi9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372",
   "tail_image": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTIzNzQwNzkvYmEyd1YxMVNkMi9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372",
   "submitted": "2026-10-19",
-  "prompt": "docs/ep05/04_Kling_\uc2e4\ud589\ud45c.md"
+  "prompt": "docs/ep05/04_Kling_실행표.md"
+ },
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 121,
+   "duration_s": 5.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.31,
+   "start_vs_ref_bg_meandiff": 2.2,
+   "end_vs_ref_meandiff": 2.89,
+   "end_vs_ref_bg_meandiff": 2.76,
+   "interframe_mean": 1.29,
+   "interframe_max": 3.45,
+   "interframe_max_at_s": 2.17,
+   "first_vs_last_meandiff": 7.33,
+   "bg_drift_first_last": 1.7,
+   "cam_motion_px_median": 0.02,
+   "cam_motion_px_max": 0.04
+  }
  }
 }

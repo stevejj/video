@@ -20,6 +20,7 @@
   .card { position: absolute; left: 120px; top: 612px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }
   .spark { position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }
   .blackfade { position: absolute; inset: 0; background: #000; }
+  .flash { position: absolute; inset: 0; background: #fff; }
   .uibox { position: absolute; left: 0; top: 776px; width: 1080px; text-align: center; color: #fff; transform-origin: 50% 50%; }
   .uilabel { font-size: 60px; font-weight: 700; opacity: 0.85; }
   .uinum { font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }
@@ -29,13 +30,14 @@
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="8.500" data-fps="24">
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="11.600" data-fps="24">
   <div id="win">
-        <div class="frame" id="c01" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c01-v" src="media/01.png" data-start="0.000" data-duration="1.500" /></div>
-    <div class="frame" id="c02" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c02-v" src="media/02.png" data-start="1.500" data-duration="2.500" /></div>
-    <div class="frame" id="c03" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c03-v" src="media/03.png" data-start="4.000" data-duration="1.500" /></div>
-    <div class="frame" id="c04" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c04-v" src="media/04.png" data-start="5.500" data-duration="1.000" /></div>
-    <div class="frame" id="c05" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c05-v" src="media/05.png" data-start="6.500" data-duration="2.000" /></div>
+        <div class="frame" id="c01" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c01-v" src="media/02.mp4" data-start="0.000" data-duration="4.300" data-media-start="0.300" muted></video></div>
+    <div class="flash" id="c01-fl0" data-start="1.100" data-duration="0.250"></div>
+    <div class="frame" id="c02" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c02-v" src="media/02.png" data-start="4.300" data-duration="1.500" /></div>
+    <div class="frame" id="c03" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c03-v" src="media/04_bg.png" data-start="5.800" data-duration="1.200" /><img id="c03-ms" class="layer" src="media/04_ms.png" data-start="5.800" data-duration="1.200" style="left:434.5px; top:696.1px; width:426.1px; height:541.4px; transform-origin:246.1px 372.7px;" /></div>
+    <div class="frame" id="c04" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c04-v" src="media/05.mp4" data-start="7.000" data-duration="4.600" data-media-start="0.200" muted></video></div>
+    <div class="flash" id="c04-fl0" data-start="11.200" data-duration="0.250"></div>
   </div>
   <div id="title"><div style="color:#FFFFFF">헬스장 간</div><div style="color:#FFD84A">우리 미순이</div></div>
   <div id="channel">지독한 미순</div>
@@ -57,11 +59,14 @@
   const tl = gsap.timeline({ paused: true });
   function build() {
     placeSubs();
-        tl.fromTo("#c01", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 0.000);
-    tl.fromTo("#c02", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 2.5, "ease": "none"}, 1.500);
-    tl.fromTo("#c03", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 4.000);
-    tl.fromTo("#c04", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 1.0, "ease": "none"}, 5.500);
-    tl.fromTo("#c05", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 2.0, "ease": "none"}, 6.500);
+        tl.fromTo("#c01-fl0", {opacity: 0.9}, {opacity: 0, duration: 0.250, ease: "power2.in"}, 1.100);
+    tl.fromTo("#c02", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.1, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 4.300);
+    tl.to("#c02", {x: -3.0, y: 1.8, duration: 0.80, ease: "sine.inOut"}, 4.300);
+    tl.set("#c03-ms", {"rotation": -3, "x": -6}, 0);
+    tl.to("#c03-ms", {...{"rotation": 8, "x": 0}, duration: 0.35, ease: "back.out(2)"}, 6.000);
+    tl.fromTo("#c03", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 1.2, "ease": "none"}, 5.800);
+    tl.to("#c03", {x: -4.0, y: 2.4, duration: 1.10, ease: "sine.inOut"}, 5.800);
+    tl.fromTo("#c04-fl0", {opacity: 0.9}, {opacity: 0, duration: 0.250, ease: "power2.in"}, 11.200);
     window.__timelines["main"] = tl;
   }
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }

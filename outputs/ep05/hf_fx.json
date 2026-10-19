@@ -1,15 +1,83 @@
 {
- "note": "ep05 애니매틱: 정지 컷 4% 푸시인",
+ "note": "ep05 v1 완성: Kling 2컷(K1→K3)·5컷(K3→K1) + I4 인서트 정지 + 갸웃 퍼펫(0원) + 셔터 플래시",
  "default_still": {
   "cam": {
    "from": 1.0,
    "to": 1.04
+  },
+  "drift": {
+   "amp": 4,
+   "period": 2.2
   }
  },
  "default_clip": {
   "cam": null
  },
- "cuts": {},
+ "cuts": {
+  "01": {
+   "cam": null,
+   "flash": [
+    {
+     "at": 1.1,
+     "dur": 0.25
+    }
+   ]
+  },
+  "02": {
+   "cam": {
+    "from": 1.0,
+    "to": 1.1
+   },
+   "drift": {
+    "amp": 3,
+    "period": 1.6
+   }
+  },
+  "03": {
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep05/puppet/plateB.png",
+    "layers": [
+     {
+      "id": "ms",
+      "img": "outputs/ep05/puppet/misun_k3.png",
+      "box": [
+       309,
+       495,
+       303,
+       385
+      ],
+      "pivot": [
+       484,
+       760
+      ],
+      "keys": [
+       {
+        "t": 0.2,
+        "dur": 0.35,
+        "ease": "back.out(2)",
+        "rotation": 8,
+        "x": 0
+       }
+      ],
+      "init": {
+       "rotation": -3,
+       "x": -6
+      }
+     }
+    ]
+   }
+  },
+  "04": {
+   "cam": null,
+   "flash": [
+    {
+     "at": 4.2,
+     "dur": 0.25
+    }
+   ]
+  }
+ },
  "subtitle": {
   "pop": {
    "from": 0.6,
