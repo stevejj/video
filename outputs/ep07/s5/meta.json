@@ -1,0 +1,13 @@
+{
+ "v1": {
+  "model": "kling-video-v4_0",
+  "tool": "omni_ref_video",
+  "duration": 5,
+  "credits": 50,
+  "generation_id": "AVB66hM3FRZCHq5GI72F8yxlMwqElIxyn6bt01MfFZHMXWD-FL4VAD1CkBNDFg5AkpR_DNBd",
+  "image_1": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTI0MDQ5MDUvMmQxSjAwVU9udi9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372",
+  "audio_1": "outputs/ep07/voice/s5_track.mp3",
+  "enable_audio": true,
+  "prompt": "docs/ep07/04_Kling_\uc2e4\ud589\ud45c.md S5"
+ }
+}

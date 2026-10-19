@@ -49,4 +49,5 @@ Exactly two empty mugs held in their wings; they never float. Wings keep their n
 ## 합계: S5 50 + S1 100 + S2 30 + S4 18 = **198크레딧**
 
 ## 현황
-- 2026-10-19 작성. 애니매틱 v1 확인 + S5 시험 "진행" 대기.
+- 2026-10-19 작성. 사용자: 애니매틱 이해됨, 짠은 A안(와이드에서 짠+원샷, C1 안 씀), S5 시험 "진행".
+- S5 제출(50크레딧, 잔액 459 → 409). `outputs/ep07/s5/meta.json`.
