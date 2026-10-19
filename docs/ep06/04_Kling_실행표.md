@@ -44,3 +44,9 @@ Wings keep their normal short rounded length and never stretch. Both heads keep 
 
 ## 현황
 - 2026-10-19 작성. 애니매틱 v1 확인 + "진행" 대기.
+- **C1 ✅ (2026-10-19)**: 30크레딧. 카메라 0.03px(최대 0.26), 배경 1.4.
+  - 미순: 5초 내내 제자리에서 좌우 뒤뚱·통통·날개 퍼덕·눈 감고 흥 타기. 날개는 평소 길이.
+  - 창수: 뒷모습 유지, 고개 까딱. 붐박스 그대로.
+  - 체이닝 프레임: 104(4.33s, 정면·양 날개 위·눈 뜸·미소)를 골라 C2 시작으로 씀. 마지막 프레임은 고개가 기울고 흐려서 안 씀. 편집에서 C1은 0~4.33s까지 사용.
+  - 시트 `outputs/ep06/c1/verify_v1/motion_sheet.jpg`.
+- C2 제출(`outputs/ep06/c2/meta.json`), 잔액 549 → 489.

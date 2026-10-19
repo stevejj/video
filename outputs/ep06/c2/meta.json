@@ -1,0 +1,10 @@
+{
+ "v1": {
+  "model": "kling-video-v3_0",
+  "duration": 5,
+  "credits": 30,
+  "generation_id": "AfPOiEgeTFsD-B4UIkwJFJuJ0Lhr_PPgq3egs8LqNCfBEAf3_cXGRFgMask5g-aAlXEBj2Mw",
+  "first_image": "c1 frame 104 (4.33s)",
+  "prompt": "docs/ep06/04_Kling_\uc2e4\ud589\ud45c.md C2"
+ }
+}
