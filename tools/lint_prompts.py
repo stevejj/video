@@ -30,7 +30,7 @@ def rules(kind):
     rule('고정 카메라', '참고 형식(한 샷 고정) — 카메라가 움직이면 배경이 흔들림', lambda p: kind == 'video', lambda p: has(p, r'static camera', r'locked-off'))
     rule('물건 잡기: 닿은 뒤에만 움직임', 'ep03 과자 순간이동·ep05 "덤벨이 들어야 하는 느낌"',
          lambda p: kind == 'video' and has(p, r'\b(picks? up|grabs?|lifts?|takes?|holds?)\b'),
-         lambda p: has(p, r'only after', r'until (both of )?(her|his|their) wings?', r'never floating', r'lie completely still'))
+         lambda p: has(p, r'only after', r'until (both of )?(her|his|their) wings?', r'never float', r'lie completely still', r'only (together|along) with'))
     rule('누운 캐릭터 + 날개 동작 금지', 'ep03: 누워서 날개 쓰면 머리가 굴러감(M17)',
          lambda p: kind == 'video' and has(p, r'\b(she|he|they|mi-?sun|chang-?su)\s+(is\s+|are\s+)?(lying|lies|lie down)') and wings_act(p), lambda p: False)
     rule('소품 고정', 'ep05·ep06: 소품은 사라지거나 움직이면 안 됨(F8)',

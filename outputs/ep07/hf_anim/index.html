@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>ep07 v11 hyperframes</title>
+<script src="gsap.min.js"></script>
+<style>
+  @font-face { font-family: "NotoKR"; src: url("media/NotoSansKR.ttf") format("truetype"); font-weight: 100 900; }
+  body { margin: 0; background: #000; font-family: "NotoKR", sans-serif; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #win { position: absolute; left: 0; top: 576px; width: 1080px; height: 768px; overflow: hidden; background: #000; }
+  .frame { position: absolute; left: 0; width: 1080px; height: 1920px; will-change: transform; }
+  .frame img.layer { position: absolute; width: auto; height: auto; object-fit: fill; }
+  .frame img:not(.layer), .frame video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; display: block; }
+  #title { position: absolute; left: 0; width: 100%; top: 287px; text-align: center; font-size: 104px; font-weight: 800; line-height: 122px; }
+  #channel { position: absolute; left: 0; width: 100%; top: 1384px; text-align: center; font-size: 52px; font-weight: 700; color: #FFFFFF; opacity: 0.9; line-height: 1.4; }
+  .sub { position: absolute; bottom: 622px; font-size: 74px; font-weight: 800; white-space: nowrap; line-height: 1.25;
+          -webkit-text-stroke: 9px #111111; paint-order: stroke fill; transform-origin: 50% 100%; }
+  .card { position: absolute; left: 120px; top: 612px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }
+  .spark { position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }
+  .blackfade { position: absolute; inset: 0; background: #000; }
+  .flash { position: absolute; inset: 0; background: #fff; }
+  .uibox { position: absolute; left: 0; top: 776px; width: 1080px; text-align: center; color: #fff; transform-origin: 50% 50%; }
+  .uilabel { font-size: 60px; font-weight: 700; opacity: 0.85; }
+  .uinum { font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }
+  .uiclock { font-size: 54px; font-weight: 700; margin-top: 10px; }
+  .ring { position: absolute; border: 10px dashed #FFD84A; border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }
+  .arrow { position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="20.000" data-fps="24">
+  <div id="win">
+        <div class="frame" id="c01" style="top:-691.2px; transform-origin: 540px 1075.2px;"><img id="c01-v" src="media/01.png" data-start="0.000" data-duration="9.800" /></div>
+    <div class="frame" id="c02" style="top:-691.2px; transform-origin: 540px 1075.2px;"><img id="c02-v" src="media/02.png" data-start="9.800" data-duration="3.200" /></div>
+    <div class="frame" id="c03" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c03-v" src="media/03.png" data-start="13.000" data-duration="3.000" /></div>
+    <div class="frame" id="c04" style="top:-691.2px; transform-origin: 540px 1075.2px;"><img id="c04-v" src="media/04.png" data-start="16.000" data-duration="4.000" /></div>
+  </div>
+  <div id="title"><div style="color:#FFFFFF">포장마차 간</div><div style="color:#FFD84A">창수와 미순</div></div>
+  <div id="channel">지독한 미순</div>
+  
+    <div class="sub" id="sub00" data-start="0.200" data-duration="1.500" data-cx="540" style="color:#FF9CC2;">야, 인생 뭐 있냐.</div>
+  <div class="sub" id="sub01" data-start="2.100" data-duration="1.600" data-cx="540" style="color:#8FB0E8;">먹고 자고 싸는 거지 뭐.</div>
+  <div class="sub" id="sub02" data-start="4.200" data-duration="1.400" data-cx="540" style="color:#FF9CC2;">중간중간 울어주고.</div>
+  <div class="sub" id="sub03" data-start="5.800" data-duration="1.200" data-cx="540" style="color:#8FB0E8;">그게 정답이지.</div>
+  <div class="sub" id="sub04" data-start="7.900" data-duration="0.900" data-cx="540" style="color:#FF9CC2;">마지막 한 잔!</div>
+  <div class="sub" id="sub05" data-start="8.900" data-duration="0.900" data-cx="540" style="color:#8FB0E8;">콜!</div>
+  <div class="sub" id="sub06" data-start="13.250" data-duration="1.350" data-cx="540" style="color:#FFFFFF;">캬~</div>
+  <div class="sub" id="sub07" data-start="16.200" data-duration="1.800" data-cx="540" style="color:#FF9CC2;">이모! 맥주 한잔 더요!!</div>
+</div>
+<script>
+  // 자막 가로 위치: 중심 cx, 폭 1000 안으로 클램프 (조립기와 동일 규칙)
+  function placeSubs() {
+    document.querySelectorAll('.sub').forEach(el => {
+      const cx = parseFloat(el.dataset.cx); const W = 1080, MW = 1000;
+      let fs = 74; el.style.fontSize = fs + 'px';
+      while (el.offsetWidth > MW && fs > 40) { fs -= 4; el.style.fontSize = fs + 'px'; }
+      const tw = el.offsetWidth;
+      let x = Math.min(Math.max(cx - tw / 2, (W - MW) / 2), W - (W - MW) / 2 - tw);
+      el.style.left = x + 'px';
+    });
+  }
+  const tl = gsap.timeline({ paused: true });
+  function build() {
+    placeSubs();
+        tl.fromTo("#c01", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 9.8, "ease": "none"}, 0.000);
+    tl.to("#c01", {x: -3.0, y: 1.8, duration: 1.30, ease: "sine.inOut"}, 0.000);
+    tl.to("#c01", {x: 3.0, y: 1.8, duration: 1.30, ease: "sine.inOut"}, 1.300);
+    tl.to("#c01", {x: -3.0, y: -1.8, duration: 1.30, ease: "sine.inOut"}, 2.600);
+    tl.to("#c01", {x: 3.0, y: -1.8, duration: 1.30, ease: "sine.inOut"}, 3.900);
+    tl.to("#c01", {x: -3.0, y: 1.8, duration: 1.30, ease: "sine.inOut"}, 5.200);
+    tl.to("#c01", {x: 3.0, y: 1.8, duration: 1.30, ease: "sine.inOut"}, 6.500);
+    tl.to("#c01", {x: -3.0, y: -1.8, duration: 1.30, ease: "sine.inOut"}, 7.800);
+    tl.fromTo("#c02", {"scale": 1.04, "x": 0, "y": 0}, {"scale": 1.12, "x": 0, "y": 0, "duration": 3.2, "ease": "none"}, 9.800);
+    tl.to("#c02", {scale: 1.15, duration: 0.08, ease: "power3.out", overwrite: "auto"}, 10.000);
+    tl.to("#c02", {scale: 1.1, duration: 0.35, ease: "power2.out"}, 10.080);
+    tl.to("#c02", {x: 5.0, y: 2.5, duration: 0.0417, ease: "none"}, 10.000);
+    tl.to("#c02", {x: -3.3, y: 2.1, duration: 0.0417, ease: "none"}, 10.042);
+    tl.to("#c02", {x: 2.7, y: -1.7, duration: 0.0417, ease: "none"}, 10.083);
+    tl.to("#c02", {x: -2.5, y: -1.2, duration: 0.0417, ease: "none"}, 10.125);
+    tl.to("#c02", {x: 1.3, y: 0.8, duration: 0.0417, ease: "none"}, 10.167);
+    tl.to("#c02", {x: -0.7, y: 0.4, duration: 0.0417, ease: "none"}, 10.208);
+    tl.to("#c02", {x: 0, y: 0, duration: 0.08}, 10.250);
+    tl.fromTo("#c03", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.06, "x": 0, "y": 0, "duration": 3.0, "ease": "none"}, 13.000);
+    tl.to("#c03", {x: -3.0, y: 1.8, duration: 1.30, ease: "sine.inOut"}, 13.000);
+    tl.to("#c03", {x: 3.0, y: 1.8, duration: 1.30, ease: "sine.inOut"}, 14.300);
+    tl.fromTo("#c04", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 4.0, "ease": "none"}, 16.000);
+    tl.to("#c04", {x: -3.0, y: 1.8, duration: 1.30, ease: "sine.inOut"}, 16.000);
+    tl.to("#c04", {x: 3.0, y: 1.8, duration: 1.30, ease: "sine.inOut"}, 17.300);
+    tl.to("#c04", {x: -3.0, y: -1.8, duration: 1.30, ease: "sine.inOut"}, 18.600);
+    tl.to("#c04", {scale: 1.08, duration: 0.08, ease: "power3.out", overwrite: "auto"}, 16.200);
+    tl.to("#c04", {scale: 1.04, duration: 0.35, ease: "power2.out"}, 16.280);
+    tl.fromTo("#sub00", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 0.200);
+    tl.fromTo("#sub01", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 2.100);
+    tl.fromTo("#sub02", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 4.200);
+    tl.fromTo("#sub03", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 5.800);
+    tl.fromTo("#sub04", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 7.900);
+    tl.fromTo("#sub05", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 8.900);
+    tl.fromTo("#sub06", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 13.250);
+    tl.fromTo("#sub07", {scale: 0.3, rotation: -2, opacity: 0}, {scale: 1.18, rotation: 0, opacity: 1, duration: 0.132, ease: "power3.out"}, 16.200);
+    tl.to("#sub07", {scale: 1, duration: 0.088, ease: "power2.inOut"}, 16.332);
+    tl.to("#sub07", {x: -7.0, duration: 0.0417, ease: "none"}, 16.200);
+    tl.to("#sub07", {x: 6.0, duration: 0.0417, ease: "none"}, 16.242);
+    tl.to("#sub07", {x: -5.0, duration: 0.0417, ease: "none"}, 16.283);
+    tl.to("#sub07", {x: 4.0, duration: 0.0417, ease: "none"}, 16.325);
+    tl.to("#sub07", {x: -3.0, duration: 0.0417, ease: "none"}, 16.367);
+    tl.to("#sub07", {x: 2.0, duration: 0.0417, ease: "none"}, 16.408);
+    tl.to("#sub07", {x: -1.0, duration: 0.0417, ease: "none"}, 16.450);
+    tl.to("#sub07", {x: 0, duration: 0.05}, 16.492);
+    window.__timelines["main"] = tl;
+  }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }
+</script>
+</body>
+</html>

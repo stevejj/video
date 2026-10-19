@@ -932,13 +932,39 @@
      "over": false
     }
    ],
-   "placements": [],
+   "placements": [
+    {
+     "file": "outputs/ep07/voice/talk_track.wav",
+     "at": 0.0
+    },
+    {
+     "file": "outputs/ep07/voice/lines/L7m.mp3",
+     "at": 13.3
+    },
+    {
+     "file": "outputs/ep07/voice/lines/L7c.mp3",
+     "at": 13.4
+    },
+    {
+     "file": "outputs/ep07/voice/lines/L8.mp3",
+     "at": 16.2
+    },
+    {
+     "file": "outputs/ep07/voice/lines/L9m.mp3",
+     "at": 17.9
+    },
+    {
+     "file": "outputs/ep07/voice/lines/L9c.mp3",
+     "at": 18.0
+    }
+   ],
    "note": "ep07 포장마차: 원본 대사 유지(잔으로) + 마지막 \"이모! 맥주 한잔 더요!\"(사용자). 배경음악 없음(참고와 같음), 환경음만.",
    "talk_track": {
     "file": "outputs/ep07/voice/talk_track.wav",
     "len": 9.6,
     "note": "대화 묶음을 대사별로 잘라 참고 영상 시각(0.2·2.1·4.2·5.8·7.9·8.9)에 배치 → S1 Kling 음성 참조용"
-   }
+   },
+   "bgm": null
   }
  },
  "voices_legacy": {
