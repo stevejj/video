@@ -33,7 +33,7 @@
    "cut": "03",
    "kind": "still",
    "source_cut": "03",
-   "image": "outputs/ep08/03/start_v1.png",
+   "image": "outputs/ep08/03/start_v2.png",
    "in": 0,
    "len": 5.0,
    "time_card": null
@@ -87,13 +87,14 @@
    "cut": "09",
    "kind": "still",
    "source_cut": "09",
-   "image": "outputs/ep08/09/start_v1.png",
+   "image": "outputs/ep08/09/start_v2.png",
    "in": 0,
    "len": 6.0,
    "time_card": null
   }
  ],
  "history": [
-  "2026-10-19 ep08 애니매틱 v1: 9장면 45.5s, 실제 대사·상황 자막"
+  "2026-10-19 ep08 애니매틱 v1: 9장면 45.5s, 실제 대사·상황 자막",
+  "2026-10-19 v3: K3·K9를 눈썹 제거·기준 눈 수정본(start_v2)으로 교체"
  ]
 }

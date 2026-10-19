@@ -39,7 +39,7 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 **위험·대책**: 미순이 돌아봄 / 창수가 움직여 머리가 굴러감(M17: 누워서 날개 금지 → 폰은 그대로 둠).
 
 ## S3 드레스룸 — 입모양 · Kling 4.0 omni, 5초 · 50크레딧
-**입력**: image_1 `outputs/ep08/03/start_v1.png`(K3), audio_1 `outputs/ep08/voice/scenes/s3.mp3`
+**입력**: image_1 `outputs/ep08/03/start_v2.png`(K3f, 눈썹 제거), audio_1 `outputs/ep08/voice/scenes/s3.mp3`
 **인자**: model=kling-video-v4_0(omni_ref_video), duration=5, aspect_ratio=9:16, 720p, prefer_multi_shots=true, enable_audio=true
 ```
 One single continuous shot with a static, locked-off camera, no cuts, no camera movement: exactly the scene of 图片1 (same camera angle, same room, same furniture, same characters in the same places and the same clothes). 3D animated plush characters, short velvet fur; the room and the objects stay photoreal and unchanged.
@@ -122,7 +122,7 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 **위험·대책**: 옷이 바뀜 / 입모양 불일치.
 
 ## S9 현관 구두 — 입모양 · Kling 4.0 omni, 6초 · 60크레딧
-**입력**: image_1 `outputs/ep08/09/start_v1.png`(K9), audio_1 `outputs/ep08/voice/scenes/s9.mp3`
+**입력**: image_1 `outputs/ep08/09/start_v2.png`(K9f, 눈썹 제거·기준 눈), audio_1 `outputs/ep08/voice/scenes/s9.mp3`
 **인자**: model=kling-video-v4_0(omni_ref_video), duration=6, aspect_ratio=9:16, 720p, prefer_multi_shots=true, enable_audio=true
 ```
 One single continuous shot with a static, locked-off camera, no cuts, no camera movement: exactly the scene of 图片1 (same camera angle, same room, same furniture, same characters in the same places and the same clothes). 3D animated plush characters, short velvet fur; the room and the objects stay photoreal and unchanged.
