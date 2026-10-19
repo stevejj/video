@@ -19,7 +19,7 @@ Pang Mi-sun (left, light silver-grey, pink blush, light pink dress) sits on the 
 Her beak opens and closes exactly in sync with 音频1. No other words, no English.
 Pang Chang-su (right, darker blue-grey, blue checked pajama) stays lying on his back fast asleep the whole time: eyes closed, beak closed, he does not move his wings and does not get up. The duvet covers only Chang-su up to his chest.
 The alarm clock stays on the nightstand and never moves. Mi-sun's wing only pats the duvet next to her; it never reaches across to him and never stretches.
-Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 0~1s 시계 보고 놀람 → 1~5.5s 창수 쪽으로 돌아 이불 탁탁 + 대사 3줄, 창수는 계속 잠.
@@ -32,7 +32,7 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the room, the furniture and the objects stay photoreal and completely unchanged.
 Pang Mi-sun (light silver-grey plush penguin in a light pink dress) sits at the dressing table seen from BEHIND the whole time and never turns to the camera. She dries the top of her head with the white hair dryer held in one short wing, moving it slowly from side to side; the dryer stays in her wing the whole time.
 In the background on the bed, Pang Chang-su (darker blue-grey, blue checked pajama) stays lying perfectly still with eyes closed, pretending to sleep, the black smartphone resting in his wing; he does not move.
-Exactly one hair dryer and one phone; they never float or move on their own. Beaks stay closed. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+Exactly one hair dryer and one phone; they never float or move on their own. Beaks stay closed. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 드라이기 좌우로, 창수는 가만히.
@@ -48,7 +48,7 @@ Pang Mi-sun (light silver-grey, pink blush, light pink dress) stands in front of
 2. "입을 옷이 진짜 너무 없네..."
 Her beak opens and closes exactly in sync with 音频1. No other words, no English.
 The hanger and the blue dress stay in her wing the whole time; the clothes on the rail never move. Exactly one hanger in her wing.
-Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 원피스 보며 갸웃 → 대사 2줄 → 한숨.
@@ -60,7 +60,7 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 ```
 Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the room, the furniture and the objects stay photoreal and completely unchanged.
 Pang Mi-sun (light silver-grey, beige tweed two-piece suit, small pearl hairpin) stands in front of the lit bag shelf, seen from behind at a three-quarter angle the whole time; she does not turn to the camera. She points with one short wing at one bag after another, tilting her head left and right, unable to decide.
-All the bags stay exactly in their places on the shelf; none of them moves or floats. Her beak stays closed. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+All the bags stay exactly in their places on the shelf; none of them moves or floats. Her beak stays closed. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 가방을 하나씩 가리키며 갸웃갸웃.
@@ -72,7 +72,7 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 ```
 Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the room, the furniture and the objects stay photoreal and completely unchanged.
 Pang Chang-su (darker blue-grey, small tuft, blue checked pajama) is seen from BEHIND the whole time. He waddles lazily down the hallway toward the open bathroom door with small penguin steps, waving one short wing over his shoulder without looking back. He never turns around.
-The door stays open and unchanged. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+The door stays open and unchanged. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 욕실 쪽으로 총총, 손 흔듦.
@@ -88,7 +88,7 @@ An extreme close-up of Pang Mi-sun's face (light silver-grey, pink blush, beige 
 2. "여보?"
 3. "팽! 창! 수!!!"
 Her beak opens and closes exactly in sync with 音频1. No other words, no English.
-The sweat drop and the pearl hairpin stay in place. Chang-su does not appear. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+The sweat drop and the pearl hairpin stay in place. Chang-su does not appear. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 여보? 여보? (점점 굳는 얼굴) → 팽! 창! 수!!! 머리 흔들며 폭발.
@@ -100,7 +100,7 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 ```
 Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the room, the furniture and the objects stay photoreal and completely unchanged.
 Pang Chang-su, a cute plush penguin toy (darker blue-grey with a small tuft), stands in the glass shower booth seen from BEHIND the whole time and never turns around. He happily scrubs the big pile of white soap bubbles on his head with both short wings, swaying a little, while water keeps falling from the rain showerhead. Some bubbles slide down his back. Wholesome, cute, family-friendly.
-The glass door and the bathroom stay unchanged. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+The glass door and the bathroom stay unchanged. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 양 날개로 머리 거품 박박, 몸 흔들흔들.
@@ -115,7 +115,7 @@ Pang Chang-su (darker blue-grey, small tuft, neat brown suit jacket, white shirt
 1. "여보, 아직도 멀었어?"
 2. "나 준비 다 했는데?"
 His beak opens and closes exactly in sync with 音频1. No other words, no English.
-His suit, shirt and tie stay exactly the same; he does not touch them. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+His suit, shirt and tie stay exactly the same; he does not touch them. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 발 까딱·고개 갸웃하며 대사 2줄.
@@ -131,7 +131,7 @@ Pang Mi-sun (light silver-grey, pink blush, beige tweed two-piece suit, small pe
 2. "나 아직 구두 못 골랐는데..."
 3. "여보, 지금 몇 시야?"
 Her beak opens and closes exactly in sync with 音频1. No other words, no English.
-She keeps holding exactly one shoe in each wing the whole time; the shoes on the floor stay where they are and never move. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes.
+She keeps holding exactly one shoe in each wing the whole time; the shoes on the floor stay where they are and never move. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
 **예상**: 놀라서 고개 듦 → 양손 구두 번갈아 보며 당황 → 시간 물음.

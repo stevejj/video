@@ -15,6 +15,8 @@ MAN = {
  'K6': dict(out=O + '06/start_v1.png', model=FLASH, refs=[O + '04/start_v1.png', M + 'pang-misun_face_front.png']),
  'K7': dict(out=O + '07/start_v1.png', model=FLASH, refs=[O + '01/start_v1.png', C + 'pang-changsu_body_back.png']),
  'K8': dict(out=O + '08/start_v1.png', model=FLASH, refs=[O + '01/start_v1.png', C + 'pang-changsu_hires_front.png']),
+ 'K3f': dict(out=O + '03/start_v2.png', model=FLASH, refs=[O + '03/start_v1.png', M + 'pang-misun_hires_front.png']),
+ 'K9f': dict(out=O + '09/start_v2.png', model=FLASH, refs=[O + '09/start_v1.png', M + 'pang-misun_hires_front.png']),
  'K9': dict(out=O + '09/start_v1.png', model=FLASH, refs=[O + '04/start_v1.png', M + 'pang-misun_hires_front.png', M + 'pang-misun_pose_hold_cup.png']),
 }
 

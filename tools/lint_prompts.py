@@ -22,6 +22,9 @@ def rules(kind):
     changsu = lambda p: has(p, r'chang-?su')
     wings_act = lambda p: has(p, r'\bwings?\b')
     rule('미순 속눈썹 금지', 'ep04 W1·ep05: 이미지 모델이 미순에게 속눈썹을 붙임', misun, lambda p: has(p, r'no eyelashes'))
+    rule('눈썹 금지·기준 눈', 'ep08 K3·K9: 감정 단어(troubled/flustered)에 이미지 모델이 눈썹을 그리고 눈을 작게 바꿈',
+         lambda p: (misun(p) or changsu(p)) and (kind == 'video' or has(p, r'\bface\b|\beyes?\b')),
+         lambda p: has(p, r'no eyebrows') and (kind == 'video' or has(p, r'same (simple )?(round )?(glossy )?(black )?eyes|same eye')))
     rule('창수 볼터치 금지', 'ep06 C2: 창수가 돌아설 때 미순 볼터치가 옮겨 붙음(F9)',
          lambda p: changsu(p) and misun(p),  # 둘이 같이 나오면 항상(돌아서는 장면만 노리면 놓침)
          lambda p: has(p, r'chang-?su[^.]*no (pink )?blush', r'no (pink )?blush[^.]*chang-?su', r"chang-?su's cheeks have no", r'\b(his|he)\b[^.]*no (pink )?blush'))
