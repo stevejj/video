@@ -67,7 +67,7 @@
    "text": "(자는 척)",
    "speaker": "sfx",
    "start": 6.2,
-   "end": 7.8,
+   "end": 7.2,
    "x": 0.5,
    "pos": "top"
   },
@@ -76,7 +76,7 @@
    "text": "(준비시간 30분 남음)",
    "speaker": "sfx",
    "start": 7.2,
-   "end": 8.8,
+   "end": 9.0,
    "x": 0.5,
    "pos": "top"
   },
@@ -190,7 +190,7 @@
    "text": "(나가기 5분 전)",
    "speaker": "sfx",
    "start": 29.7,
-   "end": 31.3,
+   "end": 30.8,
    "x": 0.5,
    "pos": "top"
   },
@@ -199,7 +199,7 @@
    "text": "(올인원 샤워 중)",
    "speaker": "sfx",
    "start": 30.8,
-   "end": 32.4,
+   "end": 32.6,
    "x": 0.5,
    "pos": "top"
   },

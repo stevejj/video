@@ -159,6 +159,12 @@ def main():
         t += L
     total = t
 
+    # 자막 겹침 검사(ep08 애니매틱 사고): 같은 자리(위/아래) 자막이 시간상 겹치면 렌더 중단
+    for pos in ('top', 'bottom'):
+        L = sorted([x for x in T['subtitles'] if (x.get('pos') == 'top') == (pos == 'top')], key=lambda x: x['start'])
+        bad = [(a['text'], b['text'], round(a['end'] - b['start'], 2)) for a, b in zip(L, L[1:]) if b['start'] < a['end'] - 1e-6]
+        if bad:
+            raise SystemExit(f'자막 겹침({pos}): ' + '; '.join(f'"{x}"↔"{y}" {d}s' for x, y, d in bad))
     # 자막
     st = T['subtitle_style']; sub_html = []
     SP = FX['subtitle']
