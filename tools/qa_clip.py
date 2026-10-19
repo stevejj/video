@@ -59,6 +59,7 @@ def changsu_blush(f):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('video'); ap.add_argument('--band'); ap.add_argument('--ep'); ap.add_argument('--cuts')
+    ap.add_argument('--voice-ref', help='입모양 클립: 우리 녹음 파일. 클립 소리와 크기 변화 상관이 0.8 미만이면 실패(ep07 S1 영어 대사 사고)')
     ap.add_argument('--blush-px', type=int, default=None, help='창수 볼터치 기준 픽셀(기본: 화면 넓이의 0.012%)')
     a = ap.parse_args()
     cap = cv2.VideoCapture(a.video); fps = cap.get(cv2.CAP_PROP_FPS) or 24
@@ -86,6 +87,18 @@ def main():
         fails += 1; print(f'✗ 멈춘 프레임 {len(fr)}개: {[round(i / fps, 2) for i in fr[:10]]}')
     else:
         print('✓ 멈춘 프레임 없음')
+    if a.voice_ref:
+        def env(fp):
+            import imageio_ffmpeg
+            r = subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), '-loglevel', 'error', '-i', fp, '-ac', '1', '-ar', '16000', '-f', 's16le', '-'], capture_output=True).stdout
+            x = np.frombuffer(r, np.int16).astype(float) / 32768
+            return np.array([np.sqrt(np.mean(x[i:i + 160] ** 2)) for i in range(0, len(x) - 160, 160)])
+        ea, eb = env(a.video), env(a.voice_ref); n = min(len(ea), len(eb)); ea, eb = ea[:n], eb[:n]
+        c = max(np.corrcoef(np.roll(ea, k), eb)[0, 1] for k in range(-30, 31))
+        if c < 0.8:
+            fails += 1; print(f'✗ 클립 소리가 우리 녹음과 다름(상관 {c:.2f} < 0.8) → 입모양이 우리 대사에 맞지 않음')
+        else:
+            print(f'✓ 클립 소리 = 우리 녹음(상관 {c:.2f})')
     if a.ep:
         cmd = [sys.executable, os.path.join(ROOT, 'tools/check_props.py'), '--ep', a.ep, '--video', a.video] + (['--cuts', a.cuts] if a.cuts else [])
         r = subprocess.run(cmd); fails += r.returncode != 0

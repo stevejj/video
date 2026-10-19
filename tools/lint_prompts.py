@@ -36,6 +36,9 @@ def rules(kind):
     rule('소품 고정', 'ep05·ep06: 소품은 사라지거나 움직이면 안 됨(F8)',
          lambda p: kind == 'video' and has(p, r'boombox|dumbbell|bowl|phone|remote|cup|mug'),
          lambda p: has(p, r'never moves?', r'does not move', r'stays? (on the floor|where|in place|completely unchanged)', r'only after', r'until', r'never floating', r'unchanged'))
+    rule('음성 참조 시 대사 원문 필수', 'ep07 S1: 대사를 안 적었더니 Kling이 녹음을 무시하고 영어 대사를 지어냄(S5는 원문을 적어서 성공)',
+         lambda p: kind == 'video' and has(p, r'音频|audio_1'),
+         lambda p: bool(re.search(r'"[^"]*[가-힣][^"]*"', p)) and has(p, r'in korean'))
     if kind == 'image':
         rule('세로 9:16', '이미지 모델이 정사각형을 낼 때가 있음', lambda p: True, lambda p: has(p, r'9:16'))
         rule('글자·로고 금지', 'AI 글자 깨짐', lambda p: True, lambda p: has(p, r'no text'))
@@ -65,6 +68,8 @@ def main():
         if not kind:
             print(f'(건너뜀: 종류를 모름) {path}'); continue
         for title, p in blocks(open(path, encoding='utf-8').read()):
+            if '[기록]' in title:  # 이미 제출한 프롬프트 기록(수정하면 기록이 거짓이 됨) → 검사 생략
+                continue
             bad = [(n, w) for n, w, c, need in rules(kind) if c(p) and not need(p)]
             if bad:
                 fails += len(bad)
