@@ -63,7 +63,11 @@ def main():
     dt = time.time() - t0
 
     img_bytes = None
-    for p in resp.candidates[0].content.parts:
+    cand = resp.candidates[0] if resp.candidates else None
+    if cand is None or cand.content is None or not cand.content.parts:
+        fr = getattr(cand, 'finish_reason', None) if cand else None
+        sys.exit(f"이미지 없음: finish_reason={fr} prompt_feedback={getattr(resp, 'prompt_feedback', None)} usage={getattr(resp, 'usage_metadata', None)}")
+    for p in cand.content.parts:
         if getattr(p, "inline_data", None) and p.inline_data.data:
             img_bytes = p.inline_data.data
             break

@@ -4,6 +4,7 @@
 설정: outputs/<ep>/props.json
   props.<이름>.hsv = {"h": [[lo,hi],...], "s_min", "v_min"}  (OpenCV HSV, H 0~179)
   states.<컷>.<이름> = {"start": "가득", "end": "빈", "from": "시작 이미지"} → 앞 컷 끝 상태와 다음 컷 시작 상태가 같아야 함
+  transitions_ok.<이름> = [["앞 상태", "뒤 상태"], ...] → 장면 사이에 일어나는 의도된 변화(옷 갈아입기 등)는 허용
   cuts.<컷>.<이름> = {"min_px": N}  → 그 컷의 모든 프레임(플래시 제외)에서 픽셀 수 ≥ N 이어야 함
                      {"max_px": N}  → 그 컷에서는 안 보여야 함(≤ N)
 컷 구간은 outputs/<ep>/hf/cuts.json(변환기가 씀)에서 읽는다. 흰 플래시 프레임(평균 밝기가 영상 중앙값 + 25 초과, 사라지는 꼬리 포함)은 건너뛴다.
@@ -77,7 +78,8 @@ def main():
             st = ST.get(cut, {}).get(k)
             if not st:
                 continue
-            if prev and st['start'] != prev[1]:
+            ok_jump = [prev[1], st['start']] in P.get('transitions_ok', {}).get(k, []) if prev else False  # 장면 사이 갈아입기 등 의도된 변화
+            if prev and st['start'] != prev[1] and not ok_jump:
                 fails += 1; print(f'✗ 소품 상태 끊김: {k} 컷 {prev[0]} 끝 "{prev[1]}" → 컷 {cut} 시작 "{st["start"]}" (시작 이미지: {st.get("from", "?")})')
             prev = (cut, st['end'])
     print('결과:', '통과' if not fails else f'실패 {fails}건')

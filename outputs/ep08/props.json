@@ -1,0 +1,127 @@
+{
+ "note": "ep08 소품·옷 상태표(F8 states). 색 검사는 하지 않음(장면마다 장소가 달라 판별력 없음) → 상태 이어짐 + 시트 확인",
+ "band": [
+  576,
+  1344
+ ],
+ "props": {
+  "misun_outfit": {
+   "hsv": {
+    "h": [
+     [
+      0,
+      0
+     ]
+    ],
+    "s_min": 255,
+    "v_min": 255
+   }
+  },
+  "changsu_outfit": {
+   "hsv": {
+    "h": [
+     [
+      0,
+      0
+     ]
+    ],
+    "s_min": 255,
+    "v_min": 255
+   }
+  }
+ },
+ "cuts": {},
+ "states": {
+  "01": {
+   "misun_outfit": {
+    "start": "분홍 원피스",
+    "end": "분홍 원피스",
+    "from": "K1"
+   },
+   "changsu_outfit": {
+    "start": "잠옷",
+    "end": "잠옷",
+    "from": "K1"
+   }
+  },
+  "02": {
+   "misun_outfit": {
+    "start": "분홍 원피스",
+    "end": "분홍 원피스",
+    "from": "K2"
+   },
+   "changsu_outfit": {
+    "start": "잠옷",
+    "end": "잠옷",
+    "from": "K2"
+   }
+  },
+  "03": {
+   "misun_outfit": {
+    "start": "분홍 원피스",
+    "end": "분홍 원피스",
+    "from": "K3"
+   }
+  },
+  "04": {
+   "misun_outfit": {
+    "start": "트위드",
+    "end": "트위드",
+    "from": "K4(갈아입음: 장면 사이)"
+   }
+  },
+  "05": {
+   "changsu_outfit": {
+    "start": "잠옷",
+    "end": "잠옷",
+    "from": "K5"
+   }
+  },
+  "06": {
+   "misun_outfit": {
+    "start": "트위드",
+    "end": "트위드",
+    "from": "K6"
+   }
+  },
+  "07": {
+   "changsu_outfit": {
+    "start": "거품",
+    "end": "거품",
+    "from": "K7(씻는 중: 장면 사이 옷 벗음)"
+   }
+  },
+  "08": {
+   "changsu_outfit": {
+    "start": "정장",
+    "end": "정장",
+    "from": "K8(장면 사이 갈아입음)"
+   }
+  },
+  "09": {
+   "misun_outfit": {
+    "start": "트위드",
+    "end": "트위드",
+    "from": "K9"
+   }
+  }
+ },
+ "transitions_ok": {
+  "misun_outfit": [
+   [
+    "분홍 원피스",
+    "트위드"
+   ]
+  ],
+  "changsu_outfit": [
+   [
+    "잠옷",
+    "거품"
+   ],
+   [
+    "거품",
+    "정장"
+   ]
+  ]
+ }
+}

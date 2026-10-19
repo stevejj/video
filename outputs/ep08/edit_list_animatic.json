@@ -1,0 +1,99 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01",
+   "kind": "still",
+   "source_cut": "01",
+   "image": "outputs/ep08/01/start_v1.png",
+   "in": 0,
+   "len": 6.0,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "still",
+   "source_cut": "02",
+   "image": "outputs/ep08/02/start_v1.png",
+   "in": 0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "03",
+   "kind": "still",
+   "source_cut": "03",
+   "image": "outputs/ep08/03/start_v1.png",
+   "in": 0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "04",
+   "kind": "still",
+   "source_cut": "04",
+   "image": "outputs/ep08/04/start_v1.png",
+   "in": 0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "05",
+   "kind": "still",
+   "source_cut": "05",
+   "image": "outputs/ep08/05/start_v1.png",
+   "in": 0,
+   "len": 3.5,
+   "time_card": null
+  },
+  {
+   "cut": "06",
+   "kind": "still",
+   "source_cut": "06",
+   "image": "outputs/ep08/06/start_v1.png",
+   "in": 0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "07",
+   "kind": "still",
+   "source_cut": "07",
+   "image": "outputs/ep08/07/start_v1.png",
+   "in": 0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "08",
+   "kind": "still",
+   "source_cut": "08",
+   "image": "outputs/ep08/08/start_v1.png",
+   "in": 0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "09",
+   "kind": "still",
+   "source_cut": "09",
+   "image": "outputs/ep08/09/start_v1.png",
+   "in": 0,
+   "len": 6.0,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-19 ep08 애니매틱 v1: 9장면 45.5s, 실제 대사·상황 자막"
+ ]
+}
