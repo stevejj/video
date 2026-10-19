@@ -1,10 +1,10 @@
 {
- "note": "ep06 애니매틱 효과음: 박수 합성(0원)",
+ "note": "ep06 v1 효과음: 창수 박수 합성 6번(C3에서 날개가 닿는 순간), 0원",
  "items": [
   {
    "name": "clap0",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 12.85,
+   "at": 12.563,
    "len": 0.3,
    "gain": -8.0,
    "note": "짧아서 고정 gain"
@@ -12,7 +12,7 @@
   {
    "name": "clap1",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 13.15,
+   "at": 12.813,
    "len": 0.3,
    "gain": -8.0,
    "note": "짧아서 고정 gain"
@@ -20,7 +20,7 @@
   {
    "name": "clap2",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 13.45,
+   "at": 13.113,
    "len": 0.3,
    "gain": -8.0,
    "note": "짧아서 고정 gain"
@@ -28,7 +28,23 @@
   {
    "name": "clap3",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 13.75,
+   "at": 13.393,
+   "len": 0.3,
+   "gain": -8.0,
+   "note": "짧아서 고정 gain"
+  },
+  {
+   "name": "clap4",
+   "file": "outputs/ep06/sfx/clap.wav",
+   "at": 13.663,
+   "len": 0.3,
+   "gain": -8.0,
+   "note": "짧아서 고정 gain"
+  },
+  {
+   "name": "clap5",
+   "file": "outputs/ep06/sfx/clap.wav",
+   "at": 13.983,
    "len": 0.3,
    "gain": -8.0,
    "note": "짧아서 고정 gain"
