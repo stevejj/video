@@ -1,10 +1,19 @@
 {
+ "v2": {
+  "model": "kling-video-v4_0 omni",
+  "duration": 10,
+  "credits": 100,
+  "generation_id": "AZFSgSFhkjQqTGH6tp3lywQWY04Cn-_cdXFs6EbSb93-I6cxOyqGRpbRwKU-eLYQlA8B2PTO",
+  "input": "W1 + s1_track.mp3",
+  "prompt": "docs/ep07/04_Kling_실행표.md S1 v2"
+ },
  "v1": {
   "model": "kling-video-v4_0 omni",
   "duration": 10,
   "credits": 100,
   "generation_id": "ASUkpmHr_x17Apd4AQ_nOwoo4ISKSQJFfnMRxH2hDlCHkRtc1RLVQy1d5Fvp-JqNpnYcG9Xg",
   "input": "W1 + s1_track.mp3",
-  "prompt": "docs/ep07/04_Kling_\uc2e4\ud589\ud45c.md S1"
+  "prompt": "docs/ep07/04_Kling_실행표.md S1",
+  "result": "fail: 영어 대사를 지어냄(상관 0.15)"
  }
 }

@@ -1,11 +1,11 @@
 {
- "note": "ep07 애니매틱 효과음(기존 파일 재사용, 0원): 밤거리 환경음 깔기 + 짠",
+ "note": "ep07 v1 효과음(기존 파일 재사용, 0원): 밤거리 환경음 + 짠 + 빈 잔 내려놓기",
  "items": [
   {
    "name": "street_amb",
    "file": "outputs/ep01/sfx/el/street_amb.mp3",
    "at": 0.0,
-   "len": 20.0,
+   "len": 22.1,
    "target_lufs": -34,
    "loop": true,
    "fade_in": 0.3,
@@ -16,22 +16,20 @@
   {
    "name": "clink",
    "file": "outputs/ep02/sfx/el/cup_set.mp3",
-   "at": 10.0,
+   "at": 10.35,
    "len": 0.5,
    "target_lufs": -20,
    "fade_out": 0.1,
-   "gain": 10.1,
-   "measured_lufs": -30.05
+   "gain": null
   },
   {
-   "name": "gulp_pause",
+   "name": "mugs_down",
    "file": "outputs/ep02/sfx/el/cup_set.mp3",
-   "at": 12.75,
+   "at": 14.0,
    "len": 0.4,
    "target_lufs": -26,
    "fade_out": 0.1,
-   "gain": 4.1,
-   "measured_lufs": -30.05
+   "gain": null
   }
  ]
 }
