@@ -1,0 +1,8 @@
+{
+ "band_ratio": 0.4,
+ "default_top": 30,
+ "per_cut_top": {
+  "03": 28
+ },
+ "note": "ep05: 와이드 30, 폰 인서트 28"
+}
