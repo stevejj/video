@@ -1,0 +1,13 @@
+{
+ "v1": {
+  "model": "kling-video-v3_0",
+  "duration": 5,
+  "resolution": "720p",
+  "credits": 30,
+  "generation_id": "AcPpYpikg3nLwJqUEGM86Aki5p_1Z1lMr3_LEre_L39gWUhHPet16MEzMrMOvrmF0BFP-9_X",
+  "first_image": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTIzNzQwODIvMmRRU2dwSm9tSi9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372",
+  "tail_image": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTIzNzQwNzkvYmEyd1YxMVNkMi9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372",
+  "submitted": "2026-10-19",
+  "prompt": "docs/ep05/04_Kling_\uc2e4\ud589\ud45c.md"
+ }
+}

@@ -25,22 +25,22 @@ Pang Chang-su stands in the foreground on the left, seen from behind, holding a 
 - 허리 굽힐 때 몸이 늘어남.
 - 폰이 2개가 됨.
 
-실패 시: K1→K3 정지 점프로 둡니다(애니매틱과 동일, 0원).
+실패 시: 애니매틱 v2의 퍼펫 구간(덤벨 낙하 → 총총)으로 대체합니다(0원).
 
 ## 5컷: K3 → K1, 5초 (편집 약 4.5s) · 30크레딧
 **입력**: first_image `outputs/ep05/03/start_v1.png`(K3), tail_image `outputs/ep05/01/start_v1.png`(K1)
 **인자**: 2컷과 동일
 ```
 Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the gym, the floor, the dumbbell rack and the bench stay photoreal and completely unchanged.
-Pang Chang-su stands in the foreground on the left, seen from behind, holding a black smartphone in front of his chest. He stays seen from behind the whole time and never turns around. Pang Mi-sun stands right beside him on his right side looking down at the phone screen. She tilts her head once, unsatisfied, then turns and waddles back with small penguin steps to the two pink dumbbells lying on the rubber floor in the middle of the gym. She bends down a little, picks up the two pink dumbbells from the floor with her wings, stands up and raises them to shoulder height with the same proud smile as before, facing the camera. Chang-su raises the phone up again to take her photo, exactly matching the end image. The dumbbells move only after her wings have touched them. Her wings keep their normal short rounded length and never stretch. Her head keeps its normal shape and stays upright. Her beak stays closed. No eyelashes. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
+Pang Chang-su stands in the foreground on the left, seen from behind, holding a black smartphone in front of his chest. He stays seen from behind the whole time and never turns around. Pang Mi-sun stands right beside him on his right side looking down at the phone screen. She turns and waddles back with small penguin steps to the two pink dumbbells lying on the rubber floor just in front of her, and stops right next to them. She bends her whole body down and wraps one wing around each dumbbell handle. The dumbbells lie completely still on the floor until both of her wings are holding them. Then she lifts them with real effort, as if they are heavy: she strains for a moment, her body tenses and leans back slightly, and the dumbbells rise slowly together with her wings, never floating or moving on their own. She stands up straight and raises them to shoulder height with the same proud smile as before, facing the camera. Chang-su raises the phone up again to take her photo, exactly matching the end image. Her wings keep their normal short rounded length and never stretch. Her head keeps its normal shape and stays upright. Her beak stays closed. No eyelashes. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
-**예상**: 0~1s 갸웃, 1~2.5s 돌아서 총총 덤벨로, 2.5~3.5s 덤벨 집음, 3.5~5s 다시 같은 포즈. 끝 = K1이라 1컷과 이어져 루프가 됩니다.
+**예상**: 0~1.5s 돌아서 총총 덤벨 옆으로, 1.5~2.5s 몸 숙여 양 날개로 손잡이를 감쌈(덤벨 그대로), 2.5~3.5s 힘주며 천천히 들어 올림, 3.5~5s 다시 같은 포즈. (갸웃은 4컷 정지 K3가 맡음) 끝 = K1이라 1컷과 이어져 루프가 됩니다.
 **위험**:
-- 덤벨이 날개에 미리 생김.
+- 덤벨이 날개에 미리 생기거나 날개보다 먼저 떠오름(사용자 필수 조건: "덤벨이 움직이는 게 아니라 들어야 하는 느낌").
 - 돌아설 때 뒷모습이 이상해짐.
 - 창수가 돌아봄.
 
-실패 시: K3→K1 정지 점프로 둡니다(0원).
+실패 시: 애니매틱 v2의 퍼펫 구간(숙이기 → 덤벨 들기 → 팝)으로 대체합니다(0원).
 
 ## 현황
 - 2026-10-19 실행표 작성. 승인("진행") 대기.
@@ -61,3 +61,8 @@ Pang Chang-su stands in the foreground on the left, seen from behind, holding a 
   - 설정: `edit_list_animatic_v2.json`, `hf_fx_v2.json`, `sfx/sfx_list.json`.
   - 메모: 셔터처럼 0.4s보다 짧은 소리는 LUFS 측정이 안 됨(-inf) → gain을 고정값으로 둠.
   - 사용자 판단 대기: v2로 완성할지, Kling 2컷(60크레딧)을 넣을지.
+- 2026-10-19 사용자: "Kling으로 만들 건데, Kling이 실패했을 때 애니매틱으로 구현한다는 거였어. 덤벨을 다시 잡아서 운동하는 순간에 덤벨이 움직이는 게 아니라 덤벨을 들어야 하는 느낌이어야 해."
+  - **Kling이 본편이고, 퍼펫 애니매틱(v2)은 실패한 컷의 대체용**입니다.
+  - 5컷 프롬프트를 고쳤습니다. 덤벨 바로 옆까지 걸어가서 양 날개로 손잡이를 감싸기 전까지 덤벨은 바닥에 그대로 있고, 힘주며 천천히 들어 올립니다(무게감). 갸웃은 4컷 정지 화면으로 넘겼습니다.
+  - 2개 제출(60크레딧).
+- 2026-10-19 제출: 2컷 `Ac3HEyv9…`, 5컷 `AcPpYpik…` (각 30, 잔액 609 → 549). ID 전체는 `outputs/ep05/02|05/meta.json`.
