@@ -1243,24 +1243,24 @@
     {
      "cut": "6c",
      "speaker": "misun",
-     "subtitle": "팽창수!!!!",
-     "tts": "[angry] 팽, 창, 수!!!",
+     "subtitle": "창수야!!!!",
+     "tts": "[angry] 창수야!!!",
      "expr": "09",
      "max_len": 1.8,
      "offset": 0.05,
      "inner": false,
      "speedup_override": 1.25,
-     "len_raw": 1.96,
+     "len_raw": 1.07,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.57,
+     "len": 0.86,
      "file": "outputs/ep08/voice/lines/6c.mp3",
-     "len_file": 1.57,
+     "len_file": 0.86,
      "over": false,
      "tag_override": true,
-     "note": "\"펭!창!수!\"로 들림(ㅐ/ㅔ 발음 같음) — 다른 표기는 \"행창수/빙창수\"로 들림",
-     "seed": 7,
-     "scene_at": 2.44
+     "note": "2026-10-20 \"팽창수\"는 Kling 저작권 필터(펭수 추정)에 두 번 거절 → 사용자 B안 \"창수야!!!\"",
+     "scene_at": 2.44,
+     "seed": 7
     },
     {
      "cut": "7",
@@ -1473,7 +1473,7 @@
     "s6": {
      "file": "outputs/ep08/voice/scenes/s6.mp3",
      "len": 5.0,
-     "speech_end": 4.01,
+     "speech_end": 3.3,
      "lines": {
       "6a": 0.3,
       "6b": 1.32,

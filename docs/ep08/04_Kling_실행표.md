@@ -79,19 +79,19 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 **위험·대책**: 돌아봄 / 얼굴이 생김.
 
 ## S6 미순 클로즈업 폭발 — 입모양 · Kling 4.0 omni, 5초 · 50크레딧
-**입력**: image_1 `outputs/ep08/06/start_v1.png`(K6), audio_1 `outputs/ep08/voice/scenes/s6.mp3`
+**입력**: image_1 `outputs/ep08/06/start_v2.png`(K6 배경 흐림), audio_1 `outputs/ep08/voice/scenes/s6.mp3`(2026-10-20 6c를 "창수야!!!"로 다시 녹음, 원래 녹음은 `s6_pangchangsu.mp3`)
 **인자**: S3와 같음
 ```
 One single continuous shot with a static, locked-off camera, no cuts, no camera movement: exactly the scene of 图片1 (same camera angle, same room, same furniture, same characters in the same places and the same clothes). 3D animated plush characters, short velvet fur; the room and the objects stay photoreal and unchanged.
-An extreme close-up of Pang Mi-sun's face (light silver-grey, pink blush, beige tweed collar, small pearl hairpin, a small cartoon sweat drop). She calls out twice in disbelief, then explodes in anger, shouting the name syllable by syllable, her head shaking a little with rage. She speaks in Korean, exactly the voice, words and timing of 音频1, and nothing else:
+An extreme close-up of Pang Mi-sun's face (light silver-grey, pink blush, beige tweed collar, small pearl hairpin, a small cartoon sweat drop). She calls out twice in disbelief, then explodes in anger, shouting his name, her head shaking a little with rage. She speaks in Korean, exactly the voice, words and timing of 音频1, and nothing else:
 1. "여보?"
 2. "여보?"
-3. "팽! 창! 수!!!"
+3. "창수야!!!"
 Her beak opens and closes exactly in sync with 音频1. No other words, no English.
 The sweat drop and the pearl hairpin stay in place. Chang-su does not appear. Chang-su's cheeks have NO pink blush at any time; only Mi-sun has pink blush. Mi-sun has NO eyelashes. Neither penguin has eyebrows (NO eyebrows); their eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Heads keep their normal shape. No other characters appear. No new objects appear. Wings stay soft, rounded and fingerless.
 ```
-**예상**: 여보? 여보? (점점 굳는 얼굴) → 팽! 창! 수!!! 머리 흔들며 폭발.
+**예상**: 여보? 여보? (점점 굳는 얼굴) → 창수야!!! 머리 흔들며 폭발.
 **위험·대책**: 얼굴 형태 무너짐(클로즈업) / 입모양 불일치.
 
 ## S7 샤워 — 목소리만 · Kling 3.0, 5초 · 30크레딧
@@ -151,3 +151,4 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
   - 통과한 ep07 S1 v2/S5 v2와 비교: 같은 모델·인자·캐릭터·음성 방식. 새로 들어간 것은 ① 프롬프트의 한글 "팽! 창! 수!!!" ② 녹음 속 "펭! 창! 수!"(ㅐ/ㅔ 같은 발음) ③ 미순 얼굴 클로즈업.
   - 새 유력 원인: "펭…수" + 펭귄 → EBS 캐릭터 **펭수(Pengsoo)** 저작권 필터에 걸림. 프롬프트 글자 또는 녹음 음성 인식 중 어느 쪽인지는 모름.
   - 사용자 결정 대기(아래 A/B/C).
+- 2026-10-20 사용자 B안: 6c "팽창수!!!" → **"창수야!!!"**. 다시 녹음(seed 7, 받아쓰기 "창수야!" 1.00), s6 트랙 재조립(5.04s, 받아쓰기 "여보? 여보! 창수야!"). 프롬프트 3번 줄과 설명, 입력 이미지(v2) 수정 → lint 재검사 후 제출.

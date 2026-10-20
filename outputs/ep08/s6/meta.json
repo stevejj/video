@@ -1,0 +1,11 @@
+{
+ "v1": {
+  "model": "kling-video-v4_0 omni",
+  "duration": 5,
+  "credits": 50,
+  "generation_id": "AQwDWd4wWLNVDmfCbe_TJmy0JWkJluL7m4weQrLmUVjLTSperoFIZRrBSz5YAD7c3L-Co_5a",
+  "input": "K6 v2(배경 흐림) + s6.mp3(창수야!!!)",
+  "prompt": "docs/ep08/04_Kling_실행표.md S6",
+  "blocked_before": "팽! 창! 수!!! 로 2회 제출 → copyright restrictions(차감 0)"
+ }
+}
