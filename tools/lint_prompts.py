@@ -42,6 +42,8 @@ def rules(kind):
     rule('음성 참조 시 대사 원문 필수', 'ep07 S1: 대사를 안 적었더니 Kling이 녹음을 무시하고 영어 대사를 지어냄(S5는 원문을 적어서 성공)',
          lambda p: kind == 'video' and has(p, r'音频|audio_1'),
          lambda p: bool(re.search(r'"[^"]*[가-힣][^"]*"', p)) and has(p, r'in korean'))
+    rule('펭수 닮은 이름 금지', 'ep08 S6: 대사 "팽! 창! 수!!!"(녹음은 "펭!창!수!")가 Kling 저작권 필터(펭수 추정)에 2번 거절됨 → "창수야!!!"로 바꾸자 통과',
+         lambda p: kind == 'video' and bool(re.search(r'"[^"]*[팽펭][^"]*"', p)), lambda p: False)
     if kind == 'image':
         rule('세로 9:16', '이미지 모델이 정사각형을 낼 때가 있음', lambda p: True, lambda p: has(p, r'9:16'))
         rule('글자·로고 금지', 'AI 글자 깨짐', lambda p: True, lambda p: has(p, r'no text'))
