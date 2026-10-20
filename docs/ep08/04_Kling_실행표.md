@@ -164,3 +164,4 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
   - 0~1.2s 시계 쪽 보고 놀람 → 2.0~3.2s 창수 쪽으로 돌아 날개로 이불 탁탁(날개 길이 정상) → 대사. 창수 계속 잠.
   - 5.58s 이후 멈춘 프레임(대사 끝 5.49s 뒤) → 편집에서 5.55s에서 자름.
 - S3 제출 시 "Insufficient credits"(차감 0) → 자동 충전 대기.
+- 2026-10-20 충전 확인(3001, Pro 등급 → 4.0 단가 초당 9). S3 45·S8 45·S9 54·S2 30·S4 30·S5 18·S7 30 = **252 제출**.
