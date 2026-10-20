@@ -36,7 +36,7 @@
    "sfx": "#FFFFFF"
   }
  },
- "note": "v1: 제목 B안 확정, 자막 시각 = 음성 배치(voice_profile placements)",
+ "note": "완성 v1: 자막 시각 = 새 장면 시작 + 장면 안 상대 시각(애니매틱판은 text_overlay_animatic.json)",
  "subtitles": [
   {
    "cut": "1a",
@@ -59,15 +59,15 @@
    "text": "준비 시간 한 시간밖에 안 남았어!",
    "speaker": "misun",
    "start": 3.53,
-   "end": 5.69,
+   "end": 5.55,
    "x": 0.5
   },
   {
    "cut": "cap",
    "text": "(자는 척)",
    "speaker": "sfx",
-   "start": 6.2,
-   "end": 7.2,
+   "start": 5.75,
+   "end": 6.75,
    "x": 0.5,
    "pos": "top"
   },
@@ -75,8 +75,8 @@
    "cut": "cap",
    "text": "(준비시간 30분 남음)",
    "speaker": "sfx",
-   "start": 7.2,
-   "end": 9.0,
+   "start": 6.75,
+   "end": 8.55,
    "x": 0.5,
    "pos": "top"
   },
@@ -84,32 +84,32 @@
    "cut": "2a",
    "text": "여보, 준비 안 하고 있어?",
    "speaker": "misun",
-   "start": 7.4,
-   "end": 9.19,
+   "start": 6.95,
+   "end": 8.74,
    "x": 0.5
   },
   {
    "cut": "2b",
    "text": "빨리 준비해야지!",
    "speaker": "misun",
-   "start": 9.39,
-   "end": 10.87,
+   "start": 8.94,
+   "end": 10.42,
    "x": 0.5
   },
   {
    "cut": "3a",
    "text": "여보, 나 오늘 뭐 입을까?",
    "speaker": "misun",
-   "start": 11.4,
-   "end": 13.17,
+   "start": 10.85,
+   "end": 12.62,
    "x": 0.5
   },
   {
    "cut": "cap",
    "text": "(옷장 지분 90%)",
    "speaker": "sfx",
-   "start": 13.2,
-   "end": 14.8,
+   "start": 12.65,
+   "end": 14.25,
    "x": 0.5,
    "pos": "top"
   },
@@ -117,80 +117,80 @@
    "cut": "3b",
    "text": "입을 옷이 진짜 너무 없네...",
    "speaker": "misun",
-   "start": 13.57,
-   "end": 15.44,
+   "start": 13.02,
+   "end": 14.89,
    "x": 0.5
   },
   {
    "cut": "4a",
    "text": "여보, 잠깐만 일로 와 봐.",
    "speaker": "misun",
-   "start": 16.3,
-   "end": 18.15,
+   "start": 15.35,
+   "end": 17.2,
    "x": 0.5
   },
   {
    "cut": "4b",
    "text": "나 가방 좀 봐 줄래?",
    "speaker": "misun",
-   "start": 18.25,
-   "end": 19.68,
+   "start": 17.3,
+   "end": 18.73,
    "x": 0.5
   },
   {
    "cut": "4c",
    "text": "뭐 메고 가지?",
    "speaker": "misun",
-   "start": 19.78,
-   "end": 20.92,
+   "start": 18.83,
+   "end": 19.95,
    "x": 0.5
   },
   {
    "cut": "5a",
    "text": "응~ 그거 잘 어울린다~",
    "speaker": "changsu",
-   "start": 21.2,
-   "end": 22.89,
+   "start": 20.15,
+   "end": 21.84,
    "x": 0.5
   },
   {
    "cut": "5b",
    "text": "나 씻고 올게~",
    "speaker": "changsu",
-   "start": 22.99,
-   "end": 24.29,
+   "start": 21.94,
+   "end": 22.99,
    "x": 0.5
   },
   {
    "cut": "6a",
    "text": "여보?",
    "speaker": "misun",
-   "start": 24.8,
-   "end": 25.47,
+   "start": 23.29,
+   "end": 23.96,
    "x": 0.5
   },
   {
    "cut": "6b",
    "text": "여보?",
    "speaker": "misun",
-   "start": 25.82,
-   "end": 26.59,
+   "start": 24.31,
+   "end": 25.08,
    "x": 0.5
   },
   {
    "cut": "6c",
    "text": "창수야!!!!",
    "speaker": "misun",
-   "start": 26.94,
-   "end": 28.71,
+   "start": 26.08,
+   "end": 27.29,
    "x": 0.5
   },
   {
    "cut": "cap",
    "text": "(나가기 5분 전)",
    "speaker": "sfx",
-   "start": 29.7,
-   "end": 30.8,
+   "start": 27.59,
+   "end": 28.69,
    "x": 0.5,
    "pos": "top"
   },
@@ -198,8 +198,8 @@
    "cut": "cap",
    "text": "(올인원 샤워 중)",
    "speaker": "sfx",
-   "start": 30.8,
-   "end": 32.6,
+   "start": 28.69,
+   "end": 30.49,
    "x": 0.5,
    "pos": "top"
   },
@@ -207,16 +207,16 @@
    "cut": "7",
    "text": "이따가 저녁에 뭐 먹지?",
    "speaker": "changsu",
-   "start": 32.3,
-   "end": 33.88,
+   "start": 29.79,
+   "end": 31.37,
    "x": 0.5
   },
   {
    "cut": "cap",
    "text": "(5분 만에 준비 끝난 팽창수)",
    "speaker": "sfx",
-   "start": 34.7,
-   "end": 36.3,
+   "start": 31.59,
+   "end": 33.19,
    "x": 0.5,
    "pos": "top"
   },
@@ -224,40 +224,40 @@
    "cut": "8a",
    "text": "여보, 아직도 멀었어?",
    "speaker": "changsu",
-   "start": 35.1,
-   "end": 36.63,
+   "start": 31.99,
+   "end": 33.52,
    "x": 0.5
   },
   {
    "cut": "8b",
    "text": "나 준비 다 했는데?",
    "speaker": "changsu",
-   "start": 36.93,
-   "end": 38.31,
+   "start": 33.82,
+   "end": 35.2,
    "x": 0.5
   },
   {
    "cut": "9a",
    "text": "어?! 벌써 준비 다 했어?",
    "speaker": "misun",
-   "start": 39.8,
-   "end": 41.49,
+   "start": 35.69,
+   "end": 37.38,
    "x": 0.5
   },
   {
    "cut": "9b",
    "text": "나 아직 구두 못 골랐는데...",
    "speaker": "misun",
-   "start": 41.64,
-   "end": 43.64,
+   "start": 37.53,
+   "end": 39.53,
    "x": 0.5
   },
   {
    "cut": "9c",
    "text": "여보, 지금 몇 시야?",
    "speaker": "misun",
-   "start": 43.79,
-   "end": 45.35,
+   "start": 39.68,
+   "end": 41.19,
    "x": 0.5
   }
  ]

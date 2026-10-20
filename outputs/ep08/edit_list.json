@@ -1,0 +1,102 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01",
+   "kind": "clip",
+   "source_cut": "s1",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 5.55,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "clip",
+   "source_cut": "s2",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.9,
+   "time_card": null
+  },
+  {
+   "cut": "03",
+   "kind": "clip",
+   "source_cut": "s3",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.6,
+   "time_card": null
+  },
+  {
+   "cut": "04",
+   "kind": "clip",
+   "source_cut": "s4",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.9,
+   "time_card": null
+  },
+  {
+   "cut": "05",
+   "kind": "clip",
+   "source_cut": "s5",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 3.04,
+   "time_card": null
+  },
+  {
+   "cut": "06",
+   "kind": "clip",
+   "source_cut": "s6",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.4,
+   "time_card": null
+  },
+  {
+   "cut": "07",
+   "kind": "clip",
+   "source_cut": "s7",
+   "clip_tag": "v1_fix",
+   "in": 0.0,
+   "len": 4.0,
+   "time_card": null
+  },
+  {
+   "cut": "08",
+   "kind": "clip",
+   "source_cut": "s8",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.0,
+   "time_card": null
+  },
+  {
+   "cut": "09",
+   "kind": "clip",
+   "source_cut": "s9",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 5.8,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-19 ep08 애니매틱 v1: 9장면 45.5s, 실제 대사·상황 자막",
+  "2026-10-19 v3: K3·K9를 눈썹 제거·기준 눈 수정본(start_v2)으로 교체",
+  "2026-10-19 v4: K4 옆모습 눈썹·감은 눈 속눈썹을 사진 편집으로 제거(0원) → start_v2",
+  "2026-10-20 완성 v1: Kling 9장면 41.19s (끝 멈춤·S7 거품 흘러내림 잘라냄)"
+ ]
+}

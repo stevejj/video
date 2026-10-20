@@ -1,0 +1,18 @@
+[
+ {
+  "name": "hair_dryer",
+  "prompt": "Hair dryer blowing continuously, steady electric motor whirr and air stream, indoor bedroom, close, no music",
+  "duration": 5.0,
+  "loop": true,
+  "file": "outputs/ep08/sfx/el/hair_dryer.mp3",
+  "result": "ok 81127B"
+ },
+ {
+  "name": "shower",
+  "prompt": "Rain shower water running and splashing in a small tiled shower booth, steady, cozy, no music, no voice",
+  "duration": 5.0,
+  "loop": true,
+  "file": "outputs/ep08/sfx/el/shower.mp3",
+  "result": "ok 81127B"
+ }
+]
