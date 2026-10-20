@@ -67,5 +67,16 @@
     "latest": null,
     "revisions": {},
     "unversioned": []
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "dab2ae6f-f4c3-4b4b-8821-2d3547fbdf79",
+      "completedAt": 1792502853327,
+      "output": "/home/user/video/outputs/ep08/hf/render_v1_video.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
 }

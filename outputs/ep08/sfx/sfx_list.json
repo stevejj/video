@@ -19,7 +19,9 @@
    "target_lufs": -33,
    "loop": true,
    "fade_in": 0.2,
-   "fade_out": 0.4
+   "fade_out": 0.4,
+   "measured_lufs": -5.94,
+   "gain": -27.1
   },
   {
    "name": "angry_hit",
@@ -39,7 +41,9 @@
    "target_lufs": -31,
    "loop": true,
    "fade_in": 0.15,
-   "fade_out": 0.3
+   "fade_out": 0.3,
+   "measured_lufs": -10.64,
+   "gain": -20.4
   },
   {
    "name": "suit_sparkle",

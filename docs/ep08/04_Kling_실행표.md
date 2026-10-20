@@ -174,3 +174,8 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
   - **S5 ✅** 18: 뒷모습으로 욕실까지 총총 + 손 흔듦, 돌아보지 않음.
   - **S7 ⚠✅** 30: 뒷모습 거품 박박. 2.0s부터 창수 볼 가장자리에 **분홍 볼터치**(F9) → `tools/fix_blush.py`로 지움(0원) → `clip_v1_fix.mp4`. `qa_clip` 볼터치 검사는 거품 때문에 펭귄 마스크가 빗나가 놓침(0px). 4.0s 이후 거품이 끈적하게 흘러내림 → 0~4.0s만 쓰는 것을 권장.
   - **ep08 Kling 합계: 362크레딧(S6 50 + S1 60 + 252), 실패 0, 거절 2회(차감 0).**
+- **완성본 v1 (2026-10-20)**: `outputs/ep08/roughcut/ep08_v1.mp4` 41.2s, -17.4 LUFS, 시트 `v1_sheet.jpg`. 구성 `tools/ep08_edit.py`.
+  - 30/40/30 띠, 장면별 띠 위치는 이미지 단계 값 그대로(`band_check_v1.jpg`로 9장면 확인).
+  - 소리: 장면별 우리 녹음(S6만 클립 소리 -5.5dB), 효과음 5개(드라이기·샤워는 ElevenLabs 새로 생성), BGM E 우쿨렐레(대사 덕킹).
+  - G4: 멈춘 프레임 없음(렌더 "sparse keyframes" 경고는 실제 멈춤 없음), 상태 이어짐 통과. 볼터치 의심 11.12~11.25s(S3)은 미순 혼자 나오는 장면 — 행거의 분홍 옷·분홍 자막을 잡은 오탐.
+  - 캡션 `docs/ep08/05_릴스_캡션.md`.
