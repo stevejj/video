@@ -49,12 +49,12 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 **예상**: 창수 "치킨?" → 미순 고개를 젓고 날개를 휘저으며 거절. 편집에서 줌·핀 조명·펀치.
 **위험·대책**: 날개 휘저을 때 늘어남 → "never stretch" / 리모컨이 날개로 옮겨감.
 
-## S3 소파 메뉴 핑퐁 — 입모양 · Kling 4.0 omni, 6초 · 54크레딧
+## S3 소파 메뉴 핑퐁 — 입모양 · Kling 4.0 omni, 7초 · 63크레딧
 **입력**: image_1 `outputs/ep09/03/start_v2.png`(K3 v2, K2 눈 옮겨 붙임), audio_1 `outputs/ep09/voice/scenes/s3.mp3`
-**인자**: S1과 같음, duration=6
+**인자**: S1과 같음, duration=7 (2026-10-21: S1·S2에서 Kling이 화자 교대마다 약 1초 쉼을 넣음 → 6번 교대가 6초를 넘길 수 있어 7초로, 쉼 금지 문장 추가)
 ```
 One single continuous shot with a static, locked-off camera, no cuts, no camera movement: exactly the scene of 图片1 (same camera angle, same living room, same sofa, same two plush penguins in the same places and the same clothes). 3D animated plush characters, short velvet fur; the room and the objects stay photoreal and unchanged.
-The two penguins speak in Korean, using exactly the voices, words and timing of 音频1, and nothing else. They take quick turns in this exact order:
+The two penguins speak in Korean, using exactly the voices, words and timing of 音频1, and nothing else. Keep the exact timing of 音频1: do not add any pause between the lines. They take quick turns in this exact order:
 1. Chang-su (left, darker blue-grey, grey T-shirt, holding out the phone): "피자?"
 2. Mi-sun (right, light silver-grey, pink hoodie): "느끼해."
 3. Chang-su: "떡볶이?"
@@ -145,9 +145,9 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 **위험·대책**: 창수도 입을 움직임 → "frozen, beak closed".
 
 ## 합계
-- 입모양(4.0, 초당 9): S1 45 + S2 45 + S3 54 + S5 45 + S6 45 + S8 54 + S9 45 = 333
+- 입모양(4.0, 초당 9): S1 45 + S2 45 + S3 63 + S5 45 + S6 45 + S8 54 + S9 45 = 342
 - 목소리만(3.0, 초당 6): S7 24
-- **합계 약 357크레딧** (상한 400)
+- **합계 약 366크레딧** (상한 400)
 - 제출 순서(2개씩, 받으면 바로 검사): S1·S2 → S3·S5 → S6·S8 → S9·S7.
 
 ## 현황
@@ -158,3 +158,4 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
   - qa 상관이 낮은 이유(S1 0.45, S2 0.23): Kling이 **화자가 바뀔 때 미순 대사를 뒤로 밂**(S1 +1.21s, S2 +0.87s). 소리는 우리 녹음 그대로(줄별 상관 0.83·0.98, 음높이 같음). → 편집에서 클립 소리 + 자막 시각을 line_match 값으로.
   - S1: 미순이 눈 감고 느긋하게 대답(감은 눈 선, 눈썹 아님). S2: 창수 "치킨?" 부리, 미순 고개·날개로 거절.
   - 끝 0.3s 멈춤 → 자름.
+- S3(7초·63, 쉼 금지 문장 추가)·S5(45) 제출.
