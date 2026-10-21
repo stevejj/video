@@ -1,0 +1,29 @@
+{
+ "note": "ep10: 한 컷 침실. K2·K3는 K1 편집이라 옷 문구 검사는 K1만",
+ "band": [
+  576,
+  1344
+ ],
+ "props": {},
+ "cuts": {},
+ "states": {
+  "01": {
+   "misun_outfit": {
+    "start": "분홍 잠옷",
+    "end": "분홍 잠옷",
+    "prompt_kw": [
+     "light pink pajama"
+    ]
+   },
+   "changsu_outfit": {
+    "start": "체크 잠옷",
+    "end": "체크 잠옷",
+    "prompt_kw": [
+     "blue checked pajama"
+    ]
+   }
+  }
+ },
+ "transitions_ok": {},
+ "lipsync": {}
+}
