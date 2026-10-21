@@ -50,24 +50,20 @@ def main():
     F['default_still'] = {'cam': None}   # 원본처럼 고정 카메라(컷 사이 줌 튐 방지)
     F['default_clip'] = {'cam': None}
     F['cuts'] = {
-        '01': {'puffs': [{'at': 1.0, 'x': MISUN[0], 'y': MISUN[1], 'size': 200}], 'shake': {'at': 1.0, 'amp': 3, 'dur': 0.25}},
-        '02': {'puffs': [{'at': 0.7, 'x': CHANGSU[0], 'y': CHANGSU[1], 'size': 300, 'rise': 80}], 'shake': {'at': 0.7, 'amp': 7, 'dur': 0.3}},
-        '03': {'cam': {'from': 1.0, 'to': 1.08},
-               'stamps': [{'at': 0.2, 'x': 0.5, 'y': 0.13, 'text': 'ROUND 1', 'size': 120, 'w': 640, 'rot': -4, 'color': '#FFD84A', 'dur': 1.3},
-                          {'at': rel(finale) + 1.3, 'x': 0.5, 'y': 0.8, 'text': 'K.O.', 'size': 190, 'w': 500, 'rot': -8}],
-               'speedlines': {'at': 0.2, 'dur': 0.9, 'cx': 0.5, 'cy': 0.5},
+        '01': {'puffs': [{'at': 1.0, 'x': MISUN[0], 'y': MISUN[1], 'size': 200}], 'shake': {'at': 1.0, 'amp': 2, 'dur': 0.2}},
+        '02': {'puffs': [{'at': 0.7, 'x': CHANGSU[0], 'y': CHANGSU[1], 'size': 300, 'rise': 80}], 'shake': {'at': 0.7, 'amp': 2, 'dur': 0.2}},
+        '03': {  # v2(사용자): ROUND 1·K.O.·집중선 뺌, 줌인·떨림 뺌(눈이 커지고 흔들려 보임) → 원본처럼 완전 고정
                'puffs': [{'at': rel(h), 'x': (MISUN if who == 'misun' else CHANGSU)[0] + (0.03 if i % 4 == 0 else -0.02),
                           'y': (MISUN if who == 'misun' else CHANGSU)[1], 'size': 150 if h < t1 else 130, 'dur': 0.55 if h < t1 else 0.4, 'rise': 50}
                          for i, (h, who) in enumerate(battle)]
                + [{'at': rel(finale), 'x': MISUN[0], 'y': 0.72, 'size': 460, 'dur': 1.6, 'rise': 90, 'alpha': 0.6},
                   {'at': rel(finale) + 0.05, 'x': CHANGSU[0], 'y': 0.72, 'size': 460, 'dur': 1.6, 'rise': 90, 'alpha': 0.6},
                   {'at': rel(finale) + 0.35, 'x': 0.5, 'y': 0.6, 'size': 900, 'dur': 2.4, 'rise': 40, 'alpha': 0.45}],
-               'jitter': {'from': rel(t1), 'to': rel(finale) + 1.2, 'amp': 3, 'hz': 12},
                'tint': {'at': rel(finale) + 0.2, 'dur': 14.0 - finale - 0.2, 'color': 'rgba(120,200,70,0.55)', 'fade': 0.6},
                'ghosts': [{'img': 'outputs/ep10/ref/ghost_misun.png', 'src_width': W, 'box': gm, 'at': rel(finale) + 0.8, 'dur': 14.0 - finale - 0.8, 'rise': 150, 'opacity': 0.6},
                           {'img': 'outputs/ep10/ref/ghost_changsu.png', 'src_width': W, 'box': gc, 'at': rel(finale) + 0.9, 'dur': 14.0 - finale - 0.9, 'rise': 150, 'opacity': 0.6}]},
     }
-    F['note'] = 'ep10 방구배틀: 고정 카메라 + 방귀 구름 + ROUND 1/K.O. + 초록 필터 + 영혼 둘'
+    F['note'] = 'ep10 방구배틀: v2 고정 카메라(줌·떨림 없음) + 방귀 구름 + 초록 필터 + 영혼 둘, 도장 없음'
     json.dump(F, open(os.path.join(EP, 'hf_fx.json'), 'w'), ensure_ascii=False, indent=1)
 
     T = json.load(open(os.path.join(ROOT, 'outputs/ep09/text_overlay.json')))
