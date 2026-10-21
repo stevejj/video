@@ -17,3 +17,6 @@ outputs/*/fx_demo/hf/*.mp4
 outputs/*/hf_anim/work-*/
 outputs/*/hf_anim/.render_*
 outputs/*/hf_anim/renders/
+outputs/*/hf_anim/.hyperframes/
+outputs/*/hf_anim/.render_*/
+outputs/*/hf/.hyperframes/
