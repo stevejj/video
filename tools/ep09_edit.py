@@ -114,11 +114,11 @@ def phone_app():
     return dict(chips=centers, screen=((px + pw / 2) / W, (py + ph * 0.6 - TOP * H) / WIN), list_box=[px, py + LV, pw, lh], list_h=lh, view_h=ph - LV)
 
 
-def ghost_cut():
+def ghost_cut(src=None):
     """5장면 영혼 탈출: K5 창수 누끼(ISNet, 0원)."""
     sys.path.insert(0, os.path.join(ROOT, 'tools'))
     from cutout import alpha
-    im = Image.open(os.path.join(EP, '05/start_v1.png')).convert('RGB').resize((W, H))
+    im = Image.open(src or os.path.join(EP, '05/start_v1.png')).convert('RGB').resize((W, H))
     a = np.asarray(alpha(im.crop((100, 420, 1080, 1560)), '/tmp/claude-0/-home-user-video/f018d661-8ddb-51f7-8e2d-f2480d28ac5d/scratchpad/models/isnet.onnx')).copy()
     a[a < 70] = 0
     rgba = np.dstack([np.asarray(im.crop((100, 420, 1080, 1560))), a])
@@ -128,16 +128,76 @@ def ghost_cut():
     return [int(100 + b[0]), int(420 + b[1]), int(b[2] - b[0]), int(b[3] - b[1])]
 
 
+# 완성(Kling) 장면 길이: 클립 대사 끝 + 여유, 끝 멈춤·S8 닭다리 사라짐(5.6s~) 전에서 자름(실행표 기록)
+FINAL_LENS = {'s1': 4.6, 's2': 4.4, 's3': 6.7, 's4': 3.5, 's5': 5.0, 's6': 4.7, 's7': 3.5, 's8': 5.6, 's9': 4.5}
+VOICE_SCENES = ['s1', 's2', 's3', 's5', 's6', 's8', 's9']   # 입모양 장면: 클립 소리(Kling이 교대마다 대사를 뒤로 밂)
+S6A = dict(at=0.36, tempo=0.85)                             # S6 6a: Kling이 "치즈킨다"로 뭉갬 → 우리 녹음을 0.85배로 늘려 끼움
+
+
+def clip_times():
+    """line_match.json(대사별 클립 시각)을 읽어 cut → 클립 안 시작 시각."""
+    out = {}
+    for s in VOICE_SCENES:
+        for r in json.load(open(os.path.join(EP, f'{s}/verify_v1/line_match.json'))):
+            out[r['cut']] = r['clip']
+    out['6a'] = S6A['at']
+    return out
+
+
+def final_tracks(lines):
+    """입모양 장면 소리 = 클립 소리(첫 대사 크기를 우리 녹음에 맞춤). S6은 6a 구간을 우리 녹음으로 바꿈."""
+    import subprocess, imageio_ffmpeg
+    FF = imageio_ffmpeg.get_ffmpeg_exe(); SR = 44100
+    def pcm(f):
+        return np.frombuffer(subprocess.run([FF, '-v', 'error', '-i', f, '-ac', '1', '-ar', str(SR), '-f', 'f32le', '-'], capture_output=True).stdout, np.float32).copy()
+    files = {}
+    for s in VOICE_SCENES:
+        c = pcm(os.path.join(EP, f'{s}/clip_v1.mp4'))
+        first = [l for l in lines if l['cut'].startswith(s[1:]) and (len(l['cut']) == 1 or not l['cut'][1].isdigit())][0]
+        m = json.load(open(os.path.join(EP, f'{s}/verify_v1/line_match.json')))
+        t0 = [r for r in m if r['cut'] == first['cut']][0]['clip']
+        ours = pcm(os.path.join(ROOT, first['file']))
+        seg = c[int(t0 * SR):int(t0 * SR) + len(ours)]
+        g = np.sqrt(np.mean(ours ** 2)) / max(np.sqrt(np.mean(seg ** 2)), 1e-6)
+        if first['cut'] == '6a':  # 6a는 바꿀 줄이라 6b로 크기 맞춤
+            l6b = [l for l in lines if l['cut'] == '6b'][0]; r6b = [r for r in m if r['cut'] == '6b'][0]
+            o = pcm(os.path.join(ROOT, l6b['file'])); seg = c[int(r6b['clip'] * SR):int(r6b['clip'] * SR) + len(o)]
+            g = np.sqrt(np.mean(o ** 2)) / max(np.sqrt(np.mean(seg ** 2)), 1e-6)
+        c = c * g
+        if s == 's6':
+            c[int(0.30 * SR):int(2.25 * SR)] = 0
+            raw = os.path.join(ROOT, [l for l in lines if l['cut'] == '6a'][0]['file'])
+            st6 = subprocess.run([FF, '-v', 'error', '-i', raw, '-af', f'atempo={S6A["tempo"]}', '-ac', '1', '-ar', str(SR), '-f', 'f32le', '-'], capture_output=True).stdout
+            a6 = np.frombuffer(st6, np.float32); i = int(S6A['at'] * SR); c[i:i + len(a6)] += a6[:len(c) - i]
+        n = int(FINAL_LENS[s] * SR); c = c[:n].copy(); f = int(0.08 * SR); c[-f:] *= np.linspace(1, 0, f)  # 장면 길이로 자름(다음 장면으로 새지 않게)
+        out = os.path.join(EP, f'voice/scenes/{s}_clip.wav')
+        import wave
+        with wave.open(out, 'wb') as w:
+            w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.clip(c, -1, 1) * 32767).astype('<i2').tobytes())
+        files[s] = os.path.relpath(out, ROOT); print(f'{s} 클립 소리 {20 * np.log10(g):+.1f}dB → {files[s]}')
+    return files
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--mode', choices=['animatic', 'final'], default='animatic')
     a = ap.parse_args(); anim = a.mode == 'animatic'
     P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json'))); V = P['episodes']['ep09']
     order = ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9']
+    global LENS
+    if not anim:
+        LENS = dict(FINAL_LENS)
     st = {}; t = 0.0
     for s in order:
         st[s] = round(t, 3); t += LENS[s]
     total = round(t, 3)
-    app = phone_app(); gbox = ghost_cut()
+    app = phone_app()
+    if anim:
+        gbox = ghost_cut()
+    else:  # 영혼 탈출 누끼는 클립의 그 순간 프레임에서(S5는 4초부터 쓰러짐)
+        import subprocess, imageio_ffmpeg
+        fr = os.path.join(EP, 'ref/s5_ghost_frame.png')
+        subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), '-y', '-v', 'error', '-ss', '1.5', '-i', os.path.join(EP, 's5/clip_v1.mp4'), '-frames:v', '1', '-vf', f'scale={W}:{H}', fr], check=True)
+        gbox = ghost_cut(fr)
 
     # 편집표
     cuts = []
@@ -154,10 +214,18 @@ def main():
     json.dump(B, open(os.path.join(EP, 'band_offsets.json'), 'w'), ensure_ascii=False, indent=1)
 
     # 대사 배치·자막
-    V['placements'] = [{'file': V['scenes'][s]['file'], 'at': st[s]} for s in order]
+    if anim:
+        V['placements'] = [{'file': V['scenes'][s]['file'], 'at': st[s]} for s in order]
+    else:
+        tr = final_tracks(V['lines'])
+        V['placements'] = [{'file': tr.get(s, V['scenes'][s]['file']), 'at': st[s]} for s in order]
     V['bgm']['end_at'] = total
     json.dump(P, open(os.path.join(ROOT, 'outputs/voice_profile.json'), 'w'), ensure_ascii=False, indent=1)
-    L = {l['cut']: l for l in V['lines']}
+    L = {l['cut']: dict(l) for l in V['lines']}
+    if not anim:  # 자막·효과 시각 = 클립 안 실제 대사 시각
+        for c, t0 in clip_times().items():
+            L[c]['scene_at'] = t0
+        L['6a']['len_file'] = round(L['6a']['len_file'] / S6A['tempo'], 2)
     at = lambda c: st['s' + ''.join(ch for ch in c if ch.isdigit())] + L[c]['scene_at']
     subs = []
     for c, l in L.items():

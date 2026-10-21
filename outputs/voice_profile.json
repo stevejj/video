@@ -2091,39 +2091,39 @@
    },
    "placements": [
     {
-     "file": "outputs/ep09/voice/scenes/s1.mp3",
+     "file": "outputs/ep09/voice/scenes/s1_clip.wav",
      "at": 0.0
     },
     {
-     "file": "outputs/ep09/voice/scenes/s2.mp3",
-     "at": 5.0
+     "file": "outputs/ep09/voice/scenes/s2_clip.wav",
+     "at": 4.6
     },
     {
-     "file": "outputs/ep09/voice/scenes/s3.mp3",
-     "at": 10.0
+     "file": "outputs/ep09/voice/scenes/s3_clip.wav",
+     "at": 9.0
     },
     {
      "file": "outputs/ep09/voice/scenes/s4.mp3",
-     "at": 15.5
+     "at": 15.7
     },
     {
-     "file": "outputs/ep09/voice/scenes/s5.mp3",
-     "at": 19.0
+     "file": "outputs/ep09/voice/scenes/s5_clip.wav",
+     "at": 19.2
     },
     {
-     "file": "outputs/ep09/voice/scenes/s6.mp3",
-     "at": 24.0
+     "file": "outputs/ep09/voice/scenes/s6_clip.wav",
+     "at": 24.2
     },
     {
      "file": "outputs/ep09/voice/scenes/s7.mp3",
-     "at": 28.5
+     "at": 28.9
     },
     {
-     "file": "outputs/ep09/voice/scenes/s8.mp3",
-     "at": 32.0
+     "file": "outputs/ep09/voice/scenes/s8_clip.wav",
+     "at": 32.4
     },
     {
-     "file": "outputs/ep09/voice/scenes/s9.mp3",
+     "file": "outputs/ep09/voice/scenes/s9_clip.wav",
      "at": 38.0
     }
    ]

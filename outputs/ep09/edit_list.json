@@ -1,0 +1,99 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01",
+   "kind": "clip",
+   "source_cut": "s1",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.6,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "clip",
+   "source_cut": "s2",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.4,
+   "time_card": null
+  },
+  {
+   "cut": "03",
+   "kind": "clip",
+   "source_cut": "s3",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 6.7,
+   "time_card": null
+  },
+  {
+   "cut": "04",
+   "kind": "still",
+   "source_cut": "s4",
+   "image": "outputs/ep09/04/start_v1.png",
+   "in": 0,
+   "len": 3.5,
+   "time_card": null
+  },
+  {
+   "cut": "05",
+   "kind": "clip",
+   "source_cut": "s5",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "06",
+   "kind": "clip",
+   "source_cut": "s6",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.7,
+   "time_card": null
+  },
+  {
+   "cut": "07",
+   "kind": "clip",
+   "source_cut": "s7",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 3.5,
+   "time_card": null
+  },
+  {
+   "cut": "08",
+   "kind": "clip",
+   "source_cut": "s8",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 5.6,
+   "time_card": null
+  },
+  {
+   "cut": "09",
+   "kind": "clip",
+   "source_cut": "s9",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.5,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-21 ep09 final v1: 9장면 42.5s, 효과 9곳(기획안 01)"
+ ]
+}

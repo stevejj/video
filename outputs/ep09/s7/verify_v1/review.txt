@@ -1,0 +1,5 @@
+[qa_clip]
+✓ 창수 볼터치 없음 (최대 0px ≤ 110px)
+✓ 멈춘 프레임 없음
+결과: 통과
+[길이] 4.04s  시트 outputs/ep09/s7/verify_v1/motion_sheet.jpg

@@ -1,0 +1,12 @@
+[
+ {
+  "cut": "9",
+  "speaker": "misun",
+  "ours": 0.3,
+  "clip": 0.3,
+  "shift": 0.0,
+  "corr": 0.98,
+  "pitch_ours": 533,
+  "pitch_clip": 552
+ }
+]

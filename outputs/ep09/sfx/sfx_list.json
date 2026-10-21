@@ -1,10 +1,10 @@
 {
- "note": "ep09 animatic 효과음",
+ "note": "ep09 final 효과음",
  "items": [
   {
    "name": "stomach_growl",
    "file": "outputs/ep09/sfx/el/stomach_growl.mp3",
-   "at": 1.93,
+   "at": 3.14,
    "len": 1.4,
    "target_lufs": -24,
    "fade_out": 0.1,
@@ -14,7 +14,7 @@
   {
    "name": "dramatic_hit",
    "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
-   "at": 6.49,
+   "at": 6.96,
    "len": 1.4,
    "target_lufs": -20,
    "fade_out": 0.1,
@@ -24,7 +24,7 @@
   {
    "name": "bang",
    "file": "outputs/ep02/sfx/el/charger_drop.mp3",
-   "at": 6.54,
+   "at": 7.01,
    "len": 0.5,
    "target_lufs": -20,
    "fade_out": 0.1,
@@ -33,7 +33,7 @@
   {
    "name": "buzz0",
    "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
-   "at": 10.99,
+   "at": 10.28,
    "len": 0.6,
    "target_lufs": -24,
    "fade_out": 0.1,
@@ -43,7 +43,7 @@
   {
    "name": "buzz1",
    "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
-   "at": 12.46,
+   "at": 12.51,
    "len": 0.6,
    "target_lufs": -24,
    "fade_out": 0.1,
@@ -53,7 +53,7 @@
   {
    "name": "buzz2",
    "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
-   "at": 14.0,
+   "at": 14.56,
    "len": 0.6,
    "target_lufs": -24,
    "fade_out": 0.1,
@@ -63,7 +63,7 @@
   {
    "name": "buzz4_0",
    "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
-   "at": 15.97,
+   "at": 16.17,
    "len": 0.5,
    "target_lufs": -26,
    "fade_out": 0.1,
@@ -73,7 +73,7 @@
   {
    "name": "buzz4_1",
    "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
-   "at": 16.47,
+   "at": 16.67,
    "len": 0.5,
    "target_lufs": -26,
    "fade_out": 0.1,
@@ -83,7 +83,7 @@
   {
    "name": "buzz4_2",
    "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
-   "at": 16.97,
+   "at": 17.17,
    "len": 0.5,
    "target_lufs": -26,
    "fade_out": 0.1,
@@ -93,7 +93,7 @@
   {
    "name": "buzz4_3",
    "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
-   "at": 18.55,
+   "at": 18.75,
    "len": 0.5,
    "target_lufs": -26,
    "fade_out": 0.1,
@@ -103,7 +103,7 @@
   {
    "name": "doorbell",
    "file": "outputs/ep09/sfx/el/doorbell.mp3",
-   "at": 28.6,
+   "at": 29.0,
    "len": 1.4,
    "target_lufs": -22,
    "fade_out": 0.1,
@@ -113,7 +113,7 @@
   {
    "name": "sparkle",
    "file": "outputs/ep01/sfx/el/sparkle.mp3",
-   "at": 29.6,
+   "at": 30.0,
    "len": 0.8,
    "target_lufs": -26,
    "fade_out": 0.1,
@@ -123,7 +123,7 @@
   {
    "name": "flashback",
    "file": "outputs/ep09/sfx/el/flashback_chime.mp3",
-   "at": 34.58,
+   "at": 35.03,
    "len": 1.1,
    "target_lufs": -22,
    "fade_out": 0.1,
