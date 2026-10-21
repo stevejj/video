@@ -1,0 +1,32 @@
+[
+ {
+  "cut": "8a",
+  "speaker": "misun",
+  "ours": 0.3,
+  "clip": 0.35,
+  "shift": 0.05,
+  "corr": 0.98,
+  "pitch_ours": 562,
+  "pitch_clip": 517
+ },
+ {
+  "cut": "8b",
+  "speaker": "changsu",
+  "ours": 1.6,
+  "clip": 1.65,
+  "shift": 0.05,
+  "corr": 0.92,
+  "pitch_ours": 444,
+  "pitch_clip": 457
+ },
+ {
+  "cut": "8c",
+  "speaker": "misun",
+  "ours": 2.95,
+  "clip": 3.57,
+  "shift": 0.62,
+  "corr": 0.98,
+  "pitch_ours": 552,
+  "pitch_clip": 533
+ }
+]
