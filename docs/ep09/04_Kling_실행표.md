@@ -152,3 +152,4 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 
 ## 현황
 - 2026-10-21 작성. `lint_prompts` 통과, `preflight_kling` 통과(일부러 옛 대사·없는 파일로 시험해 실패를 잡는 것 확인). Kling 잔액 2,749. 승인 대기.
+- 2026-10-21 사용자 "진행" → S1·S2 제출(각 45).
