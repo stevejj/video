@@ -20,3 +20,4 @@ outputs/*/hf_anim/renders/
 outputs/*/hf_anim/.hyperframes/
 outputs/*/hf_anim/.render_*/
 outputs/*/hf/.hyperframes/
+outputs/*/ref/reference.mp4
