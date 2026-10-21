@@ -1,0 +1,45 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01",
+   "kind": "still",
+   "source_cut": "01",
+   "image": "outputs/ep10/01/start_v1.png",
+   "in": 0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "still",
+   "source_cut": "02",
+   "image": "outputs/ep10/02/start_v1.png",
+   "in": 0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "03",
+   "kind": "still",
+   "source_cut": "03",
+   "image": "outputs/ep10/03/start_v1.png",
+   "in": 0,
+   "len": 10.0,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-21 ep10 v1: 방구배틀 14s, Kling 0"
+ ]
+}

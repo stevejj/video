@@ -120,15 +120,14 @@ def main():
             el += f'<img id="{cid}-fz" src="{png}" data-start="{t + fz["at"]:.3f}" data-duration="{L - fz["at"]:.3f}" style="{"filter: grayscale(1);" if fz.get("gray") else ""}" />'
             if fz.get('zoom'):
                 tl.append(f'tl.to("#{cid}", {{scale: {fz["zoom"]}, x: {fz.get("x", 0)}, duration: {L - fz["at"]:.3f}, ease: "power1.out", overwrite: "auto"}}, {t + fz["at"]:.3f});')
-        gh = fx.get('ghost')
-        if gh:  # 영혼 탈출: 누끼 레이어가 반투명으로 떠오름
+        for gi, gh in enumerate(fx.get('ghosts') or ([fx['ghost']] if fx.get('ghost') else [])):  # 영혼 탈출(여러 명 가능): 누끼 레이어가 반투명으로 떠오름
             S = W / gh['src_width']; x, y, w, h = [v * S for v in gh['box']]
-            shutil.copy(os.path.join(ROOT, gh['img']), os.path.join(out, f'media/{cid}_ghost.png'))
-            el += (f'<img id="{cid}-gh" class="layer" src="media/{cid}_ghost.png" data-start="{t + gh["at"]:.3f}" data-duration="{gh["dur"]:.3f}" '
+            shutil.copy(os.path.join(ROOT, gh['img']), os.path.join(out, f'media/{cid}_ghost{gi}.png'))
+            el += (f'<img id="{cid}-gh{gi}" class="layer" src="media/{cid}_ghost{gi}.png" data-start="{t + gh["at"]:.3f}" data-duration="{gh["dur"]:.3f}" '
                    f'style="left:{x:.1f}px; top:{y:.1f}px; width:{w:.1f}px; height:{h:.1f}px; opacity:0; filter: brightness(1.6) saturate(0.3);" />')
-            tl.append(f'tl.fromTo("#{cid}-gh", {{opacity: 0, y: 0}}, {{opacity: {gh.get("opacity", 0.55)}, y: {-gh.get("rise", 260)}, duration: {gh["dur"]:.3f}, ease: "power1.out"}}, {t + gh["at"]:.3f});')
+            tl.append(f'tl.fromTo("#{cid}-gh{gi}", {{opacity: 0, y: 0}}, {{opacity: {gh.get("opacity", 0.55)}, y: {-gh.get("rise", 260)}, duration: {gh["dur"]:.3f}, ease: "power1.out"}}, {t + gh["at"]:.3f});')
             for k in range(int(gh['dur'] / 0.4)):
-                tl.append(f'tl.to("#{cid}-gh", {{x: {14 * (1 if k % 2 else -1)}, duration: 0.4, ease: "sine.inOut"}}, {t + gh["at"] + k * 0.4:.3f});')
+                tl.append(f'tl.to("#{cid}-gh{gi}", {{x: {14 * (1 if k % 2 else -1)}, duration: 0.4, ease: "sine.inOut"}}, {t + gh["at"] + k * 0.4:.3f});')
         # 래퍼는 타이밍 없음(video_nested_in_timed_element 회피). transform-origin = 창 중심
         media_html.append(f'<div class="frame" id="{cid}" style="top:{-offy:.1f}px; transform-origin: 540px {offy + win / 2:.1f}px;">{el}</div>')
         # 창 위에 고정되는 효과(카메라와 무관): 창 좌표(1080 x win)
@@ -159,6 +158,15 @@ def main():
             media_html.append(f'<div class="winfx tap" id="{tid}" data-start="{t + tp["at"]:.3f}" data-duration="0.45" '
                               f'style="left:{tp["x"] * W - r0:.0f}px; top:{tp["y"] * win - r0:.0f}px; width:{2 * r0}px; height:{2 * r0}px;"></div>')
             tl.append(f'tl.fromTo("#{tid}", {{scale: 0.3, opacity: 0.85}}, {{scale: 1.5, opacity: 0, duration: 0.42, ease: "power2.out"}}, {t + tp["at"]:.3f});')
+        pf = fx.get('puffs')
+        if pf:  # 방귀 구름(ep10): 지정 위치에서 펑 커지며 떠올랐다 사라짐(창 좌표)
+            shutil.copy(os.path.join(ROOT, 'assets/fx/gas_cloud.png'), os.path.join(out, 'media/gas_cloud.png'))
+            for k, p_ in enumerate(pf):
+                pid_ = f'{cid}-pf{k}'; sz = p_.get('size', 220); d0 = t + p_['at']; dur_ = p_.get('dur', 0.8)
+                media_html.append(f'<img class="winfx puff" id="{pid_}" src="media/gas_cloud.png" data-start="{d0:.3f}" data-duration="{dur_:.3f}" '
+                                  f'style="left:{p_["x"] * W - sz / 2:.0f}px; top:{p_["y"] * win - sz / 2:.0f}px; width:{sz}px; height:{sz}px; opacity:0;" />')
+                tl.append(f'tl.fromTo("#{pid_}", {{scale: 0.15, opacity: {p_.get("alpha", 0.85)}, rotation: {p_.get("rot", 0)}}}, {{scale: 1, opacity: {p_.get("alpha", 0.85)}, y: {-p_.get("rise", 60)}, duration: {dur_ * 0.45:.3f}, ease: "back.out(2.5)"}}, {d0:.3f});')
+                tl.append(f'tl.to("#{pid_}", {{scale: 1.25, opacity: 0, y: {-p_.get("rise", 60) * 2}, duration: {dur_ * 0.55:.3f}, ease: "power1.in"}}, {d0 + dur_ * 0.45:.3f});')
         gg = fx.get('gauge')
         if gg:  # 게이지: 라벨 + 막대가 차오르며 빨개지고 MAX
             media_html.append(f'<div class="winfx gauge" id="{cid}-gg" data-start="{t + gg["at"]:.3f}" data-duration="{gg["dur"]:.3f}" style="top:{gg.get("y", 0.16) * win:.0f}px;">'
@@ -307,6 +315,7 @@ def main():
   .gmax {{ color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }}
   .fb {{ height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }}
   .fblabel {{ position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }}
+  .puff {{ width: auto; height: auto; transform-origin: 50% 70%; }}
   .tap {{ border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0) 70%); transform-origin: 50% 50%; }}
   .arrow {{ position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }}
 </style>

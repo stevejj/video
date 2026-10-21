@@ -2127,6 +2127,11 @@
      "at": 38.0
     }
    ]
+  },
+  "ep10": {
+   "lines": [],
+   "placements": [],
+   "note": "ep10 방구배틀: 대사 없음, 효과음만(배경음도 sfx_list의 칩튠)"
   }
  },
  "voices_legacy": {
