@@ -89,7 +89,7 @@ Wings keep their normal short rounded length and never stretch. His head keeps i
 **인자**: S1과 같음
 ```
 One single continuous shot with a static, locked-off camera, no cuts, no camera movement: exactly the scene of 图片1 (same camera angle, same living room, same sofa, same two plush penguins in the same places and the same clothes). 3D animated plush characters, short velvet fur; the room and the objects stay photoreal and unchanged.
-The two penguins speak in Korean, using exactly the voices, words and timing of 音频1, and nothing else. They take turns in this exact order:
+The two penguins speak in Korean, using exactly the voices, words and timing of 音频1, and nothing else. Keep the exact timing of 音频1: do not add any pause between the lines. They take turns in this exact order:
 1. Chang-su (left, darker blue-grey, grey T-shirt): "알았어! 그냥 치킨 시킨다!"
 2. Mi-sun (right, light silver-grey, pink hoodie, seen in profile watching TV): "…난 안 먹을 거야."
 Only the penguin who is speaking moves the beak, opening and closing exactly in sync with that line in 音频1; the listener keeps the beak closed. No other words, no English.
@@ -112,12 +112,12 @@ Wings keep their normal short rounded length and never stretch. His head keeps i
 **예상**: 상자를 들고 신나서 들썩들썩. 대사 "왔다 왔다~!"는 편집에서 넣고, 딩동·반짝도 편집.
 **위험·대책**: 상자가 열림·떠다님.
 
-## S8 식탁 — 입모양 · Kling 4.0 omni, 6초 · 54크레딧
+## S8 식탁 — 입모양 · Kling 4.0 omni, 7초 · 63크레딧
 **입력**: image_1 `outputs/ep09/08/start_v1.png`(K8), audio_1 `outputs/ep09/voice/scenes/s8.mp3`
-**인자**: S1과 같음, duration=6
+**인자**: S1과 같음, duration=7 (S3에서 교대마다 쉼 누적 +1.56s → 2번 교대도 6초를 넘을 수 있어 7초)
 ```
 One single continuous shot with a static, locked-off camera, no cuts, no camera movement: exactly the scene of 图片1 (same camera angle, same dining table, same two plush penguins in the same places and the same clothes). 3D animated plush characters, short velvet fur; the kitchen, the table, the box and the food stay photoreal and unchanged.
-The two penguins speak in Korean, using exactly the voices, words and timing of 音频1, and nothing else. They take turns in this exact order:
+The two penguins speak in Korean, using exactly the voices, words and timing of 音频1, and nothing else. Keep the exact timing of 音频1: do not add any pause between the lines. They take turns in this exact order:
 1. Mi-sun (left, light silver-grey, pink hoodie, a drumstick in each wing): "하나만 먹어볼까?"
 2. Chang-su (right, darker blue-grey, grey T-shirt): "안 먹는다며…?"
 3. Mi-sun: "오늘까지만 먹을 거야!"
@@ -145,9 +145,9 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 **위험·대책**: 창수도 입을 움직임 → "frozen, beak closed".
 
 ## 합계
-- 입모양(4.0, 초당 9): S1 45 + S2 45 + S3 63 + S5 45 + S6 45 + S8 54 + S9 45 = 342
+- 입모양(4.0, 초당 9): S1 45 + S2 45 + S3 63 + S5 45 + S6 45 + S8 63 + S9 45 = 351
 - 목소리만(3.0, 초당 6): S7 24
-- **합계 약 366크레딧** (상한 400)
+- **합계 약 375크레딧** (상한 400)
 - 제출 순서(2개씩, 받으면 바로 검사): S1·S2 → S3·S5 → S6·S8 → S9·S7.
 
 ## 현황
@@ -159,3 +159,6 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
   - S1: 미순이 눈 감고 느긋하게 대답(감은 눈 선, 눈썹 아님). S2: 창수 "치킨?" 부리, 미순 고개·날개로 거절.
   - 끝 0.3s 멈춤 → 자름.
 - S3(7초·63, 쉼 금지 문장 추가)·S5(45) 제출.
+- **S3 ✅** (63): 교대마다 Kling이 쉼을 넣어 누적 시차 +0.05→+1.56s, 7초로 늘린 덕에 마지막 줄까지 들어감(6초였으면 잘림). 6줄 모두 우리 녹음(상관 0.91~0.99). 얼굴 정상, 미순 고개 돌림·창수 폰 들이밂.
+- **S5 ✅** (45): 녹음과 시차 0.02s. 창수가 말한 뒤 4초부터 소파 옆으로 스르륵 쓰러져 누움(녹아내림 연출로 더 웃김). 완성 편집의 영혼 탈출 누끼는 이 클립의 쓰러진 프레임에서 다시 딸 것.
+- S6(5초, 쉼 금지 문장)·S8(7초·63, 쉼 금지 문장) 제출.
