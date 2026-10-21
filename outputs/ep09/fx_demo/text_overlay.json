@@ -1,0 +1,109 @@
+{
+ "title": {
+  "lines": [
+   {
+    "text": "ep09 편집 효과",
+    "color": "#FFFFFF"
+   },
+   {
+    "text": "시연 (0원)",
+    "color": "#FFD84A"
+   }
+  ],
+  "size": 104,
+  "weight": 800,
+  "center_y": 400,
+  "line_gap": 18
+ },
+ "channel": {
+  "text": "지독한 미순",
+  "color": "#FFFFFF",
+  "size": 52,
+  "weight": 700,
+  "center_y": 1420,
+  "opacity": 0.9
+ },
+ "subtitle_style": {
+  "size": 74,
+  "weight": 800,
+  "stroke": 9,
+  "stroke_color": "#111111",
+  "bottom_margin": 46,
+  "max_width": 1000,
+  "colors": {
+   "changsu": "#8FB0E8",
+   "misun": "#FF9CC2",
+   "sfx": "#FFFFFF"
+  }
+ },
+ "note": "완성 v1: 자막 시각 = 새 장면 시작 + 장면 안 상대 시각(애니매틱판은 text_overlay_animatic.json)",
+ "subtitles": [
+  {
+   "cut": "d",
+   "text": "① 배고픔 게이지",
+   "speaker": "sfx",
+   "start": 0.1,
+   "end": 2.45,
+   "x": 0.5
+  },
+  {
+   "cut": "d",
+   "text": "② 핀 조명 + 펀치 줌",
+   "speaker": "sfx",
+   "start": 2.6,
+   "end": 5.45,
+   "x": 0.5
+  },
+  {
+   "cut": "d",
+   "text": "③ ✕ 도장",
+   "speaker": "sfx",
+   "start": 5.6,
+   "end": 8.45,
+   "x": 0.5
+  },
+  {
+   "cut": "d",
+   "text": "④ 영혼 탈출 + 우울 필터",
+   "speaker": "sfx",
+   "start": 8.6,
+   "end": 11.45,
+   "x": 0.5
+  },
+  {
+   "cut": "d",
+   "text": "⑤ 집중선 + 반짝",
+   "speaker": "sfx",
+   "start": 11.6,
+   "end": 13.95,
+   "x": 0.5
+  },
+  {
+   "cut": "d",
+   "text": "⑥ 흑백 회상 + 하트",
+   "speaker": "sfx",
+   "start": 14.1,
+   "end": 16.95,
+   "x": 0.5
+  },
+  {
+   "cut": "d",
+   "text": "⑦ 정지 화면 + 줌인",
+   "speaker": "sfx",
+   "start": 17.1,
+   "end": 19.95,
+   "x": 0.5
+  },
+  {
+   "cut": "d",
+   "text": "나 오늘부터 치킨 끊었어. 평생!",
+   "speaker": "misun",
+   "start": 3.1,
+   "end": 5.4,
+   "x": 0.5,
+   "pos": "top",
+   "color": "#FFD84A",
+   "size": 70
+  }
+ ]
+}

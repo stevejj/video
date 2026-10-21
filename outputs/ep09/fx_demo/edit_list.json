@@ -1,0 +1,81 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "A",
+   "kind": "clip",
+   "source_cut": "s1",
+   "clip_tag": "v1",
+   "in": 0.5,
+   "len": 2.5,
+   "time_card": null
+  },
+  {
+   "cut": "B",
+   "kind": "clip",
+   "source_cut": "s3",
+   "clip_tag": "v1",
+   "in": 2.6,
+   "len": 3.0,
+   "time_card": null
+  },
+  {
+   "cut": "C",
+   "kind": "clip",
+   "source_cut": "s8",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 3.0,
+   "time_card": null
+  },
+  {
+   "cut": "D",
+   "kind": "clip",
+   "source_cut": "s8",
+   "clip_tag": "v1",
+   "in": 2.0,
+   "len": 3.0,
+   "time_card": null
+  },
+  {
+   "cut": "E",
+   "kind": "clip",
+   "source_cut": "s2",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 2.5,
+   "time_card": null
+  },
+  {
+   "cut": "F",
+   "kind": "clip",
+   "source_cut": "s9",
+   "clip_tag": "v1",
+   "in": 3.0,
+   "len": 3.0,
+   "time_card": null
+  },
+  {
+   "cut": "G",
+   "kind": "clip",
+   "source_cut": "s9",
+   "clip_tag": "v1",
+   "in": 0.5,
+   "len": 3.0,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "ep09 효과 시연(ep08 클립 재사용, 0원)"
+ ]
+}

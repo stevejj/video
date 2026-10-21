@@ -9,19 +9,30 @@ import argparse, json, os, shutil, html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def grab_frame(src, t, dst, crop_top=None, crop_h=None):
+    """영상(t초)이나 이미지에서 한 프레임을 1080x1920 PNG로. crop_top·crop_h(비율)를 주면 그 띠만 잘라냄(회상 화면)."""
+    import subprocess, imageio_ffmpeg
+    vf = 'scale=1080:1920'
+    if crop_top is not None:
+        vf += f',crop=1080:{int(1920 * crop_h)}:0:{int(1920 * crop_top)}'
+    args = ['-ss', f'{t:.3f}', '-i', src] if src.endswith('.mp4') else ['-i', src]
+    subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), '-y', '-v', 'error', *args, '-frames:v', '1', '-vf', vf, dst], check=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--ep', default='ep01')
     ap.add_argument('--out', default=None)
     ap.add_argument('--edit', default=None)
     ap.add_argument('--fx', default=None)
+    ap.add_argument('--text', default=None)
     a = ap.parse_args()
     ep = a.ep
     out = a.out or os.path.join(ROOT, f'outputs/{ep}/hf')
     os.makedirs(os.path.join(out, 'media'), exist_ok=True)
     E = json.load(open(a.edit or os.path.join(ROOT, f'outputs/{ep}/edit_list.json')))
     B = json.load(open(os.path.join(ROOT, f'outputs/{ep}/band_offsets.json')))
-    T = json.load(open(os.path.join(ROOT, f'outputs/{ep}/text_overlay.json')))
+    T = json.load(open(a.text or os.path.join(ROOT, f'outputs/{ep}/text_overlay.json')))
     FX = json.load(open(a.fx or os.path.join(ROOT, f'outputs/{ep}/hf_fx.json')))
     W, H = E['canvas']; fps = E['fps']
     top, win = E['band']['top_px'], E['band']['window_px']
@@ -100,8 +111,70 @@ def main():
             src = os.path.join(ROOT, c['image']) if c.get('image') else os.path.join(ROOT, f'outputs/{ep}/{src_cut}/start_v1.png'); dst = f'media/{c["cut"]}.png'
             shutil.copy(src, os.path.join(out, dst))
             el = f'<img id="{cid}-v" src="{dst}" data-start="{t:.3f}" data-duration="{L:.3f}" />'
+        # 화면 안에서 카메라와 같이 움직이는 효과(정지 화면·영혼 탈출): 프레임 좌표(1080x1920)
+        frame_src = src if c['kind'] == 'clip' else (os.path.join(ROOT, c['image']) if c.get('image') else None)
+        fz = fx.get('freeze')
+        if fz and frame_src:  # 그 순간 프레임을 이미지로 덮어 멈춘 것처럼 보이게(카메라 줌은 계속)
+            png = f'media/{cid}_freeze.png'
+            grab_frame(frame_src, float(c.get('in', 0)) + fz['at'] if c['kind'] == 'clip' else 0, os.path.join(out, png))
+            el += f'<img id="{cid}-fz" src="{png}" data-start="{t + fz["at"]:.3f}" data-duration="{L - fz["at"]:.3f}" style="{"filter: grayscale(1);" if fz.get("gray") else ""}" />'
+            if fz.get('zoom'):
+                tl.append(f'tl.to("#{cid}", {{scale: {fz["zoom"]}, duration: {L - fz["at"]:.3f}, ease: "power1.out"}}, {t + fz["at"]:.3f});')
+        gh = fx.get('ghost')
+        if gh:  # 영혼 탈출: 누끼 레이어가 반투명으로 떠오름
+            S = W / gh['src_width']; x, y, w, h = [v * S for v in gh['box']]
+            shutil.copy(os.path.join(ROOT, gh['img']), os.path.join(out, f'media/{cid}_ghost.png'))
+            el += (f'<img id="{cid}-gh" class="layer" src="media/{cid}_ghost.png" data-start="{t + gh["at"]:.3f}" data-duration="{gh["dur"]:.3f}" '
+                   f'style="left:{x:.1f}px; top:{y:.1f}px; width:{w:.1f}px; height:{h:.1f}px; opacity:0; filter: brightness(1.6) saturate(0.3);" />')
+            tl.append(f'tl.fromTo("#{cid}-gh", {{opacity: 0, y: 0}}, {{opacity: {gh.get("opacity", 0.55)}, y: {-gh.get("rise", 260)}, duration: {gh["dur"]:.3f}, ease: "power1.out"}}, {t + gh["at"]:.3f});')
+            for k in range(int(gh['dur'] / 0.4)):
+                tl.append(f'tl.to("#{cid}-gh", {{x: {14 * (1 if k % 2 else -1)}, duration: 0.4, ease: "sine.inOut"}}, {t + gh["at"] + k * 0.4:.3f});')
         # 래퍼는 타이밍 없음(video_nested_in_timed_element 회피). transform-origin = 창 중심
         media_html.append(f'<div class="frame" id="{cid}" style="top:{-offy:.1f}px; transform-origin: 540px {offy + win / 2:.1f}px;">{el}</div>')
+        # 창 위에 고정되는 효과(카메라와 무관): 창 좌표(1080 x win)
+        sl = fx.get('spotlight')
+        if sl:  # 핀 조명: 주변을 어둡게, 원 안만 밝게
+            r0 = sl.get('r', 0.32) * W
+            media_html.append(f'<div class="winfx" id="{cid}-spot" data-start="{t + sl["at"]:.3f}" data-duration="{sl["dur"]:.3f}" '
+                              f'style="background: radial-gradient(circle {r0:.0f}px at {sl["cx"] * W:.0f}px {sl["cy"] * win:.0f}px, rgba(255,240,200,0.10) 0%, rgba(255,240,200,0.05) 70%, rgba(0,0,0,{sl.get("dark", 0.72)}) 100%); opacity:0;"></div>')
+            tl.append(f'tl.fromTo("#{cid}-spot", {{opacity: 0}}, {{opacity: 1, duration: 0.15, ease: "power2.out"}}, {t + sl["at"]:.3f});')
+        tn = fx.get('tint')
+        if tn:  # 색 필터(푸른 우울 등): 곱하기 색 덮개
+            media_html.append(f'<div class="winfx" id="{cid}-tint" data-start="{t + tn["at"]:.3f}" data-duration="{tn["dur"]:.3f}" style="background:{tn["color"]}; mix-blend-mode: multiply; opacity:0;"></div>')
+            tl.append(f'tl.fromTo("#{cid}-tint", {{opacity: 0}}, {{opacity: 1, duration: {tn.get("fade", 0.5)}, ease: "power1.out"}}, {t + tn["at"]:.3f});')
+        sp2 = fx.get('speedlines')
+        if sp2:  # 집중선: 바깥쪽 방사선, 깜빡이며 살짝 회전
+            media_html.append(f'<div class="winfx speed" id="{cid}-spd" data-start="{t + sp2["at"]:.3f}" data-duration="{sp2["dur"]:.3f}" '
+                              f'style="background: repeating-conic-gradient(from 0deg at {sp2.get("cx", 0.5) * 100:.0f}% {sp2.get("cy", 0.5) * 100:.0f}%, rgba(255,255,255,0.85) 0deg 1.2deg, rgba(255,255,255,0) 1.2deg 7deg);"></div>')
+            for k in range(int(sp2['dur'] / 0.06)):
+                tl.append(f'tl.set("#{cid}-spd", {{rotation: {(k % 3) * 0.8:.1f}, opacity: {0.75 if k % 2 else 1}}}, {t + sp2["at"] + k * 0.06:.3f});')
+        for k, stp in enumerate(fx.get('stamps', [])):  # 도장(✕ 등): 크게 쾅 찍히고 끝까지 남음
+            sid2 = f'{cid}-st{k}'; d0 = t + stp['at']; dd = stp.get('dur', L - stp['at'])
+            media_html.append(f'<div class="winfx stamp" id="{sid2}" data-start="{d0:.3f}" data-duration="{dd:.3f}" '
+                              f'style="left:{stp["x"] * W - stp.get("size", 220) / 2:.0f}px; top:{stp["y"] * win - stp.get("size", 220) / 2:.0f}px; width:{stp.get("size", 220)}px; height:{stp.get("size", 220)}px; '
+                              f'font-size:{stp.get("size", 220)}px; line-height:{stp.get("size", 220)}px; color:{stp.get("color", "#E8322E")};">{html.escape(stp.get("text", "✕"))}</div>')
+            tl.append(f'tl.fromTo("#{sid2}", {{scale: 2.4, opacity: 0, rotation: {stp.get("rot", -12)}}}, {{scale: 1, opacity: 1, rotation: {stp.get("rot", -12) / 3:.1f}, duration: 0.12, ease: "power4.in"}}, {d0:.3f});')
+        gg = fx.get('gauge')
+        if gg:  # 게이지: 라벨 + 막대가 차오르며 빨개지고 MAX
+            media_html.append(f'<div class="winfx gauge" id="{cid}-gg" data-start="{t + gg["at"]:.3f}" data-duration="{gg["dur"]:.3f}" style="top:{gg.get("y", 0.16) * win:.0f}px;">'
+                              f'<span class="glabel">{html.escape(gg["label"])}</span><span class="gbar"><span class="gfill" id="{cid}-ggf"></span></span><span class="gmax" id="{cid}-ggm">MAX</span></div>')
+            tl.append(f'tl.fromTo("#{cid}-ggf", {{width: "0%", backgroundColor: "#FFD84A"}}, {{width: "100%", backgroundColor: "#E8322E", duration: {gg.get("fill", 1.2)}, ease: "power2.in"}}, {t + gg["at"]:.3f});')
+            tl.append(f'tl.fromTo("#{cid}-ggm", {{scale: 0, opacity: 0}}, {{scale: 1, opacity: 1, duration: 0.18, ease: "back.out(3)"}}, {t + gg["at"] + gg.get("fill", 1.2):.3f});')
+            tl.append(f'tl.to("#{cid}-gg", {{x: 6, duration: 0.04, yoyo: true, repeat: 7}}, {t + gg["at"] + gg.get("fill", 1.2):.3f});')
+        fb = fx.get('flashback')
+        if fb:  # 회상 화면: 앞 장면 한 프레임을 흑백 액자로 띄움
+            png = f'media/{cid}_fb.png'
+            fsrc = os.path.join(ROOT, f'outputs/{ep}/{fb["cut"]}/clip_{fb.get("tag", "v1")}.mp4') if fb.get('cut') else os.path.join(ROOT, fb['image'])
+            if not os.path.exists(fsrc) and fb.get('image'):
+                fsrc = os.path.join(ROOT, fb['image'])
+            grab_frame(fsrc, fb.get('t', 0), os.path.join(out, png), crop_top=fb.get('top', 0.3), crop_h=win / H)
+            fw = fb.get('w', 0.56) * W
+            media_html.append(f'<div class="winfx fb" id="{cid}-fb" data-start="{t + fb["at"]:.3f}" data-duration="{fb["dur"]:.3f}" '
+                              f'style="left:{fb.get("x", 0.5) * W - fw / 2:.0f}px; top:{fb.get("y", 0.12) * win:.0f}px; width:{fw:.0f}px;">'
+                              f'<img src="{png}" style="width:100%; display:block; filter: grayscale(1) contrast(1.1);" />'
+                              f'<div class="fblabel">{html.escape(fb.get("label", "(아까)"))}</div></div>')
+            tl.append(f'tl.fromTo("#{cid}-fb", {{scale: 0.3, opacity: 0, rotation: -8}}, {{scale: 1, opacity: 1, rotation: -3, duration: 0.18, ease: "back.out(2)"}}, {t + fb["at"]:.3f});')
+            tl.append(f'tl.to("#{cid}-fb", {{scale: 0.8, opacity: 0, duration: 0.15}}, {t + fb["at"] + fb["dur"] - 0.15:.3f});')
         # 카메라
         cam = fx.get('cam')
         if cam:
@@ -138,7 +211,7 @@ def main():
             at = t + sp['at']
             for k in range(6):
                 sx = int(W * sp['cx'] + [-150, -60, 40, 130, -110, 90][k]); sy = top + win - 150 + sp.get('dy', 0) + [-120, -200, -90, -170, -40, -230][k]
-                media_html.append(f'<div class="spark" id="{cid}-sp{k}" style="left:{sx}px; top:{sy}px;">✦</div>')
+                media_html.append(f'<div class="spark" id="{cid}-sp{k}" style="left:{sx}px; top:{sy}px;{" color:" + sp["color"] + "; text-shadow: 0 0 12px " + sp["color"] + ";" if sp.get("color") else ""}">{sp.get("glyph", "✦")}</div>')
                 d = at + 0.08 * k
                 tl.append(f'tl.fromTo("#{cid}-sp{k}", {{scale: 0, opacity: 0, rotation: -30}}, {{scale: 1, opacity: 1, rotation: 20, duration: 0.25, ease: "back.out(3)"}}, {d:.3f});')
                 tl.append(f'tl.to("#{cid}-sp{k}", {{scale: 0.2, opacity: 0, duration: 0.3}}, {d + sp["dur"] - 0.5:.3f});')
@@ -173,7 +246,7 @@ def main():
         shout = '!!' in sb['text']
         cx = W * sb.get('x', 0.5)
         posstyle = f' top:{top + 40}px; bottom:auto;' if sb.get('pos') == 'top' else ''
-        sub_html.append(f'<div class="sub" id="{sid}" data-start="{sb["start"]:.3f}" data-duration="{dur:.3f}" data-cx="{cx:.0f}" style="color:{st["colors"][sb["speaker"]]};{posstyle}">{html.escape(sb["text"])}</div>')
+        sub_html.append(f'<div class="sub" id="{sid}" data-start="{sb["start"]:.3f}" data-duration="{dur:.3f}" data-cx="{cx:.0f}" style="color:{sb.get("color", st["colors"][sb["speaker"]])};{posstyle}{" font-size:%dpx;" % sb["size"] if sb.get("size") else ""}">{html.escape(sb["text"])}</div>')
         if shout:
             s = SP['shout']
             tl.append(f'tl.fromTo("#{sid}", {{scale: {s["from"]}, rotation: {s["rot"]}, opacity: 0}}, {{scale: {s["over"]}, rotation: 0, opacity: 1, duration: {s["dur"] * 0.6:.3f}, ease: "power3.out"}}, {sb["start"]:.3f});')
@@ -216,13 +289,22 @@ def main():
   .uinum {{ font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }}
   .uiclock {{ font-size: 54px; font-weight: 700; margin-top: 10px; }}
   .ring {{ position: absolute; border: 10px dashed #FFD84A; border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }}
+  .winfx {{ position: absolute; left: 0; top: 0; width: {W}px; height: {win}px; pointer-events: none; }}
+  .speed {{ -webkit-mask-image: radial-gradient(ellipse at center, transparent 38%, #000 75%); mask-image: radial-gradient(ellipse at center, transparent 38%, #000 75%); }}
+  .stamp {{ width: auto; height: auto; text-align: center; font-weight: 900; -webkit-text-stroke: 6px #fff; paint-order: stroke fill; text-shadow: 0 6px 16px rgba(0,0,0,0.5); transform-origin: 50% 50%; }}
+  .gauge {{ height: auto; display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 52px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }}
+  .gbar {{ display: inline-block; width: 460px; height: 46px; border: 6px solid #111; border-radius: 28px; background: rgba(255,255,255,0.85); overflow: hidden; }}
+  .gfill {{ display: block; height: 100%; width: 0%; background: #FFD84A; }}
+  .gmax {{ color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }}
+  .fb {{ height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }}
+  .fblabel {{ position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }}
   .arrow {{ position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }}
 </style>
 </head>
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-width="{W}" data-height="{H}" data-duration="{total:.3f}" data-fps="{fps}">
   <div id="win">
-    {chr(10).join('    ' + m for m in media_html if 'class="frame"' in m or 'blackfade' in m or 'class="flash"' in m)}
+    {chr(10).join('    ' + m for m in media_html if 'class="frame"' in m or 'class="winfx' in m or 'blackfade' in m or 'class="flash"' in m)}
   </div>
   <div id="title">{title_html}</div>
   <div id="channel">{html.escape(ch['text'])}</div>
