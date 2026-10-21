@@ -35,6 +35,7 @@
   .gmax { color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }
   .fb { height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }
   .fblabel { position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }
+  .tap { border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0) 70%); transform-origin: 50% 50%; }
   .arrow { position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }
 </style>
 </head>
@@ -49,13 +50,15 @@
     <div class="winfx stamp" id="c03-st0" data-start="10.990" data-duration="4.510" style="left:116px; top:213px; width:330px; height:96px; white-space: nowrap; font-size:96px; line-height:96px; color:#E8322E;">피자 ✕</div>
     <div class="winfx stamp" id="c03-st1" data-start="12.460" data-duration="3.040" style="left:609px; top:182px; width:380px; height:96px; white-space: nowrap; font-size:96px; line-height:96px; color:#E8322E;">떡볶이 ✕</div>
     <div class="winfx stamp" id="c03-st2" data-start="14.000" data-duration="1.500" style="left:375px; top:474px; width:330px; height:96px; white-space: nowrap; font-size:96px; line-height:96px; color:#E8322E;">족발 ✕</div>
-    <div class="frame" id="c04" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c04-v" src="media/04.png" data-start="15.500" data-duration="3.500" /></div>
-    <div class="winfx stamp" id="c04-st0" data-start="15.850" data-duration="3.150" style="left:360px; top:149px; width:150px; height:150px; white-space: nowrap; font-size:150px; line-height:150px; color:#E8322E;">✕</div>
-    <div class="winfx stamp" id="c04-st1" data-start="16.350" data-duration="2.650" style="left:570px; top:149px; width:150px; height:150px; white-space: nowrap; font-size:150px; line-height:150px; color:#E8322E;">✕</div>
-    <div class="winfx stamp" id="c04-st2" data-start="16.850" data-duration="2.150" style="left:360px; top:335px; width:150px; height:150px; white-space: nowrap; font-size:150px; line-height:150px; color:#E8322E;">✕</div>
-    <div class="winfx stamp" id="c04-st3" data-start="17.400" data-duration="1.600" style="left:570px; top:335px; width:150px; height:150px; white-space: nowrap; font-size:150px; line-height:150px; color:#E8322E;">✕</div>
-    <div class="winfx stamp" id="c04-st4" data-start="17.400" data-duration="1.600" style="left:360px; top:521px; width:150px; height:150px; white-space: nowrap; font-size:150px; line-height:150px; color:#E8322E;">✕</div>
-    <div class="winfx stamp" id="c04-st5" data-start="17.400" data-duration="1.600" style="left:570px; top:521px; width:150px; height:150px; white-space: nowrap; font-size:150px; line-height:150px; color:#E8322E;">✕</div>
+    <div class="frame" id="c04" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c04-v" src="media/s4_bg.png" data-start="15.500" data-duration="3.500" /><img id="c04-list" class="layer" src="media/s4_list.png" data-start="15.500" data-duration="3.500" style="left:315.0px; top:940.0px; width:450.0px; height:1984.0px; transform-origin:0px 0px;" /><img id="c04-ov" class="layer" src="media/s4_ov.png" data-start="15.500" data-duration="3.500" style="left:0.0px; top:0.0px; width:1080.0px; height:1920.0px; transform-origin:0px 0px;" /></div>
+    <div class="winfx stamp" id="c04-st0" data-start="15.970" data-duration="3.030" style="left:328px; top:234px; width:76px; height:76px; white-space: nowrap; font-size:76px; line-height:76px; color:#E8322E;">✕</div>
+    <div class="winfx stamp" id="c04-st1" data-start="16.470" data-duration="2.530" style="left:415px; top:234px; width:76px; height:76px; white-space: nowrap; font-size:76px; line-height:76px; color:#E8322E;">✕</div>
+    <div class="winfx stamp" id="c04-st2" data-start="16.970" data-duration="2.030" style="left:502px; top:234px; width:76px; height:76px; white-space: nowrap; font-size:76px; line-height:76px; color:#E8322E;">✕</div>
+    <div class="winfx stamp" id="c04-st3" data-start="18.550" data-duration="0.450" style="left:390px; top:346px; width:300px; height:300px; white-space: nowrap; font-size:300px; line-height:300px; color:#E8322E;">✕</div>
+    <div class="winfx tap" id="c04-tap0" data-start="15.850" data-duration="0.45" style="left:306px; top:212px; width:120px; height:120px;"></div>
+    <div class="winfx tap" id="c04-tap1" data-start="16.350" data-duration="0.45" style="left:393px; top:212px; width:120px; height:120px;"></div>
+    <div class="winfx tap" id="c04-tap2" data-start="16.850" data-duration="0.45" style="left:480px; top:212px; width:120px; height:120px;"></div>
+    <div class="winfx tap" id="c04-tap3" data-start="17.150" data-duration="0.45" style="left:514px; top:550px; width:160px; height:160px;"></div>
     <div class="frame" id="c05" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c05-v" src="media/05.png" data-start="19.000" data-duration="5.000" /><img id="c05-gh" class="layer" src="media/c05_ghost.png" data-start="20.500" data-duration="3.500" style="left:227.0px; top:574.0px; width:686.0px; height:778.0px; opacity:0; filter: brightness(1.6) saturate(0.3);" /></div>
     <div class="winfx" id="c05-tint" data-start="19.400" data-duration="4.600" style="background:rgba(110,150,235,0.55); mix-blend-mode: multiply; opacity:0;"></div>
     <div class="frame" id="c06" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c06-v" src="media/06.png" data-start="24.000" data-duration="4.500" /></div>
@@ -144,27 +147,30 @@
     tl.to("#c03", {x: 3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 11.200);
     tl.to("#c03", {x: -3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 12.400);
     tl.to("#c03", {x: 3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 13.600);
-    tl.fromTo("#c04-st0", {scale: 2.4, opacity: 0, rotation: -12}, {scale: 1, opacity: 1, rotation: -4.0, duration: 0.12, ease: "power4.in"}, 15.850);
-    tl.fromTo("#c04-st1", {scale: 2.4, opacity: 0, rotation: -12}, {scale: 1, opacity: 1, rotation: -4.0, duration: 0.12, ease: "power4.in"}, 16.350);
-    tl.fromTo("#c04-st2", {scale: 2.4, opacity: 0, rotation: -12}, {scale: 1, opacity: 1, rotation: -4.0, duration: 0.12, ease: "power4.in"}, 16.850);
-    tl.fromTo("#c04-st3", {scale: 2.4, opacity: 0, rotation: -12}, {scale: 1, opacity: 1, rotation: -4.0, duration: 0.12, ease: "power4.in"}, 17.400);
-    tl.fromTo("#c04-st4", {scale: 2.4, opacity: 0, rotation: -12}, {scale: 1, opacity: 1, rotation: -4.0, duration: 0.12, ease: "power4.in"}, 17.400);
-    tl.fromTo("#c04-st5", {scale: 2.4, opacity: 0, rotation: -12}, {scale: 1, opacity: 1, rotation: -4.0, duration: 0.12, ease: "power4.in"}, 17.400);
+    tl.to("#c04-list", {...{"y": -1536}, duration: 1.3, ease: "power2.inOut"}, 17.200);
+    tl.fromTo("#c04-st0", {scale: 2.4, opacity: 0, rotation: -12}, {scale: 1, opacity: 1, rotation: -4.0, duration: 0.12, ease: "power4.in"}, 15.970);
+    tl.fromTo("#c04-st1", {scale: 2.4, opacity: 0, rotation: -12}, {scale: 1, opacity: 1, rotation: -4.0, duration: 0.12, ease: "power4.in"}, 16.470);
+    tl.fromTo("#c04-st2", {scale: 2.4, opacity: 0, rotation: -12}, {scale: 1, opacity: 1, rotation: -4.0, duration: 0.12, ease: "power4.in"}, 16.970);
+    tl.fromTo("#c04-st3", {scale: 2.4, opacity: 0, rotation: -8}, {scale: 1, opacity: 1, rotation: -2.7, duration: 0.12, ease: "power4.in"}, 18.550);
+    tl.fromTo("#c04-tap0", {scale: 0.3, opacity: 0.85}, {scale: 1.5, opacity: 0, duration: 0.42, ease: "power2.out"}, 15.850);
+    tl.fromTo("#c04-tap1", {scale: 0.3, opacity: 0.85}, {scale: 1.5, opacity: 0, duration: 0.42, ease: "power2.out"}, 16.350);
+    tl.fromTo("#c04-tap2", {scale: 0.3, opacity: 0.85}, {scale: 1.5, opacity: 0, duration: 0.42, ease: "power2.out"}, 16.850);
+    tl.fromTo("#c04-tap3", {scale: 0.3, opacity: 0.85}, {scale: 1.5, opacity: 0, duration: 0.42, ease: "power2.out"}, 17.150);
     tl.fromTo("#c04", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 3.5, "ease": "none"}, 15.500);
-    tl.to("#c04", {x: -5.0, y: 3.0, duration: 0.25, ease: "sine.inOut"}, 15.500);
-    tl.to("#c04", {x: 5.0, y: 3.0, duration: 0.25, ease: "sine.inOut"}, 15.750);
-    tl.to("#c04", {x: -5.0, y: -3.0, duration: 0.25, ease: "sine.inOut"}, 16.000);
-    tl.to("#c04", {x: 5.0, y: -3.0, duration: 0.25, ease: "sine.inOut"}, 16.250);
-    tl.to("#c04", {x: -5.0, y: 3.0, duration: 0.25, ease: "sine.inOut"}, 16.500);
-    tl.to("#c04", {x: 5.0, y: 3.0, duration: 0.25, ease: "sine.inOut"}, 16.750);
-    tl.to("#c04", {x: -5.0, y: -3.0, duration: 0.25, ease: "sine.inOut"}, 17.000);
-    tl.to("#c04", {x: 5.0, y: -3.0, duration: 0.25, ease: "sine.inOut"}, 17.250);
-    tl.to("#c04", {x: -5.0, y: 3.0, duration: 0.25, ease: "sine.inOut"}, 17.500);
-    tl.to("#c04", {x: 5.0, y: 3.0, duration: 0.25, ease: "sine.inOut"}, 17.750);
-    tl.to("#c04", {x: -5.0, y: -3.0, duration: 0.25, ease: "sine.inOut"}, 18.000);
-    tl.to("#c04", {x: 5.0, y: -3.0, duration: 0.25, ease: "sine.inOut"}, 18.250);
-    tl.to("#c04", {x: -5.0, y: 3.0, duration: 0.25, ease: "sine.inOut"}, 18.500);
-    tl.to("#c04", {x: 5.0, y: 3.0, duration: 0.25, ease: "sine.inOut"}, 18.750);
+    tl.to("#c04", {x: -4.0, y: 2.4, duration: 0.25, ease: "sine.inOut"}, 15.500);
+    tl.to("#c04", {x: 4.0, y: 2.4, duration: 0.25, ease: "sine.inOut"}, 15.750);
+    tl.to("#c04", {x: -4.0, y: -2.4, duration: 0.25, ease: "sine.inOut"}, 16.000);
+    tl.to("#c04", {x: 4.0, y: -2.4, duration: 0.25, ease: "sine.inOut"}, 16.250);
+    tl.to("#c04", {x: -4.0, y: 2.4, duration: 0.25, ease: "sine.inOut"}, 16.500);
+    tl.to("#c04", {x: 4.0, y: 2.4, duration: 0.25, ease: "sine.inOut"}, 16.750);
+    tl.to("#c04", {x: -4.0, y: -2.4, duration: 0.25, ease: "sine.inOut"}, 17.000);
+    tl.to("#c04", {x: 4.0, y: -2.4, duration: 0.25, ease: "sine.inOut"}, 17.250);
+    tl.to("#c04", {x: -4.0, y: 2.4, duration: 0.25, ease: "sine.inOut"}, 17.500);
+    tl.to("#c04", {x: 4.0, y: 2.4, duration: 0.25, ease: "sine.inOut"}, 17.750);
+    tl.to("#c04", {x: -4.0, y: -2.4, duration: 0.25, ease: "sine.inOut"}, 18.000);
+    tl.to("#c04", {x: 4.0, y: -2.4, duration: 0.25, ease: "sine.inOut"}, 18.250);
+    tl.to("#c04", {x: -4.0, y: 2.4, duration: 0.25, ease: "sine.inOut"}, 18.500);
+    tl.to("#c04", {x: 4.0, y: 2.4, duration: 0.25, ease: "sine.inOut"}, 18.750);
     tl.fromTo("#c05-gh", {opacity: 0, y: 0}, {opacity: 0.45, y: -280, duration: 3.500, ease: "power1.out"}, 20.500);
     tl.to("#c05-gh", {x: -14, duration: 0.4, ease: "sine.inOut"}, 20.500);
     tl.to("#c05-gh", {x: 14, duration: 0.4, ease: "sine.inOut"}, 20.900);

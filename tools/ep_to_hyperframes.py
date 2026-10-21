@@ -154,6 +154,11 @@ def main():
                               f'style="left:{stp["x"] * W - stp.get("w", stp.get("size", 220)) / 2:.0f}px; top:{stp["y"] * win - stp.get("size", 220) / 2:.0f}px; width:{stp.get("w", stp.get("size", 220))}px; height:{stp.get("size", 220)}px; white-space: nowrap; '
                               f'font-size:{stp.get("size", 220)}px; line-height:{stp.get("size", 220)}px; color:{stp.get("color", "#E8322E")};">{html.escape(stp.get("text", "✕"))}</div>')
             tl.append(f'tl.fromTo("#{sid2}", {{scale: 2.4, opacity: 0, rotation: {stp.get("rot", -12)}}}, {{scale: 1, opacity: 1, rotation: {stp.get("rot", -12) / 3:.1f}, duration: 0.12, ease: "power4.in"}}, {d0:.3f});')
+        for k, tp in enumerate(fx.get('taps', [])):  # 터치 효과: 손가락 누른 자리에 흰 원이 퍼짐(창 좌표)
+            tid = f'{cid}-tap{k}'; r0 = tp.get('r', 70)
+            media_html.append(f'<div class="winfx tap" id="{tid}" data-start="{t + tp["at"]:.3f}" data-duration="0.45" '
+                              f'style="left:{tp["x"] * W - r0:.0f}px; top:{tp["y"] * win - r0:.0f}px; width:{2 * r0}px; height:{2 * r0}px;"></div>')
+            tl.append(f'tl.fromTo("#{tid}", {{scale: 0.3, opacity: 0.85}}, {{scale: 1.5, opacity: 0, duration: 0.42, ease: "power2.out"}}, {t + tp["at"]:.3f});')
         gg = fx.get('gauge')
         if gg:  # 게이지: 라벨 + 막대가 차오르며 빨개지고 MAX
             media_html.append(f'<div class="winfx gauge" id="{cid}-gg" data-start="{t + gg["at"]:.3f}" data-duration="{gg["dur"]:.3f}" style="top:{gg.get("y", 0.16) * win:.0f}px;">'
@@ -298,6 +303,7 @@ def main():
   .gmax {{ color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }}
   .fb {{ height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }}
   .fblabel {{ position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }}
+  .tap {{ border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0) 70%); transform-origin: 50% 50%; }}
   .arrow {{ position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }}
 </style>
 </head>

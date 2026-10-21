@@ -51,6 +51,68 @@ def phone_graphic():
     return centers
 
 
+def phone_app():
+    """4장면(무료 업그레이드, 사용자 2026-10-21): 배달앱처럼 보이는 폰 화면.
+    레이어 3장: bg(흐린 거실) / list(가게 카드 세로 목록, 스크롤) / overlay(흐린 거실 + 폰 테두리 + 상단 고정 영역, 목록 창만 투명).
+    가게 이름은 일반 단어만(실제 브랜드 없음). 반환: 칩 중심·화면 중심(창 비율), 목록 레이어 상자."""
+    bg = Image.open(os.path.join(EP, '01/start_v1.png')).convert('RGB').resize((W, H)).filter(ImageFilter.GaussianBlur(18))
+    bg = Image.eval(bg, lambda v: int(v * 0.70))
+    pw, ph = 450, 640; px, py = (W - pw) // 2, int(TOP * H) + 112   # 위쪽 상황 자막(창 위 40~135px) 아래로
+    LV = 252                                   # 목록 창 시작(화면 안 y)
+    try:
+        emo = ImageFont.truetype('/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf', 109)
+    except OSError:
+        emo = None
+
+    def emoji(img, e, cx, cy, size):
+        if not emo:
+            return
+        g = Image.new('RGBA', (140, 140), (0, 0, 0, 0)); ImageDraw.Draw(g).text((70, 70), e, font=emo, anchor='mm', embedded_color=True)
+        g = g.resize((size, size)); img.paste(g, (int(cx - size / 2), int(cy - size / 2)), g)
+
+    # overlay: 흐린 거실 + 폰 테두리 + 화면 상단(상태바·검색·칩·제목)
+    ov = bg.convert('RGBA'); d = ImageDraw.Draw(ov)
+    d.rounded_rectangle([px - 16, py - 16, px + pw + 16, py + ph + 16], 60, fill=(22, 22, 26, 255))
+    d.rounded_rectangle([px, py, px + pw, py + ph], 46, fill=(250, 248, 244, 255))
+    d.text((px + 34, py + 24), '19:37', font=font(24), fill=(30, 30, 30), anchor='lm')
+    d.rounded_rectangle([px + pw - 70, py + 15, px + pw - 30, py + 33], 5, outline=(30, 30, 30), width=3)
+    d.rectangle([px + pw - 67, py + 18, px + pw - 42, py + 30], fill=(30, 30, 30))
+    d.rounded_rectangle([px + 18, py + 52, px + pw - 18, py + 118], 33, fill=(238, 236, 232))
+    emoji(ov, '🔍', px + 52, py + 85, 30)
+    d.text((px + 76, py + 85), '오늘 뭐 먹지?', font=font(28), fill=(120, 116, 110), anchor='lm')
+    chips = ['한식', '중식', '일식', '치킨', '피자']; cw, gap = 80, 7; x0 = px + (pw - (5 * cw + 4 * gap)) / 2; centers = []
+    for i, c in enumerate(chips):
+        cx0 = x0 + i * (cw + gap)
+        d.rounded_rectangle([cx0, py + 134, cx0 + cw, py + 186], 26, fill=(255, 226, 196))
+        d.text((cx0 + cw / 2, py + 160), c, font=font(26), fill=(70, 50, 30), anchor='mm')
+        centers.append(((cx0 + cw / 2) / W, (py + 160 - TOP * H) / WIN))
+    d.text((px + 24, py + 222), '지금 많이 찾는 가게', font=font(28), fill=(40, 40, 40), anchor='lm')
+    hole = Image.new('L', (W, H), 255)
+    ImageDraw.Draw(hole).rounded_rectangle([px, py + LV, px + pw, py + ph], 46, fill=0)
+    ImageDraw.Draw(hole).rectangle([px, py + LV, px + pw, py + LV + 60], fill=0)
+    ov.putalpha(hole)
+
+    # list: 가게 카드 12개
+    shops = [('🍗', '바삭치킨 연구소', '4.9', '25'), ('🍕', '화덕피자 공방', '4.8', '30'), ('🍚', '엄마손 백반', '4.7', '20'),
+             ('🍜', '짬뽕 한 그릇', '4.8', '35'), ('🍣', '초밥 한 점', '4.9', '40'), ('🍢', '동네 떡볶이', '4.6', '20'),
+             ('🍖', '족발 야시장', '4.8', '45'), ('🍲', '국밥 한 상', '4.7', '25'), ('🍔', '수제버거 집', '4.6', '30'),
+             ('🥗', '샐러드 가게', '4.5', '25'), ('🌶', '마라탕 가게', '4.7', '35'), ('🍛', '돈까스 키친', '4.8', '30')]
+    ch, cg = 150, 12; lh = len(shops) * (ch + cg) + 40
+    lst = Image.new('RGBA', (pw, lh), (250, 248, 244, 255)); ld = ImageDraw.Draw(lst)
+    for i, (e, name, star, mins) in enumerate(shops):
+        y = 8 + i * (ch + cg)
+        ld.rounded_rectangle([14, y, pw - 14, y + ch], 22, fill=(255, 255, 255, 255), outline=(232, 228, 222), width=2)
+        ld.rounded_rectangle([28, y + 15, 148, y + 135], 18, fill=(255, 236, 214))
+        emoji(lst, e, 88, y + 75, 78)
+        ld.text((168, y + 42), name, font=font(32), fill=(30, 30, 30), anchor='lm')
+        ld.text((168, y + 86), f'★ {star}  ·  배달 {mins}분', font=font(25), fill=(120, 110, 100), anchor='lm')
+        ld.text((168, y + 120), '배달팁 무료', font=font(22), fill=(80, 150, 120), anchor='lm')
+    os.makedirs(os.path.join(EP, '04'), exist_ok=True); os.makedirs(os.path.join(EP, 'ref'), exist_ok=True)
+    bg.save(os.path.join(EP, '04/start_v1.png'))
+    lst.save(os.path.join(EP, 'ref/app_list.png')); ov.save(os.path.join(EP, 'ref/app_overlay.png'))
+    return dict(chips=centers, screen=((px + pw / 2) / W, (py + ph * 0.6 - TOP * H) / WIN), list_box=[px, py + LV, pw, lh], list_h=lh, view_h=ph - LV)
+
+
 def ghost_cut():
     """5장면 영혼 탈출: K5 창수 누끼(ISNet, 0원)."""
     sys.path.insert(0, os.path.join(ROOT, 'tools'))
@@ -74,7 +136,7 @@ def main():
     for s in order:
         st[s] = round(t, 3); t += LENS[s]
     total = round(t, 3)
-    tiles = phone_graphic(); gbox = ghost_cut()
+    app = phone_app(); gbox = ghost_cut()
 
     # 편집표
     cuts = []
@@ -132,9 +194,15 @@ def main():
         '03': {'stamps': [{'at': rel('3b'), 'x': 0.26, 'y': 0.34, 'text': '피자 ✕', 'size': 96, 'w': 330, 'rot': -10},
                           {'at': rel('3d'), 'x': 0.74, 'y': 0.30, 'text': '떡볶이 ✕', 'size': 96, 'w': 380, 'rot': 8},
                           {'at': rel('3f') + 0.3, 'x': 0.5, 'y': 0.68, 'text': '족발 ✕', 'size': 96, 'w': 330, 'rot': -6}]},
-        '04': {'cam': {'from': 1.0, 'to': 1.04}, 'drift': {'amp': 5, 'period': 0.5},
-               'stamps': [{'at': tt, 'x': tiles[k][0], 'y': tiles[k][1], 'size': 150} for k, tt in enumerate(tile_t)]
-               + [{'at': rel('4b') + 0.1, 'x': tiles[k][0], 'y': tiles[k][1], 'size': 150} for k in (3, 4, 5)]},
+        '04': {'cam': {'from': 1.0, 'to': 1.04}, 'drift': {'amp': 4, 'period': 0.5},
+               'puppet': {'bg': 'outputs/ep09/04/start_v1.png', 'src_width': W, 'layers': [
+                   {'id': 'list', 'img': 'outputs/ep09/ref/app_list.png', 'box': app['list_box'], 'origin': '0px 0px',
+                    'keys': [{'t': rel('4b') - 0.1, 'dur': 1.3, 'y': -(app['list_h'] - app['view_h'] - 60), 'ease': 'power2.inOut'}]},
+                   {'id': 'ov', 'img': 'outputs/ep09/ref/app_overlay.png', 'box': [0, 0, W, H], 'origin': '0px 0px', 'keys': []}]},
+               'taps': [{'at': tt, 'x': app['chips'][k][0], 'y': app['chips'][k][1], 'r': 60} for k, tt in enumerate(tile_t)]
+               + [{'at': rel('4b') - 0.15, 'x': 0.55, 'y': 0.82, 'r': 80}],
+               'stamps': [{'at': tt + 0.12, 'x': app['chips'][k][0], 'y': app['chips'][k][1], 'size': 76} for k, tt in enumerate(tile_t)]
+               + [{'at': rel('4b') + 1.25, 'x': app['screen'][0], 'y': app['screen'][1], 'size': 300, 'rot': -8}]},
         '05': {'tint': {'at': 0.4, 'dur': LENS['s5'] - 0.4, 'color': 'rgba(110,150,235,0.55)', 'fade': 0.8},
                'ghost': {'img': 'outputs/ep09/ref/ghost_changsu.png', 'src_width': W, 'box': gbox, 'at': rel('5a') + 1.2, 'dur': LENS['s5'] - rel('5a') - 1.2, 'rise': 280, 'opacity': 0.45}},
         '06': {'speedlines': {'at': rel('6a'), 'dur': 1.4, 'cx': 0.3, 'cy': 0.5}, 'punch': {'at': rel('6a'), 'scale': 1.08, 'settle': 1.04}},
@@ -155,7 +223,7 @@ def main():
         sf('dramatic_hit', el + 'dramatic_hit.mp3', pyeong - 0.05, 1.4, -20),
         sf('bang', 'outputs/ep02/sfx/el/charger_drop.mp3', pyeong, 0.5, -20, gain=12.0),
         *[sf(f'buzz{k}', el + 'wrong_buzzer.mp3', st['s3'] + x, 0.6, -24) for k, x in enumerate([rel('3b'), rel('3d'), rel('3f') + 0.3])],
-        *[sf(f'buzz4_{k}', el + 'wrong_buzzer.mp3', st['s4'] + x, 0.5, -26) for k, x in enumerate(tile_t + [rel('4b') + 0.1])],
+        *[sf(f'buzz4_{k}', el + 'wrong_buzzer.mp3', st['s4'] + x, 0.5, -26) for k, x in enumerate([tt + 0.12 for tt in tile_t] + [rel('4b') + 1.25])],
         sf('doorbell', el + 'doorbell.mp3', st['s7'] + 0.1, 1.4, -22),
         sf('sparkle', 'outputs/ep01/sfx/el/sparkle.mp3', st['s7'] + rel('7') + 0.1, 0.8, -26),
         sf('flashback', el + 'flashback_chime.mp3', st['s8'] + rel('8b') + L['8b']['len_file'] - 0.25, 1.1, -22),
@@ -163,7 +231,7 @@ def main():
     ]}
     os.makedirs(os.path.join(EP, 'sfx'), exist_ok=True)
     json.dump(X, open(os.path.join(EP, 'sfx/sfx_list.json'), 'w'), ensure_ascii=False, indent=1)
-    print(f'ep09 {a.mode}: {total}s, 장면 시작', st, '\n유령 상자', gbox, '타일', [(round(x, 2), round(y, 2)) for x, y in tiles])
+    print(f'ep09 {a.mode}: {total}s, 장면 시작', st, '\n유령 상자', gbox, '칩', [(round(x, 2), round(y, 2)) for x, y in app['chips']])
 
 
 if __name__ == '__main__':
