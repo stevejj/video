@@ -14,7 +14,7 @@
   {
    "name": "dramatic_hit",
    "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
-   "at": 7.52,
+   "at": 6.49,
    "len": 1.4,
    "target_lufs": -20,
    "fade_out": 0.1,
@@ -24,7 +24,7 @@
   {
    "name": "bang",
    "file": "outputs/ep02/sfx/el/charger_drop.mp3",
-   "at": 7.57,
+   "at": 6.54,
    "len": 0.5,
    "target_lufs": -20,
    "fade_out": 0.1,
@@ -123,7 +123,7 @@
   {
    "name": "flashback",
    "file": "outputs/ep09/sfx/el/flashback_chime.mp3",
-   "at": 33.77,
+   "at": 34.58,
    "len": 1.1,
    "target_lufs": -22,
    "fade_out": 0.1,

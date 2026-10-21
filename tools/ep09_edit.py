@@ -4,7 +4,7 @@
 - 장면 시작 = 앞 장면 길이 누적, 대사 = 장면 트랙(voice/scenes/sN.mp3)을 장면 시작에 배치.
 - 자막 = 장면 시작 + 대사 scene_at, 길이 = len_file.
 - 4장면은 폰 화면 그래픽(K1 흐림 + 폰 + 메뉴 타일, PIL로 합성).
-- 효과(기획안 01): 1 게이지, 2 핀 조명·펀치·줌, 3 탈락 도장, 4 메뉴 ✕, 5 영혼 탈출·푸른 필터, 6 집중선, 7 반짝, 8 흑백 회상, 9 정지 화면.
+- 효과(기획안 01): 1 게이지, 2 핀 조명·펀치·줌, 3 탈락 도장, 4 메뉴 ✕, 5 영혼 탈출·푸른 필터, 6 집중선, 7 반짝, 8 흑백 회상(6장면 "난 안 먹을 거야"), 9 정지 화면.
 """
 import argparse, json, os, sys
 import numpy as np
@@ -103,14 +103,14 @@ def main():
             sb.update(color='#FFD84A', size=84)
         subs.append(sb)
     cap = lambda text, a0, a1: {'cut': 'cap', 'text': text, 'speaker': 'sfx', 'start': round(a0, 2), 'end': round(a1, 2), 'x': 0.5, 'pos': 'top'}
-    pyeong = at('2b') + 1.58  # "평생!" (트랙 2.68s - 2b 시작 1.1s)
+    pyeong = at('2b') + 0.55  # 강조 순간 "너무 많이" (v2: 2b "치킨은 너무 많이 먹었어")
     subs += [cap('(저녁 7시)', st['s1'] + 0.2, st['s1'] + 2.0),
-             cap('(치킨 끊은 지 0일차)', pyeong + 0.1, st['s3']),
+             cap('(이번 주 치킨 3번 먹음)', pyeong + 0.1, st['s3']),
              cap('(탈락 메뉴 2개째)', at('3b'), at('3d')), cap('(탈락 메뉴 3개째)', at('3d'), at('3f')), cap('(탈락 메뉴 4개째)', at('3f'), st['s4']),
              cap('(배달앱 30분째 스크롤)', st['s4'] + 0.1, st['s5']),
              cap('(결국 처음 메뉴)', at('6a') + 0.6, st['s7']),
              cap('(40분 뒤, 치킨 도착)', st['s7'] + 0.1, st['s8']),
-             cap('(치킨 끊은 지 40분째)', at('8b'), st['s9']),
+             cap('(이번 주 치킨 4번째)', at('8c'), st['s9']),
              cap('(내일도 시작)', at('9') + 2.1, total)]
     T = json.load(open(os.path.join(ROOT, 'outputs/ep08/text_overlay.json')))
     T['title']['lines'] = [{'text': '남자 여자', 'color': '#FFFFFF'}, {'text': '"아무거나" 공감 100%', 'color': '#FFD84A'}]
@@ -139,7 +139,7 @@ def main():
                'ghost': {'img': 'outputs/ep09/ref/ghost_changsu.png', 'src_width': W, 'box': gbox, 'at': rel('5a') + 1.2, 'dur': LENS['s5'] - rel('5a') - 1.2, 'rise': 280, 'opacity': 0.45}},
         '06': {'speedlines': {'at': rel('6a'), 'dur': 1.4, 'cx': 0.3, 'cy': 0.5}, 'punch': {'at': rel('6a'), 'scale': 1.08, 'settle': 1.04}},
         '07': {'sparkle': {'at': rel('7') + 0.1, 'cx': 0.5, 'dur': 1.6, 'dy': 40}},
-        '08': {'flashback': {'cut': 's2', 'image': 'outputs/ep09/02/start_v1.png', 't': pyeong - st['s2'], 'top': TOP, 'at': rel('8a') + L['8a']['len_file'] - 0.2, 'dur': 1.1, 'label': '(아까)', 'w': 0.5, 'y': 0.08}},
+        '08': {'flashback': {'cut': 's6', 'image': 'outputs/ep09/06/start_v1.png', 't': rel('6b') + 0.3, 'top': TOP, 'at': rel('8b') + L['8b']['len_file'] - 0.2, 'dur': 1.1, 'label': '(아까)', 'w': 0.5, 'y': 0.08}},
         '09': {'freeze': {'at': rel('9') + 2.0, 'zoom': 1.32, 'x': -230}},
     }
     if anim:  # 정지 화면은 애니매틱에선 이미 정지 → 줌·패닝만
@@ -158,7 +158,7 @@ def main():
         *[sf(f'buzz4_{k}', el + 'wrong_buzzer.mp3', st['s4'] + x, 0.5, -26) for k, x in enumerate(tile_t + [rel('4b') + 0.1])],
         sf('doorbell', el + 'doorbell.mp3', st['s7'] + 0.1, 1.4, -22),
         sf('sparkle', 'outputs/ep01/sfx/el/sparkle.mp3', st['s7'] + rel('7') + 0.1, 0.8, -26),
-        sf('flashback', el + 'flashback_chime.mp3', st['s8'] + rel('8a') + L['8a']['len_file'] - 0.25, 1.1, -22),
+        sf('flashback', el + 'flashback_chime.mp3', st['s8'] + rel('8b') + L['8b']['len_file'] - 0.25, 1.1, -22),
         sf('dun', el + 'dun_sting.mp3', st['s9'] + rel('9') + 2.0, 1.4, -20),
     ]}
     os.makedirs(os.path.join(EP, 'sfx'), exist_ok=True)
