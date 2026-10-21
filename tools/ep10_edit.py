@@ -14,6 +14,7 @@ BEAT, PHASE = 0.71, 0.31
 MUSIC_AT = 4.3                       # 칩튠 시작(K3 + ROUND 1 직후)
 MISUN, CHANGSU = (0.32, 0.74), (0.68, 0.74)   # 이불 속 엉덩이 위치(창 비율)
 EL = 'outputs/ep10/sfx/el/'
+IMG = {'02': 'start_v2.png'}   # K2 v2: 창수 눈이 너무 커서 K3 눈을 옮겨 붙임(사용자, 0원)
 
 
 def ghost(box, name):
@@ -31,7 +32,7 @@ def ghost(box, name):
 def main():
     cuts = [('01', 2.0), ('02', 2.0), ('03', 10.0)]
     E = {'canvas': [W, H], 'fps': 24, 'band': {'top_px': int(TOP * H), 'window_px': WIN}, 'still_zoom': 0.0, 'fade_out_before_black': 0.4,
-         'cuts': [{'cut': c, 'kind': 'still', 'source_cut': c, 'image': f'outputs/ep10/{c}/start_v1.png', 'in': 0, 'len': L, 'time_card': None} for c, L in cuts],
+         'cuts': [{'cut': c, 'kind': 'still', 'source_cut': c, 'image': f'outputs/ep10/{c}/{IMG.get(c, "start_v1.png")}', 'in': 0, 'len': L, 'time_card': None} for c, L in cuts],
          'history': ['2026-10-21 ep10 v1: 방구배틀 14s, Kling 0']}
     json.dump(E, open(os.path.join(EP, 'edit_list.json'), 'w'), ensure_ascii=False, indent=1)
 
