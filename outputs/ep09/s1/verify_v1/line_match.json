@@ -1,0 +1,22 @@
+[
+ {
+  "cut": "1a",
+  "speaker": "changsu",
+  "ours": 0.3,
+  "clip": 0.3,
+  "shift": 0.0,
+  "corr": 0.97,
+  "pitch_ours": 516,
+  "pitch_clip": 500
+ },
+ {
+  "cut": "1b",
+  "speaker": "misun",
+  "ours": 1.73,
+  "clip": 2.94,
+  "shift": 1.21,
+  "corr": 0.83,
+  "pitch_ours": 471,
+  "pitch_clip": 485
+ }
+]
