@@ -7,7 +7,9 @@
    "at": 1.93,
    "len": 1.4,
    "target_lufs": -24,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -11.94,
+   "gain": -12.1
   },
   {
    "name": "dramatic_hit",
@@ -15,7 +17,9 @@
    "at": 6.49,
    "len": 1.4,
    "target_lufs": -20,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -19.19,
+   "gain": -0.8
   },
   {
    "name": "bang",
@@ -32,7 +36,9 @@
    "at": 10.99,
    "len": 0.6,
    "target_lufs": -24,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -8.63,
+   "gain": -15.4
   },
   {
    "name": "buzz1",
@@ -40,7 +46,9 @@
    "at": 12.46,
    "len": 0.6,
    "target_lufs": -24,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -8.63,
+   "gain": -15.4
   },
   {
    "name": "buzz2",
@@ -48,7 +56,9 @@
    "at": 14.0,
    "len": 0.6,
    "target_lufs": -24,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -8.63,
+   "gain": -15.4
   },
   {
    "name": "buzz4_0",
@@ -56,7 +66,9 @@
    "at": 15.97,
    "len": 0.5,
    "target_lufs": -26,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -8.63,
+   "gain": -17.4
   },
   {
    "name": "buzz4_1",
@@ -64,7 +76,9 @@
    "at": 16.47,
    "len": 0.5,
    "target_lufs": -26,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -8.63,
+   "gain": -17.4
   },
   {
    "name": "buzz4_2",
@@ -72,7 +86,9 @@
    "at": 16.97,
    "len": 0.5,
    "target_lufs": -26,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -8.63,
+   "gain": -17.4
   },
   {
    "name": "buzz4_3",
@@ -80,7 +96,9 @@
    "at": 18.55,
    "len": 0.5,
    "target_lufs": -26,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -8.63,
+   "gain": -17.4
   },
   {
    "name": "doorbell",
@@ -88,7 +106,9 @@
    "at": 28.6,
    "len": 1.4,
    "target_lufs": -22,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -11.2,
+   "gain": -10.8
   },
   {
    "name": "sparkle",
@@ -96,7 +116,9 @@
    "at": 29.6,
    "len": 0.8,
    "target_lufs": -26,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -17.81,
+   "gain": -8.2
   },
   {
    "name": "flashback",
@@ -104,7 +126,9 @@
    "at": 34.58,
    "len": 1.1,
    "target_lufs": -22,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -15.3,
+   "gain": -6.7
   },
   {
    "name": "dun",
@@ -112,7 +136,9 @@
    "at": 40.3,
    "len": 1.4,
    "target_lufs": -20,
-   "fade_out": 0.1
+   "fade_out": 0.1,
+   "measured_lufs": -16.41,
+   "gain": -3.6
   }
  ]
 }
