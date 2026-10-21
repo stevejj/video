@@ -251,7 +251,7 @@ def main():
         shout = '!!' in sb['text']
         cx = W * sb.get('x', 0.5)
         posstyle = f' top:{top + 40}px; bottom:auto;' if sb.get('pos') == 'top' else ''
-        sub_html.append(f'<div class="sub" id="{sid}" data-start="{sb["start"]:.3f}" data-duration="{dur:.3f}" data-cx="{cx:.0f}" style="color:{sb.get("color", st["colors"][sb["speaker"]])};{posstyle}{" font-size:%dpx;" % sb["size"] if sb.get("size") else ""}">{html.escape(sb["text"])}</div>')
+        sub_html.append(f'<div class="sub" id="{sid}" data-start="{sb["start"]:.3f}" data-duration="{dur:.3f}" data-cx="{cx:.0f}" style="color:{sb.get("color", st["colors"][sb["speaker"]])};{posstyle}{" font-size:%dpx;" % sb["size"] if sb.get("size") else ""}">{html.escape(sb["text"].replace("…", "..."))}</div>')
         if shout:
             s = SP['shout']
             tl.append(f'tl.fromTo("#{sid}", {{scale: {s["from"]}, rotation: {s["rot"]}, opacity: 0}}, {{scale: {s["over"]}, rotation: 0, opacity: 1, duration: {s["dur"] * 0.6:.3f}, ease: "power3.out"}}, {sb["start"]:.3f});')
