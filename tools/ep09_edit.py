@@ -16,6 +16,7 @@ W, H, TOP = 1080, 1920, 0.30          # 30/40/30 띠: 창 = y 576~1344
 WIN = 768
 LENS = {'s1': 5.0, 's2': 5.0, 's3': 5.5, 's4': 3.5, 's5': 5.0, 's6': 4.5, 's7': 3.5, 's8': 6.0, 's9': 4.5}
 BAND = {'s5': 28, 's7': 36}           # 장면별 띠 위치(%) — 이미지 확인 결과(K5 머리, K7 상자)
+IMG = {'03': 'start_v2.png'}   # K3 v2: 눈이 작아져 K2 눈을 옮겨 붙인 수정본(사용자 발견, 0원)
 TILES = [('🍚', '한식'), ('🥟', '중식'), ('🍣', '일식'), ('🍗', '치킨'), ('🍕', '피자'), ('🍢', '분식')]
 
 
@@ -143,7 +144,7 @@ def main():
     for i, s in enumerate(order):
         n = s[1:].zfill(2)
         if anim or s == 's4':
-            cuts.append({'cut': n, 'kind': 'still', 'source_cut': s, 'image': f'outputs/ep09/{n}/start_v1.png', 'in': 0, 'len': LENS[s], 'time_card': None})
+            cuts.append({'cut': n, 'kind': 'still', 'source_cut': s, 'image': f'outputs/ep09/{n}/{IMG.get(n, "start_v1.png")}', 'in': 0, 'len': LENS[s], 'time_card': None})
         else:
             cuts.append({'cut': n, 'kind': 'clip', 'source_cut': s, 'clip_tag': 'v1', 'in': 0.0, 'len': LENS[s], 'time_card': None})
     E = {'canvas': [W, H], 'fps': 24, 'band': {'top_px': int(TOP * H), 'window_px': WIN}, 'still_zoom': 0.0, 'fade_out_before_black': 0.4,

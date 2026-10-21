@@ -29,7 +29,7 @@ SAFETY = [r'\bnaked\b', r'\bnude\b', r'no clothes', r'\bwet\b', r'\bbath(ing)?\b
 BRANDS = [r'\bkfc\b', r'\bbbq\b', r'교촌', r'bhc', r'\bchanel\b', r'herm[eè]s', r'\bgucci\b', r'\blouis vuitton\b', r'\bnike\b', r'pengsoo', r'펭수',
           r'coca[- ]?cola', r'\bpepsi\b', r'\bstarbucks\b', r'\bbaemin\b', r'배달의민족', r'\bnetflix\b', r'\bsamsung\b', r'\biphone\b', r'\bapple\b']
 EMOTION = [r'troubled', r'flustered', r'worried', r'angry', r'furious', r'\bsad\b', r'determined', r'exhausted', r'\bsmug\b', r'frown', r'shocked',
-           r'serious', r'stern', r'annoyed', r'disgust']
+           r'serious', r'stern', r'annoyed', r'disgust', r'uninterested', r'bored', r'chin raised', r'half-closed', r'sleepy']  # ep09 K3: 'uninterested, chin raised' → 눈이 작고 반쯤 감김
 HELD = r'\b(drumsticks?|box|phone|smartphone|remote|hanger|shoes?|mug|cup|bowl|spoon|chopsticks|fork)\b'
 
 

@@ -50,7 +50,7 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
 **위험·대책**: 날개 휘저을 때 늘어남 → "never stretch" / 리모컨이 날개로 옮겨감.
 
 ## S3 소파 메뉴 핑퐁 — 입모양 · Kling 4.0 omni, 6초 · 54크레딧
-**입력**: image_1 `outputs/ep09/03/start_v1.png`(K3), audio_1 `outputs/ep09/voice/scenes/s3.mp3`
+**입력**: image_1 `outputs/ep09/03/start_v2.png`(K3 v2, K2 눈 옮겨 붙임), audio_1 `outputs/ep09/voice/scenes/s3.mp3`
 **인자**: S1과 같음, duration=6
 ```
 One single continuous shot with a static, locked-off camera, no cuts, no camera movement: exactly the scene of 图片1 (same camera angle, same living room, same sofa, same two plush penguins in the same places and the same clothes). 3D animated plush characters, short velvet fur; the room and the objects stay photoreal and unchanged.
