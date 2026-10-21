@@ -14,3 +14,6 @@ outputs/*/hf_anim/*.mp4
 outputs/*/hf_anim/media/
 outputs/*/fx_demo/hf/media/
 outputs/*/fx_demo/hf/*.mp4
+outputs/*/hf_anim/work-*/
+outputs/*/hf_anim/.render_*
+outputs/*/hf_anim/renders/
