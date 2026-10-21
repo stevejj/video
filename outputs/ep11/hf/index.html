@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>ep11 v11 hyperframes</title>
+<script src="gsap.min.js"></script>
+<style>
+  @font-face { font-family: "NotoKR"; src: url("media/NotoSansKR.ttf") format("truetype"); font-weight: 100 900; }
+  body { margin: 0; background: #000; font-family: "NotoKR", sans-serif; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #win { position: absolute; left: 0; top: 0px; width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  .frame { position: absolute; left: 0; width: 1080px; height: 1920px; will-change: transform; }
+  .frame img.layer { position: absolute; width: auto; height: auto; object-fit: fill; }
+  .frame img:not(.layer), .frame video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; display: block; }
+  #title { position: absolute; left: 0; width: 100%; top: 247px; text-align: center; font-size: 104px; font-weight: 800; line-height: 122px; -webkit-text-stroke: 10px #111; paint-order: stroke fill; text-shadow: 0 4px 14px rgba(0,0,0,0.55); }
+  #channel { position: absolute; left: 0; width: 100%; top: 494px; text-align: center; font-size: 52px; font-weight: 700; color: #FFFFFF; opacity: 1.0; line-height: 1.4; -webkit-text-stroke: 6px #111; paint-order: stroke fill; text-shadow: 0 3px 10px rgba(0,0,0,0.55); }
+  .sub { position: absolute; bottom: 430px; font-size: 74px; font-weight: 800; white-space: nowrap; line-height: 1.25;
+          -webkit-text-stroke: 9px #111111; paint-order: stroke fill; transform-origin: 50% 100%; }
+  .card { position: absolute; left: 120px; top: 36px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }
+  .spark { position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }
+  .blackfade { position: absolute; inset: 0; background: #000; }
+  .flash { position: absolute; inset: 0; background: #fff; }
+  .uibox { position: absolute; left: 0; top: 200px; width: 1080px; text-align: center; color: #fff; transform-origin: 50% 50%; }
+  .uilabel { font-size: 60px; font-weight: 700; opacity: 0.85; }
+  .uinum { font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }
+  .uiclock { font-size: 54px; font-weight: 700; margin-top: 10px; }
+  .ring { position: absolute; border: 10px dashed #FFD84A; border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }
+  .winfx { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; pointer-events: none; }
+  .speed { -webkit-mask-image: radial-gradient(ellipse at center, transparent 38%, #000 75%); mask-image: radial-gradient(ellipse at center, transparent 38%, #000 75%); }
+  .stamp { width: auto; height: auto; text-align: center; font-weight: 900; -webkit-text-stroke: 6px #fff; paint-order: stroke fill; text-shadow: 0 6px 16px rgba(0,0,0,0.5); transform-origin: 50% 50%; }
+  .gauge { height: auto; display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 52px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }
+  .gbar { display: inline-block; width: 460px; height: 46px; border: 6px solid #111; border-radius: 28px; background: rgba(255,255,255,0.85); overflow: hidden; }
+  .gfill { display: block; height: 100%; width: 0%; background: #FFD84A; }
+  .gmax { color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }
+  .fb { height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }
+  .fblabel { position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }
+  .puff { width: auto; height: auto; transform-origin: 50% 70%; }
+  .tap { border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0) 70%); transform-origin: 50% 50%; }
+  .arrow { position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="21.450" data-fps="24">
+  <div id="win">
+        <div class="frame" id="c01" style="top:-0.0px; transform-origin: 540px 960.0px;"><video id="c01-v" src="media/s1.mp4" data-start="0.000" data-duration="10.000" data-media-start="0.000" muted></video></div>
+    <div class="frame" id="c02" style="top:-0.0px; transform-origin: 540px 960.0px;"><video id="c02-v" src="media/s2.mp4" data-start="10.000" data-duration="3.450" data-media-start="1.450" muted></video></div>
+    <div class="frame" id="c03" style="top:-0.0px; transform-origin: 540px 960.0px;"><video id="c03-v" src="media/s4.mp4" data-start="13.450" data-duration="3.000" data-media-start="0.000" muted></video></div>
+    <div class="frame" id="c04" style="top:-0.0px; transform-origin: 540px 960.0px;"><video id="c04-v" src="media/s5.mp4" data-start="16.450" data-duration="5.000" data-media-start="0.000" muted></video></div>
+  </div>
+  <div id="title"><div style="color:#FFFFFF">부부의 초겨울</div><div><span style="color:#FFD84A">맥주광고</span><span style="color:#FFFFFF"> 따라하기</span></div></div>
+  <div id="channel">지독한 미순</div>
+  
+    <div class="sub" id="sub00" data-start="0.230" data-duration="1.270" data-cx="540" style="color:#FF9CC2;">초겨울, 포차의 계절.</div>
+  <div class="sub" id="sub01" data-start="2.130" data-duration="1.420" data-cx="540" style="color:#8FB0E8;">입김마저 시원하다.</div>
+  <div class="sub" id="sub02" data-start="4.230" data-duration="1.290" data-cx="540" style="color:#FF9CC2;">차가운 잔에 담은</div>
+  <div class="sub" id="sub03" data-start="5.850" data-duration="0.970" data-cx="540" style="color:#8FB0E8;">우리의 하루.</div>
+  <div class="sub" id="sub04" data-start="7.930" data-duration="0.870" data-cx="540" style="color:#FF9CC2;">건배하라!</div>
+  <div class="sub" id="sub05" data-start="8.940" data-duration="0.460" data-cx="540" style="color:#8FB0E8;">짠!</div>
+  <div class="sub" id="sub06" data-start="14.350" data-duration="1.350" data-cx="540" style="color:#FFFFFF;">캬~</div>
+  <div class="sub" id="sub07" data-start="16.790" data-duration="1.590" data-cx="540" style="color:#FF9CC2;">이모! 여기 한잔 더요!</div>
+</div>
+<script>
+  // 자막 가로 위치: 중심 cx, 폭 1000 안으로 클램프 (조립기와 동일 규칙)
+  function placeSubs() {
+    document.querySelectorAll('.sub').forEach(el => {
+      const cx = parseFloat(el.dataset.cx); const W = 1080, MW = 1000;
+      let fs = 74; el.style.fontSize = fs + 'px';
+      while (el.offsetWidth > MW && fs > 40) { fs -= 4; el.style.fontSize = fs + 'px'; }
+      const tw = el.offsetWidth;
+      let x = Math.min(Math.max(cx - tw / 2, (W - MW) / 2), W - (W - MW) / 2 - tw);
+      el.style.left = x + 'px';
+    });
+  }
+  const tl = gsap.timeline({ paused: true });
+  function build() {
+    placeSubs();
+        tl.to("#c04", {scale: 1.04, duration: 0.08, ease: "power3.out", overwrite: "auto"}, 16.900);
+    tl.to("#c04", {scale: 1.0, duration: 0.35, ease: "power2.out"}, 16.980);
+    tl.fromTo("#sub00", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 0.230);
+    tl.fromTo("#sub01", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 2.130);
+    tl.fromTo("#sub02", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 4.230);
+    tl.fromTo("#sub03", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 5.850);
+    tl.fromTo("#sub04", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 7.930);
+    tl.fromTo("#sub05", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 8.940);
+    tl.fromTo("#sub06", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 14.350);
+    tl.fromTo("#sub07", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 16.790);
+    window.__timelines["main"] = tl;
+  }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }
+</script>
+</body>
+</html>

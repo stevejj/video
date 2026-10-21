@@ -1,0 +1,117 @@
+{
+ "title": {
+  "lines": [
+   {
+    "text": "부부의 초겨울",
+    "color": "#FFFFFF"
+   },
+   {
+    "spans": [
+     {
+      "text": "맥주광고",
+      "color": "#FFD84A"
+     },
+     {
+      "text": " 따라하기",
+      "color": "#FFFFFF"
+     }
+    ]
+   }
+  ],
+  "size": 104,
+  "weight": 800,
+  "center_y": 360,
+  "line_gap": 18,
+  "stroke": 10
+ },
+ "channel": {
+  "text": "지독한 미순",
+  "color": "#FFFFFF",
+  "size": 52,
+  "weight": 700,
+  "center_y": 530,
+  "opacity": 1.0,
+  "stroke": 6
+ },
+ "subtitle_style": {
+  "size": 74,
+  "weight": 800,
+  "stroke": 9,
+  "stroke_color": "#111111",
+  "bottom_margin": 430,
+  "max_width": 1000,
+  "colors": {
+   "changsu": "#8FB0E8",
+   "misun": "#FF9CC2",
+   "sfx": "#FFFFFF"
+  }
+ },
+ "note": "ep11: ep07 클립 + 새 대사(맥주 광고 따라하기)",
+ "subtitles": [
+  {
+   "cut": "L1",
+   "text": "초겨울, 포차의 계절.",
+   "speaker": "misun",
+   "start": 0.23,
+   "end": 1.5,
+   "x": 0.5
+  },
+  {
+   "cut": "L2",
+   "text": "입김마저 시원하다.",
+   "speaker": "changsu",
+   "start": 2.13,
+   "end": 3.55,
+   "x": 0.5
+  },
+  {
+   "cut": "L3",
+   "text": "차가운 잔에 담은",
+   "speaker": "misun",
+   "start": 4.23,
+   "end": 5.52,
+   "x": 0.5
+  },
+  {
+   "cut": "L4",
+   "text": "우리의 하루.",
+   "speaker": "changsu",
+   "start": 5.85,
+   "end": 6.82,
+   "x": 0.5
+  },
+  {
+   "cut": "L5",
+   "text": "건배하라!",
+   "speaker": "misun",
+   "start": 7.93,
+   "end": 8.8,
+   "x": 0.5
+  },
+  {
+   "cut": "L6",
+   "text": "짠!",
+   "speaker": "changsu",
+   "start": 8.94,
+   "end": 9.4,
+   "x": 0.5
+  },
+  {
+   "cut": "",
+   "text": "캬~",
+   "speaker": "sfx",
+   "start": 14.35,
+   "end": 15.7,
+   "x": 0.5
+  },
+  {
+   "cut": "L8",
+   "text": "이모! 여기 한잔 더요!",
+   "speaker": "misun",
+   "start": 16.79,
+   "end": 18.38,
+   "x": 0.5
+  }
+ ],
+ "layout": "fullscreen: 영상 1080×1920 꽉 채움, 제목·채널명은 영상 위에 겹침(사용자 2026-10-19), 자막은 아래에서 430px(인스타 UI 피함) / 2026-10-19 사용자: 제목·채널명 살짝 아래로 → 제목 300→360, 채널명 470→530"
+}
