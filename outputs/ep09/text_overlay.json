@@ -2,12 +2,24 @@
  "title": {
   "lines": [
    {
-    "text": "남자 여자",
-    "color": "#FFFFFF"
+    "spans": [
+     {
+      "text": "부부 ",
+      "color": "#FFFFFF"
+     },
+     {
+      "text": "저녁메뉴",
+      "color": "#FFD84A"
+     },
+     {
+      "text": " 고민",
+      "color": "#FFFFFF"
+     }
+    ]
    },
    {
-    "text": "\"아무거나\" 공감 100%",
-    "color": "#FFD84A"
+    "text": "공감 100%",
+    "color": "#FFFFFF"
    }
   ],
   "size": 104,

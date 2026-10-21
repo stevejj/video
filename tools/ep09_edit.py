@@ -176,7 +176,9 @@ def main():
              cap('(이번 주 치킨 4번째)', at('8c'), st['s9']),
              cap('(내일도 시작)', at('9') + 2.1, total)]
     T = json.load(open(os.path.join(ROOT, 'outputs/ep08/text_overlay.json')))
-    T['title']['lines'] = [{'text': '남자 여자', 'color': '#FFFFFF'}, {'text': '"아무거나" 공감 100%', 'color': '#FFD84A'}]
+    # 제목(2026-10-21 사용자): "부부 저녁메뉴 고민 공감 100%", 노란색은 "저녁메뉴"만. 노란 부분은 매 편 사용자와 상의해 정함
+    T['title']['lines'] = [{'spans': [{'text': '부부 ', 'color': '#FFFFFF'}, {'text': '저녁메뉴', 'color': '#FFD84A'}, {'text': ' 고민', 'color': '#FFFFFF'}]},
+                           {'text': '공감 100%', 'color': '#FFFFFF'}]
     T['subtitles'] = sorted(subs, key=lambda x: x['start'])
     T['note'] = 'ep09: 자막 = 장면 시작 + 대사 scene_at(tools/ep09_edit.py)'
     json.dump(T, open(os.path.join(EP, 'text_overlay.json'), 'w'), ensure_ascii=False, indent=1)

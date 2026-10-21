@@ -265,7 +265,11 @@ def main():
             tl.append(f'tl.fromTo("#{sid}", {{scale: {p["from"]}, opacity: 0}}, {{scale: 1, opacity: 1, duration: {p["dur"]}, ease: "back.out(2.5)"}}, {sb["start"]:.3f});')
 
     ti = T['title']; ch = T['channel']
-    title_html = ''.join(f'<div style="color:{ln["color"]}">{html.escape(ln["text"])}</div>' for ln in ti['lines'])
+    def title_line(ln):  # spans가 있으면 한 줄 안에서 단어별 색(ep09: "저녁메뉴"만 노랑, 색 위치는 사용자와 상의해 정함)
+        if ln.get('spans'):
+            return '<div>' + ''.join(f'<span style="color:{sp.get("color", "#FFFFFF")}">{html.escape(sp["text"])}</span>' for sp in ln['spans']) + '</div>'
+        return f'<div style="color:{ln["color"]}">{html.escape(ln["text"])}</div>'
+    title_html = ''.join(title_line(ln) for ln in ti['lines'])
     page = f'''<!doctype html>
 <html lang="ko">
 <head>
