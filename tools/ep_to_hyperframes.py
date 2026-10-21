@@ -119,7 +119,7 @@ def main():
             grab_frame(frame_src, float(c.get('in', 0)) + fz['at'] if c['kind'] == 'clip' else 0, os.path.join(out, png))
             el += f'<img id="{cid}-fz" src="{png}" data-start="{t + fz["at"]:.3f}" data-duration="{L - fz["at"]:.3f}" style="{"filter: grayscale(1);" if fz.get("gray") else ""}" />'
             if fz.get('zoom'):
-                tl.append(f'tl.to("#{cid}", {{scale: {fz["zoom"]}, duration: {L - fz["at"]:.3f}, ease: "power1.out"}}, {t + fz["at"]:.3f});')
+                tl.append(f'tl.to("#{cid}", {{scale: {fz["zoom"]}, x: {fz.get("x", 0)}, duration: {L - fz["at"]:.3f}, ease: "power1.out", overwrite: "auto"}}, {t + fz["at"]:.3f});')
         gh = fx.get('ghost')
         if gh:  # 영혼 탈출: 누끼 레이어가 반투명으로 떠오름
             S = W / gh['src_width']; x, y, w, h = [v * S for v in gh['box']]
@@ -151,7 +151,7 @@ def main():
         for k, stp in enumerate(fx.get('stamps', [])):  # 도장(✕ 등): 크게 쾅 찍히고 끝까지 남음
             sid2 = f'{cid}-st{k}'; d0 = t + stp['at']; dd = stp.get('dur', L - stp['at'])
             media_html.append(f'<div class="winfx stamp" id="{sid2}" data-start="{d0:.3f}" data-duration="{dd:.3f}" '
-                              f'style="left:{stp["x"] * W - stp.get("size", 220) / 2:.0f}px; top:{stp["y"] * win - stp.get("size", 220) / 2:.0f}px; width:{stp.get("size", 220)}px; height:{stp.get("size", 220)}px; '
+                              f'style="left:{stp["x"] * W - stp.get("w", stp.get("size", 220)) / 2:.0f}px; top:{stp["y"] * win - stp.get("size", 220) / 2:.0f}px; width:{stp.get("w", stp.get("size", 220))}px; height:{stp.get("size", 220)}px; white-space: nowrap; '
                               f'font-size:{stp.get("size", 220)}px; line-height:{stp.get("size", 220)}px; color:{stp.get("color", "#E8322E")};">{html.escape(stp.get("text", "✕"))}</div>')
             tl.append(f'tl.fromTo("#{sid2}", {{scale: 2.4, opacity: 0, rotation: {stp.get("rot", -12)}}}, {{scale: 1, opacity: 1, rotation: {stp.get("rot", -12) / 3:.1f}, duration: 0.12, ease: "power4.in"}}, {d0:.3f});')
         gg = fx.get('gauge')

@@ -1,0 +1,44 @@
+[
+ {
+  "name": "stomach_growl",
+  "prompt": "Cartoon stomach growling, long comedic hungry tummy rumble, close, no music",
+  "duration": 1.5,
+  "file": "outputs/ep09/sfx/el/stomach_growl.mp3",
+  "result": "ok 24702B"
+ },
+ {
+  "name": "dramatic_hit",
+  "prompt": "Dramatic comedic orchestral hit 'dun dun', heavy timpani and brass stab, short, for a serious oath moment",
+  "duration": 1.5,
+  "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
+  "result": "ok 24702B"
+ },
+ {
+  "name": "wrong_buzzer",
+  "prompt": "Quiz show wrong answer buzzer, short harsh electronic 'bzzt', single hit, no voice",
+  "duration": 0.7,
+  "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
+  "result": "ok 12163B"
+ },
+ {
+  "name": "doorbell",
+  "prompt": "Apartment door chime ding-dong, clean two-tone electronic doorbell, indoors, no voice",
+  "duration": 1.5,
+  "file": "outputs/ep09/sfx/el/doorbell.mp3",
+  "result": "ok 24702B"
+ },
+ {
+  "name": "flashback_chime",
+  "prompt": "Magical flashback memory chime, harp glissando with soft shimmer, short, dreamy transition",
+  "duration": 1.2,
+  "file": "outputs/ep09/sfx/el/flashback_chime.mp3",
+  "result": "ok 20105B"
+ },
+ {
+  "name": "dun_sting",
+  "prompt": "Comedic shock sting, single deep 'dun' bass hit with a cymbal swell, cartoon realization moment",
+  "duration": 1.5,
+  "file": "outputs/ep09/sfx/el/dun_sting.mp3",
+  "result": "ok 24702B"
+ }
+]

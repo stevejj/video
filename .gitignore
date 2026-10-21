@@ -10,3 +10,7 @@ outputs/*/hf/renders/
 outputs/*/hf/.render_*
 outputs/*/hf/work-*/
 outputs/*/hf/gsap.min.js
+outputs/*/hf_anim/*.mp4
+outputs/*/hf_anim/media/
+outputs/*/fx_demo/hf/media/
+outputs/*/fx_demo/hf/*.mp4

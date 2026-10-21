@@ -13,7 +13,7 @@ MAN = {
  'K5': dict(out=O + '05/start_v1.png', model=FLASH, refs=[O + '01/start_v1.png', C + 'pang-changsu_hires_front.png']),
  'K6': dict(out=O + '06/start_v1.png', model=FLASH, refs=[O + '01/start_v1.png', C + 'pang-changsu_hires_front.png', O + 'ref/pang-misun_body_side_facing_right.png']),
  'K7': dict(out=O + '07/start_v1.png', model=FLASH, refs=[O + '01/start_v1.png', C + 'pang-changsu_hires_front.png', C + 'pang-changsu_pose_hold_cup.png']),
- 'K8': dict(out=O + '08/start_v1.png', model=PRO, refs=[O + '01/start_v1.png', M + 'pang-misun_hires_front.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_pose_hold_cup.png']),
+ 'K8': dict(out=O + '08/start_v1.png', model=PRO, refs=[O + '01/start_v1.png', M + 'pang-misun_hires_front.png', C + 'pang-changsu_hires_front.png', M + 'pang-misun_pose_hold_cup.png', O + '07/start_v1.png']),
  'K9': dict(out=O + '09/start_v1.png', model=FLASH, refs=[O + '08/start_v1.png', M + 'pang-misun_hires_front.png', C + 'pang-changsu_hires_front.png']),
 }
 

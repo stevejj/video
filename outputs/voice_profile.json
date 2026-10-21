@@ -1970,7 +1970,7 @@
     "target_lufs": -27,
     "duck_db": 6,
     "fade_in": 0.3,
-    "end_at": 41.19,
+    "end_at": 42.5,
     "fade_out": 1.0
    },
    "scenes": {
@@ -2066,7 +2066,45 @@
       "9": 0.3
      }
     }
-   }
+   },
+   "placements": [
+    {
+     "file": "outputs/ep09/voice/scenes/s1.mp3",
+     "at": 0.0
+    },
+    {
+     "file": "outputs/ep09/voice/scenes/s2.mp3",
+     "at": 5.0
+    },
+    {
+     "file": "outputs/ep09/voice/scenes/s3.mp3",
+     "at": 10.0
+    },
+    {
+     "file": "outputs/ep09/voice/scenes/s4.mp3",
+     "at": 15.5
+    },
+    {
+     "file": "outputs/ep09/voice/scenes/s5.mp3",
+     "at": 19.0
+    },
+    {
+     "file": "outputs/ep09/voice/scenes/s6.mp3",
+     "at": 24.0
+    },
+    {
+     "file": "outputs/ep09/voice/scenes/s7.mp3",
+     "at": 28.5
+    },
+    {
+     "file": "outputs/ep09/voice/scenes/s8.mp3",
+     "at": 32.0
+    },
+    {
+     "file": "outputs/ep09/voice/scenes/s9.mp3",
+     "at": 38.0
+    }
+   ]
   }
  },
  "voices_legacy": {

@@ -1,6 +1,9 @@
 {
  "band_ratio": 0.4,
  "default_top": 30,
- "per_cut_top": {},
+ "per_cut_top": {
+  "s5": 28,
+  "s7": 36
+ },
  "note": "ep09: 30/40/30 띠. 이미지 확인 후 장면별 조정"
 }
