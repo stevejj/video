@@ -42,8 +42,12 @@ def main():
             fp = os.path.join(ROOT, it['file'])
             if not os.path.exists(fp):
                 print(f"  (없음, 건너뜀) {it['name']}: {it['file']}"); continue
-            if it.get('gain') is None:
-                it['measured_lufs'] = round(lufs(fp), 2); it['gain'] = round(it['target_lufs'] - it['measured_lufs'], 1)
+            if it.get('target_lufs') is not None:   # 목표 음량이 있으면 항상 목표 기준으로(측정값만 저장해 재사용). 예전엔 gain을 한 번 저장하면 목표를 바꿔도 안 바뀌었음(ep05 v2)
+                if it.get('measured_lufs') is None or it.get('measured_file') != it['file']:
+                    it['measured_lufs'] = round(lufs(fp), 2); it['measured_file'] = it['file']
+                it['gain'] = round(it['target_lufs'] - it['measured_lufs'], 1)
+            elif it.get('gain') is None:
+                raise SystemExit(f"효과음 {it['name']}: target_lufs도 gain도 없음")
             n += 1; inputs += ['-i', fp]
             ch = "aresample=44100,aformat=channel_layouts=mono"
             if it.get('loop'):
