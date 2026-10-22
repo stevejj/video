@@ -10,6 +10,10 @@ MAN = {
  'K1': dict(out=O + '01/start_v1.png', model=PRO, refs=[M + 'pang-misun_pose_lying.png', M + 'pang-misun_hires_front.png', C + 'pang-changsu_pose_lying.png', C + 'pang-changsu_hires_front.png']),
  'K2': dict(out=O + '02/start_v1.png', model=FLASH, refs=[O + '01/start_v1.png', C + 'pang-changsu_hires_front.png']),
  'K3': dict(out=O + '03/start_v1.png', model=FLASH, refs=[O + '02/start_v1.png', M + 'pang-misun_hires_front.png', C + 'pang-changsu_hires_front.png']),
+ # v4(2026-10-22): 서로 등 돌리고 누움, 눈은 끝까지 감음
+ 'K4': dict(out=O + '04/start_v1.png', model=PRO, refs=[M + 'pang-misun_3q_left.png', M + 'pang-misun_face_eyes_closed.png', C + 'pang-changsu_3q_right.png',
+                                                         C + 'pang-changsu_face_eyes_closed.png', O + '01/start_v1.png']),
+ 'K5': dict(out=O + '05/start_v1.png', model=FLASH, refs=[O + '04/start_v1.png', M + 'pang-misun_face_eyes_closed.png', C + 'pang-changsu_face_eyes_closed.png']),
 }
 
 
