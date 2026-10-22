@@ -36,110 +36,110 @@
    "sfx": "#FFFFFF"
   }
  },
- "note": "v1: 제목 B안 확정, 자막 시각 = 음성 배치(voice_profile placements)",
+ "note": "v2: 자막 시각 = 새 음성 배치",
  "subtitles": [
   {
    "cut": "02",
    "text": "자기야 설거지한 김에 물좀줘",
    "speaker": "misun",
    "start": 1.6,
-   "end": 3.45,
+   "end": 3.5,
    "x": 0.5
   },
   {
    "cut": "03",
    "text": "응.",
    "speaker": "changsu",
-   "start": 3.6,
-   "end": 4.6,
+   "start": 4.52,
+   "end": 5.52,
    "x": 0.5
   },
   {
    "cut": "05",
    "text": "자기야 일어난 김에 베개좀줘",
    "speaker": "misun",
-   "start": 7.1,
-   "end": 8.95,
+   "start": 7.3,
+   "end": 9.2,
    "x": 0.5
   },
   {
    "cut": "06",
    "text": "응.",
    "speaker": "changsu",
-   "start": 9.1,
-   "end": 10.1,
+   "start": 9.35,
+   "end": 10.35,
    "x": 0.5
   },
   {
    "cut": "07",
    "text": "자기야 가는 김에 커피좀줘",
    "speaker": "misun",
-   "start": 11.6,
-   "end": 13.2,
+   "start": 11.9,
+   "end": 13.48,
    "x": 0.5
   },
   {
    "cut": "07",
    "text": "응.",
    "speaker": "changsu",
-   "start": 13.25,
-   "end": 13.75,
+   "start": 13.5,
+   "end": 14.0,
    "x": 0.5
   },
   {
    "cut": "09",
    "text": "자기야 숨쉬는 김에 충전기좀줘",
    "speaker": "misun",
-   "start": 13.9,
-   "end": 15.7,
+   "start": 14.2,
+   "end": 15.98,
    "x": 0.5
   },
   {
    "cut": "09",
    "text": "응.",
    "speaker": "changsu",
-   "start": 15.75,
-   "end": 16.25,
+   "start": 16.0,
+   "end": 16.5,
    "x": 0.5
   },
   {
    "cut": "10",
    "text": "흐음..",
    "speaker": "changsu",
-   "start": 16.6,
-   "end": 18.25,
+   "start": 17.0,
+   "end": 18.65,
    "x": 0.5
   },
   {
    "cut": "12",
-   "text": "자기야 앉은 김에 리모컨좀줘",
+   "text": "자기야 앉은 김에 그 리모컨좀줘",
    "speaker": "misun",
    "start": 20.9,
-   "end": 23.35,
+   "end": 23.4,
    "x": 0.5
   },
   {
    "cut": "14",
    "text": "응.",
    "speaker": "changsu",
-   "start": 25.2,
-   "end": 26.2,
+   "start": 26.25,
+   "end": 26.98,
    "x": 0.5
   },
   {
    "cut": "15",
    "text": "자기야아아아아아아아",
    "speaker": "misun",
-   "start": 26.5,
-   "end": 28.05,
+   "start": 27.0,
+   "end": 28.6,
    "x": 0.5
   },
   {
    "cut": "15",
    "text": "………….",
    "speaker": "changsu",
-   "start": 28.1,
-   "end": 28.75,
+   "start": 29.1,
+   "end": 31.0,
    "x": 0.5
   }
  ]

@@ -32,7 +32,7 @@
    "kind": "clip",
    "source_cut": "03",
    "in": 0.8,
-   "len": 1.5,
+   "len": 1.8,
    "time_card": null
   },
   {
@@ -40,7 +40,7 @@
    "kind": "clip",
    "source_cut": "04",
    "in": 0.5,
-   "len": 2.0,
+   "len": 2.5,
    "time_card": null
   },
   {
@@ -48,7 +48,7 @@
    "kind": "still",
    "source_cut": "05",
    "in": 0,
-   "len": 2.0,
+   "len": 1.5,
    "time_card": null
   },
   {
@@ -79,8 +79,8 @@
    "cut": "10",
    "kind": "clip",
    "source_cut": "03",
-   "in": 0.3,
-   "len": 2.0,
+   "in": 0.0,
+   "len": 1.7,
    "time_card": null
   },
   {
@@ -101,8 +101,9 @@
   },
   {
    "cut": "13",
-   "kind": "ui",
+   "kind": "still",
    "source_cut": "13",
+   "image": "outputs/ep02/11/end_v1.png",
    "in": 0,
    "len": 1.5,
    "time_card": null
@@ -112,7 +113,7 @@
    "kind": "clip",
    "source_cut": "14",
    "in": 0.5,
-   "len": 1.5,
+   "len": 2.0,
    "time_card": null
   },
   {
@@ -120,7 +121,13 @@
    "kind": "clip",
    "source_cut": "15",
    "in": 0.5,
-   "len": 2.4,
+   "len": 4.2,
+   "time_card": null
+  },
+  {
+   "cut": "16",
+   "kind": "black",
+   "len": 0.6,
    "time_card": null
   }
  ],
@@ -128,6 +135,7 @@
   "2026-10-08 v0: Kling 12클립 + 5컷 정지 + UI 2 + 10컷 재사용, 무음 가편집",
   "2026-10-08 v0c: 8컷(심부름 카운터 UI) 삭제 → 15컷 29.5s, 7컷→9컷 직결",
   "2026-10-08 v0d: 시간 카드 전부 제거, 13컷 리모컨 인서트를 11e 전체 구도로, 16컷(이불 같이 덮기) 삭제 → 14컷 27.9s, 15컷 2.4s로 늘려 결말",
-  "2026-10-08 v1: 음성 길이에 맞춰 07 2.0→2.3, 12 2.0→2.6 → 28.8s"
+  "2026-10-08 v1: 음성 길이에 맞춰 07 2.0→2.3, 12 2.0→2.6 → 28.8s",
+  "2026-10-22 v2: 어색한 곳 11개 다듬기(Kling 0), 31.7s"
  ]
 }

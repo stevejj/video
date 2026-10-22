@@ -1,0 +1,146 @@
+{
+ "title": {
+  "lines": [
+   {
+    "text": "오늘도",
+    "color": "#FFFFFF"
+   },
+   {
+    "text": "좀줘 좀줘 좀줘",
+    "color": "#FFD84A"
+   }
+  ],
+  "size": 104,
+  "weight": 800,
+  "center_y": 400,
+  "line_gap": 18
+ },
+ "channel": {
+  "text": "지독한 미순",
+  "color": "#FFFFFF",
+  "size": 52,
+  "weight": 700,
+  "center_y": 1420,
+  "opacity": 0.9
+ },
+ "subtitle_style": {
+  "size": 74,
+  "weight": 800,
+  "stroke": 9,
+  "stroke_color": "#111111",
+  "bottom_margin": 46,
+  "max_width": 1000,
+  "colors": {
+   "changsu": "#8FB0E8",
+   "misun": "#FF9CC2",
+   "sfx": "#FFFFFF"
+  }
+ },
+ "note": "v1: 제목 B안 확정, 자막 시각 = 음성 배치(voice_profile placements)",
+ "subtitles": [
+  {
+   "cut": "02",
+   "text": "자기야 설거지한 김에 물좀줘",
+   "speaker": "misun",
+   "start": 1.6,
+   "end": 3.45,
+   "x": 0.5
+  },
+  {
+   "cut": "03",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 3.6,
+   "end": 4.6,
+   "x": 0.5
+  },
+  {
+   "cut": "05",
+   "text": "자기야 일어난 김에 베개좀줘",
+   "speaker": "misun",
+   "start": 7.1,
+   "end": 8.95,
+   "x": 0.5
+  },
+  {
+   "cut": "06",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 9.1,
+   "end": 10.1,
+   "x": 0.5
+  },
+  {
+   "cut": "07",
+   "text": "자기야 가는 김에 커피좀줘",
+   "speaker": "misun",
+   "start": 11.6,
+   "end": 13.2,
+   "x": 0.5
+  },
+  {
+   "cut": "07",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 13.25,
+   "end": 13.75,
+   "x": 0.5
+  },
+  {
+   "cut": "09",
+   "text": "자기야 숨쉬는 김에 충전기좀줘",
+   "speaker": "misun",
+   "start": 13.9,
+   "end": 15.7,
+   "x": 0.5
+  },
+  {
+   "cut": "09",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 15.75,
+   "end": 16.25,
+   "x": 0.5
+  },
+  {
+   "cut": "10",
+   "text": "흐음..",
+   "speaker": "changsu",
+   "start": 16.6,
+   "end": 18.25,
+   "x": 0.5
+  },
+  {
+   "cut": "12",
+   "text": "자기야 앉은 김에 리모컨좀줘",
+   "speaker": "misun",
+   "start": 20.9,
+   "end": 23.35,
+   "x": 0.5
+  },
+  {
+   "cut": "14",
+   "text": "응.",
+   "speaker": "changsu",
+   "start": 25.2,
+   "end": 26.2,
+   "x": 0.5
+  },
+  {
+   "cut": "15",
+   "text": "자기야아아아아아아아",
+   "speaker": "misun",
+   "start": 26.5,
+   "end": 28.05,
+   "x": 0.5
+  },
+  {
+   "cut": "15",
+   "text": "………….",
+   "speaker": "changsu",
+   "start": 28.1,
+   "end": 28.75,
+   "x": 0.5
+  }
+ ]
+}
