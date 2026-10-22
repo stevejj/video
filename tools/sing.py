@@ -186,12 +186,14 @@ def cmd_score(ep, mode='dp'):
 
 
 # ───────────── 말하기 녹음 ─────────────
-def cmd_tts(ep, seed):
+def cmd_tts(ep, seed, only=None):
     B = base(ep); L = json.load(open(os.path.join(B, 'ref/lyrics.json')))['lines']
     P = json.load(open(vg.PROF)); d = os.path.join(B, 'sing/tts'); os.makedirs(d, exist_ok=True)
     for l in L:
+        if only and l['id'] not in only:
+            continue
         for sp in (['misun', 'changsu'] if l['sp'] == 'both' else [l['sp']]):
-            out = os.path.join(d, f'{l["id"]}_{sp}.wav')
+            out = os.path.join(d, f'{l["id"]}_{sp}.wav' if seed == 42 else f'{l["id"]}_{sp}_s{seed}.wav')
             if os.path.exists(out):
                 continue
             raw = out.replace('.wav', '.mp3')
@@ -333,13 +335,13 @@ def evaluate(B, SC, f0ref, perref, mode='dp'):
     return rep
 
 
-def render_line(B, l, syl, sp, f0ref, perref):
-    """한 줄만 합성 → (시작 샘플, 소리). syl = [{'on','off'}...]"""
+def render_line(B, l, syl, sp, f0ref, perref, tts=None):
+    """한 줄만 합성 → (시작 샘플, 소리). syl = [{'on','off'}...], tts = 말하기 녹음 파일(없으면 기본 seed)"""
     import pyworld as pw
     t0 = max(0.0, syl[0]['on'] - 0.2); t1 = syl[-1]['off'] + 0.3
     nf = int((t1 - t0) * 1000 / FP) + 1; fft = pw.get_cheaptrick_fft_size(FS); nb = fft // 2 + 1
     F = np.zeros(nf); SP = np.full((nf, nb), 1e-12); AP = np.ones((nf, nb))
-    src = os.path.join(B, f'sing/tts/{l["id"]}_{sp}.wav')
+    src = os.path.join(B, tts) if tts else os.path.join(B, f'sing/tts/{l["id"]}_{sp}.wav')
     x = ve.pcm(src).astype(np.float64)
     al = mms_align(x.astype(np.float32), [u[1] for u in units(l)])
     ex = 20 * np.log10(env10(x))
@@ -454,9 +456,12 @@ def cmd_search(ep, only):
         sp = 'misun' if l['sp'] == 'both' else l['sp']
         vs, top, end = variants(B, l, (voc, f0, per, edb))
         res = []
-        for name, ons in vs.items():
+        import glob
+        takes = sorted(glob.glob(os.path.join(B, f'sing/tts/{l["id"]}_{sp}*.wav')))
+        for name, ons in [(f'{n_}@{os.path.basename(tk)}', o_) for tk in takes for n_, o_ in vs.items()]:
+            tk = 'sing/tts/' + name.split('@')[1]
             syl = to_syl(l, ons, f0, per, edb, top, end)
-            s0, y, _ = render_line(B, l, syl, sp, f0, per)
+            s0, y, _ = render_line(B, l, syl, sp, f0, per, tk)
             y16 = np.interp(np.arange(0, len(y), FS / 16000), np.arange(len(y)), y)
             y16 = y16 / (np.abs(y16).max() + 1e-9) * 0.7
             tmp = os.path.join(B, 'sing/_s.wav'); write_wav(tmp, np.concatenate([np.zeros(8000), y16, np.zeros(6400)]), 16000)
@@ -465,7 +470,7 @@ def cmd_search(ep, only):
             res.append((sc, name, syl, heard.strip()))
         res.sort(key=lambda r: -r[0])
         sc, name, syl, heard = res[0]
-        best[l['id']] = {'id': l['id'], 'sp': l['sp'], 'variant': name, 'words': round(sc, 2), 'heard': heard, 'syl': syl,
+        best[l['id']] = {'id': l['id'], 'sp': l['sp'], 'variant': name, 'tts_take': name.split('@')[1], 'words': round(sc, 2), 'heard': heard, 'syl': syl,
                          'all': [(round(r[0], 2), r[1]) for r in res]}
         print(l['id'], l['sp'], name, round(sc, 2), heard[:40], '|', ' '.join(f'{r[1]}:{r[0]:.2f}' for r in res[:4]))
         json.dump({'lines': [best[k] for k in sorted(best)]}, open(bp, 'w'), ensure_ascii=False, indent=1)
@@ -482,7 +487,10 @@ def cmd_render(ep):
         for ln in SC:
             if ln['sp'] not in (sp, 'both'):
                 continue
-            s0, y, _ = render_line(B, L[ln['id']], ln['syl'], sp, f0, per)
+            tk = ln.get('tts_take', f'{ln["id"]}_{sp}.wav')
+            if sp == 'changsu' and ln['sp'] == 'both':
+                tk = tk.replace('_misun', '_changsu')
+            s0, y, _ = render_line(B, L[ln['id']], ln['syl'], sp, f0, per, 'sing/tts/' + tk)
             out[s0:s0 + len(y)] += y[:total - s0]
         out = out / (np.abs(out).max() + 1e-9) * 0.7
         p = os.path.join(B, f'sing/best_{sp}.wav'); write_wav(p, out, FS); print('합성', os.path.relpath(p, ROOT))
@@ -492,7 +500,7 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--ep', required=True); ap.add_argument('cmd', choices=['score', 'tts', 'synth', 'eval', 'search', 'render'])
     ap.add_argument('--seed', type=int, default=42); ap.add_argument('--mode', default='dp', choices=['dp', 'ctc']); ap.add_argument('--only', default='')
     a = ap.parse_args()
-    {'score': lambda: cmd_score(a.ep, a.mode), 'tts': lambda: cmd_tts(a.ep, a.seed), 'synth': lambda: cmd_synth(a.ep, a.mode),
+    {'score': lambda: cmd_score(a.ep, a.mode), 'tts': lambda: cmd_tts(a.ep, a.seed, set(x for x in a.only.split(',') if x)), 'synth': lambda: cmd_synth(a.ep, a.mode),
      'eval': lambda: cmd_eval(a.ep, a.mode), 'search': lambda: cmd_search(a.ep, set(x for x in a.only.split(',') if x)),
      'render': lambda: cmd_render(a.ep)}[a.cmd]()
 
