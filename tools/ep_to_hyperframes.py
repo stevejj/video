@@ -206,6 +206,8 @@ def main():
             fr = dict(scale=cam['from'], x=cam.get('pan_x', [0, 0])[0], y=cam.get('pan_y', [0, 0])[0])
             to = dict(scale=cam['to'], x=cam.get('pan_x', [0, 0])[1], y=cam.get('pan_y', [0, 0])[1], duration=L, ease='none')
             tl.append(f'tl.fromTo("#{cid}", {json.dumps(fr)}, {json.dumps(to)}, {t:.3f});')
+        for mv in fx.get('moves', []):  # 카메라 이동 순서(ep11: 말하는 쪽으로 확대): 프레임을 scale·x·y로 옮김(창 중심 기준)
+            tl.append(f'tl.to("#{cid}", {{scale: {mv["scale"]}, x: {mv.get("x", 0)}, y: {mv.get("y", 0)}, duration: {mv["dur"]:.3f}, ease: "{mv.get("ease", "power2.inOut")}"}}, {t + mv["at"]:.3f});')
         dr = fx.get('drift')
         if dr and not fx.get('shake') and not fx.get('jitter'):
             n = max(1, int(L / dr['period'] * 2))

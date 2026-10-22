@@ -21,6 +21,25 @@ SLOW_LEN = 4.8           # 3.45 / 0.7 ≈ 4.93 → 렌더 결과 4.83s
 CARD_LEN = 2.0           # 엔딩 카드
 S5_AT = 10.0 + SLOW_LEN + 3.0 + CARD_LEN   # 19.8: 현실 복귀(이모!)
 D = SLOW_LEN - 3.45      # 슬로모션 때문에 캬~가 밀리는 시간
+# 말하는 쪽 확대(사용자: "대사 칠 때 각각 확대, 진짜 광고처럼"). 얼굴 중심(1080x1920 프레임): 미순 (340, 980), 창수 (800, 980)
+ZOOM, PUSH = 1.35, 1.40                      # 다가간 뒤 대사 동안 천천히 더 다가감
+FACE_X = {'misun': 340, 'changsu': 800}
+SPEAK = [('misun', 0.0, 1.85), ('changsu', 1.85, 3.95), ('misun', 3.95, 5.6), ('changsu', 5.6, 7.65), ('misun', 7.65, 8.7)]
+WIDE_AT = 8.7                                # 짠은 둘이 함께 보이게 원래 화면으로
+
+
+def moves():
+    out = []
+    for who, a, b in SPEAK:
+        m = (ZOOM - 1) / 2 * 1080                # 화면 밖 검은 테두리가 안 보이는 최대 이동
+        x = round(max(-m, min(m, -ZOOM * (FACE_X[who] - 540))))
+        d = 0.6 if a == 0 else 0.5
+        out.append({'at': max(a - 0.25, 0), 'dur': d, 'scale': ZOOM, 'x': x, 'y': 0})
+        out.append({'at': max(a - 0.25, 0) + d, 'dur': round(b - 0.25 - (max(a - 0.25, 0) + d), 2), 'scale': PUSH, 'x': x, 'y': 0, 'ease': 'none'})
+    out.append({'at': WIDE_AT, 'dur': 0.5, 'scale': 1.0, 'x': 0, 'y': 0})
+    return out
+
+
 GRADE = {'filter': 'contrast(1.14) saturate(0.9) brightness(0.93) sepia(0.15)', 'vignette': 0.6, 'shade': 0.5}
 
 
@@ -108,7 +127,7 @@ def ad_look():
     s = {c: t0 for c, (t0, _) in SLOT.items()}
     F = json.load(open(os.path.join(ROOT, 'outputs/ep07/hf_fx.json')))
     F['cuts'] = {
-        '01': {'grade': GRADE, 'cam': {'from': 1.0, 'to': 1.03},
+        '01': {'grade': GRADE, 'moves': moves(),
                'copy': [cp(s['L1'], s['L2'] - s['L1'] - 0.15, '초겨울, 포차의 계절.'),
                         cp(s['L2'], s['L3'] - s['L2'] - 0.25, '입김마저 시원하다.'),
                         cp(s['L3'], s['L5'] - s['L3'] - 0.3, '차가운 잔에 담은', y=0.76),
