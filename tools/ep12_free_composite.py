@@ -15,20 +15,21 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EP = os.path.join(ROOT, 'outputs/ep12')
 MODEL = '/tmp/claude-0/-home-user-video/f018d661-8ddb-51f7-8e2d-f2480d28ac5d/scratchpad/models/isnet.onnx'
-MISUN = 'assets/characters/pang-misun/pang-misun_body_back.png'
-CHANGSU = 'assets/characters/pang-changsu/pang-changsu_body_back.png'
+REFS = {'back': ('assets/characters/pang-misun/pang-misun_body_back.png', 'assets/characters/pang-changsu/pang-changsu_body_back.png'),
+        'right': ('assets/characters/pang-misun/pang-misun_3q_right.png', 'assets/characters/pang-changsu/pang-changsu_3q_right.png')}   # 3/4 오른쪽 보기
 LINES = {'misun': '쟤가 부캉이야?', 'changsu': '웅! 다시 돌아왔다는뎅'}
 COLOR = {'misun': '#FFF1F6', 'changsu': '#EEF5FF'}      # 아주 연한 분홍·파랑
 SCENES = {
     # 원본 좌표: place = (누구, 아래 중심 x, 발 y, 키), sun = 그림자 방향(-1 왼쪽), crop = 결과로 쓸 영역, inpaint = 지울 화면 요소 상자
     # 결과 좌표: bubble = (누구, 풍선 중심, 동그라미 끝 = 머리 위)
-    'reel': dict(src='ref/source_reel.png', crop=(0, 0, 1010, 1796), out_w=1080, sun=-1,
+    # v4(사용자: "부캉이를 바라보며 서 있게, 시선은 상어로"): 상어가 오른쪽 아래 → 오른쪽을 보는 3/4 모습(얼굴도 보임)
+    'reel': dict(src='ref/source_reel.png', crop=(0, 0, 1010, 1796), out_w=1080, sun=-1, pose='right', tilt=-7,   # 오른쪽 아래(상어)로 고개를 살짝 숙임
                  # 걸어가던 두 사람 앞(발 y 510보다 앞)에 서서 그 둘을 가림. 더 앞에 있는 사람(난간 파란 셔츠·여자)은 다시 위로 올림
                  place=[('misun', 125, 528, 200), ('changsu', 222, 540, 210)],
                  front=[(140, 385, 255, 615), (35, 455, 185, 735)],
                  inpaint=[(90, 215, 140, 288), (110, 50, 320, 120), (830, 50, 1030, 120)],   # 인스타 뒤로가기·시각·신호/배터리
                  bubble=[('misun', (285, 150), (150, 335)), ('changsu', (660, 470), (262, 362))]),
-    'photo': dict(src='ref/source_photo.jpg', crop=(0, 0, 800, 657), out_w=1600, sun=0,
+    'photo': dict(src='ref/source_photo.jpg', crop=(0, 0, 800, 657), out_w=1600, sun=0, pose='back',
                   place=[('misun', 292, 712, 236), ('changsu', 462, 716, 246)],   # 오른쪽 아래 언론사 표시를 가리지 않는 자리
                   inpaint=[], front=[],
                   bubble=[('misun', (470, 670), (570, 956)), ('changsu', (1090, 784), (924, 936))]),
@@ -48,7 +49,7 @@ def cut(path):
 
 def sunlit(p):
     """한낮 햇빛: 위쪽 밝게·아래쪽 살짝 어둡게(색은 그대로 — 따뜻한 색을 더하면 회색 털이 베이지로 보임)."""
-    rgb = ImageEnhance.Color(ImageEnhance.Contrast(p.convert("RGB")).enhance(1.08)).enhance(0.55); a = p.getchannel("A")   # 시트의 누런 기 빼서 은회색으로
+    rgb = ImageEnhance.Color(ImageEnhance.Contrast(p.convert("RGB")).enhance(1.08)).enhance(0.75); a = p.getchannel("A")   # 시트의 누런 기 빼서 은회색으로(볼터치는 남게)
     g = np.linspace(1.08, 0.85, rgb.height)[:, None, None]
     out = Image.fromarray(np.clip(np.asarray(rgb).astype(float) * g, 0, 255).astype('uint8'))
     out.putalpha(a.filter(ImageFilter.GaussianBlur(0.8)))
@@ -92,7 +93,10 @@ def main():
     base = photo.convert('RGBA'); W, H = photo.size
     sh = Image.new('L', (W, H), 0); d = ImageDraw.Draw(sh); layers = []
     for who, cx, fy, ht in sorted(S['place'], key=lambda p: p[2]):     # 먼 쪽(위)부터 그림
-        p = cut(MISUN if who == 'misun' else CHANGSU); s = ht / p.height
+        p = cut(REFS[S['pose']][0 if who == 'misun' else 1])
+        if S.get('tilt'):
+            p = p.rotate(S['tilt'], expand=True, resample=Image.BICUBIC)
+        s = ht / p.height
         p = sunlit(p.resize((int(p.width * s), ht), Image.LANCZOS)); x, y = int(cx - p.width / 2), int(fy - ht)
         off = S['sun'] * p.width * 0.45
         d.ellipse([x + p.width * 0.1 + off, fy - 12, x + p.width * 0.9 + off, fy + 10], fill=120)
