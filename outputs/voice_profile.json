@@ -2547,9 +2547,9 @@
      "cut": "7",
      "speaker": "misun",
      "subtitle": "나는… 실패하지 않습니다.",
-     "tts": "[slow, deep, very serious] 나는... 실패하지 않습니다.",
+     "tts": "[slow, deliberate, low voice] 나는.... 실패하지.... 않습니다.",
      "expr": "01",
-     "max_len": 3.0,
+     "max_len": 3.5,
      "offset": 0.05,
      "inner": false,
      "tag_override": true,
@@ -2557,13 +2557,19 @@
      "len_raw": 2.43,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.92,
+     "len": 3.29,
      "file": "outputs/ep14/voice/lines/7.mp3",
-     "len_file": 3.34,
+     "len_file": 4.73,
      "over": false,
      "gap_before": 1.2,
      "fx": "room",
-     "dry": "outputs/ep14/voice/lines/7_dry.mp3"
+     "dry": "outputs/ep14/voice/lines/5b_dry.mp3",
+     "prev_dry": "outputs/ep14/voice/lines/7_dry.mp3",
+     "pauses": [
+      0.6,
+      0.6
+     ],
+     "same_as": "5b"
     },
     {
      "cut": "8",
@@ -2632,9 +2638,9 @@
      "cut": "10b",
      "speaker": "misun",
      "subtitle": "나는 실패하지 않습니다.",
-     "tts": "[cold, short, flat] 나는 실패하지 않습니다.",
+     "tts": "[slow, deliberate, low voice] 나는.... 실패하지.... 않습니다.",
      "expr": "01",
-     "max_len": 1.7,
+     "max_len": 3.5,
      "offset": 0.05,
      "inner": false,
      "tag_override": true,
@@ -2642,13 +2648,19 @@
      "len_raw": 1.91,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.49,
+     "len": 3.29,
      "file": "outputs/ep14/voice/lines/10b.mp3",
-     "len_file": 2.93,
+     "len_file": 4.73,
      "over": false,
-     "gap_before": 0.5,
+     "gap_before": 0.8,
      "fx": "room",
-     "dry": "outputs/ep14/voice/lines/10b_dry.mp3"
+     "dry": "outputs/ep14/voice/lines/5b_dry.mp3",
+     "prev_dry": "outputs/ep14/voice/lines/10b_dry.mp3",
+     "pauses": [
+      0.6,
+      0.6
+     ],
+     "same_as": "5b"
     },
     {
      "cut": "11a",
@@ -2759,38 +2771,38 @@
     },
     {
      "cut": "8",
-     "at": 26.32,
+     "at": 27.69,
      "file": "outputs/ep14/voice/lines/8.mp3"
     },
     {
      "cut": "9",
-     "at": 27.6,
+     "at": 28.97,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "10",
-     "at": 29.85,
+     "at": 31.22,
      "file": "outputs/ep14/voice/lines/10.mp3"
     },
     {
      "cut": "10b",
-     "at": 31.79,
+     "at": 33.46,
      "file": "outputs/ep14/voice/lines/10b.mp3"
     },
     {
      "cut": "11a",
-     "at": 34.28,
+     "at": 37.75,
      "file": "outputs/ep14/voice/lines/11a.mp3"
     },
     {
      "cut": "11b",
-     "at": 36.8,
+     "at": 40.27,
      "file": "outputs/ep14/voice/lines/11b.mp3"
     }
    ],
    "preview": {
     "file": "outputs/ep14/voice/preview.mp3",
-    "len": 40.39
+    "len": 43.86
    }
   }
  },
