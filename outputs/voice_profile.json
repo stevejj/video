@@ -582,7 +582,7 @@
     "target_lufs": -28,
     "duck_db": 4,
     "fade_in": 1.0,
-    "end_at": 31.4,
+    "end_at": 32.400000000000006,
     "fade_out": 1.6,
     "tempo_from": 15.3,
     "tempo": 1.08,
@@ -656,13 +656,13 @@
     {
      "key": "14",
      "file": "outputs/ep02/voice/lines/03.mp3",
-     "at": 26.3,
+     "at": 27.3,
      "len": 0.42
     },
     {
      "key": "15",
      "file": "outputs/ep02/voice/lines/15.mp3",
-     "at": 27.0,
+     "at": 28.0,
      "len": 1.49
     },
     {
