@@ -21,11 +21,14 @@ SLOW_LEN = 4.8           # 3.45 / 0.7 ≈ 4.93 → 렌더 결과 4.83s
 CARD_LEN = 2.0           # 엔딩 카드
 S5_AT = 10.0 + SLOW_LEN + 3.0 + CARD_LEN   # 19.8: 현실 복귀(이모!)
 D = SLOW_LEN - 3.45      # 슬로모션 때문에 캬~가 밀리는 시간
+# 광고 목소리(v4, 사용자: "목소리는 그대로, 광고 연기 톤 느낌"): 1~6번만, 7번(이모!)은 원래 소리
+AD_EQ = 'highpass=f=70,equalizer=f=150:t=q:w=1:g=4,equalizer=f=400:t=q:w=1.2:g=-2,equalizer=f=3500:t=q:w=1:g=3,acompressor=threshold=-22dB:ratio=3.5:attack=5:release=120:makeup=2'
+REVERB = {'len': 1.3, 'decay': 0.3, 'wet': 0.6}   # 말 끝 꼬리에만(ad_voice)
 # 말하는 쪽 확대(사용자: "대사 칠 때 각각 확대, 진짜 광고처럼"). 얼굴 중심(1080x1920 프레임): 미순 (340, 980), 창수 (800, 980)
-ZOOM, PUSH = 1.35, 1.40                      # 다가간 뒤 대사 동안 천천히 더 다가감
+ZOOM, PUSH = 1.6, 1.68                       # v4(사용자: "더 세게, 스피드하게 왔다갔다"): 빠르게 확 다가간 뒤 대사 동안 천천히 더
 FACE_X = {'misun': 340, 'changsu': 800}
-SPEAK = [('misun', 0.0, 1.85), ('changsu', 1.85, 3.95), ('misun', 3.95, 5.6), ('changsu', 5.6, 7.65), ('misun', 7.65, 8.7)]
-WIDE_AT = 8.7                                # 짠은 둘이 함께 보이게 원래 화면으로
+SPEAK = [('misun', 0.0, 2.13), ('changsu', 2.13, 4.23), ('misun', 4.23, 5.85), ('changsu', 5.85, 7.93), ('misun', 7.93, 8.8)]   # 대사 시작 시각에 맞춤
+WIDE_AT = 8.75                               # 짠은 둘이 함께 보이게 원래 화면으로
 
 
 def moves():
@@ -33,10 +36,10 @@ def moves():
     for who, a, b in SPEAK:
         m = (ZOOM - 1) / 2 * 1080                # 화면 밖 검은 테두리가 안 보이는 최대 이동
         x = round(max(-m, min(m, -ZOOM * (FACE_X[who] - 540))))
-        d = 0.6 if a == 0 else 0.5
-        out.append({'at': max(a - 0.25, 0), 'dur': d, 'scale': ZOOM, 'x': x, 'y': 0})
-        out.append({'at': max(a - 0.25, 0) + d, 'dur': round(b - 0.25 - (max(a - 0.25, 0) + d), 2), 'scale': PUSH, 'x': x, 'y': 0, 'ease': 'none'})
-    out.append({'at': WIDE_AT, 'dur': 0.5, 'scale': 1.0, 'x': 0, 'y': 0})
+        a0 = max(a - 0.12, 0); d = 0.2                       # 대사 0.12초 전, 0.2초 만에 휙
+        out.append({'at': a0, 'dur': d, 'scale': ZOOM, 'x': x, 'y': 0, 'ease': 'power3.out'})
+        out.append({'at': a0 + d, 'dur': round(b - 0.12 - (a0 + d), 2), 'scale': PUSH, 'x': x, 'y': 0, 'ease': 'none'})
+    out.append({'at': WIDE_AT, 'dur': 0.25, 'scale': 1.0, 'x': 0, 'y': 0, 'ease': 'power3.out'})
     return out
 
 
@@ -57,6 +60,24 @@ def fit(src, target, dst):
     return r, dur(dst)
 
 
+def ad_voice(x):
+    """광고 내레이션 느낌(목소리는 그대로): 저음 따뜻하게·발음 또렷하게·압축(가까이서 말하는 소리) + 말이 끊긴 자리에만 홀 울림 꼬리.
+    울림을 말소리 위에 깔면 받아쓰기가 "포차→푸차/부차의 계단"으로 틀림 → 말소리 구간은 울림 0, 끝난 뒤에만 남김."""
+    from scipy.signal import fftconvolve
+    dry = os.path.join(EP, 'voice/talk_track_dry.wav')
+    y = np.frombuffer(subprocess.run([FF, '-v', 'error', '-i', dry, '-af', AD_EQ, '-f', 'f32le', '-ac', '1', '-ar', str(SR), '-'], capture_output=True).stdout, np.float32).copy()[:len(x)]
+    rms = lambda a: np.sqrt((a[np.abs(a) > 1e-4] ** 2).mean())
+    y *= rms(x) / rms(y)
+    rng = np.random.default_rng(3); n = int(REVERB['len'] * SR); tt = np.arange(n) / SR
+    ir = rng.standard_normal(n) * np.exp(-tt / REVERB['decay']); ir[:int(0.025 * SR)] = 0          # 25ms 뒤부터 울림
+    ir = np.convolve(ir, np.ones(8) / 8, 'same'); ir /= np.sqrt((ir ** 2).sum())                       # 쇳소리 줄임
+    wet = fftconvolve(y, ir)[:len(y)]
+    k = int(0.04 * SR); env = np.convolve(np.abs(y), np.ones(k) / k, 'same')
+    gate = np.convolve((env <= 0.01).astype(np.float32), np.ones(k) / k, 'same')                  # 말소리 0, 쉼 1
+    out = y + REVERB['wet'] * gate * wet
+    return out / max(1.0, np.abs(out).max() / 0.97)
+
+
 def save(x, path):
     with wave.open(path, 'wb') as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.clip(x, -1, 1) * 32767).astype('<i2').tobytes())
@@ -70,7 +91,8 @@ def main():
         dst = os.path.join(EP, f'voice/lines/{c}_fit.wav'); r, d = fit(os.path.join(ROOT, L[c]['file']), ln, dst)
         a = pcm(dst); i = int(t0 * SR); talk[i:i + len(a)] += a[:len(talk) - i]
         subs.append((c, t0, t0 + max(d, ln) + 0.15)); print(f'{c} {r:.2f}배 → {d:.2f}s (자리 {ln}s)')
-    save(talk, os.path.join(EP, 'voice/talk_track.wav'))
+    save(talk, os.path.join(EP, 'voice/talk_track_dry.wav'))
+    save(ad_voice(talk), os.path.join(EP, 'voice/talk_track.wav'))
     dst = os.path.join(EP, 'voice/lines/L8_fit.wav'); r, d = fit(os.path.join(ROOT, L['L8']['file']), L8_SLOT[1], dst)
     s5 = pcm(os.path.join(ROOT, 'outputs/ep07/voice/s5_track.mp3')); s5[int(0.30 * SR):int(1.80 * SR)] = 0
     a = pcm(dst); i = int(L8_SLOT[0] * SR); s5[i:i + len(a)] += a[:len(s5) - i]
