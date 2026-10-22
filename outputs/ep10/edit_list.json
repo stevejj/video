@@ -14,32 +14,23 @@
   {
    "cut": "01",
    "kind": "still",
-   "source_cut": "01",
-   "image": "outputs/ep10/01/start_v1.png",
+   "source_cut": "04",
+   "image": "outputs/ep10/ref/k4_1080.png",
    "in": 0,
-   "len": 2.0,
+   "len": 15.99,
    "time_card": null
   },
   {
    "cut": "02",
    "kind": "still",
-   "source_cut": "02",
-   "image": "outputs/ep10/02/start_v2.png",
+   "source_cut": "05",
+   "image": "outputs/ep10/ref/k5_1080.png",
    "in": 0,
-   "len": 2.0,
-   "time_card": null
-  },
-  {
-   "cut": "03",
-   "kind": "still",
-   "source_cut": "03",
-   "image": "outputs/ep10/03/start_v1.png",
-   "in": 0,
-   "len": 10.0,
+   "len": 4.5,
    "time_card": null
   }
  ],
  "history": [
-  "2026-10-21 ep10 v1: 방구배틀 14s, Kling 0"
+  "2026-10-22 ep10 v4: 등 돌리고 방구배틀 20.5s, 눈 감은 채, 이불 움직임, 귀뚜라미 없음, Kling 0"
  ]
 }

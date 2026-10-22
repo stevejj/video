@@ -40,5 +40,12 @@
   "duration": 1.5,
   "file": "outputs/ep10/sfx/el/boxing_bell.mp3",
   "result": "ok 24702B"
+ },
+ {
+  "name": "duvet_rustle",
+  "prompt": "Soft duvet and bedsheet rustle, someone shifting slightly in bed at night, quiet and close, no voice, no music",
+  "duration": 1.5,
+  "file": "outputs/ep10/sfx/el/duvet_rustle.mp3",
+  "result": "ok 24702B"
  }
 ]
