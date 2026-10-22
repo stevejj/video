@@ -35,6 +35,11 @@
   .gmax { color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }
   .fb { height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }
   .fblabel { position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }
+  @font-face { font-family: "Jua"; src: url("media/Jua.ttf") format("truetype"); }
+  .toast { height: auto; text-align: center; z-index: 6; transform-origin: 50% 50%; }
+  .toastin { display: inline-block; padding: 22px 54px 24px 46px; border-radius: 999px; background: rgba(255,255,255,0.78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+             box-shadow: 0 10px 34px rgba(0,0,0,0.22), inset 0 0 0 2px rgba(255,255,255,0.6); font-family: "Jua", "NotoKR", sans-serif; font-size: 62px; color: #5A4A52; white-space: nowrap; }
+  .toasticon { display: inline-block; margin-right: 18px; color: #FF7EB3; font-family: "NotoKR", sans-serif; font-weight: 800; font-size: 66px; vertical-align: -2px; }
   .focusbox { border: 5px solid rgba(255,255,255,0.95); border-radius: 10px; box-sizing: border-box; transform-origin: 50% 50%; }
   .tagpill { z-index: 6; width: auto; height: auto; padding: 14px 40px 16px 34px; border-radius: 60px; color: #fff; font-size: 64px; font-weight: 900; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.35); -webkit-text-stroke: 2px rgba(0,0,0,0.25); }
   .tagsmall { font-size: 34px; font-weight: 800; margin-right: 18px; letter-spacing: 0.08em; opacity: 0.9; }
@@ -53,9 +58,10 @@
     <div class="winfx stamp" id="c01-st0" data-start="2.722" data-duration="1.445" style="left:503px; top:54px; width:420px; height:92px; white-space: nowrap; font-size:92px; line-height:92px; color:#FFD84A;">운동 끝!</div>
     <div class="winfx fb" id="c01-fb" data-start="1.163" data-duration="1.400" style="left:54px; top:46px; width:324px;"><img src="media/c01_fb.png" style="width:100%; display:block;" /><div class="fblabel">찰칵! 1장</div></div>
     <div class="flash" id="c01-fl0" data-start="1.083" data-duration="0.300"></div>
+    <div class="winfx toast" id="c02-ts0" data-start="5.217" data-duration="0.750" style="left:0; width:1080px; top:538px; opacity:0;"><span class="toastin">다시 찍기</span></div>
     <div class="winfx tagpill" id="c02-lb0" data-start="4.217" data-duration="1.000" style="top:46px; left:65px; background:#8A8F98; opacity:0;"><span class="tagsmall"></span>확대 검사 중...</div>
     <div class="frame" id="c02" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c02-v" src="media/02.png" data-start="4.167" data-duration="1.800" /></div>
-    <div class="winfx stamp" id="c02-st0" data-start="5.267" data-duration="0.700" style="left:330px; top:347px; width:420px; height:150px; white-space: nowrap; font-size:150px; line-height:150px; color:#E8322E;">다시!</div>
+    <div class="winfx tap" id="c02-tap0" data-start="5.517" data-duration="0.45" style="left:460px; top:504px; width:160px; height:160px;"></div>
     <div class="frame" id="c03" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c03-v" src="media/04_bg.png" data-start="5.967" data-duration="1.000" /><img id="c03-ms" class="layer" src="media/04_ms.png" data-start="5.967" data-duration="1.000" style="left:434.5px; top:696.1px; width:426.1px; height:541.4px; transform-origin:246.1px 372.7px;" /><img id="c03-db" class="layer" src="media/04_db.png" data-start="5.967" data-duration="1.000" style="left:711.6px; top:1223.4px; width:251.7px; height:104.1px; transform-origin:125.2px 98.4px;" /></div>
     <img class="winfx" id="c04-ov0" src="media/c04_ov0.png" data-start="9.809" data-duration="2.491" style="opacity:0; z-index:4;" />
     <div class="winfx focusbox" id="c04-ov0-f" data-start="9.809" data-duration="2.491" style="left:555px; top:115px; width:230px; height:230px; opacity:0; z-index:4;"></div>
@@ -95,18 +101,13 @@
     tl.fromTo("#c01-fb", {scale: 0.3, opacity: 0, rotation: -8}, {scale: 1, opacity: 1, rotation: -3, duration: 0.18, ease: "back.out(2)"}, 1.163);
     tl.to("#c01-fb", {scale: 0.8, opacity: 0, duration: 0.15}, 2.413);
     tl.fromTo("#c01-fl0", {opacity: 0.9}, {opacity: 0, duration: 0.300, ease: "power2.in"}, 1.083);
+    tl.fromTo("#c02-ts0", {opacity: 0, y: 24, scale: 0.9}, {opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.7)"}, 5.217);
+    tl.to("#c02-ts0", {opacity: 0, y: -10, duration: 0.25, ease: "power1.in"}, 5.717);
     tl.fromTo("#c02-lb0", {x: -420, opacity: 0}, {x: 0, opacity: 1, duration: 0.28, ease: "back.out(1.6)"}, 4.217);
     tl.to("#c02-lb0", {x: -420, opacity: 0, duration: 0.22, ease: "power2.in"}, 4.997);
-    tl.fromTo("#c02-st0", {scale: 2.4, opacity: 0, rotation: -10}, {scale: 1, opacity: 1, rotation: -3.3, duration: 0.12, ease: "power4.in"}, 5.267);
+    tl.fromTo("#c02-tap0", {scale: 0.3, opacity: 0.85}, {scale: 1.5, opacity: 0, duration: 0.42, ease: "power2.out"}, 5.517);
     tl.to("#c02", {scale: 1.0, x: 0, y: 0, duration: 0.300, ease: "none"}, 4.167);
     tl.to("#c02", {scale: 1.8, x: 0, y: 194, duration: 0.550, ease: "power3.inOut"}, 4.467);
-    tl.to("#c02", {x: 6.0, y: 3.0, duration: 0.0417, ease: "none"}, 5.267);
-    tl.to("#c02", {x: -4.0, y: 2.5, duration: 0.0417, ease: "none"}, 5.309);
-    tl.to("#c02", {x: 3.2, y: -2.0, duration: 0.0417, ease: "none"}, 5.350);
-    tl.to("#c02", {x: -3.0, y: -1.5, duration: 0.0417, ease: "none"}, 5.392);
-    tl.to("#c02", {x: 1.6, y: 1.0, duration: 0.0417, ease: "none"}, 5.434);
-    tl.to("#c02", {x: -0.8, y: 0.5, duration: 0.0417, ease: "none"}, 5.475);
-    tl.to("#c02", {x: 0, y: 0, duration: 0.08}, 5.517);
     tl.set("#c03-ms", {"rotation": -3, "x": -6}, 0);
     tl.to("#c03-ms", {...{"rotation": 8, "x": 0}, duration: 0.35, ease: "back.out(2)"}, 6.167);
     tl.fromTo("#c04-ov0", {opacity: 0}, {opacity: 1, duration: 0.15, ease: "power1.out"}, 9.809);

@@ -2,10 +2,10 @@
 """ep05 v2 헬스장 간 우리 미순이 — 고급 편집(Kling 0, 사용자 2026-10-22: "운동 안 하고 사진 찍는 거에 집중하는 느낌, 효과음·효과 연출 제대로").
 사용: python3 tools/ep05_v2_edit.py → a·d 클립, 뷰파인더 그림, edit_list.json, hf_fx.json, sfx/sfx_list.json, voice_profile ep05
 - A 포즈(뷰파인더 + 초점) → 찰칵(플래시·정지 0.6s·폴라로이드 "1장") → 덤벨 툭 + "운동 끝!" 도장(1.4배 빠르게) → 창수에게 총총(1.3배)
-- B 폰 화면: 핀치 확대로 얼굴 검사 → "다시!" + 땡 부저
+- B 폰 화면: 핀치 확대로 얼굴 검사 → 유리 알림창 "↺ 다시 찍기" + 톡 누름
 - C 갸웃(v1.1 퍼펫 그대로 — 바닥 덤벨 레이어 포함, 덤벨 사라짐 사고 방지)
 - D 후다닥 돌아가(1.4배 + 집중선) 덤벨 집고 같은 포즈 → 뷰파인더 → 찰칵 → 폴라로이드 "2장" + "운동 0회 · 사진 2장"
-- 소리: 새 배경음(ElevenLabs 음악), 효과음 ElevenLabs 7개(DSLR 셔터·덤벨 툭·총총·핀치·부저·후다닥·헬스장 소리) + 기존 톡·반짝.
+- 소리: 새 배경음(ElevenLabs 음악), 효과음 ElevenLabs(DSLR 셔터·덤벨 툭·총총·핀치·알림·톡·후다닥·헬스장 소리) + 기존 톡·반짝.
 """
 import json, os, re, subprocess
 import imageio_ffmpeg
@@ -95,8 +95,9 @@ def main():
         '02': {'moves': [{'at': 0.0, 'dur': 0.3, 'scale': 1.0, 'x': 0, 'y': 0, 'ease': 'none'},
                          {'at': 0.3, 'dur': 0.55, 'scale': 1.8, 'x': round(-(FACE_PHONE[0] * W - W / 2) * 1.8), 'y': round(-(FACE_PHONE[1] * WIN - WIN / 2) * 1.8), 'ease': 'power3.inOut'}],
                'labels': [lab(0.05, 1.0, '', '확대 검사 중...', GRAY, 0.06)],
-               'stamps': [{'at': 1.1, 'x': 0.5, 'y': 0.55, 'text': '다시!', 'size': 150, 'w': 420, 'rot': -10, 'color': '#E8322E', 'dur': LB - 1.1}],
-               'shake': {'at': 1.1, 'amp': 6, 'dur': 0.25}},
+               # 빨간 "다시!" 도장 → 폰 화면 위 유리 알림창 + 누르는 손끝(사용자: 빨간 글씨가 분위기에 안 맞음, 고급스럽게)
+               'toasts': [{'at': 1.05, 'dur': LB - 1.05, 'text': '다시 찍기', 'y': 0.70}],   # ↺ 기호는 글꼴에 없어 아주 작게 나옴 → 글자만
+               'taps': [{'at': 1.35, 'x': 0.5, 'y': 0.76, 'r': 80}]},
         '03': tilt,
         '04': {'speedlines': {'at': 0.0, 'dur': dd[0][1], 'cx': 0.6, 'cy': 0.45},
                'overlays': [{'at': round(pose - 0.4, 3), 'dur': round(LD - pose + 0.4, 3), 'img': vf, 'focus': {'x': FACE_A[0], 'y': FACE_A[1], 'size': 230}}],
@@ -114,7 +115,8 @@ def main():
              sf('drop', EL + 'dumbbell_drop.mp3', drop - 0.03, 1.0, -16),
              sf('steps1', EL + 'tiny_steps.mp3', walk, LA - walk + 0.1, -22, fo=0.2),
              sf('pinch', EL + 'pinch_zoom.mp3', TB + 0.3, 0.6, -20),
-             sf('buzzer', EL + 'wrong_buzzer.mp3', TB + 1.1, 0.8, -17),
+             sf('ui_pop', EL + 'ui_pop.mp3', TB + 1.05, 0.6, -18),   # 땡 부저 대신(유리 알림창과 맞게)
+             sf('ui_tap', EL + 'ui_tap.mp3', TB + 1.35, 0.3, -20),
              sf('rush', EL + 'rewind_rush.mp3', TD - 0.05, 0.68, -19),
              sf('steps2', EL + 'tiny_steps.mp3', TD, dd[0][1] + 0.1, -21, fo=0.2),
              sf('grip', 'outputs/ep02/sfx/el/cup_set.mp3', TD + grip, 0.4, -24),

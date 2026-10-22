@@ -1,11 +1,49 @@
 {
  "items": [
-  {"name": "dslr_shutter", "prompt": "Crisp professional DSLR camera shutter click with mirror slap, single shot, close, no music", "duration": 0.5},
-  {"name": "dumbbell_drop", "prompt": "Two small rubber-coated dumbbells dropped quickly onto a rubber gym floor, soft double thud and short roll, no music", "duration": 1.0},
-  {"name": "tiny_steps", "prompt": "Small cute quick pitter-patter footsteps hurrying across a rubber gym floor, cartoonish, no music", "duration": 1.5},
-  {"name": "pinch_zoom", "prompt": "Subtle digital smartphone pinch-to-zoom swoosh, soft UI sound, no music", "duration": 0.6},
-  {"name": "wrong_buzzer", "prompt": "Short cute cartoon wrong-answer buzzer 'bzzt bzzt', comedic, no music", "duration": 0.8},
-  {"name": "rewind_rush", "prompt": "Fast cartoon zip whoosh of someone rushing back in a hurry, comedic, no music", "duration": 0.7},
-  {"name": "gym_amb", "prompt": "Gym ambience room tone, distant weights clanking softly, faint treadmill hum, no music, no voices", "duration": 6.0}
+  {
+   "name": "dslr_shutter",
+   "prompt": "Crisp professional DSLR camera shutter click with mirror slap, single shot, close, no music",
+   "duration": 0.5
+  },
+  {
+   "name": "dumbbell_drop",
+   "prompt": "Two small rubber-coated dumbbells dropped quickly onto a rubber gym floor, soft double thud and short roll, no music",
+   "duration": 1.0
+  },
+  {
+   "name": "tiny_steps",
+   "prompt": "Small cute quick pitter-patter footsteps hurrying across a rubber gym floor, cartoonish, no music",
+   "duration": 1.5
+  },
+  {
+   "name": "pinch_zoom",
+   "prompt": "Subtle digital smartphone pinch-to-zoom swoosh, soft UI sound, no music",
+   "duration": 0.6
+  },
+  {
+   "name": "wrong_buzzer",
+   "prompt": "Short cute cartoon wrong-answer buzzer 'bzzt bzzt', comedic, no music",
+   "duration": 0.8
+  },
+  {
+   "name": "rewind_rush",
+   "prompt": "Fast cartoon zip whoosh of someone rushing back in a hurry, comedic, no music",
+   "duration": 0.7
+  },
+  {
+   "name": "gym_amb",
+   "prompt": "Gym ambience room tone, distant weights clanking softly, faint treadmill hum, no music, no voices",
+   "duration": 6.0
+  },
+  {
+   "name": "ui_pop",
+   "prompt": "Soft gentle smartphone notification pop, clean glassy UI chime, short, premium, no music",
+   "duration": 0.6
+  },
+  {
+   "name": "ui_tap",
+   "prompt": "Very soft smartphone screen tap click, subtle UI touch sound, no music",
+   "duration": 0.5
+  }
  ]
 }

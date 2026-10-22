@@ -141,6 +141,14 @@ def main():
                 tl.append(f'tl.fromTo("#{fid}", {{opacity: 0, scale: 1.6}}, {{opacity: 1, scale: 1, duration: 0.35, ease: "power3.out"}}, {d0 + 0.05:.3f});')
                 tl.append(f'tl.to("#{fid}", {{borderColor: "#7CFF7C", duration: 0.05}}, {d0 + 0.45:.3f});')
                 tl.append(f'tl.to("#{fid}", {{opacity: 0, duration: {fd}}}, {d0 + ov["dur"] - fd:.3f});')
+        for k, ts_ in enumerate(fx.get('toasts', [])):  # 유리 알림창(ep05 v2 "다시 찍기"): 반투명 흰 둥근 창이 살짝 커지며 떠오름(빨간 도장 대신 — 사용자: 분위기에 안 맞음)
+            tid_ = f'{cid}-ts{k}'; d0 = t + ts_['at']
+            shutil.copy(os.path.join(ROOT, 'assets/fonts/Jua-Regular.ttf'), os.path.join(out, 'media/Jua.ttf'))
+            media_html.append(f'<div class="winfx toast" id="{tid_}" data-start="{d0:.3f}" data-duration="{ts_["dur"]:.3f}" '
+                              f'style="left:0; width:{W}px; top:{ts_.get("y", 0.75) * win:.0f}px; opacity:0;"><span class="toastin">'
+                              f'{"<span class=toasticon>" + html.escape(ts_["icon"]) + "</span>" if ts_.get("icon") else ""}{html.escape(ts_["text"])}</span></div>')
+            tl.append(f'tl.fromTo("#{tid_}", {{opacity: 0, y: 24, scale: 0.9}}, {{opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.7)"}}, {d0:.3f});')
+            tl.append(f'tl.to("#{tid_}", {{opacity: 0, y: -10, duration: 0.25, ease: "power1.in"}}, {d0 + ts_["dur"] - 0.25:.3f});')
         for k, lb in enumerate(fx.get('labels', [])):  # 이름표(ep06 v2 댄스배틀): 둥근 색 띠가 왼쪽에서 미끄러져 들어왔다 나감
             lid = f'{cid}-lb{k}'; d0 = t + lb['at']
             media_html.append(f'<div class="winfx tagpill" id="{lid}" data-start="{d0:.3f}" data-duration="{lb["dur"]:.3f}" '
@@ -351,6 +359,11 @@ def main():
   .gmax {{ color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }}
   .fb {{ height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }}
   .fblabel {{ position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }}
+  @font-face {{ font-family: "Jua"; src: url("media/Jua.ttf") format("truetype"); }}
+  .toast {{ height: auto; text-align: center; z-index: 6; transform-origin: 50% 50%; }}
+  .toastin {{ display: inline-block; padding: 22px 54px 24px 46px; border-radius: 999px; background: rgba(255,255,255,0.78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+             box-shadow: 0 10px 34px rgba(0,0,0,0.22), inset 0 0 0 2px rgba(255,255,255,0.6); font-family: "Jua", "NotoKR", sans-serif; font-size: 62px; color: #5A4A52; white-space: nowrap; }}
+  .toasticon {{ display: inline-block; margin-right: 18px; color: #FF7EB3; font-family: "NotoKR", sans-serif; font-weight: 800; font-size: 66px; vertical-align: -2px; }}
   .focusbox {{ border: 5px solid rgba(255,255,255,0.95); border-radius: 10px; box-sizing: border-box; transform-origin: 50% 50%; }}
   .tagpill {{ z-index: 6; width: auto; height: auto; padding: 14px 40px 16px 34px; border-radius: 60px; color: #fff; font-size: 64px; font-weight: 900; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.35); -webkit-text-stroke: 2px rgba(0,0,0,0.25); }}
   .tagsmall {{ font-size: 34px; font-weight: 800; margin-right: 18px; letter-spacing: 0.08em; opacity: 0.9; }}

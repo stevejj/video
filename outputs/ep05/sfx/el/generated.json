@@ -47,5 +47,19 @@
   "duration": 6.0,
   "file": "outputs/ep05/sfx/el/gym_amb.mp3",
   "result": "ok 97009B"
+ },
+ {
+  "name": "ui_pop",
+  "prompt": "Soft gentle smartphone notification pop, clean glassy UI chime, short, premium, no music",
+  "duration": 0.6,
+  "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+  "result": "ok 10492B"
+ },
+ {
+  "name": "ui_tap",
+  "prompt": "Very soft smartphone screen tap click, subtle UI touch sound, no music",
+  "duration": 0.5,
+  "file": "outputs/ep05/sfx/el/ui_tap.mp3",
+  "result": "ok 8820B"
  }
 ]
