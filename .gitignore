@@ -24,5 +24,6 @@ outputs/*/ref/reference.mp4
 outputs/*/ref/rhythm_ref.mp4
 # ep12: 연합뉴스 사진 위 합성(사용자 선택) — 남의 사진이라 원본·합성 결과 모두 로컬에만
 outputs/ep12/ref/source_photo.jpg
+outputs/ep12/ref/source_reel.png
 outputs/ep12/01/
 outputs/ep12/prompts/cmp_*.jpg
