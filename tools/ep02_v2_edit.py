@@ -95,6 +95,8 @@ def main():
         if b['start'] < a['end'] and (a.get('pos') == b.get('pos')):
             a['end'] = round(b['start'] - 0.02, 3)
     T['subtitles'] = subs; T['note'] = 'v2: 자막 시각 = 새 음성 배치'
+    # 제목(2026-10-22 사용자): "남편이 소파에 못 앉는 이유", 노란색 = "못 앉는 이유"
+    T['title'] = dict(T1['title'], lines=[{'text': '남편이 소파에', 'color': '#FFFFFF'}, {'text': '못 앉는 이유', 'color': '#FFD84A'}])
     json.dump(T, open(os.path.join(EP, 'text_overlay.json'), 'w'), ensure_ascii=False, indent=1)
 
     items = []
