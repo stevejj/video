@@ -35,3 +35,9 @@ outputs/*/a/parts/
 outputs/*/d/parts/
 # ep13: 참조 드라마 장면 받아쓰기(원래 욕 포함) — 로컬에만
 outputs/ep13/ref/transcript_raw.txt
+outputs/ep13/ref/ref_vocals.mp3
+outputs/ep13/ref/ref_lines/
+outputs/ep13/ref/ref_audio.mp3
+outputs/ep13/ref/sep/
+outputs/ep13/ref/ref_lines_words.txt
+outputs/ep13/voice/cands/

@@ -1,0 +1,156 @@
+{
+ "03": {
+  "pick": {
+   "file": "t1_s7_st0.0.mp3.t.mp3",
+   "score": 0.795,
+   "emo": 0.795,
+   "txt": 0.0,
+   "dur_pen": 0,
+   "dur": 1.192,
+   "heard": " 이 수박새끼가",
+   "miss": []
+  },
+  "top": [
+   {
+    "file": "t1_s7_st0.0.mp3.t.mp3",
+    "score": 0.795,
+    "emo": 0.795,
+    "txt": 0.0,
+    "dur_pen": 0,
+    "dur": 1.192,
+    "heard": " 이 수박새끼가",
+    "miss": []
+   },
+   {
+    "file": "t0_s1234_st0.5.mp3.t.mp3",
+    "score": 0.873,
+    "emo": 0.717,
+    "txt": 0.0,
+    "dur_pen": 0.156,
+    "dur": 1.568,
+    "heard": " 이 수박새끼가!",
+    "miss": []
+   },
+   {
+    "file": "t1_s42_st0.0.mp3.t.mp3",
+    "score": 0.933,
+    "emo": 0.933,
+    "txt": 0.0,
+    "dur_pen": 0,
+    "dur": 1.128,
+    "heard": " 이 수박새끼가",
+    "miss": []
+   },
+   {
+    "file": "t1_s42_st0.5.mp3.t.mp3",
+    "score": 1.158,
+    "emo": 1.158,
+    "txt": 0.0,
+    "dur_pen": 0,
+    "dur": 1.232,
+    "heard": " 이 수박새끼가!",
+    "miss": []
+   },
+   {
+    "file": "t1_s7_st0.5.mp3.t.mp3",
+    "score": 1.255,
+    "emo": 1.255,
+    "txt": 0.0,
+    "dur_pen": 0,
+    "dur": 1.192,
+    "heard": " 이 수박새끼가",
+    "miss": []
+   }
+  ],
+  "n": 12,
+  "beep": [
+   [
+    0.558,
+    0.946
+   ]
+  ],
+  "file": "outputs/ep13/voice/lines/03.mp3",
+  "len": 1.2,
+  "ref": [
+   6.54,
+   7.78
+  ]
+ },
+ "11": {
+  "pick": {
+   "file": "t0_s42_st0.0.mp3.t.mp3",
+   "score": 1.789,
+   "emo": 0.677,
+   "txt": 1.111,
+   "dur_pen": 0,
+   "dur": 2.344,
+   "heard": " 니가 CGM이야? 옷도 아닌 새끼가 각질이야",
+   "miss": []
+  },
+  "top": [
+   {
+    "file": "t0_s42_st0.0.mp3.t.mp3",
+    "score": 1.789,
+    "emo": 0.677,
+    "txt": 1.111,
+    "dur_pen": 0,
+    "dur": 2.344,
+    "heard": " 니가 CGM이야? 옷도 아닌 새끼가 각질이야",
+    "miss": []
+   },
+   {
+    "file": "t1_s1234_st0.0.mp3.t.mp3",
+    "score": 2.096,
+    "emo": 0.897,
+    "txt": 0.667,
+    "dur_pen": 0.532,
+    "dur": 2.616,
+    "heard": " 니가 시즈엠이야? 옷도 아닌 새끼가 갑질이야?",
+    "miss": []
+   },
+   {
+    "file": "t1_s1234_st0.5.mp3.t.mp3",
+    "score": 2.158,
+    "emo": 1.047,
+    "txt": 1.111,
+    "dur_pen": 0,
+    "dur": 2.344,
+    "heard": " 니가 cgm이야? 옷도 아닌 새끼가 각질이야",
+    "miss": []
+   },
+   {
+    "file": "t1_s7_st0.5.mp3.t.mp3",
+    "score": 2.177,
+    "emo": 0.79,
+    "txt": 1.111,
+    "dur_pen": 0.276,
+    "dur": 2.488,
+    "heard": " 니가 CGM이야! 옷도 아닌 새끼가 각질이야!",
+    "miss": []
+   },
+   {
+    "file": "t1_s7_st0.0.mp3.t.mp3",
+    "score": 2.292,
+    "emo": 1.181,
+    "txt": 1.111,
+    "dur_pen": 0,
+    "dur": 2.296,
+    "heard": " 이가 CGM이야? 옷도 아닌 새끼가 각질이야!",
+    "miss": []
+   }
+  ],
+  "n": 12,
+  "beep": [
+   [
+    1.41,
+    1.737
+   ]
+  ],
+  "file": "outputs/ep13/voice/lines/11.mp3",
+  "len": 2.35,
+  "ref": [
+   19.86,
+   21.96
+  ]
+ }
+}
