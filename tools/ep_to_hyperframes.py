@@ -187,6 +187,8 @@ def main():
             for k in range(int(sp2['dur'] / 0.06)):
                 tl.append(f'tl.set("#{cid}-spd", {{rotation: {(k % 3) * 0.8:.1f}, opacity: {0.75 if k % 2 else 1}}}, {t + sp2["at"] + k * 0.06:.3f});')
         for k, stp in enumerate(fx.get('stamps', [])):  # 도장(✕ 등): 크게 쾅 찍히고 끝까지 남음
+            if any('가' <= ch <= '힣' or ch.isalpha() for ch in stp.get('text', '✕')):   # 2026-10-22 사용자: 효과 글씨는 유리 알림창(toasts)으로
+                print(f'⚠ 경고: 컷 {c["cut"]} 도장에 글자 "{stp["text"]}" — 효과 글씨는 toasts(유리 알림창)가 기본(02a 규칙). 도장은 ✕·◯ 같은 기호만')
             sid2 = f'{cid}-st{k}'; d0 = t + stp['at']; dd = stp.get('dur', L - stp['at'])
             media_html.append(f'<div class="winfx stamp" id="{sid2}" data-start="{d0:.3f}" data-duration="{dd:.3f}" '
                               f'style="left:{stp["x"] * W - stp.get("w", stp.get("size", 220)) / 2:.0f}px; top:{stp["y"] * win - stp.get("size", 220) / 2:.0f}px; width:{stp.get("w", stp.get("size", 220))}px; height:{stp.get("size", 220)}px; white-space: nowrap; '
