@@ -25,10 +25,11 @@ SCENES = {
     # v4(사용자: "부캉이를 바라보며 서 있게, 시선은 상어로"): 상어가 오른쪽 아래 → 오른쪽을 보는 3/4 모습(얼굴도 보임)
     'reel': dict(src='ref/source_reel.png', crop=(0, 0, 1010, 1796), out_w=1080, sun=-1, pose='right', tilt=-7,   # 오른쪽 아래(상어)로 고개를 살짝 숙임
                  # 걸어가던 두 사람 앞(발 y 510보다 앞)에 서서 그 둘을 가림. 더 앞에 있는 사람(난간 파란 셔츠·여자)은 다시 위로 올림
-                 place=[('misun', 125, 528, 200), ('changsu', 222, 540, 210)],
+                 # v5(사용자: "사람처럼 옆으로 나란히"): 같은 발 높이, 어깨가 거의 닿게. 발은 난간 안쪽(이 높이에서 난간 x≈230)
+                 place=[('misun', 92, 524, 192), ('changsu', 200, 524, 202)],
                  front=[(140, 385, 255, 615), (35, 455, 185, 735)],
                  inpaint=[(90, 215, 140, 288), (110, 50, 320, 120), (830, 50, 1030, 120)],   # 인스타 뒤로가기·시각·신호/배터리
-                 bubble=[('misun', (285, 150), (150, 335)), ('changsu', (660, 470), (262, 362))]),
+                 bubble=[('misun', (290, 150), (100, 345)), ('changsu', (660, 470), (250, 352))]),
     'photo': dict(src='ref/source_photo.jpg', crop=(0, 0, 800, 657), out_w=1600, sun=0, pose='back',
                   place=[('misun', 292, 712, 236), ('changsu', 462, 716, 246)],   # 오른쪽 아래 언론사 표시를 가리지 않는 자리
                   inpaint=[], front=[],
@@ -101,14 +102,14 @@ def main():
         off = S['sun'] * p.width * 0.45
         d.ellipse([x + p.width * 0.1 + off, fy - 12, x + p.width * 0.9 + off, fy + 10], fill=120)
         layers.append((p, x, y))
-    shadow = sh.filter(ImageFilter.GaussianBlur(8)).point(lambda v: int(v * 0.5))
+    shadow = sh.filter(ImageFilter.GaussianBlur(8)).point(lambda v: int(v * 0.7))   # 발밑이 떠 보이지 않게 조금 진하게
     base.alpha_composite(Image.composite(Image.new('RGBA', (W, H), (20, 25, 25, 255)), Image.new('RGBA', (W, H), (0, 0, 0, 0)), shadow))
     for p, x, y in layers:
         base.alpha_composite(p, (x, y))
     for x0, y0, x1, y1 in S['front']:   # 미순·창수보다 카메라에 가까운 사람은 다시 앞으로
         sys.path.insert(0, os.path.join(ROOT, 'tools'))
         from cutout import alpha
-        reg = photo.crop((x0, y0, x1, y1)); m = alpha(reg, MODEL).point(lambda v: 255 if v > 110 else int(v * 2))
+        reg = photo.crop((x0, y0, x1, y1)); m = alpha(reg, MODEL).point(lambda v: 255 if v > 150 else 0)   # 반투명 테두리가 미순·창수 위에 푸른 얼룩을 남김 → 확실한 부분만
         r_ = reg.convert('RGBA'); r_.putalpha(m.filter(ImageFilter.GaussianBlur(0.7))); base.alpha_composite(r_, (x0, y0))
     out = base.convert('RGB').crop(S['crop'])
     arr = np.asarray(out.filter(ImageFilter.GaussianBlur(0.35))).astype(float)
