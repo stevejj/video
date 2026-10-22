@@ -56,6 +56,13 @@ def main():
 
     C = F['cuts']
     C['01']['gauge'] = dict(C['01']['gauge'], glass=True)                                           # 2
+    # v2.3(사용자: 핀 조명이 미순 얼굴을 따라가게): 고정 원 → 얼굴 추적(tools/face_track.py, 클립 2.3~4.45s) + 프레임 안(카메라와 같이)
+    sp = C['02'].pop('spotlight')
+    from face_track import track
+    tp = os.path.join(EP, 'ref/misun_face_track_s2.json')
+    if not os.path.exists(tp):
+        json.dump(track(os.path.join(EP, 's2/clip_v1.mp4'), 2.3, 4.45, (610, 800, 840, 1010)), open(tp, 'w'))
+    C['02']['spot_track'] = {'at': sp['at'], 'dur': sp['dur'], 'r': 250, 'dark': sp.get('dark', 0.75), 'pts': json.load(open(tp))}
     st3 = [s['at'] for s in C['03'].pop('stamps')]                                                  # 1: 거절 순간(v1 도장 시각)
     L3 = next(c['len'] for c in cuts if c['cut'] == '03'); a3 = starts['03']
     ask = lambda txt: next(s['start'] for s in T['subtitles'] if s['text'] == txt) - a3            # 창수가 메뉴를 말한 순간

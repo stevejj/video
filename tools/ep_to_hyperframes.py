@@ -128,6 +128,17 @@ def main():
             tl.append(f'tl.fromTo("#{cid}-gh{gi}", {{opacity: 0, y: 0}}, {{opacity: {gh.get("opacity", 0.55)}, y: {-gh.get("rise", 260)}, duration: {gh["dur"]:.3f}, ease: "power1.out"}}, {t + gh["at"]:.3f});')
             for k in range(int(gh['dur'] / 0.4)):
                 tl.append(f'tl.to("#{cid}-gh{gi}", {{x: {14 * (1 if k % 2 else -1)}, duration: 0.4, ease: "sine.inOut"}}, {t + gh["at"] + k * 0.4:.3f});')
+        stk = fx.get('spot_track')
+        if stk:  # 따라가는 핀 조명(ep09 v2): 프레임 안에 넣어 카메라 줌·이동과 같이 움직이고, 얼굴 추적점(face_track)을 따라감
+            pts_ = stk['pts']; R = 2880; px0, py0 = pts_[0][1], pts_[0][2]; r0 = stk.get('r', 250)
+            el += (f'<div class="layer spottrack" id="{cid}-stk" data-start="{t + stk["at"]:.3f}" data-duration="{stk["dur"]:.3f}" '
+                   f'style="left:{px0 - R}px; top:{py0 - R}px; width:{2 * R}px; height:{2 * R}px; opacity:0; '
+                   f'background: radial-gradient(circle {r0}px at 50% 50%, rgba(255,240,200,0.10) 0%, rgba(255,240,200,0.05) 70%, rgba(0,0,0,{stk.get("dark", 0.75)}) 100%);"></div>')
+            tl.append(f'tl.fromTo("#{cid}-stk", {{opacity: 0}}, {{opacity: 1, duration: 0.15, ease: "power2.out"}}, {t + stk["at"]:.3f});')
+            for (ta, xa, ya), (tb, xb, yb) in zip(pts_, pts_[1:]):
+                if tb <= stk['at']:
+                    continue
+                tl.append(f'tl.to("#{cid}-stk", {{x: {xb - px0}, y: {yb - py0}, duration: {tb - max(ta, stk["at"]):.3f}, ease: "none"}}, {t + max(ta, stk["at"]):.3f});')
         # 래퍼는 타이밍 없음(video_nested_in_timed_element 회피). transform-origin = 창 중심
         for k, ov in enumerate(fx.get('overlays', [])):  # 창 전체 이미지 덮개(ep05 v2 뷰파인더): 서서히 나타났다 사라짐
             oid = f'{cid}-ov{k}'; d0 = t + ov['at']; fd = ov.get('fade', 0.15)
@@ -360,6 +371,7 @@ def main():
   #win {{ position: absolute; left: 0; top: {top}px; width: {W}px; height: {win}px; overflow: hidden; background: #000; }}
   .frame {{ position: absolute; left: 0; width: {W}px; height: {H}px; will-change: transform; }}
   .frame img.layer {{ position: absolute; width: auto; height: auto; object-fit: fill; }}
+  .frame .spottrack {{ position: absolute; pointer-events: none; }}
   .frame img:not(.layer), .frame video {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; object-fit: cover; display: block; }}
   #title {{ position: absolute; left: 0; width: 100%; top: {ti['center_y'] - ti['size'] - ti['line_gap'] / 2:.0f}px; text-align: center; font-size: {ti['size']}px; font-weight: {ti['weight']}; line-height: {ti['size'] + ti['line_gap']}px;{' -webkit-text-stroke: %dpx #111; paint-order: stroke fill; text-shadow: 0 4px 14px rgba(0,0,0,0.55);' % ti['stroke'] if ti.get('stroke') else ''} }}
   #channel {{ position: absolute; left: 0; width: 100%; top: {ch['center_y'] - ch['size'] * 0.7:.0f}px; text-align: center; font-size: {ch['size']}px; font-weight: {ch['weight']}; color: {ch['color']}; opacity: {ch.get('opacity', 1)}; line-height: 1.4;{' -webkit-text-stroke: %dpx #111; paint-order: stroke fill; text-shadow: 0 3px 10px rgba(0,0,0,0.55);' % ch['stroke'] if ch.get('stroke') else ''} }}

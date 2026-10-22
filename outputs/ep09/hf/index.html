@@ -12,6 +12,7 @@
   #win { position: absolute; left: 0; top: 576px; width: 1080px; height: 768px; overflow: hidden; background: #000; }
   .frame { position: absolute; left: 0; width: 1080px; height: 1920px; will-change: transform; }
   .frame img.layer { position: absolute; width: auto; height: auto; object-fit: fill; }
+  .frame .spottrack { position: absolute; pointer-events: none; }
   .frame img:not(.layer), .frame video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; display: block; }
   #title { position: absolute; left: 0; width: 100%; top: 287px; text-align: center; font-size: 104px; font-weight: 800; line-height: 122px; }
   #channel { position: absolute; left: 0; width: 100%; top: 1384px; text-align: center; font-size: 52px; font-weight: 700; color: #FFFFFF; opacity: 0.9; line-height: 1.4; }
@@ -64,8 +65,7 @@
   <div id="win">
         <div class="frame" id="c01" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c01-v" src="media/s1.mp4" data-start="0.000" data-duration="4.600" data-media-start="0.000" muted></video></div>
     <div class="winfx gauge glassg" id="c01-gg" data-start="3.140" data-duration="1.460" style="top:154px;"><span class="glabel">배고픔</span><span class="gbar"><span class="gfill" id="c01-ggf"></span></span><span class="gmax" id="c01-ggm">MAX</span></div>
-    <div class="frame" id="c02" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c02-v" src="media/s2.mp4" data-start="4.600" data-duration="4.400" data-media-start="0.000" muted></video></div>
-    <div class="winfx" id="c02-spot" data-start="6.960" data-duration="2.040" style="background: radial-gradient(circle 292px at 713px 346px, rgba(255,240,200,0.10) 0%, rgba(255,240,200,0.05) 70%, rgba(0,0,0,0.78) 100%); opacity:0;"></div>
+    <div class="frame" id="c02" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c02-v" src="media/s2.mp4" data-start="4.600" data-duration="4.400" data-media-start="0.000" muted></video><div class="layer spottrack" id="c02-stk" data-start="6.960" data-duration="2.040" style="left:-2156px; top:-1972px; width:5760px; height:5760px; opacity:0; background: radial-gradient(circle 250px at 50% 50%, rgba(255,240,200,0.10) 0%, rgba(255,240,200,0.05) 70%, rgba(0,0,0,0.78) 100%);"></div></div>
     <div class="winfx chips" id="c03-ch" data-start="9.000" data-duration="6.700" style="top:27px; opacity:0;"><span class="chipsin"><b class=chiptitle>오늘의 후보</b><span class="chip" id="c03-ch0">치킨<i class="strike" id="c03-ch0s"></i></span><span class="chip" id="c03-ch1" style="opacity:0">피자<i class="strike" id="c03-ch1s"></i></span><span class="chip" id="c03-ch2" style="opacity:0">떡볶이<i class="strike" id="c03-ch2s"></i></span><span class="chip" id="c03-ch3" style="opacity:0">족발<i class="strike" id="c03-ch3s"></i></span></span></div>
     <div class="frame" id="c03" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c03-v" src="media/s3.mp4" data-start="9.000" data-duration="6.700" data-media-start="0.000" muted></video></div>
     <div class="winfx toast" id="c04-ts0" data-start="18.500" data-duration="1.600" style="left:0; width:1080px; top:384px; opacity:0;"><span class="toastin">결정 실패…</span></div>
@@ -138,7 +138,33 @@
     placeSubs();
         tl.fromTo("#c01-ggf", {width: "0%", backgroundColor: "#FFD3E4"}, {width: "100%", backgroundColor: "#FF7EB3", duration: 1.0, ease: "power2.in"}, 3.140);
     tl.fromTo("#c01-ggm", {scale: 0, opacity: 0}, {scale: 1, opacity: 1, duration: 0.18, ease: "back.out(3)"}, 4.140);
-    tl.fromTo("#c02-spot", {opacity: 0}, {opacity: 1, duration: 0.15, ease: "power2.out"}, 6.960);
+    tl.fromTo("#c02-stk", {opacity: 0}, {opacity: 1, duration: 0.15, ease: "power2.out"}, 6.960);
+    tl.to("#c02-stk", {x: -1, y: 2, duration: 0.023, ease: "none"}, 6.960);
+    tl.to("#c02-stk", {x: -2, y: 3, duration: 0.084, ease: "none"}, 6.983);
+    tl.to("#c02-stk", {x: -3, y: 5, duration: 0.083, ease: "none"}, 7.067);
+    tl.to("#c02-stk", {x: -5, y: 9, duration: 0.083, ease: "none"}, 7.150);
+    tl.to("#c02-stk", {x: -5, y: 7, duration: 0.084, ease: "none"}, 7.233);
+    tl.to("#c02-stk", {x: -6, y: 7, duration: 0.083, ease: "none"}, 7.317);
+    tl.to("#c02-stk", {x: -6, y: 11, duration: 0.083, ease: "none"}, 7.400);
+    tl.to("#c02-stk", {x: -7, y: 11, duration: 0.084, ease: "none"}, 7.483);
+    tl.to("#c02-stk", {x: -7, y: 9, duration: 0.083, ease: "none"}, 7.567);
+    tl.to("#c02-stk", {x: -7, y: 10, duration: 0.083, ease: "none"}, 7.650);
+    tl.to("#c02-stk", {x: -7, y: 8, duration: 0.084, ease: "none"}, 7.733);
+    tl.to("#c02-stk", {x: -5, y: 8, duration: 0.083, ease: "none"}, 7.817);
+    tl.to("#c02-stk", {x: 2, y: 10, duration: 0.083, ease: "none"}, 7.900);
+    tl.to("#c02-stk", {x: 12, y: 14, duration: 0.084, ease: "none"}, 7.983);
+    tl.to("#c02-stk", {x: 23, y: 16, duration: 0.083, ease: "none"}, 8.067);
+    tl.to("#c02-stk", {x: 30, y: 16, duration: 0.083, ease: "none"}, 8.150);
+    tl.to("#c02-stk", {x: 30, y: 15, duration: 0.084, ease: "none"}, 8.233);
+    tl.to("#c02-stk", {x: 23, y: 12, duration: 0.083, ease: "none"}, 8.317);
+    tl.to("#c02-stk", {x: 13, y: 9, duration: 0.083, ease: "none"}, 8.400);
+    tl.to("#c02-stk", {x: 7, y: 7, duration: 0.084, ease: "none"}, 8.483);
+    tl.to("#c02-stk", {x: 7, y: 7, duration: 0.083, ease: "none"}, 8.567);
+    tl.to("#c02-stk", {x: 10, y: 8, duration: 0.083, ease: "none"}, 8.650);
+    tl.to("#c02-stk", {x: 12, y: 7, duration: 0.084, ease: "none"}, 8.733);
+    tl.to("#c02-stk", {x: 11, y: 7, duration: 0.083, ease: "none"}, 8.817);
+    tl.to("#c02-stk", {x: 5, y: 7, duration: 0.083, ease: "none"}, 8.900);
+    tl.to("#c02-stk", {x: -3, y: 7, duration: 0.084, ease: "none"}, 8.983);
     tl.fromTo("#c02", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.16, "x": -130, "y": 0, "duration": 4.4, "ease": "none"}, 4.600);
     tl.to("#c02", {scale: 1.22, duration: 0.08, ease: "power3.out", overwrite: "auto"}, 7.010);
     tl.to("#c02", {scale: 1.18, duration: 0.35, ease: "power2.out"}, 7.090);
