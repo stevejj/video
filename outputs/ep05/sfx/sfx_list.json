@@ -5,7 +5,7 @@
    "name": "bgm",
    "file": "outputs/ep05/bgm/selfie_gym.mp3",
    "at": 0.0,
-   "len": 12.3,
+   "len": 14.009,
    "target_lufs": -18,
    "fade_out": 0.8,
    "fade_in": 0.2,
@@ -17,7 +17,7 @@
    "name": "gym",
    "file": "outputs/ep05/sfx/el/gym_amb.mp3",
    "at": 0.0,
-   "len": 12.3,
+   "len": 14.009,
    "target_lufs": -36,
    "fade_out": 0.6,
    "loop": true,
@@ -47,6 +47,17 @@
    "measured_lufs": -27.9,
    "measured_file": "outputs/ep05/sfx/el/dumbbell_drop.mp3",
    "gain": 11.9
+  },
+  {
+   "name": "done_pop",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 2.842,
+   "len": 0.6,
+   "target_lufs": -21,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -3.9
   },
   {
    "name": "steps1",

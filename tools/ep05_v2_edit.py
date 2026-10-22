@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ep05 v2 헬스장 간 우리 미순이 — 고급 편집(Kling 0, 사용자 2026-10-22: "운동 안 하고 사진 찍는 거에 집중하는 느낌, 효과음·효과 연출 제대로").
 사용: python3 tools/ep05_v2_edit.py → a·d 클립, 뷰파인더 그림, edit_list.json, hf_fx.json, sfx/sfx_list.json, voice_profile ep05
-- A 포즈(뷰파인더 + 초점) → 찰칵(플래시·정지 0.6s·폴라로이드 "1장") → 덤벨 툭 + "운동 끝!" 도장(1.4배 빠르게) → 창수에게 총총(1.3배)
+- A 포즈(뷰파인더 + 초점) → 찰칵(플래시·정지 0.6s·폴라로이드 "1장") → 덤벨 툭 + 유리 알림창 "운동 끝!"(1.4배 빠르게) → 창수에게 총총(1.3배)
 - B 폰 화면: 핀치 확대로 얼굴 검사 → 유리 알림창 "↺ 다시 찍기" + 톡 누름
 - C 갸웃(v1.1 퍼펫 그대로 — 바닥 덤벨 레이어 포함, 덤벨 사라짐 사고 방지)
 - D 후다닥 돌아가(1.4배 + 집중선) 덤벨 집고 같은 포즈 → 뷰파인더 → 찰칵 → 폴라로이드 "2장" + "운동 0회 · 사진 2장"
@@ -62,7 +62,7 @@ def viewfinder():
 
 def main():
     a, LA = build('a', '02/clip_v1.mp4', [('seg', 0.3, 1.38, 1), ('hold', 0.6), ('seg', 1.38, 2.9, 1.4), ('seg', 2.9, 4.6, 1.3)])
-    dd, LD = build('d', '05/clip_v1.mp4', [('seg', 0.2, 1.6, 1.4), ('seg', 1.6, 4.38, 1), ('hold', 1.5)])
+    dd, LD = build('d', '05/clip_v1.mp4', [('seg', 0.2, 1.6, 1.4), ('seg', 1.6, 4.38, 1), ('hold', 3.2)])   # 마지막 멈춤 1.5 → 3.2s(사용자: 운동 0회·사진 2장 더 오래)
     LB, LC = 1.8, 1.0
     TA, TB, TC, TD = 0.0, LA, LA + LB, LA + LB + LC; END = TD + LD
     shot1 = a[1][0]; drop = a[2][0] + (2.8 - 1.38) / 1.4; walk = a[3][0]
@@ -74,7 +74,7 @@ def main():
     clip = lambda cut, src, L: {'cut': cut, 'kind': 'clip', 'source_cut': src, 'clip_tag': 'v1', 'in': 0.0, 'len': L, 'time_card': None}
     E = json.load(open(os.path.join(EP, 'edit_list.json')))
     E['cuts'] = [clip('01', 'a', LA), still('02', '03', 'outputs/ep05/04/start_v1.png', LB), still('03', '04', 'outputs/ep05/03/start_v1.png', LC), clip('04', 'd', LD)]
-    E['history'] = E.get('history', []) + [f'2026-10-22 ep05 v2: Kling 0 고급 편집(뷰파인더·폴라로이드·운동 끝 도장·핀치 확대·다시!·운동 0회 사진 2장), {END:.1f}s']
+    E['history'] = E.get('history', []) + [f'2026-10-22 ep05 v2: Kling 0 고급 편집(뷰파인더·폴라로이드·운동 끝·핀치 확대·다시 찍기·운동 0회 사진 2장), {END:.1f}s']
     json.dump(E, open(os.path.join(EP, 'edit_list.json'), 'w'), ensure_ascii=False, indent=1)
 
     F = json.load(open(os.path.join(EP, 'hf_fx.json')))
@@ -91,7 +91,8 @@ def main():
         '01': {'overlays': [{'at': 0.0, 'dur': shot1 + 0.6, 'img': vf, 'focus': {'x': FACE_A[0], 'y': FACE_A[1], 'size': 230}}],
                'flash': [{'at': shot1, 'dur': 0.3, 'peak': 0.9}],
                'flashback': polaroid('a', shot1 - 0.05, shot1 + 0.08, 1, 0.2, 0.06),   # 왼쪽 위(창수 머리 쪽) — 미순 얼굴 안 가리게
-               'stamps': [{'at': round(drop, 3), 'x': 0.66, 'y': 0.13, 'text': '운동 끝!', 'size': 92, 'w': 420, 'rot': -8, 'color': '#FFD84A', 'dur': round(LA - drop, 3)}]},
+               # 노란 "운동 끝!" 도장 → 유리 알림창(사용자: 노란 글씨 효과도 수정, '다시 찍기'와 같은 고급 느낌)
+               'toasts': [{'at': round(drop, 3), 'dur': round(LA - drop, 3), 'text': '운동 끝!', 'y': 0.08}]},
         '02': {'moves': [{'at': 0.0, 'dur': 0.3, 'scale': 1.0, 'x': 0, 'y': 0, 'ease': 'none'},
                          {'at': 0.3, 'dur': 0.55, 'scale': 1.8, 'x': round(-(FACE_PHONE[0] * W - W / 2) * 1.8), 'y': round(-(FACE_PHONE[1] * WIN - WIN / 2) * 1.8), 'ease': 'power3.inOut'}],
                'labels': [lab(0.05, 1.0, '', '확대 검사 중...', GRAY, 0.06)],
@@ -113,6 +114,7 @@ def main():
              sf('gym', EL + 'gym_amb.mp3', 0.0, END, -36, loop=True, fade_in=0.3, fo=0.6),
              sf('shutter1', EL + 'dslr_shutter.mp3', shot1 - 0.03, 0.48, -13),
              sf('drop', EL + 'dumbbell_drop.mp3', drop - 0.03, 1.0, -16),
+             sf('done_pop', EL + 'ui_pop.mp3', drop + 0.12, 0.6, -21),   # "운동 끝!" 알림창
              sf('steps1', EL + 'tiny_steps.mp3', walk, LA - walk + 0.1, -22, fo=0.2),
              sf('pinch', EL + 'pinch_zoom.mp3', TB + 0.3, 0.6, -20),
              sf('ui_pop', EL + 'ui_pop.mp3', TB + 1.05, 0.6, -18),   # 땡 부저 대신(유리 알림창과 맞게)

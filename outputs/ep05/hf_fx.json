@@ -38,17 +38,12 @@
     "y": 0.06,
     "color": true
    },
-   "stamps": [
+   "toasts": [
     {
      "at": 2.722,
-     "x": 0.66,
-     "y": 0.13,
+     "dur": 1.445,
      "text": "운동 끝!",
-     "size": 92,
-     "w": 420,
-     "rot": -8,
-     "color": "#FFD84A",
-     "dur": 1.445
+     "y": 0.08
     }
    ]
   },
@@ -159,7 +154,7 @@
    "overlays": [
     {
      "at": 2.842,
-     "dur": 2.491,
+     "dur": 4.2,
      "img": "outputs/ep05/ref/viewfinder.png",
      "focus": {
       "x": 0.62,
@@ -179,7 +174,7 @@
     "image": "outputs/ep05/ref/polaroid_2.png",
     "raw": true,
     "at": 3.913,
-    "dur": 1.42,
+    "dur": 3.129,
     "label": "찰칵! 2장",
     "w": 0.3,
     "x": 0.2,
@@ -189,7 +184,7 @@
    "labels": [
     {
      "at": 4.183,
-     "dur": 1.15,
+     "dur": 2.859,
      "small": "오늘",
      "text": "운동 0회",
      "color": "#8A8F98",
@@ -197,7 +192,7 @@
     },
     {
      "at": 4.383,
-     "dur": 0.95,
+     "dur": 2.659,
      "small": "오늘",
      "text": "사진 2장",
      "color": "#FF6FA8",
