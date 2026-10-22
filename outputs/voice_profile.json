@@ -2304,7 +2304,8 @@
      "len": 1.19,
      "file": "outputs/ep14/voice/lines/2.mp3",
      "len_file": 1.2,
-     "over": false
+     "over": false,
+     "gap_before": 1.5
     },
     {
      "cut": "3",
@@ -2316,15 +2317,20 @@
      "offset": 0.05,
      "inner": true,
      "tag_override": true,
-     "seed": 2024,
+     "seed": 1234,
      "len_raw": 1.58,
      "tempo": 1.0,
      "speedup": 1.1,
-     "len": 1.44,
+     "len": 1.33,
      "file": "outputs/ep14/voice/lines/3.mp3",
-     "len_file": 5.15,
+     "len_file": 3.37,
      "over": false,
-     "asr": 1.0
+     "asr": 1.0,
+     "gap_before": 0.4,
+     "speedup_override": 1.1,
+     "fx": "cave_light",
+     "asr_ref": "또시작이네",
+     "dry": "outputs/ep14/voice/lines/3_dry.mp3"
     },
     {
      "cut": "4a",
@@ -2344,7 +2350,8 @@
      "file": "outputs/ep14/voice/lines/4a.mp3",
      "len_file": 0.68,
      "over": false,
-     "asr": 1.0
+     "asr": 1.0,
+     "gap_before": 0.6
     },
     {
      "cut": "4b",
@@ -2364,7 +2371,8 @@
      "file": "outputs/ep14/voice/lines/4b.mp3",
      "len_file": 0.81,
      "over": false,
-     "asr": 0.67
+     "asr": 0.67,
+     "gap_before": 0.3
     },
     {
      "cut": "4c",
@@ -2383,7 +2391,8 @@
      "len": 0.79,
      "file": "outputs/ep14/voice/lines/4c.mp3",
      "len_file": 0.81,
-     "over": false
+     "over": false,
+     "gap_before": 0.3
     },
     {
      "cut": "4d",
@@ -2402,7 +2411,8 @@
      "len": 0.79,
      "file": "outputs/ep14/voice/lines/4d.mp3",
      "len_file": 0.81,
-     "over": false
+     "over": false,
+     "gap_before": 0.3
     },
     {
      "cut": "4e",
@@ -2421,7 +2431,8 @@
      "len": 0.42,
      "file": "outputs/ep14/voice/lines/4e.mp3",
      "len_file": 0.44,
-     "over": false
+     "over": false,
+     "gap_before": 0.3
     },
     {
      "cut": "5a",
@@ -2441,15 +2452,16 @@
      "file": "outputs/ep14/voice/lines/5a.mp3",
      "len_file": 1.52,
      "over": false,
-     "asr": 1.0
+     "asr": 1.0,
+     "gap_before": 1.2
     },
     {
      "cut": "5b",
      "speaker": "misun",
      "subtitle": "나는 실패하지 않습니다.",
-     "tts": "[calm, matter-of-fact, low voice] 나는 실패하지 않습니다.",
+     "tts": "[slow, deliberate, low voice] 나는.... 실패하지.... 않습니다.",
      "expr": "01",
-     "max_len": 2.0,
+     "max_len": 3.5,
      "offset": 0.05,
      "inner": false,
      "tag_override": true,
@@ -2457,10 +2469,18 @@
      "len_raw": 1.93,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.54,
+     "len": 3.29,
      "file": "outputs/ep14/voice/lines/5b.mp3",
-     "len_file": 1.57,
-     "over": false
+     "len_file": 4.73,
+     "over": false,
+     "gap_before": 1.3,
+     "pauses": [
+      0.6,
+      0.6
+     ],
+     "fx": "room",
+     "dry": "outputs/ep14/voice/lines/5b_dry.mp3",
+     "asr": 1.0
     },
     {
      "cut": "5c",
@@ -2479,7 +2499,8 @@
      "len": 0.79,
      "file": "outputs/ep14/voice/lines/5c.mp3",
      "len_file": 0.78,
-     "over": false
+     "over": false,
+     "gap_before": 0.3
     },
     {
      "cut": "5d",
@@ -2499,7 +2520,8 @@
      "file": "outputs/ep14/voice/lines/5d.mp3",
      "len_file": 0.99,
      "over": false,
-     "asr": 1.0
+     "asr": 1.0,
+     "gap_before": 0.3
     },
     {
      "cut": "6",
@@ -2518,7 +2540,8 @@
      "len": 2.53,
      "file": "outputs/ep14/voice/lines/6.mp3",
      "len_file": 2.53,
-     "over": false
+     "over": false,
+     "gap_before": 0.8
     },
     {
      "cut": "7",
@@ -2534,10 +2557,13 @@
      "len_raw": 2.43,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.94,
+     "len": 1.92,
      "file": "outputs/ep14/voice/lines/7.mp3",
-     "len_file": 1.96,
-     "over": false
+     "len_file": 3.34,
+     "over": false,
+     "gap_before": 1.2,
+     "fx": "room",
+     "dry": "outputs/ep14/voice/lines/7_dry.mp3"
     },
     {
      "cut": "8",
@@ -2556,27 +2582,31 @@
      "len": 1.13,
      "file": "outputs/ep14/voice/lines/8.mp3",
      "len_file": 1.15,
-     "over": false
+     "over": false,
+     "gap_before": 0.5
     },
     {
      "cut": "9",
      "speaker": "misun",
      "subtitle": "조효오오옹!!!",
-     "tts": "[slow, deep, solemn, drawn out] 조효오오오오옹.",
+     "tts": "[serious, firm, low voice] 조효오오옹.",
      "expr": "01",
-     "max_len": 2.4,
+     "max_len": 1.5,
      "offset": 0.05,
      "inner": false,
      "tag_override": true,
-     "seed": 42,
+     "seed": 1234,
      "len_raw": 2.46,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.97,
+     "len": 1.25,
      "file": "outputs/ep14/voice/lines/9.mp3",
-     "len_file": 1.99,
+     "len_file": 1.28,
      "over": false,
-     "asr": 0.29
+     "asr": 1.0,
+     "gap_before": 0.15,
+     "asr_ref": "조용",
+     "dry": "outputs/ep14/voice/lines/9_dry.mp3"
     },
     {
      "cut": "10",
@@ -2595,7 +2625,8 @@
      "len": 1.44,
      "file": "outputs/ep14/voice/lines/10.mp3",
      "len_file": 1.44,
-     "over": false
+     "over": false,
+     "gap_before": 1.0
     },
     {
      "cut": "10b",
@@ -2611,10 +2642,13 @@
      "len_raw": 1.91,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.53,
+     "len": 1.49,
      "file": "outputs/ep14/voice/lines/10b.mp3",
-     "len_file": 1.52,
-     "over": false
+     "len_file": 2.93,
+     "over": false,
+     "gap_before": 0.5,
+     "fx": "room",
+     "dry": "outputs/ep14/voice/lines/10b_dry.mp3"
     },
     {
      "cut": "11a",
@@ -2633,7 +2667,8 @@
      "len": 0.92,
      "file": "outputs/ep14/voice/lines/11a.mp3",
      "len_file": 0.94,
-     "over": false
+     "over": false,
+     "gap_before": 1.0
     },
     {
      "cut": "11b",
@@ -2652,7 +2687,8 @@
      "len": 1.59,
      "file": "outputs/ep14/voice/lines/11b.mp3",
      "len_file": 5.09,
-     "over": false
+     "over": false,
+     "gap_before": 1.6
     }
    ],
    "placements": [
@@ -2668,93 +2704,93 @@
     },
     {
      "cut": "4a",
-     "at": 5.13,
+     "at": 5.02,
      "file": "outputs/ep14/voice/lines/4a.mp3"
     },
     {
      "cut": "4b",
-     "at": 6.1,
+     "at": 5.99,
      "file": "outputs/ep14/voice/lines/4b.mp3"
     },
     {
      "cut": "4c",
-     "at": 7.22,
+     "at": 7.11,
      "file": "outputs/ep14/voice/lines/4c.mp3"
     },
     {
      "cut": "4d",
-     "at": 8.31,
+     "at": 8.2,
      "file": "outputs/ep14/voice/lines/4d.mp3"
     },
     {
      "cut": "4e",
-     "at": 9.4,
+     "at": 9.29,
      "file": "outputs/ep14/voice/lines/4e.mp3"
     },
     {
      "cut": "5a",
-     "at": 11.02,
+     "at": 10.91,
      "file": "outputs/ep14/voice/lines/5a.mp3"
     },
     {
      "cut": "5b",
-     "at": 12.92,
+     "at": 13.71,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "5c",
-     "at": 14.76,
+     "at": 17.3,
      "file": "outputs/ep14/voice/lines/5c.mp3"
     },
     {
      "cut": "5d",
-     "at": 15.85,
+     "at": 18.39,
      "file": "outputs/ep14/voice/lines/5d.mp3"
     },
     {
      "cut": "6",
-     "at": 17.63,
+     "at": 20.17,
      "file": "outputs/ep14/voice/lines/6.mp3"
     },
     {
      "cut": "7",
-     "at": 21.36,
+     "at": 23.9,
      "file": "outputs/ep14/voice/lines/7.mp3"
     },
     {
      "cut": "8",
-     "at": 23.8,
+     "at": 26.32,
      "file": "outputs/ep14/voice/lines/8.mp3"
     },
     {
      "cut": "9",
-     "at": 25.08,
+     "at": 27.6,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "10",
-     "at": 28.05,
+     "at": 29.85,
      "file": "outputs/ep14/voice/lines/10.mp3"
     },
     {
      "cut": "10b",
-     "at": 29.99,
+     "at": 31.79,
      "file": "outputs/ep14/voice/lines/10b.mp3"
     },
     {
      "cut": "11a",
-     "at": 32.52,
+     "at": 34.28,
      "file": "outputs/ep14/voice/lines/11a.mp3"
     },
     {
      "cut": "11b",
-     "at": 35.04,
+     "at": 36.8,
      "file": "outputs/ep14/voice/lines/11b.mp3"
     }
    ],
    "preview": {
     "file": "outputs/ep14/voice/preview.mp3",
-    "len": 38.63
+    "len": 40.39
    }
   }
  },
