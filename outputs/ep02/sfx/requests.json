@@ -35,6 +35,11 @@
    "name": "sofa_sit",
    "prompt": "Person sitting down onto a fabric sofa, soft cushion compress whoosh, short, close-up",
    "duration": 1.0
+  },
+  {
+   "name": "pupil_quake",
+   "prompt": "Comedic trembling vibration: a phone buzzing on vibrate mixed with a small cartoon earthquake rumble, shaky and nervous, no music",
+   "duration": 1.2
   }
  ]
 }

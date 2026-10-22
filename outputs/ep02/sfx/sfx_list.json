@@ -5,7 +5,7 @@
    "name": "tv_amb",
    "file": "outputs/ep01/sfx/el/tv_amb.mp3",
    "at": 0.0,
-   "len": 31.7,
+   "len": 32.7,
    "gain": 14.3,
    "fade_in": 0.5,
    "fade_out": 0.8,
@@ -219,7 +219,7 @@
   {
    "name": "blanket",
    "file": "outputs/ep10/sfx/el/duvet_rustle.mp3",
-   "at": 27.5,
+   "at": 28.5,
    "len": 1.0,
    "target_lufs": -30,
    "fade_out": 0.3,
@@ -230,13 +230,101 @@
   {
    "name": "remote_grab",
    "file": "outputs/ep02/sfx/el/cup_set.mp3",
-   "at": 28.2,
+   "at": 29.2,
    "len": 0.4,
    "target_lufs": -27,
    "fade_out": 0.05,
    "measured_lufs": -30.05,
    "measured_file": "outputs/ep02/sfx/el/cup_set.mp3",
    "gain": 3.1
+  },
+  {
+   "name": "quake1",
+   "file": "outputs/ep02/sfx/el/pupil_quake.mp3",
+   "at": 24.98,
+   "len": 0.95,
+   "target_lufs": -18,
+   "fade_out": 0.15,
+   "measured_lufs": -5.16,
+   "measured_file": "outputs/ep02/sfx/el/pupil_quake.mp3",
+   "gain": -12.8
+  },
+  {
+   "name": "quake2",
+   "file": "outputs/ep02/sfx/el/pupil_quake.mp3",
+   "at": 30.95,
+   "len": 1.0,
+   "target_lufs": -20,
+   "fade_out": 0.2,
+   "measured_lufs": -5.16,
+   "measured_file": "outputs/ep02/sfx/el/pupil_quake.mp3",
+   "gain": -14.8
+  },
+  {
+   "name": "count1",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 4.57,
+   "len": 0.6,
+   "target_lufs": -27,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -9.9
+  },
+  {
+   "name": "count2",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 9.4,
+   "len": 0.6,
+   "target_lufs": -27,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -9.9
+  },
+  {
+   "name": "count3",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 13.55,
+   "len": 0.6,
+   "target_lufs": -27,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -9.9
+  },
+  {
+   "name": "count4",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 16.05,
+   "len": 0.6,
+   "target_lufs": -27,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -9.9
+  },
+  {
+   "name": "count5",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 27.3,
+   "len": 0.6,
+   "target_lufs": -27,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -9.9
+  },
+  {
+   "name": "count6",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 30.25,
+   "len": 0.6,
+   "target_lufs": -27,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -9.9
   }
  ]
 }

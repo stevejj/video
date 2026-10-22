@@ -145,7 +145,8 @@ def main():
             tid_ = f'{cid}-ts{k}'; d0 = t + ts_['at']
             shutil.copy(os.path.join(ROOT, 'assets/fonts/Jua-Regular.ttf'), os.path.join(out, 'media/Jua.ttf'))
             media_html.append(f'<div class="winfx toast" id="{tid_}" data-start="{d0:.3f}" data-duration="{ts_["dur"]:.3f}" '
-                              f'style="left:0; width:{W}px; top:{ts_.get("y", 0.75) * win:.0f}px; opacity:0;"><span class="toastin">'
+                              f'style="left:0; width:{W}px; top:{ts_.get("y", 0.75) * win:.0f}px; opacity:0;{" text-align:left; padding-left:%dpx; box-sizing:border-box;" % ts_.get("pad", 120) if ts_.get("align") == "left" else ""}">'
+                              f'<span class="toastin"{" style=%sfont-size:%dpx; padding:14px 34px 16px 30px;%s" % (chr(34), ts_["size"], chr(34)) if ts_.get("size") else ""}>'
                               f'{"<span class=toasticon>" + html.escape(ts_["icon"]) + "</span>" if ts_.get("icon") else ""}{html.escape(ts_["text"])}</span></div>')
             tl.append(f'tl.fromTo("#{tid_}", {{opacity: 0, y: 24, scale: 0.9}}, {{opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.7)"}}, {d0:.3f});')
             tl.append(f'tl.to("#{tid_}", {{opacity: 0, y: -10, duration: 0.25, ease: "power1.in"}}, {d0 + ts_["dur"] - 0.25:.3f});')

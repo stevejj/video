@@ -47,5 +47,12 @@
   "duration": 1.0,
   "file": "outputs/ep02/sfx/el/sofa_sit.mp3",
   "result": "ok 17180B"
+ },
+ {
+  "name": "pupil_quake",
+  "prompt": "Comedic trembling vibration: a phone buzzing on vibrate mixed with a small cartoon earthquake rumble, shaky and nervous, no music",
+  "duration": 1.2,
+  "file": "outputs/ep02/sfx/el/pupil_quake.mp3",
+  "result": "ok 20105B"
  }
 ]
