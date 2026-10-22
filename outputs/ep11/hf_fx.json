@@ -1,5 +1,5 @@
 {
- "note": "ep07 v1: Kling 4클립, 전체 화면, 짠 순간·이모 순간 살짝 펀치",
+ "note": "ep11 v2 광고 연출: 01~04 색보정·카피, 02 슬로모션, 04 엔딩 카드, 05 평소 화면",
  "default_still": {
   "cam": {
    "from": 1.0,
@@ -14,7 +14,127 @@
   "cam": null
  },
  "cuts": {
+  "01": {
+   "grade": {
+    "filter": "contrast(1.14) saturate(0.9) brightness(0.93) sepia(0.15)",
+    "vignette": 0.6,
+    "shade": 0.5
+   },
+   "cam": {
+    "from": 1.0,
+    "to": 1.03
+   },
+   "copy": [
+    {
+     "at": 0.23,
+     "dur": 1.75,
+     "text": "초겨울, 포차의 계절."
+    },
+    {
+     "at": 2.13,
+     "dur": 1.85,
+     "text": "입김마저 시원하다."
+    },
+    {
+     "at": 4.23,
+     "dur": 3.4,
+     "text": "차가운 잔에 담은",
+     "y": 0.76
+    },
+    {
+     "at": 5.85,
+     "dur": 1.78,
+     "text": "우리의 하루.",
+     "y": 0.81
+    },
+    {
+     "at": 7.93,
+     "dur": 0.95,
+     "text": "건배하라!",
+     "size": 72
+    },
+    {
+     "at": 8.94,
+     "dur": 1.0,
+     "text": "짠!",
+     "size": 104,
+     "weight": 400,
+     "fade": 0.3
+    }
+   ],
+   "sparkle": {
+    "at": 9.45,
+    "cx": 0.5,
+    "dy": -490,
+    "dur": 0.9,
+    "glyph": "✦",
+    "color": "#FFF6D8"
+   },
+   "flash": [
+    {
+     "at": 9.6,
+     "dur": 0.3,
+     "peak": 0.22
+    }
+   ]
+  },
+  "02": {
+   "grade": {
+    "filter": "contrast(1.14) saturate(0.9) brightness(0.93) sepia(0.15)",
+    "vignette": 0.6,
+    "shade": 0.5
+   },
+   "cam": {
+    "from": 1.0,
+    "to": 1.06
+   }
+  },
+  "03": {
+   "grade": {
+    "filter": "contrast(1.14) saturate(0.9) brightness(0.93) sepia(0.15)",
+    "vignette": 0.6,
+    "shade": 0.5
+   },
+   "copy": [
+    {
+     "at": 0.9,
+     "dur": 1.6,
+     "text": "캬~",
+     "size": 110,
+     "weight": 300,
+     "y": 0.78
+    }
+   ]
+  },
   "04": {
+   "cam": {
+    "from": 1.06,
+    "to": 1.0
+   },
+   "drift": null,
+   "copy": [
+    {
+     "at": 0.2,
+     "dur": 1.8,
+     "text": "초겨울, 포차의 계절.",
+     "y": 0.5,
+     "size": 76,
+     "fade": 0.9
+    },
+    {
+     "at": 0.6,
+     "dur": 1.4,
+     "text": "MISOON & CHANGSU",
+     "y": 0.565,
+     "size": 30,
+     "weight": 400,
+     "spacing": 0.45,
+     "color": "#E8D9B8",
+     "fade": 0.8
+    }
+   ]
+  },
+  "05": {
    "punch": {
     "at": 0.45,
     "scale": 1.04,

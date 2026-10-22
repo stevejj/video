@@ -46,70 +46,14 @@
    "sfx": "#FFFFFF"
   }
  },
- "note": "ep11: ep07 클립 + 새 대사(맥주 광고 따라하기)",
+ "note": "ep11 v2: 광고 구간은 카피 글씨, 이모! 만 일반 자막",
  "subtitles": [
-  {
-   "cut": "L1",
-   "text": "초겨울, 포차의 계절.",
-   "speaker": "misun",
-   "start": 0.23,
-   "end": 1.5,
-   "x": 0.5
-  },
-  {
-   "cut": "L2",
-   "text": "입김마저 시원하다.",
-   "speaker": "changsu",
-   "start": 2.13,
-   "end": 3.55,
-   "x": 0.5
-  },
-  {
-   "cut": "L3",
-   "text": "차가운 잔에 담은",
-   "speaker": "misun",
-   "start": 4.23,
-   "end": 5.52,
-   "x": 0.5
-  },
-  {
-   "cut": "L4",
-   "text": "우리의 하루.",
-   "speaker": "changsu",
-   "start": 5.85,
-   "end": 6.82,
-   "x": 0.5
-  },
-  {
-   "cut": "L5",
-   "text": "건배하라!",
-   "speaker": "misun",
-   "start": 7.93,
-   "end": 8.8,
-   "x": 0.5
-  },
-  {
-   "cut": "L6",
-   "text": "짠!",
-   "speaker": "changsu",
-   "start": 8.94,
-   "end": 9.4,
-   "x": 0.5
-  },
-  {
-   "cut": "",
-   "text": "캬~",
-   "speaker": "sfx",
-   "start": 14.35,
-   "end": 15.7,
-   "x": 0.5
-  },
   {
    "cut": "L8",
    "text": "이모! 여기 한잔 더요!",
    "speaker": "misun",
-   "start": 16.79,
-   "end": 18.38,
+   "start": 20.14,
+   "end": 21.73,
    "x": 0.5
   }
  ],

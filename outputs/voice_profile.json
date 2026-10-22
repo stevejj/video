@@ -2284,17 +2284,26 @@
     },
     {
      "file": "outputs/ep07/voice/lines/L7m.mp3",
-     "at": 14.4
+     "at": 15.75
     },
     {
      "file": "outputs/ep07/voice/lines/L7c.mp3",
-     "at": 14.45
+     "at": 15.8
     },
     {
      "file": "outputs/ep11/voice/s5_track.wav",
-     "at": 16.45
+     "at": 19.8
     }
-   ]
+   ],
+   "bgm": {
+    "file": "outputs/ep01/bgm/A_lofi_piano.mp3",
+    "target_lufs": -25,
+    "duck_db": 4,
+    "fade_in": 0.6,
+    "end_at": 19.85,
+    "fade_out": 0.1,
+    "note": "ep11 v2 광고 연출: 광고 구간만, 현실 복귀에서 끊김"
+   }
   }
  },
  "voices_legacy": {
