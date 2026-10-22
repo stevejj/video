@@ -119,15 +119,6 @@
    "x": 0.5
   },
   {
-   "cut": "cap",
-   "text": "(탈락 메뉴 2개째)",
-   "speaker": "sfx",
-   "start": 10.28,
-   "end": 12.51,
-   "x": 0.5,
-   "pos": "top"
-  },
-  {
    "cut": "3c",
    "text": "떡볶이?",
    "speaker": "changsu",
@@ -144,15 +135,6 @@
    "x": 0.5
   },
   {
-   "cut": "cap",
-   "text": "(탈락 메뉴 3개째)",
-   "speaker": "sfx",
-   "start": 12.51,
-   "end": 14.26,
-   "x": 0.5,
-   "pos": "top"
-  },
-  {
    "cut": "3e",
    "text": "…족발?",
    "speaker": "changsu",
@@ -167,15 +149,6 @@
    "start": 14.26,
    "end": 15.72,
    "x": 0.5
-  },
-  {
-   "cut": "cap",
-   "text": "(탈락 메뉴 4개째)",
-   "speaker": "sfx",
-   "start": 14.26,
-   "end": 15.7,
-   "x": 0.5,
-   "pos": "top"
   },
   {
    "cut": "cap",

@@ -89,11 +89,21 @@
    "source_cut": "s9",
    "clip_tag": "v1",
    "in": 0.0,
-   "len": 4.5,
+   "len": 2.3,
+   "time_card": null
+  },
+  {
+   "cut": "09f",
+   "kind": "still",
+   "source_cut": "s9",
+   "image": "outputs/ep09/quake/f9_bg.png",
+   "in": 0,
+   "len": 2.2,
    "time_card": null
   }
  ],
  "history": [
-  "2026-10-21 ep09 final v1: 9장면 42.5s, 효과 9곳(기획안 01)"
+  "2026-10-21 ep09 final v1: 9장면 42.5s, 효과 9곳(기획안 01)",
+  "2026-10-22 v2: 효과 글씨 유리 스타일·검은 띠·회상 위치·동공지진(Kling 0)"
  ]
 }

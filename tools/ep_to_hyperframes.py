@@ -141,6 +141,23 @@ def main():
                 tl.append(f'tl.fromTo("#{fid}", {{opacity: 0, scale: 1.6}}, {{opacity: 1, scale: 1, duration: 0.35, ease: "power3.out"}}, {d0 + 0.05:.3f});')
                 tl.append(f'tl.to("#{fid}", {{borderColor: "#7CFF7C", duration: 0.05}}, {d0 + 0.45:.3f});')
                 tl.append(f'tl.to("#{fid}", {{opacity: 0, duration: {fd}}}, {d0 + ov["dur"] - fd:.3f});')
+        ch_ = fx.get('chips')
+        if ch_:  # 후보 목록(ep09 v2 "오늘의 후보"): 유리 띠 안에 메뉴가 하나씩 생기고, 거절되면 줄이 그어지며 흐려짐(빨간 도장 대신)
+            shutil.copy(os.path.join(ROOT, 'assets/fonts/Jua-Regular.ttf'), os.path.join(out, 'media/Jua.ttf'))
+            cid_ = f'{cid}-ch'; d0 = t + ch_['at']
+            items = ''.join(f'<span class="chip" id="{cid_}{i}"{" style=" + chr(34) + "opacity:0" + chr(34) if it["at"] > ch_["at"] + 0.01 else ""}>{html.escape(it["text"])}<i class="strike" id="{cid_}{i}s"></i></span>' for i, it in enumerate(ch_['items']))
+            media_html.append(f'<div class="winfx chips" id="{cid_}" data-start="{d0:.3f}" data-duration="{ch_["dur"]:.3f}" style="top:{ch_.get("y", 0.04) * win:.0f}px; opacity:0;">'
+                              f'<span class="chipsin">{"<b class=chiptitle>" + html.escape(ch_["title"]) + "</b>" if ch_.get("title") else ""}{items}</span></div>')
+            tl.append(f'tl.fromTo("#{cid_}", {{opacity: 0, y: 16}}, {{opacity: 1, y: 0, duration: 0.3, ease: "power2.out"}}, {d0:.3f});')
+            tl.append(f'tl.to("#{cid_}", {{opacity: 0, duration: 0.25}}, {d0 + ch_["dur"] - 0.25:.3f});')
+            for i, it in enumerate(ch_['items']):
+                ia = t + it['at']
+                if ia > d0 + 0.01:
+                    tl.append(f'tl.fromTo("#{cid_}{i}", {{opacity: 0, scale: 0.6}}, {{opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.2)"}}, {ia:.3f});')
+                if it.get('strike_at') is not None:
+                    sa = t + it['strike_at']
+                    tl.append(f'tl.fromTo("#{cid_}{i}s", {{scaleX: 0}}, {{scaleX: 1, duration: 0.22, ease: "power2.out"}}, {sa:.3f});')
+                    tl.append(f'tl.to("#{cid_}{i}", {{opacity: 0.45, duration: 0.25}}, {sa + 0.15:.3f});')
         for k, ts_ in enumerate(fx.get('toasts', [])):  # 유리 알림창(ep05 v2 "다시 찍기"): 반투명 흰 둥근 창이 살짝 커지며 떠오름(빨간 도장 대신 — 사용자: 분위기에 안 맞음)
             tid_ = f'{cid}-ts{k}'; d0 = t + ts_['at']
             shutil.copy(os.path.join(ROOT, 'assets/fonts/Jua-Regular.ttf'), os.path.join(out, 'media/Jua.ttf'))
@@ -211,11 +228,15 @@ def main():
                 tl.append(f'tl.to("#{pid_}", {{scale: 1.25, opacity: 0, y: {-p_.get("rise", 60) * 2}, duration: {dur_ * 0.55:.3f}, ease: "power1.in"}}, {d0 + dur_ * 0.45:.3f});')
         gg = fx.get('gauge')
         if gg:  # 게이지: 라벨 + 막대가 차오르며 빨개지고 MAX
-            media_html.append(f'<div class="winfx gauge" id="{cid}-gg" data-start="{t + gg["at"]:.3f}" data-duration="{gg["dur"]:.3f}" style="top:{gg.get("y", 0.16) * win:.0f}px;">'
+            media_html.append(f'<div class="winfx gauge{" glassg" if gg.get("glass") else ""}" id="{cid}-gg" data-start="{t + gg["at"]:.3f}" data-duration="{gg["dur"]:.3f}" style="top:{gg.get("y", 0.16) * win:.0f}px;">'
                               f'<span class="glabel">{html.escape(gg["label"])}</span><span class="gbar"><span class="gfill" id="{cid}-ggf"></span></span><span class="gmax" id="{cid}-ggm">MAX</span></div>')
-            tl.append(f'tl.fromTo("#{cid}-ggf", {{width: "0%", backgroundColor: "#FFD84A"}}, {{width: "100%", backgroundColor: "#E8322E", duration: {gg.get("fill", 1.2)}, ease: "power2.in"}}, {t + gg["at"]:.3f});')
+            c0, c1 = ('#FFD3E4', '#FF7EB3') if gg.get('glass') else ('#FFD84A', '#E8322E')   # glass: 유리 느낌(분홍), 빨강 대신(02a 효과 글씨 규칙)
+            tl.append(f'tl.fromTo("#{cid}-ggf", {{width: "0%", backgroundColor: "{c0}"}}, {{width: "100%", backgroundColor: "{c1}", duration: {gg.get("fill", 1.2)}, ease: "power2.in"}}, {t + gg["at"]:.3f});')
             tl.append(f'tl.fromTo("#{cid}-ggm", {{scale: 0, opacity: 0}}, {{scale: 1, opacity: 1, duration: 0.18, ease: "back.out(3)"}}, {t + gg["at"] + gg.get("fill", 1.2):.3f});')
-            tl.append(f'tl.to("#{cid}-gg", {{x: 6, duration: 0.04, yoyo: true, repeat: 7}}, {t + gg["at"] + gg.get("fill", 1.2):.3f});')
+            if gg.get('glass'):
+                shutil.copy(os.path.join(ROOT, 'assets/fonts/Jua-Regular.ttf'), os.path.join(out, 'media/Jua.ttf'))
+            else:
+                tl.append(f'tl.to("#{cid}-gg", {{x: 6, duration: 0.04, yoyo: true, repeat: 7}}, {t + gg["at"] + gg.get("fill", 1.2):.3f});')
         fb = fx.get('flashback')
         if fb:  # 회상 화면: 앞 장면 한 프레임을 흑백 액자로 띄움
             png = f'media/{cid}_fb.png'
@@ -363,6 +384,16 @@ def main():
   .fb {{ height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }}
   .fblabel {{ position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }}
   @font-face {{ font-family: "Jua"; src: url("media/Jua.ttf") format("truetype"); }}
+  .chips {{ height: auto; text-align: center; z-index: 6; }}
+  .chipsin {{ display: inline-flex; align-items: center; gap: 14px; padding: 14px 26px; border-radius: 999px; background: rgba(255,255,255,0.78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+             box-shadow: 0 10px 30px rgba(0,0,0,0.22), inset 0 0 0 2px rgba(255,255,255,0.6); font-family: "Jua", "NotoKR", sans-serif; color: #5A4A52; }}
+  .chiptitle {{ font-weight: normal; font-size: 34px; color: #9A8A92; margin-right: 6px; }}
+  .chip {{ position: relative; display: inline-block; font-size: 48px; padding: 2px 16px; border-radius: 999px; background: rgba(255,126,179,0.16); transform-origin: 50% 50%; }}
+  .strike {{ position: absolute; left: 8px; right: 8px; top: 52%; height: 5px; border-radius: 3px; background: #5A4A52; transform: scaleX(0); transform-origin: 0% 50%; }}
+  .glassg {{ white-space: nowrap; font-family: "Jua", "NotoKR", sans-serif; font-weight: normal; color: #5A4A52; -webkit-text-stroke: 0; padding: 12px 28px; width: auto; left: 50%; transform: translateX(-50%); border-radius: 999px; background: rgba(255,255,255,0.78);
+             -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 10px 30px rgba(0,0,0,0.22); }}
+  .glassg .gbar {{ border: 0; background: rgba(90,74,82,0.12); height: 34px; }}
+  .glassg .gmax {{ color: #FF5C9A; font-size: 52px; }}
   .toast {{ height: auto; text-align: center; z-index: 6; transform-origin: 50% 50%; }}
   .toastin {{ display: inline-block; padding: 22px 54px 24px 46px; border-radius: 999px; background: rgba(255,255,255,0.78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
              box-shadow: 0 10px 34px rgba(0,0,0,0.22), inset 0 0 0 2px rgba(255,255,255,0.6); font-family: "Jua", "NotoKR", sans-serif; font-size: 62px; color: #5A4A52; white-space: nowrap; }}

@@ -1,5 +1,5 @@
 {
- "note": "ep09 final 효과음",
+ "note": "ep09 v2: 삑 부저 → 알림음·톡, 동공지진 진동음",
  "items": [
   {
    "name": "stomach_growl",
@@ -9,6 +9,7 @@
    "target_lufs": -24,
    "fade_out": 0.1,
    "measured_lufs": -11.94,
+   "measured_file": "outputs/ep09/sfx/el/stomach_growl.mp3",
    "gain": -12.1
   },
   {
@@ -19,6 +20,7 @@
    "target_lufs": -20,
    "fade_out": 0.1,
    "measured_lufs": -19.19,
+   "measured_file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
    "gain": -0.8
   },
   {
@@ -28,77 +30,86 @@
    "len": 0.5,
    "target_lufs": -20,
    "fade_out": 0.1,
+   "measured_lufs": -32.01,
+   "measured_file": "outputs/ep02/sfx/el/charger_drop.mp3",
    "gain": 12.0
   },
   {
    "name": "buzz0",
-   "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
    "at": 10.28,
    "len": 0.6,
-   "target_lufs": -24,
+   "target_lufs": -22,
    "fade_out": 0.1,
-   "measured_lufs": -8.63,
-   "gain": -15.4
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -4.9
   },
   {
    "name": "buzz1",
-   "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
    "at": 12.51,
    "len": 0.6,
-   "target_lufs": -24,
+   "target_lufs": -22,
    "fade_out": 0.1,
-   "measured_lufs": -8.63,
-   "gain": -15.4
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -4.9
   },
   {
    "name": "buzz2",
-   "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
    "at": 14.56,
    "len": 0.6,
-   "target_lufs": -24,
+   "target_lufs": -22,
    "fade_out": 0.1,
-   "measured_lufs": -8.63,
-   "gain": -15.4
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -4.9
   },
   {
    "name": "buzz4_0",
-   "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
+   "file": "outputs/ep05/sfx/el/ui_tap.mp3",
    "at": 16.17,
    "len": 0.5,
-   "target_lufs": -26,
+   "target_lufs": -22,
    "fade_out": 0.1,
-   "measured_lufs": -8.63,
-   "gain": -17.4
+   "measured_lufs": -29.65,
+   "measured_file": "outputs/ep05/sfx/el/ui_tap.mp3",
+   "gain": 7.6
   },
   {
    "name": "buzz4_1",
-   "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
+   "file": "outputs/ep05/sfx/el/ui_tap.mp3",
    "at": 16.67,
    "len": 0.5,
-   "target_lufs": -26,
+   "target_lufs": -22,
    "fade_out": 0.1,
-   "measured_lufs": -8.63,
-   "gain": -17.4
+   "measured_lufs": -29.65,
+   "measured_file": "outputs/ep05/sfx/el/ui_tap.mp3",
+   "gain": 7.6
   },
   {
    "name": "buzz4_2",
-   "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
+   "file": "outputs/ep05/sfx/el/ui_tap.mp3",
    "at": 17.17,
    "len": 0.5,
-   "target_lufs": -26,
+   "target_lufs": -22,
    "fade_out": 0.1,
-   "measured_lufs": -8.63,
-   "gain": -17.4
+   "measured_lufs": -29.65,
+   "measured_file": "outputs/ep05/sfx/el/ui_tap.mp3",
+   "gain": 7.6
   },
   {
    "name": "buzz4_3",
-   "file": "outputs/ep09/sfx/el/wrong_buzzer.mp3",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
    "at": 18.75,
-   "len": 0.5,
-   "target_lufs": -26,
+   "len": 0.6,
+   "target_lufs": -19,
    "fade_out": 0.1,
-   "measured_lufs": -8.63,
-   "gain": -17.4
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -1.9
   },
   {
    "name": "doorbell",
@@ -108,6 +119,7 @@
    "target_lufs": -22,
    "fade_out": 0.1,
    "measured_lufs": -11.2,
+   "measured_file": "outputs/ep09/sfx/el/doorbell.mp3",
    "gain": -10.8
   },
   {
@@ -118,6 +130,7 @@
    "target_lufs": -26,
    "fade_out": 0.1,
    "measured_lufs": -17.81,
+   "measured_file": "outputs/ep01/sfx/el/sparkle.mp3",
    "gain": -8.2
   },
   {
@@ -128,6 +141,7 @@
    "target_lufs": -22,
    "fade_out": 0.1,
    "measured_lufs": -15.3,
+   "measured_file": "outputs/ep09/sfx/el/flashback_chime.mp3",
    "gain": -6.7
   },
   {
@@ -138,7 +152,30 @@
    "target_lufs": -20,
    "fade_out": 0.1,
    "measured_lufs": -16.41,
+   "measured_file": "outputs/ep09/sfx/el/dun_sting.mp3",
    "gain": -3.6
+  },
+  {
+   "name": "chicken_strike",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 9.15,
+   "len": 0.6,
+   "target_lufs": -26,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -8.9
+  },
+  {
+   "name": "quake",
+   "file": "outputs/ep02/sfx/el/pupil_quake.mp3",
+   "at": 40.8,
+   "len": 1.0,
+   "target_lufs": -20,
+   "fade_out": 0.2,
+   "measured_lufs": -5.16,
+   "measured_file": "outputs/ep02/sfx/el/pupil_quake.mp3",
+   "gain": -14.8
   }
  ]
 }
