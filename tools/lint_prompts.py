@@ -45,8 +45,10 @@ def rules(kind):
     rule('펭수 닮은 이름 금지', 'ep08 S6: 대사 "팽! 창! 수!!!"(녹음은 "펭!창!수!")가 Kling 저작권 필터(펭수 추정)에 2번 거절됨 → "창수야!!!"로 바꾸자 통과',
          lambda p: kind == 'video' and bool(re.search(r'"[^"]*[팽펭][^"]*"', p)), lambda p: False)
     if kind == 'image':
-        rule('세로 9:16', '이미지 모델이 정사각형을 낼 때가 있음', lambda p: True, lambda p: has(p, r'9:16'))
-        rule('글자·로고 금지', 'AI 글자 깨짐', lambda p: True, lambda p: has(p, r'no text'))
+        # 비율: 보통 세로 9:16. 사진 합성(ep12)처럼 다른 비율이면 그 비율을 문장에 밝히면 통과
+        rule('세로 9:16(또는 밝힌 비율)', '이미지 모델이 정사각형을 낼 때가 있음', lambda p: True, lambda p: has(p, r'9:16', r'\b(5:4|4:5|4:3|3:4|3:2|2:3|16:9)\b'))
+        # 사진 합성은 원래 있던 글자를 지우면 안 되므로 "no new text"도 인정
+        rule('글자·로고 금지', 'AI 글자 깨짐', lambda p: True, lambda p: has(p, r'no (new )?text'))
     return R
 
 
