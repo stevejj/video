@@ -111,7 +111,7 @@ def cmd_gen(ep, only, seeds, stabs):
                          'voice_settings': dict(P['voice_settings'], stability=st)}, out)
                 break
             except SystemExit as e:
-                if '429' not in str(e) or k == 4:
+                if not any(c in str(e) for c in ('429', '500', '502', '503')) or k == 4:
                     raise
                 time.sleep(3 + 3 * k)
         vg.trim(out, out + '.t.mp3')
@@ -205,14 +205,14 @@ def cmd_pick(ep, only):
         if (only and l['id'] not in only) or l['id'] not in cache:
             continue
         rdur = l['ref'][1] - l['ref'][0]
-        want = norm_text(l['text'])
+        want = norm_text(l.get('hear', l['text']))
         rows = []
         for f, v in cache[l['id']].items():
             ks = [k for k in W if zr[l['id']][k] is not None]
             emo = sum(W[k] * abs((zc[(l['id'], f)][k] if zc[(l['id'], f)][k] is not None else 2.0) - zr[l['id']][k]) for k in ks) / sum(W[k] for k in ks)
             heard = norm_text(v['heard'])
             txt = 0.0 if l.get('sub') == '' else (1 - difflib.SequenceMatcher(None, want, heard).ratio()) * 4
-            miss = [k for k in KEYWORDS if norm_text(k) in want and norm_text(k) not in heard]
+            miss = [k for k in KEYWORDS + l.get('keys', []) if norm_text(k) in want and norm_text(k) not in heard]
             txt += 1.5 * len(miss)
             dur = max(0, v['dur'] - (rdur + 0.25)) * 2 + max(0, 0.6 * rdur - v['dur'])
             rows.append({'file': f, 'score': round(emo + txt + dur, 3), 'emo': round(emo, 3), 'txt': round(txt, 3), 'dur_pen': round(dur, 3),
@@ -221,13 +221,16 @@ def cmd_pick(ep, only):
         best = rows[0]
         src = os.path.join(base, f'voice/cands/{l["id"]}/{best["file"]}')
         dst = os.path.join(outdir, f'{l["id"]}.mp3')
-        vg.finalize(src, dst, P['loudnorm'], l['sp'], False)
+        tempo = 1.0
+        if best['dur'] > rdur + 0.3 and not l.get('overlap'):   # 참조 칸보다 많이 길면 살짝 빠르게(최대 1.12배, 높이 그대로)
+            tempo = round(min(best['dur'] / (rdur + 0.2), 1.12), 3)
+        vg.finalize(src, dst, P['loudnorm'], l['sp'], False, tempo)
         spans = []
         if '새끼' in l['text']:
             _, ws = transcribe(m, dst, words=True)
             spans = beep(dst, ws, dst + '.b.mp3')
             os.replace(dst + '.b.mp3', dst)
-        picks[l['id']] = {'pick': best, 'top': rows[:5], 'n': len(rows), 'beep': spans, 'file': os.path.relpath(dst, ROOT),
+        picks[l['id']] = {'tempo': tempo, 'pick': best, 'top': rows[:5], 'n': len(rows), 'beep': spans, 'file': os.path.relpath(dst, ROOT),
                           'len': round(vg.duration(dst), 2), 'ref': l['ref']}
         flag = ' ⚠ 삐 자리 못 찾음' if '새끼' in l['text'] and not spans else ''
         print(f'{l["id"]} {l["sp"]:7s} {best["file"]:22s} 점수 {best["score"]:.2f} (감정 {best["emo"]:.2f} 글자 {best["txt"]:.2f} 길이 {best["dur_pen"]:.2f}) '
