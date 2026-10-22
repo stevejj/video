@@ -23,22 +23,34 @@ S5_AT = 10.0 + SLOW_LEN + 3.0 + CARD_LEN   # 19.8: 현실 복귀(이모!)
 D = SLOW_LEN - 3.45      # 슬로모션 때문에 캬~가 밀리는 시간
 # 광고 목소리(v4, 사용자: "목소리는 그대로, 광고 연기 톤 느낌"): 1~6번만, 7번(이모!)은 원래 소리
 AD_EQ = 'highpass=f=70,equalizer=f=150:t=q:w=1:g=4,equalizer=f=400:t=q:w=1.2:g=-2,equalizer=f=3500:t=q:w=1:g=3,acompressor=threshold=-22dB:ratio=3.5:attack=5:release=120:makeup=2'
-REVERB = {'len': 1.3, 'decay': 0.3, 'wet': 0.6}   # 말 끝 꼬리에만(ad_voice)
+REVERB = {'pre': 0.04, 'decay': 0.25, 'wet': 0.4, 'band': [300, 6000]}   # 짧은 방 울림, 말소리 전체(ad_voice)
 # 말하는 쪽 확대(사용자: "대사 칠 때 각각 확대, 진짜 광고처럼"). 얼굴 중심(1080x1920 프레임): 미순 (340, 980), 창수 (800, 980)
 ZOOM, PUSH = 1.6, 1.68                       # v4(사용자: "더 세게, 스피드하게 왔다갔다"): 빠르게 확 다가간 뒤 대사 동안 천천히 더
 FACE_X = {'misun': 340, 'changsu': 800}
-SPEAK = [('misun', 0.0, 2.13), ('changsu', 2.13, 4.23), ('misun', 4.23, 5.85), ('changsu', 5.85, 7.93), ('misun', 7.93, 8.8)]   # 대사 시작 시각에 맞춤
+ORDER = [('misun', 'L1'), ('changsu', 'L2'), ('misun', 'L3'), ('changsu', 'L4'), ('misun', 'L5')]
 WIDE_AT = 8.75                               # 짠은 둘이 함께 보이게 원래 화면으로
+BEAT = 0.45                                  # v5(사용자: "전환이 급하다, 확대 속도는 좋아"): 앞 대사 끝과 다음 대사 사이 가운데서 넘어가
+                                             # 다음 사람이 말하기 전 0.25~0.45초 머무름(대사 직전 0.12초 전환 → 급해 보였음)
 
 
 def moves():
-    out = []
-    for who, a, b in SPEAK:
-        m = (ZOOM - 1) / 2 * 1080                # 화면 밖 검은 테두리가 안 보이는 최대 이동
-        x = round(max(-m, min(m, -ZOOM * (FACE_X[who] - 540))))
-        a0 = max(a - 0.12, 0); d = 0.2                       # 대사 0.12초 전, 0.2초 만에 휙
+    out = []; m = (ZOOM - 1) / 2 * 1080       # 화면 밖 검은 테두리가 안 보이는 최대 이동
+    for i, (who, c) in enumerate(ORDER):
+        st = SLOT[c][0]
+        if i == 0:
+            a0 = 0.0
+        else:
+            prev_end = sum(SLOT[ORDER[i - 1][1]])
+            a0 = round(st - min(BEAT, (st - prev_end) / 2), 2)
+        end = WIDE_AT if i == len(ORDER) - 1 else None
+        x = round(max(-m, min(m, -ZOOM * (FACE_X[who] - 540)))); d = 0.2
         out.append({'at': a0, 'dur': d, 'scale': ZOOM, 'x': x, 'y': 0, 'ease': 'power3.out'})
-        out.append({'at': a0 + d, 'dur': round(b - 0.12 - (a0 + d), 2), 'scale': PUSH, 'x': x, 'y': 0, 'ease': 'none'})
+        out.append({'at': round(a0 + d, 2), 'scale': PUSH, 'x': x, 'y': 0, 'ease': 'none', 'end': end})
+    for k in range(1, len(out) - 1, 2):       # 천천히 다가가기는 다음 전환 직전까지
+        out[k]['dur'] = round(out[k + 1]['at'] - out[k]['at'], 2)
+    out[-1]['dur'] = round(WIDE_AT - out[-1]['at'], 2)
+    for o in out:
+        o.pop('end', None)
     out.append({'at': WIDE_AT, 'dur': 0.25, 'scale': 1.0, 'x': 0, 'y': 0, 'ease': 'power3.out'})
     return out
 
@@ -61,20 +73,19 @@ def fit(src, target, dst):
 
 
 def ad_voice(x):
-    """광고 내레이션 느낌(목소리는 그대로): 저음 따뜻하게·발음 또렷하게·압축(가까이서 말하는 소리) + 말이 끊긴 자리에만 홀 울림 꼬리.
-    울림을 말소리 위에 깔면 받아쓰기가 "포차→푸차/부차의 계단"으로 틀림 → 말소리 구간은 울림 0, 끝난 뒤에만 남김."""
-    from scipy.signal import fftconvolve
+    """광고 내레이션 느낌(목소리는 그대로): 저음 따뜻하게·발음 또렷하게·압축(가까이서 말하는 소리) + 말소리 전체에 짧은 방 울림.
+    - v4처럼 울림을 말 끝에만 붙이면 이어짐이 어색함(사용자) → v5는 끊김 없이 계속 깔고,
+    - 발음 뭉개짐 방지: 울림 시작을 40ms 늦추고(자음 먼저 들림), 울림에서 저음(<300Hz)·고음(>6kHz)을 뺌.
+      울림이 길거나(0.3s+) 일찍 오면(30ms) 받아쓰기 "포차 → 푸차"(2026-10-22 비교)."""
+    from scipy.signal import fftconvolve, butter, sosfilt
     dry = os.path.join(EP, 'voice/talk_track_dry.wav')
     y = np.frombuffer(subprocess.run([FF, '-v', 'error', '-i', dry, '-af', AD_EQ, '-f', 'f32le', '-ac', '1', '-ar', str(SR), '-'], capture_output=True).stdout, np.float32).copy()[:len(x)]
     rms = lambda a: np.sqrt((a[np.abs(a) > 1e-4] ** 2).mean())
     y *= rms(x) / rms(y)
-    rng = np.random.default_rng(3); n = int(REVERB['len'] * SR); tt = np.arange(n) / SR
-    ir = rng.standard_normal(n) * np.exp(-tt / REVERB['decay']); ir[:int(0.025 * SR)] = 0          # 25ms 뒤부터 울림
-    ir = np.convolve(ir, np.ones(8) / 8, 'same'); ir /= np.sqrt((ir ** 2).sum())                       # 쇳소리 줄임
-    wet = fftconvolve(y, ir)[:len(y)]
-    k = int(0.04 * SR); env = np.convolve(np.abs(y), np.ones(k) / k, 'same')
-    gate = np.convolve((env <= 0.01).astype(np.float32), np.ones(k) / k, 'same')                  # 말소리 0, 쉼 1
-    out = y + REVERB['wet'] * gate * wet
+    R = REVERB; rng = np.random.default_rng(3); n = int(R['decay'] * 5 * SR); tt = np.arange(n) / SR
+    ir = np.concatenate([np.zeros(int(R['pre'] * SR)), rng.standard_normal(n) * np.exp(-tt / R['decay'])]); ir /= np.sqrt((ir ** 2).sum())
+    wet = sosfilt(butter(2, R['band'], 'bandpass', fs=SR, output='sos'), fftconvolve(y, ir)[:len(y)])
+    out = y + R['wet'] * wet
     return out / max(1.0, np.abs(out).max() / 0.97)
 
 
@@ -147,13 +158,15 @@ def ad_look():
 
     cp = lambda at, dur, text, **k: dict(at=round(at, 2), dur=round(dur, 2), text=text, **k)
     s = {c: t0 for c, (t0, _) in SLOT.items()}
+    sw = [m['at'] for m in moves() if m['scale'] == ZOOM]   # 카메라 전환 시각
     F = json.load(open(os.path.join(ROOT, 'outputs/ep07/hf_fx.json')))
     F['cuts'] = {
         '01': {'grade': GRADE, 'moves': moves(),
-               'copy': [cp(s['L1'], s['L2'] - s['L1'] - 0.15, '초겨울, 포차의 계절.'),
-                        cp(s['L2'], s['L3'] - s['L2'] - 0.25, '입김마저 시원하다.'),
-                        cp(s['L3'], s['L5'] - s['L3'] - 0.3, '차가운 잔에 담은', y=0.76),
-                        cp(s['L4'], s['L5'] - s['L4'] - 0.3, '우리의 하루.', y=0.81),
+               # 카피는 카메라가 다음 사람으로 넘어갈 때 함께 사라짐(v5: 앞 카피가 다음 사람 화면에 남던 것 수정)
+               'copy': [cp(s['L1'], sw[1] + 0.05 - s['L1'], '초겨울, 포차의 계절.'),
+                        cp(s['L2'], sw[2] + 0.05 - s['L2'], '입김마저 시원하다.'),
+                        cp(s['L3'], sw[4] + 0.05 - s['L3'], '차가운 잔에 담은', y=0.76),
+                        cp(s['L4'], sw[4] + 0.05 - s['L4'], '우리의 하루.', y=0.81),
                         cp(s['L5'], s['L6'] - s['L5'] - 0.06, '건배하라!', size=72),
                         cp(s['L6'], 10.0 - s['L6'] - 0.06, '짠!', size=104, weight=400, fade=0.3)],
                'sparkle': {'at': 9.45, 'cx': 0.5, 'dy': -490, 'dur': 0.9, 'glyph': '✦', 'color': '#FFF6D8'},
