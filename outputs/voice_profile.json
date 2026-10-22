@@ -712,27 +712,7 @@
   "ep06": {
    "lines": [],
    "placements": [],
-   "bgm": {
-    "file": "outputs/ep06/bgm/H_trap_bounce.mp3",
-    "target_lufs": -19,
-    "duck_db": 0,
-    "fade_in": 0.05,
-    "end_at": 14.33,
-    "fade_out": 0.5,
-    "dips": [
-     {
-      "at": 4.03,
-      "len": 0.3,
-      "db": -18
-     },
-     {
-      "at": 9.03,
-      "len": 0.3,
-      "db": -18
-     }
-    ]
-   },
-   "note": "ep06: 대사 없음, 힙합 BGM H(96 BPM) + 차례 바뀜 비트 끊김 + 박수"
+   "note": "ep06 v2: 대사 없음, 배경음은 sfx_list의 battle100(100BPM) + 효과음"
   },
   "ep07": {
    "lines": [

@@ -1,0 +1,9 @@
+{
+ "items": [
+  {"name": "whoosh_fast", "prompt": "Very fast whip pan whoosh transition, sharp air swish, punchy, no music", "duration": 0.6},
+  {"name": "impact_boom", "prompt": "Huge cinematic impact hit with deep boom and short reverb tail, for a VS title card, no music", "duration": 1.5},
+  {"name": "crowd_ooh", "prompt": "Small street crowd reacting with an impressed 'ooooh!' at a dance move, excited, no music", "duration": 1.5},
+  {"name": "crowd_cheer", "prompt": "Street dance battle crowd cheering wildly with whistles and claps after a winning move, no music", "duration": 3.0},
+  {"name": "air_horn", "prompt": "Single short hip hop air horn blast, hype, no music", "duration": 1.0}
+ ]
+}

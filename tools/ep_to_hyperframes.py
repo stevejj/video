@@ -87,7 +87,7 @@ def main():
                 x, y, w, h = [v * S for v in ly['box']]
                 origin = ly.get('origin') or f'{(ly["pivot"][0] - ly["box"][0]) * S:.1f}px {(ly["pivot"][1] - ly["box"][1]) * S:.1f}px'
                 el += (f'<img id="{cid}-{ly["id"]}" class="layer" src="media/{src_cut}_{ly["id"]}.png" data-start="{t:.3f}" data-duration="{L:.3f}" '
-                       f'style="left:{x:.1f}px; top:{y:.1f}px; width:{w:.1f}px; height:{h:.1f}px; transform-origin:{origin};" />')
+                       f'style="left:{x:.1f}px; top:{y:.1f}px; width:{w:.1f}px; height:{h:.1f}px; transform-origin:{origin};{" opacity:0;" if (ly.get("init") or {}).get("opacity") == 0 else ""}" />')   # 0초 프레임에 숨김이 안 먹는 문제(tl.set) → CSS로도 숨김
                 if ly.get('init'):
                     tl.append(f'tl.set("#{cid}-{ly["id"]}", {json.dumps(ly["init"])}, 0);')
                 for k in ly.get('keys', []):
@@ -129,6 +129,13 @@ def main():
             for k in range(int(gh['dur'] / 0.4)):
                 tl.append(f'tl.to("#{cid}-gh{gi}", {{x: {14 * (1 if k % 2 else -1)}, duration: 0.4, ease: "sine.inOut"}}, {t + gh["at"] + k * 0.4:.3f});')
         # 래퍼는 타이밍 없음(video_nested_in_timed_element 회피). transform-origin = 창 중심
+        for k, lb in enumerate(fx.get('labels', [])):  # 이름표(ep06 v2 댄스배틀): 둥근 색 띠가 왼쪽에서 미끄러져 들어왔다 나감
+            lid = f'{cid}-lb{k}'; d0 = t + lb['at']
+            media_html.append(f'<div class="winfx tagpill" id="{lid}" data-start="{d0:.3f}" data-duration="{lb["dur"]:.3f}" '
+                              f'style="top:{lb.get("y", 0.75) * win:.0f}px; left:{lb.get("x", 0.06) * W:.0f}px; background:{lb.get("color", "#FF7EB3")}; opacity:0;">'
+                              f'<span class="tagsmall">{html.escape(lb.get("small", ""))}</span>{html.escape(lb["text"])}</div>')
+            tl.append(f'tl.fromTo("#{lid}", {{x: -420, opacity: 0}}, {{x: 0, opacity: 1, duration: 0.28, ease: "back.out(1.6)"}}, {d0:.3f});')
+            tl.append(f'tl.to("#{lid}", {{x: -420, opacity: 0, duration: 0.22, ease: "power2.in"}}, {d0 + lb["dur"] - 0.22:.3f});')
         gr = fx.get('grade')  # 색보정(ep11 광고 연출): 프레임에 CSS 필터 + 비네트·아래 그늘
         media_html.append(f'<div class="frame" id="{cid}" style="top:{-offy:.1f}px; transform-origin: 540px {offy + win / 2:.1f}px;{" filter: " + gr["filter"] + ";" if gr else ""}">{el}</div>')
         if gr:
@@ -329,6 +336,8 @@ def main():
   .gmax {{ color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }}
   .fb {{ height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }}
   .fblabel {{ position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }}
+  .tagpill {{ z-index: 6; width: auto; height: auto; padding: 14px 40px 16px 34px; border-radius: 60px; color: #fff; font-size: 64px; font-weight: 900; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.35); -webkit-text-stroke: 2px rgba(0,0,0,0.25); }}
+  .tagsmall {{ font-size: 34px; font-weight: 800; margin-right: 18px; letter-spacing: 0.08em; opacity: 0.9; }}
   .adcopy {{ height: auto; transform-origin: 50% 50%; text-align: center; white-space: nowrap; line-height: 1.3; text-shadow: 0 2px 18px rgba(0,0,0,0.75), 0 0 4px rgba(0,0,0,0.5); }}
   .puff {{ width: auto; height: auto; transform-origin: 50% 70%; }}
   .tap {{ border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0) 70%); transform-origin: 50% 50%; }}

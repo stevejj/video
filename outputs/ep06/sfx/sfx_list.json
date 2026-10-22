@@ -1,53 +1,157 @@
 {
- "note": "ep06 v1 효과음: 창수 박수 합성 6번(C3에서 날개가 닿는 순간), 0원",
+ "note": "ep06 v2 효과음(ElevenLabs 5개 + 박수 합성 + ep11 레코드 긁힘), 배경음 battle100",
  "items": [
+  {
+   "name": "bgm",
+   "file": "outputs/ep06/bgm/battle100.mp3",
+   "at": 0.0,
+   "len": 20.475,
+   "target_lufs": -17,
+   "fade_out": 0.9,
+   "measured_lufs": -11.6,
+   "gain": -5.4
+  },
+  {
+   "name": "slide",
+   "file": "outputs/ep06/sfx/el/whoosh_fast.mp3",
+   "at": 0.02,
+   "len": 0.6,
+   "target_lufs": -24,
+   "fade_out": 0.05,
+   "measured_lufs": -10.45,
+   "gain": -13.6
+  },
+  {
+   "name": "vs_hit",
+   "file": "outputs/ep06/sfx/el/impact_boom.mp3",
+   "at": 0.6,
+   "len": 1.5,
+   "target_lufs": -15,
+   "fade_out": 0.05,
+   "measured_lufs": -26.11,
+   "gain": 11.1
+  },
+  {
+   "name": "whip1",
+   "file": "outputs/ep06/sfx/el/whoosh_fast.mp3",
+   "at": 2.315,
+   "len": 0.6,
+   "target_lufs": -21,
+   "fade_out": 0.05,
+   "measured_lufs": -10.45,
+   "gain": -10.6
+  },
+  {
+   "name": "whip2",
+   "file": "outputs/ep06/sfx/el/whoosh_fast.mp3",
+   "at": 7.065,
+   "len": 0.6,
+   "target_lufs": -21,
+   "fade_out": 0.05,
+   "measured_lufs": -10.45,
+   "gain": -10.6
+  },
+  {
+   "name": "ooh2",
+   "file": "outputs/ep06/sfx/el/crowd_ooh.mp3",
+   "at": 9.261,
+   "len": 1.5,
+   "target_lufs": -21,
+   "fade_out": 0.3,
+   "measured_lufs": -7.59,
+   "gain": -13.4
+  },
+  {
+   "name": "whip3",
+   "file": "outputs/ep06/sfx/el/whoosh_fast.mp3",
+   "at": 13.065,
+   "len": 0.6,
+   "target_lufs": -21,
+   "fade_out": 0.05,
+   "measured_lufs": -10.45,
+   "gain": -10.6
+  },
+  {
+   "name": "scratch3",
+   "file": "outputs/ep11/sfx/el/record_scratch.mp3",
+   "at": 13.175,
+   "len": 0.6,
+   "target_lufs": -20,
+   "fade_out": 0.05,
+   "measured_lufs": -4.23,
+   "gain": -15.8
+  },
+  {
+   "name": "horn",
+   "file": "outputs/ep06/sfx/el/air_horn.mp3",
+   "at": 16.392,
+   "len": 1.0,
+   "target_lufs": -18,
+   "fade_out": 0.05,
+   "measured_lufs": -4.11,
+   "gain": -13.9
+  },
+  {
+   "name": "ooh3",
+   "file": "outputs/ep06/sfx/el/crowd_ooh.mp3",
+   "at": 16.542,
+   "len": 1.5,
+   "target_lufs": -20,
+   "fade_out": 0.3,
+   "measured_lufs": -7.59,
+   "gain": -12.4
+  },
+  {
+   "name": "cheer",
+   "file": "outputs/ep06/sfx/el/crowd_cheer.mp3",
+   "at": 18.355,
+   "len": 2.12,
+   "target_lufs": -19,
+   "fade_out": 0.8,
+   "measured_lufs": -9.69,
+   "gain": -9.3
+  },
   {
    "name": "clap0",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 12.563,
+   "at": 18.355,
    "len": 0.3,
-   "gain": -8.0,
-   "note": "짧아서 고정 gain"
+   "gain": -8.0
   },
   {
    "name": "clap1",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 12.813,
+   "at": 18.605,
    "len": 0.3,
-   "gain": -8.0,
-   "note": "짧아서 고정 gain"
+   "gain": -8.0
   },
   {
    "name": "clap2",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 13.113,
+   "at": 18.905,
    "len": 0.3,
-   "gain": -8.0,
-   "note": "짧아서 고정 gain"
+   "gain": -8.0
   },
   {
    "name": "clap3",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 13.393,
+   "at": 19.185,
    "len": 0.3,
-   "gain": -8.0,
-   "note": "짧아서 고정 gain"
+   "gain": -8.0
   },
   {
    "name": "clap4",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 13.663,
+   "at": 19.455,
    "len": 0.3,
-   "gain": -8.0,
-   "note": "짧아서 고정 gain"
+   "gain": -8.0
   },
   {
    "name": "clap5",
    "file": "outputs/ep06/sfx/clap.wav",
-   "at": 13.983,
+   "at": 19.775,
    "len": 0.3,
-   "gain": -8.0,
-   "note": "짧아서 고정 gain"
+   "gain": -8.0
   }
  ]
 }

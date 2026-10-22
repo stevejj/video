@@ -1,1 +1,6 @@
-{"band_ratio": 0.4, "default_top": 34, "per_cut_top": {}, "note": "ep06: 창수 발끝까지 들어오게 34(K1 기준)"}
+{
+ "band_ratio": 1.0,
+ "default_top": 0,
+ "per_cut_top": {},
+ "note": "ep06 v2: 전체 화면"
+}

@@ -27,3 +27,7 @@ outputs/ep12/ref/source_photo.jpg
 outputs/ep12/ref/source_reel.png
 outputs/ep12/01/
 outputs/ep12/prompts/cmp_*.jpg
+outputs/*/r*/parts/*.mp4
+outputs/*/r*/parts/*.png
+outputs/*/ref/_grab.png
+outputs/*/r*/parts/list.txt
