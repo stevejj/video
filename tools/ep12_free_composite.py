@@ -26,14 +26,18 @@ SCENES = {
     'reel': dict(src='ref/source_reel.png', crop=(0, 0, 1010, 1796), out_w=1080, sun=-1, pose='right', tilt=-7,   # 오른쪽 아래(상어)로 고개를 살짝 숙임
                  # 걸어가던 두 사람 앞(발 y 510보다 앞)에 서서 그 둘을 가림. 더 앞에 있는 사람(난간 파란 셔츠·여자)은 다시 위로 올림
                  # v6(사용자: "난간에 서로 나란히"): 사람들처럼 난간에 붙어 난간 방향(대각선)으로 나란히.
-                 # 아래쪽 난간은 사람으로 꽉 차서(겹치면 사람 위에 떠 보임) 위쪽 빈 난간에. 발 = 난간 안쪽 끝, 멀어서 조금 작게
-                 place=[('misun', 466, 160, 144), ('changsu', 398, 240, 152)],
+                 # v7(사용자: "가운데 사람 지우고 거기 서게"): 난간 가운데 흰 셔츠 아저씨를 지우고 그 자리에 창수, 난간 위쪽 옆에 미순.
+                 # 이 사진은 바다 쪽에서 찍어 난간이 사람 다리 앞을 지남 → 둘의 아랫부분 위에 난간을 다시 그림(rail)
+                 # 얼굴은 손잡이 선 위로 보이게 산책로 쪽으로(창수 발 = 아저씨 발 높이), 아랫몸은 난간 뒤
+                 place=[('misun', 306, 466, 186), ('changsu', 256, 566, 200)],
+                 remove=[(308, 288, 348, 338), (270, 320, 365, 418), (268, 408, 342, 578), (318, 355, 368, 392)],   # 아저씨 머리·셔츠·다리·손(손으로 잡은 상자, 누끼는 난간까지 잡아서 못 씀)
+                 rail=((340, 375), (225, 545)),     # 손잡이 난간 선(아저씨 손·파란 셔츠 손이 닿은 곳). 이 선 아래는 난간이 앞
                  front=[(140, 385, 255, 615), (35, 455, 185, 735)],
                  inpaint=[(90, 215, 140, 288), (110, 50, 320, 120), (830, 50, 1030, 120)],   # 인스타 뒤로가기·시각·신호/배터리
-                 bubble=[('misun', (850, 110), (560, 70)), ('changsu', (850, 270), (500, 175))]),
+                 bubble=[('misun', (850, 250), (440, 300)), ('changsu', (850, 420), (380, 410))]),
     'photo': dict(src='ref/source_photo.jpg', crop=(0, 0, 800, 657), out_w=1600, sun=0, pose='back',
                   place=[('misun', 292, 712, 236), ('changsu', 462, 716, 246)],   # 오른쪽 아래 언론사 표시를 가리지 않는 자리
-                  inpaint=[], front=[],
+                  inpaint=[], front=[], remove=[],
                   bubble=[('misun', (470, 670), (570, 956)), ('changsu', (1090, 784), (924, 936))]),
 }
 
@@ -105,11 +109,28 @@ def main():
         layers.append((p, x, y))
     shadow = sh.filter(ImageFilter.GaussianBlur(8)).point(lambda v: int(v * 0.7))   # 발밑이 떠 보이지 않게 조금 진하게
     base.alpha_composite(Image.composite(Image.new('RGBA', (W, H), (20, 25, 25, 255)), Image.new('RGBA', (W, H), (0, 0, 0, 0)), shadow))
+    union = Image.new('L', (W, H), 0)
     for p, x, y in layers:
-        base.alpha_composite(p, (x, y))
+        base.alpha_composite(p, (x, y)); union.paste(255, (x, y), p.getchannel('A').point(lambda v: 255 if v > 20 else 0))
+    sys.path.insert(0, os.path.join(ROOT, 'tools'))
+    from cutout import alpha
+    import cv2
+    if S['remove']:   # 지울 사람: 누끼 마스크 중 미순·창수가 가리지 못한 부분만 주변으로 메움
+        m = np.zeros((H, W), np.uint8)
+        for x0, y0, x1, y1 in S['remove']:
+            m[y0:y1, x0:x1] = 255
+        m[np.asarray(union) > 0] = 0
+        o_ = np.asarray(photo).astype(int); m[(o_.min(2) > 205) & (o_.max(2) - o_.min(2) < 35)] = 0   # 다리 앞을 지나던 흰 난간은 남기고 그 사이만 메움
+        rgb = cv2.inpaint(np.asarray(base.convert('RGB')), m, 7, cv2.INPAINT_TELEA)
+        base = Image.fromarray(rgb).convert('RGBA')
+    if S.get('rail'):   # 손잡이 선 아래의 흰 난간을 미순·창수 위에 다시(원본에서 밝고 색 없는 픽셀)
+        (ax, ay), (bx, by) = S['rail']; yy, xx = np.mgrid[0:H, 0:W]
+        below = yy > ay + (xx - ax) * (by - ay) / (bx - ax)
+        o = np.asarray(photo).astype(int); bright = (o.min(2) > 205) & (o.max(2) - o.min(2) < 35)   # 난간(아주 밝음)만, 바닥 타일(~190)은 제외
+        rm = (below & bright & (np.asarray(union) > 0)).astype(np.uint8) * 255
+        r_ = photo.convert('RGBA'); r_.putalpha(Image.fromarray(rm).filter(ImageFilter.GaussianBlur(0.6)))
+        base.alpha_composite(r_)
     for x0, y0, x1, y1 in S['front']:   # 미순·창수보다 카메라에 가까운 사람은 다시 앞으로
-        sys.path.insert(0, os.path.join(ROOT, 'tools'))
-        from cutout import alpha
         reg = photo.crop((x0, y0, x1, y1)); m = alpha(reg, MODEL).point(lambda v: 255 if v > 150 else 0)   # 반투명 테두리가 미순·창수 위에 푸른 얼룩을 남김 → 확실한 부분만
         r_ = reg.convert('RGBA'); r_.putalpha(m.filter(ImageFilter.GaussianBlur(0.7))); base.alpha_composite(r_, (x0, y0))
     out = base.convert('RGB').crop(S['crop'])
