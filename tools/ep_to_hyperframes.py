@@ -259,10 +259,11 @@ def main():
             else:
                 grab_frame(fsrc, fb.get('t', 0), os.path.join(out, png), crop_top=fb.get('top', 0.3), crop_h=win / H)
             fw = fb.get('w', 0.56) * W
+            lbl_in = ' style="bottom: 12px; left: 18px; right: auto; font-size: 42px;"' if fb.get('label_pos') == 'inside' else ''   # ep09 v2.5: 큰 사진 아래 자막과 안 겹치게 글씨를 사진 안 왼쪽 아래로
             media_html.append(f'<div class="winfx fb" id="{cid}-fb" data-start="{t + fb["at"]:.3f}" data-duration="{fb["dur"]:.3f}" '
                               f'style="left:{fb.get("x", 0.5) * W - fw / 2:.0f}px; top:{fb.get("y", 0.12) * win:.0f}px; width:{fw:.0f}px;">'
                               f'<img src="{png}" style="width:100%; display:block;{"" if fb.get("color") else " filter: grayscale(1) contrast(1.1);"}" />'   # color: 폴라로이드(ep05 v2)
-                              f'<div class="fblabel">{html.escape(fb.get("label", "(아까)"))}</div></div>')
+                              f'<div class="fblabel"{lbl_in}>{html.escape(fb.get("label", "(아까)"))}</div></div>')
             tl.append(f'tl.fromTo("#{cid}-fb", {{scale: 0.3, opacity: 0, rotation: -8}}, {{scale: 1, opacity: 1, rotation: -3, duration: 0.18, ease: "back.out(2)"}}, {t + fb["at"]:.3f});')
             tl.append(f'tl.to("#{cid}-fb", {{scale: 0.8, opacity: 0, duration: 0.15}}, {t + fb["at"] + fb["dur"] - 0.15:.3f});')
         # 카메라
