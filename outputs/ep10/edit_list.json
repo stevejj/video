@@ -17,20 +17,11 @@
    "source_cut": "04",
    "image": "outputs/ep10/ref/k4_1080.png",
    "in": 0,
-   "len": 15.99,
-   "time_card": null
-  },
-  {
-   "cut": "02",
-   "kind": "still",
-   "source_cut": "05",
-   "image": "outputs/ep10/ref/k5_1080.png",
-   "in": 0,
-   "len": 4.5,
+   "len": 19.52,
    "time_card": null
   }
  ],
  "history": [
-  "2026-10-22 ep10 v4: 등 돌리고 방구배틀 20.5s, 눈 감은 채, 이불 움직임, 귀뚜라미 없음, Kling 0"
+  "2026-10-22 ep10 v4: 등 돌리고 방구배틀 19.5s, 112BPM 비트 따라 방귀, 눈 감은 채, 이불 움직임, 귀뚜라미 없음, K5 없음, Kling 0"
  ]
 }
