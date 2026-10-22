@@ -122,8 +122,8 @@ def main():
     ad_look()
 
     T = json.load(open(os.path.join(ROOT, 'outputs/ep07/text_overlay.json')))
-    # 제목(사용자): "부부의 초겨울 / 맥주광고 따라하기", 노란색 = "맥주광고"
-    T['title']['lines'] = [{'text': '부부의 초겨울', 'color': '#FFFFFF'},
+    # 제목(사용자 2026-10-22 정정): "초겨울 포장마차 / 맥주광고 따라하기", 노란색 = "맥주광고"
+    T['title']['lines'] = [{'text': '초겨울 포장마차', 'color': '#FFFFFF'},
                            {'spans': [{'text': '맥주광고', 'color': '#FFD84A'}, {'text': ' 따라하기', 'color': '#FFFFFF'}]}]
     # v2: 광고 구간 대사는 광고 카피(hf_fx copy)로, 아래 자막은 현실 복귀 대사만
     T['subtitles'] = [{'cut': c, 'text': L[c]['subtitle'], 'speaker': L[c]['speaker'], 'start': round(a0, 2), 'end': round(a1, 2), 'x': 0.5} for c, a0, a1 in subs if c == 'L8']
