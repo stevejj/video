@@ -699,15 +699,7 @@
   "ep05": {
    "lines": [],
    "placements": [],
-   "bgm": {
-    "file": "outputs/ep01/bgm/F_soft_chiptune.mp3",
-    "target_lufs": -20,
-    "duck_db": 0,
-    "fade_in": 0.3,
-    "end_at": 11.6,
-    "fade_out": 0.6
-   },
-   "note": "ep05: 대사 없음, 음악 + 효과음(참고 릴스와 같음)"
+   "note": "ep05 v2: 대사 없음, 배경음은 sfx_list의 selfie_gym + 효과음"
   },
   "ep06": {
    "lines": [],

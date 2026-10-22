@@ -26,18 +26,45 @@
   .uinum { font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }
   .uiclock { font-size: 54px; font-weight: 700; margin-top: 10px; }
   .ring { position: absolute; border: 10px dashed #FFD84A; border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }
+  .winfx { position: absolute; left: 0; top: 0; width: 1080px; height: 768px; pointer-events: none; }
+  .speed { -webkit-mask-image: radial-gradient(ellipse at center, transparent 38%, #000 75%); mask-image: radial-gradient(ellipse at center, transparent 38%, #000 75%); }
+  .stamp { width: auto; height: auto; text-align: center; font-weight: 900; -webkit-text-stroke: 6px #fff; paint-order: stroke fill; text-shadow: 0 6px 16px rgba(0,0,0,0.5); transform-origin: 50% 50%; }
+  .gauge { height: auto; display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 52px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }
+  .gbar { display: inline-block; width: 460px; height: 46px; border: 6px solid #111; border-radius: 28px; background: rgba(255,255,255,0.85); overflow: hidden; }
+  .gfill { display: block; height: 100%; width: 0%; background: #FFD84A; }
+  .gmax { color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }
+  .fb { height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }
+  .fblabel { position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }
+  .focusbox { border: 5px solid rgba(255,255,255,0.95); border-radius: 10px; box-sizing: border-box; transform-origin: 50% 50%; }
+  .tagpill { z-index: 6; width: auto; height: auto; padding: 14px 40px 16px 34px; border-radius: 60px; color: #fff; font-size: 64px; font-weight: 900; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.35); -webkit-text-stroke: 2px rgba(0,0,0,0.25); }
+  .tagsmall { font-size: 34px; font-weight: 800; margin-right: 18px; letter-spacing: 0.08em; opacity: 0.9; }
+  .adcopy { height: auto; transform-origin: 50% 50%; text-align: center; white-space: nowrap; line-height: 1.3; text-shadow: 0 2px 18px rgba(0,0,0,0.75), 0 0 4px rgba(0,0,0,0.5); }
+  .puff { width: auto; height: auto; transform-origin: 50% 70%; }
+  .tap { border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0) 70%); transform-origin: 50% 50%; }
   .arrow { position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="11.600" data-fps="24">
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="12.300" data-fps="24">
   <div id="win">
-        <div class="frame" id="c01" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c01-v" src="media/02.mp4" data-start="0.000" data-duration="4.300" data-media-start="0.300" muted></video></div>
-    <div class="flash" id="c01-fl0" data-start="1.100" data-duration="0.250"></div>
-    <div class="frame" id="c02" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c02-v" src="media/02.png" data-start="4.300" data-duration="1.500" /></div>
-    <div class="frame" id="c03" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c03-v" src="media/04_bg.png" data-start="5.800" data-duration="1.200" /><img id="c03-ms" class="layer" src="media/04_ms.png" data-start="5.800" data-duration="1.200" style="left:434.5px; top:696.1px; width:426.1px; height:541.4px; transform-origin:246.1px 372.7px;" /><img id="c03-db" class="layer" src="media/04_db.png" data-start="5.800" data-duration="1.200" style="left:711.6px; top:1223.4px; width:251.7px; height:104.1px; transform-origin:125.2px 98.4px;" /></div>
-    <div class="frame" id="c04" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c04-v" src="media/05.mp4" data-start="7.000" data-duration="4.600" data-media-start="0.200" muted></video></div>
-    <div class="flash" id="c04-fl0" data-start="11.200" data-duration="0.250"></div>
+        <img class="winfx" id="c01-ov0" src="media/c01_ov0.png" data-start="0.000" data-duration="1.683" style="opacity:0; z-index:4;" />
+    <div class="winfx focusbox" id="c01-ov0-f" data-start="0.000" data-duration="1.683" style="left:555px; top:115px; width:230px; height:230px; opacity:0; z-index:4;"></div>
+    <div class="frame" id="c01" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c01-v" src="media/a.mp4" data-start="0.000" data-duration="4.167" data-media-start="0.000" muted></video></div>
+    <div class="winfx stamp" id="c01-st0" data-start="2.722" data-duration="1.445" style="left:503px; top:54px; width:420px; height:92px; white-space: nowrap; font-size:92px; line-height:92px; color:#FFD84A;">운동 끝!</div>
+    <div class="winfx fb" id="c01-fb" data-start="1.163" data-duration="1.400" style="left:54px; top:46px; width:324px;"><img src="media/c01_fb.png" style="width:100%; display:block;" /><div class="fblabel">찰칵! 1장</div></div>
+    <div class="flash" id="c01-fl0" data-start="1.083" data-duration="0.300"></div>
+    <div class="winfx tagpill" id="c02-lb0" data-start="4.217" data-duration="1.000" style="top:46px; left:65px; background:#8A8F98; opacity:0;"><span class="tagsmall"></span>확대 검사 중...</div>
+    <div class="frame" id="c02" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c02-v" src="media/02.png" data-start="4.167" data-duration="1.800" /></div>
+    <div class="winfx stamp" id="c02-st0" data-start="5.267" data-duration="0.700" style="left:330px; top:347px; width:420px; height:150px; white-space: nowrap; font-size:150px; line-height:150px; color:#E8322E;">다시!</div>
+    <div class="frame" id="c03" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c03-v" src="media/04_bg.png" data-start="5.967" data-duration="1.000" /><img id="c03-ms" class="layer" src="media/04_ms.png" data-start="5.967" data-duration="1.000" style="left:434.5px; top:696.1px; width:426.1px; height:541.4px; transform-origin:246.1px 372.7px;" /><img id="c03-db" class="layer" src="media/04_db.png" data-start="5.967" data-duration="1.000" style="left:711.6px; top:1223.4px; width:251.7px; height:104.1px; transform-origin:125.2px 98.4px;" /></div>
+    <img class="winfx" id="c04-ov0" src="media/c04_ov0.png" data-start="9.809" data-duration="2.491" style="opacity:0; z-index:4;" />
+    <div class="winfx focusbox" id="c04-ov0-f" data-start="9.809" data-duration="2.491" style="left:555px; top:115px; width:230px; height:230px; opacity:0; z-index:4;"></div>
+    <div class="winfx tagpill" id="c04-lb0" data-start="11.150" data-duration="1.150" style="top:61px; left:65px; background:#8A8F98; opacity:0;"><span class="tagsmall">오늘</span>운동 0회</div>
+    <div class="winfx tagpill" id="c04-lb1" data-start="11.350" data-duration="0.950" style="top:169px; left:65px; background:#FF6FA8; opacity:0;"><span class="tagsmall">오늘</span>사진 2장</div>
+    <div class="frame" id="c04" style="top:-576.0px; transform-origin: 540px 960.0px;"><video id="c04-v" src="media/d.mp4" data-start="6.967" data-duration="5.333" data-media-start="0.000" muted></video></div>
+    <div class="winfx speed" id="c04-spd" data-start="6.967" data-duration="1.042" style="background: repeating-conic-gradient(from 0deg at 60% 45%, rgba(255,255,255,0.85) 0deg 1.2deg, rgba(255,255,255,0) 1.2deg 7deg);"></div>
+    <div class="winfx fb" id="c04-fb" data-start="10.880" data-duration="1.420" style="left:54px; top:292px; width:324px;"><img src="media/c04_fb.png" style="width:100%; display:block;" /><div class="fblabel">찰칵! 2장</div></div>
+    <div class="flash" id="c04-fl0" data-start="10.800" data-duration="0.300"></div>
   </div>
   <div id="title"><div style="color:#FFFFFF">헬스장 간</div><div style="color:#FFD84A">우리 미순이</div></div>
   <div id="channel">지독한 미순</div>
@@ -59,14 +86,58 @@
   const tl = gsap.timeline({ paused: true });
   function build() {
     placeSubs();
-        tl.fromTo("#c01-fl0", {opacity: 0.9}, {opacity: 0, duration: 0.250, ease: "power2.in"}, 1.100);
-    tl.fromTo("#c02", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.1, "x": 0, "y": 0, "duration": 1.5, "ease": "none"}, 4.300);
-    tl.to("#c02", {x: -3.0, y: 1.8, duration: 0.80, ease: "sine.inOut"}, 4.300);
+        tl.fromTo("#c01-ov0", {opacity: 0}, {opacity: 1, duration: 0.15, ease: "power1.out"}, 0.000);
+    tl.to("#c01-ov0", {opacity: 0, duration: 0.15, ease: "power1.in"}, 1.533);
+    tl.fromTo("#c01-ov0-f", {opacity: 0, scale: 1.6}, {opacity: 1, scale: 1, duration: 0.35, ease: "power3.out"}, 0.050);
+    tl.to("#c01-ov0-f", {borderColor: "#7CFF7C", duration: 0.05}, 0.450);
+    tl.to("#c01-ov0-f", {opacity: 0, duration: 0.15}, 1.533);
+    tl.fromTo("#c01-st0", {scale: 2.4, opacity: 0, rotation: -8}, {scale: 1, opacity: 1, rotation: -2.7, duration: 0.12, ease: "power4.in"}, 2.722);
+    tl.fromTo("#c01-fb", {scale: 0.3, opacity: 0, rotation: -8}, {scale: 1, opacity: 1, rotation: -3, duration: 0.18, ease: "back.out(2)"}, 1.163);
+    tl.to("#c01-fb", {scale: 0.8, opacity: 0, duration: 0.15}, 2.413);
+    tl.fromTo("#c01-fl0", {opacity: 0.9}, {opacity: 0, duration: 0.300, ease: "power2.in"}, 1.083);
+    tl.fromTo("#c02-lb0", {x: -420, opacity: 0}, {x: 0, opacity: 1, duration: 0.28, ease: "back.out(1.6)"}, 4.217);
+    tl.to("#c02-lb0", {x: -420, opacity: 0, duration: 0.22, ease: "power2.in"}, 4.997);
+    tl.fromTo("#c02-st0", {scale: 2.4, opacity: 0, rotation: -10}, {scale: 1, opacity: 1, rotation: -3.3, duration: 0.12, ease: "power4.in"}, 5.267);
+    tl.to("#c02", {scale: 1.0, x: 0, y: 0, duration: 0.300, ease: "none"}, 4.167);
+    tl.to("#c02", {scale: 1.8, x: 0, y: 194, duration: 0.550, ease: "power3.inOut"}, 4.467);
+    tl.to("#c02", {x: 6.0, y: 3.0, duration: 0.0417, ease: "none"}, 5.267);
+    tl.to("#c02", {x: -4.0, y: 2.5, duration: 0.0417, ease: "none"}, 5.309);
+    tl.to("#c02", {x: 3.2, y: -2.0, duration: 0.0417, ease: "none"}, 5.350);
+    tl.to("#c02", {x: -3.0, y: -1.5, duration: 0.0417, ease: "none"}, 5.392);
+    tl.to("#c02", {x: 1.6, y: 1.0, duration: 0.0417, ease: "none"}, 5.434);
+    tl.to("#c02", {x: -0.8, y: 0.5, duration: 0.0417, ease: "none"}, 5.475);
+    tl.to("#c02", {x: 0, y: 0, duration: 0.08}, 5.517);
     tl.set("#c03-ms", {"rotation": -3, "x": -6}, 0);
-    tl.to("#c03-ms", {...{"rotation": 8, "x": 0}, duration: 0.35, ease: "back.out(2)"}, 6.000);
-    tl.fromTo("#c03", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 1.2, "ease": "none"}, 5.800);
-    tl.to("#c03", {x: -4.0, y: 2.4, duration: 1.10, ease: "sine.inOut"}, 5.800);
-    tl.fromTo("#c04-fl0", {opacity: 0.9}, {opacity: 0, duration: 0.250, ease: "power2.in"}, 11.200);
+    tl.to("#c03-ms", {...{"rotation": 8, "x": 0}, duration: 0.35, ease: "back.out(2)"}, 6.167);
+    tl.fromTo("#c04-ov0", {opacity: 0}, {opacity: 1, duration: 0.15, ease: "power1.out"}, 9.809);
+    tl.to("#c04-ov0", {opacity: 0, duration: 0.15, ease: "power1.in"}, 12.150);
+    tl.fromTo("#c04-ov0-f", {opacity: 0, scale: 1.6}, {opacity: 1, scale: 1, duration: 0.35, ease: "power3.out"}, 9.859);
+    tl.to("#c04-ov0-f", {borderColor: "#7CFF7C", duration: 0.05}, 10.259);
+    tl.to("#c04-ov0-f", {opacity: 0, duration: 0.15}, 12.150);
+    tl.fromTo("#c04-lb0", {x: -420, opacity: 0}, {x: 0, opacity: 1, duration: 0.28, ease: "back.out(1.6)"}, 11.150);
+    tl.to("#c04-lb0", {x: -420, opacity: 0, duration: 0.22, ease: "power2.in"}, 12.080);
+    tl.fromTo("#c04-lb1", {x: -420, opacity: 0}, {x: 0, opacity: 1, duration: 0.28, ease: "back.out(1.6)"}, 11.350);
+    tl.to("#c04-lb1", {x: -420, opacity: 0, duration: 0.22, ease: "power2.in"}, 12.080);
+    tl.set("#c04-spd", {rotation: 0.0, opacity: 1}, 6.967);
+    tl.set("#c04-spd", {rotation: 0.8, opacity: 0.75}, 7.027);
+    tl.set("#c04-spd", {rotation: 1.6, opacity: 1}, 7.087);
+    tl.set("#c04-spd", {rotation: 0.0, opacity: 0.75}, 7.147);
+    tl.set("#c04-spd", {rotation: 0.8, opacity: 1}, 7.207);
+    tl.set("#c04-spd", {rotation: 1.6, opacity: 0.75}, 7.267);
+    tl.set("#c04-spd", {rotation: 0.0, opacity: 1}, 7.327);
+    tl.set("#c04-spd", {rotation: 0.8, opacity: 0.75}, 7.387);
+    tl.set("#c04-spd", {rotation: 1.6, opacity: 1}, 7.447);
+    tl.set("#c04-spd", {rotation: 0.0, opacity: 0.75}, 7.507);
+    tl.set("#c04-spd", {rotation: 0.8, opacity: 1}, 7.567);
+    tl.set("#c04-spd", {rotation: 1.6, opacity: 0.75}, 7.627);
+    tl.set("#c04-spd", {rotation: 0.0, opacity: 1}, 7.687);
+    tl.set("#c04-spd", {rotation: 0.8, opacity: 0.75}, 7.747);
+    tl.set("#c04-spd", {rotation: 1.6, opacity: 1}, 7.807);
+    tl.set("#c04-spd", {rotation: 0.0, opacity: 0.75}, 7.867);
+    tl.set("#c04-spd", {rotation: 0.8, opacity: 1}, 7.927);
+    tl.fromTo("#c04-fb", {scale: 0.3, opacity: 0, rotation: -8}, {scale: 1, opacity: 1, rotation: -3, duration: 0.18, ease: "back.out(2)"}, 10.880);
+    tl.to("#c04-fb", {scale: 0.8, opacity: 0, duration: 0.15}, 12.150);
+    tl.fromTo("#c04-fl0", {opacity: 0.9}, {opacity: 0, duration: 0.300, ease: "power2.in"}, 10.800);
     window.__timelines["main"] = tl;
   }
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }

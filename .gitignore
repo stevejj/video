@@ -31,3 +31,5 @@ outputs/*/r*/parts/*.mp4
 outputs/*/r*/parts/*.png
 outputs/*/ref/_grab.png
 outputs/*/r*/parts/list.txt
+outputs/*/a/parts/
+outputs/*/d/parts/

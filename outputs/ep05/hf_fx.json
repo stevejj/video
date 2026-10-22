@@ -1,36 +1,103 @@
 {
- "note": "ep05 v1 완성: Kling 2컷(K1→K3)·5컷(K3→K1) + I4 인서트 정지 + 갸웃 퍼펫(0원) + 셔터 플래시",
+ "note": "ep05 v2: 사진에만 진심(뷰파인더·폴라로이드·운동 끝·다시!·운동 0회 사진 2장), Kling 0",
  "default_still": {
-  "cam": {
-   "from": 1.0,
-   "to": 1.04
-  },
-  "drift": {
-   "amp": 4,
-   "period": 2.2
-  }
+  "cam": null
  },
  "default_clip": {
   "cam": null
  },
  "cuts": {
   "01": {
-   "cam": null,
+   "overlays": [
+    {
+     "at": 0.0,
+     "dur": 1.6829999999999998,
+     "img": "outputs/ep05/ref/viewfinder.png",
+     "focus": {
+      "x": 0.62,
+      "y": 0.3,
+      "size": 230
+     }
+    }
+   ],
    "flash": [
     {
-     "at": 1.1,
-     "dur": 0.25
+     "at": 1.083,
+     "dur": 0.3,
+     "peak": 0.9
+    }
+   ],
+   "flashback": {
+    "image": "outputs/ep05/ref/polaroid_1.png",
+    "raw": true,
+    "at": 1.163,
+    "dur": 1.4,
+    "label": "찰칵! 1장",
+    "w": 0.3,
+    "x": 0.2,
+    "y": 0.06,
+    "color": true
+   },
+   "stamps": [
+    {
+     "at": 2.722,
+     "x": 0.66,
+     "y": 0.13,
+     "text": "운동 끝!",
+     "size": 92,
+     "w": 420,
+     "rot": -8,
+     "color": "#FFD84A",
+     "dur": 1.445
     }
    ]
   },
   "02": {
-   "cam": {
-    "from": 1.0,
-    "to": 1.1
-   },
-   "drift": {
-    "amp": 3,
-    "period": 1.6
+   "moves": [
+    {
+     "at": 0.0,
+     "dur": 0.3,
+     "scale": 1.0,
+     "x": 0,
+     "y": 0,
+     "ease": "none"
+    },
+    {
+     "at": 0.3,
+     "dur": 0.55,
+     "scale": 1.8,
+     "x": 0,
+     "y": 194,
+     "ease": "power3.inOut"
+    }
+   ],
+   "labels": [
+    {
+     "at": 0.05,
+     "dur": 1.0,
+     "small": "",
+     "text": "확대 검사 중...",
+     "color": "#8A8F98",
+     "y": 0.06
+    }
+   ],
+   "stamps": [
+    {
+     "at": 1.1,
+     "x": 0.5,
+     "y": 0.55,
+     "text": "다시!",
+     "size": 150,
+     "w": 420,
+     "rot": -10,
+     "color": "#E8322E",
+     "dur": 0.7
+    }
+   ],
+   "shake": {
+    "at": 1.1,
+    "amp": 6,
+    "dur": 0.25
    }
   },
   "03": {
@@ -85,11 +152,58 @@
    "note": "plateB는 바닥 덤벨을 지운 배경판 → 덤벨 레이어를 반드시 다시 얹음(2026-10-19 사라짐 사고)"
   },
   "04": {
-   "cam": null,
+   "speedlines": {
+    "at": 0.0,
+    "dur": 1.042,
+    "cx": 0.6,
+    "cy": 0.45
+   },
+   "overlays": [
+    {
+     "at": 2.842,
+     "dur": 2.491,
+     "img": "outputs/ep05/ref/viewfinder.png",
+     "focus": {
+      "x": 0.62,
+      "y": 0.3,
+      "size": 230
+     }
+    }
+   ],
    "flash": [
     {
-     "at": 4.2,
-     "dur": 0.25
+     "at": 3.833,
+     "dur": 0.3,
+     "peak": 0.9
+    }
+   ],
+   "flashback": {
+    "image": "outputs/ep05/ref/polaroid_2.png",
+    "raw": true,
+    "at": 3.913,
+    "dur": 1.42,
+    "label": "찰칵! 2장",
+    "w": 0.3,
+    "x": 0.2,
+    "y": 0.38,
+    "color": true
+   },
+   "labels": [
+    {
+     "at": 4.183,
+     "dur": 1.15,
+     "small": "오늘",
+     "text": "운동 0회",
+     "color": "#8A8F98",
+     "y": 0.08
+    },
+    {
+     "at": 4.383,
+     "dur": 0.95,
+     "small": "오늘",
+     "text": "사진 2장",
+     "color": "#FF6FA8",
+     "y": 0.22
     }
    ]
   }

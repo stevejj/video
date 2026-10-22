@@ -129,6 +129,18 @@ def main():
             for k in range(int(gh['dur'] / 0.4)):
                 tl.append(f'tl.to("#{cid}-gh{gi}", {{x: {14 * (1 if k % 2 else -1)}, duration: 0.4, ease: "sine.inOut"}}, {t + gh["at"] + k * 0.4:.3f});')
         # 래퍼는 타이밍 없음(video_nested_in_timed_element 회피). transform-origin = 창 중심
+        for k, ov in enumerate(fx.get('overlays', [])):  # 창 전체 이미지 덮개(ep05 v2 뷰파인더): 서서히 나타났다 사라짐
+            oid = f'{cid}-ov{k}'; d0 = t + ov['at']; fd = ov.get('fade', 0.15)
+            shutil.copy(os.path.join(ROOT, ov['img']), os.path.join(out, f'media/{cid}_ov{k}.png'))
+            media_html.append(f'<img class="winfx" id="{oid}" src="media/{cid}_ov{k}.png" data-start="{d0:.3f}" data-duration="{ov["dur"]:.3f}" style="opacity:0; z-index:4;" />')
+            tl.append(f'tl.fromTo("#{oid}", {{opacity: 0}}, {{opacity: 1, duration: {fd}, ease: "power1.out"}}, {d0:.3f});')
+            tl.append(f'tl.to("#{oid}", {{opacity: 0, duration: {fd}, ease: "power1.in"}}, {d0 + ov["dur"] - fd:.3f});')
+            if ov.get('focus'):   # 가운데 초점 사각형이 작아지며 맞춰짐
+                f_ = ov['focus']; fid = f'{oid}-f'
+                media_html.append(f'<div class="winfx focusbox" id="{fid}" data-start="{d0:.3f}" data-duration="{ov["dur"]:.3f}" style="left:{f_["x"] * W - f_["size"] / 2:.0f}px; top:{f_["y"] * win - f_["size"] / 2:.0f}px; width:{f_["size"]}px; height:{f_["size"]}px; opacity:0; z-index:4;"></div>')
+                tl.append(f'tl.fromTo("#{fid}", {{opacity: 0, scale: 1.6}}, {{opacity: 1, scale: 1, duration: 0.35, ease: "power3.out"}}, {d0 + 0.05:.3f});')
+                tl.append(f'tl.to("#{fid}", {{borderColor: "#7CFF7C", duration: 0.05}}, {d0 + 0.45:.3f});')
+                tl.append(f'tl.to("#{fid}", {{opacity: 0, duration: {fd}}}, {d0 + ov["dur"] - fd:.3f});')
         for k, lb in enumerate(fx.get('labels', [])):  # 이름표(ep06 v2 댄스배틀): 둥근 색 띠가 왼쪽에서 미끄러져 들어왔다 나감
             lid = f'{cid}-lb{k}'; d0 = t + lb['at']
             media_html.append(f'<div class="winfx tagpill" id="{lid}" data-start="{d0:.3f}" data-duration="{lb["dur"]:.3f}" '
@@ -199,11 +211,14 @@ def main():
             fsrc = os.path.join(ROOT, f'outputs/{ep}/{fb["cut"]}/clip_{fb.get("tag", "v1")}.mp4') if fb.get('cut') else os.path.join(ROOT, fb['image'])
             if not os.path.exists(fsrc) and fb.get('image'):
                 fsrc = os.path.join(ROOT, fb['image'])
-            grab_frame(fsrc, fb.get('t', 0), os.path.join(out, png), crop_top=fb.get('top', 0.3), crop_h=win / H)
+            if fb.get('raw'):   # 미리 만든 사진을 그대로(ep05 v2 폴라로이드: 미순만 잘라 둔 사진)
+                shutil.copy(os.path.join(ROOT, fb['image']), os.path.join(out, png))
+            else:
+                grab_frame(fsrc, fb.get('t', 0), os.path.join(out, png), crop_top=fb.get('top', 0.3), crop_h=win / H)
             fw = fb.get('w', 0.56) * W
             media_html.append(f'<div class="winfx fb" id="{cid}-fb" data-start="{t + fb["at"]:.3f}" data-duration="{fb["dur"]:.3f}" '
                               f'style="left:{fb.get("x", 0.5) * W - fw / 2:.0f}px; top:{fb.get("y", 0.12) * win:.0f}px; width:{fw:.0f}px;">'
-                              f'<img src="{png}" style="width:100%; display:block; filter: grayscale(1) contrast(1.1);" />'
+                              f'<img src="{png}" style="width:100%; display:block;{"" if fb.get("color") else " filter: grayscale(1) contrast(1.1);"}" />'   # color: 폴라로이드(ep05 v2)
                               f'<div class="fblabel">{html.escape(fb.get("label", "(아까)"))}</div></div>')
             tl.append(f'tl.fromTo("#{cid}-fb", {{scale: 0.3, opacity: 0, rotation: -8}}, {{scale: 1, opacity: 1, rotation: -3, duration: 0.18, ease: "back.out(2)"}}, {t + fb["at"]:.3f});')
             tl.append(f'tl.to("#{cid}-fb", {{scale: 0.8, opacity: 0, duration: 0.15}}, {t + fb["at"] + fb["dur"] - 0.15:.3f});')
@@ -336,6 +351,7 @@ def main():
   .gmax {{ color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }}
   .fb {{ height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }}
   .fblabel {{ position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }}
+  .focusbox {{ border: 5px solid rgba(255,255,255,0.95); border-radius: 10px; box-sizing: border-box; transform-origin: 50% 50%; }}
   .tagpill {{ z-index: 6; width: auto; height: auto; padding: 14px 40px 16px 34px; border-radius: 60px; color: #fff; font-size: 64px; font-weight: 900; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.35); -webkit-text-stroke: 2px rgba(0,0,0,0.25); }}
   .tagsmall {{ font-size: 34px; font-weight: 800; margin-right: 18px; letter-spacing: 0.08em; opacity: 0.9; }}
   .adcopy {{ height: auto; transform-origin: 50% 50%; text-align: center; white-space: nowrap; line-height: 1.3; text-shadow: 0 2px 18px rgba(0,0,0,0.75), 0 0 4px rgba(0,0,0,0.5); }}
