@@ -1964,7 +1964,7 @@
     "target_lufs": -27,
     "duck_db": 6,
     "fade_in": 0.3,
-    "end_at": 42.5,
+    "end_at": 43.4,
     "fade_out": 1.0
    },
    "scenes": {
@@ -2081,23 +2081,23 @@
     },
     {
      "file": "outputs/ep09/voice/scenes/s5_clip.wav",
-     "at": 19.2
+     "at": 20.1
     },
     {
      "file": "outputs/ep09/voice/scenes/s6_clip.wav",
-     "at": 24.2
+     "at": 25.1
     },
     {
      "file": "outputs/ep09/voice/scenes/s7.mp3",
-     "at": 28.9
+     "at": 29.8
     },
     {
      "file": "outputs/ep09/voice/scenes/s8_clip.wav",
-     "at": 32.4
+     "at": 33.3
     },
     {
      "file": "outputs/ep09/voice/scenes/s9_clip.wav",
-     "at": 38.0
+     "at": 38.9
     }
    ]
   },

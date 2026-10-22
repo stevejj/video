@@ -155,7 +155,7 @@
    "text": "(배달앱 30분째 스크롤)",
    "speaker": "sfx",
    "start": 15.8,
-   "end": 19.2,
+   "end": 20.1,
    "x": 0.5,
    "pos": "top"
   },
@@ -179,32 +179,32 @@
    "cut": "5a",
    "text": "그럼… 먹고 싶은 거 딱 하나만 말해봐…",
    "speaker": "changsu",
-   "start": 19.52,
-   "end": 21.92,
+   "start": 20.42,
+   "end": 22.82,
    "x": 0.5
   },
   {
    "cut": "5b",
    "text": "나 진짜 아무거나 괜찮다니까?",
    "speaker": "misun",
-   "start": 21.99,
-   "end": 23.84,
+   "start": 22.89,
+   "end": 24.74,
    "x": 0.5
   },
   {
    "cut": "6a",
    "text": "알았어! 그냥 치킨 시킨다!",
    "speaker": "changsu",
-   "start": 24.56,
-   "end": 26.52,
+   "start": 25.46,
+   "end": 27.42,
    "x": 0.5
   },
   {
    "cut": "cap",
    "text": "(결국 처음 메뉴)",
    "speaker": "sfx",
-   "start": 25.16,
-   "end": 28.9,
+   "start": 26.06,
+   "end": 29.8,
    "x": 0.5,
    "pos": "top"
   },
@@ -212,16 +212,16 @@
    "cut": "6b",
    "text": "…난 안 먹을 거야.",
    "speaker": "misun",
-   "start": 27.13,
-   "end": 28.38,
+   "start": 28.03,
+   "end": 29.28,
    "x": 0.5
   },
   {
    "cut": "cap",
    "text": "(40분 뒤, 치킨 도착)",
    "speaker": "sfx",
-   "start": 29.0,
-   "end": 32.4,
+   "start": 29.9,
+   "end": 33.3,
    "x": 0.5,
    "pos": "top"
   },
@@ -229,40 +229,40 @@
    "cut": "7",
    "text": "왔다 왔다~!",
    "speaker": "changsu",
-   "start": 29.9,
-   "end": 30.86,
+   "start": 30.8,
+   "end": 31.76,
    "x": 0.5
   },
   {
    "cut": "8a",
    "text": "하나만 먹어볼까?",
    "speaker": "misun",
-   "start": 32.75,
-   "end": 33.98,
+   "start": 33.65,
+   "end": 34.88,
    "x": 0.5
   },
   {
    "cut": "8b",
    "text": "안 먹는다며…?",
    "speaker": "changsu",
-   "start": 34.05,
-   "end": 35.33,
+   "start": 34.95,
+   "end": 36.23,
    "x": 0.5
   },
   {
    "cut": "8c",
    "text": "오늘까지만 먹을 거야!",
    "speaker": "misun",
-   "start": 35.97,
-   "end": 37.4,
+   "start": 36.87,
+   "end": 38.3,
    "x": 0.5
   },
   {
    "cut": "cap",
    "text": "(이번 주 치킨 4번째)",
    "speaker": "sfx",
-   "start": 35.97,
-   "end": 38.0,
+   "start": 36.87,
+   "end": 38.9,
    "x": 0.5,
    "pos": "top"
   },
@@ -270,16 +270,16 @@
    "cut": "9",
    "text": "여보, 내일 저녁은 뭐 먹을래?",
    "speaker": "misun",
-   "start": 38.3,
-   "end": 40.1,
+   "start": 39.2,
+   "end": 41.0,
    "x": 0.5
   },
   {
    "cut": "cap",
    "text": "(내일도 시작)",
    "speaker": "sfx",
-   "start": 40.4,
-   "end": 42.5,
+   "start": 41.3,
+   "end": 43.4,
    "x": 0.5,
    "pos": "top"
   }

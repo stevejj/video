@@ -8,6 +8,8 @@
  5 "(아까)" 회상 사진이 미순 얼굴을 가림 → 오른쪽 창수 몸 쪽으로
  6 마지막 땀 흘리는 창수 동공지진 + 진동음 + 유리 알림창 "동공지진"
 효과 글씨는 02a 규칙(유리 알림창). 삑 부저는 부드러운 알림음·톡으로.
+v2.1(사용자): 동공지진은 얼굴로 확 다가가서, "(아까)" 흑백 사진 더 길게, "왔다 왔다" 별(반짝이) 빼기,
+ "결정 실패" 더 오래(앱 컷 +0.9s, 뒤 시각 전부 +0.9s).
 """
 import json, os, shutil, sys
 
@@ -24,17 +26,27 @@ def v1(name):
 
 def main():
     E = v1('edit_list.json'); F = v1('hf_fx.json'); T = v1('text_overlay.json'); X = v1('sfx/sfx_list.json')
+    pp_ = os.path.join(ROOT, 'outputs/voice_profile.json'); P = json.load(open(pp_)); VP = P['episodes']['ep09']
+    vb = os.path.join(EP, 'voice_v1.json')
+    if not os.path.exists(vb):
+        json.dump({'placements': VP['placements'], 'bgm': VP['bgm']}, open(vb, 'w'), ensure_ascii=False, indent=1)
+    V1 = json.load(open(vb))
+    FAIL, EXT = 2.75, 0.9          # "결정 실패" 시각(앱 컷 안, "다 별로~" 끝난 직후)·앱 컷 연장
     sys.path.insert(0, os.path.join(ROOT, 'tools'))
     from pupil_quake import quake
     starts, t = {}, 0.0
     for c in E['cuts']:
         starts[c['cut']] = t; t += c['len']
-    END = t
+    SH0 = starts['05']                                         # 이 시각 이후는 전부 EXT만큼 뒤로
+    sh = lambda x: round(x + (EXT if x >= SH0 - 1e-6 else 0), 3)
+    END = t + EXT
     # 6: 마지막 컷을 클립(멈추기 전) + 멈춘 프레임(눈만 떨림) 정지 컷으로
     FZ = F['cuts']['09']['freeze']['at']; L9 = next(c['len'] for c in E['cuts'] if c['cut'] == '09')
-    q9 = quake('outputs/ep09/quake/f9.png', [(630, 910, 700, 990), (780, 905, 860, 990)], os.path.join(EP, 'quake'), 'f9', 0.5, 0.9, 6)
+    q9 = quake('outputs/ep09/quake/f9.png', [(630, 910, 700, 990), (780, 905, 860, 990)], os.path.join(EP, 'quake'), 'f9', 0.95, 1.0, 6)
     cuts = []
     for c in E['cuts']:
+        if c['cut'] == '04':
+            c = dict(c, len=round(c['len'] + EXT, 3))
         if c['cut'] == '09':
             cuts += [dict(c, len=FZ), {'cut': '09f', 'kind': 'still', 'source_cut': 's9', 'image': q9[0], 'in': 0, 'len': round(L9 - FZ, 3), 'time_card': None}]
         else:
@@ -55,32 +67,52 @@ def main():
     stamps4 = C['04'].pop('stamps'); big = max(stamps4, key=lambda s: s.get('size', 0))           # 3
     L4 = next(c['len'] for c in cuts if c['cut'] == '04')
     C['04']['stamps'] = [dict(s, color='#8A8F98') for s in stamps4 if s is not big]
-    C['04']['tint'] = {'at': big['at'], 'dur': round(L4 - big['at'], 3), 'color': 'rgba(170,170,170,0.65)', 'fade': 0.3}
-    C['04']['toasts'] = [{'at': round(big['at'] + 0.05, 3), 'dur': round(L4 - big['at'] - 0.05, 3), 'text': '결정 실패…', 'y': 0.5}]
-    C['08']['flashback'] = dict(C['08']['flashback'], x=0.79, y=0.42, w=0.36)                        # 5
+    C['04']['tint'] = {'at': FAIL, 'dur': round(L4 - FAIL, 3), 'color': 'rgba(170,170,170,0.65)', 'fade': 0.3}
+    C['04']['toasts'] = [{'at': FAIL + 0.05, 'dur': round(L4 - FAIL - 0.05, 3), 'text': '결정 실패…', 'y': 0.5}]   # v2.1: 약 1.6s 보임
+    C['08']['flashback'] = dict(C['08']['flashback'], x=0.79, y=0.42, w=0.36, dur=2.0)               # 5 + v2.1: 1.1 → 2.0s
+    C.pop('07', None)                                                                                # v2.1: "왔다 왔다" 별(반짝이) 뺌
     C.pop('09')                                                                                      # 4·6
-    C['09f'] = {'puppet': {'bg': q9[0], 'src_width': 1080, 'layers': q9[1]},
-                'cam': {'from': 1.0, 'to': 1.32, 'pan_x': [0, -170]}, 'drift': None,
-                'toasts': [{'at': 0.5, 'dur': 1.0, 'text': '동공지진', 'y': 0.72}]}
+    # v2.2(사용자: "동공지진은 2단계에 걸쳐 확대"): 0.3s 1단계(1.45배) → 0.75s 2단계(2.1배) → 0.95s부터 눈 떨림. 얼굴 중심(1080x1920) ≈ (745, 1000)
+    fx_, fy_ = 745, 1000
+    def at_(z):   # 그 배율에서 얼굴이 가운데 쪽으로 오게(검은 테두리 안 보이게 제한)
+        mx, my = (z - 1) * 540, (z - 1) * 384
+        return round(max(-mx, min(mx, -z * (fx_ - 540) * 0.95))), round(max(-my, min(my, -z * (fy_ - 960) * 0.95)))
+    (x1, y1), (x2, y2) = at_(1.45), at_(2.1)
+    L9f = round(L9 - FZ, 3)
+    C['09f'] = {'puppet': {'bg': q9[0], 'src_width': 1080, 'layers': q9[1]}, 'cam': None, 'drift': None,
+                'moves': [{'at': 0.0, 'dur': 0.3, 'scale': 1.0, 'x': 0, 'y': 0, 'ease': 'none'},
+                          {'at': 0.3, 'dur': 0.15, 'scale': 1.45, 'x': x1, 'y': y1, 'ease': 'power3.out'},
+                          {'at': 0.45, 'dur': 0.3, 'scale': 1.48, 'x': x1, 'y': y1, 'ease': 'none'},
+                          {'at': 0.75, 'dur': 0.15, 'scale': 2.1, 'x': x2, 'y': y2, 'ease': 'power3.out'},
+                          {'at': 0.9, 'dur': round(L9f - 0.9, 3), 'scale': 2.15, 'x': x2, 'y': y2, 'ease': 'none'}],
+                'toasts': [{'at': 0.95, 'dur': round(L9f - 0.95, 3), 'text': '동공지진', 'y': 0.72}]}
     F['note'] = 'ep09 v2: 유리 효과 글씨(후보 띠·게이지·결정 실패), 검은 띠 수정, 회상 위치, 동공지진'
     json.dump(F, open(os.path.join(EP, 'hf_fx.json'), 'w'), ensure_ascii=False, indent=1)
 
-    T['subtitles'] = [s for s in T['subtitles'] if not s['text'].startswith('(탈락 메뉴')]           # 1: 후보 띠와 같은 내용
+    T['subtitles'] = [dict(s, start=sh(s['start']), end=sh(s['end'])) for s in T['subtitles'] if not s['text'].startswith('(탈락 메뉴')]   # 1: 후보 띠와 같은 내용
+    VP['placements'] = [dict(p, at=sh(p['at'])) for p in V1['placements']]
+    VP['bgm'] = dict(V1['bgm'], end_at=round(V1['bgm']['end_at'] + EXT, 3))
+    json.dump(P, open(pp_, 'w'), ensure_ascii=False, indent=1)
     json.dump(T, open(os.path.join(EP, 'text_overlay.json'), 'w'), ensure_ascii=False, indent=1)
 
     POP, TAP, QK = 'outputs/ep05/sfx/el/ui_pop.mp3', 'outputs/ep05/sfx/el/ui_tap.mp3', 'outputs/ep02/sfx/el/pupil_quake.mp3'
     items = []
     for it in X['items']:
         q = {k: v for k, v in it.items() if k not in ('gain', 'measured_lufs', 'measured_file')}
+        q['at'] = sh(it['at'])
+        if it['name'] == 'sparkle':
+            continue                                            # v2.1: "왔다 왔다" 별 소리도 뺌
         if it['name'] in ('buzz0', 'buzz1', 'buzz2'):
             q.update(file=POP, len=0.6, target_lufs=-22)        # 삑 → 부드러운 알림음
         elif it['name'] in ('buzz4_0', 'buzz4_1', 'buzz4_2'):
             q.update(file=TAP, len=0.5, target_lufs=-22)
         elif it['name'] == 'buzz4_3':
-            q.update(file=POP, len=0.6, target_lufs=-19)
+            q.update(file=POP, len=0.6, target_lufs=-19, at=round(starts['04'] + FAIL, 3))
         items.append(q)
     items += [{'name': 'chicken_strike', 'file': POP, 'at': round(a3 + 0.15, 3), 'len': 0.6, 'target_lufs': -26, 'fade_out': 0.05},
-              {'name': 'quake', 'file': QK, 'at': round(starts['09'] + FZ + 0.5, 3), 'len': 1.0, 'target_lufs': -20, 'fade_out': 0.2}]
+              {'name': 'zoom1', 'file': 'outputs/ep06/sfx/el/whoosh_fast.mp3', 'at': round(sh(starts['09']) + FZ + 0.22, 3), 'len': 0.5, 'target_lufs': -24, 'fade_out': 0.05},
+              {'name': 'zoom2', 'file': 'outputs/ep06/sfx/el/whoosh_fast.mp3', 'at': round(sh(starts['09']) + FZ + 0.67, 3), 'len': 0.5, 'target_lufs': -21, 'fade_out': 0.05},
+              {'name': 'quake', 'file': QK, 'at': round(sh(starts['09']) + FZ + 0.95, 3), 'len': 1.0, 'target_lufs': -20, 'fade_out': 0.2}]
     X['items'] = items; X['note'] = 'ep09 v2: 삑 부저 → 알림음·톡, 동공지진 진동음'
     json.dump(X, open(os.path.join(EP, 'sfx/sfx_list.json'), 'w'), ensure_ascii=False, indent=1)
     print('끝', round(END, 2), '| 후보 띠', C['03']['chips']['items'])
