@@ -113,9 +113,9 @@ def main():
         if key == '12':
             s['text'] = '자기야 앉은 김에 그 리모컨좀줘'                                  # 4: 다시 녹음한 대사에 맞춤
         if key == '15':
-            s['speaker'] = 'changsu'   # 2026-10-22 사용자: "자기야아아"와 마지막 "……" 자막 색이 미순·창수 바뀜 → 서로 바꿈
+            s['speaker'] = 'misun'     # 2026-10-22 사용자 확인: "자기야아아" = 미순(분홍), 마지막 "……" = 창수(파랑). 녹음은 그대로
         elif sb['text'].startswith('…'):
-            s['speaker'] = 'misun'
+            s['speaker'] = 'changsu'
         subs.append(s)
     subs.sort(key=lambda s: s['start'])
     for a, b in zip(subs, subs[1:]):   # 같은 자리 자막 겹침 방지
