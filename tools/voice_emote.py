@@ -21,7 +21,6 @@ SR = 16000
 warnings.filterwarnings('ignore')
 W = {'f0': 1.0, 'f0r': 0.7, 'loud': 1.0, 'bright': 0.8, 'rate': 0.6}
 KEYWORDS = ['수박', '옷도', '옷 같은', '명심', '애호박']
-BEEP_WORDS = ['새끼', '새기', '세끼', '색기', '새키']
 
 
 def pcm(path, t0=None, t1=None):
@@ -129,17 +128,42 @@ def norm_text(t):
     return re.sub(r'[^가-힣a-zA-Z0-9]', '', t).upper()
 
 
-def beep(path, words, out):
-    """whisper 단어 시각에서 '새끼' 음절 자리를 찾아 원음을 끄고 1kHz 삐로 덮음. 찾은 구간 목록 반환."""
+_INI = ['g', 'kk', 'n', 'd', 'tt', 'r', 'm', 'b', 'pp', 's', 'ss', '', 'j', 'jj', 'ch', 'k', 't', 'p', 'h']
+_MED = ['a', 'ae', 'ya', 'yae', 'eo', 'e', 'yeo', 'ye', 'o', 'wa', 'wae', 'oe', 'yo', 'u', 'wo', 'we', 'wi', 'yu', 'eu', 'ui', 'i']
+_FIN = ['', 'k', 'k', 'k', 'n', 'n', 'n', 't', 'l', 'k', 'm', 'l', 'l', 'l', 'p', 'l', 'm', 'p', 'p', 't', 't', 'ng', 't', 't', 'k', 't', 'p', 't']
+_ALIGN = {}
+
+
+def romanize(syl):
+    c = ord(syl) - 0xAC00
+    return _INI[c // 588] + _MED[(c % 588) // 28] + _FIN[c % 28]
+
+
+def align_syllables(path, text):
+    """한글 음절마다 [시작, 끝](초) — torchaudio MMS 강제 정렬(무료, 로컬). 음절을 로마자로 바꿔 한 음절 = 한 단어로 맞춤."""
+    import torch, torchaudio
+    if not _ALIGN:
+        bd = torchaudio.pipelines.MMS_FA
+        _ALIGN.update(model=bd.get_model(with_star=False), tok=bd.get_tokenizer(), al=bd.get_aligner())
+    syls = re.findall(r'[가-힣]', text)
+    x = torch.from_numpy(pcm(path)).unsqueeze(0)
+    with torch.inference_mode():
+        em, _ = _ALIGN['model'](x)
+    spans = _ALIGN['al'](em[0], _ALIGN['tok']([romanize(c) for c in syls]))
+    fr = x.shape[1] / em.shape[1] / SR
+    return syls, [(sp[0].start * fr, sp[-1].end * fr) for sp in spans]
+
+
+def beep(path, text, out):
+    """강제 정렬로 '새끼' 두 음절 자리를 찾아 원음을 끄고 1kHz 삐로 덮음. 찾은 구간 목록 반환."""
     x = pcm(path).astype(np.float64)
-    spans = []
-    for w in words:
-        txt = re.sub(r'[^가-힣]', '', w['word'])
-        for bw in BEEP_WORDS:
-            i = txt.find(bw)
-            if i >= 0:
-                n = len(txt); a = w['start'] + (w['end'] - w['start']) * i / n; b = w['start'] + (w['end'] - w['start']) * (i + 2) / n
-                spans.append((max(0, a - 0.03), b + 0.03)); break
+    syls, tm = align_syllables(path, text)
+    joined = ''.join(syls); spans = []
+    for mm in re.finditer('새끼', joined):
+        i = mm.start()   # 정렬 구간은 음절 가운데만 짧게 잡혀서, 앞 음절 끝 ~ 뒤 음절 시작까지를 가림(자음 ㄲ·모음 끝 포함)
+        a0 = tm[i - 1][1] if i > 0 else tm[i][0] - 0.05
+        b0 = tm[i + 2][0] if i + 2 < len(tm) else tm[i + 1][1] + 0.08
+        spans.append((max(0, a0 - 0.01), max(b0, tm[i + 1][1] + 0.03) + 0.01))
     y = x.copy()
     for a, b in spans:
         i0, i1 = int(a * SR), min(len(y), int(b * SR))
@@ -157,7 +181,7 @@ def beep(path, words, out):
         wf.setnchannels(1); wf.setsampwidth(2); wf.setframerate(SR); wf.writeframes((np.clip(y, -1, 1) * 32767).astype('<i2').tobytes())
     subprocess.run([vg.FF, '-y', '-v', 'error', '-i', tmp, '-ar', '44100', '-c:a', 'libmp3lame', '-q:a', '2', out], check=True)
     os.remove(tmp)
-    return [[round(a, 3), round(b, 3)] for a, b in spans]
+    return [[round(float(a), 3), round(float(b), 3)] for a, b in spans]
 
 
 def transcribe(m, path, words=False):
@@ -227,9 +251,9 @@ def cmd_pick(ep, only):
         vg.finalize(src, dst, P['loudnorm'], l['sp'], False, tempo)
         spans = []
         if '새끼' in l['text']:
-            _, ws = transcribe(m, dst, words=True)
-            spans = beep(dst, ws, dst + '.b.mp3')
-            os.replace(dst + '.b.mp3', dst)
+            raw = os.path.join(base, f'voice/lines_raw/{l["id"]}.mp3'); os.makedirs(os.path.dirname(raw), exist_ok=True)
+            os.replace(dst, raw)   # 삐 전 원본(삐 위치 다시 잡을 때 씀)
+            spans = beep(raw, l['text'], dst)
         picks[l['id']] = {'tempo': tempo, 'pick': best, 'top': rows[:5], 'n': len(rows), 'beep': spans, 'file': os.path.relpath(dst, ROOT),
                           'len': round(vg.duration(dst), 2), 'ref': l['ref']}
         flag = ' ⚠ 삐 자리 못 찾음' if '새끼' in l['text'] and not spans else ''
@@ -238,15 +262,38 @@ def cmd_pick(ep, only):
         json.dump(picks, open(picks_p, 'w'), ensure_ascii=False, indent=1)
 
 
+def cmd_rebeep(ep, only):
+    """삐 전 원본(lines_raw)에서 삐 위치를 다시 잡고, 가린 구간만 잘라 받아쓰기해 '새끼'가 맞게 잡혔는지 확인."""
+    from faster_whisper import WhisperModel
+    base, S = paths(ep); m = WhisperModel('medium', compute_type='int8')
+    picks_p = os.path.join(base, 'voice/picks.json'); picks = json.load(open(picks_p))
+    for l in S['lines']:
+        if '새끼' not in l['text'] or (only and l['id'] not in only):
+            continue
+        raw = os.path.join(base, f'voice/lines_raw/{l["id"]}.mp3'); dst = os.path.join(base, f'voice/lines/{l["id"]}.mp3')
+        spans = beep(raw, l['text'], dst)
+        cut = ''
+        if spans:
+            a, b = spans[0]; tmp = raw + '.cut.wav'
+            subprocess.run([vg.FF, '-y', '-v', 'error', '-ss', f'{a:.3f}', '-t', f'{b - a:.3f}', '-i', raw, tmp], check=True)
+            cut = transcribe(m, tmp)[0].strip(); os.remove(tmp)
+        after = transcribe(m, dst)[0].strip()
+        picks[l['id']]['beep'] = spans
+        print(l['id'], spans, '가린 부분:', cut, '| 삐 후:', after)
+    json.dump(picks, open(picks_p, 'w'), ensure_ascii=False, indent=1)
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--ep', required=True); ap.add_argument('cmd', choices=['ref', 'gen', 'pick'])
+    ap.add_argument('--ep', required=True); ap.add_argument('cmd', choices=['ref', 'gen', 'pick', 'rebeep'])
     ap.add_argument('--only', default=''); ap.add_argument('--seeds', default='42,7,1234'); ap.add_argument('--stab', default='0.0,0.5')
     a = ap.parse_args(); only = set(x for x in a.only.split(',') if x)
     if a.cmd == 'ref':
         cmd_ref(a.ep)
     elif a.cmd == 'gen':
         cmd_gen(a.ep, only, [int(s) for s in a.seeds.split(',')], [float(s) for s in a.stab.split(',')])
+    elif a.cmd == 'rebeep':
+        cmd_rebeep(a.ep, only)
     else:
         cmd_pick(a.ep, only)
 
