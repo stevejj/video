@@ -1815,23 +1815,29 @@
     {
      "cut": "6a",
      "speaker": "changsu",
-     "subtitle": "알았어! 그냥 치킨 시킨다!",
-     "tts": "[shouting] 알았어! 그냥 치킨 시킨다!",
+     "subtitle": "나 그럼 치킨 먹어도 돼?",
+     "tts": "[hopeful] 나, 그럼... 치킨 먹어도 돼?",
      "expr": "01",
      "max_len": 1.9,
      "offset": 0.05,
      "inner": false,
      "speedup_override": 1.25,
      "tag_override": true,
-     "seed": 42,
-     "len_raw": 2.01,
+     "seed": 7,
+     "len_raw": 1.91,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.61,
-     "file": "outputs/ep09/voice/lines/6a.mp3",
-     "len_file": 1.62,
+     "len": 1.53,
+     "len_file": 1.54,
      "over": false,
-     "scene_at": 0.3
+     "scene_at": 0.3,
+     "v1": {
+      "subtitle": "알았어! 그냥 치킨 시킨다!",
+      "tts": "[shouting] 알았어! 그냥 치킨 시킨다!",
+      "seed": 42,
+      "file": "outputs/ep09/voice/lines/6a_v1.mp3"
+     },
+     "file": "outputs/ep09/voice/lines/6a.mp3"
     },
     {
      "cut": "6b",

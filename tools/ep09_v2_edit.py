@@ -97,6 +97,10 @@ def main():
     json.dump(F, open(os.path.join(EP, 'hf_fx.json'), 'w'), ensure_ascii=False, indent=1)
 
     T['subtitles'] = [dict(s, start=sh(s['start']), end=sh(s['end'])) for s in T['subtitles'] if not s['text'].startswith('(탈락 메뉴')]   # 1: 후보 띠와 같은 내용
+    # v2.4(사용자): 6a "알았어! 그냥 치킨 시킨다!" → "나 그럼 치킨 먹어도 돼?" 다시 녹음(voice_gen seed 7) → S6 클립 소리 다시 만들고 자막 교체
+    from ep09_edit import final_tracks, S6A
+    final_tracks(VP['lines']); l6a = next(l for l in VP['lines'] if l['cut'] == '6a')
+    T['subtitles'] = [dict(s, text=l6a['subtitle'], end=round(s['start'] + l6a['len_file'] / S6A['tempo'] + 0.05, 2)) if s['cut'] == '6a' else s for s in T['subtitles']]
     VP['placements'] = [dict(p, at=sh(p['at'])) for p in V1['placements']]
     VP['bgm'] = dict(V1['bgm'], end_at=round(V1['bgm']['end_at'] + EXT, 3))
     json.dump(P, open(pp_, 'w'), ensure_ascii=False, indent=1)
