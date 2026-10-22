@@ -333,12 +333,168 @@ def evaluate(B, SC, f0ref, perref, mode='dp'):
     return rep
 
 
+def render_line(B, l, syl, sp, f0ref, perref):
+    """한 줄만 합성 → (시작 샘플, 소리). syl = [{'on','off'}...]"""
+    import pyworld as pw
+    t0 = max(0.0, syl[0]['on'] - 0.2); t1 = syl[-1]['off'] + 0.3
+    nf = int((t1 - t0) * 1000 / FP) + 1; fft = pw.get_cheaptrick_fft_size(FS); nb = fft // 2 + 1
+    F = np.zeros(nf); SP = np.full((nf, nb), 1e-12); AP = np.ones((nf, nb))
+    src = os.path.join(B, f'sing/tts/{l["id"]}_{sp}.wav')
+    x = ve.pcm(src).astype(np.float64)
+    al = mms_align(x.astype(np.float32), [u[1] for u in units(l)])
+    ex = 20 * np.log10(env10(x))
+    on = [max(0.0, al[0][0] - 0.04)]
+    for k in range(1, len(al)):
+        i0 = int(al[k - 1][1] * 100); i1 = max(i0 + 1, int(al[k][0] * 100) + 3)
+        on.append((i0 + int(np.argmin(ex[i0:i1]))) / 100 if i1 <= len(ex) else al[k][0])
+    on.append(len(x) / 16000)
+    syl_src = [(on[k], on[k + 1]) for k in range(len(al))]
+    x44 = np.frombuffer(subprocess.run([vg.FF, '-v', 'error', '-i', src, '-ac', '1', '-ar', str(FS), '-f', 'f64le', '-'], capture_output=True).stdout, np.float64).copy()
+    sh = [{'on': s_['on'] - t0, 'off': s_['off'] - t0} for s_ in syl]
+    # 참조 음정 곡선도 t0 기준으로 잘라 넘김
+    k0 = int(t0 * 100)
+    synth_line(x44, syl_src, sh, f0ref[k0:], perref[k0:], 0, nf, F, SP, AP, 1e-12)
+    y = pw.synthesize(F, SP, AP, FS, FP)
+    return int(t0 * FS), y, syl_src
+
+
+def variants(B, l, voc_cache):
+    """한 줄의 음절 경계 후보 여러 벌: ctc / dp(여러 세기) / whisper 단어 시작 + 단어 안은 말하기 녹음 길이 비율(마지막 음절이 남는 길이)."""
+    voc, f0, per, edb = voc_cache
+    voiced = per > 0.4
+    md = np.where(voiced, 69 + 12 * np.log2(np.maximum(f0, 1) / 440), np.nan)
+    a, b = l['t']; us = units(l)
+    sp = mms_align(voc[int(a * 16000):int(b * 16000)], [u[1] for u in us])
+    ctc = [int((a + s_[0]) * 100) for s_ in sp]
+    anc = whisper_anchors(B, l, us)
+    i0, i1 = int(a * 100), min(len(edb), int(b * 100))
+    top = np.percentile(edb[i0:i1], 95)
+    act = np.where((edb[i0:i1] > top - 25) & voiced[i0:i1])[0]
+    end = (i0 + int(act[-1]) + 1) if len(act) else i1
+    allc = boundary_candidates(md, voiced, edb, i0, i1)
+    prior = [int(anc[k] * 100) if k in anc else ctc[k] for k in range(len(us))]
+    st = [(c, w) for c, w in allc if prior[0] - 10 <= c <= prior[0] + 45]
+    first = max(st, key=lambda cw: cw[1])[0] if st else (i0 + int(act[0]) if len(act) else ctc[0])
+    out = {'ctc': ctc}
+    for sa in (0.08, 0.15, 0.3):
+        for lam in (0.3, 1.0):
+            sig = [sa if k in anc else 0.4 for k in range(len(us))]
+            cands = [(c, w) for c, w in allc if c > first + 12]
+            out[f'dp{sa}_{lam}'] = [first] + choose(cands, prior[1:], sig[1:], lam=lam, gap=12)
+    # 단어 시작 기준 + 비율
+    tts = os.path.join(B, f'sing/tts/{l["id"]}_{"misun" if l["sp"] == "both" else l["sp"]}.wav')
+    xt = ve.pcm(tts); alt = mms_align(xt, [u[1] for u in us])
+    dur = [alt[k + 1][0] - alt[k][0] if k + 1 < len(alt) else 0.25 for k in range(len(alt))]
+    starts = sorted(set([0] + list(anc.keys())))
+    # 단어 구간마다 MMS를 따로(짧은 구간이라 노래에서도 덜 밀림)
+    starts0 = sorted(set([0] + list(anc.keys())))
+    ons = [None] * len(us)
+    for wi, ks in enumerate(starts0):
+        ke = starts0[wi + 1] if wi + 1 < len(starts0) else len(us)
+        w0 = first if ks == 0 else prior[ks]; w1 = prior[ke] if ke < len(us) else end
+        if ke - ks == 1 or w1 - w0 < 12 * (ke - ks):
+            ons[ks:ke] = [int(w0 + k * max(w1 - w0, 12) / (ke - ks)) for k in range(ke - ks)]; continue
+        seg = voc[int((w0 / 100 - 0.05) * 16000):int((w1 / 100) * 16000)]
+        try:
+            al_ = mms_align(seg, [u[1] for u in us[ks:ke]])
+            ons[ks:ke] = [w0] + [int(w0 - 5 + s_[0] * 100) for s_ in al_[1:]]
+        except Exception:
+            ons[ks:ke] = [int(w0 + k * (w1 - w0) / (ke - ks)) for k in range(ke - ks)]
+    for k in range(1, len(ons)):
+        ons[k] = max(ons[k], ons[k - 1] + 10)
+    out['wm'] = ons
+    for tag, firstpos, scale in (('wr', first, 1.15), ('wa', prior[0], 1.15), ('wr13', first, 1.3), ('wr10', first, 1.0)):
+        ons = [None] * len(us)
+        for wi, ks in enumerate(starts):
+            ke = starts[wi + 1] if wi + 1 < len(starts) else len(us)
+            w0 = firstpos if ks == 0 else prior[ks]
+            w1 = prior[ke] if ke < len(us) else end
+            n = ke - ks; span = max(w1 - w0, 12 * n)
+            d = np.array(dur[ks:ke]) * 100 * scale
+            if n > 1 and d[:-1].sum() < span - 12:
+                pos = w0 + np.concatenate([[0], np.cumsum(d[:-1])])
+            else:
+                pos = w0 + np.arange(n) * span / n
+            ons[ks:ke] = [int(p_) for p_ in pos]
+        out[tag] = ons
+    return out, top, end
+
+
+def to_syl(l, ons, f0, per, edb, top, end):
+    us = units(l); syl = []
+    for k, u in enumerate(us):
+        on = ons[k] / 100; nxt = ons[k + 1] / 100 if k + 1 < len(ons) else end / 100
+        off = nxt - 0.02; quiet = 0
+        for i in range(ons[k] + 6, int(nxt * 100)):
+            quiet = quiet + 1 if i < len(edb) and edb[i] < top - 28 else 0
+            if quiet >= 8:
+                off = (i - 7) / 100; break
+        off = max(off, on + 0.08)
+        j0, j1 = int(on * 100), int(off * 100) + 1; m = per[j0:j1] > 0.4
+        hz = float(np.median(f0[j0:j1][m])) if m.any() else 0.0
+        syl.append({'u': u[0], 'on': round(on, 3), 'off': round(off, 3), 'hz': round(hz, 1),
+                    'midi': round(69 + 12 * np.log2(hz / 440), 2) if hz else None})
+    return syl
+
+
+def cmd_search(ep, only):
+    """줄마다 경계 후보 여러 벌을 바로 합성해 받아쓰기로 가장 또렷한 것 고름 → ref/score_best.json, sing/best_<sp>.wav"""
+    import difflib
+    from faster_whisper import WhisperModel
+    B = base(ep); L = json.load(open(os.path.join(B, 'ref/lyrics.json')))['lines']
+    voc = ve.pcm(os.path.join(B, 'ref/sep/htdemucs/ref_audio/vocals.wav'))
+    f0, per = np.load(os.path.join(B, 'ref/f0_crepe.npy')); edb = 20 * np.log10(env10(voc))
+    wm = WhisperModel('medium', compute_type='int8')
+    bp = os.path.join(B, 'ref/score_best.json')
+    best = {x_['id']: x_ for x_ in json.load(open(bp))['lines']} if os.path.exists(bp) else {}
+    nt = lambda z: re.sub(r'[^가-힣a-z]', '', z.lower())
+    for l in L:
+        if only and l['id'] not in only:
+            continue
+        sp = 'misun' if l['sp'] == 'both' else l['sp']
+        vs, top, end = variants(B, l, (voc, f0, per, edb))
+        res = []
+        for name, ons in vs.items():
+            syl = to_syl(l, ons, f0, per, edb, top, end)
+            s0, y, _ = render_line(B, l, syl, sp, f0, per)
+            y16 = np.interp(np.arange(0, len(y), FS / 16000), np.arange(len(y)), y)
+            y16 = y16 / (np.abs(y16).max() + 1e-9) * 0.7
+            tmp = os.path.join(B, 'sing/_s.wav'); write_wav(tmp, np.concatenate([np.zeros(8000), y16, np.zeros(6400)]), 16000)
+            heard = ''.join(t.text for t in wm.transcribe(tmp, language=l.get('lang', 'ko'), beam_size=5)[0])
+            sc = difflib.SequenceMatcher(None, nt(l['text']), nt(heard)).ratio()
+            res.append((sc, name, syl, heard.strip()))
+        res.sort(key=lambda r: -r[0])
+        sc, name, syl, heard = res[0]
+        best[l['id']] = {'id': l['id'], 'sp': l['sp'], 'variant': name, 'words': round(sc, 2), 'heard': heard, 'syl': syl,
+                         'all': [(round(r[0], 2), r[1]) for r in res]}
+        print(l['id'], l['sp'], name, round(sc, 2), heard[:40], '|', ' '.join(f'{r[1]}:{r[0]:.2f}' for r in res[:4]))
+        json.dump({'lines': [best[k] for k in sorted(best)]}, open(bp, 'w'), ensure_ascii=False, indent=1)
+
+
+def cmd_render(ep):
+    """score_best로 두 사람 전체 트랙 합성 → sing/best_<sp>.wav"""
+    B = base(ep); L = {l['id']: l for l in json.load(open(os.path.join(B, 'ref/lyrics.json')))['lines']}
+    SC = json.load(open(os.path.join(B, 'ref/score_best.json')))['lines']
+    f0, per = np.load(os.path.join(B, 'ref/f0_crepe.npy'))
+    total = int((len(f0) / 100 + 1.5) * FS)
+    for sp in ('misun', 'changsu'):
+        out = np.zeros(total)
+        for ln in SC:
+            if ln['sp'] not in (sp, 'both'):
+                continue
+            s0, y, _ = render_line(B, L[ln['id']], ln['syl'], sp, f0, per)
+            out[s0:s0 + len(y)] += y[:total - s0]
+        out = out / (np.abs(out).max() + 1e-9) * 0.7
+        p = os.path.join(B, f'sing/best_{sp}.wav'); write_wav(p, out, FS); print('합성', os.path.relpath(p, ROOT))
+
+
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('--ep', required=True); ap.add_argument('cmd', choices=['score', 'tts', 'synth', 'eval'])
-    ap.add_argument('--seed', type=int, default=42); ap.add_argument('--mode', default='dp', choices=['dp', 'ctc'])
+    ap = argparse.ArgumentParser(); ap.add_argument('--ep', required=True); ap.add_argument('cmd', choices=['score', 'tts', 'synth', 'eval', 'search', 'render'])
+    ap.add_argument('--seed', type=int, default=42); ap.add_argument('--mode', default='dp', choices=['dp', 'ctc']); ap.add_argument('--only', default='')
     a = ap.parse_args()
     {'score': lambda: cmd_score(a.ep, a.mode), 'tts': lambda: cmd_tts(a.ep, a.seed), 'synth': lambda: cmd_synth(a.ep, a.mode),
-     'eval': lambda: cmd_eval(a.ep, a.mode)}[a.cmd]()
+     'eval': lambda: cmd_eval(a.ep, a.mode), 'search': lambda: cmd_search(a.ep, set(x for x in a.only.split(',') if x)),
+     'render': lambda: cmd_render(a.ep)}[a.cmd]()
 
 
 if __name__ == '__main__':
