@@ -40,5 +40,12 @@
   "duration": 1.5,
   "file": "outputs/ep16/sfx/el/dream_whoosh.mp3",
   "result": "ok 24702B"
+ },
+ {
+  "name": "key_click",
+  "prompt": "A single crisp click of one key on a thin wireless computer keyboard, very short, clean, no reverb",
+  "duration": 0.5,
+  "file": "outputs/ep16/sfx/el/key_click.mp3",
+  "result": "ok 8820B"
  }
 ]

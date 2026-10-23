@@ -1,4 +1,27 @@
-{"urls": {"O1": "https://s15-kling.klingai.com/kimg/EMXN1y8qRgoGdXBsb2FkEg55bGFiLXN0dW50LXNncBosYWdlbnRfdXBsb2FkLzE3OTI3MzIwMjIvOWlvMjhoRWphMy9vMV92MS5wbmc.origin?x-kcdn-pid=112372",
-          "O2": "https://s15-kling.klingai.com/kimg/EMXN1y8qRgoGdXBsb2FkEg55bGFiLXN0dW50LXNncBosYWdlbnRfdXBsb2FkLzE3OTI3MzIwMjYvUkZmVkFtczNGcy9vMl92MS5wbmc.origin?x-kcdn-pid=112372"},
- "jobs": {"K1": {"id": "AYZc2Ep1qxhBLlqQkwul631Pb5Xcc9Z_Tps3eZoOxfyNjfILQeYECu-sT3wyHyIAewQwES9r", "credits": 30},
-          "K2": {"id": "Ab1u5laQEN6wgkeVexdA1WwpqJ0SeChNo3Yc0cyZiqU2_2-WVPEi4kEtOpaf1QJzckV-GIwd", "credits": 30}}}
+{
+ "urls": {
+  "O1": "https://s15-kling.klingai.com/kimg/EMXN1y8qRgoGdXBsb2FkEg55bGFiLXN0dW50LXNncBosYWdlbnRfdXBsb2FkLzE3OTI3MzIwMjIvOWlvMjhoRWphMy9vMV92MS5wbmc.origin?x-kcdn-pid=112372",
+  "O2": "https://s15-kling.klingai.com/kimg/EMXN1y8qRgoGdXBsb2FkEg55bGFiLXN0dW50LXNncBosYWdlbnRfdXBsb2FkLzE3OTI3MzIwMjYvUkZmVkFtczNGcy9vMl92MS5wbmc.origin?x-kcdn-pid=112372",
+  "O1c": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI3MzQ0MzAvZkNzWUVYSGxaWS9vMWNfdjEucG5n.origin?x-kcdn-pid=112372"
+ },
+ "jobs": {
+  "K1": {
+   "id": "AYZc2Ep1qxhBLlqQkwul631Pb5Xcc9Z_Tps3eZoOxfyNjfILQeYECu-sT3wyHyIAewQwES9r",
+   "credits": 30
+  },
+  "K2": {
+   "id": "Ab1u5laQEN6wgkeVexdA1WwpqJ0SeChNo3Yc0cyZiqU2_2-WVPEi4kEtOpaf1QJzckV-GIwd",
+   "credits": 30
+  },
+  "K1b": {
+   "id": "AVsCi0m4R1kuSJoUz0kGnCmrg1f5DBbCr_d7E4BcHCFH3BoSQDW6DkhS14CFj-QJe8qFbmjQ",
+   "credits": 30,
+   "status": "done"
+  },
+  "K2b": {
+   "id": "AY4JBpGreMPVW917jZUttQHtntqRFVPRFZRBG2fugmUQ6U0B20W3drhivJR2rsW0nNQOoTBm",
+   "credits": 30,
+   "status": "done"
+  }
+ }
+}

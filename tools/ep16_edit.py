@@ -20,6 +20,21 @@ EP = os.path.join(ROOT, 'outputs/ep16'); FF = imageio_ffmpeg.get_ffmpeg_exe()
 W, H, FPS = 1080, 1920, 24
 WW, WH, WY = 1080, 780, 570          # 영상 창 크기·위치(검은 띠 사이)
 TITLE = [[('금요일 오후', 'white')], [('5시 39분이란', 'yellow')]]
+K1F, K2F = 'K1b_v1.mp4', 'K2b_v1_fix.mp4'
+KEY_REGION = (540, 430, 780, 640)   # 클립(1108x828)에서 흰 키보드 위 날개 끝 — 클립 받고 확인해 맞춤   # v3: 키보드 하나·거치대 모니터 밑(사용자). K2b는 볼터치 고친 파일
+
+
+def taps(path, region, thr=1.6):
+    """날개가 키보드를 두드리는 순간(클립 기준 초). region=(x0,y0,x1,y1) 날개 끝 부근, 아래로 내려치는 움직임 꼭대기."""
+    cap = cv2.VideoCapture(path); fps = cap.get(cv2.CAP_PROP_FPS); prev = None; m = []
+    while True:
+        ok, f = cap.read()
+        if not ok:
+            break
+        g = cv2.cvtColor(f[region[1]:region[3], region[0]:region[2]], cv2.COLOR_BGR2GRAY).astype(np.float32)
+        m.append(0.0 if prev is None else float(np.abs(g - prev).mean())); prev = g
+    m = np.convolve(np.array(m), np.ones(2) / 2, mode='same'); base = np.median(m) + 1e-6
+    return [i / fps for i in range(1, len(m) - 1) if m[i] > m[i - 1] and m[i] >= m[i + 1] and m[i] > thr * base], len(m) / fps
 
 
 def put(fr, rgba, cx, cy, alpha=1.0, scale=1.0):
@@ -126,7 +141,7 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--tag', default='v1'); a = ap.parse_args()
     P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json'))); E = P['episodes']['ep16']; L = {l['cut']: l for l in E['lines']}
     img = {k: cv2.imread(os.path.join(EP, f'img/{k}_v1.png')) for k in ('O1', 'O3', 'O4', 'O5', 'O6')}
-    K1 = Clip(os.path.join(EP, 'clips/K1_v1.mp4')); K2 = Clip(os.path.join(EP, 'clips/K2_v1_noblush.mp4'))
+    K1 = Clip(os.path.join(EP, 'clips/' + K1F)); K2 = Clip(os.path.join(EP, 'clips/' + K2F))
     D1 = Clip(os.path.join(ROOT, 'outputs/ep07/s1/clip_v2.mp4'), crop=(470, 990)); D2 = Clip(os.path.join(ROOT, 'outputs/ep07/s2/clip_v1.mp4'), crop=(470, 990))
     toast = toast_img()
     chat1 = [('misun', '오늘 칼퇴하닝?'), ('changsu', '웅ㅋㅋㅋㅋ'), ('misun', '맥주한잔하까?'), ('changsu', '웅ㅋㅋㅋㅋ')]
@@ -140,7 +155,7 @@ def main():
         dict(n='S1 화', k='K1', t0=1.6, len=1.5, sp=1.0, day='화'),
         dict(n='S1 수', k='K1', t0=3.1, len=1.5, sp=1.2, day='수'),
         dict(n='S1 목', k='K1', t0=0.3, len=1.8, sp=1.5, day='목', cap='(불태운 월화수목)', cap_at=0.4),
-        dict(n='S2 4:52', clock='(금) 오후 4:52', len=2.2, cap='(그리고 찾아온 평화로운 금요일)'),
+        dict(n='S2 4:52', clock='(금) 오후 4:52', len=1.8),   # v3: 괄호 자막 뺌(사용자)
         dict(n='S3 척', k='K1', t0=1.0, len=2.8, sp=1.0, cap='(일하는 척 모드 ON)'),   # v2: 슬로 빼고 원래 속도
         dict(n='S4 키보드', still='O3', len=2.0, push=0.08, cap='(사실은 블루투스 키보드로)'),
         dict(n='S5a 몰래', k='K2', t0=0.0, len=2.2, cap='(미순이와 주말 작전 회의 중)'),
@@ -162,6 +177,8 @@ def main():
 
     # 소리
     pl, sfx, subs = [], [], []
+    TAPS, _ = taps(os.path.join(EP, 'clips/' + K1F), KEY_REGION); TAPS2, _ = taps(os.path.join(EP, 'clips/' + K2F), KEY_REGION)
+    print('두드림', len(TAPS), [round(x, 2) for x in TAPS][:12], '/', len(TAPS2))
     s7 = S['S7 속마음']; at7 = s7['at'] + 0.35
     pl.append({'file': L['7']['file'], 'at': round(at7, 3)})
     words = ['(제발...)', '(제발... 조용히...)', '(제발... 조용히... 넘어가자....)']
@@ -175,13 +192,21 @@ def main():
     fx('office_amb', el + 'office_amb.mp3', 0, S['S8a 꿈']['at'], -38, loop=True, fade_in=0.3, fade_out=0.3)
     fx('office_amb2', el + 'office_amb.mp3', S['S9 5:39']['at'], total - S['S9 5:39']['at'], -38, loop=True, fade_out=0.6)
     for k in ('S1 월', 'S1 화', 'S1 수', 'S1 목'):
-        fx('type_' + k, 'outputs/ep01/sfx/el/typing.mp3', S[k]['at'], S[k]['len'], -26 + 1.5 * ('월화수목'.index(k[-1])), fade_out=0.05)
+        sg = S[k]
+        for j, tp in enumerate(TAPS):
+            ot = (tp - sg['t0']) / sg.get('sp', 1.0)
+            if 0 <= ot < sg['len']:
+                fx(f'key_{k}_{j}', el + 'key_click.mp3', sg['at'] + ot, 0.3, -24 + 1.5 * ('월화수목'.index(k[-1])))
         fx('pop_' + k, 'outputs/ep05/sfx/el/ui_pop.mp3', S[k]['at'], 0.4, -26)
     for k in ('S2 4:52', 'S6 5:38', 'S9 5:39'):
         fx('whoosh_' + k, 'outputs/ep11/sfx/el/whoosh_soft.mp3', S[k]['at'] - 0.12, 0.8, -24)
         fx('tick_' + k, el + 'clock_tick.mp3', S[k]['at'] + 0.05, 1.0, -18)
-    fx('type_척', 'outputs/ep01/sfx/el/typing.mp3', S['S3 척']['at'], 2.8, -32, fade_out=0.3)
-    fx('type_몰래', 'outputs/ep01/sfx/el/typing.mp3', S['S5a 몰래']['at'] + 1.0, 1.2, -32, fade_out=0.2)
+    for k, tl, lu in (('S3 척', TAPS, -30), ('S5a 몰래', TAPS2, -30)):
+        sg = S[k]
+        for j, tp in enumerate(tl):
+            ot = (tp - sg['t0']) / sg.get('sp', 1.0)
+            if 0 <= ot < sg['len']:
+                fx(f'key_{k}_{j}', el + 'key_click.mp3', sg['at'] + ot, 0.3, lu)
     for i, x in enumerate(S['S5b 대화']['appear']):
         fx(f'msg_{i}', el + 'msg_ping.mp3', S['S5b 대화']['at'] + x, 0.5, -22)
     fx('dream_in', el + 'dream_whoosh.mp3', S['S8a 꿈']['at'] - 0.3, 1.5, -24)
@@ -224,14 +249,9 @@ def main():
                 win = clips[s['k']].at(s['t0'] + lt * s.get('sp', 1.0))
             elif s.get('dclip'):
                 win = dream(clips[s['dclip']].at(s['t0'] + lt), k=min(1.0, 0.4 + lt / 0.4))
-            elif s.get('clock'):   # 시각 카드: 큰 노랑 시각이 톡 튀어나오고 번쩍 + 천천히 다가감
-                win = txt(('clockbg', 0), lambda: clock_card('')).copy(); dimg, timg = txt(('clock', s['clock']), lambda: clock_text(s['clock']))
-                k_ = ease(lt / 0.18); pz = 1.0 + 0.05 * lt / s['len']
-                put(win, dimg, WW / 2, WH / 2 - 150, alpha=k_)
-                put(win, timg, WW / 2, WH / 2 + 30, alpha=k_, scale=pz * (1.35 - 0.35 * k_))
-                fl = max(0.0, 1 - lt / 0.15)
-                if fl > 0:
-                    win = (win * (1 - 0.5 * fl) + 255 * 0.5 * fl).astype(np.uint8)
+            elif s.get('clock'):   # v3: 원래(v1) 시계 스타일로(사용자: 괄호 자막 빼면 원래 스타일이 괜찮음). 노랑 큰 글씨(v2, clock_text)는 안 씀
+                win = txt(('clockbg', 0), lambda: clock_card('')).copy()
+                put(win, txt(('clock1', s['clock']), lambda: text_img([[(s['clock'], 'white')]], 120, weight=300, stroke=0)), WW / 2, WH / 2 - 30)
             elif s.get('chat'):
                 win = chat_panel(s['chat'], lt, s['appear'])
             elif s.get('eye'):   # 속마음: 단어마다 오른쪽 눈으로 한 단계씩

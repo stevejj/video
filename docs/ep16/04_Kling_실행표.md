@@ -27,3 +27,26 @@ Wings keep their normal short rounded length and never stretch. Wings stay soft,
 **쓰는 곳**: #3·5 일하는 척하며 미순이와 메신저(말풍선 그래픽과 번갈아).
 
 - #7·#11 얼굴 확대, #10 알림은 O4·O5·O6 정지 이미지 + 편집(0원).
+
+## v2 다시 찍기 (2026-10-23, 사용자: 키보드는 하나만 — 컴퓨터·휴대폰을 오가는 블루투스 키보드여야 말이 됨, 거치대는 모니터 밑·키보드 사이)
+- 새 그림 O1c(O1b Pro → Flash 편집: 오른쪽 아래 키보드·거치대 지우고 모니터 받침 앞에 거치대, 흰 키보드 하나). 60크레딧.
+
+### K1b 흰 키보드 하나로 바쁘게 타자 — 움직임 · Kling 3.0, 5초 · 30크레딧
+**입력**: first_image `outputs/ep16/img/O1c_v1.png`
+```
+Static camera, locked-off tripod shot, no camera movement, same composition throughout. The same office as the first frame; the office, the desk and every object stay photoreal and unchanged.
+Pang Chang-su, a small plush penguin with short velvet fur (darker blue-grey, small tuft, white shirt, lanyard with a blank ID card), sits at his desk and types very fast and busily on the single white keyboard with both short flipper wing tips, tapping clearly up and down in a steady quick rhythm, his head bobbing slightly as he concentrates on the monitor. He keeps typing the whole time, beak closed.
+There is only one keyboard. The keyboard, the mug and the phone in its stand never move. The monitor keeps showing the same dark code editor.
+Chang-su's cheeks have NO pink blush at any time. He has NO eyebrows; his eyes stay the same simple round glossy black eyes and the same size as in the first frame.
+Wings keep their normal short rounded length and never stretch. Wings stay soft, rounded and fingerless. Heads keep their normal shape. No other characters appear. No new objects appear.
+```
+
+### K2b 슬쩍 휴대폰 보며 같은 키보드로 메신저 — 움직임 · Kling 3.0, 5초 · 30크레딧
+**입력**: first_image `outputs/ep16/img/O1c_v1.png`
+```
+Static camera, locked-off tripod shot, no camera movement, same composition throughout. The same office as the first frame; the office, the desk and every object stay photoreal and unchanged.
+Pang Chang-su, a small plush penguin with short velvet fur (darker blue-grey, small tuft, white shirt, lanyard with a blank ID card), first glances quickly left and right as if checking that nobody is watching, then lowers his gaze from the monitor to the smartphone standing in the stand just below it and taps the same single white keyboard quickly with both short flipper wing tips, with a sneaky little smile, beak closed.
+There is only one keyboard. The phone stays in its stand, the keyboard stays on the desk, and the monitor keeps showing the same dark code editor; nothing on the desk moves on its own.
+Chang-su's cheeks have NO pink blush at any time, his face panel stays plain cream. He has NO eyebrows; his eyes stay the same simple round glossy black eyes and the same size as in the first frame.
+Wings keep their normal short rounded length and never stretch. Wings stay soft, rounded and fingerless. Heads keep their normal shape. No other characters appear. No new objects appear.
+```
