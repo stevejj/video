@@ -148,6 +148,50 @@ def fall_contour(x, drops):
     return y
 
 
+def f0_ramp(x, ramps):
+    """구간 [t0, t1] 음높이를 hz0 → hz1 직선으로 다시 그림(원래 굴곡은 30%만 남김). 구간 밖은 원음 그대로, 경계 15ms 섞음.
+    2번 "저 오리": '오리'가 '저'보다 낮아야 함(사용자) — 녹음은 '오리'에서 음이 올라감."""
+    import pyworld as pw
+    xd = x.astype(np.float64)
+    f0, t = pw.harvest(xd, SR, f0_floor=80, f0_ceil=800, frame_period=5)
+    hop = int(SR * 0.005); fr = np.array([np.abs(xd[int(tt * SR):int(tt * SR) + hop]).max() if int(tt * SR) < len(xd) else 0 for tt in t])
+    vi = np.where(f0 > 0)[0]; fill = (fr > 0.08 * fr.max()) & (f0 == 0)
+    if len(vi) > 1 and fill.any():
+        f0[fill] = np.interp(np.where(fill)[0], vi, f0[vi])
+    sp = pw.cheaptrick(xd, f0, t, SR); ap = pw.d4c(xd, f0, t, SR)
+    y = x.copy(); xf = int(0.015 * SR)
+    for t0, t1, h0, h1 in ramps:
+        # 구간 안에서는 작은 소리(말끝 '리'의 꼬리)도 유성으로 봄 — 안 그러면 원래 올라가던 꼬리가 그대로 남음
+        tail = (t >= t0) & (t <= t1) & (f0 == 0) & (fr > 0.01 * fr.max())
+        if tail.any():
+            f0[tail] = np.interp(np.where(tail)[0], np.where(f0 > 0)[0], f0[f0 > 0])
+            ap = pw.d4c(xd, f0, t, SR)
+        m = (t >= t0) & (t <= t1) & (f0 > 0)
+        st = 12 * np.log2(f0[m]); tt = t[m]; res = st - np.polyval(np.polyfit(tt, st, 1), tt)
+        target = 12 * np.log2(np.interp(tt, [t0, t1], [h0, h1])) + 0.15 * res
+        f0n = f0.copy(); f0n[m] = 2 ** (target / 12)
+        z = pw.synthesize(f0n, sp, ap, SR, frame_period=5).astype(np.float32)[:len(x)]
+        i0, i1 = int(t0 * SR) - xf, int(t1 * SR) + xf
+        w = np.ones(i1 - i0, np.float32); w[:xf] = np.linspace(0, 1, xf); w[-xf:] = np.linspace(1, 0, xf)
+        y[i0:i1] = y[i0:i1] * (1 - w) + z[i0:i1] * w
+        print(f'    음높이 다시 그림 {t0}~{t1}s → {h0}~{h1}Hz')
+    return y
+
+
+def seg_shift(x, segs):
+    """구간 [t0, t1]만 반음 단위로 음높이 이동(길이 그대로), 경계 15ms 섞음. WORLD보다 떨림이 없음.
+    2번 "저 오리": '리'가 올라가서 '저'보다 높음 → '리'만 내림(사용자: '오리'가 '저'보다 낮아야)."""
+    y = x.copy(); xf = int(0.015 * SR)
+    for t0, t1, semi in segs:
+        i0, i1 = int(t0 * SR) - xf, int(t1 * SR) + xf
+        tmp = os.path.join(tempfile.gettempdir(), 'seg_shift.wav'); save(x[i0:i1], tmp)
+        z = pitch_shift(tmp, semi)[:i1 - i0]; z = np.concatenate([z, np.zeros(i1 - i0 - len(z), np.float32)])
+        w = np.ones(i1 - i0, np.float32); w[:xf] = np.linspace(0, 1, xf); w[-xf:] = np.linspace(1, 0, xf)
+        y[i0:i1] = y[i0:i1] * (1 - w) + z * w
+        print(f'    음높이 이동 {t0}~{t1}s {semi:+}반음')
+    return y
+
+
 def stretch_pauses(x, gaps):
     """말 안의 쉼(무음 구간)을 앞에서부터 gaps[i]초로 바꿈. whisper 단어 경계는 자음에 걸려 소리를 자를 수 있어 무음 검출로 함."""
     hop = SR // 100; env = np.abs(x[:len(x) // hop * hop]).reshape(-1, hop).max(1)
@@ -181,6 +225,10 @@ def fx(P):
         for a, b, db in l.get('duck', []):   # 말 아닌 소리(숨소리 등)를 db만큼 줄임, 원음 기준 초. 양 끝 10ms 페이드
             i, j = int(a * SR), int(b * SR); g = np.full(j - i, 10 ** (db / 20), np.float32); f = min(441, (j - i) // 2)
             g[:f] = np.linspace(1, g[f], f); g[-f:] = np.linspace(g[-f], 1, f); x[i:j] *= g
+        if l.get('seg_shift'):
+            x = seg_shift(x, l['seg_shift'])
+        if l.get('f0_ramp'):
+            x = f0_ramp(x, l['f0_ramp'])
         if l.get('pauses'):
             x = stretch_pauses(x, l['pauses'])
         if l.get('fall'):
