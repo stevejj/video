@@ -39,11 +39,13 @@
   },
   "C6": {
    "id": "AVsz0fzKinOhREEQiZzxn1SofviBAmg2f_XFlpDKny2y2T62YA2xixfze_1ycgH1wDnFazWs",
-   "credits": 18
+   "credits": 18,
+   "status": "done"
   },
   "C7": {
    "id": "AYhK78nmSNfIAtHOnkZwM3DuWVlorE6FpjqmXj5zRZ9bci1PIXHmNjuyIzAJEaeLXvEn-OdS",
-   "credits": 54
+   "credits": 54,
+   "status": "done"
   }
  }
 }
