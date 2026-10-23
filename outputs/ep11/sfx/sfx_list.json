@@ -40,7 +40,7 @@
   {
    "name": "glass_clink",
    "file": "outputs/ep11/sfx/el/glass_clink.mp3",
-   "at": 9.86,
+   "at": 9.82,
    "len": 1.6,
    "target_lufs": -17,
    "fade_out": 0.4,
@@ -126,6 +126,18 @@
    "measured_lufs": -26.17,
    "measured_file": "outputs/ep11/sfx/el/beer_pour.mp3",
    "gain": 6.2
+  },
+  {
+   "name": "foam_card",
+   "file": "outputs/ep11/sfx/el/beer_fizz.mp3",
+   "at": 21.85,
+   "len": 1.05,
+   "target_lufs": -23,
+   "fade_out": 0.3,
+   "fade_in": 0.25,
+   "measured_lufs": -37.42,
+   "measured_file": "outputs/ep11/sfx/el/beer_fizz.mp3",
+   "gain": 14.4
   },
   {
    "name": "record_scratch",

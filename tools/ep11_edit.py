@@ -37,7 +37,8 @@ def rt(t):
 D = SLOW_LEN - 3.45      # 슬로모션 때문에 캬~가 밀리는 시간
 # 광고 목소리(v4, 사용자: "목소리는 그대로, 광고 연기 톤 느낌"): 1~6번만, 7번(이모!)은 원래 소리
 AD_EQ = 'highpass=f=70,equalizer=f=150:t=q:w=1:g=4,equalizer=f=400:t=q:w=1.2:g=-2,equalizer=f=3500:t=q:w=1:g=3,acompressor=threshold=-22dB:ratio=3.5:attack=5:release=120:makeup=2'
-REVERB = {'pre': 0.04, 'decay': 0.25, 'wet': 0.4, 'band': [300, 6000]}   # 짧은 방 울림, 말소리 전체(ad_voice)
+REVERB = {'pre': 0.06, 'decay': 0.18, 'wet': 0.3, 'band': [300, 6000]}   # 짧은 방 울림, 말소리 전체(ad_voice)
+# v15(새 대사, 전체 대사 받아쓰기로 비교): 0.04/0.25/0.4는 "왜 가벼운지 → 내 가변지". 울림을 조금 늦고(0.06) 짧게(0.18) 하면 0.3에서도 5줄 다 또렷
 # 말하는 쪽 확대(사용자: "대사 칠 때 각각 확대, 진짜 광고처럼"). 얼굴 중심(1080x1920 프레임): 미순 (340, 980), 창수 (800, 980)
 ZOOM, PUSH = 1.6, 1.68                       # v4(사용자: "더 세게, 스피드하게 왔다갔다"): 빠르게 확 다가간 뒤 대사 동안 천천히 더
 FACE_X = {'misun': 340, 'changsu': 800}
@@ -82,8 +83,12 @@ def dur(f):
     return float(re.search(r'Duration: \d+:\d+:([\d.]+)', subprocess.run([FF, '-i', f], capture_output=True, text=True).stderr).group(1))
 
 
-def fit(src, target, dst):
-    r = min(max(dur(src) / target, 0.75), 1.35)
+MAXT = {'L1': 1.1}
+FIT_LEN = {'L5': 0.95}   # v15: 5번 "쉿~ 조용히 해라~"는 입 구간 0.72s에 맞추면 1.35배로 뭉개짐 → "짠!"(8.94s) 전까지 0.95s로   # v15: 1번 "엊그제"가 1.29배에서 "오크제"로 뭉개짐 → 1.1배까지만(다음 대사까지 0.8s 여유)
+
+
+def fit(src, target, dst, cap=1.35):
+    r = min(max(dur(src) / target, 0.75), cap)
     subprocess.run([FF, '-y', '-v', 'error', '-i', src, '-af', f'atempo={r:.3f}', '-ac', '1', '-ar', str(SR), dst], check=True)
     return r, dur(dst)
 
@@ -101,7 +106,10 @@ def ad_voice(x):
     R = REVERB; rng = np.random.default_rng(3); n = int(R['decay'] * 5 * SR); tt = np.arange(n) / SR
     ir = np.concatenate([np.zeros(int(R['pre'] * SR)), rng.standard_normal(n) * np.exp(-tt / R['decay'])]); ir /= np.sqrt((ir ** 2).sum())
     wet = sosfilt(butter(2, R['band'], 'bandpass', fs=SR, output='sos'), fftconvolve(y, ir)[:len(y)])
-    out = y + R['wet'] * wet
+    g = np.full(len(y), R['wet'], np.float32)
+    for a0, a1, w_ in R.get('wet_by', []):
+        g[int(a0 * SR):int(a1 * SR)] = w_
+    out = y + g * wet
     return out / max(1.0, np.abs(out).max() / 0.97)
 
 
@@ -115,7 +123,7 @@ def main():
     L = {l['cut']: l for l in V['lines']}
     talk = np.zeros(int(9.6 * SR), np.float32); subs = []
     for c, (t0, ln) in SLOT.items():
-        dst = os.path.join(EP, f'voice/lines/{c}_fit.wav'); r, d = fit(os.path.join(ROOT, L[c]['file']), ln, dst)
+        dst = os.path.join(EP, f'voice/lines/{c}_fit.wav'); r, d = fit(os.path.join(ROOT, L[c]['file']), FIT_LEN.get(c, ln), dst, MAXT.get(c, 1.35))
         a = pcm(dst); i = int(t0 * SR); talk[i:i + len(a)] += a[:len(talk) - i]
         subs.append((c, t0, t0 + max(d, ln) + 0.15)); print(f'{c} {r:.2f}배 → {d:.2f}s (자리 {ln}s)')
     save(talk, os.path.join(EP, 'voice/talk_track_dry.wav'))
@@ -212,11 +220,12 @@ def ad_look():
     F['cuts'] = {
         '01': {'grade': GRADE, 'moves': moves(),
                # 카피는 카메라가 다음 사람으로 넘어갈 때 함께 사라짐(v5: 앞 카피가 다음 사람 화면에 남던 것 수정)
-               'copy': [cp(s['L1'], sw[1] + 0.05 - s['L1'], '초겨울, 포차의 계절.'),
-                        cp(s['L2'], sw[2] + 0.05 - s['L2'], '입김마저 시원하다.'),
-                        cp(s['L3'], sw[4] + 0.05 - s['L3'], '차가운 잔에 담은', y=COPY_Y),
-                        cp(s['L4'], sw[4] + 0.05 - s['L4'], '우리의 하루.', y=COPY_Y + 0.05),
-                        cp(s['L5'], s['L6'] - s['L5'] - 0.06, '건배하라!', size=72),
+               # v15(2026-10-23 사용자 대사): 광고 카피 = 새 대사
+               'copy': [cp(s['L1'], sw[1] + 0.05 - s['L1'], '월급 엊그제 받았는데'),
+                        cp(s['L2'], sw[2] + 0.05 - s['L2'], '나의 지갑은 왜 가벼운지'),
+                        cp(s['L3'], sw[4] + 0.05 - s['L3'], '그래도 우리', y=COPY_Y),
+                        cp(s['L4'], sw[4] + 0.05 - s['L4'], '이거 마시면~', y=COPY_Y + 0.05),
+                        cp(s['L5'], s['L6'] - s['L5'] - 0.06, '쉿~ 조용히 해라~', size=64),
                         cp(s['L6'], CUT1 - s['L6'] - 0.06, '짠!', size=104, weight=400, fade=0.3)],
                'flash': [{'at': round(rt(CONTACT), 2), 'dur': 0.3, 'peak': 0.22}]},
         '02': {'grade': GRADE, 'cam': {'from': 1.0, 'to': 1.06}},
@@ -238,7 +247,7 @@ def ad_look():
     items = [sf('street_amb_ad', 'outputs/ep01/sfx/el/street_amb.mp3', 0.0, S5_AT, -38, loop=True, fade_in=0.3, fo=0.05),
              sf('fizz_open', el + 'beer_fizz.mp3', 0.0, 2.0, -32, fade_in=0.3, fo=0.4),
              sf('whoosh_slow', el + 'whoosh_soft.mp3', 9.27, 1.0, -26),   # '짠!'(8.94~9.25s) 끝난 뒤, 느려지는 동안
-             sf('glass_clink', el + 'glass_clink.mp3', rt(CONTACT), 1.6, -17, fo=0.4),   # 잔이 닿는 프레임
+             sf('glass_clink', el + 'glass_clink.mp3', rt(CONTACT) - 0.04, 1.6, -17, fo=0.4),   # 잔이 닿는 프레임(v14 확인: 0.04s 늦게 들려 당김)
              sf('gulp1', el + 'gulp.mp3', CUT1 + 1.3, 1.6, -22, fo=0.1),
              sf('gulp2', el + 'gulp.mp3', CUT1 + 2.7, 1.6, -25, fo=0.2),
              sf('fizz_slow', el + 'beer_fizz.mp3', 10.4 + EXTRA, 2.0, -32, fade_in=0.2, fo=0.5),
@@ -246,6 +255,7 @@ def ad_look():
              sf('whoosh_card', el + 'whoosh_soft.mp3', CARD_AT - 0.1, 1.0, -26),
              sf('can_open', el + 'can_open.mp3', CARD_AT + 0.1, 1.0, -18, fo=0.2),
              sf('pour_card', el + 'beer_pour.mp3', CARD_AT + 0.75, CARD_LEN - 0.8, -20, fade_in=0.05, fo=0.15),
+             sf('foam_card', el + 'beer_fizz.mp3', CARD_AT + 2.55, CARD_LEN - 2.55, -23, fade_in=0.25, fo=0.3),   # v15: 따르기(2.5s) 끝~카드 끝을 거품 소리로 채움
              sf('record_scratch', el + 'record_scratch.mp3', S5_AT - 0.05, 0.8, -15),
              sf('street_amb_real', 'outputs/ep01/sfx/el/street_amb.mp3', S5_AT, end - S5_AT, -32, loop=True, fo=0.8)]
     json.dump({'note': 'ep11 v2 광고 효과음(ElevenLabs 5개) + 현실 복귀', 'items': items}, open(os.path.join(EP, 'sfx/sfx_list.json'), 'w'), ensure_ascii=False, indent=1)

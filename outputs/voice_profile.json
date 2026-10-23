@@ -2117,8 +2117,8 @@
     {
      "cut": "L1",
      "speaker": "misun",
-     "subtitle": "초겨울, 포차의 계절.",
-     "tts": "[slow, dramatic narrator voice] 초겨울, 포차의 계절.",
+     "subtitle": "월급 엊그제 받았는데",
+     "tts": "[proud, dramatic narrator voice] 월급 엊그제 받았는데.",
      "expr": "01",
      "max_len": 1.4,
      "offset": 0.05,
@@ -2128,17 +2128,23 @@
      "len_raw": 1.72,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.38,
+     "len": 1.49,
      "file": "outputs/ep11/voice/lines/L1.mp3",
      "len_file": 1.38,
      "over": false,
-     "seed": 7
+     "seed": 99,
+     "v1": {
+      "subtitle": "초겨울, 포차의 계절.",
+      "tts": "[slow, dramatic narrator voice] 초겨울, 포차의 계절.",
+      "seed": 7,
+      "file": "outputs/ep11/voice/lines/L1_v1.mp3"
+     }
     },
     {
      "cut": "L2",
      "speaker": "changsu",
-     "subtitle": "입김마저 시원하다.",
-     "tts": "[slow, dramatic narrator voice] 입김마저 시원하다.",
+     "subtitle": "나의 지갑은 왜 가벼운지",
+     "tts": "[dramatic, puzzled] 나의 지갑은 왜 가벼운지.",
      "expr": "01",
      "max_len": 1.5,
      "offset": 0.05,
@@ -2148,57 +2154,75 @@
      "len_raw": 1.57,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.26,
+     "len": 1.62,
      "file": "outputs/ep11/voice/lines/L2.mp3",
      "len_file": 1.25,
      "over": false,
-     "seed": 1234
+     "seed": 1234,
+     "v1": {
+      "subtitle": "입김마저 시원하다.",
+      "tts": "[slow, dramatic narrator voice] 입김마저 시원하다.",
+      "seed": 1234,
+      "file": "outputs/ep11/voice/lines/L2_v1.mp3"
+     }
     },
     {
      "cut": "L3",
      "speaker": "misun",
-     "subtitle": "차가운 잔에 담은",
-     "tts": "[slow, dramatic narrator voice] 차가운 잔에 담은",
+     "subtitle": "그래도 우리",
+     "tts": "[slow, dramatic narrator voice] 그래도, 우리.",
      "expr": "01",
      "max_len": 1.4,
      "offset": 0.05,
      "inner": false,
      "speedup_override": 1.25,
      "tag_override": true,
-     "seed": 42,
+     "seed": 7,
      "len_raw": 1.57,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 1.26,
+     "len": 1.1,
      "file": "outputs/ep11/voice/lines/L3.mp3",
      "len_file": 1.25,
-     "over": false
+     "over": false,
+     "v1": {
+      "subtitle": "차가운 잔에 담은",
+      "tts": "[slow, dramatic narrator voice] 차가운 잔에 담은",
+      "seed": 42,
+      "file": "outputs/ep11/voice/lines/L3_v1.mp3"
+     }
     },
     {
      "cut": "L4",
      "speaker": "changsu",
-     "subtitle": "우리의 하루.",
-     "tts": "[slow, dramatic narrator voice] 우리의 하루.",
+     "subtitle": "이거 마시면~",
+     "tts": "[playful, sly] 이거 마시면~",
      "expr": "01",
      "max_len": 1.1,
      "offset": 0.05,
      "inner": false,
      "speedup_override": 1.25,
      "tag_override": true,
-     "seed": 42,
+     "seed": 99,
      "len_raw": 1.07,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 0.86,
+     "len": 0.94,
      "file": "outputs/ep11/voice/lines/L4.mp3",
      "len_file": 0.86,
-     "over": false
+     "over": false,
+     "v1": {
+      "subtitle": "우리의 하루.",
+      "tts": "[slow, dramatic narrator voice] 우리의 하루.",
+      "seed": 42,
+      "file": "outputs/ep11/voice/lines/L4_v1.mp3"
+     }
     },
     {
      "cut": "L5",
      "speaker": "misun",
-     "subtitle": "건배하라!",
-     "tts": "[dramatic, powerful] 건배하라!",
+     "subtitle": "쉿~ 조용히 해라~",
+     "tts": "[playful, whispering, smiling] 쉿~ 조용히 해라~",
      "expr": "01",
      "max_len": 0.9,
      "offset": 0.05,
@@ -2209,10 +2233,16 @@
      "len_raw": 0.94,
      "tempo": 1.0,
      "speedup": 1.25,
-     "len": 0.75,
+     "len": 1.12,
      "file": "outputs/ep11/voice/lines/L5.mp3",
      "len_file": 0.76,
-     "over": false
+     "over": false,
+     "v1": {
+      "subtitle": "건배하라!",
+      "tts": "[dramatic, powerful] 건배하라!",
+      "seed": 42,
+      "file": "outputs/ep11/voice/lines/L5_v1.mp3"
+     }
     },
     {
      "cut": "L6",
