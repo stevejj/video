@@ -233,7 +233,7 @@ def ad_look():
         '03': {'grade': GRADE, 'copy': [cp(14.35 + D - 10.0 - SLOW_LEN, 1.6, '캬~', size=110, weight=300, y=COPY_Y + 0.01)]},
         '04': {'cam': {'from': 1.06, 'to': 1.0}, 'drift': None,
                # v12 ④: 가운데 '제품 사진'(짠 순간)은 배경에 넣고, 아래에 슬로건·이름·작은 경고문
-               'copy': [cp(0.3, CARD_LEN - 0.3, '초겨울, 포차의 계절.', y=0.63, size=72, fade=0.9),
+               'copy': [cp(0.3, CARD_LEN - 0.3, '지갑은 가벼워도, 잔은 무겁게.', y=0.63, size=64, fade=0.9),   # v17(사용자 1번): 새 대사(지갑) 흐름에 맞춘 슬로건
                         cp(0.7, CARD_LEN - 0.7, 'MISOON & CHANGSU', y=0.69, size=30, weight=400, spacing=0.45, color='#E8D9B8', fade=0.8),
                         cp(0.9, CARD_LEN - 0.9, WARNING, y=0.765, size=28, weight=400, spacing=0.04, color='#B8AEA2', fade=0.6)]},
         '05': {'punch': {'at': 0.45, 'scale': 1.04, 'settle': 1.0}},   # 현실: 색보정·카피 없음
