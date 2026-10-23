@@ -47,5 +47,29 @@
   "duration": 0.5,
   "file": "outputs/ep16/sfx/el/key_click.mp3",
   "result": "ok 8820B"
+ },
+ {
+  "name": "office_busy",
+  "prompt": "Busy ordinary Korean open-plan office ambience: many people typing on keyboards, muffled coworkers chatting in the distance (unintelligible), a desk phone ringing far away, a printer running, chairs creaking, footsteps on carpet, mouse clicks. Realistic, no music, seamless loop",
+  "duration": 22,
+  "loop": true,
+  "file": "outputs/ep16/sfx/el/office_busy.mp3",
+  "result": "ok 353218B"
+ },
+ {
+  "name": "office_phone_far",
+  "prompt": "A desk telephone ringing twice far away across an office, muffled, realistic, no voice",
+  "duration": 3,
+  "loop": false,
+  "file": "outputs/ep16/sfx/el/office_phone_far.mp3",
+  "result": "ok 48944B"
+ },
+ {
+  "name": "fire_burst",
+  "prompt": "Comic anime fire burst: a quick whoosh as flames ignite and roar for a moment, energetic, no voice",
+  "duration": 1.8,
+  "loop": false,
+  "file": "outputs/ep16/sfx/el/fire_burst.mp3",
+  "result": "ok 29300B"
  }
 ]

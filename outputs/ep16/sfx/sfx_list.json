@@ -1,30 +1,38 @@
 {
- "note": "ep16 v6 (tools/ep16_edit.py)",
+ "note": "ep16 v7 (tools/ep16_edit.py)",
  "items": [
   {
-   "name": "office_amb",
-   "file": "outputs/ep16/sfx/el/office_amb.mp3",
-   "at": 0,
-   "len": 26.9,
-   "target_lufs": -38,
-   "loop": true,
-   "fade_in": 0.3,
-   "fade_out": 0.3,
-   "measured_lufs": -48.58,
-   "measured_file": "outputs/ep16/sfx/el/office_amb.mp3",
-   "gain": 10.6
-  },
-  {
-   "name": "office_amb2",
-   "file": "outputs/ep16/sfx/el/office_amb.mp3",
+   "name": "office_busy2",
+   "file": "outputs/ep16/sfx/el/office_busy.mp3",
    "at": 32.7,
    "len": 12.5,
-   "target_lufs": -38,
+   "target_lufs": -32,
    "loop": true,
    "fade_out": 0.6,
-   "measured_lufs": -48.58,
-   "measured_file": "outputs/ep16/sfx/el/office_amb.mp3",
-   "gain": 10.6
+   "measured_lufs": -28.98,
+   "measured_file": "outputs/ep16/sfx/el/office_busy.mp3",
+   "gain": -3.0
+  },
+  {
+   "name": "phone_far",
+   "file": "outputs/ep16/sfx/el/office_phone_far.mp3",
+   "at": 10.3,
+   "len": 3.0,
+   "target_lufs": -30,
+   "measured_lufs": -18.24,
+   "measured_file": "outputs/ep16/sfx/el/office_phone_far.mp3",
+   "gain": -11.8
+  },
+  {
+   "name": "fire",
+   "file": "outputs/ep16/sfx/el/fire_burst.mp3",
+   "at": 6.45,
+   "len": 1.8,
+   "target_lufs": -20,
+   "fade_out": 0.4,
+   "measured_lufs": -8.94,
+   "measured_file": "outputs/ep16/sfx/el/fire_burst.mp3",
+   "gain": -11.1
   },
   {
    "name": "key_S1 월_0",
