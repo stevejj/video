@@ -3132,6 +3132,77 @@
      }
     ]
    }
+  },
+  "ep16": {
+   "note": "ep16 금요일 오후 5시 39분이란. 대사 2줄(속마음은 울림).",
+   "lines": [
+    {
+     "cut": "7",
+     "speaker": "changsu",
+     "subtitle": "(제발... 조용히... 넘어가자....)",
+     "tts": "[quietly, low voice, trailing off, desperate] 제발... 조용히... 넘어가자....",
+     "expr": "01",
+     "max_len": 3.6,
+     "offset": 0.05,
+     "inner": true,
+     "tag_override": true,
+     "n_seeds": 6,
+     "speedup_override": 1.1,
+     "fx": "cave_light",
+     "pauses": [
+      0.5,
+      0.5
+     ],
+     "asr_ref": "제발조용히넘어가자",
+     "seed": 7,
+     "speedup": 1.1,
+     "tempo": 1.0,
+     "dry": "outputs/ep16/voice/lines/7_dry.mp3",
+     "asr": 1.0,
+     "file": "outputs/ep16/voice/lines/7.mp3",
+     "len": 2.89,
+     "len_file": 4.94,
+     "gap_before": 0.5
+    },
+    {
+     "cut": "11",
+     "speaker": "changsu",
+     "subtitle": "끄아아아아아아!!!",
+     "tts": "[screaming, frustrated, despair] 끄아아아아아아아!",
+     "expr": "01",
+     "max_len": 2.0,
+     "offset": 0.05,
+     "inner": false,
+     "tag_override": true,
+     "n_seeds": 6,
+     "asr_ref": "끄아아아아아아",
+     "seed": 7,
+     "speedup": 1.25,
+     "tempo": 1.0,
+     "dry": "outputs/ep16/voice/lines/11_dry.mp3",
+     "asr": 0.9,
+     "file": "outputs/ep16/voice/lines/11.mp3",
+     "len": 1.47,
+     "len_file": 1.52,
+     "gap_before": 1.0
+    }
+   ],
+   "placements": [
+    {
+     "cut": "7",
+     "at": 0.5,
+     "file": "outputs/ep16/voice/lines/7.mp3"
+    },
+    {
+     "cut": "11",
+     "at": 4.39,
+     "file": "outputs/ep16/voice/lines/11.mp3"
+    }
+   ],
+   "preview": {
+    "file": "outputs/ep16/voice/preview.mp3",
+    "len": 7.86
+   }
   }
  },
  "voices_legacy": {

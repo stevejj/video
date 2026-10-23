@@ -4,7 +4,7 @@
   python3 tools/ep14_voice.py regen 9 5b 3      # 지정 줄을 seed 여러 개로 다시 뽑아 받아쓰기 점수로 채택(드라이 파일)
   python3 tools/ep14_voice.py fx                # 드라이 → 줄별 효과(울림·쉼 늘리기) → lines/<컷>.mp3
   python3 tools/ep14_voice.py preview           # 대사만 이어 붙인 미리듣기
-줄별 설정은 프로필 episodes.ep14.lines[*] 의 fx / pauses / gap_before.
+줄별 설정은 프로필 episodes.<ep>.lines[*] 의 fx / pauses / gap_before. 다른 편은 환경변수 EP=ep16 으로(ep16부터 같이 씀).
 - fx "room": 아주 살짝 울림(나는 실패하지 않습니다 3번, 사용자 2026-10-22)
 - fx "cave_light": 속마음 동굴 울림을 약하게(3번 "또 시작이네" — 기본 동굴이 너무 세서 안 들림, 사용자)
 - pauses: 단어 사이 쉼(초). whisper 단어 시각으로 자르고 무음을 넣음(5b "나는.... 실패하지.... 않습니다")
@@ -15,7 +15,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import voice_gen as vg
 
 ROOT = vg.ROOT; FF = vg.FF; SR = 44100
-LINES = os.path.join(ROOT, 'outputs/ep14/voice/lines')
+EPN = os.environ.get('EP', 'ep14')
+LINES = os.path.join(ROOT, f'outputs/{EPN}/voice/lines')
 SEEDS = [42, 7, 1234, 99, 2024, 555, 11, 77]
 ROOM = {'pre': 0.04, 'decay': 0.35, 'wet': 0.22, 'band': [300, 6000]}
 CAVE_LIGHT_WET = 0.45   # 기본 속마음 1.6 → 약하게
@@ -61,7 +62,7 @@ norm = lambda s: re.sub(r'[^가-힣]', '', s)
 
 def regen(P, cuts):
     tmp = tempfile.mkdtemp()
-    for l in P['episodes']['ep14']['lines']:
+    for l in P['episodes'][EPN]['lines']:
         if l['cut'] not in cuts:
             continue
         ref = norm(l.get('asr_ref', l['subtitle'])); res = []
@@ -79,7 +80,7 @@ def regen(P, cuts):
             print(f'  {l["cut"]} seed {seed}: {d:.2f}s 들림 "{h}" 점수 {score:.2f}', flush=True)
             res.append((round(score, 1), -abs(d - l['max_len'] * 0.8), seed, dry, d, sp))
         score, _, seed, dry, d, sp = max(res)
-        dst = os.path.join(LINES, f'{l["cut"]}_dry.mp3'); os.replace(dry, dst)
+        os.makedirs(LINES, exist_ok=True); dst = os.path.join(LINES, f'{l["cut"]}_dry.mp3'); os.replace(dry, dst)
         l.update(seed=seed, speedup=sp, tempo=1.0, dry=os.path.relpath(dst, ROOT), asr=score)
         print(f'→ {l["cut"]} 채택 seed {seed} 점수 {score} {d:.2f}s', flush=True)
 
@@ -215,7 +216,7 @@ def stretch_pauses(x, gaps):
 
 
 def fx(P):
-    for l in P['episodes']['ep14']['lines']:
+    for l in P['episodes'][EPN]['lines']:
         src = l.get('dry')
         if not src:
             continue
@@ -245,7 +246,7 @@ def fx(P):
 
 
 def preview(P):
-    E = P['episodes']['ep14']; t = 0.0; ins = []; fl = []; place = []
+    E = P['episodes'][EPN]; t = 0.0; ins = []; fl = []; place = []
     for i, l in enumerate(E['lines']):
         t += l.get('gap_before', 0.3)
         ins += ['-i', os.path.join(ROOT, l['file'])]; ms = int(t * 1000)
@@ -253,7 +254,7 @@ def preview(P):
         t += l['len']
     end = t + 2.0; n = len(E['lines'])
     fc = ';'.join(fl) + ';' + ''.join(f'[a{i}]' for i in range(n)) + f'amix=inputs={n}:normalize=0,atrim=0:{end:.2f},alimiter=limit=0.9[o]'
-    out = os.path.join(ROOT, 'outputs/ep14/voice/preview.mp3')
+    out = os.path.join(ROOT, f'outputs/{EPN}/voice/preview.mp3')
     subprocess.run([FF, '-y', '-loglevel', 'error', *ins, '-filter_complex', fc, '-map', '[o]', '-c:a', 'libmp3lame', '-q:a', '2', out], check=True)
     E['placements'] = place; E['preview'] = {'file': os.path.relpath(out, ROOT), 'len': round(end, 2)}
     for p, l in zip(place, E['lines']):
