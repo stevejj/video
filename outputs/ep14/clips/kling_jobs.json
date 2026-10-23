@@ -1,0 +1,19 @@
+{
+ "urls": {
+  "K4": "https://s15-kling.klingai.com/kimg/EMXN1y8qRgoGdXBsb2FkEg55bGFiLXN0dW50LXNncBosYWdlbnRfdXBsb2FkLzE3OTI3MjA2NTAvdEhLd0FRemFxTC9rNF92MS5wbmc.origin?x-kcdn-pid=112372",
+  "K1": "https://s15-kling.klingai.com/kimg/EMXN1y8qRgoGdXBsb2FkEg55bGFiLXN0dW50LXNncBosYWdlbnRfdXBsb2FkLzE3OTI3MjIzOTUvd3VRNjdMRmtWSS9rMV92MS5wbmc.origin?x-kcdn-pid=112372",
+  "K5a": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI3MjIzOTgvWlJOellSUVVpUS9rNWFfdjEucG5n.origin?x-kcdn-pid=112372",
+  "K5c": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI3MjI0MDAvTmZzYXIyM0lrQi9rNWNfdjEucG5n.origin?x-kcdn-pid=112372",
+  "K7a": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI3MjI0MDMveXR1OUcxNFQ1by9rN2FfdjEucG5n.origin?x-kcdn-pid=112372",
+  "K7b": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI3MjI0MDUvdlVJVG14MTdvVC9rN2JfdjIucG5n.origin?x-kcdn-pid=112372",
+  "K8": "https://s15-kling.klingai.com/kimg/EMXN1y8qRgoGdXBsb2FkEg55bGFiLXN0dW50LXNncBosYWdlbnRfdXBsb2FkLzE3OTI3MjI0MDgvdVN0eXlvNmJQdy9rOF92MS5wbmc.origin?x-kcdn-pid=112372",
+  "c4": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/agent_upload/1792722454/0Jgr0KgJMN/c4.mp3?x-kcdn-pid=112372",
+  "c5": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/agent_upload/1792722421/LguNAyVzGc/c5.mp3?x-kcdn-pid=112372",
+  "c7": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/agent_upload/1792722427/6cDbqOHSAm/c7.mp3?x-kcdn-pid=112372"
+ },
+ "jobs": {
+  "C2": {"id": "AQSlCnumRCuPo-DHndolqiIl8toUd2BiB-yDrNBxEg73px2HotoEI3z-B9woKCBwyr7E3bOr", "credits": 45, "status": "done"},
+  "C1": {"id": "AfYH6rTDGjBXy2Q2HIkJMrmMknwezo5G140pU8Hu3o60245hknCQFx8ZU0SuByacrZOsQRg9", "credits": 45},
+  "C3": {"id": "AVWcAMiL-6qWAcPV2-Q7ajIzwcjpn9C5wLA5iIDRQm_J4S1TrAWOtAT-QkL_mQA4kSYyhc1D", "credits": 30}
+ }
+}
