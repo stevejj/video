@@ -46,5 +46,7 @@ outputs/ep15/ref/
 outputs/ep15/sing/
 # ep14: 소리 없는 중간 렌더(다시 만들 수 있음)
 outputs/ep14/roughcut/*_silent.mp4
-# ep16(노래 시험: WOODZ Drowning) 원곡·결과 — 로컬에만
-outputs/ep16/
+# ep16: 소리 없는 중간 렌더
+outputs/ep16/roughcut/*_silent.mp4
+# 노래 시험(WOODZ Drowning 하이라이트, Seed-VC) 원곡·결과 — 로컬에만
+outputs/song_test/

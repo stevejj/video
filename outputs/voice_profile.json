@@ -3132,6 +3132,220 @@
      }
     ]
    }
+  },
+  "ep16": {
+   "note": "ep16 금요일 오후 5시 39분이란. 대사 2줄(속마음은 울림).",
+   "lines": [
+    {
+     "cut": "7",
+     "speaker": "changsu",
+     "subtitle": "(제발... 조용히... 넘어가자....)",
+     "tts": "[quietly, low voice, trailing off, desperate] 제발... 조용히... 넘어가자....",
+     "expr": "01",
+     "max_len": 3.6,
+     "offset": 0.05,
+     "inner": true,
+     "tag_override": true,
+     "n_seeds": 6,
+     "speedup_override": 1.1,
+     "fx": "cave_light",
+     "pauses": [
+      0.2,
+      0.2
+     ],
+     "asr_ref": "제발조용히넘어가자",
+     "seed": 7,
+     "speedup": 1.1,
+     "tempo": 1.0,
+     "dry": "outputs/ep16/voice/lines/7_dry.mp3",
+     "asr": 1.0,
+     "file": "outputs/ep16/voice/lines/7.mp3",
+     "len": 2.29,
+     "len_file": 4.34,
+     "gap_before": 0.5
+    },
+    {
+     "cut": "11",
+     "speaker": "changsu",
+     "subtitle": "끄아아아아아아!!!",
+     "tts": "[screaming, frustrated, despair] 끄아아아아아아아!",
+     "expr": "01",
+     "max_len": 2.0,
+     "offset": 0.05,
+     "inner": false,
+     "tag_override": true,
+     "n_seeds": 6,
+     "asr_ref": "끄아아아아아아",
+     "seed": 7,
+     "speedup": 1.25,
+     "tempo": 1.0,
+     "dry": "outputs/ep16/voice/lines/11_dry.mp3",
+     "asr": 0.9,
+     "file": "outputs/ep16/voice/lines/11.mp3",
+     "len": 1.47,
+     "len_file": 1.52,
+     "gap_before": 1.0
+    }
+   ],
+   "placements": [
+    {
+     "file": "outputs/ep16/voice/lines/7.mp3",
+     "at": 21.65
+    },
+    {
+     "file": "outputs/ep16/voice/lines/11.mp3",
+     "at": 34.85
+    }
+   ],
+   "preview": {
+    "file": "outputs/ep16/voice/preview.mp3",
+    "len": 7.26
+   },
+   "bgm": {
+    "file": "outputs/ep16/bgm/friday_calm.mp3",
+    "target_lufs": -28,
+    "duck_db": 6,
+    "fade_in": 0.5,
+    "end_at": 24.5,
+    "fade_out": 0.6
+   },
+   "edit": {
+    "tag": "v3",
+    "total": 41.6,
+    "segments": [
+     {
+      "n": "S1 월",
+      "k": "K1",
+      "t0": 0.0,
+      "len": 1.5,
+      "sp": 1.0,
+      "day": "월",
+      "at": 0.0
+     },
+     {
+      "n": "S1 화",
+      "k": "K1",
+      "t0": 1.6,
+      "len": 1.5,
+      "sp": 1.0,
+      "day": "화",
+      "at": 1.5
+     },
+     {
+      "n": "S1 수",
+      "k": "K1",
+      "t0": 3.1,
+      "len": 1.5,
+      "sp": 1.2,
+      "day": "수",
+      "at": 3.0
+     },
+     {
+      "n": "S1 목",
+      "k": "K1",
+      "t0": 0.3,
+      "len": 1.8,
+      "sp": 1.5,
+      "day": "목",
+      "cap": "(불태운 월화수목)",
+      "cap_at": 0.4,
+      "at": 4.5
+     },
+     {
+      "n": "S2 4:52",
+      "clock": "(금) 오후 4:52",
+      "len": 1.8,
+      "at": 6.3
+     },
+     {
+      "n": "S3 척",
+      "k": "K1",
+      "t0": 1.0,
+      "len": 2.8,
+      "sp": 1.0,
+      "cap": "(일하는 척 모드 ON)",
+      "at": 8.1
+     },
+     {
+      "n": "S4 키보드",
+      "still": "O3",
+      "len": 2.0,
+      "push": 0.08,
+      "cap": "(사실은 블루투스 키보드로)",
+      "at": 10.9
+     },
+     {
+      "n": "S5a 몰래",
+      "k": "K2",
+      "t0": 0.0,
+      "len": 2.2,
+      "cap": "(미순이와 주말 작전 회의 중)",
+      "at": 12.9
+     },
+     {
+      "n": "S5b 대화",
+      "len": 4.6,
+      "at": 15.1
+     },
+     {
+      "n": "S6 5:38",
+      "clock": "(금) 오후 5:38",
+      "len": 1.6,
+      "cap": "(퇴근 22분 전)",
+      "at": 19.7
+     },
+     {
+      "n": "S7 속마음",
+      "still": "O4",
+      "len": 3.4,
+      "eye": true,
+      "at": 21.3
+     },
+     {
+      "n": "S8a 꿈",
+      "dclip": "D1",
+      "t0": 6.8,
+      "len": 3.2,
+      "cap": "(주말을 향한 몽상)",
+      "at": 24.7
+     },
+     {
+      "n": "S8b 꿈 원샷",
+      "dclip": "D2",
+      "t0": 0.6,
+      "len": 2.6,
+      "cap": "(주말을 향한 몽상)",
+      "at": 27.9
+     },
+     {
+      "n": "S9 5:39",
+      "clock": "(금) 오후 5:39",
+      "len": 1.3,
+      "at": 30.5
+     },
+     {
+      "n": "S10 알림",
+      "toast": true,
+      "len": 2.8,
+      "cap": "(띠링)",
+      "at": 31.8
+     },
+     {
+      "n": "S11 끄아",
+      "still": "O5",
+      "len": 2.4,
+      "scream": true,
+      "at": 34.6
+     },
+     {
+      "n": "S12 엔딩",
+      "len": 4.6,
+      "cap": "(금요일 오후 5시 39분이란)",
+      "cap_at": 3.0,
+      "at": 37.0
+     }
+    ]
+   }
   }
  },
  "voices_legacy": {
