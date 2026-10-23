@@ -2,7 +2,8 @@
  "urls": {
   "O1": "https://s15-kling.klingai.com/kimg/EMXN1y8qRgoGdXBsb2FkEg55bGFiLXN0dW50LXNncBosYWdlbnRfdXBsb2FkLzE3OTI3MzIwMjIvOWlvMjhoRWphMy9vMV92MS5wbmc.origin?x-kcdn-pid=112372",
   "O2": "https://s15-kling.klingai.com/kimg/EMXN1y8qRgoGdXBsb2FkEg55bGFiLXN0dW50LXNncBosYWdlbnRfdXBsb2FkLzE3OTI3MzIwMjYvUkZmVkFtczNGcy9vMl92MS5wbmc.origin?x-kcdn-pid=112372",
-  "O1c": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI3MzQ0MzAvZkNzWUVYSGxaWS9vMWNfdjEucG5n.origin?x-kcdn-pid=112372"
+  "O1c": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI3MzQ0MzAvZkNzWUVYSGxaWS9vMWNfdjEucG5n.origin?x-kcdn-pid=112372",
+  "O1d": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI3MzU1NjQvMDJOOHFuakxray9vMWRfdjEucG5n.origin?x-kcdn-pid=112372"
  },
  "jobs": {
   "K1": {
@@ -22,6 +23,14 @@
    "id": "AY4JBpGreMPVW917jZUttQHtntqRFVPRFZRBG2fugmUQ6U0B20W3drhivJR2rsW0nNQOoTBm",
    "credits": 30,
    "status": "done"
+  },
+  "K1c": {
+   "id": "AQIDgNyz1C2BhsVj-rnHs_0y8BMw38C0SVzvoLed1T4RtWcB9fmU5MirzM8qUTOG3giVk6jQ",
+   "credits": 30
+  },
+  "K2c": {
+   "id": "Aez8YO_vNQWPOUtscxqzyGsgEjuHVpg0z4gQ2hmMFxkPkDdIuJXtPdyng2D2ZjSoKW7PWlWP",
+   "credits": 30
   }
  }
 }
