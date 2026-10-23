@@ -34,6 +34,24 @@
    "name": "key_click",
    "prompt": "A single crisp click of one key on a thin wireless computer keyboard, very short, clean, no reverb",
    "duration": 0.5
+  },
+  {
+   "name": "office_busy",
+   "prompt": "Busy ordinary Korean open-plan office ambience: many people typing on keyboards, muffled coworkers chatting in the distance (unintelligible), a desk phone ringing far away, a printer running, chairs creaking, footsteps on carpet, mouse clicks. Realistic, no music, seamless loop",
+   "duration": 22,
+   "loop": true
+  },
+  {
+   "name": "office_phone_far",
+   "prompt": "A desk telephone ringing twice far away across an office, muffled, realistic, no voice",
+   "duration": 3,
+   "loop": false
+  },
+  {
+   "name": "fire_burst",
+   "prompt": "Comic anime fire burst: a quick whoosh as flames ignite and roar for a moment, energetic, no voice",
+   "duration": 1.8,
+   "loop": false
   }
  ]
 }

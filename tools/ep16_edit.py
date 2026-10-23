@@ -69,6 +69,38 @@ def code_screen(img, ntok, t):
     return out
 
 
+def day_chip(text, size=84):
+    """요일 동그라미(v7 사용자: 글자가 동그라미 정가운데) — 정원 + Jua 글씨를 글자 테두리 상자 기준으로 가운데."""
+    f = font(size, path=JUA); D = size + 56
+    im = Image.new('RGBA', (D, D), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.ellipse([0, 0, D - 1, D - 1], fill=(255, 255, 255, 200))
+    x0, y0, x1, y1 = d.textbbox((0, 0), text, font=f)
+    d.text(((D - (x1 - x0)) / 2 - x0, (D - (y1 - y0)) / 2 - y0), text, font=f, fill='#5A4A52')
+    return np.array(im)
+
+
+def burn(win, t, k):
+    """'열시미 해따' 강조(v7 사용자): 아래에서 타오르는 불꽃 + 가운데로 모이는 집중선. k=세기 0~1."""
+    h, w = win.shape[:2]; sh, sw = h // 6, w // 6
+    rng = np.random.default_rng(int(t * 24))
+    n = cv2.resize(rng.random((5, 26)).astype(np.float32), (sw, sh), interpolation=cv2.INTER_CUBIC)   # 세로로 긴 불꽃 혀
+    n2 = cv2.resize(np.random.default_rng(7).random((18, 22)).astype(np.float32), (sw, sh * 3), interpolation=cv2.INTER_CUBIC)
+    off = int(t * 120) % (sh * 2); n = 0.55 * n + 0.45 * n2[off:off + sh]
+    yy = np.linspace(0, 1, sh)[:, None]                              # 0 위 → 1 아래
+    heat = np.clip(n * 1.3 - (1 - yy) * 2.6 + 0.55, 0, 1) * k        # 아래 약 1/3만 탐
+    heat = cv2.GaussianBlur(cv2.resize(heat, (w, h), interpolation=cv2.INTER_CUBIC), (0, 0), 6)[..., None]
+    fire = np.concatenate([np.clip(heat * 0.4, 0, 1) * 120, np.clip(heat * 1.6, 0, 1) * 200, np.clip(heat * 3, 0, 1) * 255], 2)   # BGR 빨강→노랑
+    out = win.astype(np.float32); out = out + fire * 0.95 - out * heat * 0.25
+    # 집중선
+    lines = np.zeros((h, w), np.float32); r = np.random.default_rng(int(t * 12)); cx, cy = w / 2, h / 2
+    for _ in range(46):
+        a = r.uniform(0, 2 * np.pi); r0 = r.uniform(0.62, 0.8) * w / 2
+        p0 = (int(cx + np.cos(a) * r0), int(cy + np.sin(a) * r0 * 0.75)); p1 = (int(cx + np.cos(a) * w), int(cy + np.sin(a) * w))
+        cv2.line(lines, p0, p1, 1.0, int(r.integers(2, 6)), cv2.LINE_AA)
+    out = out * (1 - lines[..., None] * 0.8 * k) + 255 * lines[..., None] * 0.8 * k
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+
 def fitw(rgba, maxw):
     """글씨 그림이 maxw보다 넓으면 비율 그대로 줄임(긴 제목·자막)."""
     h, w = rgba.shape[:2]
@@ -193,7 +225,7 @@ def main():
         dict(n='S1 월', alt=[('wide', 1.0), ('keys', 0.8), ('mon', 0.8)], day='월'),
         dict(n='S1 화', alt=[('keys', 0.7), ('mon', 0.6), ('keys', 0.5)], day='화'),
         dict(n='S1 수', alt=[('mon', 0.4), ('keys', 0.35), ('mon', 0.35), ('keys', 0.3), ('mon', 0.3)], day='수'),
-        dict(n='S1 목', alt=[('keys', 0.2), ('mon', 0.2)] * 5, day='목', cap='(나 열시미 해따! 진짜로)', cap_at=0.4),
+        dict(n='S1 목', alt=[('keys', 0.2), ('mon', 0.2)] * 5, day='목', cap='(나 열시미 해따! 진짜로)', cap_at=0.4, burn=0.4),
         dict(n='S2 4:52', clock='(금) 오후 4:52', len=1.8),   # v3: 괄호 자막 뺌(사용자)
         dict(n='S3 척', still='wide', len=2.8, push=0.12, to=(700, 520), cap='(타다다각다다다다가다닥)'),
         dict(n='S4 키보드', still='keys', len=2.0, push=0.3, to=(607, 660), cap='(흐흐흐흐흐 일하는거같징?)'),
@@ -230,8 +262,10 @@ def main():
     def fx(name, file, at, ln, lufs, **k):
         sfx.append(dict(name=name, file=file, at=round(at, 3), len=ln, target_lufs=lufs, **k))
     el = 'outputs/ep16/sfx/el/'
-    fx('office_amb', el + 'office_amb.mp3', 0, S['S8a 꿈']['at'], -38, loop=True, fade_in=0.3, fade_out=0.3)
-    fx('office_amb2', el + 'office_amb.mp3', S['S9 5:39']['at'], total - S['S9 5:39']['at'], -38, loop=True, fade_out=0.6)
+    # v7: 배경음 = 평범한 회사 소음(사용자: 로파이는 너무 고급스러움) — 처음~꿈 전은 bgm, 5:39 뒤 다시 깔림
+    fx('office_busy2', el + 'office_busy.mp3', S['S9 5:39']['at'], total - S['S9 5:39']['at'], -32, loop=True, fade_out=0.6)
+    fx('phone_far', el + 'office_phone_far.mp3', S['S3 척']['at'] + 0.4, 3.0, -30)
+    fx('fire', el + 'fire_burst.mp3', S['S1 목']['at'] + S['S1 목']['burn'] - 0.05, 1.8, -20, fade_out=0.4)
     for k in ('S1 월', 'S1 화', 'S1 수', 'S1 목'):
         sg = S[k]; c0 = sg['at']
         for kind, d in sg['alt']:
@@ -262,7 +296,7 @@ def main():
         if x >= 0:
             fx(f'msg_end{i}', el + 'msg_ping.mp3', S['S12 엔딩']['at'] + x, 0.5, -22)
     E['placements'] = pl
-    E['bgm'] = {'file': 'outputs/ep16/bgm/friday_calm.mp3', 'target_lufs': -28, 'duck_db': 6, 'fade_in': 0.5, 'end_at': round(S['S8a 꿈']['at'] - 0.2, 2), 'fade_out': 0.6}
+    E['bgm'] = {'file': 'outputs/ep16/sfx/el/office_busy.mp3', 'target_lufs': -30, 'duck_db': 4, 'fade_in': 0.5, 'end_at': round(S['S8a 꿈']['at'] - 0.2, 2), 'fade_out': 0.6}
     E['edit'] = {'tag': a.tag, 'total': total, 'segments': [{k: v for k, v in s.items() if k not in ('chat', 'appear')} for s in segs]}
     json.dump(P, open(os.path.join(ROOT, 'outputs/voice_profile.json'), 'w'), ensure_ascii=False, indent=1)
     json.dump({'note': f'ep16 {a.tag} (tools/ep16_edit.py)', 'items': sfx}, open(os.path.join(EP, 'sfx/sfx_list.json'), 'w'), ensure_ascii=False, indent=1)
@@ -339,12 +373,16 @@ def main():
                 win = crop_win(img[s['still']], push, cx_, cy_)
             if shake != (0, 0):
                 win = cv2.warpAffine(win, np.float32([[1, 0, shake[0]], [0, 1, shake[1]]]), (WW, WH), borderMode=cv2.BORDER_REPLICATE)
+            if s.get('burn') is not None and lt >= s['burn']:   # 목: 불꽃 + 집중선 + 흔들림
+                bt = lt - s['burn']; win = burn(win, tt, min(1.0, bt / 0.25))
+                j = int(bt * FPS); win = cv2.warpAffine(win, np.float32([[1, 0, 6 * np.sin(j * 2.1)], [0, 1, 4 * np.cos(j * 2.9)]]), (WW, WH), borderMode=cv2.BORDER_REPLICATE)
             # 창 안 글씨
             if s.get('day'):
-                put(win, txt(('day', s['day']), lambda: chip_img(s['day'], 84)), WW / 2, 110, alpha=ease(lt / 0.08), scale=1.0 + 0.3 * (1 - ease(lt / 0.12)))
+                put(win, txt(('day', s['day']), lambda: day_chip(s['day'])), WW / 2, 110, alpha=ease(lt / 0.08), scale=1.0 + 0.3 * (1 - ease(lt / 0.12)))
             if s.get('cap') and lt >= s.get('cap_at', 0):
                 cimg = txt(('cap', s['cap']), lambda: fitw(text_img([[(s['cap'], 'white')]], 46, weight=700, stroke=6), WW - 60))
-                put(win, cimg, WW / 2, WH - 60, alpha=ease((lt - s.get('cap_at', 0)) / 0.15))
+                pop = 1.0 + (0.35 * (1 - ease((lt - s['cap_at']) / 0.18)) if s.get('burn') is not None else 0)
+                put(win, cimg, WW / 2, WH - 60, alpha=ease((lt - s.get('cap_at', 0)) / 0.15), scale=pop)
             for sb in subs:
                 if sb['t0'] <= tt < sb['t1']:
                     put(win, txt(('sub', sb['text']), lambda: text_img([[(sb['text'], sb['sp'])]], 52, stroke=7)), WW / 2, WH - 60)

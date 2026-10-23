@@ -3219,15 +3219,15 @@
     "len": 7.26
    },
    "bgm": {
-    "file": "outputs/ep16/bgm/friday_calm.mp3",
-    "target_lufs": -28,
-    "duck_db": 6,
+    "file": "outputs/ep16/sfx/el/office_busy.mp3",
+    "target_lufs": -30,
+    "duck_db": 4,
     "fade_in": 0.5,
     "end_at": 26.7,
     "fade_out": 0.6
    },
    "edit": {
-    "tag": "v6",
+    "tag": "v7",
     "total": 45.2,
     "segments": [
      {
@@ -3345,6 +3345,7 @@
       "day": "목",
       "cap": "(나 열시미 해따! 진짜로)",
       "cap_at": 0.4,
+      "burn": 0.4,
       "len": 2.0,
       "at": 6.1
      },
