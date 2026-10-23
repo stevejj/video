@@ -2420,49 +2420,40 @@
    ],
    "placements": [
     {
-     "cut": "v2-01",
-     "at": 1.2,
-     "file": "outputs/ep14/voice/lines/v2-01.mp3"
+     "file": "outputs/ep14/voice/lines/v2-01.mp3",
+     "at": 1.2
     },
     {
-     "cut": "v2-02",
-     "at": 5.4,
-     "file": "outputs/ep14/voice/lines/v2-02.mp3"
+     "file": "outputs/ep14/voice/lines/v2-02.mp3",
+     "at": 5.2
     },
     {
-     "cut": "v2-04",
-     "at": 10.52,
-     "file": "outputs/ep14/voice/lines/5b.mp3"
+     "file": "outputs/ep14/voice/lines/5b.mp3",
+     "at": 12.4
     },
     {
-     "cut": "v2-06",
-     "at": 17.31,
-     "file": "outputs/ep14/voice/lines/5b.mp3"
+     "file": "outputs/ep14/voice/lines/5b.mp3",
+     "at": 19.3
     },
     {
-     "cut": "v2-07",
-     "at": 21.2,
-     "file": "outputs/ep14/voice/lines/v2-07.mp3"
+     "file": "outputs/ep14/voice/lines/5b.mp3",
+     "at": 33.6
     },
     {
-     "cut": "v2-08",
-     "at": 23.72,
-     "file": "outputs/ep14/voice/lines/9.mp3"
+     "file": "outputs/ep14/voice/lines/v2-07.mp3",
+     "at": 23.1
     },
     {
-     "cut": "v2-10",
-     "at": 27.97,
-     "file": "outputs/ep14/voice/lines/9.mp3"
+     "file": "outputs/ep14/voice/lines/9.mp3",
+     "at": 26.65
     },
     {
-     "cut": "v2-11",
-     "at": 31.42,
-     "file": "outputs/ep14/voice/lines/5b.mp3"
+     "file": "outputs/ep14/voice/lines/9.mp3",
+     "at": 31.1
     },
     {
-     "cut": "v2-15",
-     "at": 43.71,
-     "file": "outputs/ep14/voice/lines/5b.mp3"
+     "file": "outputs/ep14/voice/lines/5b.mp3",
+     "at": 47.9
     }
    ],
    "preview": {
@@ -2924,6 +2915,207 @@
      "len": 6,
      "speech_end": 5.29
     }
+   },
+   "bgm": {
+    "file": "outputs/ep14/bgm/claw_comedy.mp3",
+    "target_lufs": -27,
+    "duck_db": 6,
+    "fade_in": 0.5,
+    "end_at": 51.5,
+    "fade_out": 1.2,
+    "dips": [
+     {
+      "at": 12.12,
+      "len": 3.5,
+      "db": -14
+     },
+     {
+      "at": 19.02,
+      "len": 3.5,
+      "db": -14
+     },
+     {
+      "at": 33.32,
+      "len": 3.5,
+      "db": -14
+     },
+     {
+      "at": 47.62,
+      "len": 3.5,
+      "db": -14
+     }
+    ]
+   },
+   "edit": {
+    "tag": "v1",
+    "total": 51.5,
+    "segments": [
+     {
+      "n": "S0 거리",
+      "src": "C1_v1",
+      "t0": 0.0,
+      "len": 3.3,
+      "at": 0.0
+     },
+     {
+      "n": "S1 기계",
+      "still": true,
+      "len": 1.6,
+      "at": 3.3
+     },
+     {
+      "n": "S2 저 오리",
+      "src": "C2_v1_eyefix",
+      "t0": 0.0,
+      "len": 2.9,
+      "at": 4.9
+     },
+     {
+      "n": "S3 1판",
+      "src": "C3_v1",
+      "t0": 0.4,
+      "len": 4.3,
+      "chip": "1판",
+      "at": 7.8
+     },
+     {
+      "n": "S4 실패X①",
+      "src": "C4_v1",
+      "t0": 0.0,
+      "len": 3.9,
+      "at": 12.1
+     },
+     {
+      "n": "S5a 2판",
+      "src": "C3_v1",
+      "t0": 2.6,
+      "len": 1.0,
+      "sp": 2.0,
+      "chip": "2판",
+      "at": 16.0
+     },
+     {
+      "n": "S5b 3판",
+      "src": "C3_v1",
+      "t0": 2.6,
+      "len": 1.0,
+      "sp": 2.0,
+      "flip": true,
+      "chip": "3판",
+      "at": 17.0
+     },
+     {
+      "n": "S5c 5판",
+      "src": "C3_v1",
+      "t0": 2.6,
+      "len": 1.0,
+      "sp": 2.0,
+      "chip": "5판",
+      "at": 18.0
+     },
+     {
+      "n": "S6 실패X②",
+      "src": "C4_v1",
+      "t0": 0.0,
+      "len": 3.9,
+      "at": 19.0
+     },
+     {
+      "n": "S7 그만해",
+      "src": "C5_v1",
+      "t0": 0.6,
+      "len": 2.9,
+      "at": 22.9
+     },
+     {
+      "n": "S8 쉿①",
+      "src": "C6_v1",
+      "t0": 0.6,
+      "len": 2.2,
+      "at": 25.8
+     },
+     {
+      "n": "S9a 11판",
+      "src": "C3_v1",
+      "t0": 2.6,
+      "len": 0.9,
+      "sp": 2.2,
+      "flip": true,
+      "chip": "11판",
+      "at": 28.0
+     },
+     {
+      "n": "S9b 15판",
+      "src": "C3_v1",
+      "t0": 2.6,
+      "len": 0.9,
+      "sp": 2.2,
+      "chip": "15판",
+      "at": 28.9
+     },
+     {
+      "n": "S9c 19판",
+      "src": "C3_v1",
+      "t0": 2.6,
+      "len": 0.9,
+      "sp": 2.2,
+      "flip": true,
+      "chip": "19판",
+      "at": 29.8
+     },
+     {
+      "n": "S10 쉿②",
+      "src": "C6_v1",
+      "t0": 1.05,
+      "len": 1.6,
+      "at": 30.7
+     },
+     {
+      "n": "S11a 24판",
+      "src": "C3_v1",
+      "t0": 2.6,
+      "len": 1.0,
+      "sp": 2.0,
+      "chip": "24판",
+      "at": 32.3
+     },
+     {
+      "n": "S11 실패X③",
+      "src": "C4_v1",
+      "t0": 0.0,
+      "len": 3.9,
+      "at": 33.3
+     },
+     {
+      "n": "S12 25판",
+      "src": "C3_v1",
+      "t0": 0.6,
+      "len": 4.1,
+      "sp": 0.82,
+      "chip": "25판",
+      "at": 37.2
+     },
+     {
+      "n": "S13 승리",
+      "src": "C7_v1_eyefix",
+      "t0": 0.0,
+      "len": 1.9,
+      "at": 41.3
+     },
+     {
+      "n": "S14 결제 알림",
+      "phone": true,
+      "len": 3.9,
+      "at": 43.2
+     },
+     {
+      "n": "S15 실패X④",
+      "src": "C7_v1_eyefix",
+      "t0": 1.2,
+      "len": 4.4,
+      "at": 47.1
+     }
+    ]
    }
   }
  },
