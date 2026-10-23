@@ -29,7 +29,7 @@
   {
    "name": "whoosh_slow",
    "file": "outputs/ep11/sfx/el/whoosh_soft.mp3",
-   "at": 9.25,
+   "at": 9.27,
    "len": 1.0,
    "target_lufs": -26,
    "fade_out": 0.05,
@@ -40,7 +40,7 @@
   {
    "name": "glass_clink",
    "file": "outputs/ep11/sfx/el/glass_clink.mp3",
-   "at": 9.98,
+   "at": 9.86,
    "len": 1.6,
    "target_lufs": -17,
    "fade_out": 0.4,

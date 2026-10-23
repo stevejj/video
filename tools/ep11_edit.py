@@ -18,8 +18,11 @@ SLOT = {'L1': (0.23, 1.12), 'L2': (2.13, 1.27), 'L3': (4.23, 1.14), 'L4': (5.85,
 L8_SLOT = (0.34, 1.29)   # s5_track 안
 SLOW = 0.7               # 원샷(s2 1.45~4.9) 슬로모션 배속 → s2/clip_slow.mp4 (minterpolate)
 SLOW_LEN = 4.8           # 3.45 / 0.7 ≈ 4.93 → 렌더 결과 4.83s
-# v12(2026-10-23 사용자 ②): 짠 순간 속도 조절 — 잔이 닿기 직전 9.30~9.80s(원본)를 0.25배로, 앞뒤는 원래 속도 → s1/clip_ramp.mp4
-RAMP_A, RAMP_B, RAMP_SP = 9.30, 9.80, 0.25
+# v12(2026-10-23 사용자 ②): 짠 순간 속도 조절 → s1/clip_ramp.mp4
+# v14(사용자: 짠 소리가 잔 부딪힐 때 나야 함): 프레임 확인 결과 잔이 닿는 순간은 원본 9.29s(9.25 떨어짐, 9.30 붙음).
+#   v12는 9.30부터 느려져 이미 닿은 뒤만 느렸음 → 9.10~9.60(다가가서 닿는 순간 포함)을 0.25배로, 소리는 닿는 프레임에
+RAMP_A, RAMP_B, RAMP_SP = 9.10, 9.60, 0.25
+CONTACT = 9.29           # 원본에서 잔이 닿는 순간(glass_clink.mp3는 0초부터 소리 → 그대로 이 시각에)
 EXTRA = round((RAMP_B - RAMP_A) * (1 / RAMP_SP - 1), 3)   # 1.5s 늘어남
 CUT1 = 10.0 + EXTRA      # 대화+짠 장면 길이
 CARD_LEN = 3.6           # 엔딩 카드(v12 ④: 캔 치익 → 따르는 소리가 들어가게 2.0 → 2.6, v13 사용자 '더 늘려' → 3.6)
@@ -215,7 +218,7 @@ def ad_look():
                         cp(s['L4'], sw[4] + 0.05 - s['L4'], '우리의 하루.', y=COPY_Y + 0.05),
                         cp(s['L5'], s['L6'] - s['L5'] - 0.06, '건배하라!', size=72),
                         cp(s['L6'], CUT1 - s['L6'] - 0.06, '짠!', size=104, weight=400, fade=0.3)],
-               'flash': [{'at': round(rt(9.5), 2), 'dur': 0.3, 'peak': 0.22}]},
+               'flash': [{'at': round(rt(CONTACT), 2), 'dur': 0.3, 'peak': 0.22}]},
         '02': {'grade': GRADE, 'cam': {'from': 1.0, 'to': 1.06}},
         '03': {'grade': GRADE, 'copy': [cp(14.35 + D - 10.0 - SLOW_LEN, 1.6, '캬~', size=110, weight=300, y=COPY_Y + 0.01)]},
         '04': {'cam': {'from': 1.06, 'to': 1.0}, 'drift': None,
@@ -234,8 +237,8 @@ def ad_look():
     # v12 ①: 소리가 주인공(실제 맥주 광고처럼 가까이서 들리는 소리) — 대사와 겹치지 않는 자리만(짠 슬로, 원샷 꿀꺽, 엔딩 카드)
     items = [sf('street_amb_ad', 'outputs/ep01/sfx/el/street_amb.mp3', 0.0, S5_AT, -38, loop=True, fade_in=0.3, fo=0.05),
              sf('fizz_open', el + 'beer_fizz.mp3', 0.0, 2.0, -32, fade_in=0.3, fo=0.4),
-             sf('whoosh_slow', el + 'whoosh_soft.mp3', rt(RAMP_A) - 0.05, 1.0, -26),   # '짠!'(8.94~9.25s) 끝난 뒤
-             sf('glass_clink', el + 'glass_clink.mp3', rt(9.47), 1.6, -17, fo=0.4),
+             sf('whoosh_slow', el + 'whoosh_soft.mp3', 9.27, 1.0, -26),   # '짠!'(8.94~9.25s) 끝난 뒤, 느려지는 동안
+             sf('glass_clink', el + 'glass_clink.mp3', rt(CONTACT), 1.6, -17, fo=0.4),   # 잔이 닿는 프레임
              sf('gulp1', el + 'gulp.mp3', CUT1 + 1.3, 1.6, -22, fo=0.1),
              sf('gulp2', el + 'gulp.mp3', CUT1 + 2.7, 1.6, -25, fo=0.2),
              sf('fizz_slow', el + 'beer_fizz.mp3', 10.4 + EXTRA, 2.0, -32, fade_in=0.2, fo=0.5),
