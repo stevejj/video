@@ -101,6 +101,13 @@ def cave_light(x):
     return y + CAVE_LIGHT_WET * wet
 
 
+def pitch_shift(path, semitones):
+    r = 2 ** (semitones / 12)
+    d = subprocess.run([FF, '-loglevel', 'error', '-i', path, '-af', f'asetrate={SR}*{r:.5f},aresample={SR},atempo={1 / r:.5f}',
+                        '-f', 'f32le', '-ac', '1', '-ar', str(SR), '-'], capture_output=True).stdout
+    return np.frombuffer(d, np.float32).copy()
+
+
 def stretch_pauses(x, gaps):
     """말 안의 쉼(무음 구간)을 앞에서부터 gaps[i]초로 바꿈. whisper 단어 경계는 자음에 걸려 소리를 자를 수 있어 무음 검출로 함."""
     hop = SR // 100; env = np.abs(x[:len(x) // hop * hop]).reshape(-1, hop).max(1)
@@ -129,6 +136,8 @@ def fx(P):
         if not src:
             continue
         x = pcm(os.path.join(ROOT, src))
+        if l.get('pitch'):   # 반음 단위 음높이만 바꿈(길이 그대로): 2번 "저 오리" 낮게(사용자)
+            x = pitch_shift(os.path.join(ROOT, src), l['pitch'])
         if l.get('pauses'):
             x = stretch_pauses(x, l['pauses'])
         speech = len(x) / SR

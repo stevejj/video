@@ -2305,14 +2305,15 @@
      "dry": "outputs/ep14/voice/lines/v2-02_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep14/voice/lines/v2-02.mp3",
-     "len": 2.65,
-     "len_file": 4.08,
+     "len": 2.66,
+     "len_file": 4.1,
      "fx": "room",
      "n_seeds": 8,
      "prev_dry": "outputs/ep14/voice/lines/v2-02_v1_dry.mp3",
      "pauses": [
       0.6
-     ]
+     ],
+     "pitch": -4
     },
     {
      "cut": "v2-04",
