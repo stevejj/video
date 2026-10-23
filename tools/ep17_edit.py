@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EP = os.path.join(ROOT, 'outputs/ep17'); FF = imageio_ffmpeg.get_ffmpeg_exe()
 W, H, FPS = 1080, 1920, 24
 TITLE = [[('POV', 'white')], [('미순이의 감정 변화속도', 'yellow')]]
-SUB_Y = 1590
+SUB_Y = 1500
 SPK_X = {'misun': 0.66, 'changsu': 0.35}   # 그림 폭 비율, 말하는 쪽 중심
 FACE_Y = 0.50                              # 두 얼굴 높이(그림 높이 비율)
 BASE = (1.25, 0.5, 0.56)                   # 기본 화면: 두 펭귄이 작게 보여서 1.25배, 조금 아래 중심(v1)
@@ -210,8 +210,8 @@ def main():
             if s['mood'] == 'sweet':   # 하트가 아래에서 피어오름
                 for hx, ph, hi, sp in HP:
                     u = (lt * 0.35 * sp + ph) % 1.0
-                    put(fr, hearts[hi], hx * W + 30 * np.sin(u * 6 + ph * 9), H * (0.33 - 0.19 * u), alpha=min(1, u * 5) * (1 - u) * 0.85)
-            put(fr, title, W / 2, 250); put(fr, chan, W / 2, 1820)
+                    put(fr, hearts[hi], hx * W + 30 * np.sin(u * 6 + ph * 9), H * (0.34 - 0.1 * u), alpha=min(1, u * 5) * (1 - u) * 0.85)
+            put(fr, title, W / 2, 330); put(fr, chan, W / 2, 1720)   # v4 사용자: 제목 조금 아래, 자막·채널명 조금 위
             for ln in s['lines']:
                 li = s['lines'].index(ln); nxt = s['lines'][li + 1]['at'] - 0.05 - 1 / FPS if li + 1 < len(s['lines']) else s['end']
                 if ln['at'] - 0.05 <= tt < nxt:   # v2: 다음 줄이 나오면 바로 내림(겹침 수정)

@@ -3933,64 +3933,52 @@
    ],
    "placements": [
     {
-     "cut": "m1",
-     "at": 0.4,
-     "file": "outputs/ep17/voice/lines/m1.mp3"
+     "file": "outputs/ep17/voice/lines/m1.mp3",
+     "at": 0.3
     },
     {
-     "cut": "c1",
-     "at": 3.2,
-     "file": "outputs/ep17/voice/lines/c1.mp3"
+     "file": "outputs/ep17/voice/lines/c1.mp3",
+     "at": 2.95
     },
     {
-     "cut": "m2",
-     "at": 4.14,
-     "file": "outputs/ep17/voice/lines/m2.mp3"
+     "file": "outputs/ep17/voice/lines/m2.mp3",
+     "at": 4.09
     },
     {
-     "cut": "m3",
-     "at": 7.73,
-     "file": "outputs/ep17/voice/lines/m3.mp3"
+     "file": "outputs/ep17/voice/lines/m3.mp3",
+     "at": 7.78
     },
     {
-     "cut": "m4",
-     "at": 10.12,
-     "file": "outputs/ep17/voice/lines/m4.mp3"
+     "file": "outputs/ep17/voice/lines/m4.mp3",
+     "at": 10.37
     },
     {
-     "cut": "m5",
-     "at": 12.3,
-     "file": "outputs/ep17/voice/lines/m5.mp3"
+     "file": "outputs/ep17/voice/lines/m5.mp3",
+     "at": 12.65
     },
     {
-     "cut": "m6",
-     "at": 14.54,
-     "file": "outputs/ep17/voice/lines/m6.mp3"
+     "file": "outputs/ep17/voice/lines/m6.mp3",
+     "at": 15.09
     },
     {
-     "cut": "m7",
-     "at": 18.27,
-     "file": "outputs/ep17/voice/lines/m7.mp3"
+     "file": "outputs/ep17/voice/lines/m7.mp3",
+     "at": 18.92
     },
     {
-     "cut": "c7",
-     "at": 20.52,
-     "file": "outputs/ep17/voice/lines/c7.mp3"
+     "file": "outputs/ep17/voice/lines/c7.mp3",
+     "at": 21.02
     },
     {
-     "cut": "m8",
-     "at": 21.55,
-     "file": "outputs/ep17/voice/lines/m8.mp3"
+     "file": "outputs/ep17/voice/lines/m8.mp3",
+     "at": 22.25
     },
     {
-     "cut": "c9",
-     "at": 25.27,
-     "file": "outputs/ep17/voice/lines/c9.mp3"
+     "file": "outputs/ep17/voice/lines/c9.mp3",
+     "at": 26.07
     },
     {
-     "cut": "m10",
-     "at": 27.22,
-     "file": "outputs/ep17/voice/lines/m10.mp3"
+     "file": "outputs/ep17/voice/lines/m10.mp3",
+     "at": 28.47
     }
    ],
    "preview": {
@@ -4033,7 +4021,7 @@
     ]
    },
    "edit": {
-    "tag": "v3",
+    "tag": "v4",
     "total": 31.71,
     "segments": [
      {
