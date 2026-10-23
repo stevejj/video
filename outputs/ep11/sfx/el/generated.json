@@ -33,5 +33,21 @@
   "duration": 0.8,
   "file": "outputs/ep11/sfx/el/record_scratch.mp3",
   "result": "ok 13835B"
+ },
+ {
+  "name": "can_open",
+  "prompt": "Close-mic ASMR beer can opening: a crisp sharp pull-tab crack followed by a bright cold carbonation hiss, studio quality, no music, no voices",
+  "duration": 1.2,
+  "loop": false,
+  "file": "outputs/ep11/sfx/el/can_open.mp3",
+  "result": "ok 20105B"
+ },
+ {
+  "name": "gulp",
+  "prompt": "Close-mic ASMR of someone taking two big satisfying gulps of ice cold beer from a glass mug, clean studio recording, no music, no voices, no speech",
+  "duration": 1.6,
+  "loop": false,
+  "file": "outputs/ep11/sfx/el/gulp.mp3",
+  "result": "ok 26792B"
  }
 ]

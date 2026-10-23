@@ -2263,15 +2263,15 @@
     },
     {
      "file": "outputs/ep07/voice/lines/L7m.mp3",
-     "at": 15.75
+     "at": 17.25
     },
     {
      "file": "outputs/ep07/voice/lines/L7c.mp3",
-     "at": 15.8
+     "at": 17.3
     },
     {
      "file": "outputs/ep11/voice/s5_track.wav",
-     "at": 19.8
+     "at": 21.900000000000002
     }
    ],
    "bgm": {
@@ -2279,9 +2279,26 @@
     "target_lufs": -25,
     "duck_db": 4,
     "fade_in": 0.6,
-    "end_at": 19.85,
+    "end_at": 21.95,
     "fade_out": 0.1,
-    "note": "ep11 v2 광고 연출: 광고 구간만, 현실 복귀에서 끊김"
+    "dips": [
+     {
+      "at": 9.3,
+      "len": 2.3,
+      "db": -5
+     },
+     {
+      "at": 12.65,
+      "len": 3.2,
+      "db": -6
+     },
+     {
+      "at": 19.3,
+      "len": 2.6,
+      "db": -9
+     }
+    ],
+    "note": "ep11 v2 광고 연출: 광고 구간만, 현실 복귀에서 끊김 / v12 소리 주인공 구간 내림"
    }
   },
   "ep14": {

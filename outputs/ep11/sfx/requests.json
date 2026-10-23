@@ -1,9 +1,41 @@
 {
  "items": [
-  {"name": "beer_pour", "prompt": "Premium beer commercial sound: cold lager pouring into a glass mug, rich foam rising, close-up, crisp and clean, no music", "duration": 2.5},
-  {"name": "beer_fizz", "prompt": "Beer commercial: fresh carbonation fizz and tiny bubbles crackling in a cold glass, close-up, crisp, no music", "duration": 2.0},
-  {"name": "whoosh_soft", "prompt": "Elegant soft cinematic whoosh transition, airy and smooth, premium commercial style, no music", "duration": 1.0},
-  {"name": "glass_clink", "prompt": "Two heavy glass beer mugs clinking together in a toast, bright crisp ring, premium commercial sound, no music", "duration": 1.2},
-  {"name": "record_scratch", "prompt": "Comedic vinyl record scratch that abruptly stops the music, single quick scratch, no voice", "duration": 0.8}
+  {
+   "name": "beer_pour",
+   "prompt": "Premium beer commercial sound: cold lager pouring into a glass mug, rich foam rising, close-up, crisp and clean, no music",
+   "duration": 2.5
+  },
+  {
+   "name": "beer_fizz",
+   "prompt": "Beer commercial: fresh carbonation fizz and tiny bubbles crackling in a cold glass, close-up, crisp, no music",
+   "duration": 2.0
+  },
+  {
+   "name": "whoosh_soft",
+   "prompt": "Elegant soft cinematic whoosh transition, airy and smooth, premium commercial style, no music",
+   "duration": 1.0
+  },
+  {
+   "name": "glass_clink",
+   "prompt": "Two heavy glass beer mugs clinking together in a toast, bright crisp ring, premium commercial sound, no music",
+   "duration": 1.2
+  },
+  {
+   "name": "record_scratch",
+   "prompt": "Comedic vinyl record scratch that abruptly stops the music, single quick scratch, no voice",
+   "duration": 0.8
+  },
+  {
+   "name": "can_open",
+   "prompt": "Close-mic ASMR beer can opening: a crisp sharp pull-tab crack followed by a bright cold carbonation hiss, studio quality, no music, no voices",
+   "duration": 1.2,
+   "loop": false
+  },
+  {
+   "name": "gulp",
+   "prompt": "Close-mic ASMR of someone taking two big satisfying gulps of ice cold beer from a glass mug, clean studio recording, no music, no voices, no speech",
+   "duration": 1.6,
+   "loop": false
+  }
  ]
 }
