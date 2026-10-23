@@ -54,3 +54,4 @@ outputs/song_test/
 outputs/*/roughcut/*_main.mp4
 # 남의 릴스(분석용) — 로컬에만
 outputs/ref_reels/
+outputs/*/roughcut/*_silent.mp4
