@@ -27,46 +27,60 @@ def wing_masks(img, ytop=680):
     return [f for _, f in sorted(out, key=lambda x: x[0])]
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument('--img'); ap.add_argument('--out'); ap.add_argument('--dur', type=float, default=5)
-    ap.add_argument('--rate', type=float, default=7, help='초당 타격 수(두 날개 합)'); ap.add_argument('--lift', type=float, default=14)
-    ap.add_argument('--fps', type=int, default=30); ap.add_argument('--seed', type=int, default=3)
-    a = ap.parse_args()
-    img = cv2.imread(a.img); H, W = img.shape[:2]
-    masks = wing_masks(img)
-    assert len(masks) == 2, f'날개 {len(masks)}개 검출'
-    rng = np.random.default_rng(a.seed)
-    taps = []; t = 0.15; side = 0
-    while t < a.dur - 0.1:
-        taps.append((round(t, 3), side)); side = 1 - side if rng.random() < 0.8 else side
-        t += (1 / a.rate) * rng.uniform(0.7, 1.3)
-    soft = [cv2.GaussianBlur(m.astype(np.float32), (7, 7), 0)[..., None] for m in masks]
-    p = subprocess.Popen([imageio_ffmpeg.get_ffmpeg_exe(), '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}',
-                          '-r', str(a.fps), '-i', '-', '-c:v', 'libx264', '-crf', '14', '-pix_fmt', 'yuv420p', a.out], stdin=subprocess.PIPE)
-    base = img.astype(np.float32)
-    for fi in range(int(a.dur * a.fps)):
-        tt = fi / a.fps; fr = base.copy()
+class Tapper:
+    """그림 하나에서 원하는 시각의 '타닥타닥' 프레임을 바로 만든다(편집 도구에서 직접 사용). taps=[(초, 0왼/1오른)]."""
+    def __init__(self, img, dur=60, rate=7, lift=22, seed=3):
+        self.base = img.astype(np.float32); self.H, self.W = img.shape[:2]; self.lift = lift
+        self.masks = wing_masks(img)
+        assert len(self.masks) == 2, f'날개 {len(self.masks)}개 검출'
+        self.soft = [cv2.GaussianBlur(m.astype(np.float32), (7, 7), 0)[..., None] for m in self.masks]
+        self.anchor = []
+        for m in self.masks:
+            ys, xs = np.nonzero(m); self.anchor.append((xs.mean(), ys.max()))
+        rng = np.random.default_rng(seed); self.taps = []; t = 0.15; side = 0
+        while t < dur - 0.1:
+            self.taps.append((round(t, 3), side)); side = 1 - side if rng.random() < 0.8 else side
+            t += (1 / rate) * rng.uniform(0.7, 1.3)
+
+    def frame(self, tt, active=True):
+        fr = self.base.copy()
+        if not active:
+            return fr.astype(np.uint8)
         for s in (0, 1):
             # 타격: 0.03s 만에 안쪽으로, 0.09s 동안 돌아옴
             d = 0.0
-            for tp, sd in taps:
-                if sd != s: continue
+            for tp, sd in self.taps:
+                if sd != s or tp > tt:
+                    continue
                 x = tt - tp
-                if 0 <= x < 0.03: d = max(d, x / 0.03)
-                elif 0.03 <= x < 0.12: d = max(d, 1 - (x - 0.03) / 0.09)
-            if d <= 0: continue
-            dy = -a.lift * d; dx = (6 if s == 0 else -6) * d; sc = 1 - 0.03 * d
-            ys, xs = np.nonzero(masks[s]); cx, cy = xs.mean(), ys.max()
+                if x < 0.03: d = max(d, x / 0.03)
+                elif x < 0.12: d = max(d, 1 - (x - 0.03) / 0.09)
+            if d <= 0:
+                continue
+            dy = -self.lift * d; dx = (6 if s == 0 else -6) * d; sc = 1 - 0.03 * d; cx, cy = self.anchor[s]
             M = np.float32([[sc, 0, (1 - sc) * cx + dx], [0, sc, (1 - sc) * cy + dy]])
-            wimg = cv2.warpAffine(base, M, (W, H), borderMode=cv2.BORDER_REPLICATE)
-            wm = cv2.warpAffine(soft[s], M, (W, H))[..., None]
-            # 원래 날개 자리 중 비는 곳은 없게: 원본 위에 옮긴 날개를 덮음(아래 가장자리는 프레임 밖에서 이어짐)
+            wimg = cv2.warpAffine(self.base, M, (self.W, self.H), borderMode=cv2.BORDER_REPLICATE)
+            wm = cv2.warpAffine(self.soft[s], M, (self.W, self.H))[..., None]
+            # 쉬는 자세 = 원본이고 누를 때 안쪽(위)으로만 가므로 원본 날개 위에 덮기만 함(빈 자리 없음)
             fr = fr * (1 - wm) + wimg * wm
-        p.stdin.write(np.clip(fr, 0, 255).astype(np.uint8).tobytes())
+        return np.clip(fr, 0, 255).astype(np.uint8)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--img'); ap.add_argument('--out'); ap.add_argument('--dur', type=float, default=5)
+    ap.add_argument('--rate', type=float, default=7, help='초당 타격 수(두 날개 합)'); ap.add_argument('--lift', type=float, default=22)
+    ap.add_argument('--fps', type=int, default=30); ap.add_argument('--seed', type=int, default=3)
+    a = ap.parse_args()
+    img = cv2.imread(a.img); H, W = img.shape[:2]
+    tp = Tapper(img, a.dur, a.rate, a.lift, a.seed)
+    p = subprocess.Popen([imageio_ffmpeg.get_ffmpeg_exe(), '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}',
+                          '-r', str(a.fps), '-i', '-', '-c:v', 'libx264', '-crf', '14', '-pix_fmt', 'yuv420p', a.out], stdin=subprocess.PIPE)
+    for fi in range(int(a.dur * a.fps)):
+        p.stdin.write(tp.frame(fi / a.fps).tobytes())
     p.stdin.close(); p.wait()
-    json.dump([t for t, _ in taps], open(a.out.rsplit('.', 1)[0] + '.taps.json', 'w'))
-    print('taps', len(taps))
+    json.dump([t for t, _ in tp.taps], open(a.out.rsplit('.', 1)[0] + '.taps.json', 'w'))
+    print('taps', len(tp.taps))
 
 
 if __name__ == '__main__':
