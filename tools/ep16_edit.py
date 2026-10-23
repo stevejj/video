@@ -13,6 +13,7 @@ import numpy as np, cv2
 from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from ep14_edit import font, text_img, chip_img, ease, COL, NOTO, JUA
+from wing_tap import Tapper
 import imageio_ffmpeg
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,21 +21,52 @@ EP = os.path.join(ROOT, 'outputs/ep16'); FF = imageio_ffmpeg.get_ffmpeg_exe()
 W, H, FPS = 1080, 1920, 24
 WW, WH, WY = 1080, 780, 570          # 영상 창 크기·위치(검은 띠 사이)
 TITLE = [[('금요일 오후', 'white')], [('5시 39분이란', 'yellow')]]
-K1F, K2F = 'K1b_v1.mp4', 'K2b_v1_fix.mp4'
-KEY_REGION = (540, 430, 780, 640)   # 클립(1108x828)에서 흰 키보드 위 날개 끝 — 클립 받고 확인해 맞춤   # v3: 키보드 하나·거치대 모니터 밑(사용자). K2b는 볼터치 고친 파일
+# v4: Kling 클립 대신(날개 3개·볼터치 반복) 그림 + 0원 움직임. 옆모습 전체 O1f 한 번 → 키보드 클로즈업 O3c 타닥타닥(wing_tap) ↔ 모니터 O6b 코드 쳐짐(사용자 제안, 조효옹처럼 가까이 찍어 실수 줄이기)
+IMG = {'wide': 'O1f_v1', 'keys': 'O3c_v1', 'mon': 'O6b_v1', 'O4': 'O4_v1', 'O5': 'O5_v1'}
+CODE_BOX = (290, 196, 1000, 718)    # O6b(1200x896) 편집기 코드 영역(미니맵 왼쪽, 아래 파란 줄 위)
+PHONE_O3C = (607, 560)              # O3c 거치대 휴대폰 중심
 
 
-def taps(path, region, thr=1.6):
-    """날개가 키보드를 두드리는 순간(클립 기준 초). region=(x0,y0,x1,y1) 날개 끝 부근, 아래로 내려치는 움직임 꼭대기."""
-    cap = cv2.VideoCapture(path); fps = cap.get(cv2.CAP_PROP_FPS); prev = None; m = []
-    while True:
-        ok, f = cap.read()
-        if not ok:
+def code_lines(seed=5, n=400):
+    """코드 줄(들여쓰기 + 색 막대들). 글자는 안 씀(읽히는 글자 대신 생성 그림과 같은 색 막대)."""
+    rng = np.random.default_rng(seed); cols = [(214, 157, 86), (78, 201, 176), (156, 220, 254), (206, 145, 120), (197, 134, 192), (220, 220, 170), (106, 153, 85)]
+    out = []; ind = 0
+    for i in range(n):
+        if rng.random() < 0.12:
+            out.append((0, [])); continue
+        ind = int(np.clip(ind + rng.choice([-1, 0, 0, 1]), 0, 5)); segs = []
+        for j in range(rng.integers(2, 6)):
+            segs.append((int(rng.integers(18, 110)), cols[rng.integers(len(cols))]))
+        out.append((ind, segs))
+    return out
+
+
+CODE = code_lines()
+
+
+def code_screen(img, ntok, t):
+    """모니터 그림 위 코드 영역을 새로 칠하고 지금까지 친 토큰(ntok)만큼 코드를 그림. 줄이 차면 위로 넘어감 + 깜빡이는 커서."""
+    x0, y0, x1, y1 = CODE_BOX; out = img.copy(); bg = np.median(img[y0:y1, x0 + 40:x0 + 60].reshape(-1, 3), 0)
+    pad = np.zeros((y1 - y0, x1 - x0, 3), np.uint8); pad[:] = bg
+    lh = 26; vis = (y1 - y0 - 10) // lh; toks = []; k = 0
+    for li, (ind, segs) in enumerate(CODE):
+        for sj in range(max(1, len(segs))):
+            toks.append((li, sj)); k += 1
+        if k > ntok:
             break
-        g = cv2.cvtColor(f[region[1]:region[3], region[0]:region[2]], cv2.COLOR_BGR2GRAY).astype(np.float32)
-        m.append(0.0 if prev is None else float(np.abs(g - prev).mean())); prev = g
-    m = np.convolve(np.array(m), np.ones(2) / 2, mode='same'); base = np.median(m) + 1e-6
-    return [i / fps for i in range(1, len(m) - 1) if m[i] > m[i - 1] and m[i] >= m[i + 1] and m[i] > thr * base], len(m) / fps
+    toks = toks[:max(1, ntok)]; cur_line = toks[-1][0]; top = max(0, cur_line - vis + 2); cx = cy = None
+    for li in range(top, cur_line + 1):
+        ind, segs = CODE[li]; y = 10 + (li - top) * lh; x = 40 + ind * 26
+        cv2.rectangle(pad, (6, y + 8), (24, y + 14), (90, 90, 90), -1)   # 줄 번호 자리
+        last = len(segs) if li < cur_line else toks[-1][1] + 1
+        for w, c in segs[:last]:
+            cv2.rectangle(pad, (x, y + 6), (x + w, y + 16), c[::-1], -1); x += w + 10
+        cx, cy = x, y
+    if int(t * 2.5) % 2 == 0 and cx is not None:
+        cv2.rectangle(pad, (cx, cy + 2), (cx + 3, cy + 21), (230, 230, 230), -1)
+    pad = cv2.GaussianBlur(pad, (3, 3), 0)
+    out[y0:y1, x0:x1] = pad
+    return out
 
 
 def put(fr, rgba, cx, cy, alpha=1.0, scale=1.0):
@@ -140,25 +172,26 @@ def toast_img():
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--tag', default='v1'); a = ap.parse_args()
     P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json'))); E = P['episodes']['ep16']; L = {l['cut']: l for l in E['lines']}
-    img = {k: cv2.imread(os.path.join(EP, f'img/{k}_v1.png')) for k in ('O1', 'O3', 'O4', 'O5', 'O6')}
-    K1 = Clip(os.path.join(EP, 'clips/' + K1F)); K2 = Clip(os.path.join(EP, 'clips/' + K2F))
+    img = {k: cv2.imread(os.path.join(EP, f'img/{v}.png')) for k, v in IMG.items()}
+    TP = Tapper(img['keys'], dur=80)
     D1 = Clip(os.path.join(ROOT, 'outputs/ep07/s1/clip_v2.mp4'), crop=(470, 990)); D2 = Clip(os.path.join(ROOT, 'outputs/ep07/s2/clip_v1.mp4'), crop=(470, 990))
     toast = toast_img()
     chat1 = [('misun', '오늘 칼퇴하닝?'), ('changsu', '웅ㅋㅋㅋㅋ'), ('misun', '맥주한잔하까?'), ('changsu', '웅ㅋㅋㅋㅋ')]
     chat2 = chat1 + [('changsu', '칼퇴는 못할거가타..ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ'), ('misun', '자기야 힘내....')]
     EYE = (1520, 976)                       # O4·O5 오른쪽 눈(원본 2400x1792 좌표)
     W7 = [0.03, 0.74, 1.55]                 # 속마음 단어 시작(녹음 기준)
-    TOAST_SRC = (880, 640)                  # O6(1200x896)에서 알림 중심
+    TOAST_SRC = (880, 640)                  # O6b(1200x896) 코드 화면 오른쪽 아래 알림 중심
 
     segs = [
-        dict(n='S1 월', k='K1', t0=0.0, len=1.5, sp=1.0, day='월'),          # v2: 사용자 "월~목 더 길게" 0.8 → 1.5s씩
-        dict(n='S1 화', k='K1', t0=1.6, len=1.5, sp=1.0, day='화'),
-        dict(n='S1 수', k='K1', t0=3.1, len=1.5, sp=1.2, day='수'),
-        dict(n='S1 목', k='K1', t0=0.3, len=1.8, sp=1.5, day='목', cap='(불태운 월화수목)', cap_at=0.4),
+        # v4: 월에 옆모습 전체 한 번 → 키보드 ↔ 모니터 번갈아, 요일 갈수록 빨리 바뀜
+        dict(n='S1 월', alt=[('wide', 1.0), ('keys', 0.8), ('mon', 0.8)], day='월'),
+        dict(n='S1 화', alt=[('keys', 0.7), ('mon', 0.6), ('keys', 0.5)], day='화'),
+        dict(n='S1 수', alt=[('mon', 0.4), ('keys', 0.35), ('mon', 0.35), ('keys', 0.3), ('mon', 0.3)], day='수'),
+        dict(n='S1 목', alt=[('keys', 0.2), ('mon', 0.2)] * 5, day='목', cap='(불태운 월화수목)', cap_at=0.4),
         dict(n='S2 4:52', clock='(금) 오후 4:52', len=1.8),   # v3: 괄호 자막 뺌(사용자)
-        dict(n='S3 척', k='K1', t0=1.0, len=2.8, sp=1.0, cap='(일하는 척 모드 ON)'),   # v2: 슬로 빼고 원래 속도
-        dict(n='S4 키보드', still='O3', len=2.0, push=0.08, cap='(사실은 블루투스 키보드로)'),
-        dict(n='S5a 몰래', k='K2', t0=0.0, len=2.2, cap='(미순이와 주말 작전 회의 중)'),
+        dict(n='S3 척', still='wide', len=2.8, push=0.08, cap='(일하는 척 모드 ON)'),
+        dict(n='S4 키보드', still='keys', len=2.0, push=0.3, to=(607, 660), cap='(사실은 블루투스 키보드로)'),
+        dict(n='S5a 몰래', tap=True, len=2.2, zoom=1.3, to=(607, 720), cap='(미순이와 주말 작전 회의 중)'),
         dict(n='S5b 대화', chat=chat1, appear=[0.25, 1.25, 2.4, 3.4], len=4.6),
         dict(n='S6 5:38', clock='(금) 오후 5:38', len=1.6, cap='(퇴근 22분 전)'),
         dict(n='S7 속마음', still='O4', len=3.4, eye=True),
@@ -169,6 +202,9 @@ def main():
         dict(n='S11 끄아', still='O5', len=2.4, scream=True),
         dict(n='S12 엔딩', chat=chat2, appear=[-1, -1, -1, -1, 0.3, 2.0], len=4.6, cap='(금요일 오후 5시 39분이란)', cap_at=3.0),
     ]
+    for s in segs:
+        if s.get('alt'):
+            s['len'] = round(sum(d for _, d in s['alt']), 3)
     t = 0.0
     for s in segs:
         s['at'] = round(t, 3); t += s['len']
@@ -177,8 +213,7 @@ def main():
 
     # 소리
     pl, sfx, subs = [], [], []
-    TAPS, _ = taps(os.path.join(EP, 'clips/' + K1F), KEY_REGION); TAPS2, _ = taps(os.path.join(EP, 'clips/' + K2F), KEY_REGION)
-    print('두드림', len(TAPS), [round(x, 2) for x in TAPS][:12], '/', len(TAPS2))
+    TAPS = [x for x, _ in TP.taps]   # 날개 두드림 = 타임라인 시각 그대로(Tapper 프레임도 같은 시각으로 그림)
     s7 = S['S7 속마음']; at7 = s7['at'] + 0.35
     pl.append({'file': L['7']['file'], 'at': round(at7, 3)})
     words = ['(제발...)', '(제발... 조용히...)', '(제발... 조용히... 넘어가자....)']
@@ -192,21 +227,20 @@ def main():
     fx('office_amb', el + 'office_amb.mp3', 0, S['S8a 꿈']['at'], -38, loop=True, fade_in=0.3, fade_out=0.3)
     fx('office_amb2', el + 'office_amb.mp3', S['S9 5:39']['at'], total - S['S9 5:39']['at'], -38, loop=True, fade_out=0.6)
     for k in ('S1 월', 'S1 화', 'S1 수', 'S1 목'):
-        sg = S[k]
-        for j, tp in enumerate(TAPS):
-            ot = (tp - sg['t0']) / sg.get('sp', 1.0)
-            if 0 <= ot < sg['len']:
-                fx(f'key_{k}_{j}', el + 'key_click.mp3', sg['at'] + ot, 0.3, -24 + 1.5 * ('월화수목'.index(k[-1])))
+        sg = S[k]; c0 = sg['at']
+        for kind, d in sg['alt']:
+            for j, tp in enumerate(TAPS):
+                if c0 <= tp < c0 + d:   # 키보드·모니터 컷은 또렷하게, 옆모습 전체는 작게
+                    fx(f'key_{k}_{j}', el + 'key_click.mp3', tp, 0.3, (-32 if kind == 'wide' else -24) + 1.5 * ('월화수목'.index(k[-1])))
+            c0 += d
         fx('pop_' + k, 'outputs/ep05/sfx/el/ui_pop.mp3', S[k]['at'], 0.4, -26)
     for k in ('S2 4:52', 'S6 5:38', 'S9 5:39'):
         fx('whoosh_' + k, 'outputs/ep11/sfx/el/whoosh_soft.mp3', S[k]['at'] - 0.12, 0.8, -24)
         fx('tick_' + k, el + 'clock_tick.mp3', S[k]['at'] + 0.05, 1.0, -18)
-    for k, tl, lu in (('S3 척', TAPS, -30), ('S5a 몰래', TAPS2, -30)):
-        sg = S[k]
-        for j, tp in enumerate(tl):
-            ot = (tp - sg['t0']) / sg.get('sp', 1.0)
-            if 0 <= ot < sg['len']:
-                fx(f'key_{k}_{j}', el + 'key_click.mp3', sg['at'] + ot, 0.3, lu)
+    sg = S['S5a 몰래']
+    for j, tp in enumerate(TAPS):
+        if sg['at'] <= tp < sg['at'] + sg['len']:
+            fx(f'key_S5a_{j}', el + 'key_click.mp3', tp, 0.3, -28)
     for i, x in enumerate(S['S5b 대화']['appear']):
         fx(f'msg_{i}', el + 'msg_ping.mp3', S['S5b 대화']['at'] + x, 0.5, -22)
     fx('dream_in', el + 'dream_whoosh.mp3', S['S8a 꿈']['at'] - 0.3, 1.5, -24)
@@ -240,13 +274,27 @@ def main():
     pr = subprocess.Popen([FF, '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-',
                            '-c:v', 'libx264', '-crf', '18', '-preset', 'medium', '-pix_fmt', 'yuv420p', out], stdin=subprocess.PIPE)
     canvas0 = np.zeros((H, W, 3), np.uint8); put(canvas0, title, W / 2, 330); put(canvas0, chan, W / 2, WY + WH + 90)
-    clips = {'K1': K1, 'K2': K2, 'D1': D1, 'D2': D2}
+    clips = {'D1': D1, 'D2': D2}
+    s1_0 = S['S1 월']['at']
     for s in segs:
         n0, n1 = int(round(s['at'] * FPS)), int(round((s['at'] + s['len']) * FPS))
         for fi in range(n0, min(n1, nf)):
             tt = fi / FPS; lt = tt - s['at']; shake = (0, 0)
-            if s.get('k'):
-                win = clips[s['k']].at(s['t0'] + lt * s.get('sp', 1.0))
+            if s.get('alt'):   # 월~목: 옆모습 / 키보드 타닥 / 모니터 코드
+                c0 = 0.0
+                for kind, d in s['alt']:
+                    if lt < c0 + d or (kind, d) == s['alt'][-1]:
+                        break
+                    c0 += d
+                if kind == 'wide':
+                    win = crop_win(img['wide'], 1.0 + 0.06 * (lt - c0) / d)
+                elif kind == 'keys':
+                    win = crop_win(TP.frame(tt), 1.45, 600, 700)   # 키보드·날개 크게(휴대폰 아래쪽까지)
+                else:
+                    ntok = 40 + sum(1 for x in TAPS if s1_0 <= x <= tt) * 2
+                    win = crop_win(code_screen(img['mon'], ntok, tt), 1.12, 645, 450)
+            elif s.get('tap'):
+                win = crop_win(TP.frame(tt), s['zoom'], *s['to'])
             elif s.get('dclip'):
                 win = dream(clips[s['dclip']].at(s['t0'] + lt), k=min(1.0, 0.4 + lt / 0.4))
             elif s.get('clock'):   # v3: 원래(v1) 시계 스타일로(사용자: 괄호 자막 빼면 원래 스타일이 괜찮음). 노랑 큰 글씨(v2, clock_text)는 안 씀
@@ -262,7 +310,7 @@ def main():
                 if lv and lt - 0.35 - W7[lv - 1] < 0.12:
                     shake = ([8, -6, 4][min(int((lt - 0.35 - W7[lv - 1]) * FPS), 2)], 0)
             elif s.get('toast'):   # 모니터 + 알림: 뜸 → 3단계 확대 + 진동
-                base = img['O6'].copy(); ta = ease((lt - TZ[0]) / 0.2) if lt >= TZ[0] else 0
+                base = code_screen(img['mon'], 9999, 0.3); ta = ease((lt - TZ[0]) / 0.2) if lt >= TZ[0] else 0
                 if ta > 0:
                     tw = int(330 * (0.9 + 0.1 * ta)); ti = cv2.resize(toast, (tw, int(tw * toast.shape[0] / toast.shape[1])), interpolation=cv2.INTER_AREA)
                     put(base, ti, TOAST_SRC[0] + (1 - ta) * 40, TOAST_SRC[1], alpha=ta)
@@ -279,7 +327,10 @@ def main():
                 yy, xx = np.mgrid[0:WH, 0:WW]; v = np.clip((np.sqrt(((xx - WW / 2) / (WW / 2)) ** 2 + ((yy - WH / 2) / (WH / 2)) ** 2) - 0.6) / 0.6, 0, 1)[..., None] * 0.55
                 win = (win * (1 - v) + red * v).astype(np.uint8)
             else:
-                push = 1.0 + s.get('push', 0) * lt / s['len']; win = crop_win(img[s['still']], push)
+                pk = ease(lt / s['len']) if s.get('to') else lt / s['len']; push = 1.0 + s.get('push', 0) * pk
+                to = s.get('to'); h_, w_ = img[s['still']].shape[:2]
+                cx_, cy_ = (w_ / 2 + (to[0] - w_ / 2) * pk, h_ / 2 + (to[1] - h_ / 2) * pk) if to else (None, None)
+                win = crop_win(img[s['still']], push, cx_, cy_)
             if shake != (0, 0):
                 win = cv2.warpAffine(win, np.float32([[1, 0, shake[0]], [0, 1, shake[1]]]), (WW, WH), borderMode=cv2.BORDER_REPLICATE)
             # 창 안 글씨
