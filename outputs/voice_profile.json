@@ -3997,6 +3997,164 @@
     "file": "outputs/ep17/voice/preview.mp3",
     "len": 30.46
    }
+  },
+  "ep18": {
+   "lines": [
+    {
+     "cut": "C1a",
+     "speaker": "changsu",
+     "subtitle": "자기, 옷 많잖아~",
+     "tts": "[teasing, gentle] 자기, 옷 많잖아~",
+     "seed": 1234,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.41,
+     "file": "outputs/ep18/voice/lines/C1a.mp3"
+    },
+    {
+     "cut": "C1b",
+     "speaker": "misun",
+     "subtitle": "아니야, 입을 옷이 없어!",
+     "tts": "[whiny, pouting] 아니야, 입을 옷이 없어!",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.83,
+     "file": "outputs/ep18/voice/lines/C1b.mp3"
+    },
+    {
+     "cut": "C2",
+     "speaker": "changsu",
+     "subtitle": "입을 옷이… 없다고?",
+     "tts": "[slowly, skeptical] 입을 옷이... 없다고?",
+     "seed": 42,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.75,
+     "file": "outputs/ep18/voice/lines/C2.mp3"
+    },
+    {
+     "cut": "C4a",
+     "speaker": "changsu",
+     "subtitle": "그럼 이건 다 뭔데?",
+     "tts": "[muffled, annoyed] 그럼 이건 다 뭔데?",
+     "seed": 1234,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.31,
+     "file": "outputs/ep18/voice/lines/C4a.mp3"
+    },
+    {
+     "cut": "C4b",
+     "speaker": "misun",
+     "subtitle": "이건 작년 거고~ 저건 작아졌어!",
+     "tts": "[defensive, quick] 이건 작년 거고~ 저건 작아졌어!",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 2.04,
+     "file": "outputs/ep18/voice/lines/C4b.mp3"
+    },
+    {
+     "cut": "C5",
+     "speaker": "changsu",
+     "subtitle": "그럼 안 입는 거부터 정리해 봐.",
+     "tts": "[patient, sighing] 그럼 안 입는 거부터 정리해 봐.",
+     "seed": 99,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.85,
+     "file": "outputs/ep18/voice/lines/C5.mp3"
+    },
+    {
+     "cut": "C6",
+     "speaker": "misun",
+     "subtitle": "이건 버리고~",
+     "tts": "[cheerful, obedient] 이건 버리고~",
+     "seed": 42,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 0.99,
+     "file": "outputs/ep18/voice/lines/C6.mp3"
+    },
+    {
+     "cut": "C7",
+     "speaker": "misun",
+     "subtitle": "이건… 아까운데…",
+     "tts": "[whispering, reluctant] 이건... 아까운데...",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.57,
+     "file": "outputs/ep18/voice/lines/C7.mp3"
+    },
+    {
+     "cut": "C8",
+     "speaker": "changsu",
+     "subtitle": "하… 그대로인데?",
+     "tts": "[sighs, tired] 하... 그대로인데?",
+     "seed": 99,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.72,
+     "file": "outputs/ep18/voice/lines/C8.mp3"
+    },
+    {
+     "cut": "C9",
+     "speaker": "misun",
+     "subtitle": "자기 미워!!",
+     "tts": "[sulky, whining loudly] 자기 미워!!",
+     "seed": 1234,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.1,
+     "file": "outputs/ep18/voice/lines/C9.mp3"
+    },
+    {
+     "cut": "C10a",
+     "speaker": "changsu",
+     "subtitle": "자기 옷 사주려고 정리하자고 한 거지~",
+     "tts": "[soothing, sweet] 자기 옷 사주려고 정리하자고 한 거지~",
+     "seed": 42,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 2.19,
+     "file": "outputs/ep18/voice/lines/C10a.mp3"
+    },
+    {
+     "cut": "C10b",
+     "speaker": "changsu",
+     "subtitle": "우리 패딩 보러 갈까?",
+     "tts": "[gentle, coaxing] 우리 패딩 보러 갈까?",
+     "seed": 42,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.28,
+     "file": "outputs/ep18/voice/lines/C10b.mp3"
+    },
+    {
+     "cut": "C11",
+     "speaker": "misun",
+     "subtitle": "정말?!",
+     "tts": "[sniffling, suddenly hopeful] 정말?!",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 0.94,
+     "file": "outputs/ep18/voice/lines/C11.mp3"
+    },
+    {
+     "cut": "C12",
+     "speaker": "misun",
+     "subtitle": "이미 담아놨지롱~",
+     "tts": "[playful, mischievous] 이미 담아놨지롱~",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.33,
+     "file": "outputs/ep18/voice/lines/C12.mp3"
+    }
+   ]
   }
  },
  "voices_legacy": {
