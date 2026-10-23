@@ -20,7 +20,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EP = os.path.join(ROOT, 'outputs/ep16'); FF = imageio_ffmpeg.get_ffmpeg_exe()
 W, H, FPS = 1080, 1920, 24
 WW, WH, WY = 1080, 780, 570          # 영상 창 크기·위치(검은 띠 사이)
-TITLE = [[('금요일 오후', 'white')], [('5시 39분이란', 'yellow')]]
+TITLE = [[('오늘 금요일인데.. 금요일인데!!!', 'white')], [('금요일인데!!!!!!!', 'yellow')]]   # v6 사용자
 # v4: Kling 클립 대신(날개 3개·볼터치 반복) 그림 + 0원 움직임. 옆모습 전체 O1f 한 번 → 키보드 클로즈업 O3c 타닥타닥(wing_tap) ↔ 모니터 O6b 코드 쳐짐(사용자 제안, 조효옹처럼 가까이 찍어 실수 줄이기)
 IMG = {'wide': 'O1g_v1', 'keys': 'O3c_v1', 'mon': 'O6b_v1', 'O4': 'O4_v1', 'O5': 'O5_v1'}
 CODE_BOX = (290, 196, 1000, 718)    # O6b(1200x896) 편집기 코드 영역(미니맵 왼쪽, 아래 파란 줄 위)
@@ -67,6 +67,12 @@ def code_screen(img, ntok, t):
     pad = cv2.GaussianBlur(pad, (3, 3), 0)
     out[y0:y1, x0:x1] = pad
     return out
+
+
+def fitw(rgba, maxw):
+    """글씨 그림이 maxw보다 넓으면 비율 그대로 줄임(긴 제목·자막)."""
+    h, w = rgba.shape[:2]
+    return rgba if w <= maxw else cv2.resize(rgba, (maxw, int(h * maxw / w)), interpolation=cv2.INTER_AREA)
 
 
 def put(fr, rgba, cx, cy, alpha=1.0, scale=1.0):
@@ -143,7 +149,7 @@ def chat_panel(msgs, t, appear):
         shown = shown[-4:]
     for (who, txt), a in shown:
         k = ease((t - a) / 0.18); ff = f; tw = d.textlength(txt, font=ff); sz = 44
-        while tw + 60 > 780 and sz > 26:   # 긴 줄(ㅁㄴㅇㄹ…)은 글씨를 줄여 말풍선 안에
+        while tw + 60 > 1000 and sz > 24:   # 긴 줄(ㅁㄴㅇㄹ…)은 글씨를 줄여 말풍선 안에
             sz -= 2; ff = font(sz, 700); tw = d.textlength(txt, font=ff)
         bw, bh = tw + 60, 92
         if who == 'misun':
@@ -176,8 +182,8 @@ def main():
     TP = Tapper(img['keys'], dur=80)
     D1 = Clip(os.path.join(ROOT, 'outputs/ep07/s1/clip_v2.mp4'), crop=(470, 990)); D2 = Clip(os.path.join(ROOT, 'outputs/ep07/s2/clip_v1.mp4'), crop=(470, 990))
     toast = toast_img()
-    chat1 = [('misun', '오늘 칼퇴하닝?'), ('changsu', '웅ㅋㅋㅋㅋ'), ('misun', '맥주한잔하까?'), ('changsu', '웅ㅋㅋㅋㅋ')]
-    chat2 = chat1 + [('changsu', '칼퇴는 못할거가타..ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ'), ('misun', '자기야 힘내....')]
+    chat1 = [('misun', '오늘 칼퇴가능?'), ('changsu', '웅웅 오늘 한가해ㅋㅋㅋㅋㅋ'), ('misun', '개꿀이넹 오늘 맥주?'), ('changsu', 'ㅋㅋㅋㅋ끄랭')]   # v6 사용자
+    chat2 = chat1 + [('changsu', 'ㅁㄴㅇㄹㅁㄴㅇㄹㅇㄴㅁㄹㅇㄴㅁㄹㅁㄴㅇㄹ!@#!#@!#'), ('misun', '왱'), ('changsu', '칼퇴 안될거가타.....')]
     EYE = (1520, 976)                       # O4·O5 오른쪽 눈(원본 2400x1792 좌표)
     W7 = [0.03, 0.74, 1.55]                 # 속마음 단어 시작(녹음 기준)
     TOAST_SRC = (880, 640)                  # O6b(1200x896) 코드 화면 오른쪽 아래 알림 중심
@@ -187,20 +193,20 @@ def main():
         dict(n='S1 월', alt=[('wide', 1.0), ('keys', 0.8), ('mon', 0.8)], day='월'),
         dict(n='S1 화', alt=[('keys', 0.7), ('mon', 0.6), ('keys', 0.5)], day='화'),
         dict(n='S1 수', alt=[('mon', 0.4), ('keys', 0.35), ('mon', 0.35), ('keys', 0.3), ('mon', 0.3)], day='수'),
-        dict(n='S1 목', alt=[('keys', 0.2), ('mon', 0.2)] * 5, day='목', cap='(불태운 월화수목)', cap_at=0.4),
+        dict(n='S1 목', alt=[('keys', 0.2), ('mon', 0.2)] * 5, day='목', cap='(나 열시미 해따! 진짜로)', cap_at=0.4),
         dict(n='S2 4:52', clock='(금) 오후 4:52', len=1.8),   # v3: 괄호 자막 뺌(사용자)
-        dict(n='S3 척', still='wide', len=2.8, push=0.12, to=(700, 520), cap='(일하는 척 모드 ON)'),
-        dict(n='S4 키보드', still='keys', len=2.0, push=0.3, to=(607, 660), cap='(사실은 블루투스 키보드로)'),
-        dict(n='S5a 몰래', tap=True, len=2.2, zoom=1.3, to=(607, 720), cap='(미순이와 주말 작전 회의 중)'),
-        dict(n='S5b 대화', chat=chat1, appear=[0.25, 1.25, 2.4, 3.4], len=4.6),
-        dict(n='S6 5:38', clock='(금) 오후 5:38', len=1.6, cap='(퇴근 22분 전)'),
+        dict(n='S3 척', still='wide', len=2.8, push=0.12, to=(700, 520), cap='(타다다각다다다다가다닥)'),
+        dict(n='S4 키보드', still='keys', len=2.0, push=0.3, to=(607, 660), cap='(흐흐흐흐흐 일하는거같징?)'),
+        dict(n='S5a 몰래', tap=True, len=2.2, zoom=1.3, to=(607, 720), cap='(주말 뭐할지 고민중)'),
+        dict(n='S5b 대화', chat=chat1, appear=[0.25, 1.35, 2.6, 3.7], len=5.0),
+        dict(n='S6 5:38', clock='(금) 오후 5:38', len=1.6, cap='(곧 퇴근이다!!!!!!)'),
         dict(n='S7 속마음', still='O4', len=3.4, eye=True),
-        dict(n='S8a 꿈', dclip='D1', t0=6.8, len=3.2, cap='(주말을 향한 몽상)'),
-        dict(n='S8b 꿈 원샷', dclip='D2', t0=0.6, len=2.6, cap='(주말을 향한 몽상)'),
+        dict(n='S8a 꿈', dclip='D1', t0=6.8, len=3.2, cap='(주말상상)'),
+        dict(n='S8b 꿈 원샷', dclip='D2', t0=0.6, len=2.6, cap='(주말상상)'),
         dict(n='S9 5:39', clock='(금) 오후 5:39', len=1.3),
         dict(n='S10 알림', toast=True, len=2.8, cap='(띠링)'),
         dict(n='S11 끄아', still='O5', len=2.4, scream=True),
-        dict(n='S12 엔딩', chat=chat2, appear=[-1, -1, -1, -1, 0.3, 2.0], len=4.6, cap='(금요일 오후 5시 39분이란)', cap_at=3.0),
+        dict(n='S12 엔딩', chat=chat2, appear=[-1, -1, -1, -1, 0.3, 1.7, 2.6], len=6.0, cap='(내 금요일!!!! 나의 금요일!!!!!!!!!!!)', cap_at=4.0),
     ]
     for s in segs:
         if s.get('alt'):
@@ -262,7 +268,7 @@ def main():
     json.dump({'note': f'ep16 {a.tag} (tools/ep16_edit.py)', 'items': sfx}, open(os.path.join(EP, 'sfx/sfx_list.json'), 'w'), ensure_ascii=False, indent=1)
 
     # 글씨
-    title = text_img(TITLE, 100, stroke=0); chan = text_img([[('지독한 미순', 'white')]], 56, weight=800, stroke=0)
+    title = fitw(text_img(TITLE, 100, stroke=0), 1020); chan = text_img([[('지독한 미순', 'white')]], 56, weight=800, stroke=0)
     cache = {}
 
     def txt(key, fn):
@@ -337,7 +343,7 @@ def main():
             if s.get('day'):
                 put(win, txt(('day', s['day']), lambda: chip_img(s['day'], 84)), WW / 2, 110, alpha=ease(lt / 0.08), scale=1.0 + 0.3 * (1 - ease(lt / 0.12)))
             if s.get('cap') and lt >= s.get('cap_at', 0):
-                cimg = txt(('cap', s['cap']), lambda: text_img([[(s['cap'], 'white')]], 46, weight=700, stroke=6))
+                cimg = txt(('cap', s['cap']), lambda: fitw(text_img([[(s['cap'], 'white')]], 46, weight=700, stroke=6), WW - 60))
                 put(win, cimg, WW / 2, WH - 60, alpha=ease((lt - s.get('cap_at', 0)) / 0.15))
             for sb in subs:
                 if sb['t0'] <= tt < sb['t1']:

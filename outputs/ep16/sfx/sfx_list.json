@@ -1,11 +1,11 @@
 {
- "note": "ep16 v5 (tools/ep16_edit.py)",
+ "note": "ep16 v6 (tools/ep16_edit.py)",
  "items": [
   {
    "name": "office_amb",
    "file": "outputs/ep16/sfx/el/office_amb.mp3",
    "at": 0,
-   "len": 26.5,
+   "len": 26.9,
    "target_lufs": -38,
    "loop": true,
    "fade_in": 0.3,
@@ -17,8 +17,8 @@
   {
    "name": "office_amb2",
    "file": "outputs/ep16/sfx/el/office_amb.mp3",
-   "at": 32.3,
-   "len": 11.100000000000001,
+   "at": 32.7,
+   "len": 12.5,
    "target_lufs": -38,
    "loop": true,
    "fade_out": 0.6,
@@ -659,7 +659,7 @@
   {
    "name": "whoosh_S6 5:38",
    "file": "outputs/ep11/sfx/el/whoosh_soft.mp3",
-   "at": 21.38,
+   "at": 21.78,
    "len": 0.8,
    "target_lufs": -24,
    "measured_lufs": -12.3,
@@ -669,7 +669,7 @@
   {
    "name": "tick_S6 5:38",
    "file": "outputs/ep16/sfx/el/clock_tick.mp3",
-   "at": 21.55,
+   "at": 21.95,
    "len": 1.0,
    "target_lufs": -18,
    "measured_lufs": -31.45,
@@ -679,7 +679,7 @@
   {
    "name": "whoosh_S9 5:39",
    "file": "outputs/ep11/sfx/el/whoosh_soft.mp3",
-   "at": 32.18,
+   "at": 32.58,
    "len": 0.8,
    "target_lufs": -24,
    "measured_lufs": -12.3,
@@ -689,7 +689,7 @@
   {
    "name": "tick_S9 5:39",
    "file": "outputs/ep16/sfx/el/clock_tick.mp3",
-   "at": 32.35,
+   "at": 32.75,
    "len": 1.0,
    "target_lufs": -18,
    "measured_lufs": -31.45,
@@ -859,7 +859,7 @@
   {
    "name": "msg_1",
    "file": "outputs/ep16/sfx/el/msg_ping.mp3",
-   "at": 18.15,
+   "at": 18.25,
    "len": 0.5,
    "target_lufs": -22,
    "measured_lufs": -16.45,
@@ -869,7 +869,7 @@
   {
    "name": "msg_2",
    "file": "outputs/ep16/sfx/el/msg_ping.mp3",
-   "at": 19.3,
+   "at": 19.5,
    "len": 0.5,
    "target_lufs": -22,
    "measured_lufs": -16.45,
@@ -879,7 +879,7 @@
   {
    "name": "msg_3",
    "file": "outputs/ep16/sfx/el/msg_ping.mp3",
-   "at": 20.3,
+   "at": 20.6,
    "len": 0.5,
    "target_lufs": -22,
    "measured_lufs": -16.45,
@@ -889,7 +889,7 @@
   {
    "name": "dream_in",
    "file": "outputs/ep16/sfx/el/dream_whoosh.mp3",
-   "at": 26.2,
+   "at": 26.6,
    "len": 1.5,
    "target_lufs": -24,
    "measured_lufs": -26.27,
@@ -899,8 +899,8 @@
   {
    "name": "dream_music",
    "file": "outputs/ep16/bgm/dream.mp3",
-   "at": 26.5,
-   "len": 5.799999999999997,
+   "at": 26.9,
+   "len": 5.800000000000004,
    "target_lufs": -24,
    "fade_in": 0.4,
    "fade_out": 0.15,
@@ -911,7 +911,7 @@
   {
    "name": "scratch",
    "file": "outputs/ep11/sfx/el/record_scratch.mp3",
-   "at": 32.25,
+   "at": 32.65,
    "len": 0.8,
    "target_lufs": -18,
    "measured_lufs": -4.23,
@@ -921,7 +921,7 @@
   {
    "name": "work_ping",
    "file": "outputs/ep16/sfx/el/work_ping.mp3",
-   "at": 33.95,
+   "at": 34.35,
    "len": 0.8,
    "target_lufs": -18,
    "measured_lufs": -24.09,
@@ -931,7 +931,7 @@
   {
    "name": "vib_0",
    "file": "outputs/ep16/sfx/el/phone_vibrate.mp3",
-   "at": 34.55,
+   "at": 34.95,
    "len": 0.6,
    "target_lufs": -20,
    "measured_lufs": -1.18,
@@ -941,7 +941,7 @@
   {
    "name": "hit_0",
    "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
-   "at": 34.55,
+   "at": 34.95,
    "len": 0.9,
    "target_lufs": -24,
    "fade_out": 0.3,
@@ -952,7 +952,7 @@
   {
    "name": "vib_1",
    "file": "outputs/ep16/sfx/el/phone_vibrate.mp3",
-   "at": 35.0,
+   "at": 35.4,
    "len": 0.6,
    "target_lufs": -18,
    "measured_lufs": -1.18,
@@ -962,7 +962,7 @@
   {
    "name": "hit_1",
    "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
-   "at": 35.0,
+   "at": 35.4,
    "len": 0.9,
    "target_lufs": -21,
    "fade_out": 0.3,
@@ -973,7 +973,7 @@
   {
    "name": "vib_2",
    "file": "outputs/ep16/sfx/el/phone_vibrate.mp3",
-   "at": 35.4,
+   "at": 35.8,
    "len": 0.6,
    "target_lufs": -16,
    "measured_lufs": -1.18,
@@ -983,7 +983,7 @@
   {
    "name": "hit_2",
    "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
-   "at": 35.4,
+   "at": 35.8,
    "len": 0.9,
    "target_lufs": -18,
    "fade_out": 0.3,
@@ -994,7 +994,7 @@
   {
    "name": "hit_scream",
    "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
-   "at": 36.4,
+   "at": 36.8,
    "len": 0.9,
    "target_lufs": -17,
    "fade_out": 0.3,
@@ -1005,7 +1005,7 @@
   {
    "name": "msg_end4",
    "file": "outputs/ep16/sfx/el/msg_ping.mp3",
-   "at": 39.1,
+   "at": 39.5,
    "len": 0.5,
    "target_lufs": -22,
    "measured_lufs": -16.45,
@@ -1015,7 +1015,17 @@
   {
    "name": "msg_end5",
    "file": "outputs/ep16/sfx/el/msg_ping.mp3",
-   "at": 40.8,
+   "at": 40.9,
+   "len": 0.5,
+   "target_lufs": -22,
+   "measured_lufs": -16.45,
+   "measured_file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "gain": -5.6
+  },
+  {
+   "name": "msg_end6",
+   "file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "at": 41.8,
    "len": 0.5,
    "target_lufs": -22,
    "measured_lufs": -16.45,
