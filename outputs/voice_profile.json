@@ -3657,7 +3657,7 @@
    }
   },
   "ep17": {
-   "note": "ep17 미순이의 감정 변화속도 — 달달=콧소리 애교, 버럭=차갑게 낮게, 9번 창수 웃음 참으며(사용자 2026-10-23)",
+   "note": "ep17 미순이의 감정 변화속도 — 달달=콧소리 애교, 버럭=차갑게 낮게, 9번 창수 웃음 참으며(사용자 2026-10-23) / 확정(2026-10-23): A(음높이 안 바꿈), 4번 seed 99 채택, 9번 끝 되묻듯 올림, 달달 애교 충분.",
    "lines": [
     {
      "cut": "m1",
@@ -3724,8 +3724,7 @@
      "file": "outputs/ep17/voice/lines/m2.mp3",
      "len": 3.19,
      "len_file": 3.24,
-     "prefer_low": true,
-     "pitch": -3
+     "prefer_low": true
     },
     {
      "cut": "m3",
@@ -3768,10 +3767,9 @@
      "dry": "outputs/ep17/voice/lines/m4_dry.mp3",
      "asr": 0.8,
      "file": "outputs/ep17/voice/lines/m4.mp3",
-     "len": 1.77,
-     "len_file": 1.8,
-     "target_f0": 480,
-     "pitch": -3
+     "len": 1.78,
+     "len_file": 1.83,
+     "target_f0": 480
     },
     {
      "cut": "m5",
@@ -3814,10 +3812,9 @@
      "dry": "outputs/ep17/voice/lines/m6_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep17/voice/lines/m6.mp3",
-     "len": 3.34,
+     "len": 3.33,
      "len_file": 3.37,
-     "prefer_low": true,
-     "pitch": -3
+     "prefer_low": true
     },
     {
      "cut": "m7",
@@ -3884,8 +3881,7 @@
      "file": "outputs/ep17/voice/lines/m8.mp3",
      "len": 3.32,
      "len_file": 3.37,
-     "prefer_low": true,
-     "pitch": -3
+     "prefer_low": true
     },
     {
      "cut": "c9",
@@ -3903,7 +3899,6 @@
      "pauses": [
       0.3
      ],
-     "prefer_fall": true,
      "seed": 1234,
      "speedup": 1.25,
      "tempo": 1.0,
@@ -3964,12 +3959,12 @@
     },
     {
      "cut": "m5",
-     "at": 12.29,
+     "at": 12.3,
      "file": "outputs/ep17/voice/lines/m5.mp3"
     },
     {
      "cut": "m6",
-     "at": 14.53,
+     "at": 14.54,
      "file": "outputs/ep17/voice/lines/m6.mp3"
     },
     {
