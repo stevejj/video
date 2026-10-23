@@ -70,6 +70,12 @@ def end_rise(path):
     return float(np.median(v[-n:]) / np.median(v[:n]))
 
 
+def med_f0(path):
+    import pyworld as pw
+    x = pcm(path, 16000).astype(np.float64); f0, _ = pw.harvest(x, 16000); v = f0[f0 > 0]
+    return float(np.median(v)) if len(v) else 999.0
+
+
 def regen(P, cuts):
     tmp = tempfile.mkdtemp()
     for l in P['episodes'][EPN]['lines']:
@@ -91,8 +97,11 @@ def regen(P, cuts):
             fall = end_rise(dry) if l.get('prefer_fall') else 0.0   # "..." 줄은 끝이 내려가는 것 우선(ep16 i2·i5 끝 올라감)
             if l.get('prefer_fall'):
                 print(f'    끝 음높이 비 {fall:.2f}', flush=True)
-            res.append((score >= 0.7, -round(max(fall, 0.95), 2), round(score, 1), -abs(d - l['max_len'] * 0.8), seed, dry, d, sp))
-        *_, seed, dry, d, sp = max(res); score = max(res)[2]
+            low = -med_f0(dry) if l.get('prefer_low') else 0.0   # 차갑게 낮게(ep17 버럭): 음높이 낮은 것 우선
+            if l.get('prefer_low'):
+                print(f'    음높이 중앙 {-low:.0f}Hz', flush=True)
+            res.append((score >= 0.7, round(low, -1), -round(max(fall, 0.95), 2), round(score, 1), -abs(d - l['max_len'] * 0.8), seed, dry, d, sp))
+        *_, seed, dry, d, sp = max(res); score = max(res)[3]
         os.makedirs(LINES, exist_ok=True); dst = os.path.join(LINES, f'{l["cut"]}_dry.mp3'); os.replace(dry, dst)
         l.update(seed=seed, speedup=sp, tempo=1.0, dry=os.path.relpath(dst, ROOT), asr=score)
         print(f'→ {l["cut"]} 채택 seed {seed} 점수 {score} {d:.2f}s', flush=True)
