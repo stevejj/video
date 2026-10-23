@@ -2285,8 +2285,152 @@
    }
   },
   "ep14": {
-   "note": "ep14 김장 수술실(나는 실패하지 않습니다). 1차 녹음 2026-10-22. 1번은 상황 자막만(목소리 없음).",
+   "note": "ep14 v2 인형뽑기(01_기획안_v2_인형뽑기.md). lines_v1 = 김장 녹음(5b·9 재사용). gap_before는 몽타주·인서트 자리 포함 대략값.",
    "lines": [
+    {
+     "cut": "v2-02",
+     "speaker": "misun",
+     "subtitle": "저 오리… 오늘 데려간다.",
+     "tts": "[determined, serious, low voice] 저 오리... 오늘 데려간다.",
+     "expr": "01",
+     "max_len": 2.3,
+     "offset": 0.05,
+     "inner": false,
+     "tag_override": true,
+     "gap_before": 1.6,
+     "asr_ref": "저오리오늘데려간다",
+     "seed": 555,
+     "speedup": 1.25,
+     "tempo": 1.0,
+     "dry": "outputs/ep14/voice/lines/v2-02_dry.mp3",
+     "asr": 1.0,
+     "file": "outputs/ep14/voice/lines/v2-02.mp3",
+     "len": 1.82,
+     "len_file": 1.85
+    },
+    {
+     "cut": "v2-04",
+     "speaker": "misun",
+     "subtitle": "나는.... 실패하지.... 않습니다.",
+     "file": "outputs/ep14/voice/lines/5b.mp3",
+     "len": 3.29,
+     "gap_before": 2.8,
+     "reuse": "5b"
+    },
+    {
+     "cut": "v2-06",
+     "speaker": "misun",
+     "subtitle": "나는.... 실패하지.... 않습니다.",
+     "file": "outputs/ep14/voice/lines/5b.mp3",
+     "len": 3.29,
+     "gap_before": 3.5,
+     "reuse": "5b"
+    },
+    {
+     "cut": "v2-07",
+     "speaker": "changsu",
+     "subtitle": "미순아… 그만해…",
+     "tts": "[worried, pleading, quiet] 미순아... 그만해...",
+     "expr": "11",
+     "max_len": 1.9,
+     "offset": 0.05,
+     "inner": false,
+     "tag_override": true,
+     "gap_before": 0.6,
+     "asr_ref": "미순아그만해",
+     "seed": 2024,
+     "speedup": 1.25,
+     "tempo": 1.0,
+     "dry": "outputs/ep14/voice/lines/v2-07_dry.mp3",
+     "asr": 1.0,
+     "file": "outputs/ep14/voice/lines/v2-07.mp3",
+     "len": 1.21,
+     "len_file": 1.25
+    },
+    {
+     "cut": "v2-08",
+     "speaker": "misun",
+     "subtitle": "조효오오옹!!!",
+     "file": "outputs/ep14/voice/lines/9.mp3",
+     "len": 0.95,
+     "gap_before": 0.2,
+     "reuse": "9"
+    },
+    {
+     "cut": "v2-10",
+     "speaker": "misun",
+     "subtitle": "조효오오옹!!!",
+     "file": "outputs/ep14/voice/lines/9.mp3",
+     "len": 0.95,
+     "gap_before": 3.3,
+     "reuse": "9"
+    },
+    {
+     "cut": "v2-11",
+     "speaker": "misun",
+     "subtitle": "나는.... 실패하지.... 않습니다.",
+     "file": "outputs/ep14/voice/lines/5b.mp3",
+     "len": 3.29,
+     "gap_before": 2.5,
+     "reuse": "5b"
+    },
+    {
+     "cut": "v2-15",
+     "speaker": "misun",
+     "subtitle": "나는.... 실패하지.... 않습니다.",
+     "file": "outputs/ep14/voice/lines/5b.mp3",
+     "len": 3.29,
+     "gap_before": 9.0,
+     "reuse": "5b"
+    }
+   ],
+   "placements": [
+    {
+     "cut": "v2-02",
+     "at": 1.6,
+     "file": "outputs/ep14/voice/lines/v2-02.mp3"
+    },
+    {
+     "cut": "v2-04",
+     "at": 6.22,
+     "file": "outputs/ep14/voice/lines/5b.mp3"
+    },
+    {
+     "cut": "v2-06",
+     "at": 13.01,
+     "file": "outputs/ep14/voice/lines/5b.mp3"
+    },
+    {
+     "cut": "v2-07",
+     "at": 16.9,
+     "file": "outputs/ep14/voice/lines/v2-07.mp3"
+    },
+    {
+     "cut": "v2-08",
+     "at": 18.31,
+     "file": "outputs/ep14/voice/lines/9.mp3"
+    },
+    {
+     "cut": "v2-10",
+     "at": 22.56,
+     "file": "outputs/ep14/voice/lines/9.mp3"
+    },
+    {
+     "cut": "v2-11",
+     "at": 26.01,
+     "file": "outputs/ep14/voice/lines/5b.mp3"
+    },
+    {
+     "cut": "v2-15",
+     "at": 38.3,
+     "file": "outputs/ep14/voice/lines/5b.mp3"
+    }
+   ],
+   "preview": {
+    "file": "outputs/ep14/voice/preview.mp3",
+    "len": 43.59
+   },
+   "lines_v1": [
     {
      "cut": "2",
      "speaker": "misun",
@@ -2704,108 +2848,7 @@
      "over": false,
      "gap_before": 1.6
     }
-   ],
-   "placements": [
-    {
-     "cut": "2",
-     "at": 1.5,
-     "file": "outputs/ep14/voice/lines/2.mp3"
-    },
-    {
-     "cut": "3",
-     "at": 3.09,
-     "file": "outputs/ep14/voice/lines/3.mp3"
-    },
-    {
-     "cut": "4a",
-     "at": 5.02,
-     "file": "outputs/ep14/voice/lines/4a.mp3"
-    },
-    {
-     "cut": "4b",
-     "at": 5.99,
-     "file": "outputs/ep14/voice/lines/4b.mp3"
-    },
-    {
-     "cut": "4c",
-     "at": 7.11,
-     "file": "outputs/ep14/voice/lines/4c.mp3"
-    },
-    {
-     "cut": "4d",
-     "at": 8.2,
-     "file": "outputs/ep14/voice/lines/4d.mp3"
-    },
-    {
-     "cut": "4e",
-     "at": 9.29,
-     "file": "outputs/ep14/voice/lines/4e.mp3"
-    },
-    {
-     "cut": "5a",
-     "at": 10.91,
-     "file": "outputs/ep14/voice/lines/5a.mp3"
-    },
-    {
-     "cut": "5b",
-     "at": 13.71,
-     "file": "outputs/ep14/voice/lines/5b.mp3"
-    },
-    {
-     "cut": "5c",
-     "at": 17.3,
-     "file": "outputs/ep14/voice/lines/5c.mp3"
-    },
-    {
-     "cut": "5d",
-     "at": 18.39,
-     "file": "outputs/ep14/voice/lines/5d.mp3"
-    },
-    {
-     "cut": "6",
-     "at": 20.17,
-     "file": "outputs/ep14/voice/lines/6.mp3"
-    },
-    {
-     "cut": "7",
-     "at": 23.9,
-     "file": "outputs/ep14/voice/lines/7.mp3"
-    },
-    {
-     "cut": "8",
-     "at": 27.69,
-     "file": "outputs/ep14/voice/lines/8.mp3"
-    },
-    {
-     "cut": "9",
-     "at": 28.97,
-     "file": "outputs/ep14/voice/lines/9.mp3"
-    },
-    {
-     "cut": "10",
-     "at": 31.22,
-     "file": "outputs/ep14/voice/lines/10.mp3"
-    },
-    {
-     "cut": "10b",
-     "at": 33.46,
-     "file": "outputs/ep14/voice/lines/10b.mp3"
-    },
-    {
-     "cut": "11a",
-     "at": 37.75,
-     "file": "outputs/ep14/voice/lines/11a.mp3"
-    },
-    {
-     "cut": "11b",
-     "at": 40.27,
-     "file": "outputs/ep14/voice/lines/11b.mp3"
-    }
-   ],
-   "preview": {
-    "file": "outputs/ep14/voice/preview.mp3",
-    "len": 43.86
-   }
+   ]
   }
  },
  "voices_legacy": {
