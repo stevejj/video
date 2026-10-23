@@ -22,7 +22,7 @@ SLOW_LEN = 4.8           # 3.45 / 0.7 ≈ 4.93 → 렌더 결과 4.83s
 RAMP_A, RAMP_B, RAMP_SP = 9.30, 9.80, 0.25
 EXTRA = round((RAMP_B - RAMP_A) * (1 / RAMP_SP - 1), 3)   # 1.5s 늘어남
 CUT1 = 10.0 + EXTRA      # 대화+짠 장면 길이
-CARD_LEN = 2.6           # 엔딩 카드(v12 ④: 캔 치익 → 따르는 소리가 들어가게 2.0 → 2.6)
+CARD_LEN = 3.6           # 엔딩 카드(v12 ④: 캔 치익 → 따르는 소리가 들어가게 2.0 → 2.6, v13 사용자 '더 늘려' → 3.6)
 S5_AT = CUT1 + SLOW_LEN + 3.0 + CARD_LEN   # 현실 복귀(이모!)
 CARD_AT = CUT1 + SLOW_LEN + 3.0
 WARNING = '지나친 음주는 다음 날 미순이의 잔소리를 부릅니다.'   # v12 ④: 실제 광고 아래 작은 경고문 패러디
@@ -167,7 +167,7 @@ def end_card():
     shot = full.crop((cx - S_ // 2, cy - S_ // 2 - 60, cx + S_ // 2, cy + S_ // 2 - 60))
     shot = ImageEnhance.Contrast(ImageEnhance.Brightness(shot).enhance(1.05)).enhance(1.06)
     m = Image.new('L', shot.size, 0); ImageDraw.Draw(m).rounded_rectangle([0, 0, S_ - 1, S_ - 1], radius=44, fill=255)
-    px, py = (1080 - S_) // 2, 1210 - S_ - 40          # 슬로건(0.63 = 1210px) 위
+    px, py = (1080 - S_) // 2, 1210 - S_ - 140         # 슬로건(0.63 = 1210px, 글자 위 끝 약 1160px) 위로 약 90px 띄움(v13: 40이면 살짝 겹침)
     sh = Image.new('L', (1080, 1920), 0); ImageDraw.Draw(sh).rounded_rectangle([px, py + 18, px + S_, py + S_ + 18], radius=44, fill=170)
     sh = sh.filter(ImageFilter.GaussianBlur(26)); im = Image.composite(Image.new('RGB', im.size, (0, 0, 0)), im, sh)
     im.paste(shot, (px, py), m)
