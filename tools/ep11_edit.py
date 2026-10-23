@@ -28,6 +28,8 @@ REVERB = {'pre': 0.04, 'decay': 0.25, 'wet': 0.4, 'band': [300, 6000]}   # 짧�
 ZOOM, PUSH = 1.6, 1.68                       # v4(사용자: "더 세게, 스피드하게 왔다갔다"): 빠르게 확 다가간 뒤 대사 동안 천천히 더
 FACE_X = {'misun': 340, 'changsu': 800}
 ORDER = [('misun', 'L1'), ('changsu', 'L2'), ('misun', 'L3'), ('changsu', 'L4'), ('misun', 'L5')]
+CHAN_Y = 1600   # v9(2026-10-23 사용자): 본 영상 채널명은 하단(썸네일 시작 화면에선 가운데)
+COPY_Y = 0.70   # v10(사용자: 카피가 채널명을 가림): 광고 카피 자리 0.78~0.81 → 0.70~0.75(채널명 1600px 위로 약 100px 띄움)
 WIDE_AT = 8.75                               # 짠은 둘이 함께 보이게 원래 화면으로
 BEAT = 0.45                                  # v5(사용자: "전환이 급하다, 확대 속도는 좋아"): 앞 대사 끝과 다음 대사 사이 가운데서 넘어가
                                              # 다음 사람이 말하기 전 0.25~0.45초 머무름(대사 직전 0.12초 전환 → 급해 보였음)
@@ -127,7 +129,8 @@ def main():
                            {'spans': [{'text': '맥주광고', 'color': '#FFD84A'}, {'text': ' 따라하기', 'color': '#FFFFFF'}]}]
     # v2: 광고 구간 대사는 광고 카피(hf_fx copy)로, 아래 자막은 현실 복귀 대사만
     T['subtitles'] = [{'cut': c, 'text': L[c]['subtitle'], 'speaker': L[c]['speaker'], 'start': round(a0, 2), 'end': round(a1, 2), 'x': 0.5} for c, a0, a1 in subs if c == 'L8']
-    T['note'] = 'ep11 v2: 광고 구간은 카피 글씨, 이모! 만 일반 자막'
+    T['channel']['center_y'] = CHAN_Y
+    T['note'] = 'ep11 v2: 광고 구간은 카피 글씨, 이모! 만 일반 자막 / v9: 채널명 하단'
     json.dump(T, open(os.path.join(EP, 'text_overlay.json'), 'w'), ensure_ascii=False, indent=1)
     for s in T['subtitles']:
         print(s['start'], s['end'], s['text'])
@@ -156,7 +159,7 @@ def ad_look():
     B = json.load(open(os.path.join(EP, 'band_offsets.json'))); B['per_cut_top'].setdefault('card', 0)
     json.dump(B, open(os.path.join(EP, 'band_offsets.json'), 'w'), ensure_ascii=False, indent=1)
 
-    cp = lambda at, dur, text, **k: dict(at=round(at, 2), dur=round(dur, 2), text=text, **k)
+    cp = lambda at, dur, text, **k: dict(at=round(at, 2), dur=round(dur, 2), text=text, **{'y': COPY_Y, **k})
     s = {c: t0 for c, (t0, _) in SLOT.items()}
     sw = [m['at'] for m in moves() if m['scale'] == ZOOM]   # 카메라 전환 시각
     F = json.load(open(os.path.join(ROOT, 'outputs/ep07/hf_fx.json')))
@@ -165,14 +168,13 @@ def ad_look():
                # 카피는 카메라가 다음 사람으로 넘어갈 때 함께 사라짐(v5: 앞 카피가 다음 사람 화면에 남던 것 수정)
                'copy': [cp(s['L1'], sw[1] + 0.05 - s['L1'], '초겨울, 포차의 계절.'),
                         cp(s['L2'], sw[2] + 0.05 - s['L2'], '입김마저 시원하다.'),
-                        cp(s['L3'], sw[4] + 0.05 - s['L3'], '차가운 잔에 담은', y=0.76),
-                        cp(s['L4'], sw[4] + 0.05 - s['L4'], '우리의 하루.', y=0.81),
+                        cp(s['L3'], sw[4] + 0.05 - s['L3'], '차가운 잔에 담은', y=COPY_Y),
+                        cp(s['L4'], sw[4] + 0.05 - s['L4'], '우리의 하루.', y=COPY_Y + 0.05),
                         cp(s['L5'], s['L6'] - s['L5'] - 0.06, '건배하라!', size=72),
                         cp(s['L6'], 10.0 - s['L6'] - 0.06, '짠!', size=104, weight=400, fade=0.3)],
-               'sparkle': {'at': 9.45, 'cx': 0.5, 'dy': -490, 'dur': 0.9, 'glyph': '✦', 'color': '#FFF6D8'},
                'flash': [{'at': 9.6, 'dur': 0.3, 'peak': 0.22}]},
         '02': {'grade': GRADE, 'cam': {'from': 1.0, 'to': 1.06}},
-        '03': {'grade': GRADE, 'copy': [cp(14.35 + D - 10.0 - SLOW_LEN, 1.6, '캬~', size=110, weight=300, y=0.78)]},
+        '03': {'grade': GRADE, 'copy': [cp(14.35 + D - 10.0 - SLOW_LEN, 1.6, '캬~', size=110, weight=300, y=COPY_Y + 0.01)]},
         '04': {'cam': {'from': 1.06, 'to': 1.0}, 'drift': None,
                'copy': [cp(0.2, CARD_LEN - 0.2, '초겨울, 포차의 계절.', y=0.5, size=76, fade=0.9),
                         cp(0.6, CARD_LEN - 0.6, 'MISOON & CHANGSU', y=0.565, size=30, weight=400, spacing=0.45, color='#E8D9B8', fade=0.8)]},

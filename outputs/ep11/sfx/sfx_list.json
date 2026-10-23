@@ -11,8 +11,8 @@
    "loop": true,
    "fade_in": 0.3,
    "measured_lufs": -39.79,
-   "gain": 1.8,
-   "measured_file": "outputs/ep01/sfx/el/street_amb.mp3"
+   "measured_file": "outputs/ep01/sfx/el/street_amb.mp3",
+   "gain": 1.8
   },
   {
    "name": "fizz_open",
@@ -23,8 +23,8 @@
    "fade_out": 0.4,
    "fade_in": 0.3,
    "measured_lufs": -37.42,
-   "gain": 5.4,
-   "measured_file": "outputs/ep11/sfx/el/beer_fizz.mp3"
+   "measured_file": "outputs/ep11/sfx/el/beer_fizz.mp3",
+   "gain": 5.4
   },
   {
    "name": "glass_clink",
@@ -34,8 +34,8 @@
    "target_lufs": -18,
    "fade_out": 0.3,
    "measured_lufs": -42.31,
-   "gain": 24.3,
-   "measured_file": "outputs/ep11/sfx/el/glass_clink.mp3"
+   "measured_file": "outputs/ep11/sfx/el/glass_clink.mp3",
+   "gain": 24.3
   },
   {
    "name": "whoosh_slow",
@@ -45,8 +45,8 @@
    "target_lufs": -26,
    "fade_out": 0.05,
    "measured_lufs": -12.3,
-   "gain": -13.7,
-   "measured_file": "outputs/ep11/sfx/el/whoosh_soft.mp3"
+   "measured_file": "outputs/ep11/sfx/el/whoosh_soft.mp3",
+   "gain": -13.7
   },
   {
    "name": "fizz_slow",
@@ -57,8 +57,8 @@
    "fade_out": 0.5,
    "fade_in": 0.2,
    "measured_lufs": -37.42,
-   "gain": 7.4,
-   "measured_file": "outputs/ep11/sfx/el/beer_fizz.mp3"
+   "measured_file": "outputs/ep11/sfx/el/beer_fizz.mp3",
+   "gain": 7.4
   },
   {
    "name": "mugs_down",
@@ -68,8 +68,8 @@
    "target_lufs": -26,
    "fade_out": 0.1,
    "measured_lufs": -30.05,
-   "gain": 4.1,
-   "measured_file": "outputs/ep02/sfx/el/cup_set.mp3"
+   "measured_file": "outputs/ep02/sfx/el/cup_set.mp3",
+   "gain": 4.1
   },
   {
    "name": "whoosh_card",
@@ -79,8 +79,8 @@
    "target_lufs": -24,
    "fade_out": 0.05,
    "measured_lufs": -12.3,
-   "gain": -11.7,
-   "measured_file": "outputs/ep11/sfx/el/whoosh_soft.mp3"
+   "measured_file": "outputs/ep11/sfx/el/whoosh_soft.mp3",
+   "gain": -11.7
   },
   {
    "name": "pour_card",
@@ -90,8 +90,8 @@
    "target_lufs": -24,
    "fade_out": 0.1,
    "measured_lufs": -26.17,
-   "gain": 2.2,
-   "measured_file": "outputs/ep11/sfx/el/beer_pour.mp3"
+   "measured_file": "outputs/ep11/sfx/el/beer_pour.mp3",
+   "gain": 2.2
   },
   {
    "name": "record_scratch",
@@ -101,8 +101,8 @@
    "target_lufs": -15,
    "fade_out": 0.05,
    "measured_lufs": -4.23,
-   "gain": -10.8,
-   "measured_file": "outputs/ep11/sfx/el/record_scratch.mp3"
+   "measured_file": "outputs/ep11/sfx/el/record_scratch.mp3",
+   "gain": -10.8
   },
   {
    "name": "street_amb_real",
@@ -113,8 +113,8 @@
    "fade_out": 0.8,
    "loop": true,
    "measured_lufs": -39.79,
-   "gain": 7.8,
-   "measured_file": "outputs/ep01/sfx/el/street_amb.mp3"
+   "measured_file": "outputs/ep01/sfx/el/street_amb.mp3",
+   "gain": 7.8
   }
  ]
 }
