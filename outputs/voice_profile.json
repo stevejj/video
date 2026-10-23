@@ -3841,7 +3841,7 @@
     {
      "cut": "c7",
      "speaker": "changsu",
-     "subtitle": "응…?",
+     "subtitle": "응...?",
      "tts": "[confused, hesitant] 응...?",
      "expr": "01",
      "max_len": 0.9,
@@ -3911,24 +3911,24 @@
     {
      "cut": "m10",
      "speaker": "misun",
-     "subtitle": "응~ 귀여워~",
-     "tts": "[sweet, cutesy, nasal aegyo voice, whiny-cute] 응~ 귀여워~",
+     "subtitle": "나는 자기를 사랑해",
+     "tts": "[sweet, cutesy, nasal aegyo voice, whiny-cute] 나는~ 자기를 사랑해~",
      "expr": "01",
-     "max_len": 1.6,
+     "max_len": 2.0,
      "offset": 0.05,
      "inner": false,
      "tag_override": true,
      "n_seeds": 6,
-     "asr_ref": "응귀여워",
+     "asr_ref": "나는자기를사랑해",
      "gap_before": 0.4,
-     "seed": 7,
+     "seed": 555,
      "speedup": 1.25,
      "tempo": 1.0,
      "dry": "outputs/ep17/voice/lines/m10_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep17/voice/lines/m10.mp3",
-     "len": 1.24,
-     "len_file": 1.28
+     "len": 1.74,
+     "len_file": 1.78
     }
    ],
    "placements": [
@@ -3983,14 +3983,14 @@
    ],
    "preview": {
     "file": "outputs/ep17/voice/preview.mp3",
-    "len": 30.46
+    "len": 30.96
    },
    "bgm": {
     "file": "outputs/ep17/bgm/sweet.mp3",
     "target_lufs": -26,
     "duck_db": 6,
     "fade_in": 0.2,
-    "end_at": 31.21,
+    "end_at": 31.71,
     "fade_out": 0.6,
     "dips": [
      {
@@ -4021,8 +4021,8 @@
     ]
    },
    "edit": {
-    "tag": "v2",
-    "total": 31.21,
+    "tag": "v4",
+    "total": 31.71,
     "segments": [
      {
       "n": "1 편안",
@@ -4111,8 +4111,8 @@
       "mood": "sweet",
       "zoom": null,
       "at": 28.17,
-      "end": 31.21,
-      "len": 3.04
+      "end": 31.71,
+      "len": 3.54
      }
     ]
    }
