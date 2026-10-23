@@ -3150,8 +3150,8 @@
      "speedup_override": 1.1,
      "fx": "cave_light",
      "pauses": [
-      0.5,
-      0.5
+      0.2,
+      0.2
      ],
      "asr_ref": "제발조용히넘어가자",
      "seed": 7,
@@ -3160,8 +3160,8 @@
      "dry": "outputs/ep16/voice/lines/7_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep16/voice/lines/7.mp3",
-     "len": 2.89,
-     "len_file": 4.94,
+     "len": 2.29,
+     "len_file": 4.34,
      "gap_before": 0.5
     },
     {
@@ -3195,13 +3195,13 @@
     },
     {
      "cut": "11",
-     "at": 4.39,
+     "at": 3.79,
      "file": "outputs/ep16/voice/lines/11.mp3"
     }
    ],
    "preview": {
     "file": "outputs/ep16/voice/preview.mp3",
-    "len": 7.86
+    "len": 7.26
    }
   }
  },
