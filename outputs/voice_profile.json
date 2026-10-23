@@ -2887,7 +2887,44 @@
      "over": false,
      "gap_before": 1.6
     }
-   ]
+   ],
+   "scenes": {
+    "c1": {
+     "file": "outputs/ep14/voice/scenes/c1.mp3",
+     "line": "v2-01",
+     "at": 1.2,
+     "len": 5,
+     "speech_end": 2.9
+    },
+    "c2": {
+     "file": "outputs/ep14/voice/scenes/c2.mp3",
+     "line": "v2-02",
+     "at": 0.3,
+     "len": 5,
+     "speech_end": 2.62
+    },
+    "c4": {
+     "file": "outputs/ep14/voice/scenes/c4.mp3",
+     "line": "v2-04",
+     "at": 0.3,
+     "len": 5,
+     "speech_end": 3.59
+    },
+    "c5": {
+     "file": "outputs/ep14/voice/scenes/c5.mp3",
+     "line": "v2-07",
+     "at": 0.8,
+     "len": 5,
+     "speech_end": 3.12
+    },
+    "c7": {
+     "file": "outputs/ep14/voice/scenes/c7.mp3",
+     "line": "v2-15",
+     "at": 2.0,
+     "len": 6,
+     "speech_end": 5.29
+    }
+   }
   }
  },
  "voices_legacy": {
