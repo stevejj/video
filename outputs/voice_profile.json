@@ -2291,22 +2291,28 @@
      "cut": "v2-02",
      "speaker": "misun",
      "subtitle": "저 오리… 오늘 데려간다.",
-     "tts": "[determined, serious, low voice] 저 오리... 오늘 데려간다.",
+     "tts": "[determined, dramatic, emotional, low voice] 저 오리이이..... 오늘 데려간다...!",
      "expr": "01",
-     "max_len": 2.3,
+     "max_len": 3.2,
      "offset": 0.05,
      "inner": false,
      "tag_override": true,
      "gap_before": 1.6,
      "asr_ref": "저오리오늘데려간다",
-     "seed": 555,
+     "seed": 2024,
      "speedup": 1.25,
      "tempo": 1.0,
      "dry": "outputs/ep14/voice/lines/v2-02_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep14/voice/lines/v2-02.mp3",
-     "len": 1.82,
-     "len_file": 1.85
+     "len": 2.65,
+     "len_file": 4.08,
+     "fx": "room",
+     "n_seeds": 8,
+     "prev_dry": "outputs/ep14/voice/lines/v2-02_v1_dry.mp3",
+     "pauses": [
+      0.6
+     ]
     },
     {
      "cut": "v2-04",
@@ -2330,22 +2336,27 @@
      "cut": "v2-07",
      "speaker": "changsu",
      "subtitle": "미순아… 그만해…",
-     "tts": "[worried, pleading, quiet] 미순아... 그만해...",
+     "tts": "[worried, pleading, slow, drawn out] 미순아아... 그만해애...",
      "expr": "11",
-     "max_len": 1.9,
+     "max_len": 2.4,
      "offset": 0.05,
      "inner": false,
      "tag_override": true,
      "gap_before": 0.6,
      "asr_ref": "미순아그만해",
-     "seed": 2024,
+     "seed": 77,
      "speedup": 1.25,
      "tempo": 1.0,
      "dry": "outputs/ep14/voice/lines/v2-07_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep14/voice/lines/v2-07.mp3",
-     "len": 1.21,
-     "len_file": 1.25
+     "len": 2.32,
+     "len_file": 2.35,
+     "n_seeds": 8,
+     "prev_dry": "outputs/ep14/voice/lines/v2-07_v1_dry.mp3",
+     "pauses": [
+      0.45
+     ]
     },
     {
      "cut": "v2-08",
@@ -2392,43 +2403,43 @@
     },
     {
      "cut": "v2-04",
-     "at": 6.22,
+     "at": 7.05,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-06",
-     "at": 13.01,
+     "at": 13.84,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-07",
-     "at": 16.9,
+     "at": 17.73,
      "file": "outputs/ep14/voice/lines/v2-07.mp3"
     },
     {
      "cut": "v2-08",
-     "at": 18.31,
+     "at": 20.25,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "v2-10",
-     "at": 22.56,
+     "at": 24.5,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "v2-11",
-     "at": 26.01,
+     "at": 27.95,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-15",
-     "at": 38.3,
+     "at": 40.24,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     }
    ],
    "preview": {
     "file": "outputs/ep14/voice/preview.mp3",
-    "len": 43.59
+    "len": 45.53
    },
    "lines_v1": [
     {
