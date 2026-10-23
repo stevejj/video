@@ -104,16 +104,17 @@ def portrait(src, name, color):
     return out
 
 
+SHOW_VS = False   # v3(2026-10-23 사용자): VS 노란 글씨 효과 지움(쾅 번쩍·흔들림·소리도 같이)
+
+
 def vs_card():
-    """VS 인트로: 배경(골목을 흐리고 어둡게 + 왼쪽 파랑·오른쪽 분홍) + 창수·미순 사진 + VS 글자(레이어로 움직임)."""
+    """VS 인트로: 배경(다음 장면 골목을 흐리게, v3부터 색 없음 + 흰 사선 구분선) + 창수·미순 사진 (+ VS 글자는 SHOW_VS일 때만)."""
     os.makedirs(os.path.join(EP, 'ref'), exist_ok=True)
     bg = grab('c1/clip_v1.mp4', 0.0).filter(ImageFilter.GaussianBlur(16))
-    arr = np.asarray(bg).astype(float) * 0.42
-    yy, xx = np.mgrid[0:H, 0:W]; left = (xx < W / 2 + (yy - H / 2) * 0.18)[..., None]
-    tint = np.where(left, [40, 80, 200], [210, 60, 130]).astype(float)
-    arr = np.clip(arr * 0.75 + tint * 0.35, 0, 255)
+    # v3(2026-10-23 사용자: 보기 편한 색으로, 다음 장면 배경이 흐리게 비치고 사선 구분선만): 색 입히기 없음, 살짝만 어둡게
+    arr = np.asarray(bg).astype(float) * 0.78
     bgi = Image.fromarray(arr.astype('uint8')); d = ImageDraw.Draw(bgi)
-    d.line([(W / 2 - (H / 2) * 0.18, 0), (W / 2 + (H / 2) * 0.18, H)], fill=(255, 230, 120), width=10)
+    d.line([(W / 2 - (H / 2) * 0.18, 0), (W / 2 + (H / 2) * 0.18, H)], fill=(255, 255, 255), width=8)
     bgp = os.path.join(EP, 'ref/vs_bg.png'); bgi.save(bgp)
     cs = portrait('assets/characters/pang-changsu/pang-changsu_3q_right.png', '창수', BLUE)   # 가운데(미순 쪽)를 봄
     ms = portrait('assets/characters/pang-misun/pang-misun_3q_left.png', '미순', PINK)
@@ -128,9 +129,8 @@ def vs_card():
          'keys': [{'t': 0.05, 'dur': 0.32, 'x': 0, 'opacity': 1, 'ease': 'power3.out'}, {'t': 0.37, 'dur': 2.0, 'y': -12, 'ease': 'sine.inOut'}]},
         {'id': 'ms', 'img': rel(msp), 'box': [W - 30 - ms.width, 1340 - ms.height, ms.width, ms.height], 'origin': '50% 50%', 'init': {'x': 760, 'opacity': 0},
          'keys': [{'t': 0.1, 'dur': 0.32, 'x': 0, 'opacity': 1, 'ease': 'power3.out'}, {'t': 0.42, 'dur': 2.0, 'y': 12, 'ease': 'sine.inOut'}]},
-        {'id': 'vs', 'img': rel(vsp), 'box': [(W - v.width) // 2, 1060, v.width, v.height], 'origin': '50% 50%', 'init': {'scale': 3.2, 'opacity': 0},
-         'keys': [{'t': BEAT, 'dur': 0.14, 'scale': 1, 'opacity': 1, 'ease': 'power4.in'}, {'t': BEAT + 0.14, 'dur': 1.6, 'scale': 1.08, 'ease': 'sine.out'}]},
-    ]
+    ] + ([{'id': 'vs', 'img': rel(vsp), 'box': [(W - v.width) // 2, 1060, v.width, v.height], 'origin': '50% 50%', 'init': {'scale': 3.2, 'opacity': 0},
+           'keys': [{'t': BEAT, 'dur': 0.14, 'scale': 1, 'opacity': 1, 'ease': 'power4.in'}, {'t': BEAT + 0.14, 'dur': 1.6, 'scale': 1.08, 'ease': 'sine.out'}]}] if SHOW_VS else [])
 
 
 def cam(L, keys, beats, whip_in=True, whip_out=True, no_pulse=()):
@@ -194,8 +194,8 @@ def main():
     F = json.load(open(os.path.join(ROOT, 'outputs/ep09/hf_fx.json')))
     F['default_still'] = {'cam': None}; F['default_clip'] = {'cam': None}
     F['cuts'] = {
-        '00': {'puppet': {'bg': bgp, 'src_width': W, 'layers': layers},   # 느린 줌은 뺌(VS 흔들림과 x·y가 겹침)
-               'flash': [{'at': BEAT, 'dur': 0.3, 'peak': 0.7}], 'shake': {'at': BEAT + 0.14, 'amp': 10, 'dur': 0.25}},
+        '00': dict({'puppet': {'bg': bgp, 'src_width': W, 'layers': layers}},   # 느린 줌은 뺌(VS 흔들림과 x·y가 겹침)
+                   **({'flash': [{'at': BEAT, 'dur': 0.3, 'peak': 0.7}], 'shake': {'at': BEAT + 0.14, 'amp': 10, 'dur': 0.25}} if SHOW_VS else {})),
         '01': {'moves': cam(L1, [(0, 1.0, 0.5, 0.5), (L1, 1.32, *m1)], beats(T1, L1)),
                'flash': [{'at': 0.0, 'dur': 0.22, 'peak': 0.6}],
                'spotlight': {'at': 0.0, 'dur': L1, 'cx': 0.56, 'cy': 0.5, 'r': 0.42, 'dark': 0.45},
@@ -229,7 +229,7 @@ def main():
     sf = lambda name, file, a0, ln, lufs, **k: dict(name=name, file=file, at=round(a0, 3), len=round(ln, 3), target_lufs=lufs, fade_out=k.pop('fo', 0.05), **k)
     items = [sf('bgm', 'outputs/ep06/bgm/battle100.mp3', 0.0, END, -17, fo=0.9),
              sf('slide', EL + 'whoosh_fast.mp3', 0.02, 0.6, -24),
-             sf('vs_hit', EL + 'impact_boom.mp3', T1 - L0 + BEAT, 1.5, -15),
+             *([sf('vs_hit', EL + 'impact_boom.mp3', T1 - L0 + BEAT, 1.5, -15)] if SHOW_VS else []),
              sf('whip1', EL + 'whoosh_fast.mp3', T1 - 0.16, 0.6, -21),
              sf('whip2', EL + 'whoosh_fast.mp3', T2 - 0.16, 0.6, -21),
              sf('ooh2', EL + 'crowd_ooh.mp3', T2 + face2, 1.5, -21, fo=0.3),

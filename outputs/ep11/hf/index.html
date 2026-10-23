@@ -12,9 +12,10 @@
   #win { position: absolute; left: 0; top: 0px; width: 1080px; height: 1920px; overflow: hidden; background: #000; }
   .frame { position: absolute; left: 0; width: 1080px; height: 1920px; will-change: transform; }
   .frame img.layer { position: absolute; width: auto; height: auto; object-fit: fill; }
+  .frame .spottrack { position: absolute; pointer-events: none; }
   .frame img:not(.layer), .frame video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; display: block; }
   #title { position: absolute; left: 0; width: 100%; top: 247px; text-align: center; font-size: 104px; font-weight: 800; line-height: 122px; -webkit-text-stroke: 10px #111; paint-order: stroke fill; text-shadow: 0 4px 14px rgba(0,0,0,0.55); }
-  #channel { position: absolute; left: 0; width: 100%; top: 494px; text-align: center; font-size: 52px; font-weight: 700; color: #FFFFFF; opacity: 1.0; line-height: 1.4; -webkit-text-stroke: 6px #111; paint-order: stroke fill; text-shadow: 0 3px 10px rgba(0,0,0,0.55); }
+  #channel { position: absolute; left: 0; width: 100%; top: 1564px; text-align: center; font-size: 52px; font-weight: 700; color: #FFFFFF; opacity: 1.0; line-height: 1.4; -webkit-text-stroke: 6px #111; paint-order: stroke fill; text-shadow: 0 3px 10px rgba(0,0,0,0.55); }
   .sub { position: absolute; bottom: 430px; font-size: 74px; font-weight: 800; white-space: nowrap; line-height: 1.25;
           -webkit-text-stroke: 9px #111111; paint-order: stroke fill; transform-origin: 50% 100%; }
   .card { position: absolute; left: 120px; top: 36px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }
@@ -35,6 +36,24 @@
   .gmax { color: #E8322E; font-size: 60px; display: inline-block; transform-origin: 50% 50%; }
   .fb { height: auto; border: 10px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.55); transform-origin: 50% 50%; background: #fff; }
   .fblabel { position: absolute; left: 0; right: 0; bottom: -64px; text-align: center; font-size: 46px; font-weight: 800; color: #fff; -webkit-text-stroke: 6px #111; paint-order: stroke fill; }
+  @font-face { font-family: "Jua"; src: url("media/Jua.ttf") format("truetype"); }
+  .chips { height: auto; text-align: center; z-index: 6; }
+  .chipsin { display: inline-flex; align-items: center; gap: 14px; padding: 14px 26px; border-radius: 999px; background: rgba(255,255,255,0.78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+             box-shadow: 0 10px 30px rgba(0,0,0,0.22), inset 0 0 0 2px rgba(255,255,255,0.6); font-family: "Jua", "NotoKR", sans-serif; color: #5A4A52; }
+  .chiptitle { font-weight: normal; font-size: 34px; color: #9A8A92; margin-right: 6px; }
+  .chip { position: relative; display: inline-block; font-size: 48px; padding: 2px 16px; border-radius: 999px; background: rgba(255,126,179,0.16); transform-origin: 50% 50%; }
+  .strike { position: absolute; left: 8px; right: 8px; top: 52%; height: 5px; border-radius: 3px; background: #5A4A52; transform: scaleX(0); transform-origin: 0% 50%; }
+  .glassg { white-space: nowrap; font-family: "Jua", "NotoKR", sans-serif; font-weight: normal; color: #5A4A52; -webkit-text-stroke: 0; padding: 12px 28px; width: auto; left: 50%; transform: translateX(-50%); border-radius: 999px; background: rgba(255,255,255,0.78);
+             -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 10px 30px rgba(0,0,0,0.22); }
+  .glassg .gbar { border: 0; background: rgba(90,74,82,0.12); height: 34px; }
+  .glassg .gmax { color: #FF5C9A; font-size: 52px; }
+  .toast { height: auto; text-align: center; z-index: 6; transform-origin: 50% 50%; }
+  .toastin { display: inline-block; padding: 22px 54px 24px 46px; border-radius: 999px; background: rgba(255,255,255,0.78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+             box-shadow: 0 10px 34px rgba(0,0,0,0.22), inset 0 0 0 2px rgba(255,255,255,0.6); font-family: "Jua", "NotoKR", sans-serif; font-size: 62px; color: #5A4A52; white-space: nowrap; }
+  .toasticon { display: inline-block; margin-right: 18px; color: #FF7EB3; font-family: "NotoKR", sans-serif; font-weight: 800; font-size: 66px; vertical-align: -2px; }
+  .focusbox { border: 5px solid rgba(255,255,255,0.95); border-radius: 10px; box-sizing: border-box; transform-origin: 50% 50%; }
+  .tagpill { z-index: 6; width: auto; height: auto; padding: 14px 40px 16px 34px; border-radius: 60px; color: #fff; font-size: 64px; font-weight: 900; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.35); -webkit-text-stroke: 2px rgba(0,0,0,0.25); }
+  .tagsmall { font-size: 34px; font-weight: 800; margin-right: 18px; letter-spacing: 0.08em; opacity: 0.9; }
   .adcopy { height: auto; transform-origin: 50% 50%; text-align: center; white-space: nowrap; line-height: 1.3; text-shadow: 0 2px 18px rgba(0,0,0,0.75), 0 0 4px rgba(0,0,0,0.5); }
   .puff { width: auto; height: auto; transform-origin: 50% 70%; }
   .tap { border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0) 70%); transform-origin: 50% 50%; }

@@ -71,50 +71,8 @@
         "ease": "sine.inOut"
        }
       ]
-     },
-     {
-      "id": "vs",
-      "img": "outputs/ep06/ref/vs_text.png",
-      "box": [
-       257,
-       1060,
-       566,
-       430
-      ],
-      "origin": "50% 50%",
-      "init": {
-       "scale": 3.2,
-       "opacity": 0
-      },
-      "keys": [
-       {
-        "t": 0.6,
-        "dur": 0.14,
-        "scale": 1,
-        "opacity": 1,
-        "ease": "power4.in"
-       },
-       {
-        "t": 0.74,
-        "dur": 1.6,
-        "scale": 1.08,
-        "ease": "sine.out"
-       }
-      ]
      }
     ]
-   },
-   "flash": [
-    {
-     "at": 0.6,
-     "dur": 0.3,
-     "peak": 0.7
-    }
-   ],
-   "shake": {
-    "at": 0.74,
-    "amp": 10,
-    "dur": 0.25
    }
   },
   "01": {

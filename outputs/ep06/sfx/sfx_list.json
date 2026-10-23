@@ -9,6 +9,7 @@
    "target_lufs": -17,
    "fade_out": 0.9,
    "measured_lufs": -11.6,
+   "measured_file": "outputs/ep06/bgm/battle100.mp3",
    "gain": -5.4
   },
   {
@@ -19,17 +20,8 @@
    "target_lufs": -24,
    "fade_out": 0.05,
    "measured_lufs": -10.45,
+   "measured_file": "outputs/ep06/sfx/el/whoosh_fast.mp3",
    "gain": -13.6
-  },
-  {
-   "name": "vs_hit",
-   "file": "outputs/ep06/sfx/el/impact_boom.mp3",
-   "at": 0.6,
-   "len": 1.5,
-   "target_lufs": -15,
-   "fade_out": 0.05,
-   "measured_lufs": -26.11,
-   "gain": 11.1
   },
   {
    "name": "whip1",
@@ -39,6 +31,7 @@
    "target_lufs": -21,
    "fade_out": 0.05,
    "measured_lufs": -10.45,
+   "measured_file": "outputs/ep06/sfx/el/whoosh_fast.mp3",
    "gain": -10.6
   },
   {
@@ -49,6 +42,7 @@
    "target_lufs": -21,
    "fade_out": 0.05,
    "measured_lufs": -10.45,
+   "measured_file": "outputs/ep06/sfx/el/whoosh_fast.mp3",
    "gain": -10.6
   },
   {
@@ -59,6 +53,7 @@
    "target_lufs": -21,
    "fade_out": 0.3,
    "measured_lufs": -7.59,
+   "measured_file": "outputs/ep06/sfx/el/crowd_ooh.mp3",
    "gain": -13.4
   },
   {
@@ -69,6 +64,7 @@
    "target_lufs": -21,
    "fade_out": 0.05,
    "measured_lufs": -10.45,
+   "measured_file": "outputs/ep06/sfx/el/whoosh_fast.mp3",
    "gain": -10.6
   },
   {
@@ -79,6 +75,7 @@
    "target_lufs": -20,
    "fade_out": 0.05,
    "measured_lufs": -4.23,
+   "measured_file": "outputs/ep11/sfx/el/record_scratch.mp3",
    "gain": -15.8
   },
   {
@@ -89,6 +86,7 @@
    "target_lufs": -18,
    "fade_out": 0.05,
    "measured_lufs": -4.11,
+   "measured_file": "outputs/ep06/sfx/el/air_horn.mp3",
    "gain": -13.9
   },
   {
@@ -99,6 +97,7 @@
    "target_lufs": -20,
    "fade_out": 0.3,
    "measured_lufs": -7.59,
+   "measured_file": "outputs/ep06/sfx/el/crowd_ooh.mp3",
    "gain": -12.4
   },
   {
@@ -109,6 +108,7 @@
    "target_lufs": -19,
    "fade_out": 0.8,
    "measured_lufs": -9.69,
+   "measured_file": "outputs/ep06/sfx/el/crowd_cheer.mp3",
    "gain": -9.3
   },
   {

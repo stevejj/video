@@ -19,6 +19,7 @@ W, H, FPS = 1080, 1920, 24
 NOTO = os.path.join(ROOT, 'assets/fonts/NotoSansKR-Variable.ttf'); JUA = os.path.join(ROOT, 'assets/fonts/Jua-Regular.ttf')
 COL = {'misun': '#FF9CC2', 'changsu': '#8FB0E8', 'white': '#FFFFFF', 'yellow': '#FFD84A'}
 TITLE = [[('인형뽑기방이 망하지 않는 이유', 'white')], [('(계수정 빙의한 미순)', 'yellow')]]   # 제목 2줄(사용자 2026-10-23)
+CHAN_Y = 1600   # v4(2026-10-23 사용자): 영상이 시작하면 채널명은 하단(자막 아래). 썸네일 시작 화면에선 가운데 그대로(thumb_intro.py)
 ZOOM_STEPS = [1.0, 1.28, 1.6, 1.95]     # 나는 / 실패하지 / 않습니다 → 3단계
 
 
@@ -94,6 +95,14 @@ def zoom(frame, s, cx, cy):
     return cv2.warpAffine(frame, M, (W, H), flags=cv2.INTER_LINEAR)
 
 
+def badge_img(text, d=104):
+    """알림 숫자 배지: 노란 동그라미(₩ 아이콘과 같은 색) + 갈색 굵은 숫자, 흰 테두리."""
+    f = font(46 if len(text) <= 3 else 38, 800); im = Image.new('RGBA', (d + 12, d + 12), (0, 0, 0, 0)); dr = ImageDraw.Draw(im)
+    dr.ellipse([2, 2, d + 9, d + 9], fill='#FFFFFF'); dr.ellipse([8, 8, d + 3, d + 3], fill='#FFD84A')
+    dr.text(((d + 12) / 2, (d + 12) / 2 + 2), text, font=f, fill='#5A4A52', anchor='mm')
+    return np.array(im)
+
+
 def phone_frames(n, t_list, total_bg):
     """휴대폰 잠금화면: 시계 + 알림 카드(최근 4개 보이고 아래 '+N'), 끝에 '총 25,000원'."""
     bg = np.zeros((H, W, 3), np.uint8)
@@ -107,7 +116,7 @@ def phone_frames(n, t_list, total_bg):
     d.text((132, 30), '결제 승인  1,000원', font=f1, fill='#222222'); d.text((132, 90), '인형뽑기 · 방금', font=f2, fill='#777777')
     card = np.array(card)
     total = text_img([[('총 ', 'white'), ('25,000원', 'yellow')]], 130, stroke=12)
-    out = []
+    out = []; badges = {}
     for i in range(n):
         t = i / FPS; fr = bg.copy(); put(fr, big, W / 2, 730); put(fr, date, W / 2, 905)
         k = sum(1 for x in t_list if x <= t)   # 지금까지 온 알림 수
@@ -115,8 +124,14 @@ def phone_frames(n, t_list, total_bg):
             age = t - t_list[k - 1 - j]; slide = ease(age / 0.12) if j == 0 else 1.0
             y = 1020 + j * 170 - (1 - slide) * 60
             put(fr, card, W / 2, y, alpha=slide if j == 0 else (1.0 - 0.18 * j))
-        if k > 4:
-            put(fr, chip_img(f'+{k - 4}개 더', 44), W / 2, 1020 + 4 * 170)
+        if k > 4:   # v4(사용자: 가운데 아래 '+N개 더'가 채널명 아래라 어색): 맨 위 카드 오른쪽 위 숫자 배지 + 맨 아래 카드 밑 쌓인 카드 가장자리
+            for e_ in (1, 2):
+                ew = 920 - 60 * e_; ey = 1020 + 3 * 170 + 75 + 10 * e_
+                cv2.rectangle(fr, (int(W / 2 - ew / 2), ey - 6), (int(W / 2 + ew / 2), ey + 4), (238, 232, 236) if e_ == 1 else (215, 205, 212), -1, lineType=cv2.LINE_AA)
+            if k not in badges:
+                badges[k] = badge_img(f'+{k - 4}')
+            pop = 1.0 + 0.3 * (1 - ease((t - t_list[k - 1]) / 0.18))
+            put(fr, badges[k], W / 2 + 445, 1020 - 70, scale=pop)
         if t >= total_bg:
             a = ease((t - total_bg) / 0.25); put(fr, total, W / 2, 1300, alpha=a, scale=0.7 + 0.3 * a)
         out.append(fr)
@@ -302,7 +317,9 @@ def main():
                 if s['chip'] not in chips:
                     chips[s['chip']] = chip_img(s['chip'], 72)
                 put(fr, chips[s['chip']], W / 2, 700, alpha=ease(lt / 0.12))
-            put(fr, title, W / 2, 360); put(fr, chan, W / 2, 530)
+            put(fr, title, W / 2, 360)
+            if not s.get('phone'):   # 휴대폰 알림 화면은 카드가 아래까지 내려와 채널명과 겹침 → 이 장면만 채널명 뺌
+                put(fr, chan, W / 2, CHAN_Y)
             for sb in subs:
                 if sb['t0'] <= tt < sb['t1']:
                     im = sub_img(sb); put(fr, im, W / 2, H - 430 - im.shape[0] / 2)
