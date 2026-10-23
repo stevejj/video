@@ -52,6 +52,18 @@
    "prompt": "Comic anime fire burst: a quick whoosh as flames ignite and roar for a moment, energetic, no voice",
    "duration": 1.8,
    "loop": false
+  },
+  {
+   "name": "bt_connect",
+   "prompt": "Short clean bluetooth device connected chime, two quick rising digital tones, modern UI sound, no voice",
+   "duration": 0.8,
+   "loop": false
+  },
+  {
+   "name": "bt_switch",
+   "prompt": "Short soft digital swoosh with tiny beeps, like a device switching connection, modern UI sound, no voice",
+   "duration": 0.9,
+   "loop": false
   }
  ]
 }

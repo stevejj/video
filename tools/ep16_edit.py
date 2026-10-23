@@ -101,6 +101,43 @@ def burn(win, t, k):
     return np.clip(out, 0, 255).astype(np.uint8)
 
 
+def bt_card(k):
+    """블루투스 전환 카드(v8 사용자: PC → 휴대폰으로 연결 바꾸는 효과). k: 0~1 PC→휴대폰 진행, 1이면 '연결됨'."""
+    Wc, Hc = 640, 200; im = Image.new('RGBA', (Wc, Hc), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.rounded_rectangle([0, 0, Wc - 1, Hc - 1], radius=34, fill=(30, 34, 44, 235), outline=(70, 110, 230, 255), width=3)
+    # 블루투스 표시(룬 모양)
+    bx, by = 52, 58; blue = '#3B7BFF'
+    d.ellipse([bx - 30, by - 30, bx + 30, by + 30], fill=blue)
+    pts = [(bx - 11, by - 10), (bx + 11, by + 10), (bx, by + 20), (bx, by - 20), (bx + 11, by - 10), (bx - 11, by + 10)]
+    d.line(pts, fill='white', width=4, joint='curve')
+    d.text((96, 58), '키보드 연결 전환', font=font(36, 800), fill='white', anchor='lm')
+    done = k >= 1.0
+    # PC 아이콘
+    pc_on = not done and k < 0.15; ph_on = done
+    cpc = '#FFFFFF' if pc_on else '#7D8494'; cph = '#3B7BFF' if ph_on else '#7D8494'
+    d.rounded_rectangle([60, 112, 136, 160], radius=6, outline=cpc, width=5); d.rectangle([90, 160, 106, 172], fill=cpc); d.rectangle([76, 172, 120, 177], fill=cpc)
+    d.text((150, 142), 'PC', font=font(32, 800), fill=cpc, anchor='lm')
+    # 휴대폰 아이콘
+    d.rounded_rectangle([452, 104, 484, 178], radius=8, outline=cph, width=5); d.ellipse([464, 166, 472, 174], fill=cph)
+    d.text((498, 142), '휴대폰', font=font(32, 800), fill=cph, anchor='lm')
+    # 가운데 점들이 PC → 휴대폰으로 흐름
+    for i in range(6):
+        x = 230 + i * 36; on = (not done) and (i <= int(k * 6) and i >= int(k * 6) - 2)
+        d.ellipse([x - 7, 135, x + 7, 149], fill=('#3B7BFF' if on else ('#3B7BFF' if done else '#4A5060')))
+    if done:
+        d.rounded_rectangle([396, 18, 620, 98], radius=24, fill='#2FBF71'); d.text((508, 58), '연결됨 ✓', font=font(32, 800), fill='white', anchor='mm')
+    return np.array(im)
+
+
+def bt_glow(img, k, c=(607, 560)):
+    """휴대폰 둘레 파란 빛 고리(연결 순간 퍼짐). k 0~1."""
+    out = img.astype(np.float32); ring = np.zeros(img.shape[:2], np.float32)
+    cv2.ellipse(ring, c, (int(70 + 90 * k), int(130 + 110 * k)), 0, 0, 360, 1.0, 10)
+    ring = cv2.GaussianBlur(ring, (0, 0), 9)[..., None] * (1 - k)
+    out = out * (1 - ring) + np.array([255, 140, 50], np.float32) * ring
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+
 def fitw(rgba, maxw):
     """글씨 그림이 maxw보다 넓으면 비율 그대로 줄임(긴 제목·자막)."""
     h, w = rgba.shape[:2]
@@ -225,13 +262,13 @@ def main():
         dict(n='S1 월', alt=[('wide', 1.0), ('keys', 0.8), ('mon', 0.8)], day='월'),
         dict(n='S1 화', alt=[('keys', 0.7), ('mon', 0.6), ('keys', 0.5)], day='화'),
         dict(n='S1 수', alt=[('mon', 0.4), ('keys', 0.35), ('mon', 0.35), ('keys', 0.3), ('mon', 0.3)], day='수'),
-        dict(n='S1 목', alt=[('keys', 0.2), ('mon', 0.2)] * 5, day='목', cap='(나 열시미 해따! 진짜로)', cap_at=0.4, burn=0.4),
-        dict(n='S2 4:52', clock='(금) 오후 4:52', len=1.8),   # v3: 괄호 자막 뺌(사용자)
+        dict(n='S1 목', alt=[('keys', 0.2), ('mon', 0.2)] * 6, day='목', cap='(나 열시미 해따! 진짜로)', cap_at=0.4, burn=0.4),
+        dict(n='S2 4:52', clock='(금) 오후 4:52', len=2.2),   # v3: 괄호 자막 뺌(사용자)
         dict(n='S3 척', still='wide', len=2.8, push=0.12, to=(700, 520), cap='(타다다각다다다다가다닥)'),
-        dict(n='S4 키보드', still='keys', len=2.0, push=0.3, to=(607, 660), cap='(흐흐흐흐흐 일하는거같징?)'),
+        dict(n='S4 키보드', still='keys', len=3.0, push=0.3, to=(607, 660), bt=True, cap='(흐흐흐흐흐 일하는거같징?)', cap_at=1.7),
         dict(n='S5a 몰래', tap=True, len=2.2, zoom=1.3, to=(607, 720), cap='(주말 뭐할지 고민중)'),
         dict(n='S5b 대화', chat=chat1, appear=[0.25, 1.35, 2.6, 3.7], len=5.0),
-        dict(n='S6 5:38', clock='(금) 오후 5:38', len=1.6, cap='(곧 퇴근이다!!!!!!)'),
+        dict(n='S6 5:38', clock='(금) 오후 5:38', len=2.3, cap='(곧 퇴근이다!!!!!!)'),
         dict(n='S7 속마음', still='O4', len=3.4, eye=True),
         dict(n='S8a 꿈', dclip='D1', t0=6.8, len=3.2, cap='(주말상상)'),
         dict(n='S8b 꿈 원샷', dclip='D2', t0=0.6, len=2.6, cap='(주말상상)'),
@@ -257,6 +294,10 @@ def main():
     words = ['(제발...)', '(제발... 조용히...)', '(제발... 조용히... 넘어가자....)']
     for i, w in enumerate(words):
         subs.append(dict(text=w, sp='changsu', t0=at7 + W7[i], t1=(at7 + W7[i + 1]) if i < 2 else s7['at'] + s7['len']))
+    # v8 혼잣말(속마음 울림, 사용자 고름): 컷, 장면, 장면 안 시작
+    for cut, sn, off in (('i1', 'S1 월', 0.3), ('i2', 'S1 목', 0.3), ('i3', 'S2 4:52', 0.4), ('i5', 'S5a 몰래', 0.4), ('i6', 'S6 5:38', 0.3)):
+        sg = S[sn]; a0 = sg['at'] + off; pl.append({'file': L[cut]['file'], 'at': round(a0, 3)})
+        subs.append(dict(text=L[cut]['subtitle'], sp='changsu', t0=a0, t1=sg['at'] + sg['len'], seg=sn))
     s11 = S['S11 끄아']; pl.append({'file': L['11']['file'], 'at': round(s11['at'] + 0.25, 3)})
 
     def fx(name, file, at, ln, lufs, **k):
@@ -277,6 +318,9 @@ def main():
     for k in ('S2 4:52', 'S6 5:38', 'S9 5:39'):
         fx('whoosh_' + k, 'outputs/ep11/sfx/el/whoosh_soft.mp3', S[k]['at'] - 0.12, 0.8, -24)
         fx('tick_' + k, el + 'clock_tick.mp3', S[k]['at'] + 0.05, 1.0, -18)
+    sb4 = S['S4 키보드']
+    fx('bt_switch', el + 'bt_switch.mp3', sb4['at'] + 0.45, 0.9, -24)
+    fx('bt_connect', el + 'bt_connect.mp3', sb4['at'] + 1.35, 0.8, -20)
     sg = S['S5a 몰래']
     for j, tp in enumerate(TAPS):
         if sg['at'] <= tp < sg['at'] + sg['len']:
@@ -370,7 +414,15 @@ def main():
                 pk = ease(lt / s['len']) if s.get('to') else lt / s['len']; push = 1.0 + s.get('push', 0) * pk
                 to = s.get('to'); h_, w_ = img[s['still']].shape[:2]
                 cx_, cy_ = (w_ / 2 + (to[0] - w_ / 2) * pk, h_ / 2 + (to[1] - h_ / 2) * pk) if to else (None, None)
-                win = crop_win(img[s['still']], push, cx_, cy_)
+                src = img[s['still']]
+                if s.get('bt'):   # 블루투스 전환: 0.2 카드 → 0.5~1.3 PC→휴대폰 → 1.35 연결됨 + 휴대폰 파란 고리
+                    if 1.35 <= lt < 2.1:
+                        src = bt_glow(src, (lt - 1.35) / 0.75)
+                win = crop_win(src, push, cx_, cy_)
+                if s.get('bt') and 0.2 <= lt < 2.6:
+                    kk = 0.0 if lt < 0.5 else min(1.0, (lt - 0.5) / 0.85) if lt < 1.35 else 1.0
+                    card = txt(('bt', round(kk * 12) if kk < 1 else 99), lambda: bt_card(kk))
+                    put(win, card, WW / 2, 150, alpha=min(ease((lt - 0.2) / 0.15), ease((2.6 - lt) / 0.25)), scale=1.0 + 0.15 * (1 - ease((lt - 0.2) / 0.15)))
             if shake != (0, 0):
                 win = cv2.warpAffine(win, np.float32([[1, 0, shake[0]], [0, 1, shake[1]]]), (WW, WH), borderMode=cv2.BORDER_REPLICATE)
             if s.get('burn') is not None and lt >= s['burn']:   # 목: 불꽃 + 집중선 + 흔들림
@@ -385,7 +437,8 @@ def main():
                 put(win, cimg, WW / 2, WH - 60, alpha=ease((lt - s.get('cap_at', 0)) / 0.15), scale=pop)
             for sb in subs:
                 if sb['t0'] <= tt < sb['t1']:
-                    put(win, txt(('sub', sb['text']), lambda: text_img([[(sb['text'], sb['sp'])]], 52, stroke=7)), WW / 2, WH - 60)
+                    up = s.get('cap') and lt >= s.get('cap_at', 0)   # 괄호 자막이 있으면 그 위에
+                    put(win, txt(('sub', sb['text']), lambda: fitw(text_img([[(sb['text'], sb['sp'])]], 52, stroke=7), WW - 60)), WW / 2, WH - 140 if up else WH - 60)
             if s.get('scream') and lt >= 0.25:
                 put(win, txt('scream', lambda: text_img([[('끄아아아아아아!!!', 'changsu')]], 96, stroke=10)), WW / 2 + shake[0], WH - 90, scale=1.0 + 0.15 * (1 - ease((lt - 0.25) / 0.2)))
             fr = canvas0.copy(); fr[WY:WY + WH] = win

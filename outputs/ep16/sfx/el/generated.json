@@ -71,5 +71,21 @@
   "loop": false,
   "file": "outputs/ep16/sfx/el/fire_burst.mp3",
   "result": "ok 29300B"
+ },
+ {
+  "name": "bt_connect",
+  "prompt": "Short clean bluetooth device connected chime, two quick rising digital tones, modern UI sound, no voice",
+  "duration": 0.8,
+  "loop": false,
+  "file": "outputs/ep16/sfx/el/bt_connect.mp3",
+  "result": "ok 13835B"
+ },
+ {
+  "name": "bt_switch",
+  "prompt": "Short soft digital swoosh with tiny beeps, like a device switching connection, modern UI sound, no voice",
+  "duration": 0.9,
+  "loop": false,
+  "file": "outputs/ep16/sfx/el/bt_switch.mp3",
+  "result": "ok 15089B"
  }
 ]
