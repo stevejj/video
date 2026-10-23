@@ -152,7 +152,8 @@ def main():
     T = json.load(open(os.path.join(ROOT, 'outputs/ep07/text_overlay.json')))
     # 제목(사용자 2026-10-22 재정정): "초겨울 포차의 계절 / 맥주광고 따라하기", 노란색 = "맥주광고"
     # v11(2026-10-23 사용자): 시작 화면과 같은 한 줄 "맥주광고 따라하기"(노란색 = 맥주광고)
-    T['title']['lines'] = [{'spans': [{'text': '맥주광고', 'color': '#FFD84A'}, {'text': ' 따라하기', 'color': '#FFFFFF'}]}]
+    # v18(2026-10-23 사용자): "월급 받은 부부의 / 흔한 일상"(노란색 = 흔한 일상), 시작 화면도 같음
+    T['title']['lines'] = [{'text': '월급 받은 부부의', 'color': '#FFFFFF'}, {'text': '흔한 일상', 'color': '#FFD84A'}]
     # v2: 광고 구간 대사는 광고 카피(hf_fx copy)로, 아래 자막은 현실 복귀 대사만
     T['subtitles'] = [{'cut': c, 'text': L[c]['subtitle'], 'speaker': L[c]['speaker'], 'start': round(a0, 2), 'end': round(a1, 2), 'x': 0.5} for c, a0, a1 in subs if c == 'L8']
     T['channel']['center_y'] = CHAN_Y

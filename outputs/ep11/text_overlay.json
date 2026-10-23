@@ -2,16 +2,12 @@
  "title": {
   "lines": [
    {
-    "spans": [
-     {
-      "text": "맥주광고",
-      "color": "#FFD84A"
-     },
-     {
-      "text": " 따라하기",
-      "color": "#FFFFFF"
-     }
-    ]
+    "text": "월급 받은 부부의",
+    "color": "#FFFFFF"
+   },
+   {
+    "text": "흔한 일상",
+    "color": "#FFD84A"
    }
   ],
   "size": 104,
