@@ -132,3 +132,5 @@ Wings keep their normal short rounded length and never stretch. Heads keep their
   - 사용자 판단 대기(통과 → 나머지 진행 / 재시도 1회: "narrowing her eyes" 빼고 부리 더 작게).
 - **C2 눈 고침(0원, 2026-10-23, 사용자: "눈은 Kling 안 쓰고 무료로 수정 가능하지 않아?")**: `tools/eye_patch.py` — 첫 프레임의 미순 눈 둘레(타원 38x34px)를 머리 따라가기(템플릿 매칭)로 매 프레임 붙임 → 윙크 사라지고 눈 크기 그대로. `outputs/ep14/clips/C2_v1_eyefix.mp4` (깜빡임도 사라짐). 부리 크게 벌어짐(1~2s)은 그대로.
 - 이후 입모양 클립(C1·C4·C5·C7): 눈 모양을 바꾸는 표현("narrowing her eyes" 등) 쓰지 않음, 부리 "only very slightly" 유지. 눈이 바뀌면 eye_patch로 0원 수정.
+- **C1 v1**(45) 통과: qa 볼터치·멈춤 ✓, 소리 상관 0.98. 미순이 가게 보다가 창수 쪽으로 돌아 웃으며 말함, 머리색 은회색 유지, 걷지 않음.
+- **C3 v1**(30) 통과: 집게 내려가 잡고 → 들어 올림 → 오리가 더미 위로 떨어짐. qa "볼터치 의심"은 노란 오리(캐릭터 없음, 오탐).

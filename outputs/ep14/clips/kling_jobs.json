@@ -12,8 +12,28 @@
   "c7": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/agent_upload/1792722427/6cDbqOHSAm/c7.mp3?x-kcdn-pid=112372"
  },
  "jobs": {
-  "C2": {"id": "AQSlCnumRCuPo-DHndolqiIl8toUd2BiB-yDrNBxEg73px2HotoEI3z-B9woKCBwyr7E3bOr", "credits": 45, "status": "done"},
-  "C1": {"id": "AfYH6rTDGjBXy2Q2HIkJMrmMknwezo5G140pU8Hu3o60245hknCQFx8ZU0SuByacrZOsQRg9", "credits": 45},
-  "C3": {"id": "AVWcAMiL-6qWAcPV2-Q7ajIzwcjpn9C5wLA5iIDRQm_J4S1TrAWOtAT-QkL_mQA4kSYyhc1D", "credits": 30}
+  "C2": {
+   "id": "AQSlCnumRCuPo-DHndolqiIl8toUd2BiB-yDrNBxEg73px2HotoEI3z-B9woKCBwyr7E3bOr",
+   "credits": 45,
+   "status": "done"
+  },
+  "C1": {
+   "id": "AfYH6rTDGjBXy2Q2HIkJMrmMknwezo5G140pU8Hu3o60245hknCQFx8ZU0SuByacrZOsQRg9",
+   "credits": 45,
+   "status": "done"
+  },
+  "C3": {
+   "id": "AVWcAMiL-6qWAcPV2-Q7ajIzwcjpn9C5wLA5iIDRQm_J4S1TrAWOtAT-QkL_mQA4kSYyhc1D",
+   "credits": 30,
+   "status": "done"
+  },
+  "C4": {
+   "id": "AQgrqJfkqfmJl5s6N4hvxLeLp7r3lFsGRcRm0vTpoexMHVPaG3XOTBHDbl-vaPxn--ml5Unl",
+   "credits": 45
+  },
+  "C5": {
+   "id": "AVIEjGXazyhbN5m7xFmQUwt8XxthypsqfrNj8SkvHtMWMELYuanjt8vclgeel03c3UVW0Rl_",
+   "credits": 45
+  }
  }
 }
