@@ -29,11 +29,21 @@
   },
   "C4": {
    "id": "AQgrqJfkqfmJl5s6N4hvxLeLp7r3lFsGRcRm0vTpoexMHVPaG3XOTBHDbl-vaPxn--ml5Unl",
-   "credits": 45
+   "credits": 45,
+   "status": "done"
   },
   "C5": {
    "id": "AVIEjGXazyhbN5m7xFmQUwt8XxthypsqfrNj8SkvHtMWMELYuanjt8vclgeel03c3UVW0Rl_",
-   "credits": 45
+   "credits": 45,
+   "status": "done"
+  },
+  "C6": {
+   "id": "AVsz0fzKinOhREEQiZzxn1SofviBAmg2f_XFlpDKny2y2T62YA2xixfze_1ycgH1wDnFazWs",
+   "credits": 18
+  },
+  "C7": {
+   "id": "AYhK78nmSNfIAtHOnkZwM3DuWVlorE6FpjqmXj5zRZ9bci1PIXHmNjuyIzAJEaeLXvEn-OdS",
+   "credits": 54
   }
  }
 }
