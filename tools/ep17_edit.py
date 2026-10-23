@@ -21,6 +21,8 @@ SPK_X = {'misun': 0.66, 'changsu': 0.35}   # 그림 폭 비율, 말하는 쪽 �
 FACE_Y = 0.50                              # 두 얼굴 높이(그림 높이 비율)
 BASE = (1.25, 0.5, 0.56)                   # 기본 화면: 두 펭귄이 작게 보여서 1.25배, 조금 아래 중심(v1)
 # 그림마다 펭귄 크기가 달라 컷이 튐 → 그림별 기본 화면(배수, 중심 x, 중심 y)으로 E1 크기에 맞춤(v1 검수)
+# v2(사용자: 버럭 효과는 미순 얼굴에 맞춰야) — 그림별 얼굴 중심·머리 반지름(화면 비율, FRAME 기준)
+FACE = {'E2': {'misun': (0.66, 0.49, 0.22, 0.11)}, 'E3': {'misun': (0.84, 0.51, 0.2, 0.11)}, 'E5': {'changsu': (0.33, 0.50, 0.22, 0.11), 'misun': (0.66, 0.50, 0.2, 0.1)}}
 FRAME = {'E1': (1.25, 0.5, 0.56), 'E2': (1.56, 0.52, 0.55), 'E3': (1.45, 0.52, 0.55), 'E5': (1.25, 0.5, 0.56), 'K3': (1.2, 0.5, 0.56), 'K5': (1.12, 0.5, 0.56)}
 K3F, K5F = 'K3_v1.mp4', 'K5_v1_fix.mp4'   # K5: 1.5s 뒤 미순 반대쪽 날개 끝이 남색으로 보여 지움(0원)
 CLIP_T0 = {'K3': 1.3, 'K5': 1.8}           # 16칸 검수: K3 1.3s부터 머리 기댐(앞은 눈 동그래짐), K5 1.0~1.3s 날개 남색 → 1.8s부터
@@ -73,6 +75,32 @@ def heart_img(size, col=(255, 120, 170)):
     pts = np.stack([(x / 34 + 0.5) * size, (y / 34 + 0.52) * size], 1).astype(np.int32)
     cv2.fillPoly(im, [pts], (col[2], col[1], col[0], 235), cv2.LINE_AA)
     return im[..., [2, 1, 0, 3]]
+
+
+def lights_off(fr, fc, k):
+    """버럭(v2): 방 불이 꺼진 듯 어둡고 푸르게 + 말하는 쪽 얼굴에만 차가운 조명. 카메라는 그대로."""
+    f = fr.astype(np.float32); g = cv2.cvtColor(fr, cv2.COLOR_BGR2GRAY).astype(np.float32)[..., None]
+    dark = (f * 0.5 + g * 0.5) * np.array([1.12, 0.92, 0.78]) * 0.42
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32); cx, cy = fc[0] * W, fc[1] * H
+    spot = np.exp(-(((xx - cx) / (fc[2] * 1.3 * W)) ** 2 + ((yy - cy) / (fc[3] * 1.6 * H)) ** 2))[..., None]   # 얼굴 중심 조명
+    lit = (f * 0.6 + g * 0.4) * np.array([1.12, 1.0, 0.9])
+    out = dark * (1 - spot) + lit * spot
+    return np.clip(f * (1 - k) + out * k, 0, 255).astype(np.uint8)
+
+
+def aura(fr, t, k, fc):
+    """버럭(v2): 미순 머리 둘레에서 검보라 기운이 불꽃처럼 위로 피어오름(만화 분노 오라). 얼굴 위치(fc)에 맞춤, 얼굴은 안 가림."""
+    sh, sw = H // 8, W // 8; rng = np.random.default_rng(int(t * 14))
+    n = cv2.resize(rng.random((4, 16)).astype(np.float32), (sw, sh), interpolation=cv2.INTER_CUBIC)       # 세로로 긴 불꽃 혀
+    n2 = cv2.resize(np.random.default_rng(3).random((30, 16)).astype(np.float32), (sw, sh * 3), interpolation=cv2.INTER_CUBIC)
+    off = int(t * 60) % (sh * 2); n = 0.5 * n + 0.5 * n2[off:off + sh]
+    yy, xx = np.mgrid[0:sh, 0:sw].astype(np.float32); cx, cy = fc[0] * sw, fc[1] * sh
+    d = np.sqrt(((xx - cx) / (fc[2] * sw)) ** 2 + ((yy - cy) / (fc[3] * sh)) ** 2)   # 1 = 머리 둘레
+    ring = np.clip((d - 1.0) / 0.12, 0, 1) * np.clip((1.9 - d) / 0.5, 0, 1) * (yy < cy + 0.04 * sh)   # 머리 바깥 위·옆
+    a = np.clip(ring * (n * 1.7 - 0.5), 0, 1) * k
+    a = cv2.GaussianBlur(cv2.resize(a, (W, H), interpolation=cv2.INTER_CUBIC), (0, 0), 6)[..., None] * 0.9
+    col = np.array([80, 15, 60], np.float32)   # BGR 검보라
+    return np.clip(fr.astype(np.float32) * (1 - a) + col * a, 0, 255).astype(np.uint8)
 
 
 def tone(fr, mood, k):
@@ -131,6 +159,7 @@ def main():
     for s in segs:
         if s['mood'] == 'cold':
             fx('hit_' + s['n'], 'outputs/ep09/sfx/el/dramatic_hit.mp3', s['at'], 0.9, -20, fade_out=0.3)
+            fx('chill_' + s['n'], 'outputs/ep17/sfx/el/chill.mp3', s['at'], 1.5, -24, fade_out=0.4)   # v2: 불 꺼지듯 싸해지는 소리
             dips.append({'at': round(s['at'], 2), 'len': round(s['len'], 2), 'db': -40})
         elif s['mood'] == 'none':
             fx('scratch', 'outputs/ep11/sfx/el/record_scratch.mp3', s['at'] - 0.05, 0.8, -22)
@@ -166,25 +195,23 @@ def main():
                 k = int((tt - ln['at']) * FPS)
                 if 0 <= k < len(envs[ln['cut']]):
                     spk, e = ln['sp'], float(envs[ln['cut']][k])
-            sc, fx_, fy_ = FRAME[s['src']]
-            if s['mood'] == 'cold':   # 톡 확대(버럭 순간)
-                sc = 1.0 + 0.1 * ease(lt / 0.08)
-            if s['zoom']:
-                zk = ease(min(1, lt / 0.5)); sc = sc + (0.35 if s['zoom'] == 'changsu' else 0.22) * zk
-                fx_ = fx_ + (SPK_X[s['zoom']] - fx_) * zk; fy_ = FRAME[s['src']][2] + (FACE_Y - FRAME[s['src']][2]) * zk
-            if spk and s['src'] not in clips:   # 통통: 말하는 쪽으로 아주 살짝
-                sc += 0.018 * e; fx_ += (SPK_X[spk] - 0.5) * 0.06
-            fr = view(src, sc, fx_, fy_)
-            if s['mood'] == 'cold' and lt < 0.22:
-                j = int(lt * FPS); fr = cv2.warpAffine(fr, np.float32([[1, 0, [16, -14, 10, -8, 5, -3][min(j, 5)]], [0, 1, 0]]), (W, H), borderMode=cv2.BORDER_REPLICATE)
-            fr = tone(fr, s['mood'], min(1.0, lt / 0.12))
+            # v2(사용자): 카메라 고정 — 확대·흔들림·통통 모두 뺌. 그림별 기본 화면만(크기 맞춤)
+            fr = view(src, *FRAME[s['src']])
+            if s['mood'] in ('cold', 'none'):   # 불이 탁 꺼지듯 어두워지고 말하는 쪽만 차가운 조명
+                fc = FACE[s['src']]['misun' if s['mood'] == 'cold' else 'changsu']
+                fr = lights_off(fr, fc, min(1.0, lt / 0.1))
+                if s['mood'] == 'cold':
+                    fr = aura(fr, tt, min(1.0, lt / 0.25), fc)
+            else:
+                fr = tone(fr, s['mood'], min(1.0, lt / 0.12))
             if s['mood'] == 'sweet':   # 하트가 아래에서 피어오름
                 for hx, ph, hi, sp in HP:
                     u = (lt * 0.35 * sp + ph) % 1.0
                     put(fr, hearts[hi], hx * W + 30 * np.sin(u * 6 + ph * 9), H * (0.33 - 0.19 * u), alpha=min(1, u * 5) * (1 - u) * 0.85)
             put(fr, title, W / 2, 250); put(fr, chan, W / 2, 1820)
             for ln in s['lines']:
-                if ln['at'] - 0.05 <= tt < (ln['at'] + ln['len'] + 0.35 if ln is not s['lines'][-1] else s['end']):
+                li = s['lines'].index(ln); nxt = s['lines'][li + 1]['at'] - 0.05 - 1 / FPS if li + 1 < len(s['lines']) else s['end']
+                if ln['at'] - 0.05 <= tt < nxt:   # v2: 다음 줄이 나오면 바로 내림(겹침 수정)
                     key = ('sub', ln['cut'])
                     if key not in cache:
                         parts = [x.strip() + ('?' if i < ln['text'].count('? ') else '') for i, x in enumerate(ln['text'].split('? '))]   # 물음표 두 문장은 두 줄

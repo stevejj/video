@@ -1,5 +1,5 @@
 {
- "note": "ep17 v1 (tools/ep17_edit.py)",
+ "note": "ep17 v2 (tools/ep17_edit.py)",
  "items": [
   {
    "name": "sparkle_1 편안",
@@ -23,6 +23,17 @@
    "gain": -0.8
   },
   {
+   "name": "chill_2 핸드폰만",
+   "file": "outputs/ep17/sfx/el/chill.mp3",
+   "at": 3.79,
+   "len": 1.5,
+   "target_lufs": -24,
+   "fade_out": 0.4,
+   "measured_lufs": -10.88,
+   "measured_file": "outputs/ep17/sfx/el/chill.mp3",
+   "gain": -13.1
+  },
+  {
    "name": "sparkle_3 못살아",
    "file": "outputs/ep01/sfx/el/sparkle.mp3",
    "at": 7.48,
@@ -42,6 +53,17 @@
    "measured_lufs": -19.19,
    "measured_file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
    "gain": -0.8
+  },
+  {
+   "name": "chill_4 쉰내",
+   "file": "outputs/ep17/sfx/el/chill.mp3",
+   "at": 10.07,
+   "len": 1.5,
+   "target_lufs": -24,
+   "fade_out": 0.4,
+   "measured_lufs": -10.88,
+   "measured_file": "outputs/ep17/sfx/el/chill.mp3",
+   "gain": -13.1
   },
   {
    "name": "sparkle_5 귀여워",
@@ -65,6 +87,17 @@
    "gain": -0.8
   },
   {
+   "name": "chill_6 못알아들어",
+   "file": "outputs/ep17/sfx/el/chill.mp3",
+   "at": 14.79,
+   "len": 1.5,
+   "target_lufs": -24,
+   "fade_out": 0.4,
+   "measured_lufs": -10.88,
+   "measured_file": "outputs/ep17/sfx/el/chill.mp3",
+   "gain": -13.1
+  },
+  {
    "name": "sparkle_7 여보",
    "file": "outputs/ep01/sfx/el/sparkle.mp3",
    "at": 18.62,
@@ -84,6 +117,17 @@
    "measured_lufs": -19.19,
    "measured_file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
    "gain": -0.8
+  },
+  {
+   "name": "chill_8 입이뚫렸는데",
+   "file": "outputs/ep17/sfx/el/chill.mp3",
+   "at": 21.95,
+   "len": 1.5,
+   "target_lufs": -24,
+   "fade_out": 0.4,
+   "measured_lufs": -10.88,
+   "measured_file": "outputs/ep17/sfx/el/chill.mp3",
+   "gain": -13.1
   },
   {
    "name": "scratch",
