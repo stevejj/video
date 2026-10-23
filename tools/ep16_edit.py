@@ -76,8 +76,14 @@ def clock_card(text):
     fr = np.zeros((WH, WW, 3), np.uint8); fr[:] = (40, 30, 30)
     for y in range(WH):
         fr[y] = (int(48 + 30 * y / WH), int(30 + 15 * y / WH), int(34 + 10 * y / WH))
-    put(fr, text_img([[(text, 'white')]], 120, weight=300, stroke=0), WW / 2, WH / 2 - 30)
-    return fr
+    return fr   # 시각 글씨는 그릴 때 따로(톡 튀어나오게)
+
+
+def clock_text(text):
+    """'(금) 오후 5:38' → 위 작은 흰 '(금) 오후', 아래 큰 노랑 시각(사용자 v1: 시계가 자막보다 눈에 안 들어옴)."""
+    day, tm = text.rsplit(' ', 1)
+    return text_img([[(day, 'white')], [(tm, 'yellow')]], 0, stroke=0) if False else (
+        text_img([[(day, 'white')]], 70, weight=700, stroke=6), text_img([[(tm, 'yellow')]], 230, weight=900, stroke=12))
 
 
 def chat_panel(msgs, t, appear):
@@ -130,12 +136,12 @@ def main():
     TOAST_SRC = (880, 640)                  # O6(1200x896)에서 알림 중심
 
     segs = [
-        dict(n='S1 월', k='K1', t0=0.0, len=0.8, sp=1.0, day='월'),
-        dict(n='S1 화', k='K1', t0=1.0, len=0.75, sp=1.4, day='화'),
-        dict(n='S1 수', k='K1', t0=2.2, len=0.7, sp=1.8, day='수'),
-        dict(n='S1 목', k='K1', t0=3.4, len=0.95, sp=2.2, day='목', cap='(불태운 월화수목)'),
+        dict(n='S1 월', k='K1', t0=0.0, len=1.5, sp=1.0, day='월'),          # v2: 사용자 "월~목 더 길게" 0.8 → 1.5s씩
+        dict(n='S1 화', k='K1', t0=1.6, len=1.5, sp=1.0, day='화'),
+        dict(n='S1 수', k='K1', t0=3.1, len=1.5, sp=1.2, day='수'),
+        dict(n='S1 목', k='K1', t0=0.3, len=1.8, sp=1.5, day='목', cap='(불태운 월화수목)', cap_at=0.4),
         dict(n='S2 4:52', clock='(금) 오후 4:52', len=2.2, cap='(그리고 찾아온 평화로운 금요일)'),
-        dict(n='S3 척', k='K1', t0=0.5, len=2.8, sp=0.5, cap='(일하는 척 모드 ON)'),
+        dict(n='S3 척', k='K1', t0=1.0, len=2.8, sp=1.0, cap='(일하는 척 모드 ON)'),   # v2: 슬로 빼고 원래 속도
         dict(n='S4 키보드', still='O3', len=2.0, push=0.08, cap='(사실은 블루투스 키보드로)'),
         dict(n='S5a 몰래', k='K2', t0=0.0, len=2.2, cap='(미순이와 주말 작전 회의 중)'),
         dict(n='S5b 대화', chat=chat1, appear=[0.25, 1.25, 2.4, 3.4], len=4.6),
@@ -171,8 +177,9 @@ def main():
     for k in ('S1 월', 'S1 화', 'S1 수', 'S1 목'):
         fx('type_' + k, 'outputs/ep01/sfx/el/typing.mp3', S[k]['at'], S[k]['len'], -26 + 1.5 * ('월화수목'.index(k[-1])), fade_out=0.05)
         fx('pop_' + k, 'outputs/ep05/sfx/el/ui_pop.mp3', S[k]['at'], 0.4, -26)
-    for k in ('S2 4:52', 'S6 5:38'):
-        fx('tick_' + k, el + 'clock_tick.mp3', S[k]['at'] + 0.1, 1.0, -24)
+    for k in ('S2 4:52', 'S6 5:38', 'S9 5:39'):
+        fx('whoosh_' + k, 'outputs/ep11/sfx/el/whoosh_soft.mp3', S[k]['at'] - 0.12, 0.8, -24)
+        fx('tick_' + k, el + 'clock_tick.mp3', S[k]['at'] + 0.05, 1.0, -18)
     fx('type_척', 'outputs/ep01/sfx/el/typing.mp3', S['S3 척']['at'], 2.8, -32, fade_out=0.3)
     fx('type_몰래', 'outputs/ep01/sfx/el/typing.mp3', S['S5a 몰래']['at'] + 1.0, 1.2, -32, fade_out=0.2)
     for i, x in enumerate(S['S5b 대화']['appear']):
@@ -180,7 +187,6 @@ def main():
     fx('dream_in', el + 'dream_whoosh.mp3', S['S8a 꿈']['at'] - 0.3, 1.5, -24)
     fx('dream_music', 'outputs/ep16/bgm/dream.mp3', S['S8a 꿈']['at'], S['S9 5:39']['at'] - S['S8a 꿈']['at'], -24, fade_in=0.4, fade_out=0.15)
     fx('scratch', 'outputs/ep11/sfx/el/record_scratch.mp3', S['S9 5:39']['at'] - 0.05, 0.8, -18)
-    fx('tick_539', el + 'clock_tick.mp3', S['S9 5:39']['at'] + 0.3, 1.0, -20)
     st = S['S10 알림']; TZ = [0.35, 0.95, 1.4, 1.8]   # 알림 뜸, 확대 1·2·3
     fx('work_ping', el + 'work_ping.mp3', st['at'] + TZ[0], 0.8, -18)
     for i, z in enumerate(TZ[1:]):
@@ -218,8 +224,14 @@ def main():
                 win = clips[s['k']].at(s['t0'] + lt * s.get('sp', 1.0))
             elif s.get('dclip'):
                 win = dream(clips[s['dclip']].at(s['t0'] + lt), k=min(1.0, 0.4 + lt / 0.4))
-            elif s.get('clock'):
-                win = txt(('clock', s['clock']), lambda: clock_card(s['clock'])).copy()
+            elif s.get('clock'):   # 시각 카드: 큰 노랑 시각이 톡 튀어나오고 번쩍 + 천천히 다가감
+                win = txt(('clockbg', 0), lambda: clock_card('')).copy(); dimg, timg = txt(('clock', s['clock']), lambda: clock_text(s['clock']))
+                k_ = ease(lt / 0.18); pz = 1.0 + 0.05 * lt / s['len']
+                put(win, dimg, WW / 2, WH / 2 - 150, alpha=k_)
+                put(win, timg, WW / 2, WH / 2 + 30, alpha=k_, scale=pz * (1.35 - 0.35 * k_))
+                fl = max(0.0, 1 - lt / 0.15)
+                if fl > 0:
+                    win = (win * (1 - 0.5 * fl) + 255 * 0.5 * fl).astype(np.uint8)
             elif s.get('chat'):
                 win = chat_panel(s['chat'], lt, s['appear'])
             elif s.get('eye'):   # 속마음: 단어마다 오른쪽 눈으로 한 단계씩
