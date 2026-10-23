@@ -1,0 +1,109 @@
+{
+ "note": "ep17 v1 (tools/ep17_edit.py)",
+ "items": [
+  {
+   "name": "sparkle_1 편안",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 0.0,
+   "len": 1.0,
+   "target_lufs": -26,
+   "measured_lufs": -17.81,
+   "measured_file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "gain": -8.2
+  },
+  {
+   "name": "hit_2 핸드폰만",
+   "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
+   "at": 3.79,
+   "len": 0.9,
+   "target_lufs": -20,
+   "fade_out": 0.3,
+   "measured_lufs": -19.19,
+   "measured_file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
+   "gain": -0.8
+  },
+  {
+   "name": "sparkle_3 못살아",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 7.48,
+   "len": 1.0,
+   "target_lufs": -26,
+   "measured_lufs": -17.81,
+   "measured_file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "gain": -8.2
+  },
+  {
+   "name": "hit_4 쉰내",
+   "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
+   "at": 10.07,
+   "len": 0.9,
+   "target_lufs": -20,
+   "fade_out": 0.3,
+   "measured_lufs": -19.19,
+   "measured_file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
+   "gain": -0.8
+  },
+  {
+   "name": "sparkle_5 귀여워",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 12.35,
+   "len": 1.0,
+   "target_lufs": -26,
+   "measured_lufs": -17.81,
+   "measured_file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "gain": -8.2
+  },
+  {
+   "name": "hit_6 못알아들어",
+   "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
+   "at": 14.79,
+   "len": 0.9,
+   "target_lufs": -20,
+   "fade_out": 0.3,
+   "measured_lufs": -19.19,
+   "measured_file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
+   "gain": -0.8
+  },
+  {
+   "name": "sparkle_7 여보",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 18.62,
+   "len": 1.0,
+   "target_lufs": -26,
+   "measured_lufs": -17.81,
+   "measured_file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "gain": -8.2
+  },
+  {
+   "name": "hit_8 입이뚫렸는데",
+   "file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
+   "at": 21.95,
+   "len": 0.9,
+   "target_lufs": -20,
+   "fade_out": 0.3,
+   "measured_lufs": -19.19,
+   "measured_file": "outputs/ep09/sfx/el/dramatic_hit.mp3",
+   "gain": -0.8
+  },
+  {
+   "name": "scratch",
+   "file": "outputs/ep11/sfx/el/record_scratch.mp3",
+   "at": 25.72,
+   "len": 0.8,
+   "target_lufs": -22,
+   "measured_lufs": -4.23,
+   "measured_file": "outputs/ep11/sfx/el/record_scratch.mp3",
+   "gain": -17.8
+  },
+  {
+   "name": "sparkle_10 귀여워",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 28.17,
+   "len": 1.0,
+   "target_lufs": -26,
+   "measured_lufs": -17.81,
+   "measured_file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "gain": -8.2
+  }
+ ]
+}
