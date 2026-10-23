@@ -22,7 +22,7 @@ W, H, FPS = 1080, 1920, 24
 WW, WH, WY = 1080, 780, 570          # 영상 창 크기·위치(검은 띠 사이)
 TITLE = [[('금요일 오후', 'white')], [('5시 39분이란', 'yellow')]]
 # v4: Kling 클립 대신(날개 3개·볼터치 반복) 그림 + 0원 움직임. 옆모습 전체 O1f 한 번 → 키보드 클로즈업 O3c 타닥타닥(wing_tap) ↔ 모니터 O6b 코드 쳐짐(사용자 제안, 조효옹처럼 가까이 찍어 실수 줄이기)
-IMG = {'wide': 'O1f_v1', 'keys': 'O3c_v1', 'mon': 'O6b_v1', 'O4': 'O4_v1', 'O5': 'O5_v1'}
+IMG = {'wide': 'O1g_v1', 'keys': 'O3c_v1', 'mon': 'O6b_v1', 'O4': 'O4_v1', 'O5': 'O5_v1'}
 CODE_BOX = (290, 196, 1000, 718)    # O6b(1200x896) 편집기 코드 영역(미니맵 왼쪽, 아래 파란 줄 위)
 PHONE_O3C = (607, 560)              # O3c 거치대 휴대폰 중심
 
@@ -189,7 +189,7 @@ def main():
         dict(n='S1 수', alt=[('mon', 0.4), ('keys', 0.35), ('mon', 0.35), ('keys', 0.3), ('mon', 0.3)], day='수'),
         dict(n='S1 목', alt=[('keys', 0.2), ('mon', 0.2)] * 5, day='목', cap='(불태운 월화수목)', cap_at=0.4),
         dict(n='S2 4:52', clock='(금) 오후 4:52', len=1.8),   # v3: 괄호 자막 뺌(사용자)
-        dict(n='S3 척', still='wide', len=2.8, push=0.08, cap='(일하는 척 모드 ON)'),
+        dict(n='S3 척', still='wide', len=2.8, push=0.12, to=(700, 520), cap='(일하는 척 모드 ON)'),
         dict(n='S4 키보드', still='keys', len=2.0, push=0.3, to=(607, 660), cap='(사실은 블루투스 키보드로)'),
         dict(n='S5a 몰래', tap=True, len=2.2, zoom=1.3, to=(607, 720), cap='(미순이와 주말 작전 회의 중)'),
         dict(n='S5b 대화', chat=chat1, appear=[0.25, 1.25, 2.4, 3.4], len=4.6),
