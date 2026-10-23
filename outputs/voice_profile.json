@@ -2291,7 +2291,7 @@
      "cut": "v2-02",
      "speaker": "misun",
      "subtitle": "저 오리… 오늘 데려간다.",
-     "tts": "[determined, dramatic, emotional, low voice] 저 오리이이..... 오늘 데려간다...!",
+     "tts": "[deep breath, low voice, firm resolve] 저 오리..... 오늘 데려간다.",
      "expr": "01",
      "max_len": 3.2,
      "offset": 0.05,
@@ -2299,21 +2299,25 @@
      "tag_override": true,
      "gap_before": 1.6,
      "asr_ref": "저오리오늘데려간다",
-     "seed": 2024,
+     "seed": 7,
      "speedup": 1.25,
      "tempo": 1.0,
      "dry": "outputs/ep14/voice/lines/v2-02_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep14/voice/lines/v2-02.mp3",
-     "len": 2.66,
-     "len_file": 4.1,
+     "len": 2.32,
+     "len_file": 3.76,
      "fx": "room",
      "n_seeds": 8,
      "prev_dry": "outputs/ep14/voice/lines/v2-02_v1_dry.mp3",
      "pauses": [
       0.6
      ],
-     "pitch": -4
+     "pitch": -2,
+     "fall": [
+      2,
+      5
+     ]
     },
     {
      "cut": "v2-04",
@@ -2404,43 +2408,43 @@
     },
     {
      "cut": "v2-04",
-     "at": 7.05,
+     "at": 6.72,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-06",
-     "at": 13.84,
+     "at": 13.51,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-07",
-     "at": 17.73,
+     "at": 17.4,
      "file": "outputs/ep14/voice/lines/v2-07.mp3"
     },
     {
      "cut": "v2-08",
-     "at": 20.25,
+     "at": 19.92,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "v2-10",
-     "at": 24.5,
+     "at": 24.17,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "v2-11",
-     "at": 27.95,
+     "at": 27.62,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-15",
-     "at": 40.24,
+     "at": 39.91,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     }
    ],
    "preview": {
     "file": "outputs/ep14/voice/preview.mp3",
-    "len": 45.53
+    "len": 45.2
    },
    "lines_v1": [
     {

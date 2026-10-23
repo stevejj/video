@@ -108,6 +108,31 @@ def pitch_shift(path, semitones):
     return np.frombuffer(d, np.float32).copy()
 
 
+def fall_contour(x, drops):
+    """구절마다 음높이를 '내려가며 끝나게' 다시 그림(WORLD 보코더). ElevenLabs는 결연한 대사를 끝을 올려 읽음 →
+    구절 안의 원래 오르내림 기울기를 빼고, 구절 끝까지 drops[i] 반음 내려가는 기울기를 넣는다. 억양의 작은 굴곡은 남김."""
+    import pyworld as pw
+    xd = x.astype(np.float64)
+    f0, t = pw.harvest(xd, SR, f0_floor=80, f0_ceil=700, frame_period=5)
+    sp = pw.cheaptrick(xd, f0, t, SR); ap = pw.d4c(xd, f0, t, SR)
+    voiced = f0 > 0
+    # 구절 = 0.3s 이상 무성 구간으로 나뉜 덩어리
+    idx = np.where(voiced)[0]; phrases = []; s = idx[0]
+    for a, b in zip(idx[:-1], idx[1:]):
+        if (b - a) * 0.005 > 0.3:
+            phrases.append((s, a)); s = b
+    phrases.append((s, idx[-1]))
+    st = np.zeros_like(f0); st[voiced] = 12 * np.log2(f0[voiced])
+    for (a, b), d in zip(phrases, drops):
+        m = voiced[a:b + 1]; tt = t[a:b + 1] - t[a]; T = max(tt[-1], 1e-3)
+        k = np.polyfit(tt[m], st[a:b + 1][m], 1)[0]
+        st[a:b + 1][m] -= k * tt[m] + d * tt[m] / T
+    f0n = np.where(voiced, 2 ** (st / 12), 0)
+    y = pw.synthesize(f0n, sp, ap, SR, frame_period=5).astype(np.float32)
+    print('    구절:', [(round(t[a], 2), round(t[b], 2)) for a, b in phrases], '내림', drops)
+    return y[:len(x)] * (np.abs(x).max() / max(1e-6, np.abs(y).max()))
+
+
 def stretch_pauses(x, gaps):
     """말 안의 쉼(무음 구간)을 앞에서부터 gaps[i]초로 바꿈. whisper 단어 경계는 자음에 걸려 소리를 자를 수 있어 무음 검출로 함."""
     hop = SR // 100; env = np.abs(x[:len(x) // hop * hop]).reshape(-1, hop).max(1)
@@ -140,6 +165,8 @@ def fx(P):
             x = pitch_shift(os.path.join(ROOT, src), l['pitch'])
         if l.get('pauses'):
             x = stretch_pauses(x, l['pauses'])
+        if l.get('fall'):
+            x = fall_contour(x, l['fall'])
         speech = len(x) / SR
         if l.get('fx') == 'room':
             x = room(x)
