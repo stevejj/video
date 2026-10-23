@@ -97,9 +97,11 @@ def regen(P, cuts):
             fall = end_rise(dry) if l.get('prefer_fall') else 0.0   # "..." 줄은 끝이 내려가는 것 우선(ep16 i2·i5 끝 올라감)
             if l.get('prefer_fall'):
                 print(f'    끝 음높이 비 {fall:.2f}', flush=True)
-            low = -med_f0(dry) if l.get('prefer_low') else 0.0   # 차갑게 낮게(ep17 버럭): 음높이 낮은 것 우선
-            if l.get('prefer_low'):
-                print(f'    음높이 중앙 {-low:.0f}Hz', flush=True)
+            low = -med_f0(dry) if l.get('prefer_low') else 0.0
+            if l.get('target_f0'):   # 다른 줄과 목소리가 달라지지 않게 음높이를 맞춤(ep17 4번 쉰내: 혼자 너무 낮아 다른 사람 같음)
+                low = -abs(med_f0(dry) - l['target_f0'])   # 차갑게 낮게(ep17 버럭): 음높이 낮은 것 우선
+            if l.get('prefer_low') or l.get('target_f0'):
+                print(f'    음높이 중앙 {med_f0(dry):.0f}Hz', flush=True)
             res.append((score >= 0.7, round(low, -1), -round(max(fall, 0.95), 2), round(score, 1), -abs(d - l['max_len'] * 0.8), seed, dry, d, sp))
         *_, seed, dry, d, sp = max(res); score = max(res)[3]
         os.makedirs(LINES, exist_ok=True); dst = os.path.join(LINES, f'{l["cut"]}_dry.mp3'); os.replace(dry, dst)

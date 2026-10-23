@@ -3753,7 +3753,7 @@
      "cut": "m4",
      "speaker": "misun",
      "subtitle": "어우 쉰내! 언제 씻었어?",
-     "tts": "[very low, cold, flat monotone voice, quiet and scary, deadpan, unimpressed] 어우 쉰내! 언제 씻었어?",
+     "tts": "[cold, low voice, flat, disgusted] 어우, 쉰내! 언제 씻었어?",
      "expr": "01",
      "max_len": 2.2,
      "offset": 0.05,
@@ -3762,15 +3762,15 @@
      "n_seeds": 8,
      "asr_ref": "어우쉰내언제씻었어",
      "gap_before": 0.4,
-     "seed": 7,
+     "seed": 99,
      "speedup": 1.25,
      "tempo": 1.0,
      "dry": "outputs/ep17/voice/lines/m4_dry.mp3",
      "asr": 0.8,
      "file": "outputs/ep17/voice/lines/m4.mp3",
-     "len": 1.97,
-     "len_file": 2.01,
-     "prefer_low": true,
+     "len": 1.77,
+     "len_file": 1.8,
+     "target_f0": 480,
      "pitch": -3
     },
     {
@@ -3964,43 +3964,43 @@
     },
     {
      "cut": "m5",
-     "at": 12.49,
+     "at": 12.29,
      "file": "outputs/ep17/voice/lines/m5.mp3"
     },
     {
      "cut": "m6",
-     "at": 14.73,
+     "at": 14.53,
      "file": "outputs/ep17/voice/lines/m6.mp3"
     },
     {
      "cut": "m7",
-     "at": 18.47,
+     "at": 18.27,
      "file": "outputs/ep17/voice/lines/m7.mp3"
     },
     {
      "cut": "c7",
-     "at": 20.72,
+     "at": 20.52,
      "file": "outputs/ep17/voice/lines/c7.mp3"
     },
     {
      "cut": "m8",
-     "at": 21.75,
+     "at": 21.55,
      "file": "outputs/ep17/voice/lines/m8.mp3"
     },
     {
      "cut": "c9",
-     "at": 25.47,
+     "at": 25.27,
      "file": "outputs/ep17/voice/lines/c9.mp3"
     },
     {
      "cut": "m10",
-     "at": 27.42,
+     "at": 27.22,
      "file": "outputs/ep17/voice/lines/m10.mp3"
     }
    ],
    "preview": {
     "file": "outputs/ep17/voice/preview.mp3",
-    "len": 30.66
+    "len": 30.46
    }
   }
  },
