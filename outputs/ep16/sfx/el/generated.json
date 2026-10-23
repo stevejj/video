@@ -1,0 +1,44 @@
+[
+ {
+  "name": "office_amb",
+  "prompt": "Quiet modern office ambience in the late afternoon, soft air conditioning hum, very faint distant keyboard clicks, no voices",
+  "duration": 10,
+  "file": "outputs/ep16/sfx/el/office_amb.mp3",
+  "result": "ok 160957B"
+ },
+ {
+  "name": "clock_tick",
+  "prompt": "A single crisp wall clock tick-tock, two ticks, clean, no reverb",
+  "duration": 1.0,
+  "file": "outputs/ep16/sfx/el/clock_tick.mp3",
+  "result": "ok 17179B"
+ },
+ {
+  "name": "msg_ping",
+  "prompt": "Short soft smartphone chat message received pop sound, cute bubble pop, no voice",
+  "duration": 0.5,
+  "file": "outputs/ep16/sfx/el/msg_ping.mp3",
+  "result": "ok 8820B"
+ },
+ {
+  "name": "work_ping",
+  "prompt": "Desktop corporate messenger notification chime, two short bright tones, slightly ominous, no voice",
+  "duration": 0.8,
+  "file": "outputs/ep16/sfx/el/work_ping.mp3",
+  "result": "ok 13835B"
+ },
+ {
+  "name": "phone_vibrate",
+  "prompt": "Smartphone vibrating on a wooden desk, short strong buzz",
+  "duration": 0.6,
+  "file": "outputs/ep16/sfx/el/phone_vibrate.mp3",
+  "result": "ok 10492B"
+ },
+ {
+  "name": "dream_whoosh",
+  "prompt": "Soft dreamy magical transition whoosh with shimmering bells, entering a daydream",
+  "duration": 1.5,
+  "file": "outputs/ep16/sfx/el/dream_whoosh.mp3",
+  "result": "ok 24702B"
+ }
+]
