@@ -101,6 +101,53 @@ def cave_light(x):
     return y + CAVE_LIGHT_WET * wet
 
 
+def pitch_shift(path, semitones):
+    r = 2 ** (semitones / 12)
+    d = subprocess.run([FF, '-loglevel', 'error', '-i', path, '-af', f'asetrate={SR}*{r:.5f},aresample={SR},atempo={1 / r:.5f}',
+                        '-f', 'f32le', '-ac', '1', '-ar', str(SR), '-'], capture_output=True).stdout
+    return np.frombuffer(d, np.float32).copy()
+
+
+def fall_contour(x, drops):
+    """구절마다 음높이를 '내려가며 끝나게' 다시 그림(WORLD 보코더). ElevenLabs는 결연한 대사를 끝을 올려 읽음 →
+    구절 안의 원래 오르내림 기울기를 빼고, 구절 끝까지 drops[i] 반음 내려가는 기울기를 넣는다. 억양의 작은 굴곡은 남김."""
+    import pyworld as pw
+    xd = x.astype(np.float64)
+    f0, t = pw.harvest(xd, SR, f0_floor=80, f0_ceil=700, frame_period=5)
+    # 소리가 큰데 무성으로 잡힌 칸(숨 섞인 모음 첫소리 "오" 등)을 유성으로 메움. 안 메우면 그 칸을 잡음으로 다시 만들어
+    # "오늘"이 "허얽늘"처럼 숨소리로 들림(2026-10-23 사용자 지적)
+    hop = int(SR * 0.005); fr = np.array([np.abs(xd[int(tt * SR):int(tt * SR) + hop]).max() if int(tt * SR) < len(xd) else 0 for tt in t])
+    loud = fr > 0.08 * fr.max(); vi = np.where(f0 > 0)[0]
+    fill = loud & (f0 == 0)
+    if len(vi) > 1 and fill.any():
+        f0[fill] = np.interp(np.where(fill)[0], vi, f0[vi])
+    sp = pw.cheaptrick(xd, f0, t, SR); ap = pw.d4c(xd, f0, t, SR)
+    voiced = f0 > 0
+    # 구절 = 0.3s 이상 무성 구간으로 나뉜 덩어리
+    idx = np.where(voiced)[0]; phrases = []; s = idx[0]
+    for a, b in zip(idx[:-1], idx[1:]):
+        if (b - a) * 0.005 > 0.3:
+            phrases.append((s, a)); s = b
+    phrases.append((s, idx[-1]))
+    st = np.zeros_like(f0); st[voiced] = 12 * np.log2(f0[voiced])
+    for (a, b), d in zip(phrases, drops):
+        m = voiced[a:b + 1]; tt = t[a:b + 1] - t[a]; T = max(tt[-1], 1e-3)
+        k = np.polyfit(tt[m], st[a:b + 1][m], 1)[0]
+        st[a:b + 1][m] -= k * tt[m] + d * tt[m] / T
+    f0n = np.where(voiced, 2 ** (st / 12), 0)
+    y = pw.synthesize(f0n, sp, ap, SR, frame_period=5).astype(np.float32)
+    print('    구절:', [(round(t[a], 2), round(t[b], 2)) for a, b in phrases], '내림', drops)
+    y = y[:len(x)] * (np.abs(x).max() / max(1e-6, np.abs(y).max()))
+    y = np.concatenate([y, np.zeros(len(x) - len(y), np.float32)])
+    # 내림 0인 구절은 원음 그대로(WORLD 다시 만들기는 모음을 바꿀 수 있음: "오리" → "우리"). 구절 사이 쉼에서 이어 붙임
+    for k, ((a, b), d) in enumerate(zip(phrases, drops)):
+        if d == 0:
+            i0 = 0 if k == 0 else int((t[phrases[k - 1][1]] + t[a]) / 2 * SR)
+            i1 = len(x) if k == len(phrases) - 1 else int((t[b] + t[phrases[k + 1][0]]) / 2 * SR)
+            y[i0:i1] = x[i0:i1]
+    return y
+
+
 def stretch_pauses(x, gaps):
     """말 안의 쉼(무음 구간)을 앞에서부터 gaps[i]초로 바꿈. whisper 단어 경계는 자음에 걸려 소리를 자를 수 있어 무음 검출로 함."""
     hop = SR // 100; env = np.abs(x[:len(x) // hop * hop]).reshape(-1, hop).max(1)
@@ -129,8 +176,15 @@ def fx(P):
         if not src:
             continue
         x = pcm(os.path.join(ROOT, src))
+        if l.get('pitch'):   # 반음 단위 음높이만 바꿈(길이 그대로): 2번 "저 오리" 낮게(사용자)
+            x = pitch_shift(os.path.join(ROOT, src), l['pitch'])
+        for a, b, db in l.get('duck', []):   # 말 아닌 소리(숨소리 등)를 db만큼 줄임, 원음 기준 초. 양 끝 10ms 페이드
+            i, j = int(a * SR), int(b * SR); g = np.full(j - i, 10 ** (db / 20), np.float32); f = min(441, (j - i) // 2)
+            g[:f] = np.linspace(1, g[f], f); g[-f:] = np.linspace(g[-f], 1, f); x[i:j] *= g
         if l.get('pauses'):
             x = stretch_pauses(x, l['pauses'])
+        if l.get('fall'):
+            x = fall_contour(x, l['fall'])
         speech = len(x) / SR
         if l.get('fx') == 'room':
             x = room(x)
