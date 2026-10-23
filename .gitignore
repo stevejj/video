@@ -50,3 +50,5 @@ outputs/ep14/roughcut/*_silent.mp4
 outputs/ep16/roughcut/*_silent.mp4
 # 노래 시험(WOODZ Drowning 하이라이트, Seed-VC) 원곡·결과 — 로컬에만
 outputs/song_test/
+# 시작 화면 붙이기 전 중간 파일(최종본에 다 들어 있음, 용량 큼)
+outputs/*/roughcut/*_main.mp4
