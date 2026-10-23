@@ -54,5 +54,19 @@
   "duration": 0.5,
   "file": "outputs/ep14/sfx/el/shush_tap.mp3",
   "result": "ok 8820B"
+ },
+ {
+  "name": "fail_womp",
+  "prompt": "Short comedic failure sound, a soft cartoon sad trombone 'wah-wah' descending, cute and light, no voice",
+  "duration": 1.2,
+  "file": "outputs/ep14/sfx/el/fail_womp.mp3",
+  "result": "ok 20105B"
+ },
+ {
+  "name": "success_sparkle",
+  "prompt": "Bright magical success sparkle shimmer with a rising chime, short and cheerful, no voice",
+  "duration": 1.0,
+  "file": "outputs/ep14/sfx/el/success_sparkle.mp3",
+  "result": "ok 17179B"
  }
 ]

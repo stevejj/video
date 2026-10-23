@@ -18,7 +18,7 @@ EP = os.path.join(ROOT, 'outputs/ep14'); CL = os.path.join(EP, 'clips'); FF = im
 W, H, FPS = 1080, 1920, 24
 NOTO = os.path.join(ROOT, 'assets/fonts/NotoSansKR-Variable.ttf'); JUA = os.path.join(ROOT, 'assets/fonts/Jua-Regular.ttf')
 COL = {'misun': '#FF9CC2', 'changsu': '#8FB0E8', 'white': '#FFFFFF', 'yellow': '#FFD84A'}
-TITLE = [[('딱 5천 원어치만 하자던 아내', 'white')], [('나는 실패하지 않습니다', 'yellow')]]   # 제목 2줄(바꿀 수 있음)
+TITLE = [[('인형뽑기방이 망하지 않는 이유', 'white')], [('(계수정 빙의한 미순)', 'yellow')]]   # 제목 2줄(사용자 2026-10-23)
 ZOOM_STEPS = [1.0, 1.28, 1.6, 1.95]     # 나는 / 실패하지 / 않습니다 → 3단계
 
 
@@ -127,6 +127,7 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--tag', default='v1'); a = ap.parse_args()
     P = json.load(open(os.path.join(ROOT, 'outputs/voice_profile.json'))); E = P['episodes']['ep14']; L = {l['cut']: l for l in E['lines']}
     k3 = cv2.resize(cv2.imread(os.path.join(EP, 'img/K3_v1.png')), (W, H), interpolation=cv2.INTER_CUBIC)
+    k5b = cv2.resize(cv2.imread(os.path.join(EP, 'img/K5b_v1.png')), (W, H), interpolation=cv2.INTER_CUBIC)
     clips = {}
 
     def clip(name):
@@ -141,21 +142,22 @@ def main():
         dict(n='S0 거리', src='C1_v1', t0=0.0, len=3.3),
         dict(n='S1 기계', still=True, len=1.6),
         dict(n='S2 저 오리', src='C2_v1_eyefix', t0=0.0, len=2.9),
-        dict(n='S3 1판', src='C3_v1', t0=0.4, len=4.3, chip='1판'),
+        dict(n='S3 1판', src='C3_v1', t0=0.4, len=4.3, chip='1판', miss=4.17 - 0.4),
         dict(n='S4 실패X①', src='C4_v1', t0=0.0, len=3.9, z=C4Z),
-        dict(n='S5a 2판', src='C3_v1', t0=2.6, len=1.0, sp=2.0, chip='2판'),
-        dict(n='S5b 3판', src='C3_v1', t0=2.6, len=1.0, sp=2.0, flip=True, chip='3판'),
-        dict(n='S5c 5판', src='C3_v1', t0=2.6, len=1.0, sp=2.0, chip='5판'),
+        dict(n='S5a 2판', src='C3_v1', t0=2.6, len=1.3, sp=2.0, chip='2판', miss=(4.17 - 2.6) / 2.0),
+        dict(n='S5b 3판', src='C3_v1', t0=2.6, len=1.3, sp=2.0, flip=True, chip='3판', miss=(4.17 - 2.6) / 2.0),
+        dict(n='S5c 5판', src='C3_v1', t0=2.6, len=1.3, sp=2.0, chip='5판', miss=(4.17 - 2.6) / 2.0),
         dict(n='S6 실패X②', src='C4_v1', t0=0.0, len=3.9, z=C4Z),
         dict(n='S7 그만해', src='C5_v1', t0=0.6, len=2.9),
         dict(n='S8 쉿①', src='C6_v1', t0=0.6, len=2.2),
-        dict(n='S9a 11판', src='C3_v1', t0=2.6, len=0.9, sp=2.2, flip=True, chip='11판'),
-        dict(n='S9b 15판', src='C3_v1', t0=2.6, len=0.9, sp=2.2, chip='15판'),
-        dict(n='S9c 19판', src='C3_v1', t0=2.6, len=0.9, sp=2.2, flip=True, chip='19판'),
+        dict(n='S9a 11판', src='C3_v1', t0=2.6, len=1.15, sp=2.2, flip=True, chip='11판', miss=(4.17 - 2.6) / 2.2),
+        dict(n='S9b 15판', src='C3_v1', t0=2.6, len=1.15, sp=2.2, chip='15판', miss=(4.17 - 2.6) / 2.2),
+        dict(n='S9c 19판', src='C3_v1', t0=2.6, len=1.15, sp=2.2, flip=True, chip='19판', miss=(4.17 - 2.6) / 2.2),
         dict(n='S10 쉿②', src='C6_v1', t0=1.05, len=1.6),
-        dict(n='S11a 24판', src='C3_v1', t0=2.6, len=1.0, sp=2.0, chip='24판'),
+        dict(n='S11a 24판', src='C3_v1', t0=2.6, len=1.45, sp=2.0, chip='24판', miss=(4.17 - 2.6) / 2.0),
         dict(n='S11 실패X③', src='C4_v1', t0=0.0, len=3.9, z=C4Z),
-        dict(n='S12 25판', src='C3_v1', t0=0.6, len=4.1, sp=0.82, chip='25판'),
+        dict(n='S12 25판', src='C3_v1', t0=0.6, len=2.8, sp=0.82, chip='25판'),
+        dict(n='S12b 성공', win=True, len=2.2, chip='25판'),
         dict(n='S13 승리', src='C7_v1_eyefix', t0=0.0, len=1.9),
         dict(n='S14 결제 알림', phone=True, len=3.9),
         dict(n='S15 실패X④', src='C7_v1_eyefix', t0=1.2, len=4.4, z={'steps': [0.82, 1.76, 2.82], 'c': FACE_C7}),
@@ -208,8 +210,14 @@ def main():
         fx('shush_' + k, el + 'shush_tap.mp3', S[k]['at'] + c, 0.5, -18)
     fx('click_25', el + 'button_click.mp3', S['S12']['at'] + 0.05, 0.5, -24)
     fx('motor_25', el + 'claw_motor.mp3', S['S12']['at'] + 0.2, 2.5, -26, fade_out=0.3)
-    fx('chute', el + 'prize_chute.mp3', S['S13']['at'] - 0.05, 0.8, -18)
-    fx('win', el + 'win_jingle.mp3', S['S13']['at'] + 0.1, 2.5, -20, fade_out=0.4)
+    WIN_AT = 0.9   # 성공 장면 안에서 번쩍 시각
+    fx('sparkle', el + 'success_sparkle.mp3', S['S12b']['at'] + WIN_AT - 0.05, 1.0, -20)
+    fx('win', el + 'win_jingle.mp3', S['S12b']['at'] + WIN_AT, 2.5, -19, fade_out=0.4)
+    fx('chute', el + 'prize_chute.mp3', S['S13']['at'] - 0.1, 0.8, -18)
+    for s_ in segs:
+        if s_.get('miss') is not None:   # 실패: 툭 + 와와와(꽝)
+            big = s_['n'].split()[0] in ('S3', 'S11a')
+            fx('womp_' + s_['n'].split()[0], el + 'fail_womp.mp3', s_['at'] + s_['miss'] + 0.05, 1.2 if big else 0.6, -22 if big else -27, fade_out=0.2)
     hit = None
     for root in ('outputs/ep09/sfx/el/dramatic_hit.mp3', 'outputs/ep08/sfx/el/dramatic_hit.mp3', 'outputs/ep05/sfx/el/impact_boom.mp3'):
         if os.path.exists(os.path.join(ROOT, root)):
@@ -242,7 +250,8 @@ def main():
             sub_cache[key] = text_img([[(sb['text'], sb['sp'])]], sb['size'] or 74, stroke=9)
         return sub_cache[key]
     chips = {}
-    sign = chip_img('1판 1,000원', 64)
+    sign = chip_img('1판 1,000원', 64); win_txt = text_img([[('성공!!!', 'yellow')]], 150, stroke=12)
+    WIN_AT = 0.9
     nf = int(round(total * FPS)); fade = 0.4
     os.makedirs(os.path.join(EP, 'roughcut'), exist_ok=True); out = os.path.join(EP, f'roughcut/ep14_{a.tag}_silent.mp4')
     pr = subprocess.Popen([FF, '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-',
@@ -255,9 +264,11 @@ def main():
         for fi in range(n0, min(n1, nf)):
             tt = fi / FPS; lt = tt - s['at']
             if s.get('still'):
-                fr = zoom(k3, 1.0 + 0.05 * lt / s['len'], W / 2, H / 2)
+                fr = zoom(k3, 1.25, W / 2, 1100)   # 고정(사용자: 밀려 들어가면 기계 윗단이 채널명 뒤로 올라가 글씨가 뜨고 겹쳐 보임)
             elif s.get('phone'):
                 fr = phone[fi - n0].copy()
+            elif s.get('win'):   # 성공: 오리를 꽉 잡은 집게가 천천히 올라감 → 번쩍 + 반짝이 + "성공!!!"
+                up = ease(lt / 1.3); fr = zoom(k5b, 1.12 + 0.06 * up, W / 2, 860 + 70 * up)   # 오리가 1150→1080으로 올라감(판 수 글씨와 안 겹치게)
             else:
                 fr = clip(s['src']).at(s['t0'] + lt * s.get('sp', 1.0))
                 if s.get('flip'):
@@ -269,6 +280,22 @@ def main():
                 if lvl and lt - st[lvl - 1] < 0.12:   # 쿵 할 때 살짝 흔들림
                     k = int((lt - st[lvl - 1]) * FPS); dx = [10, -8, 5][min(k, 2)] * lvl / 2
                     fr = cv2.warpAffine(fr, np.float32([[1, 0, dx], [0, 1, -dx / 2]]), (W, H), borderMode=cv2.BORDER_REPLICATE)
+            if s.get('miss') is not None and 0 <= lt - s['miss'] < 0.5:   # 실패: 놓치는 순간 화면이 회색으로 바랬다 돌아옴 + "꽝"
+                k_ = 1 - (lt - s['miss']) / 0.5; g_ = cv2.cvtColor(cv2.cvtColor(fr, cv2.COLOR_BGR2GRAY), cv2.COLOR_GRAY2BGR)
+                fr = (fr * (1 - 0.8 * k_) + g_ * 0.8 * k_ * 0.75).astype(np.uint8)
+            if s.get('miss') is not None and lt >= s['miss']:
+                if '꽝' not in chips:
+                    chips['꽝'] = chip_img('꽝!', 64)
+                put(fr, chips['꽝'], W / 2, 810, alpha=ease((lt - s['miss']) / 0.1), scale=1.0 + 0.25 * (1 - ease((lt - s['miss']) / 0.15)))
+            if s.get('win') and lt >= WIN_AT:
+                a_ = ease((lt - WIN_AT) / 0.2); fl = max(0.0, 1 - (lt - WIN_AT) / 0.3)
+                fr = (fr * (1 - 0.6 * fl) + 255 * 0.6 * fl).astype(np.uint8)
+                for j, (ox, oy, r_) in enumerate(((-300, -160, 34), (290, -220, 28), (-250, 210, 24), (320, 150, 38), (0, -330, 22), (-60, 300, 20))):
+                    tw = 0.6 + 0.4 * abs(np.sin((lt - WIN_AT) * 7 + j)); rr = r_ * tw * a_; cx_, cy_ = W / 2 + ox, 1080 + oy
+                    pts = np.array([[cx_, cy_ - rr * 2], [cx_ + rr * 0.45, cy_ - rr * 0.45], [cx_ + rr * 2, cy_], [cx_ + rr * 0.45, cy_ + rr * 0.45],
+                                    [cx_, cy_ + rr * 2], [cx_ - rr * 0.45, cy_ + rr * 0.45], [cx_ - rr * 2, cy_], [cx_ - rr * 0.45, cy_ - rr * 0.45]], np.int32)
+                    cv2.fillPoly(fr, [pts], (216, 246, 255), lineType=cv2.LINE_AA)
+                put(fr, win_txt, W / 2, 1420, alpha=a_, scale=0.6 + 0.4 * a_ + 0.06 * np.sin((lt - WIN_AT) * 9))
             if s['n'].startswith('S1 '):
                 put(fr, sign, W / 2, 700, alpha=ease((lt - 0.15) / 0.2))
             if s.get('chip'):
