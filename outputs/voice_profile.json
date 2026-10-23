@@ -2313,7 +2313,7 @@
      "cut": "v2-02",
      "speaker": "misun",
      "subtitle": "저 오리… 오늘 데려간다.",
-     "tts": "[deep breath, low voice, firm resolve] 저 오리..... 오늘 데려간다.",
+     "tts": "[low voice, firm resolve, calm] 저 오리..... 오늘... 데려간다.",
      "expr": "01",
      "max_len": 2.4,
      "offset": 0.05,
@@ -2321,23 +2321,25 @@
      "tag_override": true,
      "gap_before": 2.5,
      "asr_ref": "저오리오늘데려간다",
-     "seed": 7,
+     "seed": 99,
      "speedup": 1.25,
      "tempo": 1.0,
-     "dry": "outputs/ep14/voice/lines/v2-02_splice_dry.mp3",
+     "dry": "outputs/ep14/voice/lines/v2-02_w1_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep14/voice/lines/v2-02.mp3",
-     "len": 2.7,
-     "len_file": 4.13,
+     "len": 2.84,
+     "len_file": 4.28,
      "fx": "room",
      "n_seeds": 6,
      "prev_dry": "outputs/ep14/voice/lines/v2-02_v1_dry.mp3",
      "pitch": -2,
      "fall": [
       0,
-      4
+      5
      ],
-     "splice": "저 오리 = v2-02_breath_dry 0~0.80s(seed 7) / 오늘 데려간다 = \"[low voice, calm, determined] 오늘... 데려간다.\" seed 42"
+     "pauses": [
+      0.6
+     ]
     },
     {
      "cut": "v2-04",
@@ -2433,43 +2435,43 @@
     },
     {
      "cut": "v2-04",
-     "at": 10.9,
+     "at": 11.04,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-06",
-     "at": 17.69,
+     "at": 17.83,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-07",
-     "at": 21.58,
+     "at": 21.72,
      "file": "outputs/ep14/voice/lines/v2-07.mp3"
     },
     {
      "cut": "v2-08",
-     "at": 24.1,
+     "at": 24.24,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "v2-10",
-     "at": 28.35,
+     "at": 28.49,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "v2-11",
-     "at": 31.8,
+     "at": 31.94,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-15",
-     "at": 44.09,
+     "at": 44.23,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     }
    ],
    "preview": {
     "file": "outputs/ep14/voice/preview.mp3",
-    "len": 49.38
+    "len": 49.52
    },
    "lines_v1": [
     {
