@@ -50,3 +50,28 @@ There is only one keyboard. The phone stays in its stand, the keyboard stays on 
 Chang-su's cheeks have NO pink blush at any time, his face panel stays plain cream. He has NO eyebrows; his eyes stay the same simple round glossy black eyes and the same size as in the first frame.
 Wings keep their normal short rounded length and never stretch. Wings stay soft, rounded and fingerless. Heads keep their normal shape. No other characters appear. No new objects appear.
 ```
+
+## v4 다시 찍기 (2026-10-23, 사용자 승인 "진행" — 60크레딧) 시작 그림 O1d(모니터 → 거치대 휴대폰 → 키보드 한 줄)
+- K1b 실패 원인(날개가 하나 더 생겨 떠다님) 대책: "두 날개는 어깨에 붙은 채, 작게 톡톡" + "세 번째 날개·떠다니는 날개 없음" 명시. 받으면 16칸 격자 전부 확인.
+
+### K1c 타자 — 움직임 · Kling 3.0, 5초 · 30크레딧
+**입력**: first_image `outputs/ep16/img/O1d_v1.png`
+```
+Static camera, locked-off tripod shot, no camera movement, same composition throughout. The same office as the first frame; the office, the desk and every object stay photoreal and unchanged.
+Pang Chang-su, a small plush penguin with short velvet fur (darker blue-grey, small tuft, white shirt, lanyard with a blank ID card), sits at his desk facing the monitor. His two short flipper wings stay attached to his shoulders and rest on the white keyboard, tapping it busily in small quick up-and-down movements, his head bobbing slightly as he concentrates on the monitor. He keeps typing the whole time, beak closed.
+He has exactly two wings, both always attached to his body; no third wing, no wing or hand floating by itself.
+The desk layout never changes: the monitor at the back, the smartphone standing on its phone stand directly in front of the monitor base, and the single white keyboard in front of the phone stand. Nothing on the desk moves on its own. The monitor keeps showing the same dark code editor.
+Chang-su's cheeks have NO pink blush at any time. He has NO eyebrows; his eyes stay the same simple round glossy black eyes and the same size as in the first frame.
+Wings keep their normal short rounded length and never stretch. Wings stay soft, rounded and fingerless. Heads keep their normal shape. No other characters appear. No new objects appear.
+```
+
+### K2c 두리번 → 휴대폰 보며 메신저 — 움직임 · Kling 3.0, 5초 · 30크레딧
+**입력**: first_image `outputs/ep16/img/O1d_v1.png`
+```
+Static camera, locked-off tripod shot, no camera movement, same composition throughout. The same office as the first frame; the office, the desk and every object stay photoreal and unchanged.
+Pang Chang-su, a small plush penguin with short velvet fur (darker blue-grey, small tuft, white shirt, lanyard with a blank ID card), first glances quickly left and right as if checking that nobody is watching, then lowers his gaze from the monitor to the smartphone standing on its phone stand right in front of the monitor, and taps the same white keyboard quickly with his two short flipper wings, with a sneaky little smile, beak closed.
+He has exactly two wings, both always attached to his body; no third wing, no wing or hand floating by itself.
+The desk layout never changes: the monitor at the back, the smartphone standing on its phone stand directly in front of the monitor base, and the single white keyboard in front of the phone stand. Nothing on the desk moves on its own.
+Chang-su's cheeks have NO pink blush at any time, his face panel stays plain cream. He has NO eyebrows; his eyes stay the same simple round glossy black eyes and the same size as in the first frame.
+Wings keep their normal short rounded length and never stretch. Wings stay soft, rounded and fingerless. Heads keep their normal shape. No other characters appear. No new objects appear.
+```
