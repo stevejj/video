@@ -163,6 +163,9 @@ def fx(P):
         x = pcm(os.path.join(ROOT, src))
         if l.get('pitch'):   # 반음 단위 음높이만 바꿈(길이 그대로): 2번 "저 오리" 낮게(사용자)
             x = pitch_shift(os.path.join(ROOT, src), l['pitch'])
+        for a, b, db in l.get('duck', []):   # 말 아닌 소리(숨소리 등)를 db만큼 줄임, 원음 기준 초. 양 끝 10ms 페이드
+            i, j = int(a * SR), int(b * SR); g = np.full(j - i, 10 ** (db / 20), np.float32); f = min(441, (j - i) // 2)
+            g[:f] = np.linspace(1, g[f], f); g[-f:] = np.linspace(g[-f], 1, f); x[i:j] *= g
         if l.get('pauses'):
             x = stretch_pauses(x, l['pauses'])
         if l.get('fall'):

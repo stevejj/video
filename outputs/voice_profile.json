@@ -2288,16 +2288,38 @@
    "note": "ep14 v2 인형뽑기(01_기획안_v2_인형뽑기.md). lines_v1 = 김장 녹음(5b·9 재사용). gap_before는 몽타주·인서트 자리 포함 대략값.",
    "lines": [
     {
+     "cut": "v2-01",
+     "speaker": "misun",
+     "subtitle": "우리 딱 5천 원어치만 할까?",
+     "tts": "[playful, cheerful] 우리 딱 오천 원어치만 할까?",
+     "expr": "02",
+     "max_len": 2.0,
+     "offset": 0.05,
+     "inner": false,
+     "tag_override": true,
+     "gap_before": 1.2,
+     "asr_ref": "우리딱오천원어치만할까",
+     "n_seeds": 6,
+     "seed": 1234,
+     "speedup": 1.25,
+     "tempo": 1.0,
+     "dry": "outputs/ep14/voice/lines/v2-01_dry.mp3",
+     "asr": 1.0,
+     "file": "outputs/ep14/voice/lines/v2-01.mp3",
+     "len": 1.7,
+     "len_file": 1.72
+    },
+    {
      "cut": "v2-02",
      "speaker": "misun",
      "subtitle": "저 오리… 오늘 데려간다.",
      "tts": "[deep breath, low voice, firm resolve] 저 오리..... 오늘 데려간다.",
      "expr": "01",
-     "max_len": 3.2,
+     "max_len": 2.4,
      "offset": 0.05,
      "inner": false,
      "tag_override": true,
-     "gap_before": 1.6,
+     "gap_before": 2.5,
      "asr_ref": "저오리오늘데려간다",
      "seed": 7,
      "speedup": 1.25,
@@ -2305,10 +2327,10 @@
      "dry": "outputs/ep14/voice/lines/v2-02_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep14/voice/lines/v2-02.mp3",
-     "len": 2.32,
-     "len_file": 3.76,
+     "len": 2.28,
+     "len_file": 3.71,
      "fx": "room",
-     "n_seeds": 8,
+     "n_seeds": 6,
      "prev_dry": "outputs/ep14/voice/lines/v2-02_v1_dry.mp3",
      "pauses": [
       0.6
@@ -2317,6 +2339,13 @@
      "fall": [
       2,
       5
+     ],
+     "duck": [
+      [
+       0.96,
+       1.13,
+       -16
+      ]
      ]
     },
     {
@@ -2402,49 +2431,54 @@
    ],
    "placements": [
     {
+     "cut": "v2-01",
+     "at": 1.2,
+     "file": "outputs/ep14/voice/lines/v2-01.mp3"
+    },
+    {
      "cut": "v2-02",
-     "at": 1.6,
+     "at": 5.4,
      "file": "outputs/ep14/voice/lines/v2-02.mp3"
     },
     {
      "cut": "v2-04",
-     "at": 6.72,
+     "at": 10.48,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-06",
-     "at": 13.51,
+     "at": 17.27,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-07",
-     "at": 17.4,
+     "at": 21.16,
      "file": "outputs/ep14/voice/lines/v2-07.mp3"
     },
     {
      "cut": "v2-08",
-     "at": 19.92,
+     "at": 23.68,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "v2-10",
-     "at": 24.17,
+     "at": 27.93,
      "file": "outputs/ep14/voice/lines/9.mp3"
     },
     {
      "cut": "v2-11",
-     "at": 27.62,
+     "at": 31.38,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     },
     {
      "cut": "v2-15",
-     "at": 39.91,
+     "at": 43.67,
      "file": "outputs/ep14/voice/lines/5b.mp3"
     }
    ],
    "preview": {
     "file": "outputs/ep14/voice/preview.mp3",
-    "len": 45.2
+    "len": 48.96
    },
    "lines_v1": [
     {
