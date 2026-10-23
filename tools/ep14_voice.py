@@ -114,6 +114,13 @@ def fall_contour(x, drops):
     import pyworld as pw
     xd = x.astype(np.float64)
     f0, t = pw.harvest(xd, SR, f0_floor=80, f0_ceil=700, frame_period=5)
+    # 소리가 큰데 무성으로 잡힌 칸(숨 섞인 모음 첫소리 "오" 등)을 유성으로 메움. 안 메우면 그 칸을 잡음으로 다시 만들어
+    # "오늘"이 "허얽늘"처럼 숨소리로 들림(2026-10-23 사용자 지적)
+    hop = int(SR * 0.005); fr = np.array([np.abs(xd[int(tt * SR):int(tt * SR) + hop]).max() if int(tt * SR) < len(xd) else 0 for tt in t])
+    loud = fr > 0.08 * fr.max(); vi = np.where(f0 > 0)[0]
+    fill = loud & (f0 == 0)
+    if len(vi) > 1 and fill.any():
+        f0[fill] = np.interp(np.where(fill)[0], vi, f0[vi])
     sp = pw.cheaptrick(xd, f0, t, SR); ap = pw.d4c(xd, f0, t, SR)
     voiced = f0 > 0
     # 구절 = 0.3s 이상 무성 구간으로 나뉜 덩어리
@@ -130,7 +137,15 @@ def fall_contour(x, drops):
     f0n = np.where(voiced, 2 ** (st / 12), 0)
     y = pw.synthesize(f0n, sp, ap, SR, frame_period=5).astype(np.float32)
     print('    구절:', [(round(t[a], 2), round(t[b], 2)) for a, b in phrases], '내림', drops)
-    return y[:len(x)] * (np.abs(x).max() / max(1e-6, np.abs(y).max()))
+    y = y[:len(x)] * (np.abs(x).max() / max(1e-6, np.abs(y).max()))
+    y = np.concatenate([y, np.zeros(len(x) - len(y), np.float32)])
+    # 내림 0인 구절은 원음 그대로(WORLD 다시 만들기는 모음을 바꿀 수 있음: "오리" → "우리"). 구절 사이 쉼에서 이어 붙임
+    for k, ((a, b), d) in enumerate(zip(phrases, drops)):
+        if d == 0:
+            i0 = 0 if k == 0 else int((t[phrases[k - 1][1]] + t[a]) / 2 * SR)
+            i1 = len(x) if k == len(phrases) - 1 else int((t[b] + t[phrases[k + 1][0]]) / 2 * SR)
+            y[i0:i1] = x[i0:i1]
+    return y
 
 
 def stretch_pauses(x, gaps):
