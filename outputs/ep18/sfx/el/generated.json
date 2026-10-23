@@ -1,0 +1,23 @@
+[
+ {
+  "name": "clothes_avalanche",
+  "prompt": "Cartoon comedy: a closet door bursts open and a huge pile of soft clothes tumbles out in an avalanche, soft fabric thuds and rustling, a muffled rumble, ends with a few last pieces plopping down, no music, no voice",
+  "duration": 2.0,
+  "file": "outputs/ep18/sfx/el/clothes_avalanche.mp3",
+  "result": "ok 33061B"
+ },
+ {
+  "name": "door_rattle",
+  "prompt": "A wooden wardrobe door straining and rattling as something pushes from inside, short creak, comedic tension, no music",
+  "duration": 0.8,
+  "file": "outputs/ep18/sfx/el/door_rattle.mp3",
+  "result": "ok 13835B"
+ },
+ {
+  "name": "pop_up",
+  "prompt": "Cute cartoon pop sound, something small popping out of a pile of soft clothes, light fabric rustle, no music",
+  "duration": 0.6,
+  "file": "outputs/ep18/sfx/el/pop_up.mp3",
+  "result": "ok 10492B"
+ }
+]
