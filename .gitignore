@@ -44,3 +44,5 @@ outputs/ep13/voice/cands/
 # ep15: 원곡(All For You OST) 음원·분리 결과·가사 받아쓰기 — 로컬에만
 outputs/ep15/ref/
 outputs/ep15/sing/
+# ep14: 소리 없는 중간 렌더(다시 만들 수 있음)
+outputs/ep14/roughcut/*_silent.mp4
