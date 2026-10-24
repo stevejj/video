@@ -50,6 +50,13 @@ class Puppet:
         self.foot = (xs.mean() - X0, ys.max() - Y0)
         self.center = (xs.mean(), (ys.min() + ys.max()) / 2)
 
+    def without(self, other):
+        """다른 캐릭터와 겹치는 부분은 빼기(이불이 떨 때 창수 날개까지 같이 떨리던 문제, v2)."""
+        self.full *= np.clip(1 - other.full * 1.5, 0, 1)
+        X0, Y0 = self.off; h, w = self.rgba.shape[:2]
+        self.rgba[..., 3] = (self.full[Y0:Y0 + h, X0:X0 + w] * 255).astype(np.uint8)
+        return self
+
     def draw(self, fr, sx=1.0, sy=1.0, ang=0.0, dx=0.0, dy=0.0, pivot=None):
         px, py = pivot if pivot else self.foot
         px, py = float(px), float(py)
@@ -210,7 +217,8 @@ def main():
     pp['S7'] = [Puppet(I['F7'], (470, 410, 768, 760))]
     pp['S8'] = [Puppet(I['F8'], (430, 790, 710, 1230))]
     pp['S9'] = [Puppet(I['B9'], (215, 585, 575, 800))]
-    pp['S10'] = [Puppet(I['B10'], (420, 410, 690, 815)), Puppet(I['B10'], (100, 590, 455, 835))]
+    pp['S10'] = [Puppet(I['B10'], (420, 410, 690, 815))]
+    pp['S10'].append(Puppet(I['B10'], (100, 590, 455, 835)).without(pp['S10'][0]))
     pp['S12'] = [Puppet(I['B12'], (160, 290, 600, 900))]
     plates = {k: plate(I[img], pp[k]) for k, img in (('S1', 'F1'), ('S2', 'F2a'), ('S4b', 'F4b'), ('S5', 'F5'), ('S6', 'F6'), ('S7', 'F7'),
                                                        ('S8', 'F8'), ('S9', 'B9'), ('S10', 'B10'), ('S12', 'B12'))}
@@ -222,6 +230,10 @@ def main():
         'S10': [env_for('S10', [('C10a', 0.25), ('C10b', 2.75)], nfr('S10'))], 'S12': [env_for('S12', [('C12', 0.2)], nfr('S12'))],
     }
     K1 = Clip(os.path.join(EP, 'K1/clip_v1.mp4'), t0=0.8, sp=1.4)
+    # v2: Kling 끝 프레임에 남은 날개 지운 자국 → 다시 메운 F2b_nowing2를 그 자리에만 덮음(옷이 다 떨어진 뒤)
+    wm = np.load(os.path.join(EP, 'img/F2b_wingmask.npy')).astype(np.float32)
+    wm = cv2.GaussianBlur(cv2.dilate(cv2.resize(wm, (W, int(wm.shape[0] * K))), np.ones((13, 13), np.uint8)), (15, 15), 0)[7:7 + H, :, None]
+    fix = big('F2b_nowing2')[7:7 + H]
     POP = Clip(os.path.join(EP, 'test/popup_free_v2.mp4'))
     # B11 눈물(눈 밖, 왼쪽 눈 바깥 아래): 작은 하늘색 방울이 '쏘옥' 위로 빨려 들어감
     TEAR = (246 * K, 772 * K)
@@ -264,6 +276,10 @@ def main():
                 fr = cam(fr, 1.04 + 0.05 * lt / s['len'], W / 2, 760 * K)
             elif sk == 'S3':
                 fr = K1.at(lt); shake = 22 * np.exp(-lt * 2.2) if lt < 1.6 else 0
+                src_t = 0.8 + lt * 1.4
+                if src_t > 3.9:
+                    a_ = wm * ease((src_t - 3.9) / 0.3)
+                    fr = (fr * (1 - a_) + fix * a_).astype(np.uint8)
             elif sk == 'S4a':
                 fr = POP.at(lt)
             elif sk in ('S4b', 'S5', 'S8'):
@@ -286,11 +302,11 @@ def main():
                 ps[0].draw(fr, 1 + 0.02 * e, 1 + 0.04 * e, tr * np.sin(2 * np.pi * 9 * lt), dx=tr * 1.5 * np.sin(2 * np.pi * 7 * lt))
                 fr = cam(fr, 1.1 + 0.06 * lt / s['len'], ps[0].center[0], ps[0].center[1] - 80)
             elif sk == 'S10':
-                bob(ps[0], fr, ev[0][k], lt)
                 stop = 2.75 + 0.32                         # "우리 패딩"의 '패딩'에서 떨림이 딱 멈춤
                 tr = 1.2 if lt < stop else 0
                 pk = 0.04 * max(0, np.sin(np.pi * ((lt - 0.15) / 0.25))) if 0.15 <= lt < 0.4 or 1.6 <= lt < 1.85 else 0
                 ps[1].draw(fr, 1 - pk, 1 + pk, tr * np.sin(2 * np.pi * 9 * lt), dx=tr * 1.5 * np.sin(2 * np.pi * 7 * lt))
+                bob(ps[0], fr, ev[0][k], lt)                # 창수는 이불 위에 그림(겹친 날개가 안 떨리게)
                 z = 1.1 + 0.06 * lt / s['len'] + (0.08 * ease((lt - stop) / 0.15) if lt >= stop else 0)
                 fr = cam(fr, z, 395 * K, 640 * K)
             elif sk == 'S11':

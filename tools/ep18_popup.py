@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ep18 4번 옷 더미에서 창수 얼굴 쑥(0원) v2.
 사용: python3 tools/ep18_popup.py [--out outputs/ep18/test/popup_free_v2.mp4]
+- v3(사용자): 날개 지운 자리·옷장 벽이 우글거림 → 날개 자리 다시 메움(F2b_nowing2: 기둥 왼쪽은 위에서, 오른쪽 칸은 옆에서 옮김), 부풂은 더미에만.
 - v2(사용자): 더미 위로 날개가 보이면 이상함 → 날개 지운 더미(F2b_nowing, 옆 칸 벽을 옮겨 붙여 0원)에서 시작.
   얼굴이 올라올 때 옷 더미도 같이 살짝 무너져야 자연스러움 →
   (1) 더미 꼭대기가 안에서 꿈틀(작게 부풂) → (2) 머리가 올라오며 꼭대기가 크게 부풀었다 가라앉음
@@ -21,7 +22,7 @@ PILE_Y = int(688 * K)
 SLIDE = [('shirt_y', (395, 650), (255, 805), -38, 0.62), ('beanie', (430, 655), (545, 790), 30, 0.7), ('cardi', (370, 665), (300, 760), -20, 0.55)]
 
 
-def bulge(img, cx, cy, amp, sx=95 * K, sy=70 * K):
+def bulge(img, cx, cy, amp, sx=80 * K, sy=70 * K):
     """(cx, cy) 둘레를 위로 amp px 부풀림(옷 더미가 안에서 밀림)."""
     if abs(amp) < 0.3:
         return img
@@ -30,13 +31,14 @@ def bulge(img, cx, cy, amp, sx=95 * K, sy=70 * K):
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
     cx, cy = float(cx), float(cy)
     g = np.exp(-((xx - cx) ** 2) / (2 * sx ** 2) - ((yy - cy) ** 2) / (2 * sy ** 2))
+    g *= np.clip((yy - (PILE_Y - 50 * K)) / (40 * K), 0, 1)   # v3(사용자: 옷장 벽이 우글거림) 더미 윗선 위 벽은 그대로
     return Image.fromarray(cv2.remap(a, xx, (yy + amp * g).astype(np.float32), cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT))
 
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--out', default=f'{EP}/test/popup_free_v2.mp4')
     a = ap.parse_args()
-    B, C = av.big(f'{EP}/img/F2b_nowing.png'), av.big(f'{EP}/img/F4a_v1.png')
+    B, C = av.big(f'{EP}/img/F2b_nowing2.png'), av.big(f'{EP}/img/F4a_v1.png')
     _, head, foot = av.cut(C, (295, 525, 470, 700))
     hx = foot[0]
     pivot = (hx, PILE_Y)
