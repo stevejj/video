@@ -280,10 +280,10 @@ def main():
             elif sk == 'S4a':
                 fr = POP.at(lt)
             elif sk in ('S4b', 'S5', 'S8'):
-                sq = 0
-                if sk == 'S8' and 0.95 <= lt:          # 하… 어깨 축
-                    sq = 0.035 * ease((lt - 0.95) / 0.5)
-                ps[0].draw(fr, 1 - 0.025 * ev[0][k] + sq * 0.4, 1 + 0.05 * ev[0][k] - sq, 1.6 * ev[0][k] * np.sin(2 * np.pi * 2.2 * lt))
+                if sk in ('S4b', 'S8'):                # v5(사용자: "그대로인데?" 창수·"저건 작아졌어" 미순 움직이지 마) 멈춘 화면 + 확대만
+                    fr = I[{'S4b': 'F4b', 'S8': 'F8'}[sk]].copy()
+                else:
+                    ps[0].draw(fr, 1 - 0.025 * ev[0][k], 1 + 0.05 * ev[0][k], 1.6 * ev[0][k] * np.sin(2 * np.pi * 2.2 * lt))
                 z0 = {'S4b': 1.18, 'S5': 1.15, 'S8': 1.12}[sk]
                 fr = cam(fr, z0 + 0.07 * ease(lt / s['len']), ps[0].center[0] - 40, ps[0].center[1] - 60)
             elif sk == 'S6':                           # v4(사용자: 우글거림) 멈춘 화면 + 확대만
