@@ -142,19 +142,19 @@ def main():
     segs = [
         dict(n='S1 옷장 앞', len=4.0),
         dict(n='S2 손잡이', len=1.65),
-        dict(n='S3 산사태', len=3.0, chip=('옷장 오픈', 0.15, 2.6)),
+        dict(n='S3 산사태', len=3.0),
         dict(n='S4a 얼굴 쑥', len=3.0),
-        dict(n='S4b 작년 거', len=2.6, chip=('숨 막히는 신경전', 1.0, 2.5)),
+        dict(n='S4b 작년 거', len=2.6),
         dict(n='S5 정리해 봐', len=2.3),
-        dict(n='S6 버리고', len=2.0, chip=('말은 또 잘 들음', 0.9, 1.95)),
-        dict(n='S7 아까운데', len=2.6, chip=('얘들아, 내년에 보자', 1.2, 2.55)),
-        dict(n='S8 1시간 뒤', len=3.2, chip=('1시간 뒤', 0.0, 0.95), chip2=('정리의 마법', 1.9, 3.15)),
-        dict(n='S9 미워', len=2.3, chip=('서운한 들숨', 1.2, 2.25)),
-        dict(n='S10 달래기', len=4.5, chip=('남편이 졌다', 3.5, 4.45)),
-        dict(n='S11 정말', len=1.9, chip=('눈물 쏘옥', 0.75, 1.85)),
-        dict(n='S12 담아놨지롱', len=2.2, chip=('계획된 눈물', 1.35, 2.15)),
+        dict(n='S6 버리고', len=2.0),
+        dict(n='S7 아까운데', len=2.6),
+        dict(n='S8 1시간 뒤', len=3.2, chip=('1시간 뒤', 0.0, 0.95)),
+        dict(n='S9 미워', len=2.3),
+        dict(n='S10 달래기', len=4.5),
+        dict(n='S11 정말', len=1.9),
+        dict(n='S12 담아놨지롱', len=2.2),
         dict(n='S12b 장바구니', len=2.3, phone=True),
-        dict(n='S13 동공지진', len=2.8, chip=('동공지진', 0.55, 2.4)),
+        dict(n='S13 동공지진', len=2.8),
     ]
     t = 0.0
     for s in segs:
@@ -246,12 +246,9 @@ def main():
         m = (lab == i_).astype(np.uint8) * 255; m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, np.ones((15, 15), np.uint8))
         cs, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE); m[:] = 0; cv2.drawContours(m, cs, -1, 255, -1)
         m = cv2.dilate(m, np.ones((9, 9), np.uint8)); full = np.zeros(lum.shape, np.uint8); full[y0:y1, x0:x1] = m; eyes.append(full)
-    allm = eyes[0] | eyes[1]
-    b13p = cv2.inpaint(b13, cv2.dilate(allm, np.ones((7, 7), np.uint8)), 9, cv2.INPAINT_TELEA)
-    eye_layers = []
+    eye_c = []
     for m in eyes:
-        ys, xs = np.where(m > 0); X0, Y0, X1, Y1 = xs.min() - 6, ys.min() - 6, xs.max() + 7, ys.max() + 7
-        eye_layers.append((X0, Y0, np.dstack([b13[Y0:Y1, X0:X1], cv2.GaussianBlur(m, (7, 7), 0)[Y0:Y1, X0:X1]])))
+        ys, xs = np.where(m > 0); eye_c.append((xs.mean(), ys.mean(), max(np.ptp(xs), np.ptp(ys)) / 2))
 
     title = text_img(TITLE, 92, stroke=10); chan = text_img([[('지독한 미순', 'white')]], 52, weight=700, stroke=6)
     chips, subc = {}, {}
@@ -289,8 +286,8 @@ def main():
                 ps[0].draw(fr, 1 - 0.025 * ev[0][k] + sq * 0.4, 1 + 0.05 * ev[0][k] - sq, 1.6 * ev[0][k] * np.sin(2 * np.pi * 2.2 * lt))
                 z0 = {'S4b': 1.18, 'S5': 1.15, 'S8': 1.12}[sk]
                 fr = cam(fr, z0 + 0.07 * ease(lt / s['len']), ps[0].center[0] - 40, ps[0].center[1] - 60)
-            elif sk == 'S6':
-                bob(ps[0], fr, ev[0][k], lt)
+            elif sk == 'S6':                           # v4(사용자: 우글거림) 멈춘 화면 + 확대만
+                fr = I['F6'].copy()
                 bump = 0.03 * np.exp(-(lt - 1.15) * 10) if lt >= 1.15 else 0
                 fr = cam(fr, 1.15 + bump + 0.05 * lt / s['len'], ps[0].center[0] - 60, ps[0].center[1] + 20)
             elif sk == 'S7':                           # 날개로 가디건 쓰다듬기(만지작)
@@ -306,7 +303,7 @@ def main():
                 tr = 1.2 if lt < stop else 0
                 pk = 0.04 * max(0, np.sin(np.pi * ((lt - 0.15) / 0.25))) if 0.15 <= lt < 0.4 or 1.6 <= lt < 1.85 else 0
                 ps[1].draw(fr, 1 - pk, 1 + pk, tr * np.sin(2 * np.pi * 9 * lt), dx=tr * 1.5 * np.sin(2 * np.pi * 7 * lt))
-                bob(ps[0], fr, ev[0][k], lt)                # 창수는 이불 위에 그림(겹친 날개가 안 떨리게)
+                ps[0].draw(fr)                              # v4(사용자: 손 움직이지 마) 창수는 가만히, 이불 위에 그림
                 z = 1.1 + 0.06 * lt / s['len'] + (0.08 * ease((lt - stop) / 0.15) if lt >= stop else 0)
                 fr = cam(fr, z, 395 * K, 640 * K)
             elif sk == 'S11':
@@ -323,15 +320,16 @@ def main():
             elif sk == 'S12b':
                 fr = cart[k].copy()
             elif sk == 'S13':
-                im = b13p.copy()
-                for j, (X0, Y0, lay) in enumerate(eye_layers):
-                    if 0.2 <= lt < 2.2:
-                        jj = int((lt - 0.2) / 0.04); amp = 14 * (0.7 if jj % 3 == 0 else 1.0)
-                        dx = (1 if j == 0 else -1) * amp * (1 if jj % 2 == 0 else -1); dy = amp * 0.25 * (1 if jj % 4 < 2 else -1)
-                    else:
-                        dx = dy = 0
-                    h_, w_ = lay.shape[:2]; xa, ya = int(X0 + dx), int(Y0 + dy); al = lay[..., 3:4].astype(np.float32) / 255
-                    reg = im[ya:ya + h_, xa:xa + w_]; reg[:] = (reg * (1 - al) + lay[..., :3] * al).astype(np.uint8)
+                im = b13.copy()
+                if 0.2 <= lt < 2.2:
+                    jj = int((lt - 0.2) / 0.05); amp = 7 * (0.6 if jj % 3 == 0 else 1.0)
+                    for j, (ex, ey, er) in enumerate(eye_c):
+                        dx = (1 if j == 0 else -1) * amp * (1 if jj % 2 == 0 else -1); dy = amp * 0.3 * (1 if jj % 4 < 2 else -1)
+                        R = int(er * 2.2); x0_, y0_ = int(ex - R), int(ey - R)
+                        yy, xx = np.mgrid[0:2 * R, 0:2 * R].astype(np.float32)
+                        g = np.exp(-((xx - R) ** 2 + (yy - R) ** 2) / (2 * (er * 1.05) ** 2)).astype(np.float32)
+                        sub = im[y0_:y0_ + 2 * R, x0_:x0_ + 2 * R].copy()
+                        im[y0_:y0_ + 2 * R, x0_:x0_ + 2 * R] = cv2.remap(sub, xx - dx * g, yy - dy * g, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
                 im = cv2.resize(im, (W, int(im.shape[0] * s13)), interpolation=cv2.INTER_AREA)
                 z = 1.0 if lt < 0.2 else (1.25 if lt < 0.9 else 1.6)
                 if 0.2 <= lt < 0.32:
@@ -339,7 +337,7 @@ def main():
                 elif 0.9 <= lt < 1.02:
                     z = 1.25 + 0.35 * ease((lt - 0.9) / 0.12)
                 fr = cam(im, z, W / 2, 1320 * s13)
-                shake = 6 if 0.2 <= lt < 2.2 else 0
+                shake = 3 if 0.2 <= lt < 2.2 else 0
             if shake > 0.5:
                 fr = cv2.warpAffine(fr, np.float32([[1, 0, rng.uniform(-shake, shake)], [0, 1, rng.uniform(-shake, shake)]]), (W, H), borderMode=cv2.BORDER_REPLICATE)
             for key in ('chip', 'chip2'):
