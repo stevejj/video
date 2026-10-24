@@ -4274,6 +4274,267 @@
      "file": "outputs/ep18/voice/lines/C12.mp3"
     }
    ]
+  },
+  "ep19": {
+   "lines": [
+    {
+     "cut": "L01",
+     "speaker": "misun",
+     "subtitle": "아 이거 진짜 웃기다 ㅋㅋ",
+     "tts": "[giggling, amused] 아 이거 진짜 웃기다",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.85,
+     "file": "outputs/ep19/voice/lines/L01.mp3"
+    },
+    {
+     "cut": "L04",
+     "speaker": "changsu",
+     "subtitle": "(치맥…)",
+     "tts": "[whispering, longing] 치맥...",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": true,
+     "len": 0.81,
+     "file": "outputs/ep19/voice/lines/L04.mp3"
+    },
+    {
+     "cut": "L06a",
+     "speaker": "changsu",
+     "subtitle": "(토요일에… 자기한테 뭐라고 하지)",
+     "tts": "[muttering, hesitant] 토요일에... 자기한테 뭐라고 하지",
+     "seed": 99,
+     "speedup": 1.25,
+     "inner": true,
+     "len": 2.59,
+     "file": "outputs/ep19/voice/lines/L06a.mp3"
+    },
+    {
+     "cut": "L06b",
+     "speaker": "changsu",
+     "subtitle": "말할까말까말까말까할까말까",
+     "tts": "[muttering quickly, anxious] 말할까 말까 말까 말까 할까 말까",
+     "seed": 99,
+     "speedup": 1.25,
+     "inner": true,
+     "len": 1.83,
+     "file": "outputs/ep19/voice/lines/L06b.mp3"
+    },
+    {
+     "cut": "L07",
+     "speaker": "misun",
+     "subtitle": "자기야.",
+     "tts": "[flat, casual] 자기야.",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 0.63,
+     "file": "outputs/ep19/voice/lines/L07.mp3"
+    },
+    {
+     "cut": "L08",
+     "speaker": "changsu",
+     "subtitle": "응, 왜?",
+     "tts": "[casual, calm] 응, 왜?",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 0.89,
+     "file": "outputs/ep19/voice/lines/L08.mp3"
+    },
+    {
+     "cut": "L09",
+     "speaker": "misun",
+     "subtitle": "나 토요일에 친구들이랑 저녁 먹어도 돼? 좀 늦을 것 같은데.",
+     "tts": "[gentle, a little careful] 나 토요일에 친구들이랑 저녁 먹어도 돼? 좀 늦을 것 같은데.",
+     "seed": 99,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 3.55,
+     "file": "outputs/ep19/voice/lines/L09.mp3"
+    },
+    {
+     "cut": "L10a",
+     "speaker": "changsu",
+     "subtitle": "(토요일…?)",
+     "tts": "[quietly, surprised, low voice] 토요일...?",
+     "seed": 42,
+     "speedup": 1.25,
+     "inner": true,
+     "len": 0.89,
+     "file": "outputs/ep19/voice/lines/L10a.mp3"
+    },
+    {
+     "cut": "L10b",
+     "speaker": "changsu",
+     "subtitle": "(이게 되네?)",
+     "tts": "[quietly, delighted, holding back a laugh] 이게 되네?",
+     "seed": 1234,
+     "speedup": 1.25,
+     "inner": true,
+     "len": 0.86,
+     "file": "outputs/ep19/voice/lines/L10b.mp3"
+    },
+    {
+     "cut": "L11",
+     "speaker": "changsu",
+     "subtitle": "아… 토요일에? 미순이 없이 나 혼자 뭐 하냐…",
+     "tts": "[slow, low voice, trailing off, pretending to be sad] 아... 토요일에? 미순이 없이 나 혼자 뭐 하냐...",
+     "seed": 42,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 2.85,
+     "file": "outputs/ep19/voice/lines/L11.mp3"
+    },
+    {
+     "cut": "L12",
+     "speaker": "misun",
+     "subtitle": "그런가? 그럼 가지 말까?",
+     "tts": "[thoughtful, soft] 그런가? 그럼 가지 말까?",
+     "seed": 99,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.83,
+     "file": "outputs/ep19/voice/lines/L12.mp3"
+    },
+    {
+     "cut": "L13",
+     "speaker": "changsu",
+     "subtitle": "어어어, 아니아니아니.",
+     "tts": "[flustered, quick, panicked] 어어어, 아니 아니 아니.",
+     "seed": 1234,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.38,
+     "file": "outputs/ep19/voice/lines/L13.mp3"
+    },
+    {
+     "cut": "L14",
+     "speaker": "changsu",
+     "subtitle": "아니야, 재밌게 놀다 와~ 나도 그냥… 친구나 만나지 뭐.",
+     "tts": "[casual, hiding excitement] 아니야, 재밌게 놀다 와. 나도 그냥... 친구나 만나지 뭐.",
+     "seed": 7,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 3.34,
+     "file": "outputs/ep19/voice/lines/L14.mp3"
+    },
+    {
+     "cut": "L15",
+     "speaker": "misun",
+     "subtitle": "그래? 그럼 나 잡는다~",
+     "tts": "[cheerful, light] 그래? 그럼 나 잡는다~",
+     "seed": 42,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.57,
+     "file": "outputs/ep19/voice/lines/L15.mp3"
+    },
+    {
+     "cut": "L16",
+     "speaker": "changsu",
+     "subtitle": "야야야 토요일 콜!!!",
+     "tts": "[whispering excitedly, urgent] 야야야 토요일 콜!",
+     "seed": 42,
+     "speedup": 1.25,
+     "inner": false,
+     "len": 1.31,
+     "file": "outputs/ep19/voice/lines/L16.mp3"
+    }
+   ],
+   "placements": [
+    {
+     "file": "outputs/ep19/voice/lines/L01.mp3",
+     "at": 0.3,
+     "line": "L01",
+     "inner": false
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L04_rev.mp3",
+     "at": 6.75,
+     "line": "L04",
+     "inner": true
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L06a_rev.mp3",
+     "at": 9.86,
+     "line": "L06a",
+     "inner": true
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L06b_rev.mp3",
+     "at": 12.76,
+     "line": "L06b",
+     "inner": true
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L07.mp3",
+     "at": 15.29,
+     "line": "L07",
+     "inner": false
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L08.mp3",
+     "at": 16.62,
+     "line": "L08",
+     "inner": false
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L09.mp3",
+     "at": 18.21,
+     "line": "L09",
+     "inner": false
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L10a_rev.mp3",
+     "at": 22.36,
+     "line": "L10a",
+     "inner": true
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L10b_rev.mp3",
+     "at": 23.51,
+     "line": "L10b",
+     "inner": true
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L11.mp3",
+     "at": 25.07,
+     "line": "L11",
+     "inner": false
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L12.mp3",
+     "at": 28.62,
+     "line": "L12",
+     "inner": false
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L13.mp3",
+     "at": 30.95,
+     "line": "L13",
+     "inner": false
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L14.mp3",
+     "at": 33.03,
+     "line": "L14",
+     "inner": false
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L15.mp3",
+     "at": 37.07,
+     "line": "L15",
+     "inner": false
+    },
+    {
+     "file": "outputs/ep19/voice/lines/L16.mp3",
+     "at": 39.44,
+     "line": "L16",
+     "inner": false
+    }
+   ]
   }
  },
  "voices_legacy": {

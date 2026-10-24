@@ -178,6 +178,19 @@ def main():
                               f'{"<span class=toasticon>" + html.escape(ts_["icon"]) + "</span>" if ts_.get("icon") else ""}{html.escape(ts_["text"])}</span></div>')
             tl.append(f'tl.fromTo("#{tid_}", {{opacity: 0, y: 24, scale: 0.9}}, {{opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.7)"}}, {d0:.3f});')
             tl.append(f'tl.to("#{tid_}", {{opacity: 0, y: -10, duration: 0.25, ease: "power1.in"}}, {d0 + ts_["dur"] - 0.25:.3f});')
+        for k, bb in enumerate(fx.get('bubbles', [])):  # 메신저 말풍선(ep19, 사용자: "화면 알림과 구분되게"): 받은 메시지 = 흰 말풍선+꼬리+이름 없는 아바타, 보낸 메시지 = 연노랑 오른쪽. 상황 자막(toasts)과 다른 모양
+            bid = f'{cid}-bb{k}'; d0 = t + bb['at']; side = bb.get('side', 'in')
+            pos = f'right:{bb["right"] * W:.0f}px;' if bb.get('right') is not None else f'left:{bb.get("x", 0.04) * W:.0f}px;'
+            av = '<span class="avatar"></span>' if side == 'in' else ''
+            fs = f' style="font-size:{bb["size"]}px;"' if bb.get('size') else ''
+            media_html.append(f'<div class="winfx bubble {side}" id="{bid}" data-start="{d0:.3f}" data-duration="{bb["dur"]:.3f}" '
+                              f'style="{pos} top:{bb.get("y", 0.05) * win:.0f}px; opacity:0; transform-origin: {"12% 100%" if side == "in" else "88% 100%"};">{av}<span class="bubblein"{fs}>{html.escape(bb["text"])}</span></div>')
+            if bb.get('pop', True):
+                tl.append(f'tl.fromTo("#{bid}", {{scale: 0.3, opacity: 0, y: 26}}, {{scale: 1, opacity: 1, y: 0, duration: 0.32, ease: "back.out(2.2)"}}, {d0:.3f});')
+            else:   # 이미 와 있던 메시지(대화 스레드): 바로 떠 있음
+                tl.append(f'tl.set("#{bid}", {{opacity: 1}}, {d0:.3f});')
+            if bb.get('fade', bb.get('pop', True)):
+                tl.append(f'tl.to("#{bid}", {{opacity: 0, y: -12, duration: 0.22, ease: "power1.in"}}, {d0 + bb["dur"] - 0.22:.3f});')
         for k, lb in enumerate(fx.get('labels', [])):  # 이름표(ep06 v2 댄스배틀): 둥근 색 띠가 왼쪽에서 미끄러져 들어왔다 나감
             lid = f'{cid}-lb{k}'; d0 = t + lb['at']
             media_html.append(f'<div class="winfx tagpill" id="{lid}" data-start="{d0:.3f}" data-duration="{lb["dur"]:.3f}" '
@@ -411,6 +424,15 @@ def main():
   .toastin {{ display: inline-block; padding: 22px 54px 24px 46px; border-radius: 999px; background: rgba(255,255,255,0.78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
              box-shadow: 0 10px 34px rgba(0,0,0,0.22), inset 0 0 0 2px rgba(255,255,255,0.6); font-family: "Jua", "NotoKR", sans-serif; font-size: 62px; color: #5A4A52; white-space: nowrap; }}
   .toasticon {{ display: inline-block; margin-right: 18px; color: #FF7EB3; font-family: "NotoKR", sans-serif; font-weight: 800; font-size: 66px; vertical-align: -2px; }}
+  .bubble {{ width: auto; height: auto; display: flex; align-items: flex-end; gap: 14px; z-index: 6; }}
+  .bubble.out {{ flex-direction: row-reverse; }}
+  .avatar {{ width: 84px; height: 84px; border-radius: 50%; flex: none; box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+             background: radial-gradient(circle at 50% 36%, #fff 0 16px, rgba(255,255,255,0) 17px), radial-gradient(ellipse 30px 26px at 50% 92%, #fff 0 100%, rgba(255,255,255,0) 101%), #B9C0C8; }}
+  .bubblein {{ position: relative; display: inline-block; padding: 18px 30px 20px; border-radius: 30px; background: #fff; color: #222; font-size: 50px; font-weight: 700; line-height: 1.25; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }}
+  .bubble.in .bubblein {{ border-bottom-left-radius: 6px; }}
+  .bubble.in .bubblein::after {{ content: ""; position: absolute; left: -16px; bottom: 12px; border: 16px solid transparent; border-right-color: #fff; border-left: 0; }}
+  .bubble.out .bubblein {{ background: #FFE873; border-bottom-right-radius: 6px; }}
+  .bubble.out .bubblein::after {{ content: ""; position: absolute; right: -16px; bottom: 12px; border: 16px solid transparent; border-left-color: #FFE873; border-right: 0; }}
   .focusbox {{ border: 5px solid rgba(255,255,255,0.95); border-radius: 10px; box-sizing: border-box; transform-origin: 50% 50%; }}
   .tagpill {{ z-index: 6; width: auto; height: auto; padding: 14px 40px 16px 34px; border-radius: 60px; color: #fff; font-size: 64px; font-weight: 900; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.35); -webkit-text-stroke: 2px rgba(0,0,0,0.25); }}
   .tagsmall {{ font-size: 34px; font-weight: 800; margin-right: 18px; letter-spacing: 0.08em; opacity: 0.9; }}

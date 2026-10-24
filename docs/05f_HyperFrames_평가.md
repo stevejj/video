@@ -48,3 +48,11 @@ HyperFrames의 "생성 영상" 기능 확인: `media-use` 스킬의 image-to-vid
 ### v11e (2026-10-07, 사용자 지시)
 - 5-02 숟가락 퍼펫 **제거**(원래 정지+푸시인). 2-02 "가기 싫다..": Kling 클립(털뭉치가 마르며 일어남) 대신 **정지 프레임 + 눈 깜빡임 퍼펫 3회**(눈꺼풀 = 눈 위 45px 털을 타원으로 복사 + 얇은 감은 눈 선, scaleY 0→1, 0.07s 감고 0.1s 유지 0.09s 뜸), 털뭉치 고정. 9-04 TV: 두 머리를 오려(창수는 털뭉치 포함) 목 아래 피벗으로 **끄덕임**(y 5px·회전 2°, 서로 엇박자 3회).
 - 변환기: 레이어 `init`(초기 상태)와 임의 속성 키프레임(`scaleY` 등) 지원. 단일 컷 테스트는 `--edit <컷 1개짜리 edit_list>`로 15초 안에 확인.
+
+## 윈도우 PC 설치 (2026-10-24, 사용자 요청 "hyperframes 다운받아봐")
+- CLI: `external/hf-cli/`(gitignore)에 `npm install hyperframes@latest` → **v0.8.191**(이전 컨테이너 0.8.139). 실행 파일 `external/hf-cli/node_modules/.bin/hyperframes`.
+- Chrome: `hyperframes browser ensure` → `~/.cache/hyperframes/chrome/chrome-headless-shell/win64-152…`. `doctor`의 "시스템 Chrome 버전 확인 실패"는 무시해도 됨(자체 셸 사용).
+- ffmpeg/ffprobe: 이 PC PATH의 ffmpeg 9 사용. `tools/hf_render.sh`가 PATH ffmpeg를 우선 쓰도록 고침, CLI도 로컬 설치본 우선.
+- 소스: `external/hyperframes/` 얕은 클론(스킬 문서 참고용).
+- 렌더 시험: 1080×1920 3초 24fps(정지 그림 클립 + 제목 + 자막 팝 + 음성) **12초**, 72프레임, 오디오 포함 OK. 새 버전 lint 경고: 최상위 `<section>` 안에 `<div>`를 두면 "서브컴포지션으로 옮기라"는 경고(렌더엔 영향 없음).
+- 기존 `outputs/hyperframes_test`의 clip.mp4·voice.mp3는 gitignore라 이 PC엔 없음 → 렌더 시험은 스크래치패드에서 함.

@@ -23,7 +23,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 import lint_prompts  # noqa: E402
 
-PRICE = {'gemini-3.1-flash-image': 125, 'gemini-3-pro-image': 255}  # 05c 보정 단가(원)
+PRICE = {'gemini-3.1-flash-image': 125, 'gemini-3-pro-image': 255, 'gemini-3.1-flash-lite-image': 62}  # 05c 보정 단가(원)
 ORD = ['FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH', 'SIXTH']
 SAFETY = [r'\bnaked\b', r'\bnude\b', r'no clothes', r'\bwet\b', r'\bbath(ing)?\b(?! ?mat)', r'\bblood', r'\bknife', r'\bkill', r'\bunderwear']
 BRANDS = [r'\bkfc\b', r'\bbbq\b', r'교촌', r'bhc', r'\bchanel\b', r'herm[eè]s', r'\bgucci\b', r'\blouis vuitton\b', r'\bnike\b', r'pengsoo', r'펭수',

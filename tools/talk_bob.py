@@ -16,7 +16,7 @@ import cutout
 import imageio_ffmpeg
 
 FF = imageio_ffmpeg.get_ffmpeg_exe()
-MODEL = '/tmp/claude-0/-home-user-video/f018d661-8ddb-51f7-8e2d-f2480d28ac5d/scratchpad/models/isnet.onnx'
+MODEL = os.environ.get('ISNET_MODEL', '/tmp/claude-0/-home-user-video/f018d661-8ddb-51f7-8e2d-f2480d28ac5d/scratchpad/models/isnet.onnx')  # 2026-10-24: 환경변수로 덮어쓰기(윈도우 PC)
 FPS, W, H, SR = 24, 1080, 1920, 16000
 
 
