@@ -12,7 +12,7 @@ import argparse, json, os, subprocess, sys
 import numpy as np, cv2
 from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import talk_bob
+import cutout, talk_bob
 from ep14_edit import text_img, chip_img, put, ease, font, W, H, FPS, FF
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -33,6 +33,39 @@ def cam(img, z, cx, cy):
     x0 = min(max(cx - cw / 2, 0), img.shape[1] - cw); y0 = min(max(cy - ch / 2, 0), img.shape[0] - ch)
     M = np.float32([[z, 0, -x0 * z], [0, z, -y0 * z]])
     return cv2.warpAffine(img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+
+
+def focus(img, boxes, keep=(), sigma=10):
+    """카메라 초점처럼 배경만 흐림(v9 사용자: 옷 무더기를 가리기). 캐릭터는 오려서 움직이지 않고 선명하게만 둠."""
+    m = np.zeros(img.shape[:2], np.float32)
+    for box in boxes:
+        x0, y0, x1, y1 = [int(v * K) for v in box]
+        crop = Image.fromarray(cv2.cvtColor(img[y0:y1, x0:x1], cv2.COLOR_BGR2RGB))
+        al = np.asarray(cutout.alpha(crop, talk_bob.MODEL)).astype(np.float32) / 255
+        m[y0:y1, x0:x1] = np.maximum(m[y0:y1, x0:x1], np.clip((al - 0.2) / 0.5, 0, 1))
+    for box in keep:                                   # 캐릭터와 같은 거리의 물건(상자 등)은 선명하게
+        x0, y0, x1, y1 = [int(v * K) for v in box]; m[y0:y1, x0:x1] = 1
+    m = cv2.GaussianBlur(cv2.dilate(m, np.ones((9, 9), np.uint8)), (0, 0), 6)[..., None]
+    bl = cv2.GaussianBlur(img, (0, 0), sigma)
+    return (img * m + bl * (1 - m)).astype(np.uint8)
+
+
+def dust(fr, t, cx, cy, n=26, seed=5):
+    """옷이 쏟아진 뒤 먼지 구름: 더미 표면에 뭉게뭉게 덩어리가 피어올라 덮고, '뽁' 뒤에 걷힘. t = 시작 뒤 초, (cx, cy) = 더미 꼭대기."""
+    if t < 0 or t > 2.4:
+        return fr
+    rng = np.random.default_rng(seed); ov = np.zeros(fr.shape[:2], np.float32)
+    grow = 0.55 + 0.45 * ease(t / 0.6)
+    for i in range(n):
+        u = rng.uniform(0, 1); side = rng.uniform(-1, 1)
+        x = cx + side * (60 + 330 * u); y = cy + 40 + 560 * u * abs(side) * 0.8 + rng.uniform(-40, 60) - 45 * t   # 더미 비탈을 따라
+        r = rng.uniform(55, 115) * grow
+        cv2.circle(ov, (int(x), int(y)), int(r), 1.0, -1, cv2.LINE_AA)
+    ov = cv2.GaussianBlur(ov, (0, 0), 16)
+    a = np.clip(ov * 1.2, 0, 1) * 0.8 * (1 - ease((t - 1.6) / 0.8))
+    shade = 0.9 + 0.1 * cv2.GaussianBlur(ov, (0, 0), 40)          # 가운데가 조금 밝게(입체감)
+    col = np.array([222, 230, 238], np.float32)[None, None] * np.clip(shade, 0, 1.05)[..., None]
+    return (fr * (1 - a[..., None]) + col * a[..., None]).astype(np.uint8)
 
 
 class Clip:
@@ -158,6 +191,10 @@ def main():
     nfr = lambda sk: int(round(S[sk]['len'] * FPS)) + 2
     I = {k: big(v) for k, v in dict(F1='F1_v1', F2a='F2a_v1', F2b='F2b_nowing2', F4a='F4a_v1', F4b='F4b_v2', F5='F5_v1', F6='F6_v1', F7='F7_v1',
                                      F8='F8_v1', B9='B9_v2', B10='B10_v1', B11='B11_v1', B12='B12_v1').items()}
+    I['F4b'] = focus(I['F4b'], [(400, 690, 745, 1255)])
+    I['F5'] = focus(I['F5'], [(450, 790, 720, 1230)])
+    I['F6'] = focus(I['F6'], [(390, 690, 720, 1075)], keep=[(285, 1060, 610, 1376)])
+    I['F8'] = focus(I['F8'], [(430, 790, 710, 1230)])
     voice9 = talk_bob.envelope([('x', LN('C9'), 0.35)], 'x', nfr('S9'))      # 9번: 목소리 크기만큼 카메라가 들썩
     K1 = Clip(os.path.join(EP, 'K1/clip_v1.mp4'), t0=0.8, sp=1.4)
     # Kling 끝 프레임과 같은 구도의 날개 지운 더미(시작·끝 프레임처럼 위아래 7px 잘림)
@@ -204,19 +241,22 @@ def main():
                 if src_t > 3.9:                        # v7(사용자: 옷 더미 맨 위가 우글거림) Kling 끝부분은 날개 지운 더미 그림으로 화면 전체를 넘겨 멈춤
                     a_ = ease((src_t - 3.9) / 0.35)
                     fr = (fr * (1 - a_) + fix * a_).astype(np.uint8)
+                fr = dust(fr, lt - 1.75, 383 * K, 690 * K - 7)
             elif sk == 'S4a':                          # 옷 더미 → 뽁! 얼굴 나온 화면으로 바뀌며 확대 펀치
                 if lt < 0.55:
                     fr = cam(I['F2b'], 1.0 + 0.03 * lt, W / 2, 900 * K); shake = 2 if lt > 0.25 else 0
+                    fr = dust(fr, lt + S['S3']['len'] - 1.75, 383 * K, 690 * K - 7)
                 else:
                     z = punch(lt, 0.55, 1.0, 1.22, 0.1) + 0.06 * max(0, lt - 0.7) / 2.3
                     fr = cam(I['F4a'], z, 383 * K, 760 * K); shake = 9 * np.exp(-(lt - 0.55) * 12)
+                    fr = dust(fr, lt + S['S3']['len'] - 1.75, W / 2, 1100)
             elif sk in ('S4b', 'S5', 'S6', 'S8'):
-                img, cx, cy, z0 = {'S4b': ('F4b', 575, 960, 1.5), 'S5': ('F5', 585, 1000, 1.15), 'S6': ('F6', 540, 900, 1.15), 'S8': ('F8', 566, 1010, 1.5)}[sk]   # v7: 4b 미순·8 창수 크게
+                img, cx, cy, z0 = {'S4b': ('F4b', 575, 960, 1.5), 'S5': ('F5', 585, 1000, 1.15), 'S6': ('F6', 540, 900, 1.15), 'S8': ('F8', 566, 960, 1.8)}[sk]   # v7: 4b 미순·8 창수 크게(v8 사용자: 창수 더 크게)
                 z = z0 + 0.08 * ease(lt / s['len'])
                 if sk == 'S6':                         # 툭: 카메라가 살짝 튐
                     z += 0.035 * np.exp(-(lt - 1.15) * 10) if lt >= 1.15 else 0
                 if sk == 'S8':                         # 하…: 천천히 더 밀어 들어감
-                    z = z0 + 0.2 * ease((lt - 0.95) / 1.6) if lt >= 0.95 else z0
+                    z = z0 + 0.25 * ease((lt - 0.95) / 1.6) if lt >= 0.95 else z0
                 fr = cam(I[img], z, cx * K, cy * K)
             elif sk == 'S7':                           # 가디건 클로즈업: 천천히 밀며 날개 쪽으로
                 fr = cam(I['F7'], 1.0 + 0.12 * ease(lt / s['len']), (384 + 120 * ease(lt / s['len'])) * K, 640 * K)
