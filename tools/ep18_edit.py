@@ -37,11 +37,11 @@ def cam(img, z, cx, cy):
 
 class Puppet:
     """정지 이미지에서 오린 캐릭터 한 명(또는 이불 덩어리). 원본 좌표(768 기준) 상자."""
-    def __init__(self, img, box, pad=40):
+    def __init__(self, img, box, pad=40, lo=0.15, hi=0.85):
         x0, y0, x1, y1 = [int(v * K) for v in box]
         crop = Image.fromarray(cv2.cvtColor(img[y0:y1, x0:x1], cv2.COLOR_BGR2RGB))
         al = np.asarray(cutout.alpha(crop, MODEL)).astype(np.float32) / 255
-        al = np.clip((al - 0.15) / 0.7, 0, 1)
+        al = np.clip((al - lo) / (hi - lo), 0, 1)
         self.full = np.zeros(img.shape[:2], np.float32); self.full[y0:y1, x0:x1] = al
         X0, Y0 = max(0, x0 - pad), max(0, y0 - pad); X1, Y1 = min(img.shape[1], x1 + pad), min(img.shape[0], y1 + pad)
         self.off = (X0, Y0)
@@ -52,7 +52,7 @@ class Puppet:
 
     def without(self, other):
         """다른 캐릭터와 겹치는 부분은 빼기(이불이 떨 때 창수 날개까지 같이 떨리던 문제, v2)."""
-        self.full *= np.clip(1 - other.full * 1.5, 0, 1)
+        self.full *= np.clip(1 - other.full * 2.0, 0, 1)
         X0, Y0 = self.off; h, w = self.rgba.shape[:2]
         self.rgba[..., 3] = (self.full[Y0:Y0 + h, X0:X0 + w] * 255).astype(np.uint8)
         return self
@@ -217,7 +217,7 @@ def main():
     pp['S7'] = [Puppet(I['F7'], (470, 410, 768, 760))]
     pp['S8'] = [Puppet(I['F8'], (430, 790, 710, 1230))]
     pp['S9'] = [Puppet(I['B9'], (215, 585, 575, 800))]
-    pp['S10'] = [Puppet(I['B10'], (420, 410, 690, 815))]
+    pp['S10'] = [Puppet(I['B10'], (340, 400, 700, 830), lo=0.45, hi=0.75)]   # v3(사용자: 토닥 장면 창수 날개가 잘림) 상자를 왼쪽으로 넓혀 이불에 얹은 날개까지
     pp['S10'].append(Puppet(I['B10'], (100, 590, 455, 835)).without(pp['S10'][0]))
     pp['S12'] = [Puppet(I['B12'], (160, 290, 600, 900))]
     plates = {k: plate(I[img], pp[k]) for k, img in (('S1', 'F1'), ('S2', 'F2a'), ('S4b', 'F4b'), ('S5', 'F5'), ('S6', 'F6'), ('S7', 'F7'),
