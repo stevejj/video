@@ -12,7 +12,7 @@ import argparse, json, os, subprocess, sys
 import numpy as np, cv2
 from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import cutout, talk_bob
+import talk_bob
 from ep14_edit import text_img, chip_img, put, ease, font, W, H, FPS, FF
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,21 +35,6 @@ def cam(img, z, cx, cy):
     return cv2.warpAffine(img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
 
 
-def focus(img, boxes, keep=(), sigma=10):
-    """카메라 초점처럼 배경만 흐림(v9 사용자: 옷 무더기를 가리기). 캐릭터는 오려서 움직이지 않고 선명하게만 둠."""
-    m = np.zeros(img.shape[:2], np.float32)
-    for box in boxes:
-        x0, y0, x1, y1 = [int(v * K) for v in box]
-        crop = Image.fromarray(cv2.cvtColor(img[y0:y1, x0:x1], cv2.COLOR_BGR2RGB))
-        al = np.asarray(cutout.alpha(crop, talk_bob.MODEL)).astype(np.float32) / 255
-        m[y0:y1, x0:x1] = np.maximum(m[y0:y1, x0:x1], np.clip((al - 0.2) / 0.5, 0, 1))
-    for box in keep:                                   # 캐릭터와 같은 거리의 물건(상자 등)은 선명하게
-        x0, y0, x1, y1 = [int(v * K) for v in box]; m[y0:y1, x0:x1] = 1
-    m = cv2.GaussianBlur(cv2.dilate(m, np.ones((9, 9), np.uint8)), (0, 0), 6)[..., None]
-    bl = cv2.GaussianBlur(img, (0, 0), sigma)
-    return (img * m + bl * (1 - m)).astype(np.uint8)
-
-
 def dust(fr, t, cx, cy, n=26, seed=5):
     """옷이 쏟아진 뒤 먼지 구름: 더미 표면에 뭉게뭉게 덩어리가 피어올라 덮고, '뽁' 뒤에 걷힘. t = 시작 뒤 초, (cx, cy) = 더미 꼭대기."""
     if t < 0 or t > 2.4:
@@ -62,7 +47,7 @@ def dust(fr, t, cx, cy, n=26, seed=5):
         r = rng.uniform(55, 115) * grow
         cv2.circle(ov, (int(x), int(y)), int(r), 1.0, -1, cv2.LINE_AA)
     ov = cv2.GaussianBlur(ov, (0, 0), 16)
-    a = np.clip(ov * 1.2, 0, 1) * 0.8 * (1 - ease((t - 1.6) / 0.8))
+    a = np.clip(ov * 1.2, 0, 1) * 0.45 * (1 - ease((t - 1.6) / 0.8))   # v9(사용자): 더 옅게
     shade = 0.9 + 0.1 * cv2.GaussianBlur(ov, (0, 0), 40)          # 가운데가 조금 밝게(입체감)
     col = np.array([222, 230, 238], np.float32)[None, None] * np.clip(shade, 0, 1.05)[..., None]
     return (fr * (1 - a[..., None]) + col * a[..., None]).astype(np.uint8)
@@ -191,10 +176,6 @@ def main():
     nfr = lambda sk: int(round(S[sk]['len'] * FPS)) + 2
     I = {k: big(v) for k, v in dict(F1='F1_v1', F2a='F2a_v1', F2b='F2b_nowing2', F4a='F4a_v1', F4b='F4b_v2', F5='F5_v1', F6='F6_v1', F7='F7_v1',
                                      F8='F8_v1', B9='B9_v2', B10='B10_v1', B11='B11_v1', B12='B12_v1').items()}
-    I['F4b'] = focus(I['F4b'], [(400, 690, 745, 1255)])
-    I['F5'] = focus(I['F5'], [(450, 790, 720, 1230)])
-    I['F6'] = focus(I['F6'], [(390, 690, 720, 1075)], keep=[(285, 1060, 610, 1376)])
-    I['F8'] = focus(I['F8'], [(430, 790, 710, 1230)])
     voice9 = talk_bob.envelope([('x', LN('C9'), 0.35)], 'x', nfr('S9'))      # 9번: 목소리 크기만큼 카메라가 들썩
     K1 = Clip(os.path.join(EP, 'K1/clip_v1.mp4'), t0=0.8, sp=1.4)
     # Kling 끝 프레임과 같은 구도의 날개 지운 더미(시작·끝 프레임처럼 위아래 7px 잘림)
