@@ -53,13 +53,14 @@ def dust(fr, t, cx, cy, n=26, seed=5):
     return (fr * (1 - a[..., None]) + col * a[..., None]).astype(np.uint8)
 
 
-def sub_img(text, color, size=70, outer=9, inner=3, weight=800, maxw=1000):
-    """자막(v15 사용자: ㅇ·ㅁ 가운데가 막혀 보이지 않게, 일관되게): 바깥 테두리는 굵게(outer), 글자 안 구멍(ㅇ·ㅁ·ㅂ 등) 쪽은 얇게(inner)."""
+def sub_img(text, color, size=70, outer=9, weight=800, maxw=1000):
+    """자막(v16 사용자: ㅇ·ㅁ 가운데가 뚫려 보이지 않게, 일관되게): 굵은 테두리(outer) + 글자 속 구멍(ㅇ·ㅁ·ㅂ 등)은 테두리색으로 꽉 채움.
+    (굵은 테두리만 쓰면 구멍 크기에 따라 어떤 글자는 막히고 어떤 글자는 조금 뚫려 들쭉날쭉했음)"""
     from ep14_edit import COL
     d0 = ImageDraw.Draw(Image.new('L', (1, 1)))
     while d0.textlength(text, font=font(size, weight)) + 2 * outer > maxw and size > 36:   # 화면 폭을 넘으면 글씨를 줄임
         size -= 2
-    S2 = 2; size, outer, inner = size * S2, outer * S2, inner * S2          # 2배로 그려 줄이면 테두리가 또렷
+    S2 = 2; size, outer = size * S2, outer * S2          # 2배로 그려 줄이면 테두리가 또렷
     f = font(size, weight); tw = int(d0.textlength(text, font=f))
     pad = outer + 12; Wd, Hd = tw + 2 * pad, size + 2 * pad + 16
     m = Image.new('L', (Wd, Hd), 0); ImageDraw.Draw(m).text((pad, pad), text, font=f, fill=255)
@@ -67,7 +68,7 @@ def sub_img(text, color, size=70, outer=9, inner=3, weight=800, maxw=1000):
     bg = (1 - F).copy(); ff = bg.copy(); cv2.floodFill(ff, None, (0, 0), 2)
     holes = (ff == 1).astype(np.uint8)                                   # 바깥과 이어지지 않은 배경 = 글자 속 구멍
     disk = lambda r: cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))
-    stroke = (cv2.dilate(F, disk(outer)) & (1 - holes)) | (cv2.dilate(F, disk(inner)) & holes)
+    stroke = cv2.dilate(F, disk(outer)) | holes
     a_st = stroke.astype(np.float32); a_fill = np.asarray(m).astype(np.float32) / 255
     rgb = np.array(Image.new('RGB', (1, 1), COL.get(color, color)).getpixel((0, 0)), np.float32)
     out = np.zeros((Hd, Wd, 4), np.float32)
@@ -392,7 +393,7 @@ def main():
                 if sb['t0'] <= tt < sb['t1']:
                     key = (sb['text'], sb['sp'])
                     if key not in subc:
-                        subc[key] = sub_img(sb['text'].replace('…', '...'), sb['sp'])   # v12: 말줄임은 아래 점(...), v15: 글자 속 구멍은 얇은 테두리
+                        subc[key] = sub_img(sb['text'].replace('…', '...'), sb['sp'])   # v12: 말줄임은 아래 점(...), v16: 글자 속 구멍은 꽉 채움
                     im_ = subc[key]; put(fr, im_, W / 2, H - 430 - im_.shape[0] / 2)
             if tt > total - 0.4:
                 fr = (fr * max(0, (total - tt) / 0.4)).astype(np.uint8)
