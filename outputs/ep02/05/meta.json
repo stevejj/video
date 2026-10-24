@@ -1,0 +1,46 @@
+{
+ "cut": "05",
+ "type": "start_only",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "3",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su stands facing the camera beside the left end of the sofa. He begins to sit down: his knees bend and his body lowers about halfway toward the empty left seat cushion, his bottom stopping well above the cushion without touching it; he pauses there for a moment as if hearing something, then straightens his knees and stands fully upright again in exactly the same spot where he started, with both feet flat on the floor and his wings hanging at his sides. He never sits on the sofa. His head keeps facing the camera at the same angle with a calm neutral face. Pang Mi-sun lies completely still on the right half of the sofa under the beige duvet; the duvet, the black remote on the seat, the cushions, the glass on the table and the table stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush characters, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Both beaks stay closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep02/05/start_v1.png"
+  }
+ },
+ "credits_before": 67.0,
+ "credits_after": 49.0,
+ "credits_consumed_reported": 18.0,
+ "approved_by_user": "진행 (2026-10-07)",
+ "version": 1,
+ "ts": "2026-10-07T12:24:09",
+ "generation_id": "AfaRKFMDof89CzNKFBBfNQWnJMkYbXv33buINoPQmKxq-sX6IEevYyWIX06Ddecs8iSTWnh1",
+ "status": "COMPLETED",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.02,
+   "start_vs_ref_bg_meandiff": 1.86,
+   "interframe_mean": 1.34,
+   "interframe_max": 3.85,
+   "interframe_max_at_s": 2.62,
+   "first_vs_last_meandiff": 3.49,
+   "bg_drift_first_last": 1.62,
+   "cam_motion_px_median": 0.23,
+   "cam_motion_px_max": 0.93
+  }
+ }
+}

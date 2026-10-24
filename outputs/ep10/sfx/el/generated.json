@@ -1,0 +1,51 @@
+[
+ {
+  "name": "fart_misun",
+  "prompt": "Cute small high-pitched cartoon fart, short squeaky 'pooong' toot, comedic, clean, no music",
+  "duration": 0.8,
+  "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+  "result": "ok 13835B"
+ },
+ {
+  "name": "fart_changsu",
+  "prompt": "Deep low bassy cartoon fart, short loud 'BOOM-pung' blast, comedic, clean, no music",
+  "duration": 0.9,
+  "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+  "result": "ok 15089B"
+ },
+ {
+  "name": "fart_pop1",
+  "prompt": "Very short punchy cartoon fart pop, tight and rhythmic like a drum hit, comedic, no music",
+  "duration": 0.5,
+  "file": "outputs/ep10/sfx/el/fart_pop1.mp3",
+  "result": "ok 8820B"
+ },
+ {
+  "name": "fart_pop2",
+  "prompt": "Very short squeaky high cartoon fart blip, tight and rhythmic like a snare hit, comedic, no music",
+  "duration": 0.5,
+  "file": "outputs/ep10/sfx/el/fart_pop2.mp3",
+  "result": "ok 8820B"
+ },
+ {
+  "name": "fart_finale",
+  "prompt": "Huge long epic cartoon fart, rumbling and trumpeting for three seconds, ending with a sputter, comedic, no music",
+  "duration": 3.0,
+  "file": "outputs/ep10/sfx/el/fart_finale.mp3",
+  "result": "ok 48944B"
+ },
+ {
+  "name": "boxing_bell",
+  "prompt": "Boxing ring bell, single loud ding ding to start the round, arena reverb, no crowd, no voice",
+  "duration": 1.5,
+  "file": "outputs/ep10/sfx/el/boxing_bell.mp3",
+  "result": "ok 24702B"
+ },
+ {
+  "name": "duvet_rustle",
+  "prompt": "Soft duvet and bedsheet rustle, someone shifting slightly in bed at night, quiet and close, no voice, no music",
+  "duration": 1.5,
+  "file": "outputs/ep10/sfx/el/duvet_rustle.mp3",
+  "result": "ok 24702B"
+ }
+]

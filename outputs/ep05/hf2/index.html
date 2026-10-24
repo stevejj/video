@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>ep05 v11 hyperframes</title>
+<script src="gsap.min.js"></script>
+<style>
+  @font-face { font-family: "NotoKR"; src: url("media/NotoSansKR.ttf") format("truetype"); font-weight: 100 900; }
+  body { margin: 0; background: #000; font-family: "NotoKR", sans-serif; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #win { position: absolute; left: 0; top: 576px; width: 1080px; height: 768px; overflow: hidden; background: #000; }
+  .frame { position: absolute; left: 0; width: 1080px; height: 1920px; will-change: transform; }
+  .frame img.layer { position: absolute; width: auto; height: auto; object-fit: fill; }
+  .frame img:not(.layer), .frame video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; display: block; }
+  #title { position: absolute; left: 0; width: 100%; top: 287px; text-align: center; font-size: 104px; font-weight: 800; line-height: 122px; }
+  #channel { position: absolute; left: 0; width: 100%; top: 1384px; text-align: center; font-size: 52px; font-weight: 700; color: #FFFFFF; opacity: 0.9; line-height: 1.4; }
+  .sub { position: absolute; bottom: 622px; font-size: 74px; font-weight: 800; white-space: nowrap; line-height: 1.25;
+          -webkit-text-stroke: 9px #111111; paint-order: stroke fill; transform-origin: 50% 100%; }
+  .card { position: absolute; left: 120px; top: 612px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }
+  .spark { position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }
+  .blackfade { position: absolute; inset: 0; background: #000; }
+  .flash { position: absolute; inset: 0; background: #fff; }
+  .uibox { position: absolute; left: 0; top: 776px; width: 1080px; text-align: center; color: #fff; transform-origin: 50% 50%; }
+  .uilabel { font-size: 60px; font-weight: 700; opacity: 0.85; }
+  .uinum { font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }
+  .uiclock { font-size: 54px; font-weight: 700; margin-top: 10px; }
+  .ring { position: absolute; border: 10px dashed #FFD84A; border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }
+  .arrow { position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="10.000" data-fps="24">
+  <div id="win">
+        <div class="frame" id="c01" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c01-v" src="media/01_bg.png" data-start="0.000" data-duration="1.400" /><img id="c01-ms" class="layer" src="media/01_ms.png" data-start="0.000" data-duration="1.400" style="left:450.0px; top:711.6px; width:458.4px; height:482.3px; transform-origin:230.6px 480.9px;" /></div>
+    <div class="flash" id="c01-fl0" data-start="1.150" data-duration="0.250"></div>
+    <div class="frame" id="c02" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c02-v" src="media/02_bg.png" data-start="1.400" data-duration="2.400" /><img id="c02-ms" class="layer" src="media/02_ms.png" data-start="1.400" data-duration="2.400" style="left:434.5px; top:696.1px; width:426.1px; height:541.4px; transform-origin:246.1px 504.8px;" /><img id="c02-db" class="layer" src="media/02_db.png" data-start="1.400" data-duration="2.400" style="left:711.6px; top:1223.4px; width:251.7px; height:104.1px; transform-origin:125.2px 98.4px;" /></div>
+    <div class="frame" id="c03" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c03-v" src="media/03.png" data-start="3.800" data-duration="1.600" /></div>
+    <div class="frame" id="c04" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c04-v" src="media/04_bg.png" data-start="5.400" data-duration="1.200" /><img id="c04-ms" class="layer" src="media/04_ms.png" data-start="5.400" data-duration="1.200" style="left:434.5px; top:696.1px; width:426.1px; height:541.4px; transform-origin:246.1px 372.7px;" /></div>
+    <div class="frame" id="c05" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c05-v" src="media/05_bg.png" data-start="6.600" data-duration="2.000" /><img id="c05-ms" class="layer" src="media/05_ms.png" data-start="6.600" data-duration="2.000" style="left:434.5px; top:696.1px; width:426.1px; height:541.4px; transform-origin:246.1px 504.8px;" /><img id="c05-db" class="layer" src="media/05_db.png" data-start="6.600" data-duration="2.000" style="left:711.6px; top:1223.4px; width:251.7px; height:104.1px; transform-origin:125.2px 98.4px;" /><img id="c05-ms1" class="layer" src="media/05_ms1.png" data-start="6.600" data-duration="2.000" style="left:450.0px; top:711.6px; width:458.4px; height:482.3px; transform-origin:230.6px 480.9px;" /></div>
+    <div class="frame" id="c06" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c06-v" src="media/06_bg.png" data-start="8.600" data-duration="1.400" /><img id="c06-ms" class="layer" src="media/06_ms.png" data-start="8.600" data-duration="1.400" style="left:450.0px; top:711.6px; width:458.4px; height:482.3px; transform-origin:230.6px 480.9px;" /></div>
+    <div class="flash" id="c06-fl0" data-start="9.750" data-duration="0.250"></div>
+  </div>
+  <div id="title"><div style="color:#FFFFFF">헬스장 간</div><div style="color:#FFD84A">우리 미순이</div></div>
+  <div id="channel">지독한 미순</div>
+  
+  
+</div>
+<script>
+  // 자막 가로 위치: 중심 cx, 폭 1000 안으로 클램프 (조립기와 동일 규칙)
+  function placeSubs() {
+    document.querySelectorAll('.sub').forEach(el => {
+      const cx = parseFloat(el.dataset.cx); const W = 1080, MW = 1000;
+      let fs = 74; el.style.fontSize = fs + 'px';
+      while (el.offsetWidth > MW && fs > 40) { fs -= 4; el.style.fontSize = fs + 'px'; }
+      const tw = el.offsetWidth;
+      let x = Math.min(Math.max(cx - tw / 2, (W - MW) / 2), W - (W - MW) / 2 - tw);
+      el.style.left = x + 'px';
+    });
+  }
+  const tl = gsap.timeline({ paused: true });
+  function build() {
+    placeSubs();
+        tl.to("#c01-ms", {...{"y": -12, "rotation": -3}, duration: 0.16, ease: "power2.out"}, 0.150);
+    tl.to("#c01-ms", {...{"y": 0, "rotation": 0}, duration: 0.16, ease: "power2.in"}, 0.310);
+    tl.to("#c01-ms", {...{"y": -12, "rotation": 3}, duration: 0.16, ease: "power2.out"}, 0.550);
+    tl.to("#c01-ms", {...{"y": 0, "rotation": 0}, duration: 0.16, ease: "power2.in"}, 0.710);
+    tl.fromTo("#c01", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 1.4, "ease": "none"}, 0.000);
+    tl.to("#c01", {x: -4.0, y: 2.4, duration: 1.10, ease: "sine.inOut"}, 0.000);
+    tl.to("#c01", {scale: 1.06, duration: 0.08, ease: "power3.out", overwrite: "auto"}, 1.150);
+    tl.to("#c01", {scale: 1.04, duration: 0.35, ease: "power2.out"}, 1.230);
+    tl.fromTo("#c01-fl0", {opacity: 0.9}, {opacity: 0, duration: 0.250, ease: "power2.in"}, 1.150);
+    tl.set("#c02-ms", {"scale": 0.96, "x": 10}, 0);
+    tl.to("#c02-ms", {...{"y": -24, "rotation": -4, "scale": 0.98, "x": 6}, duration: 0.14, ease: "power2.out"}, 1.850);
+    tl.to("#c02-ms", {...{"y": 0, "rotation": 0}, duration: 0.12, ease: "power2.in"}, 1.990);
+    tl.to("#c02-ms", {...{"y": -20, "rotation": 4, "scale": 1.0, "x": 0}, duration: 0.14, ease: "power2.out"}, 2.140);
+    tl.to("#c02-ms", {...{"y": 0, "rotation": 0}, duration: 0.12, ease: "power2.in"}, 2.280);
+    tl.to("#c02-ms", {...{"rotation": -4, "x": -8}, duration: 0.3, ease: "power2.out"}, 2.500);
+    tl.set("#c02-db", {"y": -320, "x": -30, "rotation": -25}, 0);
+    tl.to("#c02-db", {...{"y": 0, "x": 0, "rotation": 0}, duration: 0.4, ease: "bounce.out"}, 1.450);
+    tl.fromTo("#c02", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 2.4, "ease": "none"}, 1.400);
+    tl.to("#c02", {x: 7.0, y: 3.5, duration: 0.0417, ease: "none"}, 1.600);
+    tl.to("#c02", {x: -4.2, y: 2.6, duration: 0.0417, ease: "none"}, 1.642);
+    tl.to("#c02", {x: 2.8, y: -1.8, duration: 0.0417, ease: "none"}, 1.683);
+    tl.to("#c02", {x: -1.8, y: -0.9, duration: 0.0417, ease: "none"}, 1.725);
+    tl.to("#c02", {x: 0, y: 0, duration: 0.08}, 1.767);
+    tl.fromTo("#c03", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.1, "x": 0, "y": 0, "duration": 1.6, "ease": "none"}, 3.800);
+    tl.to("#c03", {x: -3.0, y: 1.8, duration: 0.80, ease: "sine.inOut"}, 3.800);
+    tl.to("#c03", {x: 3.0, y: 1.8, duration: 0.80, ease: "sine.inOut"}, 4.600);
+    tl.set("#c04-ms", {"rotation": -3, "x": -6}, 0);
+    tl.to("#c04-ms", {...{"rotation": 8, "x": 0}, duration: 0.35, ease: "back.out(2)"}, 5.600);
+    tl.fromTo("#c04", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 1.2, "ease": "none"}, 5.400);
+    tl.to("#c04", {x: -4.0, y: 2.4, duration: 1.10, ease: "sine.inOut"}, 5.400);
+    tl.set("#c05-ms", {"rotation": 6}, 0);
+    tl.to("#c05-ms", {...{"rotation": 0}, duration: 0.15, ease: "power2.out"}, 6.600);
+    tl.to("#c05-ms", {...{"y": -22, "x": 6, "rotation": 4}, duration: 0.14, ease: "power2.out"}, 6.850);
+    tl.to("#c05-ms", {...{"y": 0, "x": 12, "rotation": 0}, duration: 0.12, ease: "power2.in"}, 6.990);
+    tl.to("#c05-ms", {...{"rotation": 9}, duration: 0.2, ease: "power2.out"}, 7.200);
+    tl.to("#c05-ms", {...{"opacity": 0}, duration: 0.01, ease: "none"}, 7.600);
+    tl.to("#c05-db", {...{"y": -320, "x": -30, "rotation": -20}, duration: 0.18, ease: "power2.out"}, 7.420);
+    tl.to("#c05-db", {...{"opacity": 0}, duration: 0.01, ease: "none"}, 7.600);
+    tl.set("#c05-ms1", {"opacity": 0, "scale": 0.9}, 0);
+    tl.to("#c05-ms1", {...{"opacity": 1}, duration: 0.01, ease: "none"}, 7.600);
+    tl.to("#c05-ms1", {...{"scale": 1.07}, duration: 0.12, ease: "back.out(3)"}, 7.610);
+    tl.to("#c05-ms1", {...{"scale": 1.0}, duration: 0.18, ease: "power2.out"}, 7.730);
+    tl.fromTo("#c05", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 2.0, "ease": "none"}, 6.600);
+    tl.to("#c05", {x: -4.0, y: 2.4, duration: 1.10, ease: "sine.inOut"}, 6.600);
+    tl.to("#c06-ms", {...{"y": -12, "rotation": -3}, duration: 0.16, ease: "power2.out"}, 8.700);
+    tl.to("#c06-ms", {...{"y": 0, "rotation": 0}, duration: 0.16, ease: "power2.in"}, 8.860);
+    tl.to("#c06-ms", {...{"y": -12, "rotation": 3}, duration: 0.16, ease: "power2.out"}, 9.100);
+    tl.to("#c06-ms", {...{"y": 0, "rotation": 0}, duration: 0.16, ease: "power2.in"}, 9.260);
+    tl.fromTo("#c06", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.04, "x": 0, "y": 0, "duration": 1.4, "ease": "none"}, 8.600);
+    tl.to("#c06", {x: -4.0, y: 2.4, duration: 1.10, ease: "sine.inOut"}, 8.600);
+    tl.to("#c06", {scale: 1.06, duration: 0.08, ease: "power3.out", overwrite: "auto"}, 9.750);
+    tl.to("#c06", {scale: 1.04, duration: 0.35, ease: "power2.out"}, 9.830);
+    tl.fromTo("#c06-fl0", {opacity: 0.9}, {opacity: 0, duration: 0.250, ease: "power2.in"}, 9.750);
+    window.__timelines["main"] = tl;
+  }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }
+</script>
+</body>
+</html>

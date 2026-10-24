@@ -1,0 +1,246 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.02,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "1-01",
+   "kind": "still",
+   "source_cut": "1-01",
+   "in": 0,
+   "len": 3.0,
+   "time_card": "07:00"
+  },
+  {
+   "cut": "1-02",
+   "kind": "clip",
+   "source_cut": "1-02",
+   "in": 1.0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "1-03",
+   "kind": "still",
+   "source_cut": "1-03",
+   "in": 0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "2-01",
+   "kind": "clip",
+   "source_cut": "2-01",
+   "in": 1.5,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "2-02",
+   "kind": "still",
+   "source_cut": "2-02",
+   "in": 0,
+   "len": 3.0,
+   "time_card": null,
+   "note": "v11e: 사용자 지시로 정지 프레임+눈 깜빡임 퍼펫(털뭉치 고정). 클립은 보관"
+  },
+  {
+   "cut": "3-01",
+   "kind": "still",
+   "source_cut": "3-01",
+   "in": 0,
+   "len": 2.0,
+   "time_card": "08:10"
+  },
+  {
+   "cut": "3-02",
+   "kind": "clip",
+   "source_cut": "3-02",
+   "in": 1.0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "4-01",
+   "kind": "clip",
+   "source_cut": "4-01",
+   "in": 1.0,
+   "len": 2.0,
+   "time_card": "09:00"
+  },
+  {
+   "cut": "4-02",
+   "kind": "still",
+   "source_cut": "4-02",
+   "in": 0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "4-03",
+   "kind": "still",
+   "source_cut": "4-03",
+   "in": 0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "5-01",
+   "kind": "still",
+   "source_cut": "5-01",
+   "in": 0,
+   "len": 2.0,
+   "time_card": "12:10"
+  },
+  {
+   "cut": "5-02",
+   "kind": "still",
+   "source_cut": "5-02",
+   "in": 0,
+   "len": 3.0,
+   "time_card": null
+  },
+  {
+   "cut": "5-03",
+   "kind": "still",
+   "source_cut": "5-03",
+   "in": 0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "6-01",
+   "kind": "clip",
+   "source_cut": "6-01",
+   "in": 0.75,
+   "len": 3.0,
+   "time_card": "12:30"
+  },
+  {
+   "cut": "6-02",
+   "kind": "still",
+   "source_cut": "6-02",
+   "in": 0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "6-03",
+   "kind": "still",
+   "source_cut": "6-03",
+   "in": 0,
+   "len": 2.0,
+   "time_card": "15:00"
+  },
+  {
+   "cut": "6-04",
+   "kind": "still",
+   "source_cut": "6-03",
+   "in": 0,
+   "len": 2.0,
+   "time_card": "16:00"
+  },
+  {
+   "cut": "6-05",
+   "kind": "still",
+   "source_cut": "6-03",
+   "in": 0,
+   "len": 2.0,
+   "time_card": "17:00"
+  },
+  {
+   "cut": "7-01",
+   "kind": "still",
+   "source_cut": "7-01",
+   "in": 0,
+   "len": 3.0,
+   "time_card": "18:00"
+  },
+  {
+   "cut": "8-01",
+   "kind": "still",
+   "source_cut": "8-01",
+   "in": 0,
+   "len": 2.0,
+   "time_card": "18:10"
+  },
+  {
+   "cut": "9-01",
+   "kind": "clip",
+   "source_cut": "9-01",
+   "in": 0.5,
+   "len": 3.0,
+   "time_card": "20:00"
+  },
+  {
+   "cut": "9-02",
+   "kind": "clip",
+   "source_cut": "9-02",
+   "in": 0.0,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "9-03",
+   "kind": "still",
+   "source_cut": "9-03",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "9-04",
+   "kind": "still",
+   "source_cut": "9-04",
+   "in": 0,
+   "len": 3.0,
+   "time_card": "22:00"
+  },
+  {
+   "cut": "10-01",
+   "kind": "still",
+   "source_cut": "10-01",
+   "in": 0,
+   "len": 2.0,
+   "time_card": "23:30"
+  },
+  {
+   "cut": "10-02",
+   "kind": "clip",
+   "source_cut": "10-02",
+   "in": 0.5,
+   "len": 3.0,
+   "time_card": null
+  },
+  {
+   "cut": "BLACK",
+   "kind": "black",
+   "source_cut": null,
+   "in": 0,
+   "len": 0.5,
+   "time_card": null
+  },
+  {
+   "cut": "10-03",
+   "kind": "still",
+   "source_cut": "1-01",
+   "in": 0,
+   "len": 2.5,
+   "time_card": "07:00"
+  }
+ ],
+ "history": [
+  "2026-09-22 v3: 음성 길이에 맞춰 4-03 2.0→2.3, 6-03·6-04 2.0→2.5, 6-05 2.0→3.0 (합계 62.5→64.3s)",
+  "2026-09-22 v4: 배속 후처리로 음성이 짧아져 4-03·6-03·6-04·6-05를 스토리보드 길이 2.0s로 복원 (합계 62.5s)",
+  "2026-09-30 v10: 인스타 릴스 미리보기에서 위로 쏠림 → 창 상단 422→576px(중심 806→960), 제목·채널명 함께 하강",
+  "2026-10-07 v11e: 2-02 clip→still(퍼펫 깜빡임)"
+ ]
+}

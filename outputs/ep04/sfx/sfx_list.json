@@ -1,0 +1,85 @@
+{
+ "note": "ep04 v1 효과음(전부 기존 파일 재사용, 0원). 16.2s 타임라인.",
+ "items": [
+  {
+   "name": "crunch_changsu",
+   "file": "outputs/ep03/sfx/el/chip_crunch.mp3",
+   "at": 3.25,
+   "len": 0.8,
+   "target_lufs": -24,
+   "fade_out": 0.1,
+   "gain": -8.9,
+   "measured_lufs": -15.13
+  },
+  {
+   "name": "glance_sparkle",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 5.3,
+   "len": 0.7,
+   "target_lufs": -30,
+   "fade_out": 0.1,
+   "gain": -12.2,
+   "measured_lufs": -17.81
+  },
+  {
+   "name": "bowl_tick",
+   "file": "outputs/ep02/sfx/el/cup_set.mp3",
+   "at": 7.1,
+   "len": 0.5,
+   "target_lufs": -30,
+   "fade_out": 0.1,
+   "gain": 0.1,
+   "measured_lufs": -30.05
+  },
+  {
+   "name": "crunch_misun1",
+   "file": "outputs/ep03/sfx/el/chip_crunch.mp3",
+   "at": 8.05,
+   "len": 0.8,
+   "target_lufs": -23,
+   "fade_out": 0.1,
+   "gain": -7.9,
+   "measured_lufs": -15.13
+  },
+  {
+   "name": "crunch_misun2",
+   "file": "outputs/ep03/sfx/el/chip_crunch.mp3",
+   "at": 9.75,
+   "len": 0.8,
+   "target_lufs": -22,
+   "fade_out": 0.1,
+   "gain": -6.9,
+   "measured_lufs": -15.13
+  },
+  {
+   "name": "empty_tap1",
+   "file": "outputs/ep02/sfx/el/mug_set.mp3",
+   "at": 11.2,
+   "len": 0.5,
+   "target_lufs": -25,
+   "fade_out": 0.1,
+   "gain": 7.8,
+   "measured_lufs": -32.75
+  },
+  {
+   "name": "empty_tap2",
+   "file": "outputs/ep02/sfx/el/mug_set.mp3",
+   "at": 11.9,
+   "len": 0.5,
+   "target_lufs": -25,
+   "fade_out": 0.1,
+   "gain": 7.8,
+   "measured_lufs": -32.75
+  },
+  {
+   "name": "crunch_last",
+   "file": "outputs/ep03/sfx/el/chip_crunch.mp3",
+   "at": 13.2,
+   "len": 0.8,
+   "target_lufs": -24,
+   "fade_out": 0.1,
+   "gain": -8.9,
+   "measured_lufs": -15.13
+  }
+ ]
+}

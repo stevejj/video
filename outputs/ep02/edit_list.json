@@ -1,0 +1,159 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.02,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01",
+   "kind": "clip",
+   "source_cut": "01",
+   "in": 0.5,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "clip",
+   "source_cut": "02",
+   "in": 0.3,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "03",
+   "kind": "clip",
+   "source_cut": "03",
+   "in": 0.8,
+   "len": 1.8,
+   "time_card": null
+  },
+  {
+   "cut": "04",
+   "kind": "clip",
+   "source_cut": "04",
+   "in": 0.5,
+   "len": 2.5,
+   "time_card": null
+  },
+  {
+   "cut": "05",
+   "kind": "still",
+   "source_cut": "05",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "06",
+   "kind": "clip",
+   "source_cut": "06",
+   "in": 0.5,
+   "len": 2.5,
+   "time_card": null
+  },
+  {
+   "cut": "07",
+   "kind": "clip",
+   "source_cut": "07",
+   "in": 0.3,
+   "len": 2.3,
+   "time_card": null
+  },
+  {
+   "cut": "09",
+   "kind": "clip",
+   "source_cut": "09",
+   "in": 0.5,
+   "len": 2.5,
+   "time_card": null
+  },
+  {
+   "cut": "10",
+   "kind": "clip",
+   "source_cut": "03",
+   "in": 0.0,
+   "len": 1.7,
+   "time_card": null
+  },
+  {
+   "cut": "11",
+   "kind": "clip",
+   "source_cut": "11",
+   "in": 0.5,
+   "len": 2.5,
+   "time_card": null
+  },
+  {
+   "cut": "12",
+   "kind": "clip",
+   "source_cut": "12",
+   "in": 0.3,
+   "len": 2.6,
+   "time_card": null
+  },
+  {
+   "cut": "13",
+   "kind": "still",
+   "source_cut": "13",
+   "image": "outputs/ep02/11/end_v1.png",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "14q",
+   "kind": "still",
+   "source_cut": "14",
+   "image": "outputs/ep02/quake/f14_bg.png",
+   "in": 0,
+   "len": 1.0,
+   "time_card": null
+  },
+  {
+   "cut": "14",
+   "kind": "clip",
+   "source_cut": "14",
+   "in": 0.5,
+   "len": 2.0,
+   "time_card": null
+  },
+  {
+   "cut": "15",
+   "kind": "clip",
+   "source_cut": "15",
+   "in": 0.5,
+   "len": 2.35,
+   "time_card": null
+  },
+  {
+   "cut": "15f",
+   "kind": "still",
+   "source_cut": "15",
+   "image": "outputs/ep02/quake/f15_bg.png",
+   "in": 0,
+   "len": 1.85,
+   "time_card": null
+  },
+  {
+   "cut": "16",
+   "kind": "black",
+   "len": 0.6,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-08 v0: Kling 12클립 + 5컷 정지 + UI 2 + 10컷 재사용, 무음 가편집",
+  "2026-10-08 v0c: 8컷(심부름 카운터 UI) 삭제 → 15컷 29.5s, 7컷→9컷 직결",
+  "2026-10-08 v0d: 시간 카드 전부 제거, 13컷 리모컨 인서트를 11e 전체 구도로, 16컷(이불 같이 덮기) 삭제 → 14컷 27.9s, 15컷 2.4s로 늘려 결말",
+  "2026-10-08 v1: 음성 길이에 맞춰 07 2.0→2.3, 12 2.0→2.6 → 28.8s",
+  "2026-10-22 v2: 어색한 곳 11개 다듬기(Kling 0), 32.7s"
+ ]
+}

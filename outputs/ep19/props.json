@@ -1,0 +1,517 @@
+{
+ "note": "ep19 소품 상태표(F8). 2026-10-24 확정: 폰 2개(창수 검정·미순 흰) 전 컷 가슴, 협탁 휴대폰 없음, 이불 1장. 13번은 C13 v1 얼굴 크롭이라 폰은 띠 밖. 상상 컷 05만 포장마차.",
+ "band": [
+  576,
+  1344
+ ],
+ "props": {},
+ "cuts": {},
+ "states": {
+  "01": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "B0_v2(+눈동자)",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "B0_v2(+눈동자)",
+    "prompt_kw": [
+     "white smartphone"
+    ]
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "B0_v2(+눈동자)",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "B0_v2(+눈동자)",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "02": {
+   "phone_changsu": {
+    "start": "화면 가득",
+    "end": "화면 가득",
+    "from": "그래픽",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "그래픽",
+    "prompt_kw": []
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "그래픽",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "그래픽",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "03": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "C03(+눈동자)",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C03(+눈동자)",
+    "prompt_kw": []
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "C03(+눈동자)",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C03(+눈동자)",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "04": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "C03(+눈동자)",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C03(+눈동자)",
+    "prompt_kw": []
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "C03(+눈동자)",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C03(+눈동자)",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "05": {
+   "phone_changsu": {
+    "start": "없음",
+    "end": "없음",
+    "from": "ep07 c1/c2",
+    "prompt_kw": []
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "ep07 c1/c2",
+    "prompt_kw": []
+   },
+   "beer_mug": {
+    "start": "창수 양 날개 1",
+    "end": "창수 양 날개 1",
+    "from": "ep07 c1/c2",
+    "prompt_kw": [
+     "one beer mug"
+    ]
+   }
+  },
+  "06": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "C06",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C06",
+    "prompt_kw": []
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "C06",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C06",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "07": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "B0_v2",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "B0_v2",
+    "prompt_kw": [
+     "white smartphone"
+    ]
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "B0_v2",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "B0_v2",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "08": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "C03(+고개)",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C03(+고개)",
+    "prompt_kw": []
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "C03(+고개)",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C03(+고개)",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "09": {
+   "phone_changsu": {
+    "start": "화면 밖",
+    "end": "화면 밖",
+    "from": "M09",
+    "prompt_kw": []
+   },
+   "phone_misun": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "M09",
+    "prompt_kw": [
+     "white smartphone"
+    ]
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "M09",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "M09",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "10": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "C10",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C10",
+    "prompt_kw": []
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "C10",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C10",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "11": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "C11_v1(보류)",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C11_v1(보류)",
+    "prompt_kw": []
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "C11_v1(보류)",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C11_v1(보류)",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "12": {
+   "phone_changsu": {
+    "start": "화면 밖",
+    "end": "화면 밖",
+    "from": "M09",
+    "prompt_kw": []
+   },
+   "phone_misun": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "M09",
+    "prompt_kw": [
+     "white smartphone"
+    ]
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "M09",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "M09",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "13": {
+   "phone_changsu": {
+    "start": "띠 밖(가슴 아래)",
+    "end": "띠 밖(가슴 아래)",
+    "from": "C13_v1_crop",
+    "prompt_kw": []
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C13_v1_crop",
+    "prompt_kw": []
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "C13_v1_crop",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C13_v1_crop",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "14": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "C14",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "C14",
+    "prompt_kw": [
+     "white smartphone"
+    ]
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "C14",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C14",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "15": {
+   "phone_changsu": {
+    "start": "화면 밖",
+    "end": "화면 밖",
+    "from": "M15",
+    "prompt_kw": []
+   },
+   "phone_misun": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "M15",
+    "prompt_kw": [
+     "white smartphone"
+    ]
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "M15",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "M15",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  },
+  "16": {
+   "phone_changsu": {
+    "start": "가슴",
+    "end": "가슴",
+    "from": "C16(+눈동자)",
+    "prompt_kw": [
+     "black smartphone"
+    ]
+   },
+   "phone_misun": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C16(+눈동자)",
+    "prompt_kw": []
+   },
+   "blanket": {
+    "start": "허리",
+    "end": "허리",
+    "from": "C16(+눈동자)",
+    "prompt_kw": [
+     "one beige duvet"
+    ]
+   },
+   "nightstand_phone": {
+    "start": "없음",
+    "end": "없음",
+    "from": "C16(+눈동자)",
+    "prompt_kw": [
+     "no phone on the nightstand"
+    ]
+   }
+  }
+ }
+}

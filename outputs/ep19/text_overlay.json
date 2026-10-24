@@ -1,0 +1,170 @@
+{
+ "title": {
+  "lines": [
+   {
+    "text": "남편이 친구들 약속",
+    "color": "#FFFFFF"
+   },
+   {
+    "text": "허락받는 법",
+    "color": "#FFD84A"
+   }
+  ],
+  "size": 104,
+  "weight": 800,
+  "center_y": 400,
+  "line_gap": 18
+ },
+ "channel": {
+  "text": "지독한 미순",
+  "color": "#FFFFFF",
+  "size": 52,
+  "weight": 700,
+  "center_y": 1420,
+  "opacity": 0.9
+ },
+ "subtitle_style": {
+  "size": 74,
+  "weight": 800,
+  "stroke": 9,
+  "stroke_color": "#111111",
+  "bottom_margin": 46,
+  "max_width": 1000,
+  "colors": {
+   "changsu": "#8FB0E8",
+   "misun": "#FF9CC2",
+   "sfx": "#FFFFFF"
+  }
+ },
+ "note": "ep19: 제목 노랑 \"허락받는 법\"(사용자 확정). 속마음 자막 = 괄호 + 화자 색 80%",
+ "subtitles": [
+  {
+   "start": 0.3,
+   "end": 2.4,
+   "speaker": "misun",
+   "text": "아 이거 진짜 웃기다 ㅋㅋ",
+   "x": 0.5,
+   "color": "#FF9CC2"
+  },
+  {
+   "start": 6.75,
+   "end": 7.81,
+   "speaker": "changsu",
+   "text": "(치맥…)",
+   "x": 0.5,
+   "color": "#8FB0E8CC"
+  },
+  {
+   "start": 8.41,
+   "end": 9.21,
+   "speaker": "sfx",
+   "text": "꿀꺽",
+   "x": 0.5,
+   "size": 52
+  },
+  {
+   "start": 9.86,
+   "end": 12.7,
+   "speaker": "changsu",
+   "text": "(토요일에… 자기한테 뭐라고 하지)",
+   "x": 0.5,
+   "color": "#8FB0E8CC"
+  },
+  {
+   "start": 12.76,
+   "end": 14.84,
+   "speaker": "changsu",
+   "text": "(말할까말까말까말까할까말까)",
+   "x": 0.5,
+   "color": "#8FB0E8CC"
+  },
+  {
+   "start": 15.29,
+   "end": 16.17,
+   "speaker": "misun",
+   "text": "자기야.",
+   "x": 0.5,
+   "color": "#FF9CC2"
+  },
+  {
+   "start": 16.62,
+   "end": 17.76,
+   "speaker": "changsu",
+   "text": "응, 왜?",
+   "x": 0.5,
+   "color": "#8FB0E8"
+  },
+  {
+   "start": 18.21,
+   "end": 22.01,
+   "speaker": "misun",
+   "text": "나 토요일에 친구들이랑 저녁 먹어도 돼? 좀 늦을 것 같은데.",
+   "x": 0.5,
+   "color": "#FF9CC2"
+  },
+  {
+   "start": 22.36,
+   "end": 23.5,
+   "speaker": "changsu",
+   "text": "(토요일…?)",
+   "x": 0.5,
+   "color": "#8FB0E8CC"
+  },
+  {
+   "start": 23.51,
+   "end": 24.62,
+   "speaker": "changsu",
+   "text": "(이게 되네?)",
+   "x": 0.5,
+   "color": "#8FB0E8CC"
+  },
+  {
+   "start": 25.07,
+   "end": 28.17,
+   "speaker": "changsu",
+   "text": "아… 토요일에? 미순이 없이 나 혼자 뭐 하냐…",
+   "x": 0.5,
+   "color": "#8FB0E8"
+  },
+  {
+   "start": 28.62,
+   "end": 30.7,
+   "speaker": "misun",
+   "text": "그런가? 그럼 가지 말까?",
+   "x": 0.5,
+   "color": "#FF9CC2"
+  },
+  {
+   "start": 30.95,
+   "end": 32.58,
+   "speaker": "changsu",
+   "text": "어어어, 아니아니아니.",
+   "x": 0.5,
+   "color": "#8FB0E8"
+  },
+  {
+   "start": 33.03,
+   "end": 36.62,
+   "speaker": "changsu",
+   "text": "아니야, 재밌게 놀다 와~ 나도 그냥… 친구나 만나지 뭐.",
+   "x": 0.5,
+   "color": "#8FB0E8"
+  },
+  {
+   "start": 37.07,
+   "end": 38.89,
+   "speaker": "misun",
+   "text": "그래? 그럼 나 잡는다~",
+   "x": 0.5,
+   "color": "#FF9CC2"
+  },
+  {
+   "start": 39.44,
+   "end": 41.0,
+   "speaker": "changsu",
+   "text": "야야야 토요일 콜!!!",
+   "x": 0.5,
+   "color": "#8FB0E8"
+  }
+ ]
+}

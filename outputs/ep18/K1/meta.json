@@ -1,0 +1,23 @@
+{
+ "cut": "K1",
+ "model": "kling-video-v3_0",
+ "args": {
+  "duration": 5,
+  "resolution": "720p",
+  "prefer_multi_shots": false,
+  "enable_audio": false
+ },
+ "first_image": "outputs/ep18/K1/start_v1.png",
+ "tail_image": "outputs/ep18/K1/end_v2.png",
+ "first_url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTI4MDA5MDUvRml0UkF0MFFZWC9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372",
+ "tail_url": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI4MDA5MDgvYTQzMW5ZVXlxdS9lbmRfdjIucG5n.origin?x-kcdn-pid=112372",
+ "generation_id": "ASwzoXNjyTDFHrq7pmXxAOFqyAr9j1JGRhvRwF4cFC4jIjwobxREh3ajGWpSowqha86Jp1TA",
+ "credits_before": 1832,
+ "credits_consumed": 30,
+ "prompt": "docs/ep18/04_Kling_실행표.md K1",
+ "result_file": "outputs/ep18/K1/clip_v1.mp4",
+ "result_url": "urlWithoutWatermark(2026-10-24, 24h 만료)",
+ "credits_after": 1802,
+ "review": "통과: 문 두 짝 열림 → 옷이 쏟아지며 창수(뒤돌아 옷장을 봄)를 덮음 → 끝 더미에 날개 안 보임. 눈썹·볼터치 문제 없음(창수 작게, 뒷모습). 옷이 비처럼 천천히 떨어짐 → 편집에서 1.3~1.5배 빠르게.",
+ "version": 1
+}

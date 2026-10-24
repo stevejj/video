@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>ep08 v11 hyperframes</title>
+<script src="gsap.min.js"></script>
+<style>
+  @font-face { font-family: "NotoKR"; src: url("media/NotoSansKR.ttf") format("truetype"); font-weight: 100 900; }
+  body { margin: 0; background: #000; font-family: "NotoKR", sans-serif; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #win { position: absolute; left: 0; top: 576px; width: 1080px; height: 768px; overflow: hidden; background: #000; }
+  .frame { position: absolute; left: 0; width: 1080px; height: 1920px; will-change: transform; }
+  .frame img.layer { position: absolute; width: auto; height: auto; object-fit: fill; }
+  .frame img:not(.layer), .frame video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; display: block; }
+  #title { position: absolute; left: 0; width: 100%; top: 287px; text-align: center; font-size: 104px; font-weight: 800; line-height: 122px; }
+  #channel { position: absolute; left: 0; width: 100%; top: 1384px; text-align: center; font-size: 52px; font-weight: 700; color: #FFFFFF; opacity: 0.9; line-height: 1.4; }
+  .sub { position: absolute; bottom: 622px; font-size: 74px; font-weight: 800; white-space: nowrap; line-height: 1.25;
+          -webkit-text-stroke: 9px #111111; paint-order: stroke fill; transform-origin: 50% 100%; }
+  .card { position: absolute; left: 120px; top: 612px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }
+  .spark { position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }
+  .blackfade { position: absolute; inset: 0; background: #000; }
+  .flash { position: absolute; inset: 0; background: #fff; }
+  .uibox { position: absolute; left: 0; top: 776px; width: 1080px; text-align: center; color: #fff; transform-origin: 50% 50%; }
+  .uilabel { font-size: 60px; font-weight: 700; opacity: 0.85; }
+  .uinum { font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }
+  .uiclock { font-size: 54px; font-weight: 700; margin-top: 10px; }
+  .ring { position: absolute; border: 10px dashed #FFD84A; border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }
+  .arrow { position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="45.500" data-fps="24">
+  <div id="win">
+        <div class="frame" id="c01" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c01-v" src="media/01.png" data-start="0.000" data-duration="6.000" /></div>
+    <div class="frame" id="c02" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c02-v" src="media/02.png" data-start="6.000" data-duration="5.000" /></div>
+    <div class="frame" id="c03" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c03-v" src="media/03.png" data-start="11.000" data-duration="5.000" /></div>
+    <div class="frame" id="c04" style="top:-576.0px; transform-origin: 540px 960.0px;"><img id="c04-v" src="media/04.png" data-start="16.000" data-duration="5.000" /></div>
+    <div class="frame" id="c05" style="top:-614.4px; transform-origin: 540px 998.4px;"><img id="c05-v" src="media/05.png" data-start="21.000" data-duration="3.500" /></div>
+    <div class="frame" id="c06" style="top:-633.6px; transform-origin: 540px 1017.6px;"><img id="c06-v" src="media/06.png" data-start="24.500" data-duration="5.000" /></div>
+    <div class="frame" id="c07" style="top:-691.2px; transform-origin: 540px 1075.2px;"><img id="c07-v" src="media/07.png" data-start="29.500" data-duration="5.000" /></div>
+    <div class="frame" id="c08" style="top:-537.6px; transform-origin: 540px 921.6px;"><img id="c08-v" src="media/08.png" data-start="34.500" data-duration="5.000" /></div>
+    <div class="frame" id="c09" style="top:-652.8px; transform-origin: 540px 1036.8px;"><img id="c09-v" src="media/09.png" data-start="39.500" data-duration="6.000" /></div>
+  </div>
+  <div id="title"><div style="color:#FFFFFF">남자 여자</div><div style="color:#FFD84A">준비시간 공감 100%</div></div>
+  <div id="channel">지독한 미순</div>
+  
+    <div class="sub" id="sub00" data-start="0.300" data-duration="1.480" data-cx="540" style="color:#FF9CC2;">어? 지금 몇 시야?</div>
+  <div class="sub" id="sub01" data-start="1.930" data-duration="1.450" data-cx="540" style="color:#FF9CC2;">여보, 빨리 일어나!</div>
+  <div class="sub" id="sub02" data-start="3.530" data-duration="2.160" data-cx="540" style="color:#FF9CC2;">준비 시간 한 시간밖에 안 남았어!</div>
+  <div class="sub" id="sub03" data-start="6.200" data-duration="1.000" data-cx="540" style="color:#FFFFFF; top:616px; bottom:auto;">(자는 척)</div>
+  <div class="sub" id="sub04" data-start="7.200" data-duration="1.800" data-cx="540" style="color:#FFFFFF; top:616px; bottom:auto;">(준비시간 30분 남음)</div>
+  <div class="sub" id="sub05" data-start="7.400" data-duration="1.790" data-cx="540" style="color:#FF9CC2;">여보, 준비 안 하고 있어?</div>
+  <div class="sub" id="sub06" data-start="9.390" data-duration="1.480" data-cx="540" style="color:#FF9CC2;">빨리 준비해야지!</div>
+  <div class="sub" id="sub07" data-start="11.400" data-duration="1.770" data-cx="540" style="color:#FF9CC2;">여보, 나 오늘 뭐 입을까?</div>
+  <div class="sub" id="sub08" data-start="13.200" data-duration="1.600" data-cx="540" style="color:#FFFFFF; top:616px; bottom:auto;">(옷장 지분 90%)</div>
+  <div class="sub" id="sub09" data-start="13.570" data-duration="1.870" data-cx="540" style="color:#FF9CC2;">입을 옷이 진짜 너무 없네...</div>
+  <div class="sub" id="sub10" data-start="16.300" data-duration="1.850" data-cx="540" style="color:#FF9CC2;">여보, 잠깐만 일로 와 봐.</div>
+  <div class="sub" id="sub11" data-start="18.250" data-duration="1.430" data-cx="540" style="color:#FF9CC2;">나 가방 좀 봐 줄래?</div>
+  <div class="sub" id="sub12" data-start="19.780" data-duration="1.140" data-cx="540" style="color:#FF9CC2;">뭐 메고 가지?</div>
+  <div class="sub" id="sub13" data-start="21.200" data-duration="1.690" data-cx="540" style="color:#8FB0E8;">응~ 그거 잘 어울린다~</div>
+  <div class="sub" id="sub14" data-start="22.990" data-duration="1.300" data-cx="540" style="color:#8FB0E8;">나 씻고 올게~</div>
+  <div class="sub" id="sub15" data-start="24.800" data-duration="0.670" data-cx="540" style="color:#FF9CC2;">여보?</div>
+  <div class="sub" id="sub16" data-start="25.820" data-duration="0.770" data-cx="540" style="color:#FF9CC2;">여보?</div>
+  <div class="sub" id="sub17" data-start="26.940" data-duration="1.770" data-cx="540" style="color:#FF9CC2;">팽창수!!!!</div>
+  <div class="sub" id="sub18" data-start="29.700" data-duration="1.100" data-cx="540" style="color:#FFFFFF; top:616px; bottom:auto;">(나가기 5분 전)</div>
+  <div class="sub" id="sub19" data-start="30.800" data-duration="1.800" data-cx="540" style="color:#FFFFFF; top:616px; bottom:auto;">(올인원 샤워 중)</div>
+  <div class="sub" id="sub20" data-start="32.300" data-duration="1.580" data-cx="540" style="color:#8FB0E8;">이따가 저녁에 뭐 먹지?</div>
+  <div class="sub" id="sub21" data-start="34.700" data-duration="1.600" data-cx="540" style="color:#FFFFFF; top:616px; bottom:auto;">(5분 만에 준비 끝난 팽창수)</div>
+  <div class="sub" id="sub22" data-start="35.100" data-duration="1.530" data-cx="540" style="color:#8FB0E8;">여보, 아직도 멀었어?</div>
+  <div class="sub" id="sub23" data-start="36.930" data-duration="1.380" data-cx="540" style="color:#8FB0E8;">나 준비 다 했는데?</div>
+  <div class="sub" id="sub24" data-start="39.800" data-duration="1.690" data-cx="540" style="color:#FF9CC2;">어?! 벌써 준비 다 했어?</div>
+  <div class="sub" id="sub25" data-start="41.640" data-duration="2.000" data-cx="540" style="color:#FF9CC2;">나 아직 구두 못 골랐는데...</div>
+  <div class="sub" id="sub26" data-start="43.790" data-duration="1.560" data-cx="540" style="color:#FF9CC2;">여보, 지금 몇 시야?</div>
+</div>
+<script>
+  // 자막 가로 위치: 중심 cx, 폭 1000 안으로 클램프 (조립기와 동일 규칙)
+  function placeSubs() {
+    document.querySelectorAll('.sub').forEach(el => {
+      const cx = parseFloat(el.dataset.cx); const W = 1080, MW = 1000;
+      let fs = 74; el.style.fontSize = fs + 'px';
+      while (el.offsetWidth > MW && fs > 40) { fs -= 4; el.style.fontSize = fs + 'px'; }
+      const tw = el.offsetWidth;
+      let x = Math.min(Math.max(cx - tw / 2, (W - MW) / 2), W - (W - MW) / 2 - tw);
+      el.style.left = x + 'px';
+    });
+  }
+  const tl = gsap.timeline({ paused: true });
+  function build() {
+    placeSubs();
+        tl.fromTo("#c01", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.05, "x": 0, "y": 0, "duration": 6.0, "ease": "none"}, 0.000);
+    tl.to("#c01", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 0.000);
+    tl.to("#c01", {x: 3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 1.200);
+    tl.to("#c01", {x: -3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 2.400);
+    tl.to("#c01", {x: 3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 3.600);
+    tl.to("#c01", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 4.800);
+    tl.fromTo("#c02", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.05, "x": 0, "y": 0, "duration": 5.0, "ease": "none"}, 6.000);
+    tl.to("#c02", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 6.000);
+    tl.to("#c02", {x: 3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 7.200);
+    tl.to("#c02", {x: -3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 8.400);
+    tl.to("#c02", {x: 3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 9.600);
+    tl.fromTo("#c03", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.05, "x": 0, "y": 0, "duration": 5.0, "ease": "none"}, 11.000);
+    tl.to("#c03", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 11.000);
+    tl.to("#c03", {x: 3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 12.200);
+    tl.to("#c03", {x: -3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 13.400);
+    tl.to("#c03", {x: 3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 14.600);
+    tl.fromTo("#c04", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.05, "x": 0, "y": 0, "duration": 5.0, "ease": "none"}, 16.000);
+    tl.to("#c04", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 16.000);
+    tl.to("#c04", {x: 3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 17.200);
+    tl.to("#c04", {x: -3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 18.400);
+    tl.to("#c04", {x: 3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 19.600);
+    tl.fromTo("#c05", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.05, "x": 0, "y": 0, "duration": 3.5, "ease": "none"}, 21.000);
+    tl.to("#c05", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 21.000);
+    tl.to("#c05", {x: 3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 22.200);
+    tl.fromTo("#c06", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.12, "x": 0, "y": 0, "duration": 5.0, "ease": "none"}, 24.500);
+    tl.to("#c06", {x: 8.0, y: 4.0, duration: 0.0417, ease: "none"}, 27.500);
+    tl.to("#c06", {x: -5.7, y: 3.6, duration: 0.0417, ease: "none"}, 27.542);
+    tl.to("#c06", {x: 5.0, y: -3.1, duration: 0.0417, ease: "none"}, 27.583);
+    tl.to("#c06", {x: -5.3, y: -2.7, duration: 0.0417, ease: "none"}, 27.625);
+    tl.to("#c06", {x: 3.6, y: 2.2, duration: 0.0417, ease: "none"}, 27.667);
+    tl.to("#c06", {x: -2.8, y: 1.8, duration: 0.0417, ease: "none"}, 27.708);
+    tl.to("#c06", {x: 2.7, y: -1.3, duration: 0.0417, ease: "none"}, 27.750);
+    tl.to("#c06", {x: -1.4, y: -0.9, duration: 0.0417, ease: "none"}, 27.792);
+    tl.to("#c06", {x: 0.7, y: 0.4, duration: 0.0417, ease: "none"}, 27.833);
+    tl.to("#c06", {x: 0, y: 0, duration: 0.08}, 27.875);
+    tl.fromTo("#c07", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.05, "x": 0, "y": 0, "duration": 5.0, "ease": "none"}, 29.500);
+    tl.to("#c07", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 29.500);
+    tl.to("#c07", {x: 3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 30.700);
+    tl.to("#c07", {x: -3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 31.900);
+    tl.to("#c07", {x: 3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 33.100);
+    tl.fromTo("#c08", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.05, "x": 0, "y": 0, "duration": 5.0, "ease": "none"}, 34.500);
+    tl.to("#c08", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 34.500);
+    tl.to("#c08", {x: 3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 35.700);
+    tl.to("#c08", {x: -3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 36.900);
+    tl.to("#c08", {x: 3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 38.100);
+    tl.to("#c08", {scale: 1.06, duration: 0.08, ease: "power3.out", overwrite: "auto"}, 34.600);
+    tl.to("#c08", {scale: 1.03, duration: 0.35, ease: "power2.out"}, 34.680);
+    tl.fromTo("#c09", {"scale": 1.0, "x": 0, "y": 0}, {"scale": 1.05, "x": 0, "y": 0, "duration": 6.0, "ease": "none"}, 39.500);
+    tl.to("#c09", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 39.500);
+    tl.to("#c09", {x: 3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 40.700);
+    tl.to("#c09", {x: -3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 41.900);
+    tl.to("#c09", {x: 3.0, y: -1.8, duration: 1.20, ease: "sine.inOut"}, 43.100);
+    tl.to("#c09", {x: -3.0, y: 1.8, duration: 1.20, ease: "sine.inOut"}, 44.300);
+    tl.fromTo("#sub00", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 0.300);
+    tl.fromTo("#sub01", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 1.930);
+    tl.fromTo("#sub02", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 3.530);
+    tl.fromTo("#sub03", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 6.200);
+    tl.fromTo("#sub04", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 7.200);
+    tl.fromTo("#sub05", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 7.400);
+    tl.fromTo("#sub06", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 9.390);
+    tl.fromTo("#sub07", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 11.400);
+    tl.fromTo("#sub08", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 13.200);
+    tl.fromTo("#sub09", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 13.570);
+    tl.fromTo("#sub10", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 16.300);
+    tl.fromTo("#sub11", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 18.250);
+    tl.fromTo("#sub12", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 19.780);
+    tl.fromTo("#sub13", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 21.200);
+    tl.fromTo("#sub14", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 22.990);
+    tl.fromTo("#sub15", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 24.800);
+    tl.fromTo("#sub16", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 25.820);
+    tl.fromTo("#sub17", {scale: 0.3, rotation: -2, opacity: 0}, {scale: 1.18, rotation: 0, opacity: 1, duration: 0.132, ease: "power3.out"}, 26.940);
+    tl.to("#sub17", {scale: 1, duration: 0.088, ease: "power2.inOut"}, 27.072);
+    tl.to("#sub17", {x: -7.0, duration: 0.0417, ease: "none"}, 26.940);
+    tl.to("#sub17", {x: 6.0, duration: 0.0417, ease: "none"}, 26.982);
+    tl.to("#sub17", {x: -5.0, duration: 0.0417, ease: "none"}, 27.023);
+    tl.to("#sub17", {x: 4.0, duration: 0.0417, ease: "none"}, 27.065);
+    tl.to("#sub17", {x: -3.0, duration: 0.0417, ease: "none"}, 27.107);
+    tl.to("#sub17", {x: 2.0, duration: 0.0417, ease: "none"}, 27.148);
+    tl.to("#sub17", {x: -1.0, duration: 0.0417, ease: "none"}, 27.190);
+    tl.to("#sub17", {x: 0, duration: 0.05}, 27.232);
+    tl.fromTo("#sub18", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 29.700);
+    tl.fromTo("#sub19", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 30.800);
+    tl.fromTo("#sub20", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 32.300);
+    tl.fromTo("#sub21", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 34.700);
+    tl.fromTo("#sub22", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 35.100);
+    tl.fromTo("#sub23", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 36.930);
+    tl.fromTo("#sub24", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 39.800);
+    tl.fromTo("#sub25", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 41.640);
+    tl.fromTo("#sub26", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 43.790);
+    window.__timelines["main"] = tl;
+  }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }
+</script>
+</body>
+</html>

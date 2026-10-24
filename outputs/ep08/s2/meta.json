@@ -1,0 +1,10 @@
+{
+ "v1": {
+  "model": "kling-video-v3_0",
+  "duration": 5,
+  "credits": 30,
+  "generation_id": "AembHpUvfky9dA-_T3QJKs4FurWrzSU0SZ_PW9xlp294iS2_g1V-bqxOGN8FG4ifuoRdF9sw",
+  "input": "K2",
+  "prompt": "docs/ep08/04_Kling_실행표.md S2"
+ }
+}

@@ -1,0 +1,117 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01a",
+   "kind": "still",
+   "source_cut": "01a",
+   "image": "outputs/ep04/01/start_v2.png",
+   "in": 0,
+   "len": 3.0,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "still",
+   "source_cut": "02",
+   "image": "outputs/ep04/02/start_v1.png",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "03a",
+   "kind": "still",
+   "source_cut": "03a",
+   "image": "outputs/ep04/03/start_v1.png",
+   "in": 0,
+   "len": 0.8,
+   "time_card": null
+  },
+  {
+   "cut": "03b",
+   "kind": "still",
+   "source_cut": "03b",
+   "image": "outputs/ep04/03/end_v1.png",
+   "in": 0,
+   "len": 0.7,
+   "time_card": null
+  },
+  {
+   "cut": "04a",
+   "kind": "still",
+   "source_cut": "04a",
+   "image": "outputs/ep04/04/start_v1.png",
+   "in": 0,
+   "len": 1.0,
+   "time_card": null
+  },
+  {
+   "cut": "04b",
+   "kind": "still",
+   "source_cut": "04b",
+   "image": "outputs/ep04/04/end_v1.png",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "05a",
+   "kind": "still",
+   "source_cut": "05a",
+   "image": "outputs/ep04/01/start_v2.png",
+   "in": 0,
+   "len": 1.0,
+   "time_card": null
+  },
+  {
+   "cut": "05b",
+   "kind": "still",
+   "source_cut": "05b",
+   "image": "outputs/ep04/05/end_v1.png",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "06",
+   "kind": "still",
+   "source_cut": "06",
+   "image": "outputs/ep04/06/start_v1.png",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null
+  },
+  {
+   "cut": "07a",
+   "kind": "still",
+   "source_cut": "07a",
+   "image": "outputs/ep04/05/end_v1.png",
+   "in": 0,
+   "len": 1.0,
+   "time_card": null
+  },
+  {
+   "cut": "07b",
+   "kind": "still",
+   "source_cut": "07b",
+   "image": "outputs/ep04/07/end_v1.png",
+   "in": 0,
+   "len": 2.0,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-18 애니매틱 v0: 키프레임 정지 컷 11장 15.5s(F2, Kling 0원)"
+ ]
+}

@@ -1,0 +1,72 @@
+[
+ {
+  "name": "arcade_amb",
+  "prompt": "Indoor claw machine arcade ambience at night, soft electronic game machine jingles in the distance, gentle humming of machines, no voices, no music melody",
+  "duration": 10,
+  "file": "outputs/ep14/sfx/el/arcade_amb.mp3",
+  "result": "ok 160957B"
+ },
+ {
+  "name": "claw_motor",
+  "prompt": "Claw crane machine motor whirring as the metal claw lowers on its cable, mechanical electric hum with a small clack at the end",
+  "duration": 2.5,
+  "file": "outputs/ep14/sfx/el/claw_motor.mp3",
+  "result": "ok 40585B"
+ },
+ {
+  "name": "plush_drop",
+  "prompt": "Soft plush toy dropping onto a pile of plush toys, a single muffled soft thud",
+  "duration": 0.6,
+  "file": "outputs/ep14/sfx/el/plush_drop.mp3",
+  "result": "ok 10492B"
+ },
+ {
+  "name": "button_click",
+  "prompt": "Arcade machine round push button pressed once, short plastic click with a tiny electronic beep",
+  "duration": 0.5,
+  "file": "outputs/ep14/sfx/el/button_click.mp3",
+  "result": "ok 8820B"
+ },
+ {
+  "name": "pay_ding",
+  "prompt": "Single short smartphone payment notification sound, a clean bright 'ding', no voice",
+  "duration": 0.5,
+  "file": "outputs/ep14/sfx/el/pay_ding.mp3",
+  "result": "ok 8820B"
+ },
+ {
+  "name": "win_jingle",
+  "prompt": "Arcade claw machine prize win jingle, short cheerful 8-bit victory fanfare with bells",
+  "duration": 2.5,
+  "file": "outputs/ep14/sfx/el/win_jingle.mp3",
+  "result": "ok 40585B"
+ },
+ {
+  "name": "prize_chute",
+  "prompt": "Plush toy falling down an arcade prize chute and landing in the tray, soft thump with a small plastic flap clack",
+  "duration": 0.8,
+  "file": "outputs/ep14/sfx/el/prize_chute.mp3",
+  "result": "ok 13835B"
+ },
+ {
+  "name": "shush_tap",
+  "prompt": "Soft muffled tap of a plush paw pressed onto a beak, one quick soft 'tak' sound, cute and short",
+  "duration": 0.5,
+  "file": "outputs/ep14/sfx/el/shush_tap.mp3",
+  "result": "ok 8820B"
+ },
+ {
+  "name": "fail_womp",
+  "prompt": "Short comedic failure sound, a soft cartoon sad trombone 'wah-wah' descending, cute and light, no voice",
+  "duration": 1.2,
+  "file": "outputs/ep14/sfx/el/fail_womp.mp3",
+  "result": "ok 20105B"
+ },
+ {
+  "name": "success_sparkle",
+  "prompt": "Bright magical success sparkle shimmer with a rising chime, short and cheerful, no voice",
+  "duration": 1.0,
+  "file": "outputs/ep14/sfx/el/success_sparkle.mp3",
+  "result": "ok 17179B"
+ }
+]

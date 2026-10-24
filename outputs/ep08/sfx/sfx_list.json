@@ -1,0 +1,59 @@
+{
+ "note": "ep08 완성 v1: 기상 보잉 + 드라이기 + 화난 쿵 + 샤워 + 정장 반짝",
+ "items": [
+  {
+   "name": "wake_boing",
+   "file": "outputs/ep02/sfx/el/boing.mp3",
+   "at": 0.15,
+   "len": 0.7,
+   "target_lufs": -24,
+   "fade_out": 0.1,
+   "gain": -2.2,
+   "measured_lufs": -21.84
+  },
+  {
+   "name": "hair_dryer",
+   "file": "outputs/ep08/sfx/el/hair_dryer.mp3",
+   "at": 5.55,
+   "len": 4.9,
+   "target_lufs": -33,
+   "loop": true,
+   "fade_in": 0.2,
+   "fade_out": 0.4,
+   "measured_lufs": -5.94,
+   "gain": -27.1
+  },
+  {
+   "name": "angry_hit",
+   "file": "outputs/ep02/sfx/el/charger_drop.mp3",
+   "at": 26.08,
+   "len": 0.5,
+   "target_lufs": -20,
+   "fade_out": 0.1,
+   "gain": 12.0,
+   "measured_lufs": -32.01
+  },
+  {
+   "name": "shower",
+   "file": "outputs/ep08/sfx/el/shower.mp3",
+   "at": 27.39,
+   "len": 4.0,
+   "target_lufs": -31,
+   "loop": true,
+   "fade_in": 0.15,
+   "fade_out": 0.3,
+   "measured_lufs": -10.64,
+   "gain": -20.4
+  },
+  {
+   "name": "suit_sparkle",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 31.49,
+   "len": 0.8,
+   "target_lufs": -24,
+   "fade_out": 0.1,
+   "gain": -6.2,
+   "measured_lufs": -17.81
+  }
+ ]
+}

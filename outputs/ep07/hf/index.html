@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>ep07 v11 hyperframes</title>
+<script src="gsap.min.js"></script>
+<style>
+  @font-face { font-family: "NotoKR"; src: url("media/NotoSansKR.ttf") format("truetype"); font-weight: 100 900; }
+  body { margin: 0; background: #000; font-family: "NotoKR", sans-serif; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #win { position: absolute; left: 0; top: 0px; width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  .frame { position: absolute; left: 0; width: 1080px; height: 1920px; will-change: transform; }
+  .frame img.layer { position: absolute; width: auto; height: auto; object-fit: fill; }
+  .frame img:not(.layer), .frame video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; display: block; }
+  #title { position: absolute; left: 0; width: 100%; top: 247px; text-align: center; font-size: 104px; font-weight: 800; line-height: 122px; -webkit-text-stroke: 10px #111; paint-order: stroke fill; text-shadow: 0 4px 14px rgba(0,0,0,0.55); }
+  #channel { position: absolute; left: 0; width: 100%; top: 494px; text-align: center; font-size: 52px; font-weight: 700; color: #FFFFFF; opacity: 1.0; line-height: 1.4; -webkit-text-stroke: 6px #111; paint-order: stroke fill; text-shadow: 0 3px 10px rgba(0,0,0,0.55); }
+  .sub { position: absolute; bottom: 430px; font-size: 74px; font-weight: 800; white-space: nowrap; line-height: 1.25;
+          -webkit-text-stroke: 9px #111111; paint-order: stroke fill; transform-origin: 50% 100%; }
+  .card { position: absolute; left: 120px; top: 36px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 6px #000; line-height: 1.2; }
+  .spark { position: absolute; font-size: 64px; color: #FFE27A; text-shadow: 0 0 12px #FFD84A; transform-origin: 50% 50%; }
+  .blackfade { position: absolute; inset: 0; background: #000; }
+  .flash { position: absolute; inset: 0; background: #fff; }
+  .uibox { position: absolute; left: 0; top: 200px; width: 1080px; text-align: center; color: #fff; transform-origin: 50% 50%; }
+  .uilabel { font-size: 60px; font-weight: 700; opacity: 0.85; }
+  .uinum { font-size: 150px; font-weight: 800; color: #FFD84A; line-height: 1.1; display: inline-block; transform-origin: 50% 50%; }
+  .uiclock { font-size: 54px; font-weight: 700; margin-top: 10px; }
+  .ring { position: absolute; border: 10px dashed #FFD84A; border-radius: 50%; box-sizing: border-box; transform-origin: 50% 50%; }
+  .arrow { position: absolute; font-size: 110px; color: #FFD84A; text-shadow: 0 0 10px #000; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="21.450" data-fps="24">
+  <div id="win">
+        <div class="frame" id="c01" style="top:-0.0px; transform-origin: 540px 960.0px;"><video id="c01-v" src="media/s1.mp4" data-start="0.000" data-duration="10.000" data-media-start="0.000" muted></video></div>
+    <div class="frame" id="c02" style="top:-0.0px; transform-origin: 540px 960.0px;"><video id="c02-v" src="media/s2.mp4" data-start="10.000" data-duration="3.450" data-media-start="1.450" muted></video></div>
+    <div class="frame" id="c03" style="top:-0.0px; transform-origin: 540px 960.0px;"><video id="c03-v" src="media/s4.mp4" data-start="13.450" data-duration="3.000" data-media-start="0.000" muted></video></div>
+    <div class="frame" id="c04" style="top:-0.0px; transform-origin: 540px 960.0px;"><video id="c04-v" src="media/s5.mp4" data-start="16.450" data-duration="5.000" data-media-start="0.000" muted></video></div>
+  </div>
+  <div id="title"><div style="color:#FFFFFF">포장마차 간</div><div style="color:#FFD84A">창수와 미순</div></div>
+  <div id="channel">지독한 미순</div>
+  
+    <div class="sub" id="sub00" data-start="0.200" data-duration="1.500" data-cx="540" style="color:#FF9CC2;">야, 인생 뭐 있냐.</div>
+  <div class="sub" id="sub01" data-start="2.100" data-duration="1.600" data-cx="540" style="color:#8FB0E8;">먹고 자고 싸는 거지 뭐.</div>
+  <div class="sub" id="sub02" data-start="4.200" data-duration="1.400" data-cx="540" style="color:#FF9CC2;">중간중간 울어주고.</div>
+  <div class="sub" id="sub03" data-start="5.800" data-duration="1.200" data-cx="540" style="color:#8FB0E8;">그게 정답이지.</div>
+  <div class="sub" id="sub04" data-start="7.900" data-duration="0.900" data-cx="540" style="color:#FF9CC2;">마지막 한 잔!</div>
+  <div class="sub" id="sub05" data-start="8.900" data-duration="0.900" data-cx="540" style="color:#8FB0E8;">콜!</div>
+  <div class="sub" id="sub06" data-start="14.350" data-duration="1.350" data-cx="540" style="color:#FFFFFF;">캬~</div>
+  <div class="sub" id="sub07" data-start="16.750" data-duration="1.650" data-cx="540" style="color:#FF9CC2;">이모! 맥주 한잔 더요!!</div>
+</div>
+<script>
+  // 자막 가로 위치: 중심 cx, 폭 1000 안으로 클램프 (조립기와 동일 규칙)
+  function placeSubs() {
+    document.querySelectorAll('.sub').forEach(el => {
+      const cx = parseFloat(el.dataset.cx); const W = 1080, MW = 1000;
+      let fs = 74; el.style.fontSize = fs + 'px';
+      while (el.offsetWidth > MW && fs > 40) { fs -= 4; el.style.fontSize = fs + 'px'; }
+      const tw = el.offsetWidth;
+      let x = Math.min(Math.max(cx - tw / 2, (W - MW) / 2), W - (W - MW) / 2 - tw);
+      el.style.left = x + 'px';
+    });
+  }
+  const tl = gsap.timeline({ paused: true });
+  function build() {
+    placeSubs();
+        tl.to("#c04", {scale: 1.04, duration: 0.08, ease: "power3.out", overwrite: "auto"}, 16.900);
+    tl.to("#c04", {scale: 1.0, duration: 0.35, ease: "power2.out"}, 16.980);
+    tl.fromTo("#sub00", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 0.200);
+    tl.fromTo("#sub01", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 2.100);
+    tl.fromTo("#sub02", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 4.200);
+    tl.fromTo("#sub03", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 5.800);
+    tl.fromTo("#sub04", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 7.900);
+    tl.fromTo("#sub05", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 8.900);
+    tl.fromTo("#sub06", {scale: 0.6, opacity: 0}, {scale: 1, opacity: 1, duration: 0.14, ease: "back.out(2.5)"}, 14.350);
+    tl.fromTo("#sub07", {scale: 0.3, rotation: -2, opacity: 0}, {scale: 1.18, rotation: 0, opacity: 1, duration: 0.132, ease: "power3.out"}, 16.750);
+    tl.to("#sub07", {scale: 1, duration: 0.088, ease: "power2.inOut"}, 16.882);
+    tl.to("#sub07", {x: -7.0, duration: 0.0417, ease: "none"}, 16.750);
+    tl.to("#sub07", {x: 6.0, duration: 0.0417, ease: "none"}, 16.792);
+    tl.to("#sub07", {x: -5.0, duration: 0.0417, ease: "none"}, 16.833);
+    tl.to("#sub07", {x: 4.0, duration: 0.0417, ease: "none"}, 16.875);
+    tl.to("#sub07", {x: -3.0, duration: 0.0417, ease: "none"}, 16.917);
+    tl.to("#sub07", {x: 2.0, duration: 0.0417, ease: "none"}, 16.958);
+    tl.to("#sub07", {x: -1.0, duration: 0.0417, ease: "none"}, 17.000);
+    tl.to("#sub07", {x: 0, duration: 0.05}, 17.042);
+    window.__timelines["main"] = tl;
+  }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(build); } else { build(); }
+</script>
+</body>
+</html>

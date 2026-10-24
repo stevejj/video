@@ -1,0 +1,82 @@
+[
+ {
+  "cut": "1",
+  "kind": "clip",
+  "len": 3
+ },
+ {
+  "cut": "2",
+  "kind": "clip",
+  "len": 3
+ },
+ {
+  "cut": "3",
+  "kind": "clip",
+  "len": 3
+ },
+ {
+  "cut": "4",
+  "kind": "clip",
+  "len": 3
+ },
+ {
+  "cut": "5",
+  "kind": "clip",
+  "len": 3
+ },
+ {
+  "cut": "6",
+  "kind": "clip",
+  "len": 4
+ },
+ {
+  "cut": "7",
+  "kind": "clip",
+  "len": 3
+ },
+ {
+  "cut": "8",
+  "kind": "ui",
+  "len": 1.5
+ },
+ {
+  "cut": "9",
+  "kind": "clip",
+  "len": 4
+ },
+ {
+  "cut": "10",
+  "kind": "still",
+  "len": 2
+ },
+ {
+  "cut": "11",
+  "kind": "clip",
+  "len": 4
+ },
+ {
+  "cut": "12",
+  "kind": "clip",
+  "len": 3
+ },
+ {
+  "cut": "13",
+  "kind": "ui",
+  "len": 1.5
+ },
+ {
+  "cut": "14",
+  "kind": "clip",
+  "len": 3
+ },
+ {
+  "cut": "15",
+  "kind": "clip",
+  "len": 3
+ },
+ {
+  "cut": "16",
+  "kind": "clip",
+  "len": 4
+ }
+]

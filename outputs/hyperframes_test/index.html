@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>ep layout test</title>
+<script src="gsap.min.js"></script>
+<style>
+  @font-face { font-family: "NotoKR"; src: url("font.ttf") format("truetype"); font-weight: 100 900; }
+  body { margin: 0; background: #000; font-family: "NotoKR", sans-serif; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  .clip { position: absolute; inset: 0; }
+  #title { position: absolute; left: 0; width: 100%; top: 296px; text-align: center; font-size: 104px; font-weight: 800; line-height: 1.0; color: #fff; }
+  #title .y { color: #FFD84A; }
+  #channel { position: absolute; left: 0; width: 100%; top: 1394px; text-align: center; font-size: 52px; font-weight: 700; color: #fff; }
+  #win { position: absolute; left: 0; top: 576px; width: 1080px; height: 768px; overflow: hidden; }
+  #win video { position: absolute; left: 0; width: 1080px; height: 1920px; top: -499px; object-fit: cover; }
+  #sub { position: absolute; left: 0; width: 100%; top: 1230px; text-align: center; font-size: 74px; font-weight: 800; color: #FF9CC2;
+         -webkit-text-stroke: 0; text-shadow: 0 0 9px #000, 0 0 9px #000, 0 0 9px #000, 4px 4px 0 #000; transform-origin: 50% 50%; }
+  #card { position: absolute; left: 40px; top: 612px; font-size: 54px; font-weight: 700; color: #fff; text-shadow: 2px 2px 0 #000; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="4">
+  <div id="win">
+    <video id="clip" src="clip.mp4" data-start="0" data-duration="4" muted></video>
+  </div>
+  <section class="clip" data-start="0" data-duration="4">
+    <div id="title">오늘도<div class="l2"><span class="y">시간은 간다</span></div></div>
+    <div id="channel">지독한 미순</div>
+  </section>
+  <section class="clip" data-start="0" data-duration="1.2"><div id="card">21:00</div></section>
+  <section class="clip" data-start="0.8" data-duration="3.2"><div id="sub">라면 머글래?</div></section>
+  <audio id="voice" src="voice.mp3" data-start="0.9" data-volume="1"></audio>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo("#sub", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.12, ease: "back.out(2)" }, 0.8);
+  tl.to("#card", { opacity: 0, duration: 0.2 }, 1.0);
+  window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+ "cut": "02",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "3",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Mi-sun lies on the sofa cushion under the beige duvet, looking at the camera with a happy smile. Slowly she turns her head a little to her left side of the frame, toward the left end of the sofa, and settles there looking that way, exactly matching the end image. As she speaks a short line, her beak opens and closes only a tiny amount, barely parting, just enough to show she is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips. Her head stays on the cushion the whole time and does not lift; her wings rest still on top of the duvet; the duvet, the cushion and the sofa stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep02/02/start_v1.png"
+  },
+  "end": {
+   "file": "outputs/ep02/02/end_v1.png"
+  }
+ },
+ "credits_before": 103.0,
+ "credits_after": 85.0,
+ "credits_consumed_reported": 18.0,
+ "approved_by_user": "진행 (2026-10-07)",
+ "version": 1,
+ "ts": "2026-10-07T08:58:59",
+ "generation_id": "AV9FrQX6ohoeXqoSVNjs64IrrkXH8_-jHfEXkN9QYTWFP1uZxFEB9u3p8k5gqOM8XGKP7jF7",
+ "status": "COMPLETED",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.27,
+   "start_vs_ref_bg_meandiff": 2.11,
+   "end_vs_ref_meandiff": 3.1,
+   "end_vs_ref_bg_meandiff": 2.9,
+   "interframe_mean": 0.63,
+   "interframe_max": 1.28,
+   "interframe_max_at_s": 0.83,
+   "first_vs_last_meandiff": 7.25,
+   "bg_drift_first_last": 2.86,
+   "cam_motion_px_median": 0.02,
+   "cam_motion_px_max": 0.05,
+   "beak_region_change_max": 53.74,
+   "beak_region_change_mean": 39.58
+  }
+ }
+}

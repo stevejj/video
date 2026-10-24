@@ -1,0 +1,99 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01",
+   "kind": "still",
+   "source_cut": "s1",
+   "image": "outputs/ep09/01/start_v1.png",
+   "in": 0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "still",
+   "source_cut": "s2",
+   "image": "outputs/ep09/02/start_v1.png",
+   "in": 0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "03",
+   "kind": "still",
+   "source_cut": "s3",
+   "image": "outputs/ep09/03/start_v2.png",
+   "in": 0,
+   "len": 5.5,
+   "time_card": null
+  },
+  {
+   "cut": "04",
+   "kind": "still",
+   "source_cut": "s4",
+   "image": "outputs/ep09/04/start_v1.png",
+   "in": 0,
+   "len": 3.5,
+   "time_card": null
+  },
+  {
+   "cut": "05",
+   "kind": "still",
+   "source_cut": "s5",
+   "image": "outputs/ep09/05/start_v1.png",
+   "in": 0,
+   "len": 5.0,
+   "time_card": null
+  },
+  {
+   "cut": "06",
+   "kind": "still",
+   "source_cut": "s6",
+   "image": "outputs/ep09/06/start_v1.png",
+   "in": 0,
+   "len": 4.5,
+   "time_card": null
+  },
+  {
+   "cut": "07",
+   "kind": "still",
+   "source_cut": "s7",
+   "image": "outputs/ep09/07/start_v1.png",
+   "in": 0,
+   "len": 3.5,
+   "time_card": null
+  },
+  {
+   "cut": "08",
+   "kind": "still",
+   "source_cut": "s8",
+   "image": "outputs/ep09/08/start_v1.png",
+   "in": 0,
+   "len": 6.0,
+   "time_card": null
+  },
+  {
+   "cut": "09",
+   "kind": "still",
+   "source_cut": "s9",
+   "image": "outputs/ep09/09/start_v1.png",
+   "in": 0,
+   "len": 4.5,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-21 ep09 animatic v1: 9장면 42.5s, 효과 9곳(기획안 01)"
+ ]
+}

@@ -1,0 +1,10 @@
+{
+ "v1": {
+  "model": "kling-video-v4_0 omni",
+  "duration": 6,
+  "credits": 54,
+  "generation_id": "AZPvhIKrjtWzJLhzvM5ZvZGjQeiNe9t-_K7Wxv2t1pmbexGrJfwRfIeCT22IO5QW_ebQ3PPp",
+  "input": "K9f + s9.mp3",
+  "prompt": "docs/ep08/04_Kling_실행표.md S9"
+ }
+}

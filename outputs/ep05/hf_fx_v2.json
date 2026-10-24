@@ -1,0 +1,455 @@
+{
+ "note": "ep05 애니매틱 v2: 무료 퍼펫(오려낸 미순·덤벨을 GSAP로 움직임) + 손떨림 + 셔터 플래시",
+ "default_still": {
+  "cam": {
+   "from": 1.0,
+   "to": 1.04
+  },
+  "drift": {
+   "amp": 4,
+   "period": 2.2
+  }
+ },
+ "default_clip": {
+  "cam": null
+ },
+ "cuts": {
+  "01": {
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep05/puppet/plateA.png",
+    "layers": [
+     {
+      "id": "ms",
+      "img": "outputs/ep05/puppet/misun_k1.png",
+      "box": [
+       320,
+       506,
+       326,
+       343
+      ],
+      "pivot": [
+       484,
+       848
+      ],
+      "keys": [
+       {
+        "t": 0.15,
+        "dur": 0.16,
+        "ease": "power2.out",
+        "y": -12,
+        "rotation": -3
+       },
+       {
+        "t": 0.31,
+        "dur": 0.16,
+        "ease": "power2.in",
+        "y": 0,
+        "rotation": 0
+       },
+       {
+        "t": 0.55,
+        "dur": 0.16,
+        "ease": "power2.out",
+        "y": -12,
+        "rotation": 3
+       },
+       {
+        "t": 0.7100000000000001,
+        "dur": 0.16,
+        "ease": "power2.in",
+        "y": 0,
+        "rotation": 0
+       }
+      ]
+     }
+    ]
+   },
+   "flash": [
+    {
+     "at": 1.15,
+     "dur": 0.25
+    }
+   ],
+   "punch": {
+    "at": 1.15,
+    "scale": 1.06,
+    "settle": 1.04
+   }
+  },
+  "02": {
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep05/puppet/plateB.png",
+    "layers": [
+     {
+      "id": "ms",
+      "img": "outputs/ep05/puppet/misun_k3.png",
+      "box": [
+       309,
+       495,
+       303,
+       385
+      ],
+      "pivot": [
+       484,
+       854
+      ],
+      "keys": [
+       {
+        "t": 0.45,
+        "dur": 0.14,
+        "ease": "power2.out",
+        "y": -24,
+        "rotation": -4,
+        "scale": 0.98,
+        "x": 6
+       },
+       {
+        "t": 0.59,
+        "dur": 0.12,
+        "ease": "power2.in",
+        "y": 0,
+        "rotation": 0
+       },
+       {
+        "t": 0.74,
+        "dur": 0.14,
+        "ease": "power2.out",
+        "y": -20,
+        "rotation": 4,
+        "scale": 1.0,
+        "x": 0
+       },
+       {
+        "t": 0.88,
+        "dur": 0.12,
+        "ease": "power2.in",
+        "y": 0,
+        "rotation": 0
+       },
+       {
+        "t": 1.1,
+        "dur": 0.3,
+        "ease": "power2.out",
+        "rotation": -4,
+        "x": -8
+       }
+      ],
+      "init": {
+       "scale": 0.96,
+       "x": 10
+      }
+     },
+     {
+      "id": "db",
+      "img": "outputs/ep05/puppet/dumbbells.png",
+      "box": [
+       506,
+       870,
+       179,
+       74
+      ],
+      "pivot": [
+       595,
+       940
+      ],
+      "keys": [
+       {
+        "t": 0.05,
+        "dur": 0.4,
+        "ease": "bounce.out",
+        "y": 0,
+        "x": 0,
+        "rotation": 0
+       }
+      ],
+      "init": {
+       "y": -320,
+       "x": -30,
+       "rotation": -25
+      }
+     }
+    ]
+   },
+   "shake": {
+    "at": 0.2,
+    "amp": 7,
+    "dur": 0.2
+   }
+  },
+  "03": {
+   "cam": {
+    "from": 1.0,
+    "to": 1.1
+   },
+   "drift": {
+    "amp": 3,
+    "period": 1.6
+   }
+  },
+  "04": {
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep05/puppet/plateB.png",
+    "layers": [
+     {
+      "id": "ms",
+      "img": "outputs/ep05/puppet/misun_k3.png",
+      "box": [
+       309,
+       495,
+       303,
+       385
+      ],
+      "pivot": [
+       484,
+       760
+      ],
+      "keys": [
+       {
+        "t": 0.2,
+        "dur": 0.35,
+        "ease": "back.out(2)",
+        "rotation": 8,
+        "x": 0
+       }
+      ],
+      "init": {
+       "rotation": -3,
+       "x": -6
+      }
+     },
+     {
+      "id": "db",
+      "img": "outputs/ep05/puppet/dumbbells.png",
+      "box": [
+       506,
+       870,
+       179,
+       74
+      ],
+      "pivot": [
+       595,
+       940
+      ],
+      "keys": []
+     }
+    ]
+   },
+   "note": "plateB는 바닥 덤벨을 지운 배경판 → 덤벨 레이어를 반드시 다시 얹음(2026-10-19 사라짐 사고)"
+  },
+  "05": {
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep05/puppet/plateB.png",
+    "layers": [
+     {
+      "id": "ms",
+      "img": "outputs/ep05/puppet/misun_k3.png",
+      "box": [
+       309,
+       495,
+       303,
+       385
+      ],
+      "pivot": [
+       484,
+       854
+      ],
+      "keys": [
+       {
+        "t": 0.0,
+        "dur": 0.15,
+        "ease": "power2.out",
+        "rotation": 0
+       },
+       {
+        "t": 0.25,
+        "dur": 0.14,
+        "ease": "power2.out",
+        "y": -22,
+        "x": 6,
+        "rotation": 4
+       },
+       {
+        "t": 0.39,
+        "dur": 0.12,
+        "ease": "power2.in",
+        "y": 0,
+        "x": 12,
+        "rotation": 0
+       },
+       {
+        "t": 0.6,
+        "dur": 0.2,
+        "ease": "power2.out",
+        "rotation": 9
+       },
+       {
+        "t": 1.0,
+        "dur": 0.01,
+        "ease": "none",
+        "opacity": 0
+       }
+      ],
+      "init": {
+       "rotation": 6
+      }
+     },
+     {
+      "id": "db",
+      "img": "outputs/ep05/puppet/dumbbells.png",
+      "box": [
+       506,
+       870,
+       179,
+       74
+      ],
+      "pivot": [
+       595,
+       940
+      ],
+      "keys": [
+       {
+        "t": 0.82,
+        "dur": 0.18,
+        "ease": "power2.out",
+        "y": -320,
+        "x": -30,
+        "rotation": -20
+       },
+       {
+        "t": 1.0,
+        "dur": 0.01,
+        "ease": "none",
+        "opacity": 0
+       }
+      ]
+     },
+     {
+      "id": "ms1",
+      "img": "outputs/ep05/puppet/misun_k1.png",
+      "box": [
+       320,
+       506,
+       326,
+       343
+      ],
+      "pivot": [
+       484,
+       848
+      ],
+      "keys": [
+       {
+        "t": 1.0,
+        "dur": 0.01,
+        "ease": "none",
+        "opacity": 1
+       },
+       {
+        "t": 1.01,
+        "dur": 0.12,
+        "ease": "back.out(3)",
+        "scale": 1.07
+       },
+       {
+        "t": 1.13,
+        "dur": 0.18,
+        "ease": "power2.out",
+        "scale": 1.0
+       }
+      ],
+      "init": {
+       "opacity": 0,
+       "scale": 0.9
+      }
+     }
+    ]
+   }
+  },
+  "06": {
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep05/puppet/plateA.png",
+    "layers": [
+     {
+      "id": "ms",
+      "img": "outputs/ep05/puppet/misun_k1.png",
+      "box": [
+       320,
+       506,
+       326,
+       343
+      ],
+      "pivot": [
+       484,
+       848
+      ],
+      "keys": [
+       {
+        "t": 0.1,
+        "dur": 0.16,
+        "ease": "power2.out",
+        "y": -12,
+        "rotation": -3
+       },
+       {
+        "t": 0.26,
+        "dur": 0.16,
+        "ease": "power2.in",
+        "y": 0,
+        "rotation": 0
+       },
+       {
+        "t": 0.5,
+        "dur": 0.16,
+        "ease": "power2.out",
+        "y": -12,
+        "rotation": 3
+       },
+       {
+        "t": 0.66,
+        "dur": 0.16,
+        "ease": "power2.in",
+        "y": 0,
+        "rotation": 0
+       }
+      ]
+     }
+    ]
+   },
+   "flash": [
+    {
+     "at": 1.15,
+     "dur": 0.25
+    }
+   ],
+   "punch": {
+    "at": 1.15,
+    "scale": 1.06,
+    "settle": 1.04
+   }
+  }
+ },
+ "subtitle": {
+  "pop": {
+   "from": 0.6,
+   "dur": 0.14
+  },
+  "shout": {
+   "from": 0.3,
+   "over": 1.18,
+   "dur": 0.22,
+   "shake_amp": 7,
+   "shake_dur": 0.3,
+   "rot": -2
+  }
+ },
+ "time_card": {
+  "slide_px": -60,
+  "in": 0.25,
+  "hold": 1.2,
+  "out": 0.25
+ }
+}

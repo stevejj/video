@@ -1,0 +1,126 @@
+{
+ "note": "ep19 애니매틱: 효과음 전부 기존 재사용(새 생성 0)",
+ "items": [
+  {
+   "name": "02_ping",
+   "file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "at": 2.65,
+   "len": 0.52,
+   "target_lufs": -16,
+   "fade_out": 0.05,
+   "measured_lufs": -16.45,
+   "measured_file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "gain": 0.4
+  },
+  {
+   "name": "03_ping",
+   "file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "at": 3.65,
+   "len": 0.52,
+   "target_lufs": -18,
+   "fade_out": 0.05,
+   "measured_lufs": -16.45,
+   "measured_file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "gain": -1.6
+  },
+  {
+   "name": "03_ping",
+   "file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "at": 4.95,
+   "len": 0.52,
+   "target_lufs": -20,
+   "fade_out": 0.05,
+   "measured_lufs": -16.45,
+   "measured_file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "gain": -3.6
+  },
+  {
+   "name": "05_dream",
+   "file": "outputs/ep16/sfx/el/dream_whoosh.mp3",
+   "at": 7.96,
+   "len": 1.52,
+   "target_lufs": -20,
+   "fade_out": 0.05,
+   "measured_lufs": -26.27,
+   "measured_file": "outputs/ep16/sfx/el/dream_whoosh.mp3",
+   "gain": 6.3
+  },
+  {
+   "name": "05_gulp",
+   "file": "outputs/ep11/sfx/el/gulp.mp3",
+   "at": 8.41,
+   "len": 1.65,
+   "target_lufs": -16,
+   "fade_out": 0.05,
+   "measured_lufs": -39.67,
+   "measured_file": "outputs/ep11/sfx/el/gulp.mp3",
+   "gain": 23.7
+  },
+  {
+   "name": "10_pop",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 23.46,
+   "len": 0.63,
+   "target_lufs": -21,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -3.9
+  },
+  {
+   "name": "10_sparkle",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 23.46,
+   "len": 1.04,
+   "target_lufs": -22,
+   "fade_out": 0.05,
+   "measured_lufs": -17.81,
+   "measured_file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "gain": -4.2
+  },
+  {
+   "name": "11_pop",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 25.02,
+   "len": 0.63,
+   "target_lufs": -21,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -3.9
+  },
+  {
+   "name": "13_quake",
+   "file": "outputs/ep02/sfx/el/pupil_quake.mp3",
+   "at": 30.95,
+   "len": 1.23,
+   "target_lufs": -18,
+   "fade_out": 0.05,
+   "measured_lufs": -5.16,
+   "measured_file": "outputs/ep02/sfx/el/pupil_quake.mp3",
+   "gain": -12.8
+  },
+  {
+   "name": "14_pop",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 33.03,
+   "len": 0.63,
+   "target_lufs": -21,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -3.9
+  },
+  {
+   "name": "16_ping",
+   "file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "at": 40.34,
+   "len": 0.52,
+   "target_lufs": -18,
+   "fade_out": 0.05,
+   "measured_lufs": -16.45,
+   "measured_file": "outputs/ep16/sfx/el/msg_ping.mp3",
+   "gain": -1.6
+  }
+ ]
+}

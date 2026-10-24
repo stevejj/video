@@ -1,0 +1,39 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "05",
+   "kind": "clip",
+   "source_cut": "05",
+   "in": 0.0,
+   "len": 4.0,
+   "time_card": null,
+   "clip_tag": "v1"
+  },
+  {
+   "cut": "06",
+   "kind": "clip",
+   "source_cut": "06",
+   "in": 0.0,
+   "len": 4.0,
+   "time_card": null,
+   "clip_tag": "v1"
+  }
+ ],
+ "history": [
+  "2026-10-17 v0: 클립 2개 체인(S→E1, E1→E2), 각 4.0s 전체 사용, 총 8.0s",
+  "2026-10-17: 클립 1 = v2(Kling 4.0, 5.0s 전체). 클립 2 대기",
+  "2026-10-17: 클립 2 = v2(Kling 4.0, 5.0s 전체). 총 10.0s",
+  "2026-10-17 v1: 앉은 자세 클립 5·6(각 4.0s) = 8.0s. 이전 클립(늘어난 날개·누운 자세)은 보관만"
+ ]
+}

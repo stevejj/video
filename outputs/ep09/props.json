@@ -1,0 +1,257 @@
+{
+ "note": "ep09 옷·소품 상태표(F8 states) + 입모양 장면(preflight I). 한 저녁이라 옷은 그대로.",
+ "band": [
+  576,
+  1344
+ ],
+ "props": {},
+ "cuts": {},
+ "states": {
+  "01": {
+   "misun_outfit": {
+    "start": "분홍 후드",
+    "end": "분홍 후드",
+    "from": "K1",
+    "prompt_kw": [
+     "light pink hoodie"
+    ]
+   },
+   "changsu_outfit": {
+    "start": "회색 티",
+    "end": "회색 티",
+    "from": "K1",
+    "prompt_kw": [
+     "grey T-shirt"
+    ]
+   },
+   "phone": {
+    "start": "창수 날개",
+    "end": "창수 날개",
+    "from": "K1",
+    "prompt_kw": [
+     "smartphone"
+    ]
+   }
+  },
+  "02": {
+   "misun_outfit": {
+    "start": "분홍 후드",
+    "end": "분홍 후드",
+    "from": "K2",
+    "prompt_kw": [
+     "light pink hoodie"
+    ]
+   },
+   "changsu_outfit": {
+    "start": "회색 티",
+    "end": "회색 티",
+    "from": "K2",
+    "prompt_kw": [
+     "grey T-shirt"
+    ]
+   },
+   "phone": {
+    "start": "창수 날개",
+    "end": "창수 날개",
+    "from": "K2",
+    "prompt_kw": [
+     "smartphone"
+    ]
+   }
+  },
+  "03": {
+   "misun_outfit": {
+    "start": "분홍 후드",
+    "end": "분홍 후드",
+    "from": "K3",
+    "prompt_kw": [
+     "light pink hoodie"
+    ]
+   },
+   "changsu_outfit": {
+    "start": "회색 티",
+    "end": "회색 티",
+    "from": "K3",
+    "prompt_kw": [
+     "grey T-shirt"
+    ]
+   },
+   "phone": {
+    "start": "창수 날개",
+    "end": "창수 날개",
+    "from": "K3",
+    "prompt_kw": [
+     "smartphone"
+    ]
+   }
+  },
+  "05": {
+   "changsu_outfit": {
+    "start": "회색 티",
+    "end": "회색 티",
+    "from": "K5",
+    "prompt_kw": [
+     "grey T-shirt"
+    ]
+   },
+   "phone": {
+    "start": "소파 위",
+    "end": "소파 위",
+    "from": "K5",
+    "prompt_kw": [
+     "smartphone lying on the cushion"
+    ]
+   }
+  },
+  "06": {
+   "misun_outfit": {
+    "start": "분홍 후드",
+    "end": "분홍 후드",
+    "from": "K6",
+    "prompt_kw": [
+     "light pink hoodie"
+    ]
+   },
+   "changsu_outfit": {
+    "start": "회색 티",
+    "end": "회색 티",
+    "from": "K6",
+    "prompt_kw": [
+     "grey T-shirt"
+    ]
+   },
+   "phone": {
+    "start": "소파 위",
+    "end": "소파 위",
+    "from": "K6",
+    "prompt_kw": [
+     "smartphone lies on the cushion"
+    ]
+   }
+  },
+  "07": {
+   "changsu_outfit": {
+    "start": "회색 티",
+    "end": "회색 티",
+    "from": "K7",
+    "prompt_kw": [
+     "grey T-shirt"
+    ]
+   },
+   "box": {
+    "start": "닫힌 상자",
+    "end": "닫힌 상자",
+    "from": "K7",
+    "prompt_kw": [
+     "closed plain brown"
+    ]
+   }
+  },
+  "08": {
+   "misun_outfit": {
+    "start": "분홍 후드",
+    "end": "분홍 후드",
+    "from": "K8",
+    "prompt_kw": [
+     "light pink hoodie"
+    ]
+   },
+   "changsu_outfit": {
+    "start": "회색 티",
+    "end": "회색 티",
+    "from": "K8",
+    "prompt_kw": [
+     "grey T-shirt"
+    ]
+   },
+   "box": {
+    "start": "열린 상자·치킨",
+    "end": "열린 상자·치킨",
+    "from": "K8",
+    "prompt_kw": [
+     "open plain brown",
+     "fried chicken"
+    ]
+   },
+   "drumsticks": {
+    "start": "미순 날개 2개",
+    "end": "미순 날개 2개",
+    "from": "K8",
+    "prompt_kw": [
+     "exactly TWO drumsticks"
+    ]
+   }
+  },
+  "09": {
+   "misun_outfit": {
+    "start": "분홍 후드",
+    "end": "분홍 후드",
+    "from": "K9",
+    "prompt_kw": [
+     "light pink hoodie"
+    ]
+   },
+   "changsu_outfit": {
+    "start": "회색 티",
+    "end": "회색 티",
+    "from": "K9",
+    "prompt_kw": [
+     "grey T-shirt"
+    ]
+   },
+   "box": {
+    "start": "빈 상자·뼈",
+    "end": "빈 상자·뼈",
+    "from": "K9",
+    "prompt_kw": [
+     "chicken bones"
+    ]
+   }
+  }
+ },
+ "transitions_ok": {
+  "phone": [
+   [
+    "창수 날개",
+    "소파 위"
+   ]
+  ],
+  "box": [
+   [
+    "닫힌 상자",
+    "열린 상자·치킨"
+   ],
+   [
+    "열린 상자·치킨",
+    "빈 상자·뼈"
+   ]
+  ]
+ },
+ "lipsync": {
+  "01": [
+   "changsu",
+   "misun"
+  ],
+  "02": [
+   "changsu",
+   "misun"
+  ],
+  "03": [
+   "changsu",
+   "misun"
+  ],
+  "05": [
+   "changsu"
+  ],
+  "06": [
+   "changsu"
+  ],
+  "08": [
+   "changsu",
+   "misun"
+  ],
+  "09": [
+   "misun"
+  ]
+ }
+}

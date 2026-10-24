@@ -1,0 +1,14 @@
+[
+ {
+  "file": "outputs/ep16/bgm/friday_calm.mp3",
+  "seconds": 24.0,
+  "prompt": "Calm peaceful lo-fi office background music for a Friday afternoon, soft electric piano, light brushed drums, mellow bass, relaxed and slightly sleepy, around 80 BPM, no vocals, gentle volume.",
+  "result": "ok 384984B"
+ },
+ {
+  "file": "outputs/ep16/bgm/dream.mp3",
+  "seconds": 8.0,
+  "prompt": "Dreamy blissful daydream music, warm synth pads, sparkling glockenspiel and soft harp arpeggios, slow and floating, like a happy fantasy of the weekend, no vocals.",
+  "result": "ok 128357B"
+ }
+]

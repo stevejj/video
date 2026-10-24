@@ -1,0 +1,48 @@
+{
+ "cut": "03",
+ "type": "start_only",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "3",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su stands still facing slightly to the right of the frame with a calm neutral face. He blinks once, slowly, and gives one very small nod of his head, about one centimeter, then holds still. As he speaks one short word, his beak opens and closes only a tiny amount, barely parting, just enough to show he is talking; it keeps its exact small triangular shape and size and never opens wide, stretches, or turns into lips. His head stays at the same height and angle otherwise and does not turn toward the camera; his wings hang still at his sides; the curtain and sofa behind him stay exactly where they are. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep02/03/start_v1.png"
+  }
+ },
+ "credits_before": 85.0,
+ "credits_after": 67.0,
+ "credits_consumed_reported": 18.0,
+ "approved_by_user": "진행 (2026-10-07)",
+ "version": 1,
+ "ts": "2026-10-07T12:17:32",
+ "generation_id": "AbUNXtS3DZzFcx7QXrOysv-WGYktr8GtpJandc_qn3ThNieZdjxqm7HuKsJ_4Fpu_qcFeb4r",
+ "status": "COMPLETED",
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 73,
+   "duration_s": 3.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.24,
+   "start_vs_ref_bg_meandiff": 2.32,
+   "interframe_mean": 1.66,
+   "interframe_max": 4.15,
+   "interframe_max_at_s": 1.62,
+   "first_vs_last_meandiff": 3.33,
+   "bg_drift_first_last": 3.38,
+   "cam_motion_px_median": 0.86,
+   "cam_motion_px_max": 3.34,
+   "beak_region_change_max": 18.9,
+   "beak_region_change_mean": 8.34
+  }
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "title": {
+  "lines": [
+   {
+    "text": "여자친구랑",
+    "color": "#FFFFFF"
+   },
+   {
+    "text": "운동하기 힘든 이유",
+    "color": "#FFFFFF"
+   }
+  ],
+  "size": 104,
+  "weight": 800,
+  "center_y": 400,
+  "line_gap": 18
+ },
+ "channel": {
+  "text": "지독한 미순",
+  "color": "#FFFFFF",
+  "size": 52,
+  "weight": 700,
+  "center_y": 1420,
+  "opacity": 0.9
+ },
+ "subtitle_style": {
+  "size": 74,
+  "weight": 800,
+  "stroke": 9,
+  "stroke_color": "#111111",
+  "bottom_margin": 46,
+  "max_width": 1000,
+  "colors": {
+   "changsu": "#8FB0E8",
+   "misun": "#FF9CC2",
+   "sfx": "#FFFFFF"
+  }
+ },
+ "note": "ep05: 제목 '헬스장 간 / 우리 미순이'(사용자 2026-10-19). 대사 없음 / 2026-10-22 사용자: 제목 \"여자친구랑 운동하기 힘든 이유\", 이번 제목은 흰색만",
+ "subtitles": []
+}

@@ -1,0 +1,39 @@
+{
+ "items": [
+  {
+   "name": "fart_misun",
+   "prompt": "Cute small high-pitched cartoon fart, short squeaky 'pooong' toot, comedic, clean, no music",
+   "duration": 0.8
+  },
+  {
+   "name": "fart_changsu",
+   "prompt": "Deep low bassy cartoon fart, short loud 'BOOM-pung' blast, comedic, clean, no music",
+   "duration": 0.9
+  },
+  {
+   "name": "fart_pop1",
+   "prompt": "Very short punchy cartoon fart pop, tight and rhythmic like a drum hit, comedic, no music",
+   "duration": 0.5
+  },
+  {
+   "name": "fart_pop2",
+   "prompt": "Very short squeaky high cartoon fart blip, tight and rhythmic like a snare hit, comedic, no music",
+   "duration": 0.5
+  },
+  {
+   "name": "fart_finale",
+   "prompt": "Huge long epic cartoon fart, rumbling and trumpeting for three seconds, ending with a sputter, comedic, no music",
+   "duration": 3.0
+  },
+  {
+   "name": "boxing_bell",
+   "prompt": "Boxing ring bell, single loud ding ding to start the round, arena reverb, no crowd, no voice",
+   "duration": 1.5
+  },
+  {
+   "name": "duvet_rustle",
+   "prompt": "Soft duvet and bedsheet rustle, someone shifting slightly in bed at night, quiet and close, no voice, no music",
+   "duration": 1.5
+  }
+ ]
+}

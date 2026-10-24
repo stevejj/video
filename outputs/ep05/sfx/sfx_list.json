@@ -1,0 +1,173 @@
+{
+ "note": "ep05 v2 효과음(ElevenLabs 7개 + 기존 톡·반짝), 배경음 selfie_gym",
+ "items": [
+  {
+   "name": "bgm",
+   "file": "outputs/ep05/bgm/selfie_gym.mp3",
+   "at": 0.0,
+   "len": 14.009,
+   "target_lufs": -18,
+   "fade_out": 0.8,
+   "fade_in": 0.2,
+   "measured_lufs": -13.08,
+   "measured_file": "outputs/ep05/bgm/selfie_gym.mp3",
+   "gain": -4.9
+  },
+  {
+   "name": "gym",
+   "file": "outputs/ep05/sfx/el/gym_amb.mp3",
+   "at": 0.0,
+   "len": 14.009,
+   "target_lufs": -36,
+   "fade_out": 0.6,
+   "loop": true,
+   "fade_in": 0.3,
+   "measured_lufs": -37.23,
+   "measured_file": "outputs/ep05/sfx/el/gym_amb.mp3",
+   "gain": 1.2
+  },
+  {
+   "name": "shutter1",
+   "file": "outputs/ep05/sfx/el/dslr_shutter.mp3",
+   "at": 1.053,
+   "len": 0.48,
+   "target_lufs": -13,
+   "fade_out": 0.05,
+   "measured_lufs": -15.45,
+   "measured_file": "outputs/ep05/sfx/el/dslr_shutter.mp3",
+   "gain": 2.4
+  },
+  {
+   "name": "drop",
+   "file": "outputs/ep05/sfx/el/dumbbell_drop.mp3",
+   "at": 2.692,
+   "len": 1.0,
+   "target_lufs": -16,
+   "fade_out": 0.05,
+   "measured_lufs": -27.9,
+   "measured_file": "outputs/ep05/sfx/el/dumbbell_drop.mp3",
+   "gain": 11.9
+  },
+  {
+   "name": "done_pop",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 2.842,
+   "len": 0.6,
+   "target_lufs": -21,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -3.9
+  },
+  {
+   "name": "steps1",
+   "file": "outputs/ep05/sfx/el/tiny_steps.mp3",
+   "at": 2.833,
+   "len": 1.434,
+   "target_lufs": -22,
+   "fade_out": 0.2,
+   "measured_lufs": -23.33,
+   "measured_file": "outputs/ep05/sfx/el/tiny_steps.mp3",
+   "gain": 1.3
+  },
+  {
+   "name": "pinch",
+   "file": "outputs/ep05/sfx/el/pinch_zoom.mp3",
+   "at": 4.467,
+   "len": 0.6,
+   "target_lufs": -20,
+   "fade_out": 0.05,
+   "measured_lufs": -25.34,
+   "measured_file": "outputs/ep05/sfx/el/pinch_zoom.mp3",
+   "gain": 5.3
+  },
+  {
+   "name": "ui_pop",
+   "file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "at": 5.217,
+   "len": 0.6,
+   "target_lufs": -18,
+   "fade_out": 0.05,
+   "measured_lufs": -17.05,
+   "measured_file": "outputs/ep05/sfx/el/ui_pop.mp3",
+   "gain": -0.9
+  },
+  {
+   "name": "ui_tap",
+   "file": "outputs/ep05/sfx/el/ui_tap.mp3",
+   "at": 5.517,
+   "len": 0.3,
+   "target_lufs": -20,
+   "fade_out": 0.05,
+   "measured_lufs": -29.65,
+   "measured_file": "outputs/ep05/sfx/el/ui_tap.mp3",
+   "gain": 9.6
+  },
+  {
+   "name": "rush",
+   "file": "outputs/ep05/sfx/el/rewind_rush.mp3",
+   "at": 6.917,
+   "len": 0.68,
+   "target_lufs": -19,
+   "fade_out": 0.05,
+   "measured_lufs": -8.87,
+   "measured_file": "outputs/ep05/sfx/el/rewind_rush.mp3",
+   "gain": -10.1
+  },
+  {
+   "name": "steps2",
+   "file": "outputs/ep05/sfx/el/tiny_steps.mp3",
+   "at": 6.967,
+   "len": 1.142,
+   "target_lufs": -21,
+   "fade_out": 0.2,
+   "measured_lufs": -23.33,
+   "measured_file": "outputs/ep05/sfx/el/tiny_steps.mp3",
+   "gain": 2.3
+  },
+  {
+   "name": "grip",
+   "file": "outputs/ep02/sfx/el/cup_set.mp3",
+   "at": 8.159,
+   "len": 0.4,
+   "target_lufs": -24,
+   "fade_out": 0.05,
+   "measured_lufs": -30.05,
+   "measured_file": "outputs/ep02/sfx/el/cup_set.mp3",
+   "gain": 6.1
+  },
+  {
+   "name": "pose_pop",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 10.209,
+   "len": 0.7,
+   "target_lufs": -22,
+   "fade_out": 0.05,
+   "measured_lufs": -17.81,
+   "measured_file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "gain": -4.2
+  },
+  {
+   "name": "shutter2",
+   "file": "outputs/ep05/sfx/el/dslr_shutter.mp3",
+   "at": 10.77,
+   "len": 0.48,
+   "target_lufs": -13,
+   "fade_out": 0.05,
+   "measured_lufs": -15.45,
+   "measured_file": "outputs/ep05/sfx/el/dslr_shutter.mp3",
+   "gain": 2.4
+  },
+  {
+   "name": "stats",
+   "file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "at": 11.35,
+   "len": 0.7,
+   "target_lufs": -24,
+   "fade_out": 0.05,
+   "measured_lufs": -17.81,
+   "measured_file": "outputs/ep01/sfx/el/sparkle.mp3",
+   "gain": -6.2
+  }
+ ]
+}

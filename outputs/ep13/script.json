@@ -1,0 +1,539 @@
+{
+ "note": "ep13 대사(참조 드라마 장면, 욕 바꿈: 씨발→수박, 좆도→옷도, 좆같은→옷 같은, 병신아→명심아, 개호로→애호박, 새끼→삐 처리, 씨!는 그대로). ref = 참조 영상 안 시각(분리한 목소리 whisper 단어 시각). tts에는 '새끼'를 그대로 넣어 억양을 살리고, 완성 파일에서 그 자리만 삐 소리로 덮음. 자막은 새끼 → '삐-'. overlap=true: 앞 대사와 겹쳐 말함(맞고함). hear: 받아쓰기 비교용 소리 나는 대로(갑을은→가불은). keys: 꼭 들려야 하는 말.",
+ "speakers": {
+  "changsu": "준호 역(내 편)",
+  "misun": "강 팀장 역(거래처)"
+ },
+ "lines": [
+  {
+   "id": "01",
+   "sp": "changsu",
+   "ref": [
+    0.0,
+    5.1
+   ],
+   "text": "아니, 그러니까 왜 힘도 없는 새끼가, 수박, 사람을 갖고 노냐고 묻는 거 아닙니까!",
+   "tags": [
+    "[frustrated] [shouting]",
+    "[angry] [yelling]"
+   ]
+  },
+  {
+   "id": "02",
+   "sp": "misun",
+   "ref": [
+    5.66,
+    6.26
+   ],
+   "text": "수박?",
+   "tags": [
+    "[incredulous]",
+    "[scoffs] [disbelief]"
+   ]
+  },
+  {
+   "id": "03",
+   "sp": "misun",
+   "ref": [
+    6.54,
+    7.78
+   ],
+   "text": "이 수박 새끼가.",
+   "tags": [
+    "[angry] [growling]",
+    "[menacing] [low voice]"
+   ]
+  },
+  {
+   "id": "04",
+   "sp": "misun",
+   "ref": [
+    7.96,
+    8.76
+   ],
+   "text": "야, 너 일로 와 봐.",
+   "tags": [
+    "[threatening]",
+    "[angry]"
+   ]
+  },
+  {
+   "id": "05",
+   "sp": "misun",
+   "ref": [
+    9.06,
+    9.75
+   ],
+   "text": "너 일로 와 봐! 야!",
+   "tags": [
+    "[shouting]",
+    "[angry] [yelling]"
+   ]
+  },
+  {
+   "id": "06",
+   "sp": "changsu",
+   "ref": [
+    9.78,
+    10.8
+   ],
+   "text": "야, 이 수박, 네가 와.",
+   "tags": [
+    "[shouting]",
+    "[angry] [yelling]"
+   ],
+   "overlap": true
+  },
+  {
+   "id": "07",
+   "sp": "changsu",
+   "ref": [
+    10.98,
+    12.7
+   ],
+   "text": "뭘 오라 가라 마라야, 이 수박 새끼야!",
+   "tags": [
+    "[shouting]",
+    "[furious] [yelling]"
+   ]
+  },
+  {
+   "id": "08",
+   "sp": "misun",
+   "ref": [
+    12.8,
+    15.42
+   ],
+   "text": "야, 나 말리지 마. 저 새끼 하는 얘기 못 들었어? 어?",
+   "tags": [
+    "[furious] [struggling]",
+    "[angry] [shouting]"
+   ]
+  },
+  {
+   "id": "09",
+   "sp": "misun",
+   "ref": [
+    15.54,
+    18.44
+   ],
+   "text": "아니, 수박, 언제까지 자기네가 갑인 줄 알아, 이 수박 새끼가.",
+   "tags": [
+    "[shouting] [breathless]",
+    "[furious] [yelling]"
+   ]
+  },
+  {
+   "id": "10",
+   "sp": "changsu",
+   "ref": [
+    18.54,
+    19.68
+   ],
+   "text": "어, 그럼 너희가 갑이냐?",
+   "tags": [
+    "[scoffs] [mocking]",
+    "[sarcastic]"
+   ]
+  },
+  {
+   "id": "11",
+   "sp": "changsu",
+   "ref": [
+    19.86,
+    21.96
+   ],
+   "text": "네가 씨지엠이야? 옷도 아닌 새끼가 갑질이야.",
+   "sub": "네가 CGM이야? 옷도 아닌 삐-가 갑질이야",
+   "tags": [
+    "[mocking] [angry]",
+    "[contemptuous]"
+   ],
+   "keys": [
+    "갑질"
+   ]
+  },
+  {
+   "id": "12",
+   "sp": "changsu",
+   "ref": [
+    22.18,
+    23.0
+   ],
+   "text": "이 수박 놈이.",
+   "tags": [
+    "[disgusted]",
+    "[angry] [muttering]"
+   ]
+  },
+  {
+   "id": "12b",
+   "sp": "misun",
+   "ref": [
+    22.85,
+    23.35
+   ],
+   "text": "하!",
+   "sub": "",
+   "tags": [
+    "[scoffs]",
+    "[exhales sharply]"
+   ],
+   "overlap": true
+  },
+  {
+   "id": "13",
+   "sp": "misun",
+   "ref": [
+    23.56,
+    24.48
+   ],
+   "text": "이거 완전 미친 새끼네?",
+   "tags": [
+    "[incredulous] [laughs]",
+    "[disbelief]"
+   ]
+  },
+  {
+   "id": "14",
+   "sp": "misun",
+   "ref": [
+    24.8,
+    27.62
+   ],
+   "text": "야, 너희 거 몇 개라도 남겨 두려고 했는데 안 되겠다.",
+   "tags": [
+    "[cold] [threatening]",
+    "[menacing]"
+   ]
+  },
+  {
+   "id": "15",
+   "sp": "misun",
+   "ref": [
+    27.62,
+    30.56
+   ],
+   "text": "너희 매장 싹 다 빠질 줄 알아, 이 수박 새끼야!",
+   "tags": [
+    "[shouting]",
+    "[furious] [yelling]"
+   ]
+  },
+  {
+   "id": "16",
+   "sp": "changsu",
+   "ref": [
+    30.56,
+    32.34
+   ],
+   "text": "뭐, 옷도 아닌 새끼가 남긴다 만다야.",
+   "tags": [
+    "[scoffs] [mocking]",
+    "[contemptuous]"
+   ]
+  },
+  {
+   "id": "17",
+   "sp": "changsu",
+   "ref": [
+    32.34,
+    33.94
+   ],
+   "text": "남기지 마, 명심아.",
+   "tags": [
+    "[cold]",
+    "[firm] [calm]"
+   ]
+  },
+  {
+   "id": "18",
+   "sp": "misun",
+   "ref": [
+    34.66,
+    35.4
+   ],
+   "text": "와, 수박 진짜!",
+   "tags": [
+    "[furious]",
+    "[shouting]"
+   ]
+  },
+  {
+   "id": "19",
+   "sp": "misun",
+   "ref": [
+    35.5,
+    36.5
+   ],
+   "text": "아이, 놔 봐, 잠깐만.",
+   "tags": [
+    "[struggling] [annoyed]",
+    "[frustrated]"
+   ]
+  },
+  {
+   "id": "20",
+   "sp": "changsu",
+   "ref": [
+    35.74,
+    36.46
+   ],
+   "text": "뭐, 수박, 뭐!",
+   "tags": [
+    "[shouting]",
+    "[angry] [yelling]"
+   ],
+   "overlap": true
+  },
+  {
+   "id": "21",
+   "sp": "misun",
+   "ref": [
+    36.78,
+    37.48
+   ],
+   "text": "아이, 잠깐 놔 보라고, 씨!",
+   "tags": [
+    "[struggling] [angry]",
+    "[frustrated] [shouting]"
+   ]
+  },
+  {
+   "id": "22",
+   "sp": "changsu",
+   "ref": [
+    37.8,
+    38.45
+   ],
+   "text": "뭐, 뭐!",
+   "tags": [
+    "[shouting]",
+    "[angry]"
+   ]
+  },
+  {
+   "id": "23",
+   "sp": "misun",
+   "ref": [
+    39.4,
+    39.88
+   ],
+   "text": "어우, 씨!",
+   "tags": [
+    "[furious]",
+    "[frustrated] [groans]"
+   ]
+  },
+  {
+   "id": "24",
+   "sp": "changsu",
+   "ref": [
+    39.88,
+    42.32
+   ],
+   "text": "쳐 봐, 이 수박 새끼야. 쳐!",
+   "tags": [
+    "[taunting] [shouting]",
+    "[angry] [provoking]"
+   ]
+  },
+  {
+   "id": "26",
+   "sp": "misun",
+   "ref": [
+    43.92,
+    45.32
+   ],
+   "text": "야, 됐고.",
+   "tags": [
+    "[dismissive]",
+    "[annoyed] [exhales]"
+   ]
+  },
+  {
+   "id": "27",
+   "sp": "misun",
+   "ref": [
+    45.66,
+    46.9
+   ],
+   "text": "아, 그러니까 그냥 꺼져, 어?",
+   "tags": [
+    "[annoyed]",
+    "[irritated]"
+   ]
+  },
+  {
+   "id": "28",
+   "sp": "misun",
+   "ref": [
+    47.12,
+    49.66
+   ],
+   "text": "이제 거래처고 나발이고 아무것도 아니니까 그냥 꺼지라고, 씨.",
+   "tags": [
+    "[annoyed] [dismissive]",
+    "[irritated]"
+   ]
+  },
+  {
+   "id": "29",
+   "sp": "changsu",
+   "ref": [
+    50.0,
+    52.82
+   ],
+   "text": "야, 있어 달라고 빌어도 간다, 이 수박아.",
+   "tags": [
+    "[low voice] [firm]",
+    "[cold] [angry]"
+   ]
+  },
+  {
+   "id": "30",
+   "sp": "changsu",
+   "ref": [
+    53.78,
+    54.08
+   ],
+   "text": "가자.",
+   "tags": [
+    "[calm]",
+    "[quietly]"
+   ]
+  },
+  {
+   "id": "31",
+   "sp": "misun",
+   "ref": [
+    55.0,
+    55.9
+   ],
+   "text": "하아...",
+   "sub": "",
+   "tags": [
+    "[sighs]",
+    "[exasperated sigh]"
+   ]
+  },
+  {
+   "id": "32",
+   "sp": "changsu",
+   "ref": [
+    56.08,
+    57.12
+   ],
+   "text": "그래, 가긴 가는데.",
+   "tags": [
+    "[calm] [cold]",
+    "[quietly]"
+   ]
+  },
+  {
+   "id": "33",
+   "sp": "changsu",
+   "ref": [
+    57.12,
+    59.18
+   ],
+   "text": "너는 너희 엄마한테 전화해서 사과부터 해.",
+   "tags": [
+    "[cold] [deliberate]",
+    "[calm] [menacing]"
+   ]
+  },
+  {
+   "id": "34",
+   "sp": "changsu",
+   "ref": [
+    59.46,
+    61.04
+   ],
+   "text": "이따구로 커서 죄송하다고.",
+   "tags": [
+    "[cold]",
+    "[calm] [menacing]"
+   ]
+  },
+  {
+   "id": "35",
+   "sp": "changsu",
+   "ref": [
+    61.48,
+    62.58
+   ],
+   "text": "뭔 말인지 알아듣냐?",
+   "tags": [
+    "[menacing]",
+    "[cold] [low voice]"
+   ]
+  },
+  {
+   "id": "36",
+   "sp": "changsu",
+   "ref": [
+    63.12,
+    65.78
+   ],
+   "text": "이 옷도 힘도 없는 옷 같은 팀장 수박 놈아?",
+   "tags": [
+    "[contemptuous] [slowly]",
+    "[cold] [menacing]"
+   ]
+  },
+  {
+   "id": "37",
+   "sp": "misun",
+   "ref": [
+    67.98,
+    69.78
+   ],
+   "text": "완전 애호박 새끼네, 씨.",
+   "tags": [
+    "[muttering] [disbelief]",
+    "[annoyed] [under breath]"
+   ]
+  },
+  {
+   "id": "38",
+   "sp": "changsu",
+   "ref": [
+    71.26,
+    72.82
+   ],
+   "text": "이 바닥 갑을은 항상 바뀐다.",
+   "tags": [
+    "[quietly] [cold]",
+    "[calm] [serious]"
+   ],
+   "hear": "이 바닥 가불은 항상 바뀐다."
+  },
+  {
+   "id": "39",
+   "sp": "changsu",
+   "ref": [
+    73.32,
+    74.46
+   ],
+   "text": "그때 가서 후회하지 마.",
+   "tags": [
+    "[quietly] [cold]",
+    "[calm] [serious]"
+   ]
+  },
+  {
+   "id": "40",
+   "sp": "changsu",
+   "ref": [
+    74.84,
+    75.68
+   ],
+   "text": "네가 먼저 시작했어.",
+   "tags": [
+    "[quietly] [firm]",
+    "[calm] [serious]"
+   ]
+  }
+ ]
+}

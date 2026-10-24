@@ -1,0 +1,54 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 0,
+  "window_px": 1920
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "00",
+   "kind": "still",
+   "source_cut": "vs",
+   "image": "outputs/ep06/ref/vs_bg.png",
+   "in": 0,
+   "len": 2.475,
+   "time_card": null
+  },
+  {
+   "cut": "01",
+   "kind": "clip",
+   "source_cut": "r1",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 4.75,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "clip",
+   "source_cut": "r2",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 6.0,
+   "time_card": null
+  },
+  {
+   "cut": "03",
+   "kind": "clip",
+   "source_cut": "r3",
+   "clip_tag": "v1",
+   "in": 0.0,
+   "len": 7.25,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-22 ep06 v2: Kling 0 고급 편집, VS 인트로 + 3라운드, 100BPM, 20.5s"
+ ]
+}

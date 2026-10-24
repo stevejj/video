@@ -1,0 +1,10 @@
+[
+ {
+  "name": "chill",
+  "prompt": "Comic cold atmosphere sting: a sudden chilly wind whoosh with a low ominous synth swell, like the room went cold and scary, short, no voice",
+  "duration": 1.5,
+  "loop": false,
+  "file": "outputs/ep17/sfx/el/chill.mp3",
+  "result": "ok 24702B"
+ }
+]

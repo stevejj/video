@@ -1,0 +1,197 @@
+#!/usr/bin/env python3
+"""ElevenLabs 대사 생성 — outputs/voice_profile.json 프로필로만 생성한다(에피소드 간 일관성).
+사용: python3 tools/voice_gen.py --ep ep01 [--regen 9-02,9-03] [--candidates 3]
+- 대사마다 seed 후보를 순서대로 생성해 길이가 max_len 안에 들어오는 첫 결과를 채택하고 seed를 프로필에 기록
+- seed가 이미 기록된 대사는 그 seed로 1회만 생성(--regen 으로 지정한 컷만 다시 후보 탐색)
+- dialogue_group 이 같은 대사들은 Text to Dialogue 로 한 번에 생성(주고받는 흐름 유지)
+- 결과: outputs/<ep>/voice/lines/<cut>.mp3 (loudnorm 적용), 프로필의 lines[*].seed / .len 갱신
+"""
+import argparse, json, os, subprocess, sys, tempfile, urllib.request
+import imageio_ffmpeg
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FF = imageio_ffmpeg.get_ffmpeg_exe()
+PROF = os.path.join(ROOT, 'outputs/voice_profile.json')
+API = 'https://api.elevenlabs.io'
+
+
+def key():
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import keys
+    return keys.get('ELEVENLABS_API_KEY')
+
+
+def post(path, body, out):
+    r = urllib.request.Request(API + path, data=json.dumps(body).encode(),
+                               headers={'xi-api-key': key(), 'Content-Type': 'application/json'})
+    for attempt in range(2):
+        try:
+            d = urllib.request.urlopen(r, timeout=120).read()
+        except urllib.error.HTTPError as e:
+            raise SystemExit(f'ElevenLabs {e.code}: {e.read()[:300].decode()}')
+        if len(d) > 2000:
+            break
+        print('  빈 응답, 재시도')
+    open(out, 'wb').write(d)
+
+
+def duration(p):
+    out = subprocess.run([FF, '-i', p], capture_output=True, text=True).stderr
+    import re
+    m = re.search(r'Duration: (\d+):(\d+):([\d.]+)', out)
+    return int(m[1]) * 3600 + int(m[2]) * 60 + float(m[3]) if m else 0.0
+
+
+SPEEDUP = 1.0  # main()에서 프로필 post.speedup 으로 덮어씀
+
+
+def trim(src, dst):
+    """앞뒤 무음 제거(-45dB 기준, 앞 0.05s·뒤 0.15s 여유) + 공통 배속(높이·속도 동시 상승). v3 출력은 앞뒤에 0.2~0.5s 무음이 붙는다."""
+    af = ("silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,"
+          "areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.15,areverse")
+    if SPEEDUP != 1.0:
+        af += f",asetrate=44100*{SPEEDUP},aresample=44100"
+    subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-af', af, '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
+
+
+MAX_TEMPO = 1.10
+POST = {}  # main()에서 프로필 post 로 채움
+
+
+def finalize(src, dst, ln, speaker, inner, tempo=1.0, speedup_override=None):
+    """트림된 원본 → 배속(겉대사 speedup_outer / 속마음 speedup_inner, 높이+속도) → 길이 보정 → 음량 → (속마음) 동굴 리버브."""
+    sp = speedup_override or (POST.get('speedup_inner', 1.0) if inner else POST.get('speedup_outer', 1.0))
+    af = []
+    if abs(sp - 1.0) > 1e-3:
+        af.append(f"asetrate=44100*{sp:.4f},aresample=44100")
+    if tempo != 1.0:
+        af.append(f"atempo={tempo:.4f}")
+    af.append(f"loudnorm=I={ln['I']}:TP={ln['TP']}:LRA={ln['LRA']}")
+    inner_cfg = POST.get('inner') if inner else None
+    if not inner_cfg:
+        subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-af', ','.join(af), '-ar', '44100', '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
+        return sp
+    ir = os.path.join(ROOT, inner_cfg['ir']); wet = inner_cfg.get('wet', 1.0)
+    # dry는 loudnorm으로 고정, 리버브는 고정 비율로만 더함(재정규화 없음 → 줄마다 음량이 흔들리지 않음)
+    fc = (f"[0:a]{','.join(af)},volume={inner_cfg.get('dry_db', -3)}dB,apad=pad_dur=3.5,asplit[d][w];[w][1:a]afir=dry=10:wet=10[r];"
+          f"[d][r]amix=inputs=2:weights=1 {wet}:normalize=0,alimiter=limit=0.85:level=false[a]")
+    subprocess.run([FF, '-y', '-loglevel', 'error', '-i', src, '-i', ir, '-filter_complex', fc, '-map', '[a]', '-ar', '44100', '-c:a', 'libmp3lame', '-q:a', '2', dst], check=True)
+    return sp
+
+
+def match_level(path, seconds, target_db=-18.0, max_gain=8.0):
+    """파일 앞 seconds 구간의 RMS를 target_db(dBFS)에 맞추는 이득을 적용(±max_gain 한도). 줄 간 체감 음량 통일용."""
+    import numpy as np
+    d = subprocess.run([FF, '-loglevel', 'error', '-i', path, '-t', str(max(0.2, seconds)), '-f', 's16le', '-ac', '1', '-ar', '16000', '-'], capture_output=True).stdout
+    x = np.frombuffer(d, np.int16).astype(float) / 32768
+    if len(x) == 0:
+        return 0.0
+    rms = 20 * np.log10(np.sqrt((x ** 2).mean()) + 1e-9)
+    g = max(-max_gain, min(max_gain, target_db - rms))
+    if abs(g) < 0.3:
+        return 0.0
+    tmp = path + '.lv.mp3'
+    subprocess.run([FF, '-y', '-loglevel', 'error', '-i', path, '-af', f'volume={g:.2f}dB,alimiter=limit=0.89:level=false', '-c:a', 'libmp3lame', '-q:a', '2', tmp], check=True)
+    os.replace(tmp, path)
+    return round(g, 2)
+
+
+def tts_text(P, line):
+    if line.get('tag_override'):
+        return line['tts']
+    tag = P['tags'].get(line['expr'], '')
+    return (tag + ' ' + line['tts']).strip()
+
+
+def speed_for(P, line):
+    long = len(line['tts'].split()) >= 2 or line['expr'] in ('04', '05', '06', '10', '11', '12')
+    return P['speed']['long_or_sleepy'] if long else P['speed']['short']
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--ep', required=True)
+    ap.add_argument('--regen', default='')
+    ap.add_argument('--candidates', type=int, default=3)
+    a = ap.parse_args()
+    P = json.load(open(PROF))
+    global SPEEDUP, POST
+    POST = P.get('post', {})
+    SPEEDUP = POST.get('speedup', 1.0)
+    lines = P['episodes'][a.ep]['lines']
+    regen = set(x for x in a.regen.split(',') if x)
+    outdir = os.path.join(ROOT, f'outputs/{a.ep}/voice/lines'); os.makedirs(outdir, exist_ok=True)
+    tmp = tempfile.mkdtemp(prefix='voice_')
+    seeds_all = P['candidate_seeds']
+
+    # 1) 대화 그룹 먼저(Text to Dialogue)
+    groups = {}
+    for l in lines:
+        if l.get('dialogue_group'):
+            groups.setdefault(l['dialogue_group'], []).append(l)
+    for g, ls in groups.items():
+        fixed = all('seed' in l for l in ls) and not any(l['cut'] in regen for l in ls)
+        seeds = [ls[0]['seed']] if fixed else seeds_all[:a.candidates]
+        for seed in seeds:
+            raw = os.path.join(tmp, f'{g}_{seed}.mp3')
+            post(f'/v1/text-to-dialogue?output_format=mp3_44100_128',
+                 {'inputs': [{'text': tts_text(P, l), 'voice_id': P['voices'][l['speaker']]} for l in ls],
+                  'model_id': P['model_id'], 'seed': seed,
+                  'settings': {'stability': P['voice_settings']['stability'], 'use_speaker_boost': True}}, raw)
+            if duration(raw) <= 0:
+                print(f'[{g}] seed {seed}: 빈 응답, 다음 seed'); continue
+            trim(raw, raw + '.t.mp3'); raw = raw + '.t.mp3'
+            d = duration(raw); limit = sum(l['max_len'] for l in ls)
+            print(f'[{g}] seed {seed}: {d:.2f}s (한도 {limit:.1f}s)')
+            if d <= limit or seed == seeds[-1]:
+                dst = os.path.join(outdir, f'{"+".join(l["cut"] for l in ls)}.mp3')
+                finalize(raw, dst, P['loudnorm'], ls[0]['speaker'], False)
+                for l in ls:
+                    l['seed'] = seed; l['len'] = round(d, 2); l['file'] = os.path.relpath(dst, ROOT)
+                break
+
+    # 2) 단독 대사: 후보 중 한도 안 첫 결과, 없으면 가장 짧은 결과. 한도 초과는 atempo(≤1.15)로 맞춤
+    for l in lines:
+        if l.get('dialogue_group'):
+            continue
+        fixed = 'seed' in l and l['cut'] not in regen
+        if fixed and l.get('file') and os.path.exists(os.path.join(ROOT, l['file'])) and not l.get('over'):
+            continue
+        seeds = [l['seed']] if fixed else seeds_all[:a.candidates]
+        best = None
+        for seed in seeds:
+            raw = os.path.join(tmp, f'{l["cut"]}_{seed}.mp3')
+            post(f'/v1/text-to-speech/{P["voices"][l["speaker"]]}?output_format=mp3_44100_128',
+                 {'text': tts_text(P, l), 'model_id': P['model_id'], 'language_code': 'ko', 'seed': seed,
+                  'voice_settings': dict(P['voice_settings'], speed=speed_for(P, l))}, raw)
+            if duration(raw) <= 0:
+                print(f'[{l["cut"]}] seed {seed}: 빈 응답, 다음 seed'); continue
+            trim(raw, raw + '.t.mp3'); raw = raw + '.t.mp3'
+            d = duration(raw)
+            print(f'[{l["cut"]}] {tts_text(P, l)!r} seed {seed}: {d:.2f}s (한도 {l["max_len"]}s)')
+            sp_est = POST.get('speedup_inner', 1.0) if l.get('inner') else POST.get('speedup_outer', 1.0)
+            if best is None or d < best[1]:
+                best = (seed, d, raw)
+            if d / sp_est <= l['max_len']:
+                break
+        if best is None:
+            print(f'[{l["cut"]}] 실패: 유효한 응답 없음'); continue
+        seed, d, raw = best
+        sp_est = POST.get('speedup_inner', 1.0) if l.get('inner') else POST.get('speedup_outer', 1.0)
+        tempo = 1.0
+        if d / sp_est > l['max_len']:
+            tempo = min(d / sp_est / l['max_len'], MAX_TEMPO)
+        dst = os.path.join(outdir, f'{l["cut"]}.mp3')
+        sp = finalize(raw, dst, P['loudnorm'], l['speaker'], l.get('inner', False), tempo, l.get('speedup_override'))
+        l['seed'] = seed; l['len_raw'] = round(d, 2); l['tempo'] = round(tempo, 3); l['speedup'] = sp
+        l['len'] = round(d / tempo / sp, 2); l['file'] = os.path.relpath(dst, ROOT)
+        l['len_file'] = round(duration(dst), 2)
+        l['over'] = l['len'] > l['max_len'] + 0.05
+        if tempo > 1.0:
+            print(f'    → atempo {tempo:.3f} 적용, 최종 {l["len"]:.2f}s' + (' (여전히 초과: 컷 길이 조정 필요)' if l['over'] else ''))
+    json.dump(P, open(PROF, 'w'), ensure_ascii=False, indent=1)
+    print('프로필 갱신:', PROF)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,99 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 576,
+  "window_px": 768
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01a",
+   "kind": "still",
+   "source_cut": "01a",
+   "in": 0,
+   "len": 3.0,
+   "time_card": null,
+   "image": "outputs/ep04/01/start_v2.png"
+  },
+  {
+   "cut": "02",
+   "kind": "still",
+   "source_cut": "02",
+   "in": 0,
+   "len": 1.5,
+   "time_card": null,
+   "image": "outputs/ep04/02/start_v1.png"
+  },
+  {
+   "cut": "03a",
+   "kind": "still",
+   "source_cut": "03a",
+   "in": 0,
+   "len": 0.8,
+   "time_card": null,
+   "image": "outputs/ep04/03/start_v1.png"
+  },
+  {
+   "cut": "03b",
+   "kind": "still",
+   "source_cut": "03b",
+   "in": 0,
+   "len": 0.7,
+   "time_card": null,
+   "image": "outputs/ep04/03/end_v1.png"
+  },
+  {
+   "cut": "04",
+   "kind": "clip",
+   "source_cut": "04",
+   "in": 0.6,
+   "len": 2.6,
+   "time_card": null,
+   "clip_tag": "v1"
+  },
+  {
+   "cut": "05a",
+   "kind": "still",
+   "source_cut": "05a",
+   "in": 0,
+   "len": 1.0,
+   "time_card": null,
+   "image": "outputs/ep04/01/start_v2.png"
+  },
+  {
+   "cut": "05b",
+   "kind": "still",
+   "source_cut": "05b",
+   "in": 0,
+   "len": 1.4,
+   "time_card": null,
+   "image": "outputs/ep04/05/end_v1.png"
+  },
+  {
+   "cut": "06",
+   "kind": "clip",
+   "source_cut": "06",
+   "in": 0.3,
+   "len": 1.6,
+   "time_card": null,
+   "clip_tag": "v1"
+  },
+  {
+   "cut": "07",
+   "kind": "clip",
+   "source_cut": "07",
+   "in": 0.0,
+   "len": 3.6,
+   "time_card": null,
+   "clip_tag": "v1"
+  }
+ ],
+ "history": [
+  "2026-10-18 v1: 최소안 — Kling 4·6·7컷 + 정지 컷(1·2·3·5) 줌, 16.2s"
+ ]
+}

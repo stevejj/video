@@ -1,0 +1,224 @@
+{
+ "note": "ep05 v2: 사진에만 진심(뷰파인더·폴라로이드·운동 끝·다시!·운동 0회 사진 2장), Kling 0",
+ "default_still": {
+  "cam": null
+ },
+ "default_clip": {
+  "cam": null
+ },
+ "cuts": {
+  "01": {
+   "overlays": [
+    {
+     "at": 0.0,
+     "dur": 1.6829999999999998,
+     "img": "outputs/ep05/ref/viewfinder.png",
+     "focus": {
+      "x": 0.62,
+      "y": 0.3,
+      "size": 230
+     }
+    }
+   ],
+   "flash": [
+    {
+     "at": 1.083,
+     "dur": 0.3,
+     "peak": 0.9
+    }
+   ],
+   "flashback": {
+    "image": "outputs/ep05/ref/polaroid_1.png",
+    "raw": true,
+    "at": 1.163,
+    "dur": 1.4,
+    "label": "찰칵! 1장",
+    "w": 0.3,
+    "x": 0.2,
+    "y": 0.06,
+    "color": true
+   },
+   "toasts": [
+    {
+     "at": 2.722,
+     "dur": 1.445,
+     "text": "운동 끝!",
+     "y": 0.08
+    }
+   ]
+  },
+  "02": {
+   "moves": [
+    {
+     "at": 0.0,
+     "dur": 0.3,
+     "scale": 1.0,
+     "x": 0,
+     "y": 0,
+     "ease": "none"
+    },
+    {
+     "at": 0.3,
+     "dur": 0.55,
+     "scale": 1.8,
+     "x": 0,
+     "y": 194,
+     "ease": "power3.inOut"
+    }
+   ],
+   "labels": [
+    {
+     "at": 0.05,
+     "dur": 1.0,
+     "small": "",
+     "text": "확대 검사 중...",
+     "color": "#8A8F98",
+     "y": 0.06
+    }
+   ],
+   "toasts": [
+    {
+     "at": 1.05,
+     "dur": 0.75,
+     "text": "다시 찍기",
+     "y": 0.7
+    }
+   ],
+   "taps": [
+    {
+     "at": 1.35,
+     "x": 0.5,
+     "y": 0.76,
+     "r": 80
+    }
+   ]
+  },
+  "03": {
+   "puppet": {
+    "src_width": 768,
+    "bg": "outputs/ep05/puppet/plateB.png",
+    "layers": [
+     {
+      "id": "ms",
+      "img": "outputs/ep05/puppet/misun_k3.png",
+      "box": [
+       309,
+       495,
+       303,
+       385
+      ],
+      "pivot": [
+       484,
+       760
+      ],
+      "keys": [
+       {
+        "t": 0.2,
+        "dur": 0.35,
+        "ease": "back.out(2)",
+        "rotation": 8,
+        "x": 0
+       }
+      ],
+      "init": {
+       "rotation": -3,
+       "x": -6
+      }
+     },
+     {
+      "id": "db",
+      "img": "outputs/ep05/puppet/dumbbells.png",
+      "box": [
+       506,
+       870,
+       179,
+       74
+      ],
+      "pivot": [
+       595,
+       940
+      ],
+      "keys": []
+     }
+    ]
+   },
+   "note": "plateB는 바닥 덤벨을 지운 배경판 → 덤벨 레이어를 반드시 다시 얹음(2026-10-19 사라짐 사고)"
+  },
+  "04": {
+   "speedlines": {
+    "at": 0.0,
+    "dur": 1.042,
+    "cx": 0.6,
+    "cy": 0.45
+   },
+   "overlays": [
+    {
+     "at": 2.842,
+     "dur": 4.2,
+     "img": "outputs/ep05/ref/viewfinder.png",
+     "focus": {
+      "x": 0.62,
+      "y": 0.3,
+      "size": 230
+     }
+    }
+   ],
+   "flash": [
+    {
+     "at": 3.833,
+     "dur": 0.3,
+     "peak": 0.9
+    }
+   ],
+   "flashback": {
+    "image": "outputs/ep05/ref/polaroid_2.png",
+    "raw": true,
+    "at": 3.913,
+    "dur": 3.129,
+    "label": "찰칵! 2장",
+    "w": 0.3,
+    "x": 0.2,
+    "y": 0.38,
+    "color": true
+   },
+   "labels": [
+    {
+     "at": 4.183,
+     "dur": 2.859,
+     "small": "오늘",
+     "text": "운동 0회",
+     "color": "#8A8F98",
+     "y": 0.08
+    },
+    {
+     "at": 4.383,
+     "dur": 2.659,
+     "small": "오늘",
+     "text": "사진 2장",
+     "color": "#FF6FA8",
+     "y": 0.22
+    }
+   ]
+  }
+ },
+ "subtitle": {
+  "pop": {
+   "from": 0.6,
+   "dur": 0.14
+  },
+  "shout": {
+   "from": 0.3,
+   "over": 1.18,
+   "dur": 0.22,
+   "shake_amp": 7,
+   "shake_dur": 0.3,
+   "rot": -2
+  }
+ },
+ "time_card": {
+  "slide_px": -60,
+  "in": 0.25,
+  "hold": 1.2,
+  "out": 0.25
+ }
+}

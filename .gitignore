@@ -1,0 +1,63 @@
+*.key
+.env
+__pycache__/
+outputs/ep01/animatic/frames/
+external/
+outputs/*/hf/media/
+outputs/*/hf/*.mp4
+outputs/*/hf/*.log
+outputs/*/hf/renders/
+outputs/*/hf/.render_*
+outputs/*/hf/work-*/
+outputs/*/hf/gsap.min.js
+outputs/*/hf_anim/*.mp4
+outputs/*/hf_anim/media/
+outputs/*/fx_demo/hf/media/
+outputs/*/fx_demo/hf/*.mp4
+outputs/*/hf_anim/work-*/
+outputs/*/hf_anim/.render_*
+outputs/*/hf_anim/renders/
+outputs/*/hf_anim/.hyperframes/
+outputs/*/hf_anim/.render_*/
+outputs/*/hf/.hyperframes/
+outputs/*/ref/reference.mp4
+outputs/*/ref/rhythm_ref.mp4
+# ep12: 연합뉴스 사진 위 합성(사용자 선택) — 남의 사진이라 원본·합성 결과 모두 로컬에만
+outputs/ep12/ref/source_photo.jpg
+outputs/ep12/ref/source_reel.png
+outputs/ep12/01/
+outputs/ep12/prompts/cmp_*.jpg
+outputs/*/r*/parts/*.mp4
+outputs/*/r*/parts/*.png
+outputs/*/ref/_grab.png
+outputs/*/r*/parts/list.txt
+outputs/*/a/parts/
+outputs/*/d/parts/
+# ep13: 참조 드라마 장면 받아쓰기(원래 욕 포함) — 로컬에만
+outputs/ep13/ref/transcript_raw.txt
+outputs/ep13/ref/ref_vocals.mp3
+outputs/ep13/ref/ref_lines/
+outputs/ep13/ref/ref_audio.mp3
+outputs/ep13/ref/sep/
+outputs/ep13/ref/ref_lines_words.txt
+outputs/ep13/voice/cands/
+# ep15: 원곡(All For You OST) 음원·분리 결과·가사 받아쓰기 — 로컬에만
+outputs/ep15/ref/
+outputs/ep15/sing/
+# ep14: 소리 없는 중간 렌더(다시 만들 수 있음)
+outputs/ep14/roughcut/*_silent.mp4
+# ep16: 소리 없는 중간 렌더
+outputs/ep16/roughcut/*_silent.mp4
+# 노래 시험(WOODZ Drowning 하이라이트, Seed-VC) 원곡·결과 — 로컬에만
+outputs/song_test/
+# 시작 화면 붙이기 전 중간 파일(최종본에 다 들어 있음, 용량 큼)
+outputs/*/roughcut/*_main.mp4
+# 남의 릴스(분석용) — 로컬에만
+outputs/ref_reels/
+outputs/*/roughcut/*_silent.mp4
+# ep19: 애니매틱 중간 버전(v1~v8)·쓰지 않게 된 몸 통통 클립 — 다시 만들 수 있고 용량 큼(최종 v9만 커밋)
+outputs/ep19/roughcut/ep19_animatic_v[1-8].mp4
+outputs/ep19/*/clip_v1.mp4
+outputs/ep19/*/clip_v1_mid.png
+# HyperFrames CLI가 만드는 작업 폴더
+outputs/hyperframes_test/.hyperframes/

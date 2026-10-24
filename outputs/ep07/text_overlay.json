@@ -1,0 +1,109 @@
+{
+ "title": {
+  "lines": [
+   {
+    "text": "포장마차 간",
+    "color": "#FFFFFF"
+   },
+   {
+    "text": "창수와 미순",
+    "color": "#FFD84A"
+   }
+  ],
+  "size": 104,
+  "weight": 800,
+  "center_y": 360,
+  "line_gap": 18,
+  "stroke": 10
+ },
+ "channel": {
+  "text": "지독한 미순",
+  "color": "#FFFFFF",
+  "size": 52,
+  "weight": 700,
+  "center_y": 530,
+  "opacity": 1.0,
+  "stroke": 6
+ },
+ "subtitle_style": {
+  "size": 74,
+  "weight": 800,
+  "stroke": 9,
+  "stroke_color": "#111111",
+  "bottom_margin": 430,
+  "max_width": 1000,
+  "colors": {
+   "changsu": "#8FB0E8",
+   "misun": "#FF9CC2",
+   "sfx": "#FFFFFF"
+  }
+ },
+ "note": "v1: 제목 B안 확정, 자막 시각 = 음성 배치(voice_profile placements)",
+ "subtitles": [
+  {
+   "cut": "",
+   "text": "야, 인생 뭐 있냐.",
+   "speaker": "misun",
+   "start": 0.2,
+   "end": 1.7,
+   "x": 0.5
+  },
+  {
+   "cut": "",
+   "text": "먹고 자고 싸는 거지 뭐.",
+   "speaker": "changsu",
+   "start": 2.1,
+   "end": 3.7,
+   "x": 0.5
+  },
+  {
+   "cut": "",
+   "text": "중간중간 울어주고.",
+   "speaker": "misun",
+   "start": 4.2,
+   "end": 5.6,
+   "x": 0.5
+  },
+  {
+   "cut": "",
+   "text": "그게 정답이지.",
+   "speaker": "changsu",
+   "start": 5.8,
+   "end": 7.0,
+   "x": 0.5
+  },
+  {
+   "cut": "",
+   "text": "마지막 한 잔!",
+   "speaker": "misun",
+   "start": 7.9,
+   "end": 8.8,
+   "x": 0.5
+  },
+  {
+   "cut": "",
+   "text": "콜!",
+   "speaker": "changsu",
+   "start": 8.9,
+   "end": 9.8,
+   "x": 0.5
+  },
+  {
+   "cut": "",
+   "text": "캬~",
+   "speaker": "sfx",
+   "start": 14.35,
+   "end": 15.7,
+   "x": 0.5
+  },
+  {
+   "cut": "",
+   "text": "이모! 맥주 한잔 더요!!",
+   "speaker": "misun",
+   "start": 16.75,
+   "end": 18.4,
+   "x": 0.5
+  }
+ ],
+ "layout": "fullscreen: 영상 1080×1920 꽉 채움, 제목·채널명은 영상 위에 겹침(사용자 2026-10-19), 자막은 아래에서 430px(인스타 UI 피함) / 2026-10-19 사용자: 제목·채널명 살짝 아래로 → 제목 300→360, 채널명 470→530"
+}

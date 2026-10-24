@@ -1,0 +1,23 @@
+[
+ {
+  "name": "chip_crunch",
+  "prompt": "Single crisp potato chip crunch, one small bite, close-up, quiet room, no music",
+  "duration": 1.0,
+  "file": "outputs/ep03/sfx/el/chip_crunch.mp3",
+  "result": "ok 17179B"
+ },
+ {
+  "name": "bag_rustle",
+  "prompt": "Soft crinkle of a foil snack bag being touched, short light rustle, close-up, quiet room",
+  "duration": 1.0,
+  "file": "outputs/ep03/sfx/el/bag_rustle.mp3",
+  "result": "ok 17179B"
+ },
+ {
+  "name": "bag_yank",
+  "prompt": "Foil snack bag yanked away quickly, loud crinkly swoosh, cartoon comedic, single hit",
+  "duration": 1.0,
+  "file": "outputs/ep03/sfx/el/bag_yank.mp3",
+  "result": "ok 17179B"
+ }
+]

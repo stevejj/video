@@ -1,0 +1,525 @@
+{
+ "note": "ep10 v4 방구배틀 효과음(112BPM 비트 따라함, 귀뚜라미 없음, 이불 소리 아주 약하게)",
+ "items": [
+  {
+   "name": "bgm",
+   "file": "outputs/ep10/bgm/beat112.mp3",
+   "at": 0.0,
+   "len": 15.085,
+   "target_lufs": -21,
+   "fade_out": 0.06,
+   "measured_lufs": -12.24,
+   "gain": -8.8
+  },
+  {
+   "name": "stir",
+   "file": "outputs/ep10/sfx/el/duvet_rustle.mp3",
+   "at": 0.1,
+   "len": 0.7,
+   "target_lufs": -42,
+   "fade_out": 0.3,
+   "measured_lufs": -50.83,
+   "gain": 8.8
+  },
+  {
+   "name": "h00_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 1.036,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -2.9
+  },
+  {
+   "name": "h01_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 1.632,
+   "len": 0.3,
+   "target_lufs": -16,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -8.4
+  },
+  {
+   "name": "h02_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 2.108,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -2.9
+  },
+  {
+   "name": "h03_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 2.704,
+   "len": 0.3,
+   "target_lufs": -16,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -8.4
+  },
+  {
+   "name": "h04_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 3.179,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -2.9
+  },
+  {
+   "name": "h05_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 3.775,
+   "len": 0.3,
+   "target_lufs": -16,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -8.4
+  },
+  {
+   "name": "h06_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 4.519,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h07_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 4.653,
+   "len": 0.183,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h08_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 4.786,
+   "len": 0.3,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h09_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 5.188,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h10_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 5.382,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h11_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 5.784,
+   "len": 0.184,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h12_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 5.918,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h13_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 6.186,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h14_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 6.661,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h15_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 6.795,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h16_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 6.929,
+   "len": 0.3,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h17_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 7.331,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h18_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 7.525,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h19_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 7.927,
+   "len": 0.184,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h20_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 8.061,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h21_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 8.329,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h22_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 8.804,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h23_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 8.938,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h24_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 9.072,
+   "len": 0.3,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h25_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 9.474,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h26_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 9.668,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h27_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 10.07,
+   "len": 0.184,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h28_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 10.204,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h29_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 10.471,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h30_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 10.947,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h31_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 11.081,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h32_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 11.215,
+   "len": 0.3,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h33_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 11.617,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h34_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 11.811,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h35_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 12.212,
+   "len": 0.184,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h36_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 12.346,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h37_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 12.614,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h38_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 13.09,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h39_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 13.224,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h40_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 13.358,
+   "len": 0.3,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h41_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 13.76,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h42_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 13.954,
+   "len": 0.3,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h43_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 14.355,
+   "len": 0.184,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h44_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 14.489,
+   "len": 0.184,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h45_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 14.563,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "h46_changsu",
+   "file": "outputs/ep10/sfx/el/fart_changsu.mp3",
+   "at": 14.757,
+   "len": 0.184,
+   "target_lufs": -17,
+   "fade_out": 0.03,
+   "measured_lufs": -7.6,
+   "gain": -9.4
+  },
+  {
+   "name": "h47_misun",
+   "file": "outputs/ep10/sfx/el/fart_misun.mp3",
+   "at": 14.831,
+   "len": 0.184,
+   "target_lufs": -18,
+   "fade_out": 0.03,
+   "measured_lufs": -14.07,
+   "gain": -3.9
+  },
+  {
+   "name": "finale",
+   "file": "outputs/ep10/sfx/el/fart_finale.mp3",
+   "at": 15.025,
+   "len": 3.0,
+   "target_lufs": -15,
+   "fade_out": 0.4,
+   "measured_lufs": -11.0,
+   "gain": -4.0
+  },
+  {
+   "name": "dun",
+   "file": "outputs/ep09/sfx/el/dun_sting.mp3",
+   "at": 16.025,
+   "len": 1.4,
+   "target_lufs": -19,
+   "fade_out": 0.03,
+   "measured_lufs": -16.41,
+   "gain": -2.6
+  }
+ ]
+}

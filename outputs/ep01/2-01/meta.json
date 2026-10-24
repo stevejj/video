@@ -1,0 +1,67 @@
+{
+ "cut": "2-01",
+ "type": "start_end",
+ "model": "kling-video-v3_0",
+ "arguments": {
+  "duration": "4",
+  "resolution": "720p",
+  "prefer_multi_shots": "false",
+  "enable_audio": "false",
+  "imageCount": "1"
+ },
+ "prompt": "Pang Chang-su begins lowering the light grey towel from the very first frame, slowly and smoothly over the whole clip, bringing it down from his face to his chest with both short rounded flipper wings, revealing his sleepy half-lidded face. By the end the towel rests against his chest, held in both wings, and he looks straight at the camera, exactly matching the end image. He stays standing in the same spot and his head stays at the same height. There is exactly one towel; the chrome towel bar on the right wall stays empty. Static camera, locked-off tripod shot, no camera movement, same composition throughout. 3D animated plush character, short velvet fur; the surroundings and objects stay photoreal and completely unchanged. Beak stays closed the whole time. No other characters appear. No new objects appear. Wings stay short and rounded with no fingers.",
+ "frames": {
+  "start": {
+   "file": "outputs/ep01/2-01/start_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTAwNTI4MDgvdWgzTDUyaW1lVS9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372"
+  },
+  "end": {
+   "file": "outputs/ep01/2-01/end_v1.png",
+   "url": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTAwNTI4MTEvajZxcmFubUZvei9lbmRfdjEucG5n.origin?x-kcdn-pid=112372"
+  }
+ },
+ "credits_before": 289.0,
+ "approved_by_user": "진행 (2026-09-22, 5단계 실행표 후)",
+ "version": 1,
+ "ts": "2026-09-22T04:53:55",
+ "generation_id": "AeDy73SsYL33aZ7eQqNra_DhkC3DpssiesJkc9H8WXq8vmJ8LkwVQlEXiMrIzIr48mJUpWHJ",
+ "credits_consumed_reported": 24.0,
+ "verify": {
+  "v1": {
+   "fps": 24.0,
+   "frames": 97,
+   "duration_s": 4.04,
+   "size": [
+    716,
+    1284
+   ],
+   "start_vs_ref_meandiff": 2.09,
+   "start_vs_ref_bg_meandiff": 1.97,
+   "end_vs_ref_meandiff": 1.25,
+   "end_vs_ref_bg_meandiff": 1.16,
+   "interframe_mean": 0.27,
+   "interframe_max": 0.86,
+   "interframe_max_at_s": 1.92,
+   "first_vs_last_meandiff": 4.32,
+   "bg_drift_first_last": 2.98,
+   "cam_motion_px_median": 0.23,
+   "cam_motion_px_max": 0.57
+  }
+ },
+ "status": "COMPLETED",
+ "generation_seconds": 67,
+ "result": {
+  "url_without_watermark": "https://v15-kling.klingai.com/bs2/upload-ylab-stunt-sgp/a66e569d-e49b-48d4-9cc1-edea94caafc2-PQ6VljIp6rJdmVzuaUrucQ-output.mp4?x-kcdn-pid=112372",
+  "local": "outputs/ep01/2-01/clip_v1.mp4",
+  "expires": "24h from 2026-09-22T04:59Z"
+ },
+ "credits_after": 265.0,
+ "credits_cost": 24.0,
+ "review": {
+  "verdict": "통과",
+  "technical": "시작 2.09 / 끝 1.25 일치, 카메라 0.23px, 수건 1장·걸이 비움 유지, 날개 지느러미, 1.25→3.0s 수건 하강, 졸린 눈·카메라 응시",
+  "edit_window": "1.5-3.5s",
+  "decision": "채택"
+ },
+ "final": "clip_v1.mp4"
+}

@@ -1,0 +1,32 @@
+{
+ "L3": [
+  0.0,
+  0,
+  7,
+  1.1,
+  0.96,
+  "그래도 자기랑",
+  "outputs/ep11/voice/cands_v3/L3_t0_s7.mp3.t.mp3",
+  "[sweet, warm, smiling] 그래도 자기랑"
+ ],
+ "L4": [
+  0.137,
+  0,
+  99,
+  1.04,
+  1.27,
+  "같이 마시면!",
+  "outputs/ep11/voice/cands_v3/L4_t0_s99.mp3.t.mp3",
+  "[playful, cute, sly] 같이 마시면~"
+ ],
+ "L5": [
+  0.0,
+  0,
+  7,
+  0.86,
+  0.91,
+  "행복해",
+  "outputs/ep11/voice/cands_v3/L5_t0_s7.mp3.t.mp3",
+  "[happy, cute, giggling] 행복해~!"
+ ]
+}

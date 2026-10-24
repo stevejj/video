@@ -1,0 +1,79 @@
+[
+ {
+  "name": "clothes_avalanche",
+  "prompt": "Cartoon comedy: a closet door bursts open and a huge pile of soft clothes tumbles out in an avalanche, soft fabric thuds and rustling, a muffled rumble, ends with a few last pieces plopping down, no music, no voice",
+  "duration": 2.0,
+  "file": "outputs/ep18/sfx/el/clothes_avalanche.mp3",
+  "result": "ok 33061B"
+ },
+ {
+  "name": "door_rattle",
+  "prompt": "A wooden wardrobe door straining and rattling as something pushes from inside, short creak, comedic tension, no music",
+  "duration": 0.8,
+  "file": "outputs/ep18/sfx/el/door_rattle.mp3",
+  "result": "ok 13835B"
+ },
+ {
+  "name": "pop_up",
+  "prompt": "Cute cartoon pop sound, something small popping out of a pile of soft clothes, light fabric rustle, no music",
+  "duration": 0.6,
+  "file": "outputs/ep18/sfx/el/pop_up.mp3",
+  "result": "ok 10492B"
+ },
+ {
+  "name": "box_thud",
+  "prompt": "A small soft T-shirt dropped into an empty cardboard box, light soft thud, close-up, no music",
+  "duration": 0.6,
+  "file": "outputs/ep18/sfx/el/box_thud.mp3",
+  "result": "ok 10492B"
+ },
+ {
+  "name": "blanket_rustle",
+  "prompt": "Someone small wriggling and sulking under a thick duvet, soft fabric rustling and a tiny muffled sniffle, close-up, no music",
+  "duration": 1.5,
+  "file": "outputs/ep18/sfx/el/blanket_rustle.mp3",
+  "result": "ok 24702B"
+ },
+ {
+  "name": "phone_ding",
+  "prompt": "Bright cute smartphone notification chime, shopping app, short, no music",
+  "duration": 0.8,
+  "file": "outputs/ep18/sfx/el/phone_ding.mp3",
+  "result": "ok 13835B"
+ },
+ {
+  "name": "phone_vibrate",
+  "prompt": "Smartphone vibrating buzz on a soft bed, comedic tension, no music",
+  "duration": 1.5,
+  "file": "outputs/ep18/sfx/el/phone_vibrate.mp3",
+  "result": "ok 24702B"
+ },
+ {
+  "name": "sparkle",
+  "prompt": "Cute twinkle sparkle sound, eyes shining, short magical shimmer, no music",
+  "duration": 0.8,
+  "file": "outputs/ep18/sfx/el/sparkle.mp3",
+  "result": "ok 13835B"
+ },
+ {
+  "name": "whoosh",
+  "prompt": "Quick soft cartoon whoosh transition, no music",
+  "duration": 0.5,
+  "file": "outputs/ep18/sfx/el/whoosh.mp3",
+  "result": "ok 8820B"
+ },
+ {
+  "name": "shock_hit",
+  "prompt": "Comedic dramatic shock sting, short orchestral hit with a wobble, cartoon realization moment, no voice",
+  "duration": 1.2,
+  "file": "outputs/ep18/sfx/el/shock_hit.mp3",
+  "result": "ok 20105B"
+ },
+ {
+  "name": "poke",
+  "prompt": "Cute cartoon soft poke on a fluffy blanket, tiny boop sound, no music",
+  "duration": 0.5,
+  "file": "outputs/ep18/sfx/el/poke.mp3",
+  "result": "ok 8820B"
+ }
+]

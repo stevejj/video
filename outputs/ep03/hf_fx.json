@@ -1,0 +1,30 @@
+{
+ "note": "ep03: 완전 고정(참고 릴스처럼 카메라 효과 없음)",
+ "default_still": {
+  "cam": null
+ },
+ "default_clip": {
+  "cam": null
+ },
+ "cuts": {},
+ "subtitle": {
+  "pop": {
+   "from": 0.6,
+   "dur": 0.14
+  },
+  "shout": {
+   "from": 0.3,
+   "over": 1.18,
+   "dur": 0.22,
+   "shake_amp": 7,
+   "shake_dur": 0.3,
+   "rot": -2
+  }
+ },
+ "time_card": {
+  "slide_px": -60,
+  "in": 0.25,
+  "hold": 1.2,
+  "out": 0.25
+ }
+}

@@ -1,0 +1,54 @@
+{
+ "canvas": [
+  1080,
+  1920
+ ],
+ "fps": 24,
+ "band": {
+  "top_px": 0,
+  "window_px": 1920
+ },
+ "still_zoom": 0.0,
+ "fade_out_before_black": 0.4,
+ "cuts": [
+  {
+   "cut": "01",
+   "kind": "still",
+   "source_cut": "01",
+   "image": "outputs/ep07/w1/start_v1.png",
+   "in": 0,
+   "len": 9.8,
+   "time_card": null
+  },
+  {
+   "cut": "02",
+   "kind": "still",
+   "source_cut": "02",
+   "image": "outputs/ep07/w1/start_v1.png",
+   "in": 0,
+   "len": 3.2,
+   "time_card": null
+  },
+  {
+   "cut": "03",
+   "kind": "still",
+   "source_cut": "03",
+   "image": "outputs/ep07/c2/start_v1.png",
+   "in": 0,
+   "len": 3.0,
+   "time_card": null
+  },
+  {
+   "cut": "04",
+   "kind": "still",
+   "source_cut": "04",
+   "image": "outputs/ep07/w1/start_v1.png",
+   "in": 0,
+   "len": 4.0,
+   "time_card": null
+  }
+ ],
+ "history": [
+  "2026-10-19 ep07 애니매틱 v1: 대화 9.8s → 짠·원샷 3.2s(와이드) → 캬 3.0s(C2) → 이모! 4.0s = 20.0s, 실제 대사 음성"
+ ]
+}

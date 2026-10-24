@@ -1,0 +1,134 @@
+{
+ "note": "ep09 효과 시연",
+ "default_still": {
+  "cam": {
+   "from": 1.0,
+   "to": 1.05
+  },
+  "drift": {
+   "amp": 3,
+   "period": 2.4
+  }
+ },
+ "default_clip": {
+  "cam": null
+ },
+ "cuts": {
+  "A": {
+   "gauge": {
+    "at": 0.2,
+    "dur": 2.3,
+    "label": "배고픔",
+    "fill": 1.2
+   }
+  },
+  "B": {
+   "spotlight": {
+    "at": 0.6,
+    "dur": 2.4,
+    "cx": 0.5,
+    "cy": 0.42,
+    "r": 0.3
+   },
+   "punch": {
+    "at": 0.6,
+    "scale": 1.08,
+    "settle": 1.04
+   }
+  },
+  "C": {
+   "stamps": [
+    {
+     "at": 0.5,
+     "x": 0.25,
+     "y": 0.3
+    },
+    {
+     "at": 1.3,
+     "x": 0.75,
+     "y": 0.35
+    },
+    {
+     "at": 2.1,
+     "x": 0.5,
+     "y": 0.2
+    }
+   ]
+  },
+  "D": {
+   "ghost": {
+    "img": "outputs/ep09/fx_demo/ghost_crop.png",
+    "src_width": 1080,
+    "box": [
+     238,
+     554,
+     610,
+     946
+    ],
+    "at": 0.3,
+    "dur": 2.6,
+    "rise": 300
+   },
+   "tint": {
+    "at": 0.2,
+    "dur": 2.8,
+    "color": "rgba(90,130,230,0.55)"
+   }
+  },
+  "E": {
+   "speedlines": {
+    "at": 0.3,
+    "dur": 1.6
+   },
+   "sparkle": {
+    "at": 0.4,
+    "cx": 0.5,
+    "dur": 1.5
+   }
+  },
+  "F": {
+   "flashback": {
+    "cut": "s3",
+    "t": 3.0,
+    "top": 0.33,
+    "at": 0.4,
+    "dur": 1.8,
+    "label": "(아까)"
+   },
+   "sparkle": {
+    "at": 1.6,
+    "cx": 0.5,
+    "dur": 1.2,
+    "glyph": "♥",
+    "color": "#FF7FAE",
+    "dy": -120
+   }
+  },
+  "G": {
+   "freeze": {
+    "at": 1.0,
+    "zoom": 1.18
+   }
+  }
+ },
+ "subtitle": {
+  "pop": {
+   "from": 0.6,
+   "dur": 0.14
+  },
+  "shout": {
+   "from": 0.3,
+   "over": 1.18,
+   "dur": 0.22,
+   "shake_amp": 7,
+   "shake_dur": 0.3,
+   "rot": -2
+  }
+ },
+ "time_card": {
+  "slide_px": -60,
+  "in": 0.25,
+  "hold": 1.2,
+  "out": 0.25
+ }
+}

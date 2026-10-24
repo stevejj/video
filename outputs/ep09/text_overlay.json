@@ -1,0 +1,287 @@
+{
+ "title": {
+  "lines": [
+   {
+    "spans": [
+     {
+      "text": "부부 ",
+      "color": "#FFFFFF"
+     },
+     {
+      "text": "저녁메뉴",
+      "color": "#FFD84A"
+     },
+     {
+      "text": " 고민",
+      "color": "#FFFFFF"
+     }
+    ]
+   },
+   {
+    "text": "공감 100%",
+    "color": "#FFFFFF"
+   }
+  ],
+  "size": 104,
+  "weight": 800,
+  "center_y": 400,
+  "line_gap": 18
+ },
+ "channel": {
+  "text": "지독한 미순",
+  "color": "#FFFFFF",
+  "size": 52,
+  "weight": 700,
+  "center_y": 1420,
+  "opacity": 0.9
+ },
+ "subtitle_style": {
+  "size": 74,
+  "weight": 800,
+  "stroke": 9,
+  "stroke_color": "#111111",
+  "bottom_margin": 46,
+  "max_width": 1000,
+  "colors": {
+   "changsu": "#8FB0E8",
+   "misun": "#FF9CC2",
+   "sfx": "#FFFFFF"
+  }
+ },
+ "note": "ep09: 자막 = 장면 시작 + 대사 scene_at(tools/ep09_edit.py)",
+ "subtitles": [
+  {
+   "cut": "cap",
+   "text": "(저녁 7시)",
+   "speaker": "sfx",
+   "start": 0.2,
+   "end": 2.0,
+   "x": 0.5,
+   "pos": "top"
+  },
+  {
+   "cut": "1a",
+   "text": "여보, 저녁 뭐 먹을래?",
+   "speaker": "changsu",
+   "start": 0.3,
+   "end": 1.66,
+   "x": 0.5
+  },
+  {
+   "cut": "1b",
+   "text": "음~ 아무거나~",
+   "speaker": "misun",
+   "start": 2.94,
+   "end": 4.14,
+   "x": 0.5
+  },
+  {
+   "cut": "2a",
+   "text": "치킨?",
+   "speaker": "changsu",
+   "start": 5.0,
+   "end": 5.62,
+   "x": 0.5
+  },
+  {
+   "cut": "2b",
+   "text": "치킨은 너무 많이 먹었어.",
+   "speaker": "misun",
+   "start": 6.46,
+   "end": 8.08,
+   "x": 0.5,
+   "color": "#FFD84A",
+   "size": 84
+  },
+  {
+   "cut": "cap",
+   "text": "(이번 주 치킨 3번 먹음)",
+   "speaker": "sfx",
+   "start": 7.11,
+   "end": 9.0,
+   "x": 0.5,
+   "pos": "top"
+  },
+  {
+   "cut": "3a",
+   "text": "피자?",
+   "speaker": "changsu",
+   "start": 9.35,
+   "end": 9.97,
+   "x": 0.5
+  },
+  {
+   "cut": "3b",
+   "text": "느끼해.",
+   "speaker": "misun",
+   "start": 10.28,
+   "end": 11.04,
+   "x": 0.5
+  },
+  {
+   "cut": "3c",
+   "text": "떡볶이?",
+   "speaker": "changsu",
+   "start": 11.34,
+   "end": 11.91,
+   "x": 0.5
+  },
+  {
+   "cut": "3d",
+   "text": "매워.",
+   "speaker": "misun",
+   "start": 12.51,
+   "end": 13.06,
+   "x": 0.5
+  },
+  {
+   "cut": "3e",
+   "text": "…족발?",
+   "speaker": "changsu",
+   "start": 13.41,
+   "end": 13.96,
+   "x": 0.5
+  },
+  {
+   "cut": "3f",
+   "text": "밤에 무슨 족발이야~",
+   "speaker": "misun",
+   "start": 14.26,
+   "end": 15.72,
+   "x": 0.5
+  },
+  {
+   "cut": "cap",
+   "text": "(배달앱 30분째 스크롤)",
+   "speaker": "sfx",
+   "start": 15.8,
+   "end": 20.1,
+   "x": 0.5,
+   "pos": "top"
+  },
+  {
+   "cut": "4a",
+   "text": "한식? 중식? 일식?",
+   "speaker": "changsu",
+   "start": 16.0,
+   "end": 17.43,
+   "x": 0.5
+  },
+  {
+   "cut": "4b",
+   "text": "다 별로~",
+   "speaker": "misun",
+   "start": 17.5,
+   "end": 18.36,
+   "x": 0.5
+  },
+  {
+   "cut": "5a",
+   "text": "그럼… 먹고 싶은 거 딱 하나만 말해봐…",
+   "speaker": "changsu",
+   "start": 20.42,
+   "end": 22.82,
+   "x": 0.5
+  },
+  {
+   "cut": "5b",
+   "text": "나 진짜 아무거나 괜찮다니까?",
+   "speaker": "misun",
+   "start": 22.89,
+   "end": 24.74,
+   "x": 0.5
+  },
+  {
+   "cut": "6a",
+   "text": "나 그럼 치킨 먹어도 돼?",
+   "speaker": "changsu",
+   "start": 25.46,
+   "end": 27.32,
+   "x": 0.5
+  },
+  {
+   "cut": "cap",
+   "text": "(결국 처음 메뉴)",
+   "speaker": "sfx",
+   "start": 26.06,
+   "end": 29.8,
+   "x": 0.5,
+   "pos": "top"
+  },
+  {
+   "cut": "6b",
+   "text": "…난 안 먹을 거야.",
+   "speaker": "misun",
+   "start": 28.03,
+   "end": 29.28,
+   "x": 0.5
+  },
+  {
+   "cut": "cap",
+   "text": "(40분 뒤, 치킨 도착)",
+   "speaker": "sfx",
+   "start": 29.9,
+   "end": 33.3,
+   "x": 0.5,
+   "pos": "top"
+  },
+  {
+   "cut": "7",
+   "text": "왔다 왔다~!",
+   "speaker": "changsu",
+   "start": 30.8,
+   "end": 31.76,
+   "x": 0.5
+  },
+  {
+   "cut": "8a",
+   "text": "하나만 먹어볼까?",
+   "speaker": "misun",
+   "start": 33.65,
+   "end": 34.88,
+   "x": 0.5
+  },
+  {
+   "cut": "8b",
+   "text": "안 먹는다며…?",
+   "speaker": "changsu",
+   "start": 34.95,
+   "end": 36.23,
+   "x": 0.5
+  },
+  {
+   "cut": "8c",
+   "text": "오늘까지만 먹을 거야!",
+   "speaker": "misun",
+   "start": 36.87,
+   "end": 38.3,
+   "x": 0.5
+  },
+  {
+   "cut": "cap",
+   "text": "(이번 주 치킨 4번째)",
+   "speaker": "sfx",
+   "start": 36.87,
+   "end": 38.9,
+   "x": 0.5,
+   "pos": "top"
+  },
+  {
+   "cut": "9",
+   "text": "여보, 내일 저녁은 뭐 먹을래?",
+   "speaker": "misun",
+   "start": 39.2,
+   "end": 41.0,
+   "x": 0.5
+  },
+  {
+   "cut": "cap",
+   "text": "(내일도 시작)",
+   "speaker": "sfx",
+   "start": 41.3,
+   "end": 43.4,
+   "x": 0.5,
+   "pos": "top"
+  }
+ ]
+}
