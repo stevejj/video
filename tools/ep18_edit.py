@@ -290,7 +290,7 @@ def main():
                 if sb['t0'] <= tt < sb['t1']:
                     key = (sb['text'], sb['sp'])
                     if key not in subc:
-                        subc[key] = text_img([[(sb['text'], sb['sp'])]], 70, stroke=9)
+                        subc[key] = text_img([[(sb['text'].replace('…', '...'), sb['sp'])]], 70, stroke=9)   # v12(사용자): 말줄임은 가운데 점(…) 말고 아래 점(...)
                     im_ = subc[key]; put(fr, im_, W / 2, H - 430 - im_.shape[0] / 2)
             if tt > total - 0.4:
                 fr = (fr * max(0, (total - tt) / 0.4)).astype(np.uint8)
