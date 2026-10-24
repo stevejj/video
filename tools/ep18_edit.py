@@ -160,9 +160,7 @@ def main():
                                      F8='F8_v1', B9='B9_v2', B10='B10_v1', B11='B11_v1', B12='B12_v1').items()}
     voice9 = talk_bob.envelope([('x', LN('C9'), 0.35)], 'x', nfr('S9'))      # 9번: 목소리 크기만큼 카메라가 들썩
     K1 = Clip(os.path.join(EP, 'K1/clip_v1.mp4'), t0=0.8, sp=1.4)
-    # v2: Kling 끝 프레임에 남은 날개 지운 자국 → 다시 메운 F2b_nowing2를 그 자리에만 덮음(옷이 다 떨어진 뒤)
-    wm = np.load(os.path.join(EP, 'img/F2b_wingmask.npy')).astype(np.float32)
-    wm = cv2.GaussianBlur(cv2.dilate(cv2.resize(wm, (W, int(wm.shape[0] * K))), np.ones((13, 13), np.uint8)), (15, 15), 0)[7:7 + H, :, None]
+    # Kling 끝 프레임과 같은 구도의 날개 지운 더미(시작·끝 프레임처럼 위아래 7px 잘림)
     fix = big('F2b_nowing2')[7:7 + H]
 
     def punch(lt, t0, z0, z1, d=0.12):
@@ -203,8 +201,8 @@ def main():
             elif sk == 'S3':
                 fr = K1.at(lt); shake = 22 * np.exp(-lt * 2.2) if lt < 1.6 else 0
                 src_t = 0.8 + lt * 1.4
-                if src_t > 3.9:
-                    a_ = wm * ease((src_t - 3.9) / 0.3)
+                if src_t > 3.9:                        # v7(사용자: 옷 더미 맨 위가 우글거림) Kling 끝부분은 날개 지운 더미 그림으로 화면 전체를 넘겨 멈춤
+                    a_ = ease((src_t - 3.9) / 0.35)
                     fr = (fr * (1 - a_) + fix * a_).astype(np.uint8)
             elif sk == 'S4a':                          # 옷 더미 → 뽁! 얼굴 나온 화면으로 바뀌며 확대 펀치
                 if lt < 0.55:
@@ -213,12 +211,12 @@ def main():
                     z = punch(lt, 0.55, 1.0, 1.22, 0.1) + 0.06 * max(0, lt - 0.7) / 2.3
                     fr = cam(I['F4a'], z, 383 * K, 760 * K); shake = 9 * np.exp(-(lt - 0.55) * 12)
             elif sk in ('S4b', 'S5', 'S6', 'S8'):
-                img, cx, cy, z0 = {'S4b': ('F4b', 560, 960, 1.15), 'S5': ('F5', 585, 1000, 1.15), 'S6': ('F6', 540, 900, 1.15), 'S8': ('F8', 566, 1000, 1.1)}[sk]
+                img, cx, cy, z0 = {'S4b': ('F4b', 575, 960, 1.5), 'S5': ('F5', 585, 1000, 1.15), 'S6': ('F6', 540, 900, 1.15), 'S8': ('F8', 566, 1010, 1.5)}[sk]   # v7: 4b 미순·8 창수 크게
                 z = z0 + 0.08 * ease(lt / s['len'])
                 if sk == 'S6':                         # 툭: 카메라가 살짝 튐
                     z += 0.035 * np.exp(-(lt - 1.15) * 10) if lt >= 1.15 else 0
                 if sk == 'S8':                         # 하…: 천천히 더 밀어 들어감
-                    z = z0 + 0.15 * ease((lt - 0.95) / 1.6) if lt >= 0.95 else z0
+                    z = z0 + 0.2 * ease((lt - 0.95) / 1.6) if lt >= 0.95 else z0
                 fr = cam(I[img], z, cx * K, cy * K)
             elif sk == 'S7':                           # 가디건 클로즈업: 천천히 밀며 날개 쪽으로
                 fr = cam(I['F7'], 1.0 + 0.12 * ease(lt / s['len']), (384 + 120 * ease(lt / s['len'])) * K, 640 * K)
