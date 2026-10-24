@@ -3,15 +3,16 @@
 사용: python3 tools/ep18_edit.py [--tag v1] → outputs/ep18/roughcut/ep18_<tag>_silent.mp4 + voice_profile ep18.placements·bgm + sfx/sfx_list.json
      python3 tools/mix_audio.py --ep ep18 --video outputs/ep18/roughcut/ep18_<tag>_silent.mp4 --out outputs/ep18/roughcut/ep18_<tag>_main.mp4
      python3 tools/thumb_intro.py --video ..._main.mp4 --out outputs/ep18/roughcut/ep18_<tag>.mp4 --title '[[["입을 옷이 없다는","yellow"]],[["아내","white"]]]' --bg black
-- 정지 이미지는 캐릭터를 ISNet으로 오려(원래 자리는 메움) 목소리 크기에 맞춰 몸 통통(talk_bob 방식).
-- 2번 옷 산사태만 Kling(K1). 4번 얼굴 쑥은 tools/ep18_popup.py 결과를 그대로 씀.
+- v6(사용자): 캐릭터·배경을 오려 움직이지 않음(몸·머리 통통, 이불 덜덜, 날개 만지작 모두 뺌 — 지운 자국이 보여서).
+  움직임은 카메라로만: 밀어 들어가기, 말하는 쪽으로 옮기기, 확대 펀치, 흔들림. 마지막 동공지진(눈 둘레만 약하게)은 유지.
+- 2번 옷 산사태만 Kling(K1). 4번 얼굴은 옷 더미 → 얼굴 나온 화면으로 바뀌며 확대 펀치.
 - 상황 자막은 유리 알림창(02a). 제목 위쪽, 채널명 하단 1600(휴대폰 장면은 뺌).
 """
 import argparse, json, os, subprocess, sys
 import numpy as np, cv2
 from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import cutout, talk_bob
+import talk_bob
 from ep14_edit import text_img, chip_img, put, ease, font, W, H, FPS, FF
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,7 +20,6 @@ EP = os.path.join(ROOT, 'outputs/ep18')
 K = W / 768
 TITLE = [[('입을 옷이 없다는', 'yellow')], [('아내', 'white')]]
 CHAN_Y = 1600
-MODEL = talk_bob.MODEL
 
 
 def big(name):
@@ -33,54 +33,6 @@ def cam(img, z, cx, cy):
     x0 = min(max(cx - cw / 2, 0), img.shape[1] - cw); y0 = min(max(cy - ch / 2, 0), img.shape[0] - ch)
     M = np.float32([[z, 0, -x0 * z], [0, z, -y0 * z]])
     return cv2.warpAffine(img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
-
-
-class Puppet:
-    """정지 이미지에서 오린 캐릭터 한 명(또는 이불 덩어리). 원본 좌표(768 기준) 상자."""
-    def __init__(self, img, box, pad=40, lo=0.15, hi=0.85):
-        x0, y0, x1, y1 = [int(v * K) for v in box]
-        crop = Image.fromarray(cv2.cvtColor(img[y0:y1, x0:x1], cv2.COLOR_BGR2RGB))
-        al = np.asarray(cutout.alpha(crop, MODEL)).astype(np.float32) / 255
-        al = np.clip((al - lo) / (hi - lo), 0, 1)
-        self.full = np.zeros(img.shape[:2], np.float32); self.full[y0:y1, x0:x1] = al
-        X0, Y0 = max(0, x0 - pad), max(0, y0 - pad); X1, Y1 = min(img.shape[1], x1 + pad), min(img.shape[0], y1 + pad)
-        self.off = (X0, Y0)
-        self.rgba = np.dstack([img[Y0:Y1, X0:X1], (self.full[Y0:Y1, X0:X1] * 255).astype(np.uint8)])
-        ys, xs = np.where(self.full > 0.5)
-        self.foot = (xs.mean() - X0, ys.max() - Y0)
-        self.center = (xs.mean(), (ys.min() + ys.max()) / 2)
-
-    def without(self, other):
-        """다른 캐릭터와 겹치는 부분은 빼기(이불이 떨 때 창수 날개까지 같이 떨리던 문제, v2)."""
-        self.full *= np.clip(1 - other.full * 2.0, 0, 1)
-        X0, Y0 = self.off; h, w = self.rgba.shape[:2]
-        self.rgba[..., 3] = (self.full[Y0:Y0 + h, X0:X0 + w] * 255).astype(np.uint8)
-        return self
-
-    def draw(self, fr, sx=1.0, sy=1.0, ang=0.0, dx=0.0, dy=0.0, pivot=None):
-        px, py = pivot if pivot else self.foot
-        px, py = float(px), float(py)
-        M = cv2.getRotationMatrix2D((px, py), float(ang), 1.0)
-        M[0, :2] *= sx; M[1, :2] *= sy
-        M[0, 2] = px - (M[0, 0] * px + M[0, 1] * py) + dx; M[1, 2] = py - (M[1, 0] * px + M[1, 1] * py) + dy
-        h, w = self.rgba.shape[:2]
-        warped = cv2.warpAffine(self.rgba, M, (w, h), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=(0, 0, 0, 0))
-        X0, Y0 = self.off; a = warped[..., 3:4].astype(np.float32) / 255
-        reg = fr[Y0:Y0 + h, X0:X0 + w]
-        reg[:] = (reg * (1 - a) + warped[..., :3] * a).astype(np.uint8)
-
-
-def plate(img, puppets):
-    m = np.zeros(img.shape[:2], np.uint8)
-    for p in puppets:
-        m |= (p.full > 0.05).astype(np.uint8)
-    m = cv2.dilate(m, np.ones((15, 15), np.uint8))
-    return cv2.inpaint(img, m * 255, 9, cv2.INPAINT_TELEA)
-
-
-def bob(p, fr, e, t, j=0, k=1.0):
-    br = 0.008 * np.sin(2 * np.pi * 0.45 * t + j * 1.7)
-    p.draw(fr, 1 - 0.025 * e * k - br * 0.5, 1 + 0.05 * e * k + br, 1.6 * e * k * np.sin(2 * np.pi * 2.2 * t + j))
 
 
 class Clip:
@@ -202,41 +154,20 @@ def main():
     json.dump(P, open(os.path.join(ROOT, 'outputs/voice_profile.json'), 'w'), ensure_ascii=False, indent=1)
     json.dump({'note': f'ep18 {a.tag} (tools/ep18_edit.py가 만듦)', 'items': sfx}, open(os.path.join(EP, 'sfx/sfx_list.json'), 'w'), ensure_ascii=False, indent=1)
 
-    # 장면 준비
-    def env_for(sk, cut_list, n):
-        return talk_bob.envelope([('x', LN(c), lt) for c, lt in cut_list], 'x', n)
+    # 장면 준비 — v6(사용자): 캐릭터·배경을 오려 움직이지 않음(지운 자국 안 나오게). 움직임은 카메라로만(밀기·옮기기·확대 펀치·흔들림).
     nfr = lambda sk: int(round(S[sk]['len'] * FPS)) + 2
-    I = {k: big(v) for k, v in dict(F1='F1_v1', F2a='F2a_v1', F4b='F4b_v2', F5='F5_v1', F6='F6_v1', F7='F7_v1', F8='F8_v1',
-                                     B9='B9_v2', B10='B10_v1', B11='B11_v1', B12='B12_v1').items()}
-    pp = {}
-    pp['S1'] = [Puppet(I['F1'], (125, 740, 315, 1095)), Puppet(I['F1'], (330, 795, 535, 1095))]
-    pp['S2'] = [Puppet(I['F2a'], (200, 735, 430, 1085))]
-    pp['S4b'] = [Puppet(I['F4b'], (400, 690, 745, 1255))]
-    pp['S5'] = [Puppet(I['F5'], (450, 790, 720, 1230))]
-    pp['S6'] = [Puppet(I['F6'], (390, 690, 720, 1075))]
-    pp['S7'] = [Puppet(I['F7'], (470, 410, 768, 760))]
-    pp['S8'] = [Puppet(I['F8'], (430, 790, 710, 1230))]
-    pp['S9'] = [Puppet(I['B9'], (215, 585, 575, 800))]
-    pp['S10'] = [Puppet(I['B10'], (340, 400, 700, 830), lo=0.45, hi=0.75)]   # v3(사용자: 토닥 장면 창수 날개가 잘림) 상자를 왼쪽으로 넓혀 이불에 얹은 날개까지
-    pp['S10'].append(Puppet(I['B10'], (100, 590, 455, 835)).without(pp['S10'][0]))
-    pp['S12'] = [Puppet(I['B12'], (160, 290, 600, 900))]
-    plates = {k: plate(I[img], pp[k]) for k, img in (('S1', 'F1'), ('S2', 'F2a'), ('S4b', 'F4b'), ('S5', 'F5'), ('S6', 'F6'), ('S7', 'F7'),
-                                                       ('S8', 'F8'), ('S9', 'B9'), ('S10', 'B10'), ('S12', 'B12'))}
-    env = {
-        'S1': [env_for('S1', [('C1a', 0.3)], nfr('S1')), env_for('S1', [('C1b', 1.95)], nfr('S1'))],
-        'S2': [env_for('S2', [('C2', 0.12)], nfr('S2'))], 'S4b': [env_for('S4b', [('C4b', 0.15)], nfr('S4b'))],
-        'S5': [env_for('S5', [('C5', 0.15)], nfr('S5'))], 'S6': [env_for('S6', [('C6', 0.15)], nfr('S6'))],
-        'S8': [env_for('S8', [('C8', 0.95)], nfr('S8'))], 'S9': [env_for('S9', [('C9', 0.35)], nfr('S9'))],
-        'S10': [env_for('S10', [('C10a', 0.25), ('C10b', 2.75)], nfr('S10'))], 'S12': [env_for('S12', [('C12', 0.2)], nfr('S12'))],
-    }
+    I = {k: big(v) for k, v in dict(F1='F1_v1', F2a='F2a_v1', F2b='F2b_nowing2', F4a='F4a_v1', F4b='F4b_v2', F5='F5_v1', F6='F6_v1', F7='F7_v1',
+                                     F8='F8_v1', B9='B9_v2', B10='B10_v1', B11='B11_v1', B12='B12_v1').items()}
+    voice9 = talk_bob.envelope([('x', LN('C9'), 0.35)], 'x', nfr('S9'))      # 9번: 목소리 크기만큼 카메라가 들썩
     K1 = Clip(os.path.join(EP, 'K1/clip_v1.mp4'), t0=0.8, sp=1.4)
     # v2: Kling 끝 프레임에 남은 날개 지운 자국 → 다시 메운 F2b_nowing2를 그 자리에만 덮음(옷이 다 떨어진 뒤)
     wm = np.load(os.path.join(EP, 'img/F2b_wingmask.npy')).astype(np.float32)
     wm = cv2.GaussianBlur(cv2.dilate(cv2.resize(wm, (W, int(wm.shape[0] * K))), np.ones((13, 13), np.uint8)), (15, 15), 0)[7:7 + H, :, None]
     fix = big('F2b_nowing2')[7:7 + H]
-    POP = Clip(os.path.join(EP, 'test/popup_free_v2.mp4'))
-    # B11 눈물(눈 밖, 왼쪽 눈 바깥 아래): 작은 하늘색 방울이 '쏘옥' 위로 빨려 들어감
-    TEAR = (246 * K, 772 * K)
+
+    def punch(lt, t0, z0, z1, d=0.12):
+        return z0 if lt < t0 else z0 + (z1 - z0) * ease((lt - t0) / d)
+
     # B13 동공지진
     b13 = cv2.imread(os.path.join(EP, 'img/B13_v1.png')); s13 = W / b13.shape[1]
     lum = b13.mean(2); eyes = []
@@ -262,61 +193,47 @@ def main():
         sk = s['n'].split()[0]; n0, n1 = int(round(s['at'] * FPS)), int(round((s['at'] + s['len']) * FPS))
         for fi in range(n0, min(n1, nf)):
             tt = fi / FPS; lt = tt - s['at']; k = fi - n0; shake = 0
-            if sk in plates:
-                fr = plates[sk].copy(); ps = pp[sk]; ev = env.get(sk)
-            if sk == 'S1':
-                bob(ps[0], fr, ev[0][k], lt, 0); bob(ps[1], fr, ev[1][k], lt, 1)
-                z = 1.12 + 0.12 * ease(lt / s['len']); fr = cam(fr, z, W / 2, 925 * K)
-            elif sk == 'S2':
-                bob(ps[0], fr, ev[0][k], lt)
+            if sk == 'S1':                             # 말하는 쪽으로 카메라 옮김 → "없어!"에서 확대 펀치
+                x = 220 + (432 - 220) * ease((lt - 1.75) / 0.35) if lt >= 1.75 else 220
+                z = punch(lt, 3.15, 1.25 + 0.04 * lt / s['len'], 1.45)
+                fr = cam(I['F1'], z, x * K, 935 * K)
+            elif sk == 'S2':                           # 손잡이 쪽으로 밀어 들어감 + 문 덜컹 흔들림
+                fr = cam(I['F2a'], 1.05 + 0.12 * ease(lt / s['len']), 330 * K, 820 * K)
                 shake = 0 if lt < 0.85 else 3 + 7 * (lt - 0.85) / 0.8
-                fr = cam(fr, 1.04 + 0.05 * lt / s['len'], W / 2, 760 * K)
             elif sk == 'S3':
                 fr = K1.at(lt); shake = 22 * np.exp(-lt * 2.2) if lt < 1.6 else 0
                 src_t = 0.8 + lt * 1.4
                 if src_t > 3.9:
                     a_ = wm * ease((src_t - 3.9) / 0.3)
                     fr = (fr * (1 - a_) + fix * a_).astype(np.uint8)
-            elif sk == 'S4a':
-                fr = POP.at(lt)
-            elif sk in ('S4b', 'S5', 'S8'):
-                if sk in ('S4b', 'S8'):                # v5(사용자: "그대로인데?" 창수·"저건 작아졌어" 미순 움직이지 마) 멈춘 화면 + 확대만
-                    fr = I[{'S4b': 'F4b', 'S8': 'F8'}[sk]].copy()
+            elif sk == 'S4a':                          # 옷 더미 → 뽁! 얼굴 나온 화면으로 바뀌며 확대 펀치
+                if lt < 0.55:
+                    fr = cam(I['F2b'], 1.0 + 0.03 * lt, W / 2, 900 * K); shake = 2 if lt > 0.25 else 0
                 else:
-                    ps[0].draw(fr, 1 - 0.025 * ev[0][k], 1 + 0.05 * ev[0][k], 1.6 * ev[0][k] * np.sin(2 * np.pi * 2.2 * lt))
-                z0 = {'S4b': 1.18, 'S5': 1.15, 'S8': 1.12}[sk]
-                fr = cam(fr, z0 + 0.07 * ease(lt / s['len']), ps[0].center[0] - 40, ps[0].center[1] - 60)
-            elif sk == 'S6':                           # v4(사용자: 우글거림) 멈춘 화면 + 확대만
-                fr = I['F6'].copy()
-                bump = 0.03 * np.exp(-(lt - 1.15) * 10) if lt >= 1.15 else 0
-                fr = cam(fr, 1.15 + bump + 0.05 * lt / s['len'], ps[0].center[0] - 60, ps[0].center[1] + 20)
-            elif sk == 'S7':                           # 날개로 가디건 쓰다듬기(만지작)
-                ang = 5 * np.sin(2 * np.pi * 1.6 * lt) * min(1, lt / 0.3)
-                ps[0].draw(fr, 1, 1, ang, dx=-6 * np.sin(2 * np.pi * 1.6 * lt), pivot=(ps[0].rgba.shape[1] - 10, ps[0].rgba.shape[0] * 0.55))
-                fr = cam(fr, 1.0 + 0.1 * ease(lt / s['len']), W / 2, 820 * K)
-            elif sk == 'S9':                           # 이불 덩어리 덜덜 + 말할 때 크게
-                e = ev[0][k]; tr = 0.6 + 1.6 * e
-                ps[0].draw(fr, 1 + 0.02 * e, 1 + 0.04 * e, tr * np.sin(2 * np.pi * 9 * lt), dx=tr * 1.5 * np.sin(2 * np.pi * 7 * lt))
-                fr = cam(fr, 1.1 + 0.06 * lt / s['len'], ps[0].center[0], ps[0].center[1] - 80)
-            elif sk == 'S10':
-                stop = 2.75 + 0.32                         # "우리 패딩"의 '패딩'에서 떨림이 딱 멈춤
-                tr = 1.2 if lt < stop else 0
-                pk = 0.04 * max(0, np.sin(np.pi * ((lt - 0.15) / 0.25))) if 0.15 <= lt < 0.4 or 1.6 <= lt < 1.85 else 0
-                ps[1].draw(fr, 1 - pk, 1 + pk, tr * np.sin(2 * np.pi * 9 * lt), dx=tr * 1.5 * np.sin(2 * np.pi * 7 * lt))
-                ps[0].draw(fr)                              # v4(사용자: 손 움직이지 마) 창수는 가만히, 이불 위에 그림
-                z = 1.1 + 0.06 * lt / s['len'] + (0.08 * ease((lt - stop) / 0.15) if lt >= stop else 0)
-                fr = cam(fr, z, 395 * K, 640 * K)
-            elif sk == 'S11':
-                fr = I['B11'].copy()
-                if 0.6 <= lt < 1.25:                   # 눈물 방울: 눈가 밖에서 '쏘옥' 위로 빨려 들어감
-                    q = (lt - 0.6) / 0.65; r = 11 * (1 - 0.8 * ease(q)); y = TEAR[1] + 18 - 30 * ease(q)
-                    cv2.ellipse(fr, (int(TEAR[0]), int(y)), (int(r * 0.75), int(r)), 0, 0, 360, (250, 220, 170), -1, cv2.LINE_AA)
-                    cv2.circle(fr, (int(TEAR[0] - r * 0.25), int(y - r * 0.3)), max(1, int(r * 0.25)), (255, 255, 255), -1, cv2.LINE_AA)
-                z = 1.05 if lt < 0.12 else 1.05 + 0.4 * ease((lt - 0.12) / 0.12)
-                fr = cam(fr, z, 300 * K, 735 * K)
+                    z = punch(lt, 0.55, 1.0, 1.22, 0.1) + 0.06 * max(0, lt - 0.7) / 2.3
+                    fr = cam(I['F4a'], z, 383 * K, 760 * K); shake = 9 * np.exp(-(lt - 0.55) * 12)
+            elif sk in ('S4b', 'S5', 'S6', 'S8'):
+                img, cx, cy, z0 = {'S4b': ('F4b', 560, 960, 1.15), 'S5': ('F5', 585, 1000, 1.15), 'S6': ('F6', 540, 900, 1.15), 'S8': ('F8', 566, 1000, 1.1)}[sk]
+                z = z0 + 0.08 * ease(lt / s['len'])
+                if sk == 'S6':                         # 툭: 카메라가 살짝 튐
+                    z += 0.035 * np.exp(-(lt - 1.15) * 10) if lt >= 1.15 else 0
+                if sk == 'S8':                         # 하…: 천천히 더 밀어 들어감
+                    z = z0 + 0.15 * ease((lt - 0.95) / 1.6) if lt >= 0.95 else z0
+                fr = cam(I[img], z, cx * K, cy * K)
+            elif sk == 'S7':                           # 가디건 클로즈업: 천천히 밀며 날개 쪽으로
+                fr = cam(I['F7'], 1.0 + 0.12 * ease(lt / s['len']), (384 + 120 * ease(lt / s['len'])) * K, 640 * K)
+            elif sk == 'S9':                           # 이불 김밥: 말할 때 카메라가 들썩
+                e = voice9[k]; shake = 1.5 + 7 * e
+                fr = cam(I['B9'], 1.15 + 0.08 * ease(lt / s['len']), 395 * K, 690 * K)
+            elif sk == 'S10':                          # 천천히 밀다가 "우리 패딩"의 '패딩'에서 이불 쪽으로 확대 펀치
+                stop = 2.75 + 0.32
+                z = punch(lt, stop, 1.1 + 0.05 * lt / s['len'], 1.35, 0.12)
+                cx = 395 if lt < stop else 395 - 120 * ease((lt - stop) / 0.12)
+                fr = cam(I['B10'], z, cx * K, 680 * K)
+            elif sk == 'S11':                          # 정말?!: 미순 얼굴로 확대 펀치
+                fr = cam(I['B11'], punch(lt, 0.12, 1.05, 1.45), 300 * K, 735 * K)
             elif sk == 'S12':
-                bob(ps[0], fr, ev[0][k], lt)
-                fr = cam(fr, 1.32 + 0.06 * lt / s['len'], 385 * K, 590 * K)
+                fr = cam(I['B12'], 1.32 + 0.08 * ease(lt / s['len']), 385 * K, 590 * K)
             elif sk == 'S12b':
                 fr = cart[k].copy()
             elif sk == 'S13':
