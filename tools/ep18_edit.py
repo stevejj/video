@@ -68,36 +68,113 @@ class Clip:
         return self.fr[max(0, min(len(self.fr) - 1, i))].copy()
 
 
+CART = [('여성 덕다운 롱패딩', '핑크 / 55', 38, '289,000', (244, 170, 196)), ('오버핏 숏패딩 점퍼', '아이보리 / FREE', 25, '239,000', (238, 230, 214)),
+        ('초경량 퀼팅 패딩', '스카이블루 / 55', 40, '129,000', (176, 202, 232)), ('퀼팅 패딩 조끼', '민트 / FREE', 30, '99,000', (178, 222, 206)),
+        ('후드 구스다운 롱패딩', '블랙 / 55', 22, '319,000', (64, 64, 70))]
+PINK = '#FF5C8A'
+
+
+def puffer(d, x, y, s, col):
+    """썸네일 안 패딩 그림(누빔 줄·지퍼·후드)."""
+    dk = tuple(max(0, v - 38) for v in col)
+    body = [(x + s * 0.30, y + s * 0.18), (x + s * 0.70, y + s * 0.18), (x + s * 0.84, y + s * 0.30), (x + s * 0.80, y + s * 0.90),
+            (x + s * 0.20, y + s * 0.90), (x + s * 0.16, y + s * 0.30)]
+    d.ellipse([x + s * 0.36, y + s * 0.08, x + s * 0.64, y + s * 0.28], fill=dk)                       # 후드
+    d.polygon(body, fill=col)
+    for k in range(1, 6):                                                                           # 누빔 줄
+        yy = y + s * (0.22 + 0.13 * k); d.line([(x + s * 0.19, yy), (x + s * 0.81, yy)], fill=dk, width=max(1, int(s * 0.02)))
+    d.line([(x + s * 0.5, y + s * 0.22), (x + s * 0.5, y + s * 0.90)], fill=dk, width=max(1, int(s * 0.025)))   # 지퍼
+
+
+def cart_ui(w, h, top, shown=5, pop=0.0, status=False):
+    """쇼핑앱 장바구니 화면(진짜 앱처럼: 앱 바, 전체선택, 상품 줄 5개, 아래 주문 바). top = 앱 바 시작 y.
+    shown = 담긴 상품 수(앞에서부터), pop = 총액 강조(0~1). 글씨·여백은 가로 1080 기준 비율."""
+    k = w / 1080; F = lambda sz, wt=700: font(int(sz * k), wt); P = int(48 * k)
+    im = Image.new('RGB', (w, h), (255, 255, 255)); d = ImageDraw.Draw(im)
+    if status:                                                                                      # 휴대폰 상태 표시줄
+        d.text((P, int(top - 70 * k)), '11:42', font=F(34, 700), fill='#111111', anchor='lm')
+        for i_ in range(4):
+            d.rectangle([w - P - 150 * k + i_ * 16 * k, top - (60 + i_ * 6) * k, w - P - 140 * k + i_ * 16 * k, top - 52 * k], fill='#111111')
+        d.rounded_rectangle([w - P - 70 * k, top - 82 * k, w - P, top - 56 * k], radius=int(6 * k), outline='#111111', width=max(1, int(3 * k)))
+        d.rectangle([w - P - 66 * k, top - 78 * k, w - P - 18 * k, top - 60 * k], fill='#111111')
+    ab = int(110 * k)                                                                               # 앱 바
+    d.text((P, top + ab / 2), '‹', font=F(70, 400), fill='#222222', anchor='lm')
+    d.text((w / 2, top + ab / 2), '장바구니', font=F(44, 800), fill='#111111', anchor='mm')
+    d.line([(0, top + ab), (w, top + ab)], fill='#EEEEEE', width=max(1, int(2 * k)))
+    y = top + ab
+    def check(cx, cy, on=True):
+        r = 20 * k
+        if on:
+            d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=PINK)
+            d.line([(cx - r * 0.45, cy), (cx - r * 0.1, cy + r * 0.38), (cx + r * 0.5, cy - r * 0.35)], fill='white', width=max(2, int(5 * k)))
+        else:
+            d.ellipse([cx - r, cy - r, cx + r, cy + r], outline='#CCCCCC', width=max(1, int(3 * k)))
+    check(P + 20 * k, y + 44 * k, shown == 5)                                                        # 전체선택 줄
+    d.text((P + 58 * k, y + 44 * k), f'전체선택 ({shown}/5)', font=F(30, 600), fill='#333333', anchor='lm')
+    d.text((w - P, y + 44 * k), '선택삭제', font=F(28, 500), fill='#999999', anchor='rm')
+    y += 88 * k; d.rectangle([0, y, w, y + 12 * k], fill='#F4F4F6'); y += 12 * k
+    row = 148 * k; th = 112 * k; total = 0
+    for j, (name, opt, sale, price, col) in enumerate(CART[:shown]):
+        y0 = y + j * row; cy = y0 + row / 2
+        check(P + 20 * k, y0 + 40 * k)
+        tx = P + 58 * k
+        d.rounded_rectangle([tx, y0 + 18 * k, tx + th, y0 + 18 * k + th], radius=int(16 * k), fill='#F3F1F2')
+        puffer(d, tx + 8 * k, y0 + 24 * k, th - 16 * k, col)
+        nx = tx + th + 24 * k
+        d.text((nx, y0 + 36 * k), name, font=F(30, 700), fill='#222222', anchor='lm')
+        d.text((nx, y0 + 73 * k), f'옵션: {opt}', font=F(24, 500), fill='#8A8A8A', anchor='lm')
+        d.text((nx, y0 + 112 * k), f'{sale}%', font=F(30, 800), fill=PINK, anchor='lm')
+        sw = d.textlength(f'{sale}%', font=F(30, 800))
+        d.text((nx + sw + 12 * k, y0 + 112 * k), price + '원', font=F(31, 800), fill='#111111', anchor='lm')
+        qx = w - P - 150 * k                                                                         # 수량
+        d.rounded_rectangle([qx, y0 + 92 * k, w - P, y0 + 132 * k], radius=int(8 * k), outline='#DDDDDD', width=max(1, int(2 * k)))
+        for i_, ch in enumerate(('−', '1', '+')):
+            d.text((qx + (25 + 50 * i_) * k, y0 + 112 * k), ch, font=F(27, 600), fill='#555555', anchor='mm')
+        xc, yc, r_ = w - P - 12 * k, y0 + 36 * k, 11 * k                                             # 삭제(✕를 선으로)
+        d.line([(xc - r_, yc - r_), (xc + r_, yc + r_)], fill='#BBBBBB', width=max(1, int(3 * k))); d.line([(xc - r_, yc + r_), (xc + r_, yc - r_)], fill='#BBBBBB', width=max(1, int(3 * k)))
+        if j < shown - 1:
+            d.line([(P, y0 + row), (w - P, y0 + row)], fill='#F0F0F0', width=max(1, int(2 * k)))
+        total += int(price.replace(',', ''))
+    by = int(h - 150 * k) if not status else int(h - 170 * k)                                       # 아래 주문 바
+    d.rectangle([0, by, w, h], fill='#FFFFFF'); d.line([(0, by), (w, by)], fill='#E6E6E6', width=max(1, int(2 * k)))
+    d.text((P, by + 40 * k), f'총 {shown}개 상품', font=F(26, 500), fill='#8A8A8A', anchor='lm')
+    ts = 44 * (1 + 0.25 * pop)
+    d.text((P, by + 92 * k), f'{total:,}원', font=F(ts, 900), fill=PINK if pop > 0 else '#111111', anchor='lm')
+    d.rounded_rectangle([w - P - 330 * k, by + 28 * k, w - P, by + 120 * k], radius=int(14 * k), fill=PINK)
+    d.text((w - P - 165 * k, by + 74 * k), '구매하기', font=F(36, 800), fill='white', anchor='mm')
+    return im
+
+
 def phone_cart(n):
-    """12번 반전: 휴대폰 쇼핑앱 장바구니 — 패딩 5벌이 톡톡 담겨 있고 총액이 쿵."""
-    items = [('롱패딩 (핑크)', '289,000원', (255, 182, 206)), ('숏패딩 (아이보리)', '239,000원', (246, 238, 222)),
-             ('경량패딩', '129,000원', (198, 216, 238)), ('패딩 조끼 (민트)', '99,000원', (196, 236, 222)), ('롱패딩 (블랙)', '319,000원', (90, 90, 96))]
-    base = Image.new('RGB', (W, H), (250, 247, 249)); d = ImageDraw.Draw(base)
-    d.rectangle([0, 0, W, 610], fill=(255, 236, 243))
-    d.text((W / 2, 560), '장바구니 (5)', font=font(60, 800), fill='#5A4A52', anchor='mm')
-    card_imgs = []
-    for name, price, col in items:
-        c = Image.new('RGBA', (960, 160), (0, 0, 0, 0)); cd = ImageDraw.Draw(c)
-        cd.rounded_rectangle([0, 0, 959, 159], radius=32, fill=(255, 255, 255, 255), outline=(236, 226, 232), width=3)
-        cd.rounded_rectangle([24, 18, 148, 142], radius=22, fill=col)
-        cd.polygon([(86, 34), (124, 56), (114, 128), (58, 128), (48, 56)], fill=tuple(max(0, v - 25) for v in col))   # 패딩 모양 단순 그림
-        cd.text((180, 48), name, font=font(44, 700), fill='#333333')
-        cd.text((180, 112), price, font=font(40, 800), fill='#FF5C9A')
-        cd.rounded_rectangle([860, 55, 910, 105], radius=10, fill='#FF9CC2'); cd.text((885, 80), '✓', font=font(34, 800), fill='white', anchor='mm')
-        card_imgs.append(np.array(c))
-    total = text_img([[('총 ', 'white'), ('1,075,000원', 'yellow')]], 88, stroke=9)   # v11(사용자: 밑에 잘림) 작게
-    base = cv2.cvtColor(np.array(base), cv2.COLOR_RGB2BGR)
-    out = []
+    """12번 반전(전체 화면): 장바구니에 패딩이 하나씩 담기고 총액이 쿵. 위쪽은 제목이 덮어 앱 바를 제목 아래(560)부터,
+    주문 바는 1450~1600(글씨는 1570 위), 상품 5개가 다 보이게(v13 사용자: 여백 맞춰 진짜처럼)."""
+    out, cache = [], {}
     for i in range(n):
-        t = i / FPS; fr = base.copy()
-        for j, c in enumerate(card_imgs):
-            tj = 0.1 + j * 0.16
-            if t >= tj:
-                a = ease((t - tj) / 0.14); put(fr, c, W / 2, 720 + j * 178 + (1 - a) * 40, alpha=a)
-        if t >= 1.15:
-            a = ease((t - 1.15) / 0.2); put(fr, total, W / 2, 1585, alpha=a, scale=0.7 + 0.3 * a + 0.08 * (1 - a))
-        out.append(fr)
+        t = i / FPS
+        shown = min(5, 1 + int(max(0, t - 0.1) / 0.16)); pop = ease((t - 1.15) / 0.2) * (1 - 0.5 * ease((t - 1.5) / 0.4)) if t >= 1.15 else 0
+        key = (shown, round(pop, 2))
+        if key not in cache:
+            ui = cart_ui(W, 1600, 500, shown, pop)
+            fr = Image.new('RGB', (W, H), (255, 255, 255)); fr.paste(Image.new('RGB', (W, 500), (255, 240, 245)), (0, 0)); fr.paste(ui.crop((0, 500, W, 1600)), (0, 500))
+            cache[key] = cv2.cvtColor(np.array(fr), cv2.COLOR_RGB2BGR)
+        out.append(cache[key].copy())
     return out
+
+
+def phone_screen(img):
+    """B12 미순이 든 휴대폰의 빈 흰 화면에 같은 장바구니 화면을 원근에 맞춰 얹음(v13 사용자: 흰 화면 그럴듯하게)."""
+    g = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY); sc = img.shape[1] / 768
+    n_, lab, st, _ = cv2.connectedComponentsWithStats((g > 235).astype(np.uint8))
+    i_ = min(range(1, n_), key=lambda j: abs(st[j, 0] - 340 * sc) + abs(st[j, 1] - 632 * sc) - st[j, 4] * 0.0001)
+    m = (lab == i_).astype(np.uint8)
+    quad = np.float32([[341, 641], [447, 633], [459, 851], [353, 861]]) * sc
+    ui = cart_ui(1080, 2200, 230, 5, 0, status=True)
+    src = np.float32([[0, 0], [1080, 0], [1080, 2200], [0, 2200]])
+    M = cv2.getPerspectiveTransform(src, quad)
+    warped = cv2.warpPerspective(cv2.cvtColor(np.array(ui), cv2.COLOR_RGB2BGR), M, (img.shape[1], img.shape[0]), flags=cv2.INTER_AREA)
+    a = cv2.GaussianBlur(cv2.dilate(m, np.ones((3, 3), np.uint8)).astype(np.float32), (0, 0), 1.2)[..., None]
+    glow = (warped.astype(np.float32) * 0.93 + 14)                                                  # 화면 빛(조금 밝고 부드럽게)
+    return (img * (1 - a) + glow * a).clip(0, 255).astype(np.uint8)
 
 
 def main():
@@ -176,6 +253,7 @@ def main():
     nfr = lambda sk: int(round(S[sk]['len'] * FPS)) + 2
     I = {k: big(v) for k, v in dict(F1='F1_v1', F2a='F2a_v1', F2b='F2b_fill', F4a='F4a_v1_fill', F4b='F4b_v2', F5='F5_v1', F6='F6_v1', F7='F7_v1',
                                      F8='F8_v1', B9='B9_v2', B10='B10_v1', B11='B11_v1', B12='B12_v1').items()}
+    I['B12'] = phone_screen(I['B12'])
     voice9 = talk_bob.envelope([('x', LN('C9'), 0.35)], 'x', nfr('S9'))      # 9번: 목소리 크기만큼 카메라가 들썩
     K1 = Clip(os.path.join(EP, 'K1/clip_v1.mp4'), t0=0.8, sp=1.4)
     # Kling 끝 프레임과 같은 구도의 날개 지운 더미(시작·끝 프레임처럼 위아래 7px 잘림)
