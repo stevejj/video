@@ -88,9 +88,9 @@ def main():
         "seconds": round(dt, 1),
     }
     log = pathlib.Path("outputs/nb_log.jsonl"); log.parent.mkdir(exist_ok=True)
-    with log.open("a") as f:
+    with log.open("a", encoding="utf-8") as f:  # 2026-10-24: 윈도우에서 cp949로 써지던 문제
         f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-    cum = sum(json.loads(l)["cost_krw"] for l in log.read_text().splitlines() if l.strip())
+    cum = sum(json.loads(l)["cost_krw"] for l in log.read_text(encoding="utf-8").splitlines() if l.strip())
     print(json.dumps(rec, ensure_ascii=False))
     print(f"누적 비용: 약 {cum}원")
 

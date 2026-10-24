@@ -3841,7 +3841,7 @@
     {
      "cut": "c7",
      "speaker": "changsu",
-     "subtitle": "응…?",
+     "subtitle": "응...?",
      "tts": "[confused, hesitant] 응...?",
      "expr": "01",
      "max_len": 0.9,
@@ -3911,24 +3911,24 @@
     {
      "cut": "m10",
      "speaker": "misun",
-     "subtitle": "응~ 귀여워~",
-     "tts": "[sweet, cutesy, nasal aegyo voice, whiny-cute] 응~ 귀여워~",
+     "subtitle": "나는 자기를 사랑해",
+     "tts": "[sweet, cutesy, nasal aegyo voice, whiny-cute] 나는~ 자기를 사랑해~",
      "expr": "01",
-     "max_len": 1.6,
+     "max_len": 2.0,
      "offset": 0.05,
      "inner": false,
      "tag_override": true,
      "n_seeds": 6,
-     "asr_ref": "응귀여워",
+     "asr_ref": "나는자기를사랑해",
      "gap_before": 0.4,
-     "seed": 7,
+     "seed": 555,
      "speedup": 1.25,
      "tempo": 1.0,
      "dry": "outputs/ep17/voice/lines/m10_dry.mp3",
      "asr": 1.0,
      "file": "outputs/ep17/voice/lines/m10.mp3",
-     "len": 1.24,
-     "len_file": 1.28
+     "len": 1.74,
+     "len_file": 1.78
     }
    ],
    "placements": [
@@ -3983,14 +3983,14 @@
    ],
    "preview": {
     "file": "outputs/ep17/voice/preview.mp3",
-    "len": 30.46
+    "len": 30.96
    },
    "bgm": {
     "file": "outputs/ep17/bgm/sweet.mp3",
     "target_lufs": -26,
     "duck_db": 6,
     "fade_in": 0.2,
-    "end_at": 31.21,
+    "end_at": 31.71,
     "fade_out": 0.6,
     "dips": [
      {
@@ -4021,8 +4021,8 @@
     ]
    },
    "edit": {
-    "tag": "v2",
-    "total": 31.21,
+    "tag": "v4",
+    "total": 31.71,
     "segments": [
      {
       "n": "1 편안",
@@ -4111,8 +4111,8 @@
       "mood": "sweet",
       "zoom": null,
       "at": 28.17,
-      "end": 31.21,
-      "len": 3.04
+      "end": 31.71,
+      "len": 3.54
      }
     ]
    }
@@ -4122,12 +4122,12 @@
     {
      "cut": "C1a",
      "speaker": "changsu",
-     "subtitle": "자기, 옷 많잖아~",
-     "tts": "[teasing, gentle] 자기, 옷 많잖아~",
+     "subtitle": "미순아, 옷 많잖아~",
+     "tts": "[teasing, gentle] 미순아, 옷 많잖아~",
      "seed": 1234,
      "speedup": 1.25,
      "inner": false,
-     "len": 1.41,
+     "len": 1.44,
      "file": "outputs/ep18/voice/lines/C1a.mp3"
     },
     {
@@ -4273,7 +4273,172 @@
      "len": 1.33,
      "file": "outputs/ep18/voice/lines/C12.mp3"
     }
-   ]
+   ],
+   "placements": [
+    {
+     "file": "outputs/ep18/voice/lines/C1a.mp3",
+     "at": 0.3
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C1b.mp3",
+     "at": 1.95
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C2.mp3",
+     "at": 4.12
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C4a.mp3",
+     "at": 9.8
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C4b.mp3",
+     "at": 11.8
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C5.mp3",
+     "at": 14.4
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C6.mp3",
+     "at": 16.7
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C7.mp3",
+     "at": 18.9
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C8.mp3",
+     "at": 22.1
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C9_muffled.mp3",
+     "at": 24.7
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C10a.mp3",
+     "at": 26.9
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C10b.mp3",
+     "at": 29.4
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C11.mp3",
+     "at": 31.45
+    },
+    {
+     "file": "outputs/ep18/voice/lines/C12.mp3",
+     "at": 33.25
+    }
+   ],
+   "bgm": {
+    "file": "outputs/ep18/bgm/cozy_comedy.mp3",
+    "target_lufs": -28,
+    "duck_db": 6,
+    "fade_in": 0.4,
+    "end_at": 40.35,
+    "fade_out": 1.0,
+    "dips": [
+     {
+      "at": 5.65,
+      "len": 2.4,
+      "db": -8
+     },
+     {
+      "at": 37.55,
+      "len": 2.9,
+      "db": -18
+     }
+    ]
+   },
+   "edit": {
+    "tag": "v15",
+    "total": 40.35,
+    "segments": [
+     {
+      "n": "S1 옷장 앞",
+      "len": 4.0,
+      "at": 0.0
+     },
+     {
+      "n": "S2 손잡이",
+      "len": 1.65,
+      "at": 4.0
+     },
+     {
+      "n": "S3 산사태",
+      "len": 3.0,
+      "at": 5.65
+     },
+     {
+      "n": "S4a 얼굴 쑥",
+      "len": 3.0,
+      "at": 8.65
+     },
+     {
+      "n": "S4b 작년 거",
+      "len": 2.6,
+      "at": 11.65
+     },
+     {
+      "n": "S5 정리해 봐",
+      "len": 2.3,
+      "at": 14.25
+     },
+     {
+      "n": "S6 버리고",
+      "len": 2.0,
+      "at": 16.55
+     },
+     {
+      "n": "S7 아까운데",
+      "len": 2.6,
+      "at": 18.55
+     },
+     {
+      "n": "S8 1시간 뒤",
+      "len": 3.2,
+      "chip": [
+       "1시간 뒤",
+       0.0,
+       0.95
+      ],
+      "at": 21.15
+     },
+     {
+      "n": "S9 미워",
+      "len": 2.3,
+      "at": 24.35
+     },
+     {
+      "n": "S10 달래기",
+      "len": 4.5,
+      "at": 26.65
+     },
+     {
+      "n": "S11 정말",
+      "len": 1.9,
+      "at": 31.15
+     },
+     {
+      "n": "S12 담아놨지롱",
+      "len": 2.2,
+      "at": 33.05
+     },
+     {
+      "n": "S12b 장바구니",
+      "len": 2.3,
+      "phone": true,
+      "at": 35.25
+     },
+     {
+      "n": "S13 동공지진",
+      "len": 2.8,
+      "at": 37.55
+     }
+    ]
+   }
   },
   "ep19": {
    "lines": [

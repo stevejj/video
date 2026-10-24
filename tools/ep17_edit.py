@@ -16,13 +16,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EP = os.path.join(ROOT, 'outputs/ep17'); FF = imageio_ffmpeg.get_ffmpeg_exe()
 W, H, FPS = 1080, 1920, 24
 TITLE = [[('POV', 'white')], [('미순이의 감정 변화속도', 'yellow')]]
-SUB_Y = 1590
+SUB_Y = 1500
 SPK_X = {'misun': 0.66, 'changsu': 0.35}   # 그림 폭 비율, 말하는 쪽 중심
 FACE_Y = 0.50                              # 두 얼굴 높이(그림 높이 비율)
 BASE = (1.25, 0.5, 0.56)                   # 기본 화면: 두 펭귄이 작게 보여서 1.25배, 조금 아래 중심(v1)
 # 그림마다 펭귄 크기가 달라 컷이 튐 → 그림별 기본 화면(배수, 중심 x, 중심 y)으로 E1 크기에 맞춤(v1 검수)
 # v2(사용자: 버럭 효과는 미순 얼굴에 맞춰야) — 그림별 얼굴 중심·머리 반지름(화면 비율, FRAME 기준)
-FACE = {'E2': {'misun': (0.66, 0.49, 0.22, 0.11)}, 'E3': {'misun': (0.84, 0.51, 0.2, 0.11)}, 'E5': {'changsu': (0.33, 0.50, 0.22, 0.11), 'misun': (0.66, 0.50, 0.2, 0.1)}}
+FACE = {'E2': {'misun': (0.745, 0.455, 0.225, 0.11)}, 'E3': {'misun': (0.83, 0.47, 0.2, 0.105)}, 'E5': {'changsu': (0.30, 0.46, 0.21, 0.1)}}   # v3: 얼굴 점이 아니라 머리 전체(중심·반지름) — 미순 머리 윤곽을 크게 잘라 잼. v2 E2는 얼굴 점(0.66)이라 기운이 머리 왼쪽으로 치우쳤음
 FRAME = {'E1': (1.25, 0.5, 0.56), 'E2': (1.56, 0.52, 0.55), 'E3': (1.45, 0.52, 0.55), 'E5': (1.25, 0.5, 0.56), 'K3': (1.2, 0.5, 0.56), 'K5': (1.12, 0.5, 0.56)}
 K3F, K5F = 'K3_v1.mp4', 'K5_v1_fix.mp4'   # K5: 1.5s 뒤 미순 반대쪽 날개 끝이 남색으로 보여 지움(0원)
 CLIP_T0 = {'K3': 1.3, 'K5': 1.8}           # 16칸 검수: K3 1.3s부터 머리 기댐(앞은 눈 동그래짐), K5 1.0~1.3s 날개 남색 → 1.8s부터
@@ -82,24 +82,27 @@ def lights_off(fr, fc, k):
     f = fr.astype(np.float32); g = cv2.cvtColor(fr, cv2.COLOR_BGR2GRAY).astype(np.float32)[..., None]
     dark = (f * 0.5 + g * 0.5) * np.array([1.12, 0.92, 0.78]) * 0.42
     yy, xx = np.mgrid[0:H, 0:W].astype(np.float32); cx, cy = fc[0] * W, fc[1] * H
-    spot = np.exp(-(((xx - cx) / (fc[2] * 1.3 * W)) ** 2 + ((yy - cy) / (fc[3] * 1.6 * H)) ** 2))[..., None]   # 얼굴 중심 조명
+    spot = np.exp(-(((xx - cx) / (fc[2] * 1.15 * W)) ** 2 + ((yy - cy - 0.02 * H) / (fc[3] * 1.9 * H)) ** 2))[..., None]   # 머리 중심 조명
     lit = (f * 0.6 + g * 0.4) * np.array([1.12, 1.0, 0.9])
     out = dark * (1 - spot) + lit * spot
     return np.clip(f * (1 - k) + out * k, 0, 255).astype(np.uint8)
 
 
 def aura(fr, t, k, fc):
-    """버럭(v2): 미순 머리 둘레에서 검보라 기운이 불꽃처럼 위로 피어오름(만화 분노 오라). 얼굴 위치(fc)에 맞춤, 얼굴은 안 가림."""
-    sh, sw = H // 8, W // 8; rng = np.random.default_rng(int(t * 14))
-    n = cv2.resize(rng.random((4, 16)).astype(np.float32), (sw, sh), interpolation=cv2.INTER_CUBIC)       # 세로로 긴 불꽃 혀
-    n2 = cv2.resize(np.random.default_rng(3).random((30, 16)).astype(np.float32), (sw, sh * 3), interpolation=cv2.INTER_CUBIC)
-    off = int(t * 60) % (sh * 2); n = 0.5 * n + 0.5 * n2[off:off + sh]
+    """버럭(v3): 미순 머리 윤곽에 딱 붙어 검보라 기운이 타오름(윤곽 띠 + 위로 솟는 불꽃 혀). 머리 위치(fc)에 맞춤, 얼굴·창수 쪽은 안 가림."""
+    sh, sw = H // 6, W // 6; rng = np.random.default_rng(int(t * 14))
+    n = cv2.resize(rng.random((5, 34)).astype(np.float32), (sw, sh), interpolation=cv2.INTER_CUBIC)
+    n2 = cv2.resize(np.random.default_rng(3).random((40, 34)).astype(np.float32), (sw, sh * 3), interpolation=cv2.INTER_CUBIC)
+    off = int(t * 70) % (sh * 2); n = 0.5 * n + 0.5 * n2[off:off + sh]
     yy, xx = np.mgrid[0:sh, 0:sw].astype(np.float32); cx, cy = fc[0] * sw, fc[1] * sh
-    d = np.sqrt(((xx - cx) / (fc[2] * sw)) ** 2 + ((yy - cy) / (fc[3] * sh)) ** 2)   # 1 = 머리 둘레
-    ring = np.clip((d - 1.0) / 0.12, 0, 1) * np.clip((1.9 - d) / 0.5, 0, 1) * (yy < cy + 0.04 * sh)   # 머리 바깥 위·옆
-    a = np.clip(ring * (n * 1.7 - 0.5), 0, 1) * k
-    a = cv2.GaussianBlur(cv2.resize(a, (W, H), interpolation=cv2.INTER_CUBIC), (0, 0), 6)[..., None] * 0.9
-    col = np.array([80, 15, 60], np.float32)   # BGR 검보라
+    ang = np.arctan2(yy - cy, xx - cx)                                   # -pi/2 = 바로 위
+    d = np.sqrt(((xx - cx) / (fc[2] * sw)) ** 2 + ((yy - cy) / (fc[3] * sh)) ** 2)   # 1 = 머리 윤곽
+    up = np.clip(-np.sin(ang), 0, 1)                                     # 위쪽일수록 1
+    reach = 0.12 + 0.45 * up * n                                         # 위쪽은 불꽃이 길게
+    band = np.clip((d - 0.98) / 0.04, 0, 1) * np.clip(1 - (d - 1.0) / reach, 0, 1) * (yy < cy + 0.6 * fc[3] * sh)
+    a = np.clip(band * (0.55 + 0.6 * n), 0, 1) * k
+    a = cv2.GaussianBlur(cv2.resize(a, (W, H), interpolation=cv2.INTER_CUBIC), (0, 0), 4)[..., None] * 0.9
+    col = np.array([95, 20, 70], np.float32)   # BGR 검보라
     return np.clip(fr.astype(np.float32) * (1 - a) + col * a, 0, 255).astype(np.uint8)
 
 
@@ -207,8 +210,8 @@ def main():
             if s['mood'] == 'sweet':   # 하트가 아래에서 피어오름
                 for hx, ph, hi, sp in HP:
                     u = (lt * 0.35 * sp + ph) % 1.0
-                    put(fr, hearts[hi], hx * W + 30 * np.sin(u * 6 + ph * 9), H * (0.33 - 0.19 * u), alpha=min(1, u * 5) * (1 - u) * 0.85)
-            put(fr, title, W / 2, 250); put(fr, chan, W / 2, 1820)
+                    put(fr, hearts[hi], hx * W + 30 * np.sin(u * 6 + ph * 9), H * (0.34 - 0.1 * u), alpha=min(1, u * 5) * (1 - u) * 0.85)
+            put(fr, title, W / 2, 330); put(fr, chan, W / 2, 1720)   # v4 사용자: 제목 조금 아래, 자막·채널명 조금 위
             for ln in s['lines']:
                 li = s['lines'].index(ln); nxt = s['lines'][li + 1]['at'] - 0.05 - 1 / FPS if li + 1 < len(s['lines']) else s['end']
                 if ln['at'] - 0.05 <= tt < nxt:   # v2: 다음 줄이 나오면 바로 내림(겹침 수정)
