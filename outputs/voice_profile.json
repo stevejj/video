@@ -4122,12 +4122,12 @@
     {
      "cut": "C1a",
      "speaker": "changsu",
-     "subtitle": "자기, 옷 많잖아~",
-     "tts": "[teasing, gentle] 자기, 옷 많잖아~",
+     "subtitle": "미순아, 옷 많잖아~",
+     "tts": "[teasing, gentle] 미순아, 옷 많잖아~",
      "seed": 1234,
      "speedup": 1.25,
      "inner": false,
-     "len": 1.41,
+     "len": 1.44,
      "file": "outputs/ep18/voice/lines/C1a.mp3"
     },
     {
@@ -4353,7 +4353,7 @@
     ]
    },
    "edit": {
-    "tag": "v10",
+    "tag": "v11",
     "total": 40.35,
     "segments": [
      {

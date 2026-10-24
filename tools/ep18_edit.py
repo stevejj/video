@@ -85,7 +85,7 @@ def phone_cart(n):
         cd.text((180, 112), price, font=font(40, 800), fill='#FF5C9A')
         cd.rounded_rectangle([860, 55, 910, 105], radius=10, fill='#FF9CC2'); cd.text((885, 80), '✓', font=font(34, 800), fill='white', anchor='mm')
         card_imgs.append(np.array(c))
-    total = text_img([[('총 ', 'white'), ('1,075,000원', 'yellow')]], 110, stroke=11)
+    total = text_img([[('총 ', 'white'), ('1,075,000원', 'yellow')]], 88, stroke=9)   # v11(사용자: 밑에 잘림) 작게
     base = cv2.cvtColor(np.array(base), cv2.COLOR_RGB2BGR)
     out = []
     for i in range(n):
@@ -95,7 +95,7 @@ def phone_cart(n):
             if t >= tj:
                 a = ease((t - tj) / 0.14); put(fr, c, W / 2, 720 + j * 178 + (1 - a) * 40, alpha=a)
         if t >= 1.15:
-            a = ease((t - 1.15) / 0.2); put(fr, total, W / 2, 1650, alpha=a, scale=0.7 + 0.3 * a + 0.08 * (1 - a))
+            a = ease((t - 1.15) / 0.2); put(fr, total, W / 2, 1585, alpha=a, scale=0.7 + 0.3 * a + 0.08 * (1 - a))
         out.append(fr)
     return out
 
@@ -174,7 +174,7 @@ def main():
 
     # 장면 준비 — v6(사용자): 캐릭터·배경을 오려 움직이지 않음(지운 자국 안 나오게). 움직임은 카메라로만(밀기·옮기기·확대 펀치·흔들림).
     nfr = lambda sk: int(round(S[sk]['len'] * FPS)) + 2
-    I = {k: big(v) for k, v in dict(F1='F1_v1', F2a='F2a_v1', F2b='F2b_fill', F4a='F4a_v1', F4b='F4b_v2', F5='F5_v1', F6='F6_v1', F7='F7_v1',
+    I = {k: big(v) for k, v in dict(F1='F1_v1', F2a='F2a_v1', F2b='F2b_fill', F4a='F4a_v1_fill', F4b='F4b_v2', F5='F5_v1', F6='F6_v1', F7='F7_v1',
                                      F8='F8_v1', B9='B9_v2', B10='B10_v1', B11='B11_v1', B12='B12_v1').items()}
     voice9 = talk_bob.envelope([('x', LN('C9'), 0.35)], 'x', nfr('S9'))      # 9번: 목소리 크기만큼 카메라가 들썩
     K1 = Clip(os.path.join(EP, 'K1/clip_v1.mp4'), t0=0.8, sp=1.4)

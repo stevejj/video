@@ -14,7 +14,7 @@ OUT = os.path.join(ROOT, 'outputs/ep18/voice')
 SEEDS = (42, 7, 1234, 99)
 # cut: (화자, 자막, 목표 길이(처리 뒤 s), [tts 후보 2종])
 LINES = {
-    'C1a': ('changsu', '자기, 옷 많잖아~', 1.4, ['[teasing, gentle] 자기, 옷 많잖아~', '[playful, amused] 자기, 옷 많잖아~']),
+    'C1a': ('changsu', '미순아, 옷 많잖아~', 1.5, ['[teasing, gentle] 미순아, 옷 많잖아~', '[playful, amused] 미순아, 옷 많잖아~']),   # v11 사용자: 자기 → 미순아
     'C1b': ('misun', '아니야, 입을 옷이 없어!', 1.5, ['[whiny, pouting] 아니야, 입을 옷이 없어!', '[frustrated, cute] 아니야~ 입을 옷이 없어!']),
     'C2': ('changsu', '입을 옷이… 없다고?', 1.6, ['[doubtful, suspicious] 입을 옷이... 없다고?', '[slowly, skeptical] 입을 옷이... 없다고?']),
     'C4a': ('changsu', '그럼 이건 다 뭔데?', 1.3, ['[exasperated] 그럼 이건 다 뭔데?', '[muffled, annoyed] 그럼 이건 다 뭔데?']),
