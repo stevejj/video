@@ -251,8 +251,8 @@ def main():
 
     # 장면 준비 — v6(사용자): 캐릭터·배경을 오려 움직이지 않음(지운 자국 안 나오게). 움직임은 카메라로만(밀기·옮기기·확대 펀치·흔들림).
     nfr = lambda sk: int(round(S[sk]['len'] * FPS)) + 2
-    I = {k: big(v) for k, v in dict(F1='F1_v1', F2a='F2a_v1', F2b='F2b_fill', F4a='F4a_v1_fill', F4b='F4b_v2', F5='F5_v1', F6='F6_v1', F7='F7_v1',
-                                     F8='F8_v1', B9='B9_v2', B10='B10_v1', B11='B11_v1', B12='B12_v1').items()}
+    I = {k: big(v) for k, v in dict(F1='F1_v1', F2a='F2a_v1', F2b='F2b_fill', F4a='F4a_v1_fill', F4b='F4b_v2_fill', F5='F5_v1_fill', F6='F6_v1_fill', F7='F7_v1',
+                                     F8='F8_v1_fill', B9='B9_v2', B10='B10_v1', B11='B11_v1', B12='B12_v1').items()}
     I['B12'] = phone_screen(I['B12'])
     voice9 = talk_bob.envelope([('x', LN('C9'), 0.35)], 'x', nfr('S9'))      # 9번: 목소리 크기만큼 카메라가 들썩
     K1 = Clip(os.path.join(EP, 'K1/clip_v1.mp4'), t0=0.8, sp=1.4)
