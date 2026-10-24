@@ -1,0 +1,6 @@
+{"cut": "K1", "model": "kling-video-v3_0", "args": {"duration": 5, "resolution": "720p", "prefer_multi_shots": false, "enable_audio": false},
+ "first_image": "outputs/ep18/K1/start_v1.png", "tail_image": "outputs/ep18/K1/end_v2.png",
+ "first_url": "https://s15-kling.klingai.com/kimg/EMXN1y8qSQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBovYWdlbnRfdXBsb2FkLzE3OTI4MDA5MDUvRml0UkF0MFFZWC9zdGFydF92MS5wbmc.origin?x-kcdn-pid=112372",
+ "tail_url": "https://s15-kling.klingai.com/kimg/EMXN1y8qRwoGdXBsb2FkEg55bGFiLXN0dW50LXNncBotYWdlbnRfdXBsb2FkLzE3OTI4MDA5MDgvYTQzMW5ZVXlxdS9lbmRfdjIucG5n.origin?x-kcdn-pid=112372",
+ "generation_id": "ASwzoXNjyTDFHrq7pmXxAOFqyAr9j1JGRhvRwF4cFC4jIjwobxREh3ajGWpSowqha86Jp1TA",
+ "credits_before": 1832, "credits_consumed": 30, "prompt": "docs/ep18/04_Kling_실행표.md K1"}
